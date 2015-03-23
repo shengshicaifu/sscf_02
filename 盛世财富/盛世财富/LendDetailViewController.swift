@@ -65,7 +65,13 @@ class LendDetailViewController: UIViewController ,UITableViewDataSource,UITableV
             }
         case 2:
             if self.view.viewWithTag(1) != nil && self.view.viewWithTag(1)?.hidden == true {
-                return 500
+                return 450
+            }else {
+                return 130
+            }
+        case 3:
+            if self.view.viewWithTag(2) != nil && self.view.viewWithTag(2)?.hidden == true {
+                return 350
             }else {
                 return 130
             }

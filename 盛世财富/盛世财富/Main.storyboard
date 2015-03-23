@@ -1313,14 +1313,14 @@
                             <constraint firstItem="qu5-FH-KhZ" firstAttribute="top" secondItem="SCA-4S-bxv" secondAttribute="bottom" constant="45" id="AUf-EU-2ql"/>
                             <constraint firstItem="FYS-rf-4Lh" firstAttribute="trailing" secondItem="eUK-My-Lhf" secondAttribute="trailingMargin" id="DZF-Va-ioV"/>
                             <constraint firstItem="SCA-4S-bxv" firstAttribute="leading" secondItem="eUK-My-Lhf" secondAttribute="leadingMargin" constant="-2" id="Gh5-rf-RXH"/>
-                            <constraint firstItem="SCA-4S-bxv" firstAttribute="top" secondItem="uyf-rh-dUm" secondAttribute="bottom" constant="28" id="Ih7-Su-kMz"/>
-                            <constraint firstItem="Tfe-73-zmd" firstAttribute="top" secondItem="uyf-rh-dUm" secondAttribute="bottom" constant="24" id="PSP-Fa-mty"/>
                             <constraint firstItem="Tfe-73-zmd" firstAttribute="trailing" secondItem="eUK-My-Lhf" secondAttribute="trailingMargin" id="Pbw-UD-CRx"/>
                             <constraint firstItem="7WS-z5-CBj" firstAttribute="leading" secondItem="eUK-My-Lhf" secondAttribute="leadingMargin" constant="27" id="QL7-W3-B3l"/>
+                            <constraint firstItem="Tfe-73-zmd" firstAttribute="top" secondItem="uyf-rh-dUm" secondAttribute="bottom" constant="24" id="SFn-8N-Qxb"/>
                             <constraint firstItem="7WS-z5-CBj" firstAttribute="top" secondItem="FYS-rf-4Lh" secondAttribute="bottom" constant="23" id="bbH-Xs-ODk"/>
                             <constraint firstItem="FYS-rf-4Lh" firstAttribute="top" secondItem="Tfe-73-zmd" secondAttribute="bottom" constant="36" id="dsP-hS-dPF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7WS-z5-CBj" secondAttribute="trailing" constant="26" id="kJN-8o-J3w"/>
                             <constraint firstAttribute="centerX" secondItem="7WS-z5-CBj" secondAttribute="centerX" constant="-0.5" id="wDV-0u-SHe"/>
+                            <constraint firstItem="SCA-4S-bxv" firstAttribute="top" secondItem="uyf-rh-dUm" secondAttribute="bottom" constant="28" id="wm0-Kk-vJe"/>
                             <constraint firstItem="FYS-rf-4Lh" firstAttribute="leading" secondItem="qu5-FH-KhZ" secondAttribute="trailing" constant="10" id="yac-1r-Pvq"/>
                         </constraints>
                     </view>

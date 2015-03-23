@@ -43,8 +43,6 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.view.addGestureRecognizer(swipeLeftGesture)
         
         
-        var tap = UITapGestureRecognizer(target: self, action: "tapImage:")
-        topImage.addGestureRecognizer(tap)
     }
     
     func tapImage(sender: UITapGestureRecognizer){

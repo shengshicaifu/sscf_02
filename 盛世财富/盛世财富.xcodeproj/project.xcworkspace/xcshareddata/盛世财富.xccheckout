@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+<<<<<<< Updated upstream
+	<string>1E28374E-3D17-4C1D-9CD8-CB3B9AE145AB</string>
+=======
+	<string>DFB8FCB3-3A08-4E06-AE9C-1320D52E3E35</string>
+>>>>>>> Stashed changes
+	<key>IDESourceControlProjectName</key>
+	<string>盛世财富</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E45AA6F232656EE06953D3124D41E939A60EDFD0</key>
+		<string>https://github.com/shengshicaifu/sscf.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>盛世财富/盛世财富.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E45AA6F232656EE06953D3124D41E939A60EDFD0</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/shengshicaifu/sscf.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E45AA6F232656EE06953D3124D41E939A60EDFD0</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E45AA6F232656EE06953D3124D41E939A60EDFD0</string>
+			<key>IDESourceControlWCCName</key>
+<<<<<<< Updated upstream
+			<string>sscf</string>
+=======
+			<string>github:sscf</string>
+>>>>>>> Stashed changes
+		</dict>
+	</array>
+</dict>
+</plist>

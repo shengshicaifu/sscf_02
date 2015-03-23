@@ -1,0 +1,644 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E90EA2721ABFA37A006D22E6 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA2601ABFA37A006D22E6 /* AFHTTPRequestOperation.m */; };
+		E90EA2731ABFA37A006D22E6 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA2621ABFA37A006D22E6 /* AFHTTPRequestOperationManager.m */; };
+		E90EA2741ABFA37A006D22E6 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA2641ABFA37A006D22E6 /* AFHTTPSessionManager.m */; };
+		E90EA2751ABFA37A006D22E6 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA2671ABFA37A006D22E6 /* AFNetworkReachabilityManager.m */; };
+		E90EA2761ABFA37A006D22E6 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA2691ABFA37A006D22E6 /* AFSecurityPolicy.m */; };
+		E90EA2771ABFA37A006D22E6 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA26B1ABFA37A006D22E6 /* AFURLConnectionOperation.m */; };
+		E90EA2781ABFA37A006D22E6 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA26D1ABFA37A006D22E6 /* AFURLRequestSerialization.m */; };
+		E90EA2791ABFA37A006D22E6 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA26F1ABFA37A006D22E6 /* AFURLResponseSerialization.m */; };
+		E90EA27A1ABFA37A006D22E6 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA2711ABFA37A006D22E6 /* AFURLSessionManager.m */; };
+		E90EA27C1ABFAB5D006D22E6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */; };
+		E94E04651ABD015800A0EEC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E94E04641ABD015800A0EEC8 /* Main.storyboard */; };
+		E94E04671ABD3C5F00A0EEC8 /* SetTradePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94E04661ABD3C5F00A0EEC8 /* SetTradePasswordViewController.swift */; };
+		E96B1E731AB6BFB300C61870 /* AllListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96B1E721AB6BFB300C61870 /* AllListViewController.swift */; };
+		E98EE13F1ABACF6A00CAE127 /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EE13E1ABACF6A00CAE127 /* SCLAlertView.swift */; };
+		E98EE1411ABAD02200CAE127 /* PersonCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EE1401ABAD02200CAE127 /* PersonCenterViewController.swift */; };
+		E98EE1431ABAD04100CAE127 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EE1421ABAD04100CAE127 /* DetailViewController.swift */; };
+		E98EE1451ABAD0CF00CAE127 /* TransRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EE1441ABAD0CF00CAE127 /* TransRecordViewController.swift */; };
+		E98EE1471ABAD0F100CAE127 /* BindPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EE1461ABAD0F100CAE127 /* BindPhoneViewController.swift */; };
+		E98EE1491ABAD10900CAE127 /* FinanceManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EE1481ABAD10900CAE127 /* FinanceManagerViewController.swift */; };
+		E98EE14B1ABAD11B00CAE127 /* MoneyManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EE14A1ABAD11B00CAE127 /* MoneyManagerViewController.swift */; };
+		E98EE14D1ABAD11F00CAE127 /* MyBanksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EE14C1ABAD11F00CAE127 /* MyBanksViewController.swift */; };
+		E98EE14F1ABAD12600CAE127 /* RealNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EE14E1ABAD12600CAE127 /* RealNameViewController.swift */; };
+		E98EE1511ABAD12B00CAE127 /* ReturnSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EE1501ABAD12B00CAE127 /* ReturnSearchViewController.swift */; };
+		E98EE1531ABAD13300CAE127 /* UpdateTradePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EE1521ABAD13300CAE127 /* UpdateTradePasswordViewController.swift */; };
+		E98EE1571ABAD14800CAE127 /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EE1561ABAD14800CAE127 /* AccountDetailViewController.swift */; };
+		E98EE1591ABAD14D00CAE127 /* AccountSafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EE1581ABAD14D00CAE127 /* AccountSafeViewController.swift */; };
+		E993F3321ABC0667001B9EA5 /* FVCustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E993F3311ABC0667001B9EA5 /* FVCustomAlertView.swift */; };
+		E9C54E061AB7BCD400D4722C /* LendDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C54E051AB7BCD400D4722C /* LendDetailViewController.swift */; };
+		E9C605B21ABBB9C500752D91 /* Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C605AC1ABBB9C500752D91 /* Refresh.swift */; };
+		E9C605B31ABBB9C500752D91 /* RefreshBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C605AD1ABBB9C500752D91 /* RefreshBaseView.swift */; };
+		E9C605B41ABBB9C500752D91 /* RefreshConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C605AE1ABBB9C500752D91 /* RefreshConst.swift */; };
+		E9C605B51ABBB9C500752D91 /* RefreshFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C605AF1ABBB9C500752D91 /* RefreshFooterView.swift */; };
+		E9C605B61ABBB9C500752D91 /* RefreshHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C605B01ABBB9C500752D91 /* RefreshHeaderView.swift */; };
+		E9C605B71ABBB9C500752D91 /* UIScrollView+Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C605B11ABBB9C500752D91 /* UIScrollView+Refresh.swift */; };
+		E9D6604D1AB1313B0020982D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D6604C1AB1313B0020982D /* AppDelegate.swift */; };
+		E9D6604F1AB1313B0020982D /* LendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D6604E1AB1313B0020982D /* LendViewController.swift */; };
+		E9D660541AB1313B0020982D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9D660531AB1313B0020982D /* Images.xcassets */; };
+		E9D660571AB1313B0020982D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9D660551AB1313B0020982D /* LaunchScreen.xib */; };
+		E9D660631AB1313B0020982D /* ____Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D660621AB1313B0020982D /* ____Tests.swift */; };
+		E9EEC97E1AB6A56600E09442 /* aaa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E9EEC97D1AB6A56600E09442 /* aaa.jpg */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E9D6605D1AB1313B0020982D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E9D6603F1AB1313B0020982D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E9D660461AB1313B0020982D;
+			remoteInfo = "盛世财富";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E90EA25D1ABFA1A5006D22E6 /* 盛世财富-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "盛世财富-Bridging-Header.h"; sourceTree = "<group>"; };
+		E90EA25F1ABFA37A006D22E6 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		E90EA2601ABFA37A006D22E6 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		E90EA2611ABFA37A006D22E6 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
+		E90EA2621ABFA37A006D22E6 /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
+		E90EA2631ABFA37A006D22E6 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		E90EA2641ABFA37A006D22E6 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		E90EA2651ABFA37A006D22E6 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		E90EA2661ABFA37A006D22E6 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		E90EA2671ABFA37A006D22E6 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		E90EA2681ABFA37A006D22E6 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		E90EA2691ABFA37A006D22E6 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		E90EA26A1ABFA37A006D22E6 /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		E90EA26B1ABFA37A006D22E6 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		E90EA26C1ABFA37A006D22E6 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		E90EA26D1ABFA37A006D22E6 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		E90EA26E1ABFA37A006D22E6 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		E90EA26F1ABFA37A006D22E6 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		E90EA2701ABFA37A006D22E6 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		E90EA2711ABFA37A006D22E6 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E94E04641ABD015800A0EEC8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		E94E04661ABD3C5F00A0EEC8 /* SetTradePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTradePasswordViewController.swift; sourceTree = "<group>"; };
+		E96B1E721AB6BFB300C61870 /* AllListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllListViewController.swift; sourceTree = "<group>"; };
+		E98EE13E1ABACF6A00CAE127 /* SCLAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLAlertView.swift; sourceTree = "<group>"; };
+		E98EE1401ABAD02200CAE127 /* PersonCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCenterViewController.swift; sourceTree = "<group>"; };
+		E98EE1421ABAD04100CAE127 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		E98EE1441ABAD0CF00CAE127 /* TransRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransRecordViewController.swift; sourceTree = "<group>"; };
+		E98EE1461ABAD0F100CAE127 /* BindPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindPhoneViewController.swift; sourceTree = "<group>"; };
+		E98EE1481ABAD10900CAE127 /* FinanceManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinanceManagerViewController.swift; sourceTree = "<group>"; };
+		E98EE14A1ABAD11B00CAE127 /* MoneyManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoneyManagerViewController.swift; sourceTree = "<group>"; };
+		E98EE14C1ABAD11F00CAE127 /* MyBanksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBanksViewController.swift; sourceTree = "<group>"; };
+		E98EE14E1ABAD12600CAE127 /* RealNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealNameViewController.swift; sourceTree = "<group>"; };
+		E98EE1501ABAD12B00CAE127 /* ReturnSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnSearchViewController.swift; sourceTree = "<group>"; };
+		E98EE1521ABAD13300CAE127 /* UpdateTradePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTradePasswordViewController.swift; sourceTree = "<group>"; };
+		E98EE1561ABAD14800CAE127 /* AccountDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
+		E98EE1581ABAD14D00CAE127 /* AccountSafeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSafeViewController.swift; sourceTree = "<group>"; };
+		E993F3311ABC0667001B9EA5 /* FVCustomAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FVCustomAlertView.swift; sourceTree = "<group>"; };
+		E9C54E051AB7BCD400D4722C /* LendDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LendDetailViewController.swift; sourceTree = "<group>"; };
+		E9C605AC1ABBB9C500752D91 /* Refresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refresh.swift; sourceTree = "<group>"; };
+		E9C605AD1ABBB9C500752D91 /* RefreshBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshBaseView.swift; sourceTree = "<group>"; };
+		E9C605AE1ABBB9C500752D91 /* RefreshConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshConst.swift; sourceTree = "<group>"; };
+		E9C605AF1ABBB9C500752D91 /* RefreshFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshFooterView.swift; sourceTree = "<group>"; };
+		E9C605B01ABBB9C500752D91 /* RefreshHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshHeaderView.swift; sourceTree = "<group>"; };
+		E9C605B11ABBB9C500752D91 /* UIScrollView+Refresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Refresh.swift"; sourceTree = "<group>"; };
+		E9D660471AB1313B0020982D /* 盛世财富.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "盛世财富.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9D6604B1AB1313B0020982D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9D6604C1AB1313B0020982D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E9D6604E1AB1313B0020982D /* LendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LendViewController.swift; sourceTree = "<group>"; };
+		E9D660531AB1313B0020982D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E9D660561AB1313B0020982D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		E9D6605C1AB1313B0020982D /* 盛世财富Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "盛世财富Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9D660611AB1313B0020982D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9D660621AB1313B0020982D /* ____Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "____Tests.swift"; sourceTree = "<group>"; };
+		E9EEC97D1AB6A56600E09442 /* aaa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = aaa.jpg; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E9D660441AB1313B0020982D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9D660591AB1313B0020982D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E90EA25E1ABFA37A006D22E6 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				E90EA25F1ABFA37A006D22E6 /* AFHTTPRequestOperation.h */,
+				E90EA2601ABFA37A006D22E6 /* AFHTTPRequestOperation.m */,
+				E90EA2611ABFA37A006D22E6 /* AFHTTPRequestOperationManager.h */,
+				E90EA2621ABFA37A006D22E6 /* AFHTTPRequestOperationManager.m */,
+				E90EA2631ABFA37A006D22E6 /* AFHTTPSessionManager.h */,
+				E90EA2641ABFA37A006D22E6 /* AFHTTPSessionManager.m */,
+				E90EA2651ABFA37A006D22E6 /* AFNetworking.h */,
+				E90EA2661ABFA37A006D22E6 /* AFNetworkReachabilityManager.h */,
+				E90EA2671ABFA37A006D22E6 /* AFNetworkReachabilityManager.m */,
+				E90EA2681ABFA37A006D22E6 /* AFSecurityPolicy.h */,
+				E90EA2691ABFA37A006D22E6 /* AFSecurityPolicy.m */,
+				E90EA26A1ABFA37A006D22E6 /* AFURLConnectionOperation.h */,
+				E90EA26B1ABFA37A006D22E6 /* AFURLConnectionOperation.m */,
+				E90EA26C1ABFA37A006D22E6 /* AFURLRequestSerialization.h */,
+				E90EA26D1ABFA37A006D22E6 /* AFURLRequestSerialization.m */,
+				E90EA26E1ABFA37A006D22E6 /* AFURLResponseSerialization.h */,
+				E90EA26F1ABFA37A006D22E6 /* AFURLResponseSerialization.m */,
+				E90EA2701ABFA37A006D22E6 /* AFURLSessionManager.h */,
+				E90EA2711ABFA37A006D22E6 /* AFURLSessionManager.m */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		E91E81301AB27939000C5FD3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E94E04641ABD015800A0EEC8 /* Main.storyboard */,
+				E9D660551AB1313B0020982D /* LaunchScreen.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		E91E81311AB2794D000C5FD3 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				E90EA25D1ABFA1A5006D22E6 /* 盛世财富-Bridging-Header.h */,
+				E993F3311ABC0667001B9EA5 /* FVCustomAlertView.swift */,
+				E98EE13E1ABACF6A00CAE127 /* SCLAlertView.swift */,
+				E9EEC97D1AB6A56600E09442 /* aaa.jpg */,
+				E9D6604C1AB1313B0020982D /* AppDelegate.swift */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		E91E81321AB27956000C5FD3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */,
+				E98EE15A1ABAD3EC00CAE127 /* PersonCenter */,
+				E9D6604E1AB1313B0020982D /* LendViewController.swift */,
+				E96B1E721AB6BFB300C61870 /* AllListViewController.swift */,
+				E9C54E051AB7BCD400D4722C /* LendDetailViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		E91E81331AB27967000C5FD3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		E91E81341AB27972000C5FD3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E9D660531AB1313B0020982D /* Images.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		E98EE15A1ABAD3EC00CAE127 /* PersonCenter */ = {
+			isa = PBXGroup;
+			children = (
+				E94E04661ABD3C5F00A0EEC8 /* SetTradePasswordViewController.swift */,
+				E98EE1581ABAD14D00CAE127 /* AccountSafeViewController.swift */,
+				E98EE1561ABAD14800CAE127 /* AccountDetailViewController.swift */,
+				E98EE1521ABAD13300CAE127 /* UpdateTradePasswordViewController.swift */,
+				E98EE1501ABAD12B00CAE127 /* ReturnSearchViewController.swift */,
+				E98EE14E1ABAD12600CAE127 /* RealNameViewController.swift */,
+				E98EE14C1ABAD11F00CAE127 /* MyBanksViewController.swift */,
+				E98EE14A1ABAD11B00CAE127 /* MoneyManagerViewController.swift */,
+				E98EE1481ABAD10900CAE127 /* FinanceManagerViewController.swift */,
+				E98EE1461ABAD0F100CAE127 /* BindPhoneViewController.swift */,
+				E98EE1441ABAD0CF00CAE127 /* TransRecordViewController.swift */,
+				E98EE1421ABAD04100CAE127 /* DetailViewController.swift */,
+				E98EE1401ABAD02200CAE127 /* PersonCenterViewController.swift */,
+			);
+			name = PersonCenter;
+			sourceTree = "<group>";
+		};
+		E9C605AB1ABBB9C500752D91 /* Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				E9C605AC1ABBB9C500752D91 /* Refresh.swift */,
+				E9C605AD1ABBB9C500752D91 /* RefreshBaseView.swift */,
+				E9C605AE1ABBB9C500752D91 /* RefreshConst.swift */,
+				E9C605AF1ABBB9C500752D91 /* RefreshFooterView.swift */,
+				E9C605B01ABBB9C500752D91 /* RefreshHeaderView.swift */,
+				E9C605B11ABBB9C500752D91 /* UIScrollView+Refresh.swift */,
+			);
+			path = Refresh;
+			sourceTree = "<group>";
+		};
+		E9D6603E1AB1313B0020982D = {
+			isa = PBXGroup;
+			children = (
+				E9D660491AB1313B0020982D /* 盛世财富 */,
+				E9D6605F1AB1313B0020982D /* 盛世财富Tests */,
+				E9D660481AB1313B0020982D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E9D660481AB1313B0020982D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E9D660471AB1313B0020982D /* 盛世财富.app */,
+				E9D6605C1AB1313B0020982D /* 盛世财富Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E9D660491AB1313B0020982D /* 盛世财富 */ = {
+			isa = PBXGroup;
+			children = (
+				E90EA25E1ABFA37A006D22E6 /* AFNetworking */,
+				E9C605AB1ABBB9C500752D91 /* Refresh */,
+				E91E81341AB27972000C5FD3 /* Resources */,
+				E91E81331AB27967000C5FD3 /* Models */,
+				E91E81321AB27956000C5FD3 /* Controllers */,
+				E91E81311AB2794D000C5FD3 /* Source */,
+				E91E81301AB27939000C5FD3 /* Views */,
+				E9D6604A1AB1313B0020982D /* Supporting Files */,
+			);
+			path = "盛世财富";
+			sourceTree = "<group>";
+		};
+		E9D6604A1AB1313B0020982D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E9D6604B1AB1313B0020982D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E9D6605F1AB1313B0020982D /* 盛世财富Tests */ = {
+			isa = PBXGroup;
+			children = (
+				E9D660621AB1313B0020982D /* ____Tests.swift */,
+				E9D660601AB1313B0020982D /* Supporting Files */,
+			);
+			path = "盛世财富Tests";
+			sourceTree = "<group>";
+		};
+		E9D660601AB1313B0020982D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E9D660611AB1313B0020982D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E9D660461AB1313B0020982D /* 盛世财富 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9D660661AB1313B0020982D /* Build configuration list for PBXNativeTarget "盛世财富" */;
+			buildPhases = (
+				E9D660431AB1313B0020982D /* Sources */,
+				E9D660441AB1313B0020982D /* Frameworks */,
+				E9D660451AB1313B0020982D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "盛世财富";
+			productName = "盛世财富";
+			productReference = E9D660471AB1313B0020982D /* 盛世财富.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E9D6605B1AB1313B0020982D /* 盛世财富Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9D660691AB1313B0020982D /* Build configuration list for PBXNativeTarget "盛世财富Tests" */;
+			buildPhases = (
+				E9D660581AB1313B0020982D /* Sources */,
+				E9D660591AB1313B0020982D /* Frameworks */,
+				E9D6605A1AB1313B0020982D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E9D6605E1AB1313B0020982D /* PBXTargetDependency */,
+			);
+			name = "盛世财富Tests";
+			productName = "盛世财富Tests";
+			productReference = E9D6605C1AB1313B0020982D /* 盛世财富Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E9D6603F1AB1313B0020982D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = sscf88;
+				TargetAttributes = {
+					E9D660461AB1313B0020982D = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					E9D6605B1AB1313B0020982D = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = E9D660461AB1313B0020982D;
+					};
+				};
+			};
+			buildConfigurationList = E9D660421AB1313B0020982D /* Build configuration list for PBXProject "盛世财富" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E9D6603E1AB1313B0020982D;
+			productRefGroup = E9D660481AB1313B0020982D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E9D660461AB1313B0020982D /* 盛世财富 */,
+				E9D6605B1AB1313B0020982D /* 盛世财富Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E9D660451AB1313B0020982D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9EEC97E1AB6A56600E09442 /* aaa.jpg in Resources */,
+				E9D660571AB1313B0020982D /* LaunchScreen.xib in Resources */,
+				E9D660541AB1313B0020982D /* Images.xcassets in Resources */,
+				E94E04651ABD015800A0EEC8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9D6605A1AB1313B0020982D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E9D660431AB1313B0020982D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E90EA2721ABFA37A006D22E6 /* AFHTTPRequestOperation.m in Sources */,
+				E98EE1591ABAD14D00CAE127 /* AccountSafeViewController.swift in Sources */,
+				E98EE1571ABAD14800CAE127 /* AccountDetailViewController.swift in Sources */,
+				E98EE1451ABAD0CF00CAE127 /* TransRecordViewController.swift in Sources */,
+				E90EA2791ABFA37A006D22E6 /* AFURLResponseSerialization.m in Sources */,
+				E9C54E061AB7BCD400D4722C /* LendDetailViewController.swift in Sources */,
+				E98EE1471ABAD0F100CAE127 /* BindPhoneViewController.swift in Sources */,
+				E98EE1491ABAD10900CAE127 /* FinanceManagerViewController.swift in Sources */,
+				E98EE14B1ABAD11B00CAE127 /* MoneyManagerViewController.swift in Sources */,
+				E90EA2771ABFA37A006D22E6 /* AFURLConnectionOperation.m in Sources */,
+				E90EA2731ABFA37A006D22E6 /* AFHTTPRequestOperationManager.m in Sources */,
+				E9C605B41ABBB9C500752D91 /* RefreshConst.swift in Sources */,
+				E96B1E731AB6BFB300C61870 /* AllListViewController.swift in Sources */,
+				E9C605B31ABBB9C500752D91 /* RefreshBaseView.swift in Sources */,
+				E90EA27C1ABFAB5D006D22E6 /* LoginViewController.swift in Sources */,
+				E98EE14F1ABAD12600CAE127 /* RealNameViewController.swift in Sources */,
+				E9C605B21ABBB9C500752D91 /* Refresh.swift in Sources */,
+				E9C605B51ABBB9C500752D91 /* RefreshFooterView.swift in Sources */,
+				E90EA27A1ABFA37A006D22E6 /* AFURLSessionManager.m in Sources */,
+				E9D6604F1AB1313B0020982D /* LendViewController.swift in Sources */,
+				E90EA2761ABFA37A006D22E6 /* AFSecurityPolicy.m in Sources */,
+				E94E04671ABD3C5F00A0EEC8 /* SetTradePasswordViewController.swift in Sources */,
+				E98EE1531ABAD13300CAE127 /* UpdateTradePasswordViewController.swift in Sources */,
+				E90EA2751ABFA37A006D22E6 /* AFNetworkReachabilityManager.m in Sources */,
+				E9C605B61ABBB9C500752D91 /* RefreshHeaderView.swift in Sources */,
+				E90EA2741ABFA37A006D22E6 /* AFHTTPSessionManager.m in Sources */,
+				E90EA2781ABFA37A006D22E6 /* AFURLRequestSerialization.m in Sources */,
+				E98EE13F1ABACF6A00CAE127 /* SCLAlertView.swift in Sources */,
+				E98EE1411ABAD02200CAE127 /* PersonCenterViewController.swift in Sources */,
+				E9D6604D1AB1313B0020982D /* AppDelegate.swift in Sources */,
+				E98EE14D1ABAD11F00CAE127 /* MyBanksViewController.swift in Sources */,
+				E993F3321ABC0667001B9EA5 /* FVCustomAlertView.swift in Sources */,
+				E98EE1511ABAD12B00CAE127 /* ReturnSearchViewController.swift in Sources */,
+				E9C605B71ABBB9C500752D91 /* UIScrollView+Refresh.swift in Sources */,
+				E98EE1431ABAD04100CAE127 /* DetailViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9D660581AB1313B0020982D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9D660631AB1313B0020982D /* ____Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E9D6605E1AB1313B0020982D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E9D660461AB1313B0020982D /* 盛世财富 */;
+			targetProxy = E9D6605D1AB1313B0020982D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E9D660551AB1313B0020982D /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9D660561AB1313B0020982D /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E9D660641AB1313B0020982D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "盛世财富/盛世财富-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E9D660651AB1313B0020982D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "盛世财富/盛世财富-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E9D660671AB1313B0020982D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "盛世财富/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "盛世财富/盛世财富-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		E9D660681AB1313B0020982D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "盛世财富/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "盛世财富/盛世财富-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		E9D6606A1AB1313B0020982D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "盛世财富Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/盛世财富.app/盛世财富";
+			};
+			name = Debug;
+		};
+		E9D6606B1AB1313B0020982D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "盛世财富Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/盛世财富.app/盛世财富";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E9D660421AB1313B0020982D /* Build configuration list for PBXProject "盛世财富" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9D660641AB1313B0020982D /* Debug */,
+				E9D660651AB1313B0020982D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E9D660661AB1313B0020982D /* Build configuration list for PBXNativeTarget "盛世财富" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9D660671AB1313B0020982D /* Debug */,
+				E9D660681AB1313B0020982D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E9D660691AB1313B0020982D /* Build configuration list for PBXNativeTarget "盛世财富Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9D6606A1AB1313B0020982D /* Debug */,
+				E9D6606B1AB1313B0020982D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E9D6603F1AB1313B0020982D /* Project object */;
+}

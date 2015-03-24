@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UITextField!
     @IBOutlet weak var passwordLabel: UITextField!
     @IBAction func loginTapped(sender: AnyObject) {
-        
+                
         var manager = AFHTTPRequestOperationManager()
         var url = "http://192.168.1.25:8080/people/CheckLoginServlet"
         var params:NSDictionary! = ["username":usernameLabel.text,"password":passwordLabel.text]
@@ -36,10 +36,15 @@ class LoginViewController: UIViewController {
                 //解析json数据是List集合类型
                 // var json:[AnyObject] = responseObject as [AnyObject]
                 var json:NSDictionary = responseObject as NSDictionary
-    
+                
                 var result:Bool = json["result"] as Bool
                 if result {
                     self.performSegueWithIdentifier("loginIdentifier", sender: self)
+<<<<<<< HEAD
+=======
+                    println("enter...")
+
+>>>>>>> origin/master
                 }else{
                     //弹窗
                     var alert = UIAlertController(title: "提示", message: "您输入的密码或者账号有误！", preferredStyle:UIAlertControllerStyle.Alert)

@@ -40,7 +40,6 @@ class LoginViewController: UIViewController {
                 var result:Bool = json["result"] as Bool
                 if result {
                     self.performSegueWithIdentifier("loginIdentifier", sender: self)
-                    println("enter...")
 
                 }else{
                     //弹窗

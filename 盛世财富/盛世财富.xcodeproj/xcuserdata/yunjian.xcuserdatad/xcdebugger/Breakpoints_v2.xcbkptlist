@@ -10,6 +10,16 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             symbolName = "*0x10ad846cc">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WebCore::SVGRadialGradientElement::collectGradientAttributes(WebCore::RadialGradientAttributes&amp;)"
+                  moduleName = "WebCore"
+                  offsetFromSymbolStart = "316">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -54,7 +54,6 @@ class PersonCenterViewController: UIViewController,UITableViewDataSource,UITable
     func recordTapped(sender:AnyObject){
         var detail:TransRecordViewController = self.storyboard?.instantiateViewControllerWithIdentifier("transRecordViewController") as TransRecordViewController
         self.presentViewController(detail, animated: true, completion: nil)
-        
     }
     func searchTapped(sender:AnyObject){
         var search:ReturnSearchViewController = self.storyboard?.instantiateViewControllerWithIdentifier("returnSearchViewController") as ReturnSearchViewController

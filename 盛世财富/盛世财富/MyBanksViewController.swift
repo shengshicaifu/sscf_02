@@ -28,7 +28,7 @@ class MyBanksViewController: UIViewController,UITableViewDataSource,UITableViewD
     @IBOutlet weak var tableView: UITableView!
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return arrString.count
+        return arrString.count+10
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{

@@ -13,18 +13,20 @@ import UIKit
 class LendDetailViewController: UIViewController ,UITableViewDataSource,UITableViewDelegate{
 
     @IBOutlet weak var mainTable: UITableView!
-    @IBOutlet weak var btmBar: UIToolbar!
+    
+    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTable.delegate = self
-       
         
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        
     }
 	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
     
@@ -61,6 +63,18 @@ class LendDetailViewController: UIViewController ,UITableViewDataSource,UITableV
             }else{
                 return 30
             }
+        case 2:
+            if self.view.viewWithTag(1) != nil && self.view.viewWithTag(1)?.hidden == true {
+                return 450
+            }else {
+                return 130
+            }
+        case 3:
+            if self.view.viewWithTag(2) != nil && self.view.viewWithTag(2)?.hidden == true {
+                return 350
+            }else {
+                return 130
+            }
         default:
             return 130
         }
@@ -82,5 +96,33 @@ class LendDetailViewController: UIViewController ,UITableViewDataSource,UITableV
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 4
     }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if indexPath.section.hashValue == 2 {
+            
+            if self.view.viewWithTag(1)?.hidden == false {
+                self.view.viewWithTag(1)?.hidden = true
+                self.view.viewWithTag(10)?.hidden = false
+              
+            }else{
+                self.view.viewWithTag(1)?.hidden = false
+                self.view.viewWithTag(10)?.hidden = true
+            }
+        }
+        if indexPath.section.hashValue == 3{
+            
+            if self.view.viewWithTag(2)?.hidden == false {
+                self.view.viewWithTag(2)?.hidden = true
+                self.view.viewWithTag(11)?.hidden = false
+                
+            }else{
+                self.view.viewWithTag(2)?.hidden = false
+                self.view.viewWithTag(11)?.hidden = true
+            }
+        }
+        mainTable.reloadData()
+    }
+    
 }
 

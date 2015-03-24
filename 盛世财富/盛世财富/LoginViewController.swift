@@ -17,9 +17,11 @@ class LoginViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     @IBOutlet weak var usernameLabel: UITextField!
     @IBOutlet weak var passwordLabel: UITextField!
     @IBAction func loginTapped(sender: AnyObject) {
+        
         var manager = AFHTTPRequestOperationManager()
         var url = "http://192.168.1.25:8080/people/CheckLoginServlet"
         var params:NSDictionary! = ["username":usernameLabel.text,"password":passwordLabel.text]
@@ -51,6 +53,7 @@ class LoginViewController: UIViewController {
                 //打印错误信息
                 println("error:"+error.localizedDescription)
         } )
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

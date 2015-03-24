@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordLabel: UITextField!
     @IBAction func loginTapped(sender: AnyObject) {
         var manager = AFHTTPRequestOperationManager()
-        var url = "http://192.168.1.186:8080/people/CheckLoginServlet"
+        var url = "http://192.168.1.25:8080/people/CheckLoginServlet"
         var params:NSDictionary! = ["username":usernameLabel.text,"password":passwordLabel.text]
         manager.POST(url, parameters: params,
             success:{

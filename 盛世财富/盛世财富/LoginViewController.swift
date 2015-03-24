@@ -33,18 +33,13 @@ class LoginViewController: UIViewController {
                 //打印json数据
                 //println("responseObject: \(responseObject!) ")
                 
-                //解析json数据是List集合类型
+                //解析json数据是List集合类型s
                 // var json:[AnyObject] = responseObject as [AnyObject]
                 var json:NSDictionary = responseObject as NSDictionary
                 
                 var result:Bool = json["result"] as Bool
                 if result {
                     self.performSegueWithIdentifier("loginIdentifier", sender: self)
-<<<<<<< HEAD
-=======
-                    println("enter...")
-
->>>>>>> origin/master
                 }else{
                     //弹窗
                     var alert = UIAlertController(title: "提示", message: "您输入的密码或者账号有误！", preferredStyle:UIAlertControllerStyle.Alert)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ZUM-dN-K87">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6v-wi-K0w">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -1844,8 +1844,9 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTA-cq-aAF">
-                                        <rect key="frame" x="43" y="153" width="256" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTA-cq-aAF">
+                                        <rect key="frame" x="259" y="198" width="50" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="提交">
                                             <color key="titleColor" red="0.0" green="0.16907207955867351" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1858,8 +1859,10 @@
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="vFb-kP-FBM" firstAttribute="leading" secondItem="6Qn-hY-UiF" secondAttribute="trailing" constant="9" id="7Sg-4w-o79"/>
+                                    <constraint firstItem="gTA-cq-aAF" firstAttribute="top" secondItem="8yj-rG-Nal" secondAttribute="bottom" constant="85" id="8fg-oZ-AdE"/>
                                     <constraint firstItem="XK5-vt-wVN" firstAttribute="top" secondItem="6Qn-hY-UiF" secondAttribute="bottom" constant="27" id="C0Z-Cx-qNC"/>
                                     <constraint firstAttribute="trailing" secondItem="vFb-kP-FBM" secondAttribute="trailing" constant="8" id="Tq5-zm-38A"/>
+                                    <constraint firstAttribute="centerX" secondItem="gTA-cq-aAF" secondAttribute="centerX" id="TyR-N8-Jlf"/>
                                     <constraint firstItem="8yj-rG-Nal" firstAttribute="leading" secondItem="vFb-kP-FBM" secondAttribute="leading" id="Vqg-fn-DYS"/>
                                     <constraint firstItem="6Qn-hY-UiF" firstAttribute="leading" secondItem="yiZ-MH-URP" secondAttribute="leading" constant="8" id="YES-an-22m"/>
                                     <constraint firstItem="vFb-kP-FBM" firstAttribute="centerY" secondItem="6Qn-hY-UiF" secondAttribute="centerY" constant="-4.5" id="aq7-Hu-iel"/>

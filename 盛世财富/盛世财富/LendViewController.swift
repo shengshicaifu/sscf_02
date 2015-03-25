@@ -8,25 +8,49 @@
 
 import UIKit
 
-class LendViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
+class LendViewController: UIViewController,UITableViewDataSource,UITableViewDelegate ,HttpProtocol{
+
+    var eHttp: HttpController = HttpController()
+    var base: baseClass = baseClass()
+    var timeLineUrl = "http://www.sscf88.com/app-invest-content"
+    var tmpListData: NSMutableArray = NSMutableArray()
+    var listData: NSMutableArray = NSMutableArray()
+    var page = 1 //page
+    var imageCache = Dictionary<String,UIImage>()
+    var tid: String = ""
+    var sign: String = ""
+    var isCheck: String = ""
+    
+    let cellImg = 1
+    let cellLbl1 = 2
+    let cellLbl2 = 3
+    let cellLbl3 = 4
+    let refreshControl = UIRefreshControl()
 
     
     
     @IBOutlet weak var mainTable: UITableView!
+<<<<<<< HEAD
+=======
+    
+    
+>>>>>>> origin/master
     @IBOutlet weak var topImage: UIImageView!
     var timer:NSTimer?
     
     var count = 1
     func timerFunction(){
-    
+        
         topImage.image = UIImage(named: String(count)+".jpg")
         count++
         if count > 4 {
             count = 1
         }
     }
+    @IBOutlet weak var circle: UIActivityIndicatorView!
     
-    
+//    var dicList = Array<Dictionary<String,String>>()
+    var dicList = NSMutableArray()
     override func viewDidLoad() {
         super.viewDidLoad()
         timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "timerFunction", userInfo: nil, repeats: true)
@@ -40,11 +64,54 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         swipeLeftGesture.direction = UISwipeGestureRecognizerDirection.Left //不设置是右
         self.view.addGestureRecognizer(swipeLeftGesture)
         
-        
+        eHttp.delegate = self
+        eHttp.get(self.timeLineUrl)
+        self.setupRefresh()
     }
     
-    func tapImage(sender: UITapGestureRecognizer){
-        println(1)
+    //Refresh func
+    func setupRefresh(){
+        self.mainTable.addHeaderWithCallback({
+            let delayInSeconds:Int64 =  1000000000  * 2
+            var popTime:dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds)
+            dispatch_after(popTime, dispatch_get_main_queue(), {
+                self.mainTable.reloadData()
+                self.mainTable.headerEndRefreshing()
+            })
+        })
+        
+        self.mainTable.addFooterWithCallback({
+            var nextPage = String(self.page + 1)
+            var tmpTimeLineUrl = self.timeLineUrl + "&page=" + nextPage as NSString
+            self.eHttp.delegate = self
+            self.eHttp.get(tmpTimeLineUrl)
+            let delayInSeconds:Int64 = 1000000000 * 2
+            var popTime:dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds)
+            dispatch_after(popTime, dispatch_get_main_queue(), {
+                self.mainTable.footerEndRefreshing()
+                if(self.tmpListData != self.listData){
+                    if(self.tmpListData.count != 0){
+                        var tmpListDataCount = self.tmpListData.count
+                        for(var i:Int = 0; i < tmpListDataCount; i++){
+                            self.listData.addObject(self.tmpListData[i])
+                        }
+                    }
+                    self.mainTable.reloadData()
+                    self.tmpListData.removeAllObjects()
+                }
+            })
+        })
+    }
+    func didRecieveResult(result: NSDictionary){
+        if(result["data"]?.valueForKey("list") != nil){
+            self.tmpListData = result["data"]?.valueForKey("list") as NSMutableArray //list数据
+//            self.page = result["data"]?["page"] as Int
+            self.mainTable.reloadData()
+        }
+    }
+
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 160
     }
     
     //划动手势
@@ -58,7 +125,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             count++;//下标++
             break
         case UISwipeGestureRecognizerDirection.Right:
-       
+            
             count--;//下标--
             break
             
@@ -74,7 +141,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         //imageView显示图片
         topImage.image = UIImage(named: "\(count).jpg")
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -106,7 +173,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         var cell : UITableViewCell!
         
         
-        //写死内容
+        
         
         var val = indexPath.section.hashValue
         var row = indexPath.row
@@ -115,32 +182,22 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             cell = self.mainTable.dequeueReusableCellWithIdentifier("list") as UITableViewCell
             var image = cell.viewWithTag(100) as UIImageView
             var title = cell.viewWithTag(101) as UILabel
-            var content = cell.viewWithTag(102) as UILabel
-
-            if row == 0 {
-                title.text = "产品1"
-                content.text = "产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明"
-            }
-            if row == 1 {
-                title.text = "产品2"
-                content.text = "产品2的说明"
-            }
-            if row == 2 {
-                title.text = "产品3"
-                content.text = "产品3的说明"
-            }
-            if row == 3 {
-                title.text = "产品4"
-                content.text = "产品4的说明"
-            }
-            if row == 4 {
-                title.text = "产品5"
-                content.text = "产品5的说明"
+            var restMoney = cell.viewWithTag(102) as UILabel
+            var period = cell.viewWithTag(103) as UILabel
+            var totalMoney = cell.viewWithTag(104) as UILabel
+            var percent = cell.viewWithTag(105) as UILabel
+            
+            if tmpListData.count > 0 {
+                
+               title.text = tmpListData[row].valueForKey("borrow_name")! as? String
             }
         }
         if val == 1 {
             cell = self.mainTable.dequeueReusableCellWithIdentifier("person") as UITableViewCell
         }
+        
+//        circle.hidden = true
+//        circle.stopAnimating()
         
         
         return cell
@@ -151,7 +208,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         return 2
     }
     
-   
+    
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0{
             return "投资理财"

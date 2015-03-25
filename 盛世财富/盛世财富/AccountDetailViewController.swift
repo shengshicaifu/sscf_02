@@ -21,6 +21,7 @@ class AccountDetailViewController: UIViewController,UITableViewDelegate,UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
+        self.navigationItem.title = "账户信息"
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -96,7 +97,7 @@ class AccountDetailViewController: UIViewController,UITableViewDelegate,UITableV
         var alert:UIAlertController = UIAlertController(title: "提示", message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Default, handler: cancelClick))
         //handler:类型为(action:UIAlertAction!) -> Void
-//        UIAlertAction(title: <#String#>, style: <#UIAlertActionStyle#>, handler: <#((UIAlertAction!) -> Void)!##(UIAlertAction!) -> Void#>)
+//        UIAlertAction(title: <#String#>, style: UIAlertActionStyle, handler: <#((UIAlertAction!) -> Void)!##(UIAlertAction!) -> Void#>)
         alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: sureClick))
         
         self.presentViewController(alert, animated: true, completion: nil)
@@ -109,10 +110,16 @@ class AccountDetailViewController: UIViewController,UITableViewDelegate,UITableV
         println("您点击了取消")
     }
     func sureClick(action:UIAlertAction!) -> Void {
-        println("您点击了确定")
-        var mainView:LendViewController = self.storyboard?.instantiateViewControllerWithIdentifier("lendViewController") as LendViewController
+        //用户退出登录，注销用户信息
+        
+        
+        //跳转页面
+        var mainView:LoginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as LoginViewController
         //???此处跳转到主页面会出现nav和bar没有的情况
-        self.presentViewController(mainView, animated: true,completion: nil)
+//        self.presentViewController(mainView, animated: true,completion: nil)
+        //该方法是在右navigation的情况下使用的
+        self.navigationController?.pushViewController(mainView, animated: true)
+//        self.navigationController?.popToViewController(mainView, animated: true)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

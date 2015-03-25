@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
                 var result:Bool = json["result"] as Bool
                 if result {
                     self.performSegueWithIdentifier("loginIdentifier", sender: self)
-
+                    
                 }else{
                     //弹窗
                     var alert = UIAlertController(title: "提示", message: "您输入的密码或者账号有误！", preferredStyle:UIAlertControllerStyle.Alert)

@@ -11,6 +11,12 @@ import UIKit
 class LendViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     
+    let cellImg = 1
+    let cellLbl1 = 2
+    let cellLbl2 = 3
+    let cellLbl3 = 4
+    let refreshControl = UIRefreshControl()
+
     
     @IBOutlet weak var mainTable: UITableView!
     
@@ -44,6 +50,21 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         swipeLeftGesture.direction = UISwipeGestureRecognizerDirection.Left //不设置是右
         self.view.addGestureRecognizer(swipeLeftGesture)
         
+        eHttp.delegate = self
+        eHttp.get(self.timeLineUrl)
+        self.setupRefresh()
+    }
+    
+    //Refresh func
+    func setupRefresh(){
+        self.mainTable.addHeaderWithCallback({
+            let delayInSeconds:Int64 =  1000000000  * 2
+            var popTime:dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds)
+            dispatch_after(popTime, dispatch_get_main_queue(), {
+                self.mainTable.reloadData()
+                self.mainTable.headerEndRefreshing()
+            })
+        })
         
         var arr = NSArray()
         println(arr[0])
@@ -174,6 +195,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
 //        circle.hidden = true
 //        circle.stopAnimating()
+        
         
         return cell
         

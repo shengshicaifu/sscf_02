@@ -266,7 +266,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nCw-Jj-upg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="258" y="-430"/>
+            <point key="canvasLocation" x="542" y="-454"/>
         </scene>
         <!--借款详细-->
         <scene sceneID="5ec-i9-R2c">
@@ -1559,18 +1559,18 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aaa.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="GuQ-ix-Ofs">
-                                                    <rect key="frame" x="8" y="0.0" width="85" height="89"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="85" id="6vd-Fa-hI3"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内容" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cD-lQ-Bef">
                                                     <rect key="frame" x="101" y="38" width="458" height="51"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aaa.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="GuQ-ix-Ofs">
+                                                    <rect key="frame" x="8" y="0.0" width="85" height="89"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="85" id="6vd-Fa-hI3"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="GuQ-ix-Ofs" firstAttribute="leading" secondItem="u3U-Nw-7jg" secondAttribute="leadingMargin" id="0uC-xe-iLm"/>
@@ -1594,16 +1594,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Igw-Nb-4aZ" id="Jfy-GD-53r">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的资产" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayv-s4-Uaq">
-                                                    <rect key="frame" x="101" y="1" width="117" height="36"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="36" id="RTp-En-KCz"/>
-                                                        <constraint firstAttribute="width" constant="117" id="pPe-Mw-kqm"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aaa.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6JE-Fw-vPD">
                                                     <rect key="frame" x="8" y="1" width="85" height="87"/>
                                                     <constraints>
@@ -1613,6 +1603,16 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账户余额：8888.88元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biD-xI-rHc">
                                                     <rect key="frame" x="101" y="39" width="458" height="49"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的资产" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayv-s4-Uaq">
+                                                    <rect key="frame" x="101" y="1" width="117" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="RTp-En-KCz"/>
+                                                        <constraint firstAttribute="width" constant="117" id="pPe-Mw-kqm"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -2975,7 +2975,7 @@
         <image name="aaa.jpg" width="683" height="545"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WiB-sP-rff"/>
-        <segue reference="eAy-nA-gaH"/>
+        <segue reference="AA2-8c-NDt"/>
+        <segue reference="dhK-kZ-DWp"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -13,8 +13,6 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     
     @IBOutlet weak var mainTable: UITableView!
-    
- 
     @IBOutlet weak var topImage: UIImageView!
     var timer:NSTimer?
     

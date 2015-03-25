@@ -1388,6 +1388,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K5r-Og-7Df" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-172" y="452"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="bS7-lj-EC9">
@@ -1559,18 +1560,18 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内容" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cD-lQ-Bef">
-                                                    <rect key="frame" x="101" y="38" width="458" height="51"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aaa.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="GuQ-ix-Ofs">
                                                     <rect key="frame" x="8" y="0.0" width="85" height="89"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="6vd-Fa-hI3"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内容" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cD-lQ-Bef">
+                                                    <rect key="frame" x="101" y="38" width="458" height="51"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="GuQ-ix-Ofs" firstAttribute="leading" secondItem="u3U-Nw-7jg" secondAttribute="leadingMargin" id="0uC-xe-iLm"/>
@@ -1663,7 +1664,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LOU-kT-zyL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-70" y="-85"/>
+            <point key="canvasLocation" x="-240" y="-303"/>
         </scene>
         <!--所有产品-->
         <scene sceneID="L32-FO-XQq">
@@ -1813,7 +1814,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1qR-bc-AR0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="826" y="-85"/>
+            <point key="canvasLocation" x="817" y="-54"/>
         </scene>
         <!--tab个人中心-->
         <scene sceneID="0Td-zr-nyZ">
@@ -1844,18 +1845,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sLI-vL-Hjh">
-                                <rect key="frame" x="-6" y="48" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="实名认证" id="CMM-Ft-2Lb">
-                                        <barButtonItem key="leftBarButtonItem" title="返回" id="Qkx-fe-eRT">
-                                            <connections>
-                                                <action selector="returnTapped:" destination="ZUM-dN-K87" id="aoE-R3-o66"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yiZ-MH-URP">
                                 <rect key="frame" x="16" y="92" width="568" height="508"/>
                                 <subviews>
@@ -1910,6 +1899,18 @@
                                     <constraint firstItem="8yj-rG-Nal" firstAttribute="width" secondItem="vFb-kP-FBM" secondAttribute="width" id="x34-OM-aTT"/>
                                 </constraints>
                             </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sLI-vL-Hjh">
+                                <rect key="frame" x="-6" y="48" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="实名认证" id="CMM-Ft-2Lb">
+                                        <barButtonItem key="leftBarButtonItem" title="返回" id="Qkx-fe-eRT">
+                                            <connections>
+                                                <action selector="returnTapped:" destination="ZUM-dN-K87" id="aoE-R3-o66"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1930,7 +1931,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ME8-Pb-QNr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="861" y="1165"/>
+            <point key="canvasLocation" x="604" y="903"/>
         </scene>
         <!--Bind Phone View Controller-->
         <scene sceneID="1nQ-e5-LeY">
@@ -2484,13 +2485,14 @@
                             <constraint firstAttribute="centerX" secondItem="rM7-yY-3Ue" secondAttribute="centerX" id="x7N-4G-QU7"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="qYY-JO-KbD"/>
                     <connections>
                         <outlet property="tableView" destination="GGo-8q-DwY" id="mko-8a-WFM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EAt-3y-Urv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1008" y="-191"/>
+            <point key="canvasLocation" x="374" y="-130"/>
         </scene>
         <!--My Banks View Controller-->
         <scene sceneID="FHA-4E-8Pa">
@@ -2975,7 +2977,7 @@
         <image name="aaa.jpg" width="683" height="545"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AA2-8c-NDt"/>
-        <segue reference="dhK-kZ-DWp"/>
+        <segue reference="WiB-sP-rff"/>
+        <segue reference="eAy-nA-gaH"/>
     </inferredMetricsTieBreakers>
 </document>

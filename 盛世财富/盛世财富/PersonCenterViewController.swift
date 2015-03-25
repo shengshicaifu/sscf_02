@@ -28,6 +28,11 @@ class PersonCenterViewController: UIViewController,UITableViewDataSource,UITable
     var searchButton:UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        //加载数据时出现加载动画控件 var uaiv = UIActivityIndicatorView()
+        //1.在viewDidLoad()中 uaiv.startAnimating()
+        //2.在加载完数据之后就关闭控件并结束动画效果  
+        //uaiv.hidden = true   uaiv.stopAnimating()
+        
         tableView.dataSource = self
         tableView.delegate = self
         

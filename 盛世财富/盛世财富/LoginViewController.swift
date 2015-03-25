@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
                 //打印json数据
                 //println("responseObject: \(responseObject!) ")
                 
-                //解析json数据是List集合类型
+                //解析json数据是List集合类型s
                 // var json:[AnyObject] = responseObject as [AnyObject]
                 var json:NSDictionary = responseObject as NSDictionary
                 

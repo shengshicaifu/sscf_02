@@ -26,10 +26,10 @@ class LoginViewController: UIViewController {
 //        arrDic.append("{'id':12,'name':'zengchang'}" as Dictionary)
         
         var manager = AFHTTPRequestOperationManager()
-//        var url = "http://192.168.1.25:8080/people/CheckLoginServlet"
-//        var params:NSDictionary! = ["username":usernameLabel.text,"password":passwordLabel.text]
-        var url = "http://www.sscf88.com/app-invest-content"
-        var params:NSDictionary! = nil
+        var url = "http://192.168.1.25:8080/people/CheckLoginServlet"
+        var params:NSDictionary! = ["username":usernameLabel.text,"password":passwordLabel.text]
+//        var url = "http://www.sscf88.com/app-invest-content"
+//        var params:NSDictionary! = nil
         manager.POST(url, parameters: params,
             success:{
                 (operation:
@@ -42,24 +42,16 @@ class LoginViewController: UIViewController {
                 // var json:[AnyObject] = responseObject as [AnyObject]
                 var json:NSDictionary = responseObject as NSDictionary
                 
-                var anyArr:[AnyObject] = (json["data"] as NSDictionary)["list"] as [AnyObject]
-                
-                for element in anyArr {
-                    var temp:NSDictionary = element as NSDictionary
-                    println(temp["id"])
-                    println(temp["borrow_name"])
+                var result:Bool = json["result"] as Bool
+                if result {
+                    self.performSegueWithIdentifier("loginIdentifier", sender: self)
+                    
+                }else{
+                    //弹窗
+                    var alert = UIAlertController(title: "提示", message: "您输入的密码或者账号有误！", preferredStyle:UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
+                  self.presentViewController(alert, animated: true, completion: nil)
                 }
-                
-                //解析json数据是普通对象
-//                var result:Bool = json["result"] as Bool
-//                if result {
-//                    self.performSegueWithIdentifier("loginIdentifier", sender: self)
-//                }else{
-//                    //弹窗
-//                    var alert = UIAlertController(title: "提示", message: "您输入的密码或者账号有误！", preferredStyle:UIAlertControllerStyle.Alert)
-//                    alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
-//                  self.presentViewController(alert, animated: true, completion: nil)
-//                }
             } ,
             failure:{
                 (operation:AFHTTPRequestOperation!,error:NSError!) in

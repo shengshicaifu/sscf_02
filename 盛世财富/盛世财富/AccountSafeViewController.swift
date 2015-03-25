@@ -37,7 +37,7 @@ class AccountSafeViewController: UIViewController,UITableViewDataSource,UITableV
         //标识每一项的状态：未设置，已设置
         var flagLabel:UILabel = cell.viewWithTag(4) as UILabel
         //将该label隐藏
-//      flagLabel.hidden = true
+        flagLabel.hidden = true
         
         if indexPath.row == 0 {
             imageView.image = UIImage(named: "aaa.jpg")

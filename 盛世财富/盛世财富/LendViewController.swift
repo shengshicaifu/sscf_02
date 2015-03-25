@@ -8,8 +8,18 @@
 
 import UIKit
 
-class LendViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
-    
+class LendViewController: UIViewController,UITableViewDataSource,UITableViewDelegate ,HttpProtocol{
+
+    var eHttp: HttpController = HttpController()
+    var base: baseClass = baseClass()
+    var timeLineUrl = "http://www.sscf88.com/app-invest-content"
+    var tmpListData: NSMutableArray = NSMutableArray()
+    var listData: NSMutableArray = NSMutableArray()
+    var page = 1 //page
+    var imageCache = Dictionary<String,UIImage>()
+    var tid: String = ""
+    var sign: String = ""
+    var isCheck: String = ""
     
     let cellImg = 1
     let cellLbl1 = 2
@@ -17,6 +27,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     let cellLbl3 = 4
     let refreshControl = UIRefreshControl()
 
+    
     
     @IBOutlet weak var mainTable: UITableView!
     
@@ -66,20 +77,38 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             })
         })
         
-        var arr = NSArray()
-        println(arr[0])
+        self.mainTable.addFooterWithCallback({
+            var nextPage = String(self.page + 1)
+            var tmpTimeLineUrl = self.timeLineUrl + "&page=" + nextPage as NSString
+            self.eHttp.delegate = self
+            self.eHttp.get(tmpTimeLineUrl)
+            let delayInSeconds:Int64 = 1000000000 * 2
+            var popTime:dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds)
+            dispatch_after(popTime, dispatch_get_main_queue(), {
+                self.mainTable.footerEndRefreshing()
+                if(self.tmpListData != self.listData){
+                    if(self.tmpListData.count != 0){
+                        var tmpListDataCount = self.tmpListData.count
+                        for(var i:Int = 0; i < tmpListDataCount; i++){
+                            self.listData.addObject(self.tmpListData[i])
+                        }
+                    }
+                    self.mainTable.reloadData()
+                    self.tmpListData.removeAllObjects()
+                }
+            })
+        })
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        
-        
-        
+    func didRecieveResult(result: NSDictionary){
+        if(result["data"]?.valueForKey("list") != nil){
+            self.tmpListData = result["data"]?.valueForKey("list") as NSMutableArray //list数据
+//            self.page = result["data"]?["page"] as Int
+            self.mainTable.reloadData()
+        }
     }
-    
-    
-    
-    func tapImage(sender: UITapGestureRecognizer){
-        println(1)
+
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 160
     }
     
     //划动手势
@@ -151,43 +180,14 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             var image = cell.viewWithTag(100) as UIImageView
             var title = cell.viewWithTag(101) as UILabel
             var restMoney = cell.viewWithTag(102) as UILabel
+            var period = cell.viewWithTag(103) as UILabel
+            var totalMoney = cell.viewWithTag(104) as UILabel
+            var percent = cell.viewWithTag(105) as UILabel
             
-            var url = "http://www.sscf88.com/app-invest-content"
-            var params:NSDictionary!
-            //        circle.hidden = false
-            //        circle.startAnimating()
-            
-            
-            var manager = AFHTTPRequestOperationManager()
-            
-            manager.GET(url, parameters: params, success: { (operation:AFHTTPRequestOperation!,responseObject: AnyObject!) -> Void in
-                println("in")
-                var json = responseObject as NSDictionary
-                var code: Int = json["code"] as Int
-                if code == 200 {
-                    var anyArr:[AnyObject] = (json["data"] as NSDictionary)["list"] as [AnyObject]
-                    for element in anyArr {
-                        var temp:NSDictionary = element as NSDictionary
-                        title.text = temp["add_time"] as String
-                        restMoney.text = temp["area"] as String
-                    }
-                    
-                }
-                println("inner:\(self.dicList)")
-                }, failure: {(operation:AFHTTPRequestOperation!,error:NSError!) in
-                    
-                    var alert = UIAlertController(title: "消息", message: "列表加载失败，请稍后重试", preferredStyle: UIAlertControllerStyle.Alert)
-                    var action = UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: nil)
-                    alert.addAction(action)
-                    self.presentViewController(alert, animated: true, completion: nil)
-                    println("error")
-            })
-            
-//            var period = cell.viewWithTag(103) as UILabel
-//            var totalMoney = cell.viewWithTag(104) as UILabel
-//            var percent = cell.viewWithTag(105) as UILabel
-            
-            print("outer:\(dicList)")
+            if tmpListData.count > 0 {
+                
+               title.text = tmpListData[row].valueForKey("borrow_name")! as? String
+            }
         }
         if val == 1 {
             cell = self.mainTable.dequeueReusableCellWithIdentifier("person") as UITableViewCell

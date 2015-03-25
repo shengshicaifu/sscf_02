@@ -30,22 +30,22 @@ class UpdateTradePasswordViewController: UIViewController,UITextFieldDelegate {
         newPasswordLabel.delegate = self
         surePasswordLabel.delegate = self
         
-        var updateView:UIView = self.view.viewWithTag(1) as UIView!
-        var setView : UIView = self.view.viewWithTag(2) as UIView!
-        flag = "未设置121"
-        if flag == "未设置" {
-            //设置密码，显示设置，隐藏修改
-            // ?????? 设置密码view出现不了？？？
-            updateView.hidden = true
-            setView.hidden = false
-            self.title = "设置交易密码"
-        }else {
-            //修改密码，显示修改，隐藏设置
-            updateView.hidden = false
-            setView.hidden = true
-            navigationItem.title = "修改交易密码"
-            self.title = "修改交易密码"
-        }
+//        var updateView:UIView = self.view.viewWithTag(1) as UIView!
+//        var setView : UIView = self.view.viewWithTag(2) as UIView!
+//        flag = "未设置121"
+//        if flag == "未设置" {
+//            //设置密码，显示设置，隐藏修改
+//            // ?????? 设置密码view出现不了？？？
+//            updateView.hidden = true
+//            setView.hidden = false
+//            self.title = "设置交易密码"
+//        }else {
+//            //修改密码，显示修改，隐藏设置
+//            updateView.hidden = false
+//            setView.hidden = true
+//            navigationItem.title = "修改交易密码"
+//            self.title = "修改交易密码"
+//        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

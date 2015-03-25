@@ -9,26 +9,28 @@
 import UIKit
 
 class LendViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
-
+    
     
     
     @IBOutlet weak var mainTable: UITableView!
     
- 
+    
     @IBOutlet weak var topImage: UIImageView!
     var timer:NSTimer?
     
     var count = 1
     func timerFunction(){
-    
+        
         topImage.image = UIImage(named: String(count)+".jpg")
         count++
         if count > 4 {
             count = 1
         }
     }
+    @IBOutlet weak var circle: UIActivityIndicatorView!
     
-    
+//    var dicList = Array<Dictionary<String,String>>()
+    var dicList = NSMutableArray()
     override func viewDidLoad() {
         super.viewDidLoad()
         timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "timerFunction", userInfo: nil, repeats: true)
@@ -43,7 +45,17 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.view.addGestureRecognizer(swipeLeftGesture)
         
         
+        var arr = NSArray()
+        println(arr[0])
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        
+        
+    }
+    
+    
     
     func tapImage(sender: UITapGestureRecognizer){
         println(1)
@@ -60,7 +72,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             count++;//下标++
             break
         case UISwipeGestureRecognizerDirection.Right:
-       
+            
             count--;//下标--
             break
             
@@ -76,7 +88,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         //imageView显示图片
         topImage.image = UIImage(named: "\(count).jpg")
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -108,7 +120,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         var cell : UITableViewCell!
         
         
-        //写死内容
+        
         
         var val = indexPath.section.hashValue
         var row = indexPath.row
@@ -117,33 +129,51 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             cell = self.mainTable.dequeueReusableCellWithIdentifier("list") as UITableViewCell
             var image = cell.viewWithTag(100) as UIImageView
             var title = cell.viewWithTag(101) as UILabel
-            var content = cell.viewWithTag(102) as UILabel
-
-            if row == 0 {
-                title.text = "产品1"
-                content.text = "产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明产品1的说明"
-            }
-            if row == 1 {
-                title.text = "产品2"
-                content.text = "产品2的说明"
-            }
-            if row == 2 {
-                title.text = "产品3"
-                content.text = "产品3的说明"
-            }
-            if row == 3 {
-                title.text = "产品4"
-                content.text = "产品4的说明"
-            }
-            if row == 4 {
-                title.text = "产品5"
-                content.text = "产品5的说明"
-            }
+            var restMoney = cell.viewWithTag(102) as UILabel
+            
+            var url = "http://www.sscf88.com/app-invest-content"
+            var params:NSDictionary!
+            //        circle.hidden = false
+            //        circle.startAnimating()
+            
+            
+            var manager = AFHTTPRequestOperationManager()
+            
+            manager.GET(url, parameters: params, success: { (operation:AFHTTPRequestOperation!,responseObject: AnyObject!) -> Void in
+                println("in")
+                var json = responseObject as NSDictionary
+                var code: Int = json["code"] as Int
+                if code == 200 {
+                    var anyArr:[AnyObject] = (json["data"] as NSDictionary)["list"] as [AnyObject]
+                    for element in anyArr {
+                        var temp:NSDictionary = element as NSDictionary
+                        title.text = temp["add_time"] as String
+                        restMoney.text = temp["area"] as String
+                    }
+                    
+                }
+                println("inner:\(self.dicList)")
+                }, failure: {(operation:AFHTTPRequestOperation!,error:NSError!) in
+                    
+                    var alert = UIAlertController(title: "消息", message: "列表加载失败，请稍后重试", preferredStyle: UIAlertControllerStyle.Alert)
+                    var action = UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: nil)
+                    alert.addAction(action)
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    println("error")
+            })
+            
+//            var period = cell.viewWithTag(103) as UILabel
+//            var totalMoney = cell.viewWithTag(104) as UILabel
+//            var percent = cell.viewWithTag(105) as UILabel
+            
+            print("outer:\(dicList)")
         }
         if val == 1 {
             cell = self.mainTable.dequeueReusableCellWithIdentifier("person") as UITableViewCell
         }
         
+//        circle.hidden = true
+//        circle.stopAnimating()
         
         return cell
         
@@ -153,7 +183,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         return 2
     }
     
-   
+    
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0{
             return "投资理财"

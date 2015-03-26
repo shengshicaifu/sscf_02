@@ -25,15 +25,15 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     let refreshControl = UIRefreshControl()
 
     
-    @IBOutlet weak var mainTable: UITableView!
     
- 
+    @IBOutlet weak var mainTable: UITableView!
+
     @IBOutlet weak var topImage: UIImageView!
     var timer:NSTimer?
     
     var count = 1
     func timerFunction(){
-    
+        
         topImage.image = UIImage(named: String(count)+".jpg")
         count++
         if count > 4 {
@@ -42,7 +42,8 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     @IBOutlet weak var circle: UIActivityIndicatorView!
     
-    
+//    var dicList = Array<Dictionary<String,String>>()
+    var dicList = NSMutableArray()
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTable.delegate = self
@@ -102,38 +103,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             self.mainTable.reloadData()
         }
     }
-    
-//    override func viewWillAppear(animated: Bool) {
-//        
-//        var manager = AFHTTPRequestOperationManager()
-//        
-//        manager.GET(url, parameters: params, success: { (operation:AFHTTPRequestOperation!,responseObject: AnyObject!) -> Void in
-//            println("in")
-//            var json = responseObject as NSDictionary
-//            var code: Int = json["code"] as Int
-//            if code == 200 {
-//                var data = json["data"] as NSDictionary
-//                var list  = data.valueForKey("list")! as NSArray
-//                for dic in list{
-//                    var d =  dic
-//                    println(d)
-//                }
-//                
-//            }
-//            println(self.dicList)
-//            }, failure: {(operation:AFHTTPRequestOperation!,error:NSError!) in
-//                
-//                var alert = UIAlertController(title: "消息", message: "列表加载失败，请稍后重试", preferredStyle: UIAlertControllerStyle.Alert)
-//                var action = UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: nil)
-//                alert.addAction(action)
-//                self.presentViewController(alert, animated: true, completion: nil)
-//                println("error")
-//        })
-//        
-//
-//    }
-    
-    
+
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section.hashValue == 0 {
             return 160
@@ -153,7 +123,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             count++;//下标++
             break
         case UISwipeGestureRecognizerDirection.Right:
-       
+            
             count--;//下标--
             break
             
@@ -169,7 +139,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         //imageView显示图片
         topImage.image = UIImage(named: "\(count).jpg")
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -218,6 +188,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             
             if tmpListData.count > 0 {
                 
+
                 title.text = tmpListData[row].valueForKey("borrow_name")! as NSString
                 
 //                if let a = tmpListData[row].valueForKey("need") {
@@ -233,12 +204,15 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 period.text = tmpListData[row].valueForKey("borrow_duration")! as NSString
                 totalMoney.text = tmpListData[row].valueForKey("borrow_money")! as NSString
                 percent.text = tmpListData[row].valueForKey("borrow_interest_rate")! as NSString
+
             }
         }
         if val == 1 {
             cell = self.mainTable.dequeueReusableCellWithIdentifier("person") as UITableViewCell
         }
         
+//        circle.hidden = true
+//        circle.stopAnimating()
         
         
         return cell
@@ -249,7 +223,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         return 2
     }
     
-   
+    
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0{
             return "投资理财"

@@ -233,8 +233,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="idJ-oA-DCp">
-                                <rect key="frame" x="0.0" y="-25" width="600" height="551"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="5" translatesAutoresizingMaskIntoConstraints="NO" id="idJ-oA-DCp">
+                                <rect key="frame" x="0.0" y="-34" width="600" height="551"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="551" id="36D-WW-gw7"/>
@@ -255,7 +255,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="idJ-oA-DCp" firstAttribute="top" secondItem="ejg-Nz-TqN" secondAttribute="bottom" constant="-89" id="I3Y-No-pi6"/>
+                            <constraint firstItem="idJ-oA-DCp" firstAttribute="top" secondItem="ejg-Nz-TqN" secondAttribute="bottom" constant="-98" id="I3Y-No-pi6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="idJ-oA-DCp" secondAttribute="trailing" constant="-16" id="QFf-dz-Tga"/>
                             <constraint firstItem="idJ-oA-DCp" firstAttribute="leading" secondItem="LMv-vl-4VP" secondAttribute="leadingMargin" constant="-16" id="Vhi-au-wXf"/>
                         </constraints>
@@ -267,7 +267,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nCw-Jj-upg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="861" y="687"/>
+
         </scene>
         <!--借款详细-->
         <scene sceneID="5ec-i9-R2c">
@@ -1389,6 +1391,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K5r-Og-7Df" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-172" y="452"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="bS7-lj-EC9">
@@ -1491,6 +1494,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" tag="666" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Iit-Db-fvl">
+                                <rect key="frame" x="290" y="208" width="20" height="20"/>
+                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" tag="10" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="aBT-ez-waB">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="573"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -1634,16 +1640,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Igw-Nb-4aZ" id="Jfy-GD-53r">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的资产" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayv-s4-Uaq">
-                                                    <rect key="frame" x="101" y="1" width="117" height="36"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="36" id="RTp-En-KCz"/>
-                                                        <constraint firstAttribute="width" constant="117" id="pPe-Mw-kqm"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aaa.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6JE-Fw-vPD">
                                                     <rect key="frame" x="8" y="1" width="85" height="87"/>
                                                     <constraints>
@@ -1653,6 +1649,16 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账户余额：8888.88元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biD-xI-rHc">
                                                     <rect key="frame" x="101" y="39" width="458" height="49"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的资产" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayv-s4-Uaq">
+                                                    <rect key="frame" x="101" y="1" width="117" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="RTp-En-KCz"/>
+                                                        <constraint firstAttribute="width" constant="117" id="pPe-Mw-kqm"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1703,7 +1709,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LOU-kT-zyL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="-159" y="-152"/>
+
         </scene>
         <!--所有产品-->
         <scene sceneID="L32-FO-XQq">
@@ -1853,7 +1861,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1qR-bc-AR0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="558" y="-152"/>
+
         </scene>
         <!--tab个人中心-->
         <scene sceneID="0Td-zr-nyZ">
@@ -1884,18 +1894,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sLI-vL-Hjh">
-                                <rect key="frame" x="-6" y="48" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="实名认证" id="CMM-Ft-2Lb">
-                                        <barButtonItem key="leftBarButtonItem" title="返回" id="Qkx-fe-eRT">
-                                            <connections>
-                                                <action selector="returnTapped:" destination="ZUM-dN-K87" id="aoE-R3-o66"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yiZ-MH-URP">
                                 <rect key="frame" x="16" y="92" width="568" height="508"/>
                                 <subviews>
@@ -1950,6 +1948,18 @@
                                     <constraint firstItem="8yj-rG-Nal" firstAttribute="width" secondItem="vFb-kP-FBM" secondAttribute="width" id="x34-OM-aTT"/>
                                 </constraints>
                             </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sLI-vL-Hjh">
+                                <rect key="frame" x="-6" y="48" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="实名认证" id="CMM-Ft-2Lb">
+                                        <barButtonItem key="leftBarButtonItem" title="返回" id="Qkx-fe-eRT">
+                                            <connections>
+                                                <action selector="returnTapped:" destination="ZUM-dN-K87" id="aoE-R3-o66"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1970,7 +1980,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ME8-Pb-QNr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="861" y="1165"/>
+            <point key="canvasLocation" x="604" y="903"/>
         </scene>
         <!--Bind Phone View Controller-->
         <scene sceneID="1nQ-e5-LeY">
@@ -2297,24 +2307,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pix-No-I1P">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="账户信息" id="Ewi-U5-Zu7">
-                                        <barButtonItem key="leftBarButtonItem" title="返回" id="GvH-Bl-DbK">
-                                            <connections>
-                                                <action selector="returnTapped:" destination="FoD-AI-8df" id="tDe-Cb-MZq"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="51" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="0cJ-Ou-TSM">
-                                <rect key="frame" x="0.0" y="64" width="600" height="579"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="51" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="0cJ-Ou-TSM">
+                                <rect key="frame" x="-9" y="-37" width="600" height="579"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="579" id="ehy-N1-r2P"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="firstCell" rowHeight="51" id="n5J-PR-4vK">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -2329,14 +2324,6 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="pix-No-I1P" firstAttribute="top" secondItem="n8Y-jJ-pzg" secondAttribute="bottom" id="09P-0C-U43"/>
-                            <constraint firstItem="0cJ-Ou-TSM" firstAttribute="leading" secondItem="pix-No-I1P" secondAttribute="leading" id="1hN-bE-WF4"/>
-                            <constraint firstItem="0cJ-Ou-TSM" firstAttribute="top" secondItem="n8Y-jJ-pzg" secondAttribute="bottom" constant="44" id="Fwe-mq-3Gt"/>
-                            <constraint firstItem="0cJ-Ou-TSM" firstAttribute="leading" secondItem="Qi8-g6-vs3" secondAttribute="leading" id="TfU-EK-m3v"/>
-                            <constraint firstAttribute="trailing" secondItem="0cJ-Ou-TSM" secondAttribute="trailing" id="Xfw-sl-PHw"/>
-                            <constraint firstItem="0cJ-Ou-TSM" firstAttribute="trailing" secondItem="pix-No-I1P" secondAttribute="trailing" id="f1O-pc-VIA"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="0cJ-Ou-TSM" id="RjA-OO-Gnv"/>
@@ -2460,14 +2447,11 @@
                                                         <constraint firstAttribute="width" secondItem="XRc-5c-H9R" secondAttribute="height" multiplier="81:82" id="0nx-Ba-ZTF"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="na7-Qz-QVQ">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="na7-Qz-QVQ">
                                                     <rect key="frame" x="203" y="9" width="74" height="33"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实名认证" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDz-aM-frt">
-                                                    <rect key="frame" x="110" y="9" width="68" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="74" id="hTB-zh-AsL"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2478,14 +2462,23 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实名认证" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDz-aM-frt">
+                                                    <rect key="frame" x="110" y="9" width="68" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="XRc-5c-H9R" secondAttribute="trailing" constant="503" id="464-CI-kZc"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="na7-Qz-QVQ" secondAttribute="bottom" constant="49" id="4GR-9B-9W8"/>
                                                 <constraint firstItem="jv0-iC-cxS" firstAttribute="leading" secondItem="VDz-aM-frt" secondAttribute="leading" id="B5p-LK-bgs"/>
                                                 <constraint firstItem="VDz-aM-frt" firstAttribute="top" secondItem="Ppl-4J-TmZ" secondAttribute="topMargin" constant="1" id="ENY-0g-tl8"/>
                                                 <constraint firstItem="XRc-5c-H9R" firstAttribute="top" secondItem="Ppl-4J-TmZ" secondAttribute="topMargin" constant="1" id="J9v-io-36t"/>
                                                 <constraint firstItem="VDz-aM-frt" firstAttribute="leading" secondItem="XRc-5c-H9R" secondAttribute="trailing" constant="21" id="L6W-vx-u4Z"/>
                                                 <constraint firstItem="XRc-5c-H9R" firstAttribute="bottom" secondItem="Ppl-4J-TmZ" secondAttribute="bottomMargin" id="R9D-cc-L53"/>
+                                                <constraint firstItem="na7-Qz-QVQ" firstAttribute="firstBaseline" secondItem="VDz-aM-frt" secondAttribute="firstBaseline" id="SdS-uY-9Nx"/>
+                                                <constraint firstItem="na7-Qz-QVQ" firstAttribute="leading" secondItem="VDz-aM-frt" secondAttribute="trailing" constant="25" id="VnB-PE-rZo"/>
                                                 <constraint firstItem="XRc-5c-H9R" firstAttribute="leading" secondItem="Ppl-4J-TmZ" secondAttribute="leadingMargin" id="bHV-TC-obj"/>
                                                 <constraint firstItem="jv0-iC-cxS" firstAttribute="top" secondItem="VDz-aM-frt" secondAttribute="bottom" constant="28" id="h3Q-rI-jjY"/>
                                                 <constraint firstItem="XRc-5c-H9R" firstAttribute="top" secondItem="Ppl-4J-TmZ" secondAttribute="topMargin" constant="1" id="ls4-zj-SeF"/>
@@ -2498,13 +2491,15 @@
                                     <outlet property="dataSource" destination="NHE-EN-7Yf" id="ndf-ZO-efo"/>
                                 </connections>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nMN-9S-C01">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bYz-EC-bjj">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
-                                    <navigationItem title="账户安全" id="Z7t-F6-t2D">
-                                        <barButtonItem key="leftBarButtonItem" title="返回" id="CgI-9q-oDS">
+                                    <navigationItem title="账户安全" id="OKC-KJ-9Zm">
+                                        <barButtonItem key="leftBarButtonItem" title="返回" id="MaW-vd-Eom">
                                             <connections>
-                                                <action selector="returnTapped:" destination="NHE-EN-7Yf" id="Y8I-La-pzP"/>
+                                                <action selector="returnTapped:" destination="NHE-EN-7Yf" id="r6f-ka-11z"/>
+
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -2513,24 +2508,26 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="rM7-yY-3Ue" firstAttribute="top" secondItem="nMN-9S-C01" secondAttribute="bottom" constant="15" id="67f-V6-9db"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="nMN-9S-C01" secondAttribute="trailing" constant="-16" id="C8L-6Z-JLL"/>
-                            <constraint firstAttribute="centerX" secondItem="nMN-9S-C01" secondAttribute="centerX" id="DVH-lU-BjH"/>
-                            <constraint firstItem="nMN-9S-C01" firstAttribute="leading" secondItem="TGn-09-T2e" secondAttribute="leadingMargin" constant="-16" id="caL-zj-mni"/>
+                            <constraint firstItem="GGo-8q-DwY" firstAttribute="bottom" secondItem="UmY-bI-6Pe" secondAttribute="top" id="AEk-k1-O0l"/>
+                            <constraint firstItem="bYz-EC-bjj" firstAttribute="leading" secondItem="TGn-09-T2e" secondAttribute="leadingMargin" constant="-16" id="EQo-BI-u8L"/>
+                            <constraint firstItem="bYz-EC-bjj" firstAttribute="top" secondItem="2Yx-uH-bDi" secondAttribute="bottom" id="V2y-b9-ROl"/>
                             <constraint firstItem="GGo-8q-DwY" firstAttribute="top" secondItem="rM7-yY-3Ue" secondAttribute="bottom" constant="23" id="fqb-yZ-oL5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GGo-8q-DwY" secondAttribute="trailing" constant="-16" id="pH8-MY-eiJ"/>
-                            <constraint firstItem="nMN-9S-C01" firstAttribute="top" secondItem="2Yx-uH-bDi" secondAttribute="bottom" constant="8" id="poP-zI-5E4"/>
                             <constraint firstItem="GGo-8q-DwY" firstAttribute="leading" secondItem="TGn-09-T2e" secondAttribute="leadingMargin" constant="-16" id="shc-m7-b7O"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bYz-EC-bjj" secondAttribute="trailing" constant="-16" id="vlU-Tf-jdG"/>
                             <constraint firstAttribute="centerX" secondItem="rM7-yY-3Ue" secondAttribute="centerX" id="x7N-4G-QU7"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="qYY-JO-KbD"/>
                     <connections>
                         <outlet property="tableView" destination="GGo-8q-DwY" id="mko-8a-WFM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EAt-3y-Urv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1008" y="-191"/>
+
+            <point key="canvasLocation" x="374" y="-130"/>
+
         </scene>
         <!--My Banks View Controller-->
         <scene sceneID="FHA-4E-8Pa">
@@ -2544,6 +2541,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9VR-On-xZY">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="我的银行卡" id="A3s-Bw-fQT">
+                                        <barButtonItem key="leftBarButtonItem" title="返回" id="m4q-tz-k6C">
+                                            <connections>
+                                                <action selector="returnTapped:" destination="nMB-AG-bHe" id="IbC-uE-owW"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="68" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1YB-Y1-7Rr">
                                 <rect key="frame" x="0.0" y="65" width="600" height="535"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2581,18 +2590,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9VR-On-xZY">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="我的银行卡" id="A3s-Bw-fQT">
-                                        <barButtonItem key="leftBarButtonItem" title="返回" id="m4q-tz-k6C">
-                                            <connections>
-                                                <action selector="returnTapped:" destination="nMB-AG-bHe" id="IbC-uE-owW"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -3015,7 +3012,9 @@
         <image name="aaa.jpg" width="683" height="545"/>
     </resources>
     <inferredMetricsTieBreakers>
+
         <segue reference="WiB-sP-rff"/>
         <segue reference="dhK-kZ-DWp"/>
+
     </inferredMetricsTieBreakers>
 </document>

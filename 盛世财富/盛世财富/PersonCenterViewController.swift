@@ -59,10 +59,12 @@ class PersonCenterViewController: UIViewController,UITableViewDataSource,UITable
     func recordTapped(sender:AnyObject){
         var detail:TransRecordViewController = self.storyboard?.instantiateViewControllerWithIdentifier("transRecordViewController") as TransRecordViewController
         self.presentViewController(detail, animated: true, completion: nil)
+//        self.navigationController?.pushViewController(detail, animated: true)
     }
     func searchTapped(sender:AnyObject){
         var search:ReturnSearchViewController = self.storyboard?.instantiateViewControllerWithIdentifier("returnSearchViewController") as ReturnSearchViewController
         self.presentViewController(search, animated: true, completion: nil)
+//        self.navigationController?.pushViewController(search, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -230,27 +232,32 @@ class PersonCenterViewController: UIViewController,UITableViewDataSource,UITable
             if row == 0{
                 indentifer = "accountDetailViewController"
                 var adv = self.storyboard?.instantiateViewControllerWithIdentifier(indentifer) as AccountDetailViewController
-                self.presentViewController(adv, animated: true, completion: nil)
+//                self.presentViewController(adv, animated: true, completion: nil)
+                self.navigationController?.pushViewController(adv, animated: true)
             }
         case 1 :
             if row == 0 {
                 indentifer = "moneyManagerViewController"
                 var adv = self.storyboard?.instantiateViewControllerWithIdentifier(indentifer) as MoneyManagerViewController
                 self.presentViewController(adv, animated: true, completion: nil)
+//                self.navigationController?.pushViewController(adv, animated: true)
             }else if row == 1{
                 indentifer = "financeManagerViewController"
                 var adv = self.storyboard?.instantiateViewControllerWithIdentifier(indentifer) as FinanceManagerViewController
                 self.presentViewController(adv, animated: true, completion: nil)
+//                self.navigationController?.pushViewController(adv, animated: true)
             }else if row == 2{
                 indentifer = "myBanksViewController"
                 var adv = self.storyboard?.instantiateViewControllerWithIdentifier(indentifer) as MyBanksViewController
                 self.presentViewController(adv, animated: true, completion: nil)
+//                self.navigationController?.pushViewController(adv, animated: true)
             }
         case 2 :
             if row == 0{
                 indentifer = "accountSafeViewController"
                 var adv = self.storyboard?.instantiateViewControllerWithIdentifier(indentifer) as AccountSafeViewController
                 self.presentViewController(adv, animated: true, completion: nil)
+//                self.navigationController?.pushViewController(adv, animated: true)
             }else {
                 showAlert()
             }

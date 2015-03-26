@@ -18,7 +18,7 @@ class TransRecordViewController: UIViewController,UITableViewDelegate,UITableVie
         tableView.dataSource = self
         tableView.delegate = self
     }
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning(){
         super.didReceiveMemoryWarning()
     }
     @IBAction func returnTapped(sender: AnyObject) {

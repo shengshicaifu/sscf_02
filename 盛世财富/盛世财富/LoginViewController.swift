@@ -21,10 +21,15 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UITextField!
     @IBOutlet weak var passwordLabel: UITextField!
     @IBAction func loginTapped(sender: AnyObject) {
-                
+        
+        
+//        arrDic.append("{'id':12,'name':'zengchang'}" as Dictionary)
+        
         var manager = AFHTTPRequestOperationManager()
         var url = "http://192.168.1.25:8080/people/CheckLoginServlet"
         var params:NSDictionary! = ["username":usernameLabel.text,"password":passwordLabel.text]
+//        var url = "http://www.sscf88.com/app-invest-content"
+//        var params:NSDictionary! = nil
         manager.POST(url, parameters: params,
             success:{
                 (operation:
@@ -33,7 +38,7 @@ class LoginViewController: UIViewController {
                 //打印json数据
                 //println("responseObject: \(responseObject!) ")
                 
-                //解析json数据是List集合类型s
+                //解析json数据是List集合类型
                 // var json:[AnyObject] = responseObject as [AnyObject]
                 var json:NSDictionary = responseObject as NSDictionary
                 

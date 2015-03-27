@@ -91,9 +91,13 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         var title = cell.viewWithTag(103) as UILabel
         var row = indexPath.row
         if tmpListData.count > 0 {
-            money.text = tmpListData[row].valueForKey("borrow_money")! as NSString
-            percent.text = tmpListData[row].valueForKey("borrow_interest_rate")! as NSString
-            month.text = tmpListData[row].valueForKey("borrow_duration")! as NSString
+            var tmp = tmpListData[row].valueForKey("borrow_money")! as NSString
+            money.text = "\(tmp)元"
+            tmp = tmpListData[row].valueForKey("borrow_interest_rate")! as NSString
+            percent.text = "\(tmp)%"
+            tmp = tmpListData[row].valueForKey("borrow_duration")! as NSString
+            var unit = tmpListData[row].valueForKey("duration_unit")! as NSString
+            month.text = "\(tmp)\(unit)"
             title.text = tmpListData[row].valueForKey("borrow_name")! as NSString
         }
         return cell

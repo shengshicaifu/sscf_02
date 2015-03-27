@@ -50,7 +50,7 @@ class LoginViewController: UIViewController {
                     //弹窗
                     var alert = UIAlertController(title: "提示", message: "您输入的密码或者账号有误！", preferredStyle:UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
-                  self.presentViewController(alert, animated: true, completion: nil)
+                    self.presentViewController(alert, animated: true, completion: nil)
                 }
             } ,
             failure:{

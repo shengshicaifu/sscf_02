@@ -9,18 +9,24 @@ class HttpController: NSObject{
     var delegate: HttpProtocol?
     
     //json get方法
-    func get(url: String){
+    func get(url: String,viewContro :UIViewController){
         var nsUrl: NSURL = NSURL(string: url)!
         var request: NSURLRequest = NSURLRequest(URL: nsUrl)
+        var errorMessage = String()
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!)->Void in
             if(error == nil){
                 var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
                 self.delegate?.didRecieveResult(jsonResult)
             }else{
-                println(error)
+                println(error.localizedDescription)
+                var alert = UIAlertController(title: "错误", message: error.localizedDescription, preferredStyle:UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
+                
+                viewContro.presentViewController(alert, animated: true, completion: nil)
             }
+            
         })
-    }    
+            }
     //json post方法
     func post(url: String ,params: NSDictionary,callback: (NSDictionary) -> Void) {
         var nsUrl: NSURL = NSURL(string: url)!

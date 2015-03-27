@@ -25,11 +25,20 @@ class RealNameViewController: UIViewController,UITextFieldDelegate {
     @IBAction func returnTapped(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    @IBAction func commitTapped(sender: AnyObject) {
-     var alert = UIAlertController(title: "提示", message: "你输入的用户名和身份证号不能为空", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+    @IBAction func commitTapped(sender: AnyObject){
+        if realNameText.text == "" || idNumberText.text == "" {
+                var alert = UIAlertController(title: "提示", message: "你输入的真实姓名或身份证号不能为空", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+        }else{
+            let myStoryboard = self.storyboard
+            let anotherViewController:AccountSafeViewController =  myStoryboard?.instantiateViewControllerWithIdentifier("accountSafeViewController") as AccountSafeViewController
+            self.presentViewController(anotherViewController, animated: true, completion: nil)
         
+//            var alert = UIAlertController(title: "认证成功", message: "情况属实", preferredStyle: UIAlertControllerStyle.Alert)
+//            alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
+//            self.presentViewController(alert ,animated:true,completion:nil)
+        }
     }
       //隐藏键盘
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {

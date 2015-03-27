@@ -21,17 +21,13 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var sign: String = ""
     var isCheck: String = ""
     
-    let cellImg = 1
-    let cellLbl1 = 2
-    let cellLbl2 = 3
-    let cellLbl3 = 4
+  
     let refreshControl = UIRefreshControl()
 
     
     
     @IBOutlet weak var mainTable: UITableView!
-    
-    
+
     @IBOutlet weak var topImage: UIImageView!
     var timer:NSTimer?
     
@@ -50,6 +46,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var dicList = NSMutableArray()
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainTable.delegate = self
         timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "timerFunction", userInfo: nil, repeats: true)
         timer?.fire()
         
@@ -62,7 +59,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.view.addGestureRecognizer(swipeLeftGesture)
         
         eHttp.delegate = self
-        eHttp.get(self.timeLineUrl)
+        eHttp.get(self.timeLineUrl,viewContro :self)
         self.setupRefresh()
     }
     
@@ -77,27 +74,27 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             })
         })
         
-        self.mainTable.addFooterWithCallback({
-            var nextPage = String(self.page + 1)
-            var tmpTimeLineUrl = self.timeLineUrl + "&page=" + nextPage as NSString
-            self.eHttp.delegate = self
-            self.eHttp.get(tmpTimeLineUrl)
-            let delayInSeconds:Int64 = 1000000000 * 2
-            var popTime:dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds)
-            dispatch_after(popTime, dispatch_get_main_queue(), {
-                self.mainTable.footerEndRefreshing()
-                if(self.tmpListData != self.listData){
-                    if(self.tmpListData.count != 0){
-                        var tmpListDataCount = self.tmpListData.count
-                        for(var i:Int = 0; i < tmpListDataCount; i++){
-                            self.listData.addObject(self.tmpListData[i])
-                        }
-                    }
-                    self.mainTable.reloadData()
-                    self.tmpListData.removeAllObjects()
-                }
-            })
-        })
+//        self.mainTable.addFooterWithCallback({
+//            var nextPage = String(self.page + 1)
+//            var tmpTimeLineUrl = self.timeLineUrl + "&page=" + nextPage as NSString
+//            self.eHttp.delegate = self
+//            self.eHttp.get(tmpTimeLineUrl)
+//            let delayInSeconds:Int64 = 1000000000 * 2
+//            var popTime:dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds)
+//            dispatch_after(popTime, dispatch_get_main_queue(), {
+//                self.mainTable.footerEndRefreshing()
+//                if(self.tmpListData != self.listData){
+//                    if(self.tmpListData.count != 0){
+//                        var tmpListDataCount = self.tmpListData.count
+//                        for(var i:Int = 0; i < tmpListDataCount; i++){
+//                            self.listData.addObject(self.tmpListData[i])
+//                        }
+//                    }
+//                    self.mainTable.reloadData()
+//                    self.tmpListData.removeAllObjects()
+//                }
+//            })
+//        })
     }
     func didRecieveResult(result: NSDictionary){
         if(result["data"]?.valueForKey("list") != nil){
@@ -108,9 +105,13 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 160
+        if indexPath.section.hashValue == 0 {
+            return 160
+        }else {
+            return 90
+        }
     }
-    
+   
     //划动手势
     func handleSwipeGesture(sender: UISwipeGestureRecognizer){
         //划动的方向
@@ -180,13 +181,30 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             var image = cell.viewWithTag(100) as UIImageView
             var title = cell.viewWithTag(101) as UILabel
             var restMoney = cell.viewWithTag(102) as UILabel
-            var period = cell.viewWithTag(103) as UILabel
-            var totalMoney = cell.viewWithTag(104) as UILabel
-            var percent = cell.viewWithTag(105) as UILabel
+            var restTime = cell.viewWithTag(103) as UILabel
+            var period = cell.viewWithTag(104) as UILabel
+            var totalMoney = cell.viewWithTag(105) as UILabel
+            var percent = cell.viewWithTag(106) as UILabel
             
             if tmpListData.count > 0 {
                 
-               title.text = tmpListData[row].valueForKey("borrow_name")! as? String
+
+                title.text = tmpListData[row].valueForKey("borrow_name")! as NSString
+                
+//                if let a = tmpListData[row].valueForKey("need") {
+//                    switch a{
+//                     case let b as Double:println("Double")
+//                     case let b as String:println("String")
+//                    default:break
+//                    }
+//                }
+                var d = tmpListData[row].valueForKey("need")! as Double
+                restMoney.text = "\(d)"
+                restTime.text = tmpListData[row].valueForKey("leftdays")! as NSString
+                period.text = tmpListData[row].valueForKey("borrow_duration")! as NSString
+                totalMoney.text = tmpListData[row].valueForKey("borrow_money")! as NSString
+                percent.text = tmpListData[row].valueForKey("borrow_interest_rate")! as NSString
+
             }
         }
         if val == 1 {

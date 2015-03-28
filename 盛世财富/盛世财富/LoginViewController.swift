@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController,UITextFieldDelegate {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,15 +22,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UITextField!
     @IBOutlet weak var passwordLabel: UITextField!
     @IBAction func loginTapped(sender: AnyObject) {
-        
-        
-//        arrDic.append("{'id':12,'name':'zengchang'}" as Dictionary)
-        
         var manager = AFHTTPRequestOperationManager()
         var url = "http://192.168.1.25:8080/people/CheckLoginServlet"
         var params:NSDictionary! = ["username":usernameLabel.text,"password":passwordLabel.text]
 //        var url = "http://www.sscf88.com/app-invest-content"
 //        var params:NSDictionary! = nil
+        self.performSegueWithIdentifier("loginIdentifier", sender: self)
         manager.POST(url, parameters: params,
             success:{
                 (operation:
@@ -66,5 +64,16 @@ class LoginViewController: UIViewController {
         if segue.identifier == "loginIdentifier" {
             
         }
+    }
+    
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+        usernameLabel.resignFirstResponder()
+        passwordLabel.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        usernameLabel.resignFirstResponder()
+        passwordLabel.resignFirstResponder()
+        return true
     }
 }

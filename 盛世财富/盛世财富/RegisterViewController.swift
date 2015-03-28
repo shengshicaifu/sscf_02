@@ -13,10 +13,41 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var surePwdTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var phoneTextField: UITextField!
     var keyboardShown:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         usernameTextField.delegate = self
+        surePwdTextField.delegate = self
+        passwordTextField.delegate = self
+        phoneTextField.delegate = self
+    }
+    
+    @IBAction func registerTapped(sender: AnyObject) {
+        var username = usernameTextField.text
+        var surePwd = surePwdTextField.text
+        var password = passwordTextField.text
+        var phone = phoneTextField.text
+        if phone.isEmpty {
+            showAlert("手机号码不能为空")
+        }else if password.isEmpty {
+            showAlert("密码不能为空")
+        }else if password != surePwd{
+            showAlert("两次输入的密码不一致")
+        }else if username.isEmpty{
+            showAlert("用户名不能为空")
+        }else{
+            //此处执行注册操作
+            showAlert("执行注册操作")
+        }
+    }
+    
+    func showAlert(message:String){
+        var alert = UIAlertController(title: "提示", message: message, preferredStyle:UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
@@ -92,10 +123,16 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         self.view.frame = rect;
         UIView.commitAnimations()
         usernameTextField.resignFirstResponder()
+        surePwdTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        phoneTextField.resignFirstResponder()
         return true
     }
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
         usernameTextField.resignFirstResponder()
+        surePwdTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        phoneTextField.resignFirstResponder()
     }
 
 }

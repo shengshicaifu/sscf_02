@@ -116,7 +116,6 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-//        usernameTextField.resignFirstResponder()
         UIView.beginAnimations("ResizeForKeyboard", context: nil)
         UIView.setAnimationDuration(0.3)
         var rect:CGRect = CGRectMake( 0,  0,  self.view.frame.size.width,  self.view.frame.size.height)
@@ -134,5 +133,4 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         passwordTextField.resignFirstResponder()
         phoneTextField.resignFirstResponder()
     }
-
 }

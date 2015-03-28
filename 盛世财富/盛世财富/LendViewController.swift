@@ -172,7 +172,6 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         
         
-        
         var val = indexPath.section.hashValue
         var row = indexPath.row
         
@@ -199,12 +198,17 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
 //                    }
 //                }
                 var d = tmpListData[row].valueForKey("need")! as Double
-                restMoney.text = "\(d)"
+                restMoney.text = "\(d)元"
                 restTime.text = tmpListData[row].valueForKey("leftdays")! as NSString
-                period.text = tmpListData[row].valueForKey("borrow_duration")! as NSString
-                totalMoney.text = tmpListData[row].valueForKey("borrow_money")! as NSString
-                percent.text = tmpListData[row].valueForKey("borrow_interest_rate")! as NSString
-
+                
+                var tmp = tmpListData[row].valueForKey("borrow_duration")! as NSString
+                var unit = tmpListData[row].valueForKey("duration_unit")! as NSString
+                period.text = "\(tmp)\(unit)"
+                tmp = tmpListData[row].valueForKey("borrow_money")! as NSString
+                totalMoney.text = "\(tmp)元"
+                tmp = tmpListData[row].valueForKey("borrow_interest_rate")! as NSString
+                percent.text = "\(tmp)%"
+                
             }
         }
         if val == 1 {
@@ -226,11 +230,15 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0{
-            return "投资理财"
+            return "投资列表"
         }else if section == 1{
             return "我的账户"
         }else{
             return ""
         }
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
     }
 }

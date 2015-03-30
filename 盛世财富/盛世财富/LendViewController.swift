@@ -31,6 +31,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     @IBOutlet weak var topImage: UIImageView!
     var timer:NSTimer?
     
+    @IBOutlet weak var mainView: UIView!
     var count = 1
     func timerFunction(){
         
@@ -47,21 +48,76 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTable.delegate = self
-        timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "timerFunction", userInfo: nil, repeats: true)
-        timer?.fire()
+//        timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "timerFunction", userInfo: nil, repeats: true)
+//        timer?.fire()
+//        
+//        //右划
+//        var swipeGesture = UISwipeGestureRecognizer(target: self, action: "handleSwipeGesture:")
+//        self.view.addGestureRecognizer(swipeGesture)
+//        //左划
+//        var swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: "handleSwipeGesture:")
+//        swipeLeftGesture.direction = UISwipeGestureRecognizerDirection.Left //不设置是右
+//        self.view.addGestureRecognizer(swipeLeftGesture)
+//        
         
-        //右划
-        var swipeGesture = UISwipeGestureRecognizer(target: self, action: "handleSwipeGesture:")
-        self.view.addGestureRecognizer(swipeGesture)
-        //左划
-        var swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: "handleSwipeGesture:")
-        swipeLeftGesture.direction = UISwipeGestureRecognizerDirection.Left //不设置是右
-        self.view.addGestureRecognizer(swipeLeftGesture)
+        var viewsArray = NSMutableArray()
+        var colorArray = [UIColor.cyanColor(),UIColor.blueColor(),UIColor.greenColor(),UIColor.yellowColor(),UIColor.purpleColor()]
+        for  i in 1...4 {
+            var tempImageView = UIImageView(frame:CGRectMake(0, 0, self.view.layer.frame.width, 100))
+            tempImageView.image = UIImage(named:"\(i).jpeg")
+            tempImageView.contentMode = UIViewContentMode.ScaleAspectFill
+            tempImageView.clipsToBounds = true
+            viewsArray.addObject(tempImageView)
+            
+        }
+        
+        var mainScorllView = YYCycleScrollView(frame:CGRectMake(0, 0, self.view.layer.frame.width, 100),animationDuration:10.0)
+        mainScorllView.fetchContentViewAtIndex = {(pageIndex:Int)->UIView in
+            return viewsArray.objectAtIndex(pageIndex) as UIView
+        }
+        
+        mainScorllView.totalPagesCount = {()->Int in
+            //图片的个数
+            return 4;
+        }
+        mainScorllView.TapActionBlock = {(pageIndex:Int)->() in
+            //此处根据点击的索引跳转到指定的页面
+            println("点击了\(pageIndex)")
+        }
+        mainView.addSubview(mainScorllView)
+        
+        
+        
+        
+//        var ref = UIRefreshControl()
+//        ref.attributedTitle = NSAttributedString(string: "下拉刷新")
+//        ref.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
+//        mainTable.addSubview(ref)
+        
+        
+        self.refreshControl.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
+        mainTable.addSubview(self.refreshControl)
         
         eHttp.delegate = self
-        eHttp.get(self.timeLineUrl,viewContro :self)
-        self.setupRefresh()
+        eHttp.get(self.timeLineUrl,viewContro :self,{
+            self.mainTable.reloadData()
+        })
+       
+//        self.setupRefresh()
     }
+    
+    func refreshData(){
+        if self.refreshControl.refreshing {
+            self.refreshControl.attributedTitle = NSAttributedString(string: "加载中")
+            eHttp.get(self.timeLineUrl,viewContro :self,{
+                self.refreshControl.endRefreshing()
+                self.mainTable.reloadData()
+            })
+            
+        }
+    }
+    
     
     //Refresh func
     func setupRefresh(){
@@ -239,6 +295,9 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        if section == 0 {
+//            return 130
+//        }
         return 30
     }
 }

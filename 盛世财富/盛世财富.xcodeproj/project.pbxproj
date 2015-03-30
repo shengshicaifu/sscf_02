@@ -20,6 +20,9 @@
 		E94E04651ABD015800A0EEC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E94E04641ABD015800A0EEC8 /* Main.storyboard */; };
 		E94E04671ABD3C5F00A0EEC8 /* SetTradePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94E04661ABD3C5F00A0EEC8 /* SetTradePasswordViewController.swift */; };
 		E96B1E731AB6BFB300C61870 /* AllListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96B1E721AB6BFB300C61870 /* AllListViewController.swift */; };
+		E977F3F41AC540E7008C2F8A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */; };
+		E98091AD1AC63D22001A8F12 /* LendViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98091AC1AC63D22001A8F12 /* LendViewController1.swift */; };
+		E98091AF1AC63EAD001A8F12 /* YYCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98091AE1AC63EAD001A8F12 /* YYCycleScrollView.swift */; };
 		E98EE13F1ABACF6A00CAE127 /* SCLAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EE13E1ABACF6A00CAE127 /* SCLAlertView.swift */; };
 		E98EE1411ABAD02200CAE127 /* PersonCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EE1401ABAD02200CAE127 /* PersonCenterViewController.swift */; };
 		E98EE1431ABAD04100CAE127 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EE1421ABAD04100CAE127 /* DetailViewController.swift */; };
@@ -90,6 +93,9 @@
 		E94E04641ABD015800A0EEC8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E94E04661ABD3C5F00A0EEC8 /* SetTradePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTradePasswordViewController.swift; sourceTree = "<group>"; };
 		E96B1E721AB6BFB300C61870 /* AllListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllListViewController.swift; sourceTree = "<group>"; };
+		E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		E98091AC1AC63D22001A8F12 /* LendViewController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LendViewController1.swift; sourceTree = "<group>"; };
+		E98091AE1AC63EAD001A8F12 /* YYCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYCycleScrollView.swift; sourceTree = "<group>"; };
 		E98EE13E1ABACF6A00CAE127 /* SCLAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLAlertView.swift; sourceTree = "<group>"; };
 		E98EE1401ABAD02200CAE127 /* PersonCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCenterViewController.swift; sourceTree = "<group>"; };
 		E98EE1421ABAD04100CAE127 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +191,7 @@
 		E91E81311AB2794D000C5FD3 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				E98091AE1AC63EAD001A8F12 /* YYCycleScrollView.swift */,
 				E90EA25D1ABFA1A5006D22E6 /* 盛世财富-Bridging-Header.h */,
 				E993F3311ABC0667001B9EA5 /* FVCustomAlertView.swift */,
 				E98EE13E1ABACF6A00CAE127 /* SCLAlertView.swift */,
@@ -197,6 +204,8 @@
 		E91E81321AB27956000C5FD3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E98091AC1AC63D22001A8F12 /* LendViewController1.swift */,
+				E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */,
 				E9BEE1AE1AC24D7E0049600C /* baseClass.swift */,
 				E9BEE1AC1AC24CF10049600C /* HttpController.swift */,
 				E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */,
@@ -438,6 +447,7 @@
 				E98EE14B1ABAD11B00CAE127 /* MoneyManagerViewController.swift in Sources */,
 				E9C70C061AC0FB2100E1CA8D /* MoreViewController.swift in Sources */,
 				E90EA2771ABFA37A006D22E6 /* AFURLConnectionOperation.m in Sources */,
+				E98091AD1AC63D22001A8F12 /* LendViewController1.swift in Sources */,
 				E90EA2731ABFA37A006D22E6 /* AFHTTPRequestOperationManager.m in Sources */,
 				E9C605B41ABBB9C500752D91 /* RefreshConst.swift in Sources */,
 				E96B1E731AB6BFB300C61870 /* AllListViewController.swift in Sources */,
@@ -448,6 +458,7 @@
 				E9C605B51ABBB9C500752D91 /* RefreshFooterView.swift in Sources */,
 				E90EA27A1ABFA37A006D22E6 /* AFURLSessionManager.m in Sources */,
 				E9BEE1AD1AC24CF10049600C /* HttpController.swift in Sources */,
+				E977F3F41AC540E7008C2F8A /* RegisterViewController.swift in Sources */,
 				E9D6604F1AB1313B0020982D /* LendViewController.swift in Sources */,
 				E90EA2761ABFA37A006D22E6 /* AFSecurityPolicy.m in Sources */,
 				E94E04671ABD3C5F00A0EEC8 /* SetTradePasswordViewController.swift in Sources */,
@@ -467,6 +478,7 @@
 				E9C70C081AC1035B00E1CA8D /* IdeaViewController.swift in Sources */,
 				E98EE1511ABAD12B00CAE127 /* ReturnSearchViewController.swift in Sources */,
 				E9C605B71ABBB9C500752D91 /* UIScrollView+Refresh.swift in Sources */,
+				E98091AF1AC63EAD001A8F12 /* YYCycleScrollView.swift in Sources */,
 				E98EE1431ABAD04100CAE127 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

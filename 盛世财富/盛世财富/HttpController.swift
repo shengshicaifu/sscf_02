@@ -9,7 +9,7 @@ class HttpController: NSObject{
     var delegate: HttpProtocol?
     
     //json get方法
-    func get(url: String,viewContro :UIViewController){
+    func get(url: String,viewContro :UIViewController,callback : () -> Void){
         var nsUrl: NSURL = NSURL(string: url)!
         var request: NSURLRequest = NSURLRequest(URL: nsUrl)
         var errorMessage = String()
@@ -17,6 +17,7 @@ class HttpController: NSObject{
             if(error == nil){
                 var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
                 self.delegate?.didRecieveResult(jsonResult)
+                
             }else{
                 println(error.localizedDescription)
                 var alert = UIAlertController(title: "错误", message: error.localizedDescription, preferredStyle:UIAlertControllerStyle.Alert)
@@ -24,6 +25,8 @@ class HttpController: NSObject{
                 
                 viewContro.presentViewController(alert, animated: true, completion: nil)
             }
+            callback()
+
             
         })
             }

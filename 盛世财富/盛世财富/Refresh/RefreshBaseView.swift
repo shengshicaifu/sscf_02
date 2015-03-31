@@ -141,7 +141,8 @@ class RefreshBaseView: UIView {
             var rect:CGRect = self.frame
             // 设置宽度   位置
             rect.size.width = newSuperview.frame.size.width
-            rect.origin.x = 0
+//            rect.origin.x = 0
+            rect.origin.x = (newSuperview.frame.size.width - rect.size.width)/2
             self.frame = frame;
             //UIScrollView
             scrollView = newSuperview as UIScrollView

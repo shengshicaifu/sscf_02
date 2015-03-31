@@ -85,7 +85,7 @@ class LendViewController1: UIViewController,UITableViewDataSource,UITableViewDel
 //        self.view.addGestureRecognizer(swipeLeftGesture)
         
         eHttp.delegate = self
-        eHttp.get(self.timeLineUrl,viewContro :self)
+//        eHttp.get(self.timeLineUrl,viewContro :self)
         self.setupRefresh()
     }
     

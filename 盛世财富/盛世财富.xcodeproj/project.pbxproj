@@ -42,6 +42,7 @@
 		E98EE1571ABAD14800CAE127 /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EE1561ABAD14800CAE127 /* AccountDetailViewController.swift */; };
 		E98EE1591ABAD14D00CAE127 /* AccountSafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98EE1581ABAD14D00CAE127 /* AccountSafeViewController.swift */; };
 		E993F3321ABC0667001B9EA5 /* FVCustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E993F3311ABC0667001B9EA5 /* FVCustomAlertView.swift */; };
+		E9B9EF4C1AC8E00600E46714 /* BidListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B9EF4B1AC8E00600E46714 /* BidListViewController.swift */; };
 		E9BEE1AD1AC24CF10049600C /* HttpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BEE1AC1AC24CF10049600C /* HttpController.swift */; };
 		E9BEE1AF1AC24D7E0049600C /* baseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BEE1AE1AC24D7E0049600C /* baseClass.swift */; };
 		E9C54E061AB7BCD400D4722C /* LendDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C54E051AB7BCD400D4722C /* LendDetailViewController.swift */; };
@@ -125,6 +126,7 @@
 		E98EE1561ABAD14800CAE127 /* AccountDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
 		E98EE1581ABAD14D00CAE127 /* AccountSafeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSafeViewController.swift; sourceTree = "<group>"; };
 		E993F3311ABC0667001B9EA5 /* FVCustomAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FVCustomAlertView.swift; sourceTree = "<group>"; };
+		E9B9EF4B1AC8E00600E46714 /* BidListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BidListViewController.swift; sourceTree = "<group>"; };
 		E9BEE1AC1AC24CF10049600C /* HttpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpController.swift; sourceTree = "<group>"; };
 		E9BEE1AE1AC24D7E0049600C /* baseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = baseClass.swift; sourceTree = "<group>"; };
 		E9C54E051AB7BCD400D4722C /* LendDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LendDetailViewController.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				E9C70C051AC0FB2100E1CA8D /* MoreViewController.swift */,
 				E9C70C071AC1035B00E1CA8D /* IdeaViewController.swift */,
 				E9C70C091AC108AC00E1CA8D /* AboutViewController.swift */,
+				E9B9EF4B1AC8E00600E46714 /* BidListViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				E9BEE1AD1AC24CF10049600C /* HttpController.swift in Sources */,
 				E977F3F41AC540E7008C2F8A /* RegisterViewController.swift in Sources */,
 				E9D6604F1AB1313B0020982D /* LendViewController.swift in Sources */,
+				E9B9EF4C1AC8E00600E46714 /* BidListViewController.swift in Sources */,
 				E90EA2761ABFA37A006D22E6 /* AFSecurityPolicy.m in Sources */,
 				E94E04671ABD3C5F00A0EEC8 /* SetTradePasswordViewController.swift in Sources */,
 				E98EE1531ABAD13300CAE127 /* UpdateTradePasswordViewController.swift in Sources */,

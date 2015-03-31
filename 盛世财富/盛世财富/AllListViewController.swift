@@ -29,10 +29,28 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         eHttp.delegate = self
-        eHttp.get(self.timeLineUrl,viewContro : self)
-        self.setupRefresh()
-        
+//        eHttp.get(self.timeLineUrl,viewContro : self)
+//        self.setupRefresh()
+        self.refreshControl.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
+        mainTable.addSubview(self.refreshControl)
+        eHttp.get(self.timeLineUrl,viewContro :self,{
+            self.mainTable.reloadData()
+        })
     }
+    	
+    
+    func refreshData(){
+        if self.refreshControl.refreshing {
+            self.refreshControl.attributedTitle = NSAttributedString(string: "加载中")
+            eHttp.get(self.timeLineUrl,viewContro :self,{
+                self.refreshControl.endRefreshing()
+                self.mainTable.reloadData()
+            })
+            
+        }
+    }
+
     //Refresh func
     func setupRefresh(){
         self.mainTable.addHeaderWithCallback({
@@ -48,7 +66,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                     var nextPage = String(self.page + 1)
                     var tmpTimeLineUrl = self.timeLineUrl + "&page=" + nextPage as NSString
                     self.eHttp.delegate = self
-                    self.eHttp.get(tmpTimeLineUrl,viewContro :self)
+//                    self.eHttp.get(tmpTimeLineUrl,viewContro :self)
                     let delayInSeconds:Int64 = 1000000000 * 2
                     var popTime:dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds)
                     dispatch_after(popTime, dispatch_get_main_queue(), {

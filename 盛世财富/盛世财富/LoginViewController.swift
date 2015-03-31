@@ -18,10 +18,38 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    var menu:REMenu!
+    var count:Int = 0
+    @IBAction func listTapped(sender: AnyObject) {
+        count++
+        
+        var homeItme1:REMenuItem = REMenuItem(title: "Home1",subtitle:"Return to Home Screen1",image:UIImage(named: "11.jpg"),highlightedImage:nil){
+            println($0.title)
+            self.count++
+        }
+        var homeItme2:REMenuItem = REMenuItem(title: "Home2",subtitle:"Return to Home Screen2",image:UIImage(named: "21.jpg"),highlightedImage:nil){
+            println($0.title)
+            self.count++
+        }
+        var homeItme3:REMenuItem = REMenuItem(title: "Home3",subtitle:"Return to Home Screen3",image:UIImage(named: "31.jpg"),highlightedImage:nil){
+            println($0.title)
+            self.count++
+        }
+        
+        if count%2 == 0{
+            menu.close()
+        }else{
+            if menu == nil {
+                self.menu = REMenu(items: [homeItme1,homeItme2,homeItme3])
+            }
+            self.menu.showFromNavigationController(self.navigationController)
+        }
+    }
     
     @IBOutlet weak var usernameLabel: UITextField!
     @IBOutlet weak var passwordLabel: UITextField!
     @IBAction func loginTapped(sender: AnyObject) {
+        self.count++
         var manager = AFHTTPRequestOperationManager()
         var url = "http://192.168.1.25:8080/people/CheckLoginServlet"
         var params:NSDictionary! = ["username":usernameLabel.text,"password":passwordLabel.text]
@@ -43,7 +71,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 var result:Bool = json["result"] as Bool
                 if result {
                     self.performSegueWithIdentifier("loginIdentifier", sender: self)
-                    
                 }else{
                     //弹窗
                     var alert = UIAlertController(title: "提示", message: "您输入的密码或者账号有误！", preferredStyle:UIAlertControllerStyle.Alert)
@@ -66,7 +93,12 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         }
     }
     
+//    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+//        
+//    }
+    
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+        self.count++
         usernameLabel.resignFirstResponder()
         passwordLabel.resignFirstResponder()
     }

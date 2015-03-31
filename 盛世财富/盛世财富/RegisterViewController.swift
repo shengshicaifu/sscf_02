@@ -23,6 +23,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         surePwdTextField.delegate = self
         passwordTextField.delegate = self
         phoneTextField.delegate = self
+        self.navigationItem.title = "用户注册"
     }
     
     @IBAction func registerTapped(sender: AnyObject) {
@@ -40,7 +41,8 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
             showAlert("用户名不能为空")
         }else{
             //此处执行注册操作
-            showAlert("执行注册操作")
+//            showAlert("执行注册操作")
+//            self.navigationController?.pushViewController(LendViewController(), animated: true)
         }
     }
     
@@ -51,29 +53,31 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        var frame:CGRect = textField.frame;
-        var offset:CGFloat  = frame.origin.y + frame.size.height - (self.view.frame.size.height - 216.0);//键盘高度216
-        
-        UIView.beginAnimations("ResizeForKeyboard", context: nil)
-        UIView.setAnimationDuration(0.3)
-        
-        //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
-        if(offset > 0){
-            //-offset
-            self.view.frame = CGRectMake( 0,  -offset-280,  self.view.frame.size.width,  self.view.frame.size.height)
+        if textField.tag == 1 {
+            moveView(-100)
+        }else if textField.tag == 2 {
+            moveView(-50)
         }
-        
-        UIView.commitAnimations()
-        
-//        var defaultCenter:NSNotificationCenter = NSNotificationCenter()
-//        
-//        defaultCenter.addObserver(self, selector: Selector("keyboardWasHidden:"), name: UIKeyboardDidShowNotification, object: nil)
-//        
-//        defaultCenter.addObserver(self, selector: Selector("keyboardWasShown"), name: UIKeyboardDidShowNotification, object: nil)
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        self.view.frame = CGRectMake( 0,  0,  self.view.frame.size.width,  self.view.frame.size.height)
+        if textField.tag == 1 {
+            moveView(100)
+        }else if textField.tag == 2 {
+            moveView(50)
+        }
+    }
+    
+    //控制视图上下移动
+    func moveView(move:CGFloat){
+        var animationDuration:NSTimeInterval = 0.30;
+        var frame:CGRect  = self.view.frame;
+        frame.origin.y += move;//view的y轴上移
+        self.view.frame = frame;
+        UIView.beginAnimations("ResizeView", context: nil)
+        UIView.setAnimationDuration(animationDuration)
+        self.view.frame = frame;
+        UIView.commitAnimations()
     }
     
     override func didReceiveMemoryWarning() {

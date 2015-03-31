@@ -302,6 +302,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular" misplaced="YES">
+                                                        <rect key="frame" x="216" y="4" width="96" height="17"/>
+                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名字*************" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kQ-Yi-Ql9">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -384,14 +387,14 @@
                                 <exclude reference="asz-48-g8s"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="1Fx-kK-bqU"/>
+                                <exclude reference="TEG-BT-UXS"/>
                                 <exclude reference="7yU-ZV-WH9"/>
                                 <exclude reference="UKD-1q-veL"/>
+                                <exclude reference="huf-Vg-ZDo"/>
                                 <exclude reference="6SF-Y8-ATQ"/>
                                 <exclude reference="CTv-yc-S5i"/>
                                 <exclude reference="fa7-cR-Ix9"/>
-                                <exclude reference="1Fx-kK-bqU"/>
-                                <exclude reference="TEG-BT-UXS"/>
-                                <exclude reference="huf-Vg-ZDo"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -401,14 +404,14 @@
                                 <include reference="asz-48-g8s"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="1Fx-kK-bqU"/>
+                                <include reference="TEG-BT-UXS"/>
                                 <include reference="7yU-ZV-WH9"/>
                                 <include reference="UKD-1q-veL"/>
+                                <include reference="huf-Vg-ZDo"/>
                                 <include reference="6SF-Y8-ATQ"/>
                                 <include reference="CTv-yc-S5i"/>
                                 <include reference="fa7-cR-Ix9"/>
-                                <include reference="1Fx-kK-bqU"/>
-                                <include reference="TEG-BT-UXS"/>
-                                <include reference="huf-Vg-ZDo"/>
                             </mask>
                         </variation>
                     </view>
@@ -796,7 +799,7 @@
         <!--理财-->
         <scene sceneID="mcL-WT-WjP">
             <objects>
-                <navigationController id="gCk-aD-M4s" sceneMemberID="viewController">
+                <navigationController id="gCk-aD-M4s" customClass="MyNavigationController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="理财" image="origami" id="WLz-OF-Hfd"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZtD-LF-wvB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -832,15 +835,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cua-MJ-G0n" id="u3U-Nw-7jg">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩余金额" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cD-lQ-Bef">
-                                                    <rect key="frame" x="8" y="78" width="48" height="15"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="48" id="Rmt-mH-ft2"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="期限" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="198-fh-kuk">
                                                     <rect key="frame" x="8" y="105" width="50" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -910,6 +904,15 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩余金额" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cD-lQ-Bef">
+                                                    <rect key="frame" x="8" y="78" width="48" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="48" id="Rmt-mH-ft2"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="FJ1-hQ-oRW" firstAttribute="trailing" secondItem="WPQ-iL-FgH" secondAttribute="trailing" id="4mY-Jy-Px6"/>
@@ -959,12 +962,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Igw-Nb-4aZ" id="Jfy-GD-53r">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aaa.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6JE-Fw-vPD">
-                                                    <rect key="frame" x="8" y="1" width="85" height="87"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="85" id="8Hc-Zj-bxN"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账户余额：8888.88元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biD-xI-rHc">
                                                     <rect key="frame" x="101" y="39" width="458" height="49"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -981,6 +978,12 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" tag="111" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aaa.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6JE-Fw-vPD">
+                                                    <rect key="frame" x="8" y="1" width="85" height="87"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="85" id="8Hc-Zj-bxN"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="biD-xI-rHc" firstAttribute="top" secondItem="ayv-s4-Uaq" secondAttribute="bottom" constant="2" id="4a3-2N-chH"/>
@@ -1029,14 +1032,14 @@
                                 <exclude reference="dIL-rB-oS0"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="WMZ-X7-Gxf"/>
-                                <exclude reference="eIO-6O-OJk"/>
-                                <exclude reference="mA1-q8-gg5"/>
+                                <exclude reference="iL8-oY-32w"/>
                                 <exclude reference="Nvt-41-0Lc"/>
                                 <exclude reference="PQV-9B-fas"/>
                                 <exclude reference="SpO-ay-HOJ"/>
                                 <exclude reference="zJd-Gv-kvU"/>
-                                <exclude reference="iL8-oY-32w"/>
+                                <exclude reference="WMZ-X7-Gxf"/>
+                                <exclude reference="eIO-6O-OJk"/>
+                                <exclude reference="mA1-q8-gg5"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -1045,14 +1048,14 @@
                                 <include reference="dIL-rB-oS0"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="WMZ-X7-Gxf"/>
-                                <include reference="eIO-6O-OJk"/>
-                                <include reference="mA1-q8-gg5"/>
+                                <include reference="iL8-oY-32w"/>
                                 <include reference="Nvt-41-0Lc"/>
                                 <include reference="PQV-9B-fas"/>
                                 <include reference="SpO-ay-HOJ"/>
                                 <include reference="zJd-Gv-kvU"/>
-                                <include reference="iL8-oY-32w"/>
+                                <include reference="WMZ-X7-Gxf"/>
+                                <include reference="eIO-6O-OJk"/>
+                                <include reference="mA1-q8-gg5"/>
                             </mask>
                         </variation>
                     </view>
@@ -1086,15 +1089,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="kgH-Yv-oeE">
-                                <rect key="frame" x="16" y="72" width="568" height="29"/>
-                                <segments>
-                                    <segment title="默认"/>
-                                    <segment title="金额"/>
-                                    <segment title="信用"/>
-                                    <segment title="期限"/>
-                                </segments>
-                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Gr1-hd-e6b">
                                 <rect key="frame" x="16" y="108" width="568" height="448"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1349,18 +1343,42 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Gr1-hd-e6b" firstAttribute="top" secondItem="HGd-Fq-lbh" secondAttribute="bottom" id="0lN-0z-Dqu">
+                                <variation key="heightClass=regular" constant="-64"/>
+                            </constraint>
                             <constraint firstItem="Gr1-hd-e6b" firstAttribute="leading" secondItem="Qjv-jM-lHc" secondAttribute="leadingMargin" id="3Ah-63-L0f"/>
                             <constraint firstItem="fHa-pS-40v" firstAttribute="top" secondItem="Gr1-hd-e6b" secondAttribute="bottom" id="5Qe-4D-dh1"/>
                             <constraint firstItem="Gr1-hd-e6b" firstAttribute="trailing" secondItem="Qjv-jM-lHc" secondAttribute="trailingMargin" id="Cil-E1-Mbn"/>
-                            <constraint firstItem="Gr1-hd-e6b" firstAttribute="top" secondItem="kgH-Yv-oeE" secondAttribute="bottom" constant="8" id="aSC-xc-owG"/>
-                            <constraint firstItem="kgH-Yv-oeE" firstAttribute="top" secondItem="HGd-Fq-lbh" secondAttribute="bottom" constant="8" id="c7F-bD-6g4"/>
-                            <constraint firstItem="kgH-Yv-oeE" firstAttribute="leading" secondItem="Qjv-jM-lHc" secondAttribute="leadingMargin" id="jnf-5m-LVt"/>
-                            <constraint firstItem="kgH-Yv-oeE" firstAttribute="trailing" secondItem="Qjv-jM-lHc" secondAttribute="trailingMargin" id="kNb-5e-usN"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="0lN-0z-Dqu"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="constraints">
+                                <include reference="0lN-0z-Dqu"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="投资列表" id="Qce-B4-vh4"/>
+                    <navigationItem key="navigationItem" title="投资列表" id="Qce-B4-vh4">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="JvP-A9-RRq">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dRs-Va-hFy">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="筛选">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showSearch:" destination="llE-tr-dg8" eventType="touchUpInside" id="rfH-gv-bUL"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="choice" destination="dRs-Va-hFy" id="col-oq-ZOT"/>
                         <outlet property="mainTable" destination="Gr1-hd-e6b" id="0hX-va-zr6"/>
                     </connections>
                 </viewController>
@@ -4243,7 +4261,7 @@
         <image name="torii" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eAy-nA-gaH"/>
-        <segue reference="Yrj-eT-tuX"/>
+        <segue reference="dhK-kZ-DWp"/>
+        <segue reference="XME-qO-mcf"/>
     </inferredMetricsTieBreakers>
 </document>

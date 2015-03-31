@@ -534,11 +534,11 @@
 				E9C70C081AC1035B00E1CA8D /* IdeaViewController.swift in Sources */,
 				E98EE1511ABAD12B00CAE127 /* ReturnSearchViewController.swift in Sources */,
 				E9C605B71ABBB9C500752D91 /* UIScrollView+Refresh.swift in Sources */,
-<<<<<<< HEAD
+
 				E93732B31ACA356D00423B7E /* MyNavigationController.swift in Sources */,
-=======
+
 				E961E1251AC8DCBC0021ED14 /* REMenu.m in Sources */,
->>>>>>> origin/master
+
 				E98091AF1AC63EAD001A8F12 /* YYCycleScrollView.swift in Sources */,
 				E98EE1431ABAD04100CAE127 /* DetailViewController.swift in Sources */,
 			);

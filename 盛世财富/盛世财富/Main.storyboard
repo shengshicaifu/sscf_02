@@ -384,14 +384,14 @@
                                 <exclude reference="asz-48-g8s"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="1Fx-kK-bqU"/>
+                                <exclude reference="TEG-BT-UXS"/>
                                 <exclude reference="7yU-ZV-WH9"/>
                                 <exclude reference="UKD-1q-veL"/>
+                                <exclude reference="huf-Vg-ZDo"/>
                                 <exclude reference="6SF-Y8-ATQ"/>
                                 <exclude reference="CTv-yc-S5i"/>
                                 <exclude reference="fa7-cR-Ix9"/>
-                                <exclude reference="1Fx-kK-bqU"/>
-                                <exclude reference="TEG-BT-UXS"/>
-                                <exclude reference="huf-Vg-ZDo"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -401,14 +401,14 @@
                                 <include reference="asz-48-g8s"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="1Fx-kK-bqU"/>
+                                <include reference="TEG-BT-UXS"/>
                                 <include reference="7yU-ZV-WH9"/>
                                 <include reference="UKD-1q-veL"/>
+                                <include reference="huf-Vg-ZDo"/>
                                 <include reference="6SF-Y8-ATQ"/>
                                 <include reference="CTv-yc-S5i"/>
                                 <include reference="fa7-cR-Ix9"/>
-                                <include reference="1Fx-kK-bqU"/>
-                                <include reference="TEG-BT-UXS"/>
-                                <include reference="huf-Vg-ZDo"/>
                             </mask>
                         </variation>
                     </view>
@@ -1034,14 +1034,14 @@
                                 <exclude reference="dIL-rB-oS0"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="WMZ-X7-Gxf"/>
-                                <exclude reference="eIO-6O-OJk"/>
-                                <exclude reference="mA1-q8-gg5"/>
+                                <exclude reference="iL8-oY-32w"/>
                                 <exclude reference="Nvt-41-0Lc"/>
                                 <exclude reference="PQV-9B-fas"/>
                                 <exclude reference="SpO-ay-HOJ"/>
                                 <exclude reference="zJd-Gv-kvU"/>
-                                <exclude reference="iL8-oY-32w"/>
+                                <exclude reference="WMZ-X7-Gxf"/>
+                                <exclude reference="eIO-6O-OJk"/>
+                                <exclude reference="mA1-q8-gg5"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -1050,14 +1050,14 @@
                                 <include reference="dIL-rB-oS0"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="WMZ-X7-Gxf"/>
-                                <include reference="eIO-6O-OJk"/>
-                                <include reference="mA1-q8-gg5"/>
+                                <include reference="iL8-oY-32w"/>
                                 <include reference="Nvt-41-0Lc"/>
                                 <include reference="PQV-9B-fas"/>
                                 <include reference="SpO-ay-HOJ"/>
                                 <include reference="zJd-Gv-kvU"/>
-                                <include reference="iL8-oY-32w"/>
+                                <include reference="WMZ-X7-Gxf"/>
+                                <include reference="eIO-6O-OJk"/>
+                                <include reference="mA1-q8-gg5"/>
                             </mask>
                         </variation>
                     </view>
@@ -3528,7 +3528,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EAt-3y-Urv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="685" y="566"/>
+            <point key="canvasLocation" x="1017" y="532"/>
         </scene>
         <!--My Banks View Controller-->
         <scene sceneID="FHA-4E-8Pa">
@@ -4250,9 +4250,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="eAy-nA-gaH"/>
         <segue reference="Yrj-eT-tuX"/>
-<<<<<<< HEAD
-        <segue reference="eAy-nA-gaH"/>
-=======
->>>>>>> origin/master
     </inferredMetricsTieBreakers>
 </document>

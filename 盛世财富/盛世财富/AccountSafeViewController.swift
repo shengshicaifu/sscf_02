@@ -24,7 +24,7 @@ class AccountSafeViewController: UIViewController,UITableViewDataSource,UITableV
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 3
+        return 4
     }
     
     
@@ -49,11 +49,16 @@ class AccountSafeViewController: UIViewController,UITableViewDataSource,UITableV
             tempLabel.text = "绑定手机"
             realNameLabel.text = "135****4654"
             flagLabel.text = "已设置"
-        }else{
+        }else if indexPath.row == 2{
             imageView.image = UIImage(named: "aaa.jpg")
             tempLabel.text = "交易密码"
             realNameLabel.text = "已设置，点击可修改"
             flagLabel.text = "已设置"
+        }else {
+            imageView.image = UIImage(named: "aaa.jpg")
+            tempLabel.text="邮箱验证"
+            realNameLabel.text="63*****999@qq.com"
+            flagLabel.text="已设置"
         }
         return cell
     }

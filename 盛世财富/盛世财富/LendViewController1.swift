@@ -23,9 +23,6 @@ class LendViewController1: UIViewController,UITableViewDataSource,UITableViewDel
     
     
     let refreshControl = UIRefreshControl()
-    
-    
-    
     @IBOutlet weak var mainTable: UITableView!
     
     @IBOutlet weak var topImage: UIImageView!
@@ -52,7 +49,7 @@ class LendViewController1: UIViewController,UITableViewDataSource,UITableViewDel
         var colorArray = [UIColor.cyanColor(),UIColor.blueColor(),UIColor.greenColor(),UIColor.yellowColor(),UIColor.purpleColor()]
         for  i in 1...4 {
             var tempImageView = UIImageView(frame:CGRectMake(0, 0, 380, 100))
-            tempImageView.image = UIImage(named:"\(i).jpeg")
+            tempImageView.image = UIImage(named:"\(i).jpg")
             tempImageView.contentMode = UIViewContentMode.ScaleAspectFill
             tempImageView.clipsToBounds = true
             viewsArray.addObject(tempImageView)

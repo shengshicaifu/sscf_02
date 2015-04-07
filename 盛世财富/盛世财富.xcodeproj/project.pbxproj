@@ -17,6 +17,10 @@
 		E90EA2791ABFA37A006D22E6 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA26F1ABFA37A006D22E6 /* AFURLResponseSerialization.m */; };
 		E90EA27A1ABFA37A006D22E6 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA2711ABFA37A006D22E6 /* AFURLSessionManager.m */; };
 		E90EA27C1ABFAB5D006D22E6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */; };
+		E93732AE1ACA328000423B7E /* ENSideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93732AC1ACA328000423B7E /* ENSideMenu.swift */; };
+		E93732AF1ACA328000423B7E /* ENSideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93732AD1ACA328000423B7E /* ENSideMenuNavigationController.swift */; };
+		E93732B11ACA32F600423B7E /* MyMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93732B01ACA32F600423B7E /* MyMenuTableViewController.swift */; };
+		E93732B31ACA356D00423B7E /* MyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93732B21ACA356D00423B7E /* MyNavigationController.swift */; };
 		E94E04651ABD015800A0EEC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E94E04641ABD015800A0EEC8 /* Main.storyboard */; };
 		E94E04671ABD3C5F00A0EEC8 /* SetTradePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94E04661ABD3C5F00A0EEC8 /* SetTradePasswordViewController.swift */; };
 		E961E1241AC8DCBC0021ED14 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11B1AC8DCBC0021ED14 /* RECommonFunctions.m */; };
@@ -96,6 +100,10 @@
 		E90EA2701ABFA37A006D22E6 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		E90EA2711ABFA37A006D22E6 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E93732AC1ACA328000423B7E /* ENSideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENSideMenu.swift; sourceTree = "<group>"; };
+		E93732AD1ACA328000423B7E /* ENSideMenuNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENSideMenuNavigationController.swift; sourceTree = "<group>"; };
+		E93732B01ACA32F600423B7E /* MyMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMenuTableViewController.swift; sourceTree = "<group>"; };
+		E93732B21ACA356D00423B7E /* MyNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNavigationController.swift; sourceTree = "<group>"; };
 		E94E04641ABD015800A0EEC8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E94E04661ABD3C5F00A0EEC8 /* SetTradePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTradePasswordViewController.swift; sourceTree = "<group>"; };
 		E961E11A1AC8DCBC0021ED14 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
@@ -221,6 +229,8 @@
 		E91E81321AB27956000C5FD3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E93732B21ACA356D00423B7E /* MyNavigationController.swift */,
+				E93732B01ACA32F600423B7E /* MyMenuTableViewController.swift */,
 				E98091AC1AC63D22001A8F12 /* LendViewController1.swift */,
 				E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */,
 				E9BEE1AE1AC24D7E0049600C /* baseClass.swift */,
@@ -366,6 +376,8 @@
 		E9FDC1461AC3B70F0088B6F5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				E93732AC1ACA328000423B7E /* ENSideMenu.swift */,
+				E93732AD1ACA328000423B7E /* ENSideMenuNavigationController.swift */,
 				E9FDC1471AC3B71F0088B6F5 /* ShowAlertView.swift */,
 			);
 			name = Common;
@@ -472,6 +484,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E93732AE1ACA328000423B7E /* ENSideMenu.swift in Sources */,
 				E90EA2721ABFA37A006D22E6 /* AFHTTPRequestOperation.m in Sources */,
 				E961E1241AC8DCBC0021ED14 /* RECommonFunctions.m in Sources */,
 				E961E1271AC8DCBC0021ED14 /* REMenuItem.m in Sources */,
@@ -502,7 +515,9 @@
 				E9B9EF4C1AC8E00600E46714 /* BidListViewController.swift in Sources */,
 				E90EA2761ABFA37A006D22E6 /* AFSecurityPolicy.m in Sources */,
 				E94E04671ABD3C5F00A0EEC8 /* SetTradePasswordViewController.swift in Sources */,
+				E93732B11ACA32F600423B7E /* MyMenuTableViewController.swift in Sources */,
 				E98EE1531ABAD13300CAE127 /* UpdateTradePasswordViewController.swift in Sources */,
+				E93732AF1ACA328000423B7E /* ENSideMenuNavigationController.swift in Sources */,
 				E90EA2751ABFA37A006D22E6 /* AFNetworkReachabilityManager.m in Sources */,
 				E9C605B61ABBB9C500752D91 /* RefreshHeaderView.swift in Sources */,
 				E90EA2741ABFA37A006D22E6 /* AFHTTPSessionManager.m in Sources */,
@@ -519,7 +534,11 @@
 				E9C70C081AC1035B00E1CA8D /* IdeaViewController.swift in Sources */,
 				E98EE1511ABAD12B00CAE127 /* ReturnSearchViewController.swift in Sources */,
 				E9C605B71ABBB9C500752D91 /* UIScrollView+Refresh.swift in Sources */,
+
+				E93732B31ACA356D00423B7E /* MyNavigationController.swift in Sources */,
+
 				E961E1251AC8DCBC0021ED14 /* REMenu.m in Sources */,
+
 				E98091AF1AC63EAD001A8F12 /* YYCycleScrollView.swift in Sources */,
 				E98EE1431ABAD04100CAE127 /* DetailViewController.swift in Sources */,
 			);

@@ -43,7 +43,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     @IBOutlet weak var circle: UIActivityIndicatorView!
     
-//    var dicList = Array<Dictionary<String,String>>()
+    //    var dicList = Array<Dictionary<String,String>>()
     var dicList = NSMutableArray()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,6 +105,8 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         })
        
 //        self.setupRefresh()
+        
+        
     }
     
     func refreshData(){
@@ -243,7 +245,8 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             
             if tmpListData.count > 0 {
                 
-
+                image.image = UIImage(data:NSData(contentsOfURL: NSURL(string: "http://www.sscf88.com/uploadData/ad/2014093013251995.jpg")!)!)
+                
                 title.text = tmpListData[row].valueForKey("borrow_name")! as NSString
                 
 //                if let a = tmpListData[row].valueForKey("need") {
@@ -299,5 +302,9 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
 //            return 130
 //        }
         return 30
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        hideSideMenuView()
     }
 }

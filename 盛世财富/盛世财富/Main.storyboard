@@ -3585,7 +3585,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EAt-3y-Urv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="685" y="566"/>
+            <point key="canvasLocation" x="1017" y="532"/>
         </scene>
         <!--My Banks View Controller-->
         <scene sceneID="FHA-4E-8Pa">

@@ -24,7 +24,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
   
     let refreshControl = UIRefreshControl()
 
-    
+     @IBOutlet weak var circle: UIActivityIndicatorView!
     
     @IBOutlet weak var mainTable: UITableView!
 
@@ -41,7 +41,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             count = 1
         }
     }
-    @IBOutlet weak var circle: UIActivityIndicatorView!
+    
     
     //    var dicList = Array<Dictionary<String,String>>()
     var dicList = NSMutableArray()
@@ -101,6 +101,10 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         eHttp.delegate = self
         eHttp.get(self.timeLineUrl,viewContro :self,{
+            
+            self.circle.stopAnimating()
+            self.circle.hidden = true
+            self.mainTable.hidden = false
             self.mainTable.reloadData()
         })
        
@@ -304,7 +308,13 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         return 30
     }
     
+   
     override func viewWillAppear(animated: Bool) {
+        if self.tmpListData.count == 0 {
+        mainTable.hidden = true
+        circle.hidden = false
+        circle.startAnimating()
+        }
         hideSideMenuView()
     }
 }

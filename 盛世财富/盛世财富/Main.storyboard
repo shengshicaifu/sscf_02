@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6v-wi-K0w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F1066" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6v-wi-K0w">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
@@ -958,7 +958,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="7iJ-Nx-m35" kind="push" id="Yrj-eT-tuX"/>
+                                            <segue destination="7iJ-Nx-m35" kind="push" identifier="detail" id="Yrj-eT-tuX"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="person" rowHeight="89" id="Igw-Nb-4aZ">
@@ -1015,13 +1015,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Gr1-6y-XVJ">
+                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="aBT-ez-waB" secondAttribute="trailing" constant="-16" id="Nvt-41-0Lc"/>
                             <constraint firstItem="aBT-ez-waB" firstAttribute="leading" secondItem="bBY-fa-e8F" secondAttribute="leadingMargin" constant="-16" id="PQV-9B-fas"/>
+                            <constraint firstAttribute="centerY" secondItem="Gr1-6y-XVJ" secondAttribute="centerY" constant="30" id="S2O-wC-ya7"/>
                             <constraint firstItem="aBT-ez-waB" firstAttribute="top" secondItem="dIL-rB-oS0" secondAttribute="bottom" constant="-64" id="SpO-ay-HOJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dIL-rB-oS0" secondAttribute="trailing" constant="-16" id="WMZ-X7-Gxf"/>
+                            <constraint firstAttribute="centerX" secondItem="Gr1-6y-XVJ" secondAttribute="centerX" id="ZMm-56-te2"/>
                             <constraint firstItem="dIL-rB-oS0" firstAttribute="top" secondItem="dKq-WQ-iKV" secondAttribute="bottom" id="eIO-6O-OJk"/>
                             <constraint firstItem="HSy-N7-EFw" firstAttribute="top" secondItem="aBT-ez-waB" secondAttribute="bottom" constant="28" id="iL8-oY-32w">
                                 <variation key="heightClass=regular" constant="0.0"/>
@@ -1035,8 +1040,11 @@
                             <mask key="subviews">
                                 <exclude reference="aBT-ez-waB"/>
                                 <exclude reference="dIL-rB-oS0"/>
+                                <exclude reference="Gr1-6y-XVJ"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="S2O-wC-ya7"/>
+                                <exclude reference="ZMm-56-te2"/>
                                 <exclude reference="iL8-oY-32w"/>
                                 <exclude reference="Nvt-41-0Lc"/>
                                 <exclude reference="PQV-9B-fas"/>
@@ -1051,8 +1059,11 @@
                             <mask key="subviews">
                                 <include reference="aBT-ez-waB"/>
                                 <include reference="dIL-rB-oS0"/>
+                                <include reference="Gr1-6y-XVJ"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="S2O-wC-ya7"/>
+                                <include reference="ZMm-56-te2"/>
                                 <include reference="iL8-oY-32w"/>
                                 <include reference="Nvt-41-0Lc"/>
                                 <include reference="PQV-9B-fas"/>
@@ -1074,6 +1085,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="circle" destination="Gr1-6y-XVJ" id="9bZ-f7-DpJ"/>
                         <outlet property="mainTable" destination="aBT-ez-waB" id="Vwd-Fm-I1U"/>
                         <outlet property="mainView" destination="dIL-rB-oS0" id="OG2-y3-Uex"/>
                     </connections>
@@ -1094,7 +1106,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Gr1-hd-e6b">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8Rs-pu-ABp">
+                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Gr1-hd-e6b">
                                 <rect key="frame" x="16" y="108" width="568" height="448"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1248,6 +1263,15 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="测试" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kc9-jR-1Ty">
+                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular" fixedFrame="YES">
+                                                        <rect key="frame" x="-100" y="67" width="42" height="21"/>
+                                                    </variation>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="SRB-y0-9Sh" secondAttribute="trailing" constant="-8" id="1jG-Gu-zka"/>
@@ -1280,6 +1304,7 @@
                                             <variation key="default">
                                                 <mask key="subviews">
                                                     <exclude reference="SRB-y0-9Sh"/>
+                                                    <exclude reference="kc9-jR-1Ty"/>
                                                 </mask>
                                                 <mask key="constraints">
                                                     <exclude reference="L1v-yF-wym"/>
@@ -1309,6 +1334,7 @@
                                             <variation key="heightClass=regular">
                                                 <mask key="subviews">
                                                     <include reference="SRB-y0-9Sh"/>
+                                                    <include reference="kc9-jR-1Ty"/>
                                                 </mask>
                                                 <mask key="constraints">
                                                     <include reference="L1v-yF-wym"/>
@@ -1337,7 +1363,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="7iJ-Nx-m35" kind="push" id="XME-qO-mcf"/>
+                                            <segue destination="7iJ-Nx-m35" kind="push" identifier="detail" id="XME-qO-mcf"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1354,14 +1380,26 @@
                             <constraint firstItem="Gr1-hd-e6b" firstAttribute="leading" secondItem="Qjv-jM-lHc" secondAttribute="leadingMargin" id="3Ah-63-L0f"/>
                             <constraint firstItem="fHa-pS-40v" firstAttribute="top" secondItem="Gr1-hd-e6b" secondAttribute="bottom" id="5Qe-4D-dh1"/>
                             <constraint firstItem="Gr1-hd-e6b" firstAttribute="trailing" secondItem="Qjv-jM-lHc" secondAttribute="trailingMargin" id="Cil-E1-Mbn"/>
+                            <constraint firstAttribute="centerY" secondItem="8Rs-pu-ABp" secondAttribute="centerY" id="Y3k-gh-Mxl"/>
+                            <constraint firstAttribute="centerX" secondItem="8Rs-pu-ABp" secondAttribute="centerX" id="pyp-MU-Gml"/>
                         </constraints>
                         <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="8Rs-pu-ABp"/>
+                            </mask>
                             <mask key="constraints">
+                                <exclude reference="Y3k-gh-Mxl"/>
+                                <exclude reference="pyp-MU-Gml"/>
                                 <exclude reference="0lN-0z-Dqu"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="8Rs-pu-ABp"/>
+                            </mask>
                             <mask key="constraints">
+                                <include reference="Y3k-gh-Mxl"/>
+                                <include reference="pyp-MU-Gml"/>
                                 <include reference="0lN-0z-Dqu"/>
                             </mask>
                         </variation>
@@ -1384,6 +1422,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="choice" destination="dRs-Va-hFy" id="col-oq-ZOT"/>
+                        <outlet property="circle" destination="8Rs-pu-ABp" id="gVH-jK-a9x"/>
                         <outlet property="mainTable" destination="Gr1-hd-e6b" id="0hX-va-zr6"/>
                     </connections>
                 </viewController>
@@ -4266,12 +4305,7 @@
         <image name="torii" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-
-        <segue reference="dhK-kZ-DWp"/>
         <segue reference="XME-qO-mcf"/>
-
         <segue reference="eAy-nA-gaH"/>
-        <segue reference="Yrj-eT-tuX"/>
-
     </inferredMetricsTieBreakers>
 </document>

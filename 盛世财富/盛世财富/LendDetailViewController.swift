@@ -10,18 +10,28 @@
 
 import UIKit
 
-class LendDetailViewController: UITableViewController ,UITableViewDelegate{
+class LendDetailViewController: UITableViewController ,UITableViewDataSource,UITableViewDelegate,HttpProtocol{
 
+    
     @IBOutlet weak var mainTable: UITableView!
     
     
-   
+    var timeLineUrl = "http://www.sscf88.com/app-invest-detailcontent-id-"
+    var tmpListData: NSMutableArray = NSMutableArray()
+    var eHttp: HttpController = HttpController()
+    var id:String?
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainTable.dataSource = self
         mainTable.delegate = self
+        eHttp.delegate = self
+//        if id != nil {
+//            eHttp.get(self.timeLineUrl + "\(id)",viewContro :self,{
+//                self.mainTable.reloadData()
+//            })
+//        }
         
-        
-        
+        println(id!)
     }
 	
     override func didReceiveMemoryWarning() {
@@ -30,34 +40,20 @@ class LendDetailViewController: UITableViewController ,UITableViewDelegate{
     }
     
     
-    
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if indexPath.section.hashValue == 2 {
-            
-            if self.view.viewWithTag(1)?.hidden == false {
-                self.view.viewWithTag(1)?.hidden = true
-                self.view.viewWithTag(10)?.hidden = false
-              
-            }else{
-                self.view.viewWithTag(1)?.hidden = false
-                self.view.viewWithTag(10)?.hidden = true
-            }
-        }
-        if indexPath.section.hashValue == 3{
-            
-            if self.view.viewWithTag(2)?.hidden == false {
-                self.view.viewWithTag(2)?.hidden = true
-                self.view.viewWithTag(11)?.hidden = false
-                
-            }else{
-                self.view.viewWithTag(2)?.hidden = false
-                self.view.viewWithTag(11)?.hidden = true
-            }
-        }
-        mainTable.reloadData()
+        //点击事件
     }
     
+    
+    
+    func didRecieveResult(result: NSDictionary){
+//        if(result["data"]?.valueForKey("list") != nil){
+//            self.tmpListData = result["data"]?.valueForKey("list") as NSMutableArray //list数据
+//            //            self.page = result["data"]?["page"] as Int
+//            self.mainTable.reloadData()
+//        }
+    }
 }
 

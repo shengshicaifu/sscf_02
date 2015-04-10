@@ -21,8 +21,9 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     var sign: String = ""
     var isCheck: String = ""
     let refreshControl = UIRefreshControl()
+    var id = ""
     
-    
+    @IBOutlet weak var circle: UIActivityIndicatorView!
     @IBOutlet weak var choice: UIButton!
     @IBAction func showSearch(sender: AnyObject) {
         
@@ -43,6 +44,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     @IBOutlet weak var mainTable: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainTable.delegate = self
         eHttp.delegate = self
 //        eHttp.get(self.timeLineUrl,viewContro : self)
 //        self.setupRefresh()
@@ -52,6 +54,10 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
 //        mainTable.addSubview(self.refreshControl)
         eHttp.get(self.timeLineUrl,viewContro :self,{
 //            self.mainTable.reloadData()
+            self.circle.stopAnimating()
+            self.circle.hidden = true
+            self.mainTable.hidden = false
+            self.mainTable.reloadData()
         })
         
         if choice.titleLabel?.text != "筛选" {
@@ -135,7 +141,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     func didRecieveResult(result: NSDictionary){
         if(result["data"]?.valueForKey("list") != nil){
             self.tmpListData = result["data"]?.valueForKey("list") as NSMutableArray //list数据
-            self.page = result["data"]?["page"] as Int
+//            self.page = result["data"]?["page"] as Int
             self.mainTable.reloadData()
         }
     }
@@ -163,23 +169,48 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         var percent = cell.viewWithTag(101) as UILabel
         var month = cell.viewWithTag(102) as UILabel
         var title = cell.viewWithTag(103) as UILabel
+        var hideId = cell.viewWithTag(99) as UILabel
         var row = indexPath.row
-        if tmpListData.count > 0 {
-            var tmp = tmpListData[row].valueForKey("borrow_money")! as NSString
+        if listData.count > 0 {
+            var tmp = listData[row].valueForKey("borrow_money")! as NSString
             money.text = "\(tmp)元"
-            tmp = tmpListData[row].valueForKey("borrow_interest_rate")! as NSString
+            tmp = listData[row].valueForKey("borrow_interest_rate")! as NSString
             percent.text = "\(tmp)%"
-            tmp = tmpListData[row].valueForKey("borrow_duration")! as NSString
-            var unit = tmpListData[row].valueForKey("duration_unit")! as NSString
+            tmp = listData[row].valueForKey("borrow_duration")! as NSString
+            var unit = listData[row].valueForKey("duration_unit")! as NSString
             month.text = "\(tmp)\(unit)"
-            title.text = tmpListData[row].valueForKey("borrow_name")! as NSString
+            title.text = listData[row].valueForKey("borrow_name")! as NSString
+            hideId.text = listData[row].valueForKey("id")! as NSString
         }
         return cell
         
     }
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(99) as UILabel
+        id = hideId.text!
+        //        self.presentViewController(vc, animated: true, completion: nil)
+        self.performSegueWithIdentifier("detail", sender: self)
+    }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         hideSideMenuView()
+        if segue.identifier == "detail" {
+            var vc = segue.destinationViewController as LendDetailViewController
+            vc.id = self.id
+
+        }
+        println("segue:\(segue.identifier)")
+
     }
     
+    override func viewWillAppear(animated: Bool) {
+        if self.tmpListData.count == 0 {
+            mainTable.hidden = true	
+            circle.hidden = false
+            circle.startAnimating()
+        }
+        hideSideMenuView()
+    }
 }
 

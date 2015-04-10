@@ -132,8 +132,7 @@ class AccountDetailViewController: UIViewController,UITableViewDelegate,UITableV
                 return 170
             }
         }
-        
-        return 50
+                return 50
     }
     
     //设置点击cell的事件
@@ -143,7 +142,6 @@ class AccountDetailViewController: UIViewController,UITableViewDelegate,UITableV
             //访问图片库
             upc.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
             upc.delegate = self
-            
             self.presentViewController(upc, animated: true, completion: nil)
         }
     }

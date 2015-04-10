@@ -12,7 +12,9 @@ import UIKit
 
 class LendDetailViewController: UITableViewController ,UITableViewDataSource,UITableViewDelegate,HttpProtocol{
 
+    
     @IBOutlet weak var mainTable: UITableView!
+    
     
     var timeLineUrl = "http://www.sscf88.com/app-invest-detailcontent-id-"
     var tmpListData: NSMutableArray = NSMutableArray()
@@ -20,13 +22,16 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
     var id:String?
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainTable.delegate = self
         mainTable.dataSource = self
+        mainTable.delegate = self
         eHttp.delegate = self
+//        if id != nil {
+//            eHttp.get(self.timeLineUrl + "\(id)",viewContro :self,{
+//                self.mainTable.reloadData()
+//            })
+//        }
         
-        eHttp.get(self.timeLineUrl + "",viewContro :self,{
-            self.mainTable.reloadData()
-        })
+        println(id!)
     }
 	
     override func didReceiveMemoryWarning() {
@@ -44,11 +49,11 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
     
     
     func didRecieveResult(result: NSDictionary){
-        if(result["data"]?.valueForKey("list") != nil){
-            self.tmpListData = result["data"]?.valueForKey("list") as NSMutableArray //list数据
-            //            self.page = result["data"]?["page"] as Int
-            self.mainTable.reloadData()
-        }
+//        if(result["data"]?.valueForKey("list") != nil){
+//            self.tmpListData = result["data"]?.valueForKey("list") as NSMutableArray //list数据
+//            //            self.page = result["data"]?["page"] as Int
+//            self.mainTable.reloadData()
+//        }
     }
 }
 

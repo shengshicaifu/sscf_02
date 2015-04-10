@@ -44,6 +44,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     @IBOutlet weak var mainTable: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainTable.delegate = self
         eHttp.delegate = self
 //        eHttp.get(self.timeLineUrl,viewContro : self)
 //        self.setupRefresh()
@@ -168,7 +169,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         var percent = cell.viewWithTag(101) as UILabel
         var month = cell.viewWithTag(102) as UILabel
         var title = cell.viewWithTag(103) as UILabel
-//        var hideId = cell.viewWithTag(104) as UILabel
+        var hideId = cell.viewWithTag(99) as UILabel
         var row = indexPath.row
         if listData.count > 0 {
             var tmp = listData[row].valueForKey("borrow_money")! as NSString
@@ -178,22 +179,29 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             tmp = listData[row].valueForKey("borrow_duration")! as NSString
             var unit = listData[row].valueForKey("duration_unit")! as NSString
             month.text = "\(tmp)\(unit)"
-            title.text = listData[row].valueForKey("id")! as NSString
-//            hideId.text = listData[row].valueForKey("id")! as NSString
+            title.text = listData[row].valueForKey("borrow_name")! as NSString
+            hideId.text = listData[row].valueForKey("id")! as NSString
         }
         return cell
         
     }
+    
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println(1)
+        var hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(99) as UILabel
+        id = hideId.text!
+        //        self.presentViewController(vc, animated: true, completion: nil)
+        self.performSegueWithIdentifier("detail", sender: self)
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         hideSideMenuView()
         if segue.identifier == "detail" {
-//            var vc = segue.destinationViewController as LendDetailViewController
-//            vc.id = id≈
-            
+            var vc = segue.destinationViewController as LendDetailViewController
+            vc.id = self.id
+
         }
+        println("segue:\(segue.identifier)")
+
     }
     
     override func viewWillAppear(animated: Bool) {

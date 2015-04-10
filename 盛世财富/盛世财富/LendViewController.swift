@@ -21,10 +21,12 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var sign: String = ""
     var isCheck: String = ""
     
-  
+    
+    var id:String?
+    
     let refreshControl = UIRefreshControl()
 
-     @IBOutlet weak var circle: UIActivityIndicatorView!
+    @IBOutlet weak var circle: UIActivityIndicatorView!
     
     @IBOutlet weak var mainTable: UITableView!
 
@@ -206,10 +208,19 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         super.didReceiveMemoryWarning()
         
     }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(103) as UILabel
+        id = hideId.text!
+        //        self.presentViewController(vc, animated: true, completion: nil)
+        self.performSegueWithIdentifier("detail", sender: self)
+    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var nextView:UIViewController?
         if segue.identifier == "detail"{
-            nextView = segue.destinationViewController as LendDetailViewController
+            var vc = segue.destinationViewController as LendDetailViewController
+            vc.id = self.id
+            println(vc.id)
         }
         if segue.identifier == "allList"{
             nextView = segue.destinationViewController as AllListViewController
@@ -246,7 +257,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             var period = cell.viewWithTag(104) as UILabel
             var totalMoney = cell.viewWithTag(105) as UILabel
             var percent = cell.viewWithTag(106) as UILabel
-            
+//            var hideId = cell.viewWithTag(99) as UILabel
             if tmpListData.count > 0 {
                 
                 image.image = UIImage(data:NSData(contentsOfURL: NSURL(string: "http://www.sscf88.com/uploadData/ad/2014093013251995.jpg")!)!)
@@ -262,7 +273,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
 //                }
                 var d = tmpListData[row].valueForKey("need")! as Double
                 restMoney.text = "\(d)元"
-                restTime.text = tmpListData[row].valueForKey("leftdays")! as NSString
+                restTime.text = tmpListData[row].valueForKey("id")! as NSString
                 
                 var tmp = tmpListData[row].valueForKey("borrow_duration")! as NSString
                 var unit = tmpListData[row].valueForKey("duration_unit")! as NSString
@@ -271,7 +282,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 totalMoney.text = "\(tmp)元"
                 tmp = tmpListData[row].valueForKey("borrow_interest_rate")! as NSString
                 percent.text = "\(tmp)%"
-                
+//                hideId.text = listData[row].valueForKey("id")! as NSString
             }
         }
         if val == 1 {

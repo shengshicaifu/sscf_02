@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyMenuTableViewController: UITableViewController {
+class MyMenuTableViewController: UITableViewController{
     var selectedMenuItem : Int = 0
     var str: String = String()
     override func viewDidLoad() {

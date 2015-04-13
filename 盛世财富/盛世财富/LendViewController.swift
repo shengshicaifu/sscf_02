@@ -20,8 +20,6 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var tid: String = ""
     var sign: String = ""
     var isCheck: String = ""
-    
-    
     var id:String?
     
     let refreshControl = UIRefreshControl()

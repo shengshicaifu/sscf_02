@@ -198,7 +198,6 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         if segue.identifier == "detail" {
             var vc = segue.destinationViewController as LendDetailViewController
             vc.id = self.id
-
         }
         println("segue:\(segue.identifier)")
 

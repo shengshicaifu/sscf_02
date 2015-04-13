@@ -197,7 +197,9 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         hideSideMenuView()
         if segue.identifier == "detail" {
             var vc = segue.destinationViewController as LendDetailViewController
-            vc.id = self.id
+
+            vc.id = self.id	
+
         }
         println("segue:\(segue.identifier)")
 

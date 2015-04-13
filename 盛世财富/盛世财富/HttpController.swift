@@ -19,6 +19,7 @@ class HttpController: NSObject{
                 self.delegate?.didRecieveResult(jsonResult)
                 
             }else{
+                //报错弹窗
                 println(error.localizedDescription)
                 var alert = UIAlertController(title: "错误", message: error.localizedDescription, preferredStyle:UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))

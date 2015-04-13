@@ -10,31 +10,32 @@ import UIKit
 
 class LendViewController: UIViewController,UITableViewDataSource,UITableViewDelegate ,HttpProtocol{
 
-    var eHttp: HttpController = HttpController()
+    var eHttp: HttpController = HttpController()//新建一个httpController
     var base: baseClass = baseClass()
-    var timeLineUrl = "http://www.sscf88.com/app-invest-content"
-    var tmpListData: NSMutableArray = NSMutableArray()
-    var listData: NSMutableArray = NSMutableArray()
+    var timeLineUrl = "http://www.sscf88.com/app-invest-content"//链接地址
+    var tmpListData: NSMutableArray = NSMutableArray()//临时数据  下拉添加
+    var listData: NSMutableArray = NSMutableArray()//存数据
     var page = 1 //page
     var imageCache = Dictionary<String,UIImage>()
     var tid: String = ""
     var sign: String = ""
-    var isCheck: String = ""
-    var id:String?
-    
-    let refreshControl = UIRefreshControl()
 
-    @IBOutlet weak var circle: UIActivityIndicatorView!
+    
+    var id:String?//页面传值的id
+    
+    let refreshControl = UIRefreshControl() //apple自带的下拉刷新
+
+    @IBOutlet weak var circle: UIActivityIndicatorView!//读取数据动画
     
     @IBOutlet weak var mainTable: UITableView!
 
-    @IBOutlet weak var topImage: UIImageView!
-    var timer:NSTimer?
+    @IBOutlet weak var topImage: UIImageView!//手写的滚动图
+    var timer:NSTimer?//定时器
     
     @IBOutlet weak var mainView: UIView!
     var count = 1
     func timerFunction(){
-        
+        //定时触发的方法    没用
         topImage.image = UIImage(named: String(count)+".jpg")
         count++
         if count > 4 {
@@ -48,10 +49,11 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTable.delegate = self
+        //手写的滚动图
 //        timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "timerFunction", userInfo: nil, repeats: true)
 //        timer?.fire()
 //        
-//        //右划
+//        //右划   没动画
 //        var swipeGesture = UISwipeGestureRecognizer(target: self, action: "handleSwipeGesture:")
 //        self.view.addGestureRecognizer(swipeGesture)
 //        //左划
@@ -59,18 +61,18 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
 //        swipeLeftGesture.direction = UISwipeGestureRecognizerDirection.Left //不设置是右
 //        self.view.addGestureRecognizer(swipeLeftGesture)
 //        
-        
+        //滚动图
         var viewsArray = NSMutableArray()
         var colorArray = [UIColor.cyanColor(),UIColor.blueColor(),UIColor.greenColor(),UIColor.yellowColor(),UIColor.purpleColor()]
         for  i in 1...4 {
-            var tempImageView = UIImageView(frame:CGRectMake(0, 0, self.view.layer.frame.width, 100))
-            tempImageView.image = UIImage(named:"\(i).jpeg")
+            var tempImageView = UIImageView(frame:CGRectMake(0, 0, self.view.layer.frame.width, 100))//代码指定位置
+            tempImageView.image = UIImage(named:"\(i).jpeg")//图片名
             tempImageView.contentMode = UIViewContentMode.ScaleAspectFill
             tempImageView.clipsToBounds = true
-            viewsArray.addObject(tempImageView)
+            viewsArray.addObject(tempImageView)//添加
             
         }
-        
+        //scrollview滚动
         var mainScorllView = YYCycleScrollView(frame:CGRectMake(0, 0, self.view.layer.frame.width, 100),animationDuration:10.0)
         mainScorllView.fetchContentViewAtIndex = {(pageIndex:Int)->UIView in
             return viewsArray.objectAtIndex(pageIndex) as UIView
@@ -84,7 +86,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             //此处根据点击的索引跳转到指定的页面
             println("点击了\(pageIndex)")
         }
-        mainView.addSubview(mainScorllView)
+        mainView.addSubview(mainScorllView)//添加scorllview
         
         
         
@@ -94,16 +96,18 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
 //        ref.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
 //        mainTable.addSubview(ref)
         
-        
+        //apple的下拉刷新
         self.refreshControl.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
         self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
         mainTable.addSubview(self.refreshControl)
         
         eHttp.delegate = self
+        //http请求
         eHttp.get(self.timeLineUrl,viewContro :self,{
-            
+            //callback  隐藏读取动画
             self.circle.stopAnimating()
             self.circle.hidden = true
+            //显示tableview
             self.mainTable.hidden = false
             self.mainTable.reloadData()
         })
@@ -112,11 +116,12 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         
     }
-    
+    //下拉刷新绑定的方法
     func refreshData(){
         if self.refreshControl.refreshing {
             self.refreshControl.attributedTitle = NSAttributedString(string: "加载中")
             eHttp.get(self.timeLineUrl,viewContro :self,{
+                //停止下拉动画
                 self.refreshControl.endRefreshing()
                 self.mainTable.reloadData()
             })
@@ -126,7 +131,9 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     
     //Refresh func
+    //Refresh文件夹内开源代码
     func setupRefresh(){
+        //下拉刷新
         self.mainTable.addHeaderWithCallback({
             let delayInSeconds:Int64 =  1000000000  * 2
             var popTime:dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds)
@@ -135,7 +142,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 self.mainTable.headerEndRefreshing()
             })
         })
-        
+        //上啦加载
 //        self.mainTable.addFooterWithCallback({
 //            var nextPage = String(self.page + 1)
 //            var tmpTimeLineUrl = self.timeLineUrl + "&page=" + nextPage as NSString
@@ -158,6 +165,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
 //            })
 //        })
     }
+    //读取json并解析
     func didRecieveResult(result: NSDictionary){
         if(result["data"]?.valueForKey("list") != nil){
             self.tmpListData = result["data"]?.valueForKey("list") as NSMutableArray //list数据
@@ -165,7 +173,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             self.mainTable.reloadData()
         }
     }
-
+    //高度
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section.hashValue == 0 {
             return 160
@@ -174,59 +182,69 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
    
-    //划动手势
-    func handleSwipeGesture(sender: UISwipeGestureRecognizer){
-        //划动的方向
-        var direction = sender.direction
-        //判断是上下左右
-        switch (direction){
-        case UISwipeGestureRecognizerDirection.Left:
-            
-            count++;//下标++
-            break
-        case UISwipeGestureRecognizerDirection.Right:
-            
-            count--;//下标--
-            break
-            
-        default:
-            break;
-        }
-        if count > 4{
-            count = 1
-        }
-        if count < 1 {
-            count = 4
-        }
-        //imageView显示图片
-        topImage.image = UIImage(named: "\(count).jpg")
-    }
-    
+//    //划动手势
+//    func handleSwipeGesture(sender: UISwipeGestureRecognizer){
+//        //划动的方向
+//        var direction = sender.direction
+//        //判断是上下左右
+//        switch (direction){
+//        case UISwipeGestureRecognizerDirection.Left:
+//            
+//            count++;//下标++
+//            break
+//        case UISwipeGestureRecognizerDirection.Right:
+//            
+//            count--;//下标--
+//            break
+//            
+//        default:
+//            break;
+//        }
+//        if count > 4{
+//            count = 1
+//        }
+//        if count < 1 {
+//            count = 4
+//        }
+//        //imageView显示图片
+//        topImage.image = UIImage(named: "\(count).jpg")
+//    }
+//    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
     }
+    //点击事件
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(103) as UILabel
-        id = hideId.text!
-        //        self.presentViewController(vc, animated: true, completion: nil)
-        self.performSegueWithIdentifier("detail", sender: self)
+        if indexPath.section == 0 {
+            var hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(103) as UILabel
+            id = hideId.text!
+            
+            //        self.presentViewController(vc, animated: true, completion: nil)
+            self.performSegueWithIdentifier("detail", sender: self)
+        }
+        if indexPath.section == 1 {
+            self.performSegueWithIdentifier("person", sender: self)
+        }
     }
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var nextView:UIViewController?
         if segue.identifier == "detail"{
             var vc = segue.destinationViewController as LendDetailViewController
             vc.id = self.id
-            println(vc.id)
+//            println(self.id)
+//            println(vc.id)
         }
         if segue.identifier == "allList"{
             nextView = segue.destinationViewController as AllListViewController
         }
+        //隐藏tabbar
         if nextView != nil {
             nextView!.hidesBottomBarWhenPushed = true
         }
     }
+    //每个section的行数
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if section.hashValue == 0 {
             return 5
@@ -237,17 +255,18 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
-    
+    //初始化cell方法
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell : UITableViewCell!
         
         
         
-        var val = indexPath.section.hashValue
+        var sec = indexPath.section.hashValue
         var row = indexPath.row
         
-        if val == 0{
+        if sec == 0{
             cell = self.mainTable.dequeueReusableCellWithIdentifier("list") as UITableViewCell
+            //重复的控件 必须用viewwithtag获取
             var image = cell.viewWithTag(100) as UIImageView
             var title = cell.viewWithTag(101) as UILabel
             var restMoney = cell.viewWithTag(102) as UILabel
@@ -257,8 +276,8 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             var percent = cell.viewWithTag(106) as UILabel
 //            var hideId = cell.viewWithTag(99) as UILabel
             if tmpListData.count > 0 {
-                
-                image.image = UIImage(data:NSData(contentsOfURL: NSURL(string: "http://www.sscf88.com/uploadData/ad/2014093013251995.jpg")!)!)
+                //图片  会产生阻滞
+//                image.image = UIImage(data:NSData(contentsOfURL: NSURL(string: "http://www.sscf88.com/uploadData/ad/2014093013251995.jpg")!)!)
                 
                 title.text = tmpListData[row].valueForKey("borrow_name")! as NSString
                 
@@ -283,7 +302,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
 //                hideId.text = listData[row].valueForKey("id")! as NSString
             }
         }
-        if val == 1 {
+        if sec == 1 {
             cell = self.mainTable.dequeueReusableCellWithIdentifier("person") as UITableViewCell
         }
         
@@ -294,12 +313,12 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         return cell
         
     }
-    
+    //section数量
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
     
-    
+    //section的title
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0{
             return "投资列表"
@@ -309,7 +328,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             return ""
         }
     }
-    
+    //section的header高度
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 //        if section == 0 {
 //            return 130
@@ -317,13 +336,15 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         return 30
     }
     
-   
+    //view将要加载的时候触发的事件
     override func viewWillAppear(animated: Bool) {
         if self.tmpListData.count == 0 {
+        //如果没有获取到数据 就开始动画
         mainTable.hidden = true
         circle.hidden = false
         circle.startAnimating()
         }
+        //隐藏筛选
         hideSideMenuView()
     }
 }

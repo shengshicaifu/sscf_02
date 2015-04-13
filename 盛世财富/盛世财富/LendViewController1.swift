@@ -26,6 +26,7 @@ class LendViewController1: UIViewController,UITableViewDataSource,UITableViewDel
     @IBOutlet weak var mainTable: UITableView!
     
     @IBOutlet weak var topImage: UIImageView!
+   
     var timer:NSTimer?
     
     var count = 1
@@ -192,9 +193,6 @@ class LendViewController1: UIViewController,UITableViewDataSource,UITableViewDel
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell : UITableViewCell!
-        
-        
-        
         var val = indexPath.section.hashValue
         var row = indexPath.row
         

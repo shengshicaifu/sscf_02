@@ -53,10 +53,10 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         var manager = AFHTTPRequestOperationManager()
         var url = "http://192.168.1.25:8080/people/CheckLoginServlet"
         var params:NSDictionary! = ["username":usernameLabel.text,"password":passwordLabel.text]
-//        var url = "http://www.sscf88.com/app-invest-content"
-//        var params:NSDictionary! = nil
+//       var url = "http://www.sscf88.com/app-invest-content"
+//       var params:NSDictionary! = nil
         self.performSegueWithIdentifier("loginIdentifier", sender: self)
-        manager.POST(url, parameters: params,
+        manager.GET(url, parameters: params,
             success:{
                 (operation:
                 AFHTTPRequestOperation!,

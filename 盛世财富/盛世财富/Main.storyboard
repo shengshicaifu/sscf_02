@@ -267,7 +267,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nCw-Jj-upg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="870" y="521"/>
+            <point key="canvasLocation" x="632" y="546"/>
         </scene>
         <!--投资人列表-->
         <scene sceneID="QhF-0d-rAv">
@@ -960,9 +960,6 @@
                                                 <constraint firstItem="FJ1-hQ-oRW" firstAttribute="leading" secondItem="LC3-Cf-5m7" secondAttribute="leading" id="uoG-Ij-AT5"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="7iJ-Nx-m35" kind="push" identifier="detail" id="cFT-9g-byE"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="person" rowHeight="89" id="Igw-Nb-4aZ">
                                         <rect key="frame" x="0.0" y="0.0" width="509" height="44"/>
@@ -1005,9 +1002,6 @@
                                                 <constraint firstItem="ayv-s4-Uaq" firstAttribute="leading" secondItem="biD-xI-rHc" secondAttribute="leading" id="skp-0a-nBd"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="urV-rP-FXK" kind="push" identifier="person" id="dhK-kZ-DWp"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -1091,6 +1085,8 @@
                         <outlet property="circle" destination="Gr1-6y-XVJ" id="9bZ-f7-DpJ"/>
                         <outlet property="mainTable" destination="aBT-ez-waB" id="Vwd-Fm-I1U"/>
                         <outlet property="mainView" destination="dIL-rB-oS0" id="OG2-y3-Uex"/>
+                        <segue destination="7iJ-Nx-m35" kind="push" identifier="detail" id="5ZP-m5-drk"/>
+                        <segue destination="urV-rP-FXK" kind="push" identifier="person" id="ClH-dd-KFH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LOU-kT-zyL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1429,7 +1425,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1qR-bc-AR0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="576" y="-119.25"/>
+            <point key="canvasLocation" x="640" y="-179.25"/>
         </scene>
         <!--标的详情-->
         <scene sceneID="2jx-pq-wBH">
@@ -4297,7 +4293,7 @@
         <image name="torii" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eAy-nA-gaH"/>
-        <segue reference="cFT-9g-byE"/>
+        <segue reference="ClH-dd-KFH"/>
+        <segue reference="5ZP-m5-drk"/>
     </inferredMetricsTieBreakers>
 </document>

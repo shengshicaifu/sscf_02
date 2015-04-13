@@ -118,7 +118,7 @@ class YYCycleScrollView: UIView,UIScrollViewDelegate {
             self.contentViews.addObject(self.fetchContentViewAtIndex(pageIndex: previousPageIndex))
             self.contentViews.addObject(self.fetchContentViewAtIndex(pageIndex: self.currentPageIndex))
             self.contentViews.addObject(self.fetchContentViewAtIndex(pageIndex:rearPageIndex))
-        }
+        }	
     }
     
     func getValidNextPageIndexWithPageIndex(currentPageIndex:Int)->Int{

@@ -218,7 +218,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     //点击事件
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
-            var hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(103) as UILabel
+            var hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(99) as UILabel
             id = hideId.text!
             
             //        self.presentViewController(vc, animated: true, completion: nil)
@@ -275,7 +275,8 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             var period = cell.viewWithTag(104) as UILabel
             var totalMoney = cell.viewWithTag(105) as UILabel
             var percent = cell.viewWithTag(106) as UILabel
-//            var hideId = cell.viewWithTag(99) as UILabel
+            var hideId =  UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+            hideId.tag = 99
             if tmpListData.count > 0 {
                 //图片  会产生阻滞
 //                image.image = UIImage(data:NSData(contentsOfURL: NSURL(string: "http://www.sscf88.com/uploadData/ad/2014093013251995.jpg")!)!)
@@ -300,7 +301,9 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 totalMoney.text = "\(tmp)元"
                 tmp = tmpListData[row].valueForKey("borrow_interest_rate")! as NSString
                 percent.text = "\(tmp)%"
-//                hideId.text = listData[row].valueForKey("id")! as NSString
+                hideId.text = tmpListData[row].valueForKey("id")! as NSString
+                cell.addSubview(hideId)
+                hideId.hidden = true
             }
         }
         if sec == 1 {

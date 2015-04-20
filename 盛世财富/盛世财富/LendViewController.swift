@@ -19,8 +19,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var imageCache = Dictionary<String,UIImage>()
     var tid: String = ""
     var sign: String = ""
-    var isCheck: String = ""
-    
+
     
     var id:String?//页面传值的id
     

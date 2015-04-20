@@ -84,7 +84,7 @@ class AccountSafeViewController: UIViewController,UITableViewDataSource,UITableV
         }else if indexPath.row == 1 {
             var adv = self.storyboard?.instantiateViewControllerWithIdentifier("bindPhoneViewController") as BindPhoneViewController
             //将状态值赋予BindPhoneViewController的属性
-//            adv.flag = flagLabel.text
+            //adv.flag = flagLabel.text
             self.presentViewController(adv, animated: true, completion: nil)
         }else {
             if flagLabel.text == "未设置" {

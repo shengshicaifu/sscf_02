@@ -234,7 +234,6 @@
 				E98091AC1AC63D22001A8F12 /* LendViewController1.swift */,
 				E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */,
 				E9BEE1AE1AC24D7E0049600C /* baseClass.swift */,
-				E9BEE1AC1AC24CF10049600C /* HttpController.swift */,
 				E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */,
 				E98EE15A1ABAD3EC00CAE127 /* PersonCenter */,
 				E9D6604E1AB1313B0020982D /* LendViewController.swift */,
@@ -283,6 +282,7 @@
 		E98EE15A1ABAD3EC00CAE127 /* PersonCenter */ = {
 			isa = PBXGroup;
 			children = (
+				E9BEE1AC1AC24CF10049600C /* HttpController.swift */,
 				E94E04661ABD3C5F00A0EEC8 /* SetTradePasswordViewController.swift */,
 				E98EE1581ABAD14D00CAE127 /* AccountSafeViewController.swift */,
 				E98EE1561ABAD14800CAE127 /* AccountDetailViewController.swift */,
@@ -534,11 +534,8 @@
 				E9C70C081AC1035B00E1CA8D /* IdeaViewController.swift in Sources */,
 				E98EE1511ABAD12B00CAE127 /* ReturnSearchViewController.swift in Sources */,
 				E9C605B71ABBB9C500752D91 /* UIScrollView+Refresh.swift in Sources */,
-
 				E93732B31ACA356D00423B7E /* MyNavigationController.swift in Sources */,
-
 				E961E1251AC8DCBC0021ED14 /* REMenu.m in Sources */,
-
 				E98091AF1AC63EAD001A8F12 /* YYCycleScrollView.swift in Sources */,
 				E98EE1431ABAD04100CAE127 /* DetailViewController.swift in Sources */,
 			);

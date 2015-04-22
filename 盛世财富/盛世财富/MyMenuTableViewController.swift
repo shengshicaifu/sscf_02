@@ -67,7 +67,7 @@ class MyMenuTableViewController: UITableViewController{
         
         
         switch indexPath.section {
-        case 0:
+        case 0:										
             head.text = "借款状态"
             choice.insertSegmentWithTitle("不限", atIndex: 0, animated: true)
             choice.insertSegmentWithTitle("所有", atIndex: 1, animated: true)

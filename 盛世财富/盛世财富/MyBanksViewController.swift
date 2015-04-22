@@ -24,11 +24,11 @@ class MyBanksViewController: UIViewController,UITableViewDataSource,UITableViewD
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    var arrString:[String] = ["aaaa","bbbb","cccc","dddd"]
+    let arrString = ["aaaa","bbbb","cccc","dddd"]
     @IBOutlet weak var tableView: UITableView!
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return arrString.count+10
+        return arrString.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
@@ -37,12 +37,23 @@ class MyBanksViewController: UIViewController,UITableViewDataSource,UITableViewD
         //取出控件
         var label1 = cell.viewWithTag(1) as UILabel
         var label2 = cell.viewWithTag(2) as UILabel
-        
-        //对控件进行赋值
-        for string in arrString {
-            label1.text = string
-            label2.text = string + "1111"
+        let names = ["Anna", "Alex", "Brian", "Jack"]
+        for name in names {
+            println("Hello, \(name)!")
         }
+        
+//        //对控件进行赋值
+        for arrstring in arrString{
+            label1.text = arrstring
+            label2.text = arrstring + "1111"
+        }
+//        for (var i = 0;i < arrString.count;i++){
+//            print(i)
+//            label1.text = arrString[i]
+//            label2.text = arrString[i] + "1111"
+//            break;
+//        }
+    
         
         return cell
     }

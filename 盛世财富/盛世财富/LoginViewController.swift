@@ -53,16 +53,20 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         var manager = AFHTTPRequestOperationManager()
         var url = "http://192.168.1.25:8080/people/CheckLoginServlet"
         var params:NSDictionary! = ["username":usernameLabel.text,"password":passwordLabel.text]
-//       var url = "http://www.sscf88.com/app-invest-content"
-//       var params:NSDictionary! = nil
+//        if usernameLabel.text == "admin" && passwordLabel.text == "admin"  {
+//            var adv = self.storyboard?.instantiateViewControllerWithIdentifier("personCenterViewController") as PersonCenterViewController
+//            self.presentViewController(adv, animated: true, completion: nil)
+//        }
+//        var url = "http://www.sscf88.com/app-invest-content"
+//        var params:NSDictionary! = nil
         self.performSegueWithIdentifier("loginIdentifier", sender: self)
-        manager.GET(url, parameters: params,
+       manager.GET(url, parameters: params,
             success:{
                 (operation:
                 AFHTTPRequestOperation!,
                 responseObject: AnyObject!) in
                 //打印json数据
-                //println("responseObject: \(responseObject!) ")
+               //println("responseObject: \(responseObject!) ")
                 
                 //解析json数据是List集合类型
                 // var json:[AnyObject] = responseObject as [AnyObject]

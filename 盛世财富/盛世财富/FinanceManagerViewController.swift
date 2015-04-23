@@ -25,6 +25,9 @@ class FinanceManagerViewController: UIViewController,UITableViewDataSource,UITab
 //    var arrString:[String] = ["aaaa","bbbb","cccc","dddd"]
     @IBOutlet weak var tableView: UITableView!
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 3
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if section == 1{

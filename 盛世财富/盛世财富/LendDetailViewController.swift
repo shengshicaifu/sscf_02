@@ -32,6 +32,8 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
 //        }
         
         println(id!)
+        
+        
     }
 	
     override func didReceiveMemoryWarning() {

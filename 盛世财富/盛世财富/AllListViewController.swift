@@ -205,7 +205,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
 
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {  
         if self.tmpListData.count == 0 {
             mainTable.hidden = true	
             circle.hidden = false

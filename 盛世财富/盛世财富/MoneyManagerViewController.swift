@@ -24,11 +24,24 @@ class MoneyManagerViewController: UIViewController,UITableViewDataSource,UITable
     }
     var arrString:[String] = ["aaaa","bbbb","cccc","dddd"]
     @IBOutlet weak var tableView: UITableView!
-    
+   
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 3
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return arrString.count
+        if section.hashValue == 1{
+            return 2
+        }
+        else{
+            return 1
+        }
+        
     }
+    
+//    func tableView(tableView: UITableView, heightForHeaderInSection section: Int)->CGFloat{
+//        return 50
+//    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         var cell = self.tableView.dequeueReusableCellWithIdentifier("transRecordCell") as UITableViewCell

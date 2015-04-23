@@ -58,7 +58,7 @@ class AccountSafeViewController: UIViewController,UITableViewDataSource,UITableV
             imageView.image = UIImage(named: "aaa.jpg")
             tempLabel.text="邮箱验证"
             realNameLabel.text="63*****999@qq.com"
-            flagLabel.text="已设置"
+            flagLabel.text="未设置"
         }
         return cell
     }
@@ -86,15 +86,26 @@ class AccountSafeViewController: UIViewController,UITableViewDataSource,UITableV
             //将状态值赋予BindPhoneViewController的属性
             //adv.flag = flagLabel.text
             self.presentViewController(adv, animated: true, completion: nil)
-        }else {
+        }else if indexPath.row == 2{
             if flagLabel.text == "未设置" {
                 var adv = self.storyboard?.instantiateViewControllerWithIdentifier("setTradePasswordViewController") as SetTradePasswordViewController
                 self.presentViewController(adv, animated: true, completion: nil)
-            }else{
+           }else{
                 var adv = self.storyboard?.instantiateViewControllerWithIdentifier("updateTradePasswordViewController") as UpdateTradePasswordViewController
                 self.presentViewController(adv, animated: true, completion: nil)
             }
+            }else {
+            if flagLabel.text == "未设置"{
+                var adv = self.storyboard?.instantiateViewControllerWithIdentifier("setEmailViewController") as SetEmailViewController
+                self.presentViewController(adv, animated: true, completion: nil)
+//                self.navigationController?.pushViewController(adv, animated: true)
+            }else{
+                var alert = UIAlertController(title: "提示", message: "您的邮箱已经设置", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            }
+        
         }
     }
     
-}

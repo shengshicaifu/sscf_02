@@ -54,6 +54,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol {
     @IBOutlet weak var passwordLabel: UITextField!
     @IBAction func loginTapped(sender: AnyObject) {
         self.count++
+
         
         
         var user = NSUserDefaults()
@@ -105,6 +106,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol {
 //                //打印错误信息
 //                println("error:"+error.localizedDescription)
 //        } )
+
         
     }
     //读取json并解析

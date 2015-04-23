@@ -33,6 +33,10 @@ class PersonCenterViewController: UIViewController,UITableViewDataSource,UITable
         //2.在加载完数据之后就关闭控件并结束动画效果  
         //uaiv.hidden = true   uaiv.stopAnimating()
         
+        var user = NSUserDefaults()
+        println(user.valueForKey("username"))
+        
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -284,6 +288,11 @@ class PersonCenterViewController: UIViewController,UITableViewDataSource,UITable
 //            self.presentViewController(tvc, animated: true, completion: nil)
         }
         alert.showEdit("身份验证", subTitle: "")
+    }
+    
+    //view将要加载的时候触发的事件
+    override func viewWillAppear(animated: Bool) {
+        
     }
 }
 

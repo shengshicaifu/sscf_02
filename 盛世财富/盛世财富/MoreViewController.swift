@@ -18,6 +18,7 @@ class MoreViewController: UIViewController ,UITableViewDataSource,UITableViewDel
 
         super.viewDidLoad()
         mainTable.delegate = self
+        self.mainTable.rowHeight = 44.0
     }
 
     override func didReceiveMemoryWarning() {

@@ -65,7 +65,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         var viewsArray = NSMutableArray()
         var colorArray = [UIColor.cyanColor(),UIColor.blueColor(),UIColor.greenColor(),UIColor.yellowColor(),UIColor.purpleColor()]
         for  i in 1...4 {
-            var tempImageView = UIImageView(frame:CGRectMake(0, 0, self.view.layer.frame.width, 100))//代码指定位置
+            var tempImageView = UIImageView(frame:CGRectMake(0, 64, self.view.layer.frame.width, 100))//代码指定位置
             tempImageView.image = UIImage(named:"\(i).jpeg")//图片名
             tempImageView.contentMode = UIViewContentMode.ScaleAspectFill
             tempImageView.clipsToBounds = true
@@ -73,7 +73,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             
         }
         //scrollview滚动
-        var mainScorllView = YYCycleScrollView(frame:CGRectMake(0, 0, self.view.layer.frame.width, 100),animationDuration:10.0)
+        var mainScorllView = YYCycleScrollView(frame:CGRectMake(0, 64, self.view.layer.frame.width, 100),animationDuration:10.0)
         mainScorllView.fetchContentViewAtIndex = {(pageIndex:Int)->UIView in
             return viewsArray.objectAtIndex(pageIndex) as UIView
         }
@@ -86,10 +86,8 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             //此处根据点击的索引跳转到指定的页面
             println("点击了\(pageIndex)")
         }
-        mainView.addSubview(mainScorllView)//添加scorllview
         
-        
-        
+        mainTable.tableHeaderView = mainScorllView
         
 //        var ref = UIRefreshControl()
 //        ref.attributedTitle = NSAttributedString(string: "下拉刷新")
@@ -110,10 +108,13 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             //显示tableview
             self.mainTable.hidden = false
             self.mainTable.reloadData()
+            
+            
+            
+
         })
        
 //        self.setupRefresh()
-        
         
     }
     //下拉刷新绑定的方法
@@ -124,7 +125,9 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 //停止下拉动画
                 self.refreshControl.endRefreshing()
                 self.mainTable.reloadData()
-            })
+                
+                
+                            })
             
         }
     }
@@ -140,6 +143,8 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             dispatch_after(popTime, dispatch_get_main_queue(), {
                 self.mainTable.reloadData()
                 self.mainTable.headerEndRefreshing()
+                
+                
             })
         })
         //上啦加载
@@ -224,7 +229,16 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             self.performSegueWithIdentifier("detail", sender: self)
         }
         if indexPath.section == 1 {
-            self.performSegueWithIdentifier("person", sender: self)
+            var user = NSUserDefaults()
+            var username: NSString = user.valueForKey("username") as NSString
+            if username.length > 0 {
+                self.performSegueWithIdentifier("person", sender: self)
+            }else{
+               self.performSegueWithIdentifier("login", sender: self)
+            }
+
+            
+            
         }
     }
     
@@ -246,7 +260,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     //每个section的行数
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        if section.hashValue == 0 {
+       if section.hashValue == 0 {
             return 5
         }else if section.hashValue == 1  {
             return 1
@@ -291,7 +305,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
 //                }
                 var d = tmpListData[row].valueForKey("need")! as Double
                 restMoney.text = "\(d)元"
-                restTime.text = tmpListData[row].valueForKey("id")! as NSString
+                restTime.text = tmpListData[row].valueForKey("leftdays")! as NSString
                 
                 var tmp = tmpListData[row].valueForKey("borrow_duration")! as NSString
                 var unit = tmpListData[row].valueForKey("duration_unit")! as NSString
@@ -305,8 +319,20 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 hideId.hidden = true
             }
         }
-        if sec == 1 {
+        if sec == 1{
             cell = self.mainTable.dequeueReusableCellWithIdentifier("person") as UITableViewCell
+            var user = NSUserDefaults()
+            var username: NSString = user.valueForKey("username") as NSString
+            if username.length > 0 {
+                
+            }else{
+                var img = cell.viewWithTag(200) as UIImageView
+                var title = cell.viewWithTag(201) as UILabel
+                var money = cell.viewWithTag(202) as UILabel
+                title.text = "请登录"
+                money.text = ""
+            }
+            
         }
         
 //        circle.hidden = true
@@ -316,9 +342,15 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         return cell
         
     }
+    
+    func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath){
+        
+        
+    }
     //section数量
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
+        
     }
     
     //section的title
@@ -347,6 +379,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         circle.hidden = false
         circle.startAnimating()
         }
+        println("lendView")
         //隐藏筛选
         hideSideMenuView()
     }

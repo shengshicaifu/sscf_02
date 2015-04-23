@@ -17,7 +17,7 @@ class AboutViewController: UIViewController ,UITableViewDataSource,UITableViewDe
         super.viewDidLoad()
         mainTable.dataSource = self
         mainTable.delegate = self
-        
+        self.mainTable.rowHeight = 44.0
     }
 
     override func didReceiveMemoryWarning() {

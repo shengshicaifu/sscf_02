@@ -88,7 +88,7 @@ class RefreshBaseView: UIView {
         
         //状态标签
         statusLabel = UILabel()
-        statusLabel.autoresizingMask = UIViewAutoresizing.FlexibleWidth
+//        statusLabel.autoresizingMask = UIViewAutoresizing.FlexibleWidth
         statusLabel.font = UIFont.boldSystemFontOfSize(13)
         statusLabel.textColor = RefreshLabelTextColor
         statusLabel.backgroundColor =  UIColor.clearColor()
@@ -101,10 +101,10 @@ class RefreshBaseView: UIView {
         //状态标签
         activityView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
         activityView.bounds = self.arrowImage.bounds
-        activityView.autoresizingMask = self.arrowImage.autoresizingMask
+//        activityView.autoresizingMask = self.arrowImage.autoresizingMask
         self.addSubview(activityView)
          //自己的属性
-        self.autoresizingMask = UIViewAutoresizing.FlexibleWidth
+//        self.autoresizingMask = UIViewAutoresizing.FlexibleWidth
         self.backgroundColor = UIColor.clearColor()
         //设置默认状态
         self.State = RefreshState.Normal;

@@ -322,8 +322,17 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         if sec == 1{
             cell = self.mainTable.dequeueReusableCellWithIdentifier("person") as UITableViewCell
             var user = NSUserDefaults()
-            var username: NSString = user.valueForKey("username") as NSString
-            if username.length > 0 {
+//            var username: NSString = user.valueForKey("username") as NSString
+//            if username.length > 0 {
+//                
+//            }else{
+//                var img = cell.viewWithTag(200) as UIImageView
+//                var title = cell.viewWithTag(201) as UILabel
+//                var money = cell.viewWithTag(202) as UILabel
+//                title.text = "请登录"
+//                money.text = ""
+//            }
+            if let username:AnyObject = user.valueForKey("username"){
                 
             }else{
                 var img = cell.viewWithTag(200) as UIImageView

@@ -695,10 +695,10 @@
             </objects>
             <point key="canvasLocation" x="-190" y="554.25"/>
         </scene>
-        <!--Register View Controller-->
+        <!--注册-->
         <scene sceneID="bS7-lj-EC9">
             <objects>
-                <viewController id="NOo-ud-8Ye" customClass="RegisterViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="注册" id="NOo-ud-8Ye" customClass="RegisterViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="u4k-XV-oDY"/>
                         <viewControllerLayoutGuide type="bottom" id="OLZ-ck-MM7"/>
@@ -2930,10 +2930,10 @@
             </objects>
             <point key="canvasLocation" x="-776" y="1857"/>
         </scene>
-        <!--Real Name View Controller-->
+        <!--实名认证-->
         <scene sceneID="rTU-0A-NTt">
             <objects>
-                <viewController storyboardIdentifier="realNameViewController" id="ZUM-dN-K87" customClass="RealNameViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="realNameViewController" title="实名认证" id="ZUM-dN-K87" customClass="RealNameViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NVO-0B-tV6"/>
                         <viewControllerLayoutGuide type="bottom" id="1hg-oS-5hC"/>
@@ -3030,10 +3030,10 @@
             </objects>
             <point key="canvasLocation" x="513" y="1065"/>
         </scene>
-        <!--Bind Phone View Controller-->
+        <!--手机绑定-->
         <scene sceneID="1nQ-e5-LeY">
             <objects>
-                <viewController storyboardIdentifier="bindPhoneViewController" id="YXg-6j-7u7" customClass="BindPhoneViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="bindPhoneViewController" title="手机绑定" id="YXg-6j-7u7" customClass="BindPhoneViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nNo-UB-kV2"/>
                         <viewControllerLayoutGuide type="bottom" id="D0z-SX-VfT"/>
@@ -3144,10 +3144,10 @@
             </objects>
             <point key="canvasLocation" x="1520" y="1857"/>
         </scene>
-        <!--Update Trade Password View Controller-->
+        <!--修改交易密码s-->
         <scene sceneID="zZA-t8-Lkt">
             <objects>
-                <viewController storyboardIdentifier="updateTradePasswordViewController" id="XdH-gJ-rP7" customClass="UpdateTradePasswordViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="updateTradePasswordViewController" title="修改交易密码s" id="XdH-gJ-rP7" customClass="UpdateTradePasswordViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pwf-Rn-cSc"/>
                         <viewControllerLayoutGuide type="bottom" id="wIU-EG-7AX"/>
@@ -3238,10 +3238,10 @@
             </objects>
             <point key="canvasLocation" x="2210" y="819"/>
         </scene>
-        <!--Alter My Bank View Controller-->
+        <!--修改银行卡-->
         <scene sceneID="BAl-BM-eTd">
             <objects>
-                <viewController storyboardIdentifier="alterMyBankViewController" id="xAB-bC-Rw4" customClass="AlterMyBankViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="alterMyBankViewController" title="修改银行卡" id="xAB-bC-Rw4" customClass="AlterMyBankViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jvh-dI-bk3"/>
                         <viewControllerLayoutGuide type="bottom" id="pgg-Vh-BRy"/>
@@ -3407,10 +3407,10 @@
             </objects>
             <point key="canvasLocation" x="2072" y="779"/>
         </scene>
-        <!--Set Trade Password View Controller-->
+        <!--设置交易密码-->
         <scene sceneID="hqI-DP-bPW">
             <objects>
-                <viewController storyboardIdentifier="setTradePasswordViewController" id="NqN-Ak-O3e" customClass="SetTradePasswordViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="setTradePasswordViewController" title="设置交易密码" id="NqN-Ak-O3e" customClass="SetTradePasswordViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w2U-Sl-GR1"/>
                         <viewControllerLayoutGuide type="bottom" id="XEu-Bd-wLU"/>
@@ -3492,10 +3492,10 @@
             </objects>
             <point key="canvasLocation" x="657" y="2589"/>
         </scene>
-        <!--Account Detail View Controller-->
+        <!--账户信息-->
         <scene sceneID="6iD-OG-q4b">
             <objects>
-                <viewController storyboardIdentifier="accountDetailViewController" id="FoD-AI-8df" customClass="AccountDetailViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="accountDetailViewController" title="账户信息" id="FoD-AI-8df" customClass="AccountDetailViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="n8Y-jJ-pzg"/>
                         <viewControllerLayoutGuide type="bottom" id="NDI-Uj-6ZJ"/>
@@ -3530,10 +3530,10 @@
             </objects>
             <point key="canvasLocation" x="875" y="1857"/>
         </scene>
-        <!--My Banks View Controller-->
+        <!--我的银行卡-->
         <scene sceneID="D3I-Mr-meF">
             <objects>
-                <viewController storyboardIdentifier="myBanksViewController" id="M0D-5k-oTn" customClass="MyBanksViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="myBanksViewController" title="我的银行卡" id="M0D-5k-oTn" customClass="MyBanksViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fbr-q1-Uoe"/>
                         <viewControllerLayoutGuide type="bottom" id="PIm-Y8-P4N"/>
@@ -3672,10 +3672,10 @@
             </objects>
             <point key="canvasLocation" x="1051" y="1113"/>
         </scene>
-        <!--Account Safe View Controller-->
+        <!--账户安全-->
         <scene sceneID="oBT-9c-d69">
             <objects>
-                <viewController storyboardIdentifier="accountSafeViewController" id="NHE-EN-7Yf" customClass="AccountSafeViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="accountSafeViewController" title="账户安全" id="NHE-EN-7Yf" customClass="AccountSafeViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2Yx-uH-bDi"/>
                         <viewControllerLayoutGuide type="bottom" id="UmY-bI-6Pe"/>
@@ -3786,10 +3786,10 @@
             </objects>
             <point key="canvasLocation" x="1148" y="446"/>
         </scene>
-        <!--Trans Record View Controller-->
+        <!--交易记录-->
         <scene sceneID="FHA-4E-8Pa">
             <objects>
-                <viewController storyboardIdentifier="transRecordViewController" id="nMB-AG-bHe" customClass="TransRecordViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="transRecordViewController" title="交易记录" id="nMB-AG-bHe" customClass="TransRecordViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iwM-Ck-LW5"/>
                         <viewControllerLayoutGuide type="bottom" id="Kr0-yI-SXe"/>
@@ -3866,10 +3866,10 @@
             </objects>
             <point key="canvasLocation" x="2123" y="1372"/>
         </scene>
-        <!--Set Email View Controller-->
+        <!--邮箱绑定-->
         <scene sceneID="PnJ-4P-VEW">
             <objects>
-                <viewController storyboardIdentifier="setEmailViewController" id="oxK-Tq-kTt" customClass="SetEmailViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="setEmailViewController" title="邮箱绑定" id="oxK-Tq-kTt" customClass="SetEmailViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oTq-ic-uSx"/>
                         <viewControllerLayoutGuide type="bottom" id="zDF-bf-9mV"/>
@@ -3944,10 +3944,10 @@
             </objects>
             <point key="canvasLocation" x="2237" y="601"/>
         </scene>
-        <!--Finance Manager View Controller-->
+        <!--理财管理-->
         <scene sceneID="eCw-IU-Q6K">
             <objects>
-                <viewController storyboardIdentifier="financeManagerViewController" id="FPx-I3-Eki" customClass="FinanceManagerViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="financeManagerViewController" title="理财管理" id="FPx-I3-Eki" customClass="FinanceManagerViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kRa-mi-TQN"/>
                         <viewControllerLayoutGuide type="bottom" id="ypW-ga-3mW"/>
@@ -4024,10 +4024,10 @@
             </objects>
             <point key="canvasLocation" x="2159" y="1857"/>
         </scene>
-        <!--Money Manager View Controller-->
+        <!--资金管理-->
         <scene sceneID="GSr-5p-qG9">
             <objects>
-                <viewController storyboardIdentifier="moneyManagerViewController" id="4ix-1K-DWd" customClass="MoneyManagerViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="moneyManagerViewController" title="资金管理" id="4ix-1K-DWd" customClass="MoneyManagerViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6Vj-uB-V1Z"/>
                         <viewControllerLayoutGuide type="bottom" id="2oY-BV-9Gz"/>
@@ -4083,10 +4083,10 @@
             </objects>
             <point key="canvasLocation" x="1653" y="2645"/>
         </scene>
-        <!--Return Search View Controller-->
+        <!--回账查询-->
         <scene sceneID="Kwk-f4-BUm">
             <objects>
-                <viewController storyboardIdentifier="returnSearchViewController" id="Bah-KG-u5y" customClass="ReturnSearchViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="returnSearchViewController" title="回账查询" id="Bah-KG-u5y" customClass="ReturnSearchViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="T6Q-FT-vqg"/>
                         <viewControllerLayoutGuide type="bottom" id="v5E-2y-O20"/>
@@ -4161,10 +4161,10 @@
             </objects>
             <point key="canvasLocation" x="2815" y="1857"/>
         </scene>
-        <!--Charge View Controller-->
+        <!--充值-->
         <scene sceneID="lx6-lf-0ml">
             <objects>
-                <viewController storyboardIdentifier="chargeViewController" id="nnA-UW-990" customClass="ChargeViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chargeViewController" title="充值" id="nnA-UW-990" customClass="ChargeViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ACr-DQ-Wwi"/>
                         <viewControllerLayoutGuide type="bottom" id="fvX-hw-f1d"/>
@@ -4396,7 +4396,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5ZP-m5-drk"/>
-        <segue reference="Ion-mc-9et"/>
+        <segue reference="crx-F4-KzW"/>
         <segue reference="ClH-dd-KFH"/>
     </inferredMetricsTieBreakers>
 </document>

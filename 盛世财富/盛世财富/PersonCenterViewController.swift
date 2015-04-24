@@ -1,7 +1,7 @@
 //
 //  PersonCenterViewController.swift
 //  盛世财富
-//
+//  个人中心首页
 //  Created by zengchang on 15-3-15.
 //  Copyright (c) 2015年 sscf88. All rights reserved.
 //
@@ -14,7 +14,7 @@ class PersonCenterViewController: UIViewController,UITableViewDataSource,UITable
     
     //点击其他的地方隐藏键盘
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        txt.resignFirstResponder()
+//        txt.resignFirstResponder()
     }
     
     //点击return隐藏键盘
@@ -98,7 +98,7 @@ class PersonCenterViewController: UIViewController,UITableViewDataSource,UITable
                 image.image = UIImage(named: "aaa.jpg")
                 var nameLabel = UILabel(frame: CGRect(x: 130, y: 10, width: 50, height: 20))
                 nameLabel.text = "姓名"
-                var phoneLabel = UILabel(frame: CGRect(x: 130, y: 30, width: 50, height: 20))
+                var phoneLabel = UILabel(frame: CGRect(x: 130, y: 40, width: 50, height: 20))
                 phoneLabel.text = "电话"
                 
                 cell.addSubview(image)
@@ -168,7 +168,7 @@ class PersonCenterViewController: UIViewController,UITableViewDataSource,UITable
                 return 70
             }
         }
-        return 50
+        return 44
     }
     
     //设置标题

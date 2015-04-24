@@ -221,6 +221,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     //点击事件
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         if indexPath.section == 0 {
             var hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(99) as UILabel
             id = hideId.text!

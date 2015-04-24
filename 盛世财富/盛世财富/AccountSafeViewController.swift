@@ -96,8 +96,8 @@ class AccountSafeViewController: UIViewController,UITableViewDataSource,UITableV
             }
             }else {
             if flagLabel.text == "未设置"{
-                var adv = self.storyboard?.instantiateViewControllerWithIdentifier("setEmailViewController") as SetEmailViewController
-                self.presentViewController(adv, animated: true, completion: nil)
+//                var adv = self.storyboard?.instantiateViewControllerWithIdentifier("setEmailViewController") as SetEmailViewController
+//                self.presentViewController(adv, animated: true, completion: nil)
 //                self.navigationController?.pushViewController(adv, animated: true)
             }else{
                 var alert = UIAlertController(title: "提示", message: "您的邮箱已经设置", preferredStyle: UIAlertControllerStyle.Alert)

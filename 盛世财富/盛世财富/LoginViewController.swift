@@ -27,7 +27,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol {
     @IBAction func listTapped(sender: AnyObject) {
         count++
         
-        var homeItme1:REMenuItem = REMenuItem(title: "Home1",subtitle:"Return to Home Screen1",image:UIImage(named: "11.jpg"),highlightedImage:nil){
+        var homeItme1:REMenuItem = REMenuItem(title: "sss",subtitle:"Return to Home Screen1",image:UIImage(named: "11.jpg"),highlightedImage:nil){
             println($0.title)
             self.count++
         }

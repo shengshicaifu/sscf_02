@@ -43,6 +43,16 @@ class IdeaViewController: UIViewController ,UITextViewDelegate,UITextFieldDelega
         }
         return true
     }
-
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+        
+        content.resignFirstResponder()
+        phone.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        content.resignFirstResponder()
+        phone.resignFirstResponder()
+        return true
+    }
 }
 

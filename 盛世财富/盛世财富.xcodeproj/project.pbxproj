@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D882DDB51AEB693700973146 /* AccountInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D882DDB41AEB693700973146 /* AccountInfoTableViewController.swift */; };
 		E90EA2721ABFA37A006D22E6 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA2601ABFA37A006D22E6 /* AFHTTPRequestOperation.m */; };
 		E90EA2731ABFA37A006D22E6 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA2621ABFA37A006D22E6 /* AFHTTPRequestOperationManager.m */; };
 		E90EA2741ABFA37A006D22E6 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA2641ABFA37A006D22E6 /* AFHTTPSessionManager.m */; };
@@ -83,6 +84,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D882DDB41AEB693700973146 /* AccountInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoTableViewController.swift; sourceTree = "<group>"; };
 		E90EA25D1ABFA1A5006D22E6 /* 盛世财富-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "盛世财富-Bridging-Header.h"; sourceTree = "<group>"; };
 		E90EA25F1ABFA37A006D22E6 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		E90EA2601ABFA37A006D22E6 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				E98EE1441ABAD0CF00CAE127 /* TransRecordViewController.swift */,
 				E98EE1421ABAD04100CAE127 /* DetailViewController.swift */,
 				E98EE1401ABAD02200CAE127 /* PersonCenterViewController.swift */,
+				D882DDB41AEB693700973146 /* AccountInfoTableViewController.swift */,
 			);
 			name = PersonCenter;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 				E98EE1411ABAD02200CAE127 /* PersonCenterViewController.swift in Sources */,
 				E9D6604D1AB1313B0020982D /* AppDelegate.swift in Sources */,
 				E98EE14D1ABAD11F00CAE127 /* MyBanksViewController.swift in Sources */,
+				D882DDB51AEB693700973146 /* AccountInfoTableViewController.swift in Sources */,
 				E9FDC1481AC3B71F0088B6F5 /* ShowAlertView.swift in Sources */,
 				E993F3321ABC0667001B9EA5 /* FVCustomAlertView.swift in Sources */,
 				E961E1261AC8DCBC0021ED14 /* REMenuContainerView.m in Sources */,

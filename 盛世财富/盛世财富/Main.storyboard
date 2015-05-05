@@ -302,9 +302,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular" misplaced="YES">
-                                                        <rect key="frame" x="216" y="4" width="96" height="17"/>
-                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名字*************" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kQ-Yi-Ql9">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -684,7 +681,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="注册" id="bKC-mg-FRb">
                             <connections>
-                                <segue destination="NOo-ud-8Ye" kind="push" id="PkE-lm-hhc"/>
+                                <segue destination="NOo-ud-8Ye" kind="show" id="PkE-lm-hhc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1163,7 +1160,7 @@
                     <navigationItem key="navigationItem" title="盛世财富" id="Hc0-g7-Fye">
                         <barButtonItem key="rightBarButtonItem" title="更多" id="Ffg-g8-YFk">
                             <connections>
-                                <segue destination="llE-tr-dg8" kind="push" identifier="allList" id="THn-qI-uLv"/>
+                                <segue destination="llE-tr-dg8" kind="show" identifier="allList" id="THn-qI-uLv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1171,8 +1168,8 @@
                     <connections>
                         <outlet property="circle" destination="Gr1-6y-XVJ" id="9bZ-f7-DpJ"/>
                         <outlet property="mainTable" destination="aBT-ez-waB" id="Vwd-Fm-I1U"/>
-                        <segue destination="7iJ-Nx-m35" kind="push" identifier="detail" id="5ZP-m5-drk"/>
-                        <segue destination="urV-rP-FXK" kind="push" identifier="person" id="ClH-dd-KFH"/>
+                        <segue destination="7iJ-Nx-m35" kind="show" identifier="detail" id="5ZP-m5-drk"/>
+                        <segue destination="urV-rP-FXK" kind="show" identifier="person" id="ClH-dd-KFH"/>
                         <segue destination="BAa-9l-VLv" kind="show" identifier="login" id="Ion-mc-9et"/>
                     </connections>
                 </viewController>
@@ -1195,7 +1192,7 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8Rs-pu-ABp">
                                 <rect key="frame" x="-10" y="-10" width="20" height="20"/>
                             </activityIndicatorView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Gr1-hd-e6b">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Gr1-hd-e6b">
                                 <rect key="frame" x="16" y="108" width="568" height="448"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1205,7 +1202,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Yf-PH-asG" id="VOc-uj-eXU">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9p7-c7-teI">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9p7-c7-teI">
                                                     <rect key="frame" x="8" y="10" width="20" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="1v6-Eo-8vg"/>
@@ -1226,25 +1223,25 @@
                                                         </mask>
                                                     </variation>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="年利率" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kq5-AM-4ny">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="年利率" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kq5-AM-4ny">
                                                     <rect key="frame" x="96" y="34" width="36" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="期限" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7G-5q-mUI">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="期限" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7G-5q-mUI">
                                                     <rect key="frame" x="184" y="34" width="24" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="11.01%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i38-tm-jl2">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="11.01%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i38-tm-jl2">
                                                     <rect key="frame" x="96" y="50" width="80" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="金额" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaF-J8-KVH">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="金额" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaF-J8-KVH">
                                                     <rect key="frame" x="8" y="34" width="34" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="34" id="OeK-e1-Z6P"/>
@@ -1260,13 +1257,13 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1000元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqQ-BV-f7l">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="1000元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqQ-BV-f7l">
                                                     <rect key="frame" x="8" y="50" width="80" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="99" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="满标用时21秒" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ri-kE-q1a">
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="99" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="满标用时21秒" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ri-kE-q1a">
                                                     <rect key="frame" x="8" y="79" width="256" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1275,7 +1272,7 @@
                                                         <rect key="frame" x="8" y="73.5" width="224" height="16"/>
                                                     </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="12个月" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RoX-9I-bEY">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="12个月" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RoX-9I-bEY">
                                                     <rect key="frame" x="184" y="50" width="48" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="48" id="1PU-oO-eKr"/>
@@ -1289,7 +1286,7 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BHq-GT-Pjd">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BHq-GT-Pjd">
                                                     <rect key="frame" x="30" y="10" width="20" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="SUn-FB-PfS"/>
@@ -1310,7 +1307,7 @@
                                                         </mask>
                                                     </variation>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="标题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEX-tm-rIZ">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="标题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEX-tm-rIZ">
                                                     <rect key="frame" x="58" y="10" width="34" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="138" id="k5T-Zh-gp6"/>
@@ -1379,11 +1376,14 @@
                                                 <mask key="constraints">
                                                     <exclude reference="1Fg-Ak-cyh"/>
                                                     <exclude reference="2QR-3w-03h"/>
-                                                    <exclude reference="dfB-xh-NGS"/>
-                                                    <exclude reference="jWY-Cy-H6d"/>
                                                     <exclude reference="4Lc-XF-TBj"/>
                                                     <exclude reference="SMd-B8-e5a"/>
                                                     <exclude reference="Cua-av-ox3"/>
+                                                    <exclude reference="644-u8-8dA"/>
+                                                    <exclude reference="Tb7-Qv-n97"/>
+                                                    <exclude reference="h2X-vA-Pjr"/>
+                                                    <exclude reference="dfB-xh-NGS"/>
+                                                    <exclude reference="jWY-Cy-H6d"/>
                                                     <exclude reference="kw9-Bq-ih5"/>
                                                     <exclude reference="PUk-18-1XG"/>
                                                     <exclude reference="dmQ-7x-ztA"/>
@@ -1395,9 +1395,6 @@
                                                     <exclude reference="La3-yR-LRZ"/>
                                                     <exclude reference="0sm-LS-cGC"/>
                                                     <exclude reference="Ayq-E0-zdU"/>
-                                                    <exclude reference="644-u8-8dA"/>
-                                                    <exclude reference="Tb7-Qv-n97"/>
-                                                    <exclude reference="h2X-vA-Pjr"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular">
@@ -1407,11 +1404,14 @@
                                                 <mask key="constraints">
                                                     <include reference="1Fg-Ak-cyh"/>
                                                     <include reference="2QR-3w-03h"/>
-                                                    <include reference="dfB-xh-NGS"/>
-                                                    <include reference="jWY-Cy-H6d"/>
                                                     <include reference="4Lc-XF-TBj"/>
                                                     <include reference="SMd-B8-e5a"/>
                                                     <include reference="Cua-av-ox3"/>
+                                                    <include reference="644-u8-8dA"/>
+                                                    <include reference="Tb7-Qv-n97"/>
+                                                    <include reference="h2X-vA-Pjr"/>
+                                                    <include reference="dfB-xh-NGS"/>
+                                                    <include reference="jWY-Cy-H6d"/>
                                                     <include reference="kw9-Bq-ih5"/>
                                                     <include reference="PUk-18-1XG"/>
                                                     <include reference="dmQ-7x-ztA"/>
@@ -1423,9 +1423,6 @@
                                                     <include reference="La3-yR-LRZ"/>
                                                     <include reference="0sm-LS-cGC"/>
                                                     <include reference="Ayq-E0-zdU"/>
-                                                    <include reference="644-u8-8dA"/>
-                                                    <include reference="Tb7-Qv-n97"/>
-                                                    <include reference="h2X-vA-Pjr"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -1450,11 +1447,11 @@
                                 <exclude reference="8Rs-pu-ABp"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="3f3-YU-Z9d"/>
+                                <exclude reference="gRD-zT-3QH"/>
                                 <exclude reference="4cb-hp-20Q"/>
                                 <exclude reference="Fr8-TP-apa"/>
                                 <exclude reference="P1E-s0-Khj"/>
-                                <exclude reference="3f3-YU-Z9d"/>
-                                <exclude reference="gRD-zT-3QH"/>
                                 <exclude reference="ljQ-e3-Haw"/>
                             </mask>
                         </variation>
@@ -1463,18 +1460,18 @@
                                 <include reference="8Rs-pu-ABp"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="3f3-YU-Z9d"/>
+                                <include reference="gRD-zT-3QH"/>
                                 <include reference="4cb-hp-20Q"/>
                                 <include reference="Fr8-TP-apa"/>
                                 <include reference="P1E-s0-Khj"/>
-                                <include reference="3f3-YU-Z9d"/>
-                                <include reference="gRD-zT-3QH"/>
                                 <include reference="ljQ-e3-Haw"/>
                             </mask>
                         </variation>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="投资列表" id="Qce-B4-vh4">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="JvP-A9-RRq">
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="JvP-A9-RRq">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dRs-Va-hFy">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -4670,8 +4667,8 @@
         <image name="torii" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ClH-dd-KFH"/>
         <segue reference="Ion-mc-9et"/>
-        <segue reference="vdr-P8-5iY"/>
+        <segue reference="ClH-dd-KFH"/>
+        <segue reference="5ZP-m5-drk"/>
     </inferredMetricsTieBreakers>
 </document>

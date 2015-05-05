@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class LoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol {
-    var timeLineUrl = "http://www.sscf88.com/app-login"//链接地址
+    var timeLineUrl = "http://www.sscf88.com/App-Login"//链接地址
     var tmpListData: NSMutableArray = NSMutableArray()//临时数据  下拉添加
     var eHttp: HttpController = HttpController()//新建一个httpController
     override func viewDidLoad() {
@@ -55,15 +55,34 @@ class LoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol {
     @IBAction func loginTapped(sender: AnyObject) {
         self.count++
 
+        //http://www.sscf88.com/App-Login
         
-        
-        var user = NSUserDefaults()
-        user.setObject(usernameLabel.text, forKey: "username")
-        user.setObject(passwordLabel.text, forKey: "password")
-        
-        
-        self.performSegueWithIdentifier("loginIdentifier", sender: self)
-        
+        eHttp.post(timeLineUrl, params: ["userName":usernameLabel.text,"userPass":passwordLabel.text,"userFlag":0] ) { (result:NSDictionary)->Void in
+//            println(result["message"])
+            if let code = result["code"] as? Int{
+                
+                println(result)
+                if(code == 200){
+                    var user = NSUserDefaults()
+                    user.setObject(self.usernameLabel.text, forKey: "username")
+                    user.setObject(self.passwordLabel.text, forKey: "password")
+                    
+                    
+                    self.performSegueWithIdentifier("loginIdentifier", sender: self)
+                }
+                if(code == 0){
+                    //报错弹窗
+                    
+                    var alert = UIAlertController(title: "错误", message: result["message"] as? String, preferredStyle:UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
+                    
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
+                }
+            }
+           
+
+        }
         
         
         
@@ -111,11 +130,13 @@ class LoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol {
     }
     //读取json并解析
     func didRecieveResult(result: NSDictionary){
-        if(result["data"]?.valueForKey("list") != nil){
-            self.tmpListData = result["data"]?.valueForKey("list") as NSMutableArray //list数据
-            //            self.page = result["data"]?["page"] as Int
-//            self.mainTable.reloadData()
-        }
+//        if(result["data"]?.valueForKey("list") != nil){
+//            self.tmpListData = result["data"]?.valueForKey("list") as NSMutableArray //list数据
+//            //            self.page = result["data"]?["page"] as Int
+////            self.mainTable.reloadData()
+//        }
+
+       
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -333,12 +333,13 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
 //                title.text = "请登录"
 //                money.text = ""
 //            }
+            var img = cell.viewWithTag(200) as UIImageView
+            var title = cell.viewWithTag(201) as UILabel
+            var money = cell.viewWithTag(202) as UILabel
             if let username:AnyObject = user.valueForKey("username"){
-                
+                title.text = username as? String
             }else{
-                var img = cell.viewWithTag(200) as UIImageView
-                var title = cell.viewWithTag(201) as UILabel
-                var money = cell.viewWithTag(202) as UILabel
+                
                 title.text = "请登录"
                 money.text = ""
             }
@@ -389,8 +390,14 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         circle.hidden = false
         circle.startAnimating()
         }
-        println("lendView")
+//        println("lendView")
         //隐藏筛选
+        
         hideSideMenuView()
+//        sideMenuController()?.sideMenu?.hideSideMenu()
+    }
+    
+    //返回
+    @IBAction func closed(segue:UIStoryboardSegue){
     }
 }

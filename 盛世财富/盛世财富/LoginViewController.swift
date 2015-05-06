@@ -17,43 +17,44 @@ class LoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol {
         super.viewDidLoad()
         usernameLabel.delegate = self
         passwordLabel.delegate = self
-        
+        var user = NSUserDefaults()
+        println(user.valueForKey("username"))
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    var menu:REMenu!
-    var count:Int = 0
-    @IBAction func listTapped(sender: AnyObject) {
-        count++
-        
-        var homeItme1:REMenuItem = REMenuItem(title: "sss",subtitle:"Return to Home Screen1",image:UIImage(named: "11.jpg"),highlightedImage:nil){
-            println($0.title)
-            self.count++
-        }
-        var homeItme2:REMenuItem = REMenuItem(title: "Home2",subtitle:"Return to Home Screen2",image:UIImage(named: "21.jpg"),highlightedImage:nil){
-            println($0.title)
-            self.count++
-        }
-        var homeItme3:REMenuItem = REMenuItem(title: "Home3",subtitle:"Return to Home Screen3",image:UIImage(named: "31.jpg"),highlightedImage:nil){
-            println($0.title)
-            self.count++
-        }
-        
-        if count%2 == 0{
-            menu.close()
-        }else{
-            if menu == nil {
-                self.menu = REMenu(items: [homeItme1,homeItme2,homeItme3])
-            }
-            self.menu.showFromNavigationController(self.navigationController)
-        }
-    }
+//    var menu:REMenu!
+//    var count:Int = 0
+//    @IBAction func listTapped(sender: AnyObject) {
+//        count++
+//        
+//        var homeItme1:REMenuItem = REMenuItem(title: "sss",subtitle:"Return to Home Screen1",image:UIImage(named: "11.jpg"),highlightedImage:nil){
+//            println($0.title)
+//            self.count++
+//        }
+//        var homeItme2:REMenuItem = REMenuItem(title: "Home2",subtitle:"Return to Home Screen2",image:UIImage(named: "21.jpg"),highlightedImage:nil){
+//            println($0.title)
+//            self.count++
+//        }
+//        var homeItme3:REMenuItem = REMenuItem(title: "Home3",subtitle:"Return to Home Screen3",image:UIImage(named: "31.jpg"),highlightedImage:nil){
+//            println($0.title)
+//            self.count++
+//        }
+//        
+//        if count%2 == 0{
+//            menu.close()
+//        }else{
+//            if menu == nil {
+//                self.menu = REMenu(items: [homeItme1,homeItme2,homeItme3])
+//            }
+//            self.menu.showFromNavigationController(self.navigationController)
+//        }
+//    }
     
     @IBOutlet weak var usernameLabel: UITextField!
     @IBOutlet weak var passwordLabel: UITextField!
     @IBAction func loginTapped(sender: AnyObject) {
-        self.count++
+//        self.count++
 
         //http://www.sscf88.com/App-Login
         
@@ -65,8 +66,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol {
                 if(code == 200){
                     var user = NSUserDefaults()
                     user.setObject(self.usernameLabel.text, forKey: "username")
-                    user.setObject(self.passwordLabel.text, forKey: "password")
-                    
+                    user.setObject(result["data"]?["userPass"], forKey: "userpass")
+//                    println(user.valueForKey("userpass"))
                     
                     self.performSegueWithIdentifier("loginIdentifier", sender: self)
                 }
@@ -79,16 +80,15 @@ class LoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol {
                     self.presentViewController(alert, animated: true, completion: nil)
                     
                 }
+            }else{
+                var alert = UIAlertController(title: "错误", message: "服务器异常，请完全退出程序后重试！", preferredStyle:UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
+                
+                self.presentViewController(alert, animated: true, completion: nil)
             }
            
 
         }
-        
-        
-        
-        
-        
-        
         
         
         
@@ -145,13 +145,16 @@ class LoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol {
             
         }
     }
+    @IBAction func returnKey(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
 //    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
 //        
 //    }
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        self.count++
+//        self.count++
         usernameLabel.resignFirstResponder()
         passwordLabel.resignFirstResponder()
     }

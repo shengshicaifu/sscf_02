@@ -45,7 +45,9 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
 //            self.navigationController?.pushViewController(LendViewController(), animated: true)
         }
     }
-    
+    @IBAction func returnKey(sender:AnyObject){
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     func showAlert(message:String){
         var alert = UIAlertController(title: "提示", message: message, preferredStyle:UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: nil))

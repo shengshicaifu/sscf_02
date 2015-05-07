@@ -172,6 +172,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     //读取json并解析
     func didRecieveResult(result: NSDictionary){
+//        println(result)
         if(result["data"]?.valueForKey("list") != nil){
             self.tmpListData = result["data"]?.valueForKey("list") as NSMutableArray //list数据
 //            self.page = result["data"]?["page"] as Int

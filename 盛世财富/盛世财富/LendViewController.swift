@@ -28,20 +28,20 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     @IBOutlet weak var circle: UIActivityIndicatorView!//读取数据动画
     
     @IBOutlet weak var mainTable: UITableView!
-
-    @IBOutlet weak var topImage: UIImageView!//手写的滚动图
-    var timer:NSTimer?//定时器
-    
-    @IBOutlet weak var mainView: UIView!
-    var count = 1
-    func timerFunction(){
-        //定时触发的方法    没用
-        topImage.image = UIImage(named: String(count)+".jpg")
-        count++
-        if count > 4 {
-            count = 1
-        }
-    }
+//
+//    @IBOutlet weak var topImage: UIImageView!//手写的滚动图
+//    var timer:NSTimer?//定时器
+//    
+//    @IBOutlet weak var mainView: UIView!
+//    var count = 1
+//    func timerFunction(){
+//        //定时触发的方法    没用
+//        topImage.image = UIImage(named: String(count)+".jpg")
+//        count++
+//        if count > 4 {
+//            count = 1
+//        }
+//    }
     
     
     //    var dicList = Array<Dictionary<String,String>>()
@@ -49,6 +49,10 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTable.delegate = self
+        mainTable.dataSource = self
+        
+        
+        
         //手写的滚动图
 //        timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "timerFunction", userInfo: nil, repeats: true)
 //        timer?.fire()
@@ -230,18 +234,18 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             //        self.presentViewController(vc, animated: true, completion: nil)
             self.performSegueWithIdentifier("detail", sender: self)
         }
-        if indexPath.section == 1 {
-            var user = NSUserDefaults()
-            var username: NSString = user.valueForKey("username") as NSString
-            if username.length > 0 {
-                self.performSegueWithIdentifier("person", sender: self)
-            }else{
-               self.performSegueWithIdentifier("login", sender: self)
-            }
-
-            
-            
-        }
+//        if indexPath.section == 1 {
+//            var user = NSUserDefaults()
+//            var username: NSString = user.valueForKey("username") as NSString
+//            if username.length > 0 {
+//                self.performSegueWithIdentifier("person", sender: self)
+//            }else{
+//               self.performSegueWithIdentifier("login", sender: self)
+//            }
+//
+//            
+//            
+//        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -264,8 +268,6 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
        if section.hashValue == 0 {
             return 5
-        }else if section.hashValue == 1  {
-            return 1
         }else{
             return 0
         }
@@ -321,32 +323,32 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 hideId.hidden = true
             }
         }
-        if sec == 1{
-            cell = self.mainTable.dequeueReusableCellWithIdentifier("person") as UITableViewCell
-            var user = NSUserDefaults()
-//            var username: NSString = user.valueForKey("username") as NSString
-//            if username.length > 0 {
-//                
+//        if sec == 1{
+//            cell = self.mainTable.dequeueReusableCellWithIdentifier("person") as UITableViewCell
+//            var user = NSUserDefaults()
+////            var username: NSString = user.valueForKey("username") as NSString
+////            if username.length > 0 {
+////                
+////            }else{
+////                var img = cell.viewWithTag(200) as UIImageView
+////                var title = cell.viewWithTag(201) as UILabel
+////                var money = cell.viewWithTag(202) as UILabel
+////                title.text = "请登录"
+////                money.text = ""
+////            }
+//            var img = cell.viewWithTag(200) as UIImageView
+//            var title = cell.viewWithTag(201) as UILabel
+//            var money = cell.viewWithTag(202) as UILabel
+//            if let username:AnyObject = user.valueForKey("username"){
+//                title.text = username as? String
 //            }else{
-//                var img = cell.viewWithTag(200) as UIImageView
-//                var title = cell.viewWithTag(201) as UILabel
-//                var money = cell.viewWithTag(202) as UILabel
+//                
 //                title.text = "请登录"
 //                money.text = ""
 //            }
-            var img = cell.viewWithTag(200) as UIImageView
-            var title = cell.viewWithTag(201) as UILabel
-            var money = cell.viewWithTag(202) as UILabel
-            if let username:AnyObject = user.valueForKey("username"){
-                title.text = username as? String
-            }else{
-                
-                title.text = "请登录"
-                money.text = ""
-            }
-            
-        }
-        
+//            
+//        }
+//        
 //        circle.hidden = true
 //        circle.stopAnimating()
         
@@ -361,7 +363,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     //section数量
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 1
         
     }
     
@@ -369,8 +371,6 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0{
             return "投资列表"
-        }else if section == 1{
-            return "我的账户"
         }else{
             return ""
         }

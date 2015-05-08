@@ -25,10 +25,7 @@ class HttpController: NSObject{
             }else{
                 //报错弹窗
                 println(error.localizedDescription)
-                var alert = UIAlertController(title: "错误", message: error.localizedDescription, preferredStyle:UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
-                
-                viewContro.presentViewController(alert, animated: true, completion: nil)
+                AlertView.showMsg(error.localizedDescription, parentView: viewContro.view)
             }
             callback()
 
@@ -36,7 +33,7 @@ class HttpController: NSObject{
         })
             }
     //json post方法
-    func post(url: String ,params: NSDictionary,callback: (NSDictionary) -> Void) {
+    func post(url: String ,params: NSDictionary,view:UIView,callback: (NSDictionary) -> Void) {
         var nsUrl: NSURL = NSURL(string: url)!
         var request: NSMutableURLRequest = NSMutableURLRequest(URL: nsUrl)
         request.timeoutInterval = 10
@@ -63,6 +60,7 @@ class HttpController: NSObject{
                 callback(jsonResult)
             }else{
                 println(error)
+                AlertView.showMsg(error.localizedDescription, parentView: view)
             }
         })
     }

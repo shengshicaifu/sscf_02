@@ -27,18 +27,22 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func registerTapped(sender: AnyObject) {
+        usernameTextField.resignFirstResponder()
+        surePwdTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        phoneTextField.resignFirstResponder()
         var username = usernameTextField.text
         var surePwd = surePwdTextField.text
         var password = passwordTextField.text
         var phone = phoneTextField.text
         if phone.isEmpty {
-            showAlert("手机号码不能为空")
+            AlertView.showMsg("手机号码不能为空", parentView: self.view)
         }else if password.isEmpty {
-            showAlert("密码不能为空")
+            AlertView.showMsg("密码不能为空", parentView: self.view)
         }else if password != surePwd{
-            showAlert("两次输入的密码不一致")
+            AlertView.showMsg("两次输入的密码不一致", parentView: self.view)
         }else if username.isEmpty{
-            showAlert("用户名不能为空")
+            AlertView.showMsg("用户名不能为空", parentView: self.view)
         }else{
             //此处执行注册操作
 //            showAlert("执行注册操作")
@@ -48,11 +52,11 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     @IBAction func returnKey(sender:AnyObject){
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    func showAlert(message:String){
-        var alert = UIAlertController(title: "提示", message: message, preferredStyle:UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
+//    func showAlert(message:String){
+//        var alert = UIAlertController(title: "提示", message: message, preferredStyle:UIAlertControllerStyle.Alert)
+//        alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: nil))
+//        self.presentViewController(alert, animated: true, completion: nil)
+//    }
     
     func textFieldDidBeginEditing(textField: UITextField) {
         if textField.tag == 1 {

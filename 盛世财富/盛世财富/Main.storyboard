@@ -323,6 +323,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular" misplaced="YES">
+                                                        <rect key="frame" x="216" y="4" width="96" height="17"/>
+                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名字*************" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kQ-Yi-Ql9">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -807,7 +810,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tkn-j9-nBe" id="W8k-qg-T9b">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000000000000.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="En7-5z-2K7">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000000000000.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="En7-5z-2K7">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="64"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -819,27 +822,53 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="10" contentMode="center" image="蓝色" translatesAutoresizingMaskIntoConstraints="NO" id="0hb-ip-u5P">
+                                                    <rect key="frame" x="0.0" y="-220" width="220" height="220"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="h0I-vJ-eCN"/>
+                                                        <constraint firstAttribute="height" constant="50" id="pge-mc-WOb"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="h0I-vJ-eCN"/>
+                                                            <exclude reference="pge-mc-WOb"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular">
+                                                        <mask key="constraints">
+                                                            <include reference="h0I-vJ-eCN"/>
+                                                            <include reference="pge-mc-WOb"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="f4o-e4-UIU" firstAttribute="top" secondItem="W8k-qg-T9b" secondAttribute="topMargin" constant="46" id="0pY-WJ-DaB">
-                                                    <variation key="heightClass=regular" constant="37"/>
+                                                    <variation key="heightClass=regular" constant="82"/>
                                                 </constraint>
                                                 <constraint firstAttribute="centerX" secondItem="f4o-e4-UIU" secondAttribute="centerX" constant="-0.5" id="419-xv-Mip"/>
-                                                <constraint firstAttribute="centerY" secondItem="En7-5z-2K7" secondAttribute="centerY" constant="-0.25" id="ADo-bB-6P8"/>
+                                                <constraint firstAttribute="centerY" secondItem="En7-5z-2K7" secondAttribute="centerY" constant="-0.25" id="ADo-bB-6P8">
+                                                    <variation key="heightClass=regular" constant="-53.5"/>
+                                                </constraint>
                                                 <constraint firstItem="En7-5z-2K7" firstAttribute="trailing" secondItem="W8k-qg-T9b" secondAttribute="trailingMargin" id="AeP-fK-NI8"/>
                                                 <constraint firstItem="En7-5z-2K7" firstAttribute="leading" secondItem="W8k-qg-T9b" secondAttribute="leadingMargin" id="OQU-2A-Eis"/>
                                                 <constraint firstAttribute="centerX" secondItem="En7-5z-2K7" secondAttribute="centerX" id="Zl5-w4-6Lv"/>
+                                                <constraint firstItem="0hb-ip-u5P" firstAttribute="top" secondItem="W8k-qg-T9b" secondAttribute="topMargin" constant="24" id="lVe-ZH-0Kl"/>
+                                                <constraint firstAttribute="centerX" secondItem="0hb-ip-u5P" secondAttribute="centerX" id="p2B-WJ-2a4"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
                                                     <exclude reference="En7-5z-2K7"/>
                                                     <exclude reference="f4o-e4-UIU"/>
+                                                    <exclude reference="0hb-ip-u5P"/>
                                                 </mask>
                                                 <mask key="constraints">
                                                     <exclude reference="ADo-bB-6P8"/>
                                                     <exclude reference="AeP-fK-NI8"/>
                                                     <exclude reference="OQU-2A-Eis"/>
                                                     <exclude reference="Zl5-w4-6Lv"/>
+                                                    <exclude reference="lVe-ZH-0Kl"/>
+                                                    <exclude reference="p2B-WJ-2a4"/>
                                                     <exclude reference="0pY-WJ-DaB"/>
                                                     <exclude reference="419-xv-Mip"/>
                                                 </mask>
@@ -848,12 +877,15 @@
                                                 <mask key="subviews">
                                                     <include reference="En7-5z-2K7"/>
                                                     <include reference="f4o-e4-UIU"/>
+                                                    <include reference="0hb-ip-u5P"/>
                                                 </mask>
                                                 <mask key="constraints">
                                                     <include reference="ADo-bB-6P8"/>
                                                     <include reference="AeP-fK-NI8"/>
                                                     <include reference="OQU-2A-Eis"/>
                                                     <include reference="Zl5-w4-6Lv"/>
+                                                    <include reference="lVe-ZH-0Kl"/>
+                                                    <include reference="p2B-WJ-2a4"/>
                                                     <include reference="0pY-WJ-DaB"/>
                                                     <include reference="419-xv-Mip"/>
                                                 </mask>
@@ -934,10 +966,10 @@
                                 <exclude reference="8Ak-1f-Syy"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="iUO-Ii-TWQ"/>
                                 <exclude reference="7c3-O0-o8q"/>
                                 <exclude reference="n76-yc-iKS"/>
                                 <exclude reference="oGo-Xa-mtS"/>
-                                <exclude reference="iUO-Ii-TWQ"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -945,10 +977,10 @@
                                 <include reference="8Ak-1f-Syy"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="iUO-Ii-TWQ"/>
                                 <include reference="7c3-O0-o8q"/>
                                 <include reference="n76-yc-iKS"/>
                                 <include reference="oGo-Xa-mtS"/>
-                                <include reference="iUO-Ii-TWQ"/>
                             </mask>
                         </variation>
                     </view>
@@ -1312,7 +1344,7 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJ1-hQ-oRW">
                                                     <rect key="frame" x="69" y="29" width="490" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1377,48 +1409,6 @@
                                                 <constraint firstItem="198-fh-kuk" firstAttribute="leading" secondItem="u3U-Nw-7jg" secondAttribute="leadingMargin" id="tBE-jI-Sga"/>
                                                 <constraint firstItem="R8w-7v-eMG" firstAttribute="leading" secondItem="cIi-g0-mek" secondAttribute="leading" id="tld-lH-Qsh"/>
                                                 <constraint firstItem="FJ1-hQ-oRW" firstAttribute="leading" secondItem="LC3-Cf-5m7" secondAttribute="leading" id="uoG-Ij-AT5"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="person" rowHeight="89" id="Igw-Nb-4aZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="509" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Igw-Nb-4aZ" id="Jfy-GD-53r">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="202" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账户余额：8888.88元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biD-xI-rHc">
-                                                    <rect key="frame" x="101" y="39" width="458" height="49"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的资产" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayv-s4-Uaq">
-                                                    <rect key="frame" x="101" y="1" width="117" height="36"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="36" id="RTp-En-KCz"/>
-                                                        <constraint firstAttribute="width" constant="117" id="pPe-Mw-kqm"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aaa.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="6JE-Fw-vPD">
-                                                    <rect key="frame" x="8" y="1" width="85" height="87"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="85" id="8Hc-Zj-bxN"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="biD-xI-rHc" firstAttribute="top" secondItem="ayv-s4-Uaq" secondAttribute="bottom" constant="2" id="4a3-2N-chH"/>
-                                                <constraint firstItem="biD-xI-rHc" firstAttribute="bottom" secondItem="6JE-Fw-vPD" secondAttribute="bottom" id="F9X-Pt-Bjt"/>
-                                                <constraint firstItem="ayv-s4-Uaq" firstAttribute="top" secondItem="Jfy-GD-53r" secondAttribute="top" constant="1" id="MKk-3R-XBr"/>
-                                                <constraint firstItem="6JE-Fw-vPD" firstAttribute="centerY" secondItem="Jfy-GD-53r" secondAttribute="centerY" id="PpA-4q-alP"/>
-                                                <constraint firstItem="6JE-Fw-vPD" firstAttribute="leading" secondItem="Jfy-GD-53r" secondAttribute="leadingMargin" id="c2w-br-5pC"/>
-                                                <constraint firstItem="biD-xI-rHc" firstAttribute="trailing" secondItem="Jfy-GD-53r" secondAttribute="trailingMargin" id="g7Y-vc-sIC"/>
-                                                <constraint firstItem="ayv-s4-Uaq" firstAttribute="leading" secondItem="6JE-Fw-vPD" secondAttribute="trailing" constant="8" symbolic="YES" id="mRT-GJ-s6y"/>
-                                                <constraint firstItem="6JE-Fw-vPD" firstAttribute="top" secondItem="ayv-s4-Uaq" secondAttribute="top" id="mpY-TC-HG3"/>
-                                                <constraint firstItem="ayv-s4-Uaq" firstAttribute="leading" secondItem="biD-xI-rHc" secondAttribute="leading" id="skp-0a-nBd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -4980,6 +4970,7 @@
         <image name="great_wall" width="25" height="25"/>
         <image name="origami" width="25" height="25"/>
         <image name="torii" width="25" height="25"/>
+        <image name="蓝色" width="220" height="220"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5ZP-m5-drk"/>

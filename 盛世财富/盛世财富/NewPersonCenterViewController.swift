@@ -9,8 +9,10 @@
 import Foundation
 import UIKit
 class NewPersonCenterViewController:UIViewController,UITableViewDataSource,UITableViewDelegate {
-    @IBOutlet weak var money: UILabel!
+    
     @IBOutlet weak var mainTable: UITableView!
+    var ehttp = HttpController()
+    var url = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTable.dataSource = self
@@ -110,8 +112,8 @@ class NewPersonCenterViewController:UIViewController,UITableViewDataSource,UITab
         return 10
     }
     
-    func run(result:NSDictionary){
-//        money.text = "100"
+    override func viewWillAppear(animated: Bool) {
+        
     }
     
 }

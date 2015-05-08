@@ -55,43 +55,66 @@ class LoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol {
     @IBOutlet weak var passwordLabel: UITextField!
     @IBAction func loginTapped(sender: AnyObject) {
 //        self.count++
-
+        usernameLabel.resignFirstResponder()
+        passwordLabel.resignFirstResponder()
         //http://www.sscf88.com/App-Login
         
-        eHttp.post(timeLineUrl, params: ["userName":usernameLabel.text,"userPass":passwordLabel.text,"userFlag":0] ) { (result:NSDictionary)->Void in
-//            println(result["message"])
-            if let code = result["code"] as? Int{
-                
-                println(result)
-                if(code == 200){
-                    var user = NSUserDefaults()
-                    user.setObject(self.usernameLabel.text, forKey: "username")
-                    user.setObject(result["data"]?["userPass"], forKey: "userpass")
-//                    println(user.valueForKey("userpass"))
-                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                        var view = NewPersonCenterViewController()
-                        view.run(result)
-                    })
-//                    self.performSegueWithIdentifier("loginIdentifier", sender: self)
-                }
-                if(code == 0){
-                    //报错弹窗
-                    
-                    var alert = UIAlertController(title: "错误", message: result["message"] as? String, preferredStyle:UIAlertControllerStyle.Alert)
-                    alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
-                    
-                    self.presentViewController(alert, animated: true, completion: nil)
-                    
+        if let name:NSString = usernameLabel.text{
+            if name.length > 0 && name.length <= 20{
+                if let pwd:NSString = passwordLabel.text{
+                    if pwd.length > 0 && pwd.length <= 20{
+                        eHttp.post(timeLineUrl, params: ["userName":usernameLabel.text,"userPass":passwordLabel.text,"userFlag":0] ,view: self.view ) { (result:NSDictionary)->Void in
+                            //            println(result["message"])
+                            if let code = result["code"] as? Int{
+                                
+                                println(result)
+                                if(code == 200){
+                                    var user = NSUserDefaults()
+                                    user.setObject(self.usernameLabel.text, forKey: "username")
+                                    user.setObject(result["data"]?["userPass"], forKey: "userpass")
+                                    user.setObject(result["data"]?["userPic"], forKey: "userpic")
+                                    user.setObject(result["data"]?["proInfo"], forKey: "proinfo")
+                                    //                    println(user.valueForKey("userpass"))
+                                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                                        var view = NewPersonCenterViewController()
+                                        
+                                    })
+                                    //                    self.performSegueWithIdentifier("loginIdentifier", sender: self)
+                                }
+                                if(code == 0){
+                                    //报错弹窗
+                                    AlertView.showMsg(result["message"] as NSString, parentView: self.view)
+                                    
+                                    //                    var alert = UIAlertController(title: "错误", message: result["message"] as? String, preferredStyle:UIAlertControllerStyle.Alert)
+                                    //                    alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
+                                    //
+                                    //                    self.presentViewController(alert, animated: true, completion: nil)
+                                    
+                                }
+                            }else{
+                                AlertView.showMsg("服务器异常，请完全退出程序后重试！", parentView: self.view)
+                                //                var alert = UIAlertController(title: "错误", message: "服务器异常，请完全退出程序后重试！", preferredStyle:UIAlertControllerStyle.Alert)
+                                //                alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
+                                //                
+                                //                self.presentViewController(alert, animated: true, completion: nil)
+                            }
+                            
+                            
+                        }
+
+                    }else{
+                        AlertView.showMsg("密码格式不对！", parentView: self.view)
+                    }
+                }else{
+                    AlertView.showMsg("请填写密码！", parentView: self.view)
                 }
             }else{
-                var alert = UIAlertController(title: "错误", message: "服务器异常，请完全退出程序后重试！", preferredStyle:UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
-                
-                self.presentViewController(alert, animated: true, completion: nil)
+                AlertView.showMsg("用户名格式不对！", parentView: self.view)
             }
-           
-
+        }else{
+            AlertView.showMsg("请填写用户名！", parentView: self.view)
         }
+        
         
         
         

@@ -688,7 +688,7 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="注册" id="G2B-0z-F4y">
                                             <connections>
-                                                <segue destination="NOo-ud-8Ye" kind="show" id="zgd-e2-AMY"/>
+                                                <segue destination="NOo-ud-8Ye" kind="show" identifier="loginIdentifier" id="zgd-e2-AMY"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -779,6 +779,7 @@
                     <connections>
                         <outlet property="passwordLabel" destination="FYS-rf-4Lh" id="OiW-VF-33I"/>
                         <outlet property="usernameLabel" destination="Tfe-73-zmd" id="RX7-fw-wbb"/>
+                        <segue destination="Q2h-Sy-IhA" kind="show" identifier="loginIdentifier" id="cgO-r2-Qw7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K5r-Og-7Df" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -952,7 +953,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3gg-Qs-DxM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-11" y="1128.75"/>
+            <point key="canvasLocation" x="99" y="1128.75"/>
         </scene>
         <!--注册-->
         <scene sceneID="bS7-lj-EC9">
@@ -1641,7 +1642,8 @@
                                                             <exclude reference="Wla-WV-PwD"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular">
+                                                    <variation key="heightClass=regular" misplaced="YES">
+                                                        <rect key="frame" x="505" y="21" width="55" height="55"/>
                                                         <mask key="constraints">
                                                             <include reference="ChZ-Qu-UWy"/>
                                                             <include reference="Wla-WV-PwD"/>
@@ -2351,12 +2353,6 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="盛世财富" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Pi-Wu-aew">
-                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="男" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fwj-i0-oUl">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2482,6 +2478,12 @@
                                                         </mask>
                                                     </variation>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="盛世财富" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Pi-Wu-aew">
+                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="QG1-ch-Vsb" firstAttribute="top" secondItem="uic-pb-gwh" secondAttribute="bottom" constant="8" id="0Ye-4L-0hP">
@@ -2576,7 +2578,6 @@
                                                     <exclude reference="PY9-H5-XQA"/>
                                                     <exclude reference="mzV-dd-lZU"/>
                                                     <exclude reference="mja-bw-ok4"/>
-                                                    <exclude reference="5Pi-Wu-aew"/>
                                                     <exclude reference="Fwj-i0-oUl"/>
                                                     <exclude reference="EDZ-Zr-Y6Y"/>
                                                     <exclude reference="uic-pb-gwh"/>
@@ -2595,6 +2596,7 @@
                                                     <exclude reference="EKr-er-lGx"/>
                                                     <exclude reference="Yi9-P7-Vdd"/>
                                                     <exclude reference="5hF-98-1ds"/>
+                                                    <exclude reference="5Pi-Wu-aew"/>
                                                 </mask>
                                                 <mask key="constraints">
                                                     <exclude reference="UyL-4f-H6f"/>
@@ -2658,7 +2660,6 @@
                                                     <include reference="PY9-H5-XQA"/>
                                                     <include reference="mzV-dd-lZU"/>
                                                     <include reference="mja-bw-ok4"/>
-                                                    <include reference="5Pi-Wu-aew"/>
                                                     <include reference="Fwj-i0-oUl"/>
                                                     <include reference="EDZ-Zr-Y6Y"/>
                                                     <include reference="uic-pb-gwh"/>
@@ -2677,6 +2678,7 @@
                                                     <include reference="EKr-er-lGx"/>
                                                     <include reference="Yi9-P7-Vdd"/>
                                                     <include reference="5hF-98-1ds"/>
+                                                    <include reference="5Pi-Wu-aew"/>
                                                 </mask>
                                                 <mask key="constraints">
                                                     <include reference="UyL-4f-H6f"/>
@@ -4975,5 +4977,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vdr-P8-5iY"/>
+        <segue reference="cgO-r2-Qw7"/>
     </inferredMetricsTieBreakers>
 </document>

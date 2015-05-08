@@ -10,9 +10,14 @@
 
 import UIKit
 
-class LendDetailViewController: UITableViewController ,UITableViewDataSource,UITableViewDelegate,HttpProtocol{
+class LendDetailViewController: UITableViewController ,UITableViewDataSource,UITableViewDelegate{
 
     
+
+
+    @IBOutlet weak var borrowDuration: UILabel!
+    @IBOutlet weak var borrowInterestRate: UILabel!
+    @IBOutlet weak var borrowMoney: UILabel!
     @IBOutlet weak var mainTable: UITableView!
     
     
@@ -20,42 +25,49 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
     var tmpListData: NSMutableArray = NSMutableArray()
     var eHttp: HttpController = HttpController()
     var id:String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTable.dataSource = self
         mainTable.delegate = self
-        eHttp.delegate = self
-//        if id != nil {
-//            eHttp.get(self.timeLineUrl + "\(id)",viewContro :self,{
-//                self.mainTable.reloadData()
-//            })
-//        }
-        
         println(id!)
+        if id != nil {
+            let manager =  AFHTTPRequestOperationManager()
+            let params = ["id" : id!]
+            
+            let  url = timeLineUrl+"\(id!)"
+            manager.GET(url,
+                parameters: nil,
+                success: { (operation: AFHTTPRequestOperation!,responseObject: AnyObject! ) in
+//                println("responseObject:"+responseObject.description!)
+                    //解析json
+                println(responseObject)
+                    var json = responseObject as NSDictionary
+                    var data = json["data"] as NSDictionary
+                    if data.count>0{
+                    var borrow_info = data["borrow_info"] as NSString!
+                    var borrow_money = data["borrow_money"] as NSString!
+                    var borrow_interest_rate = data["borrow_interest_rate"] as NSString!
+                    var borrow_duration = data["borrow_duration"]
+                        as NSString!
+                    println(borrow_info)
+                    self.borrowMoney.text = borrow_money
+                    self.borrowInterestRate.text = borrow_interest_rate+"%"
+                    self.borrowDuration.text = borrow_duration+"天"
+                    self.mainTable.headerViewForSection(0)?.textLabel.text = borrow_info
+                         }
+                },
+                failure: {(operation:AFHTTPRequestOperation!,error : NSError!) in
+                println("jsonerror:"+error.localizedDescription)
+            })
+        }
         
+          println(id!)
         
     }
-	
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
+        // Dispose of any resources that can be recreated.
     }
-    
-    
-
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        //点击事件
-    }
-    
-    
-    
-    func didRecieveResult(result: NSDictionary){
-//        if(result["data"]?.valueForKey("list") != nil){
-//            self.tmpListData = result["data"]?.valueForKey("list") as NSMutableArray //list数据
-//            //            self.page = result["data"]?["page"] as Int
-//            self.mainTable.reloadData()
-//        }
-    }
-}
+  }
 

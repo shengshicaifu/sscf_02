@@ -11,8 +11,9 @@ class HttpController: NSObject{
     //json get方法
     func get(url: String,viewContro :UIViewController,callback : () -> Void){
         var nsUrl: NSURL = NSURL(string: url)!
-        var request: NSURLRequest = NSURLRequest(URL: nsUrl)
+        var request: NSMutableURLRequest = NSMutableURLRequest(URL: nsUrl)
         var errorMessage = String()
+        request.timeoutInterval = 10
         
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!)->Void in
             if(error == nil){
@@ -38,7 +39,7 @@ class HttpController: NSObject{
     func post(url: String ,params: NSDictionary,callback: (NSDictionary) -> Void) {
         var nsUrl: NSURL = NSURL(string: url)!
         var request: NSMutableURLRequest = NSMutableURLRequest(URL: nsUrl)
-        
+        request.timeoutInterval = 10
         request.HTTPMethod = "POST"
         request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         var objStr = ""

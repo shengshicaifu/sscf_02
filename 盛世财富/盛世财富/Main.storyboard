@@ -323,9 +323,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular" misplaced="YES">
-                                                        <rect key="frame" x="216" y="4" width="96" height="17"/>
-                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名字*************" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kQ-Yi-Ql9">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -1754,7 +1751,9 @@
                             <constraint firstAttribute="centerX" secondItem="8Rs-pu-ABp" secondAttribute="centerX" id="3f3-YU-Z9d"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Gr1-hd-e6b" secondAttribute="trailing" constant="-16" id="4cb-hp-20Q"/>
                             <constraint firstItem="Gr1-hd-e6b" firstAttribute="leading" secondItem="Qjv-jM-lHc" secondAttribute="leadingMargin" constant="-16" id="Fr8-TP-apa"/>
-                            <constraint firstItem="Gr1-hd-e6b" firstAttribute="top" secondItem="HGd-Fq-lbh" secondAttribute="bottom" id="P1E-s0-Khj"/>
+                            <constraint firstItem="Gr1-hd-e6b" firstAttribute="top" secondItem="HGd-Fq-lbh" secondAttribute="bottom" id="P1E-s0-Khj">
+                                <variation key="heightClass=regular" constant="-64"/>
+                            </constraint>
                             <constraint firstAttribute="centerY" secondItem="8Rs-pu-ABp" secondAttribute="centerY" id="gRD-zT-3QH"/>
                             <constraint firstItem="fHa-pS-40v" firstAttribute="top" secondItem="Gr1-hd-e6b" secondAttribute="bottom" id="ljQ-e3-Haw"/>
                         </constraints>

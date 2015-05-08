@@ -385,11 +385,14 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     //view将要加载的时候触发的事件
     override func viewWillAppear(animated: Bool) {
-        if self.tmpListData.count == 0 {
+        if self.tmpListData.count == 0 && self.listData.count == 0{
         //如果没有获取到数据 就开始动画
-        mainTable.hidden = true
+                mainTable.hidden = true
         circle.hidden = false
         circle.startAnimating()
+            var time = NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: "stopCircle", userInfo: nil, repeats: false)
+            
+
         }
 //        println("lendView")
         //隐藏筛选
@@ -397,7 +400,15 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         hideSideMenuView()
 //        sideMenuController()?.sideMenu?.hideSideMenu()
     }
-    
+    func stopCircle(){
+        if self.circle.isAnimating() {
+            self.circle.stopAnimating()
+            self.circle.hidden = true
+            //显示tableview
+            self.mainTable.hidden = false
+        }
+        
+    }
     //返回
     @IBAction func closed(segue:UIStoryboardSegue){
     }

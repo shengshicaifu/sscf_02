@@ -14,7 +14,7 @@ class TabBarViewController : UITabBarController,UITabBarDelegate{
         var index = tabBar.selectedItem;
 //        println(index.title)
         if index?.title == "理财" {
-            println(1)
+            
         }
 //        println(index.title == "我的账户")
         if index?.title == "我的账号" {
@@ -29,7 +29,7 @@ class TabBarViewController : UITabBarController,UITabBarDelegate{
             }
         }
         if index?.title == "更多" {
-            println(3)
+            
         }
     }
 }

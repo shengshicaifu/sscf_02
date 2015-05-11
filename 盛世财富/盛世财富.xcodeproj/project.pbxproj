@@ -9,7 +9,11 @@
 /* Begin PBXBuildFile section */
 		594E5B4F1AFA102500218DA5 /* NewPersonCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594E5B4E1AFA102500218DA5 /* NewPersonCenterViewController.swift */; };
 		598A77841AF9E48600DE4271 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598A77831AF9E48600DE4271 /* TabBarViewController.swift */; };
+		59D214BB1AFC9AD800677C26 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D214BA1AFC9AD800677C26 /* AlertView.swift */; };
 		D882DDB51AEB693700973146 /* AccountInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D882DDB41AEB693700973146 /* AccountInfoTableViewController.swift */; };
+		D8B251181B0041AE00360F4E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B251171B0041AE00360F4E /* Reachability.m */; };
+		D8B2511A1B00460B00360F4E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B251191B00460B00360F4E /* SystemConfiguration.framework */; };
+		D8B2511C1B004B8600360F4E /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B2511B1B004B8600360F4E /* Constant.swift */; };
 		E90EA2721ABFA37A006D22E6 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA2601ABFA37A006D22E6 /* AFHTTPRequestOperation.m */; };
 		E90EA2731ABFA37A006D22E6 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA2621ABFA37A006D22E6 /* AFHTTPRequestOperationManager.m */; };
 		E90EA2741ABFA37A006D22E6 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA2641ABFA37A006D22E6 /* AFHTTPSessionManager.m */; };
@@ -88,7 +92,12 @@
 /* Begin PBXFileReference section */
 		594E5B4E1AFA102500218DA5 /* NewPersonCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPersonCenterViewController.swift; sourceTree = "<group>"; };
 		598A77831AF9E48600DE4271 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		59D214BA1AFC9AD800677C26 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		D882DDB41AEB693700973146 /* AccountInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoTableViewController.swift; sourceTree = "<group>"; };
+		D8B251161B0041AE00360F4E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		D8B251171B0041AE00360F4E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		D8B251191B00460B00360F4E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D8B2511B1B004B8600360F4E /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		E90EA25D1ABFA1A5006D22E6 /* 盛世财富-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "盛世财富-Bridging-Header.h"; sourceTree = "<group>"; };
 		E90EA25F1ABFA37A006D22E6 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		E90EA2601ABFA37A006D22E6 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -179,6 +188,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8B2511A1B00460B00360F4E /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +202,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D8B251151B00418900360F4E /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				D8B251161B0041AE00360F4E /* Reachability.h */,
+				D8B251171B0041AE00360F4E /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
 		E90EA25E1ABFA37A006D22E6 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,7 +266,6 @@
 				E93732B01ACA32F600423B7E /* MyMenuTableViewController.swift */,
 				E98091AC1AC63D22001A8F12 /* LendViewController1.swift */,
 				E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */,
-				E9BEE1AE1AC24D7E0049600C /* baseClass.swift */,
 				E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */,
 				E98EE15A1ABAD3EC00CAE127 /* PersonCenter */,
 				E9D6604E1AB1313B0020982D /* LendViewController.swift */,
@@ -302,7 +320,6 @@
 				E9BE2CBC1AE8FA4D00410430 /* SetEmailViewController.swift */,
 				E9BE2CBA1AE8FA3900410430 /* ChargeViewController.swift */,
 				E9BE2CB81AE8FA2700410430 /* AlterMyBankViewController.swift */,
-				E9BEE1AC1AC24CF10049600C /* HttpController.swift */,
 				E94E04661ABD3C5F00A0EEC8 /* SetTradePasswordViewController.swift */,
 				E98EE1581ABAD14D00CAE127 /* AccountSafeViewController.swift */,
 				E98EE1561ABAD14800CAE127 /* AccountDetailViewController.swift */,
@@ -337,6 +354,7 @@
 		E9D6603E1AB1313B0020982D = {
 			isa = PBXGroup;
 			children = (
+				D8B251191B00460B00360F4E /* SystemConfiguration.framework */,
 				E9D660491AB1313B0020982D /* 盛世财富 */,
 				E9D6605F1AB1313B0020982D /* 盛世财富Tests */,
 				E9D660481AB1313B0020982D /* Products */,
@@ -355,6 +373,7 @@
 		E9D660491AB1313B0020982D /* 盛世财富 */ = {
 			isa = PBXGroup;
 			children = (
+				D8B251151B00418900360F4E /* Reachability */,
 				E961E1191AC8DCBC0021ED14 /* REMenu */,
 				E9FDC1461AC3B70F0088B6F5 /* Common */,
 				E90EA25E1ABFA37A006D22E6 /* AFNetworking */,
@@ -397,9 +416,13 @@
 		E9FDC1461AC3B70F0088B6F5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				E9BEE1AE1AC24D7E0049600C /* baseClass.swift */,
+				E9BEE1AC1AC24CF10049600C /* HttpController.swift */,
 				E93732AC1ACA328000423B7E /* ENSideMenu.swift */,
 				E93732AD1ACA328000423B7E /* ENSideMenuNavigationController.swift */,
 				E9FDC1471AC3B71F0088B6F5 /* ShowAlertView.swift */,
+				59D214BA1AFC9AD800677C26 /* AlertView.swift */,
+				D8B2511B1B004B8600360F4E /* Constant.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -540,6 +563,7 @@
 				594E5B4F1AFA102500218DA5 /* NewPersonCenterViewController.swift in Sources */,
 				E9B9EF4C1AC8E00600E46714 /* BidListViewController.swift in Sources */,
 				E90EA2761ABFA37A006D22E6 /* AFSecurityPolicy.m in Sources */,
+				59D214BB1AFC9AD800677C26 /* AlertView.swift in Sources */,
 				E94E04671ABD3C5F00A0EEC8 /* SetTradePasswordViewController.swift in Sources */,
 				E9BE2CBD1AE8FA4D00410430 /* SetEmailViewController.swift in Sources */,
 				E93732B11ACA32F600423B7E /* MyMenuTableViewController.swift in Sources */,
@@ -555,7 +579,9 @@
 				E9D6604D1AB1313B0020982D /* AppDelegate.swift in Sources */,
 				E98EE14D1ABAD11F00CAE127 /* MyBanksViewController.swift in Sources */,
 				D882DDB51AEB693700973146 /* AccountInfoTableViewController.swift in Sources */,
+				D8B2511C1B004B8600360F4E /* Constant.swift in Sources */,
 				E9FDC1481AC3B71F0088B6F5 /* ShowAlertView.swift in Sources */,
+				D8B251181B0041AE00360F4E /* Reachability.m in Sources */,
 				E993F3321ABC0667001B9EA5 /* FVCustomAlertView.swift in Sources */,
 				E961E1261AC8DCBC0021ED14 /* REMenuContainerView.m in Sources */,
 				E9BEE1AF1AC24D7E0049600C /* baseClass.swift in Sources */,

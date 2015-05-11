@@ -266,7 +266,6 @@
 				E93732B01ACA32F600423B7E /* MyMenuTableViewController.swift */,
 				E98091AC1AC63D22001A8F12 /* LendViewController1.swift */,
 				E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */,
-				E9BEE1AE1AC24D7E0049600C /* baseClass.swift */,
 				E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */,
 				E98EE15A1ABAD3EC00CAE127 /* PersonCenter */,
 				E9D6604E1AB1313B0020982D /* LendViewController.swift */,
@@ -417,6 +416,7 @@
 		E9FDC1461AC3B70F0088B6F5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				E9BEE1AE1AC24D7E0049600C /* baseClass.swift */,
 				E9BEE1AC1AC24CF10049600C /* HttpController.swift */,
 				E93732AC1ACA328000423B7E /* ENSideMenu.swift */,
 				E93732AD1ACA328000423B7E /* ENSideMenuNavigationController.swift */,

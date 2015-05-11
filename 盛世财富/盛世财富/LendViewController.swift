@@ -19,53 +19,18 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var imageCache = Dictionary<String,UIImage>()
     var tid: String = ""
     var sign: String = ""
-
-    
     var id:String?//页面传值的id
-    
     let refreshControl = UIRefreshControl() //apple自带的下拉刷新
-
     @IBOutlet weak var circle: UIActivityIndicatorView!//读取数据动画
-    
     @IBOutlet weak var mainTable: UITableView!
-//
-//    @IBOutlet weak var topImage: UIImageView!//手写的滚动图
-//    var timer:NSTimer?//定时器
-//    
-//    @IBOutlet weak var mainView: UIView!
-//    var count = 1
-//    func timerFunction(){
-//        //定时触发的方法    没用
-//        topImage.image = UIImage(named: String(count)+".jpg")
-//        count++
-//        if count > 4 {
-//            count = 1
-//        }
-//    }
-    
-    
-    //    var dicList = Array<Dictionary<String,String>>()
     var dicList = NSMutableArray()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTable.delegate = self
         mainTable.dataSource = self
-        
-        
-        
-        //手写的滚动图
-//        timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "timerFunction", userInfo: nil, repeats: true)
-//        timer?.fire()
-//        
-//        //右划   没动画
-//        var swipeGesture = UISwipeGestureRecognizer(target: self, action: "handleSwipeGesture:")
-//        self.view.addGestureRecognizer(swipeGesture)
-//        //左划
-//        var swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: "handleSwipeGesture:")
-//        swipeLeftGesture.direction = UISwipeGestureRecognizerDirection.Left //不设置是右
-//        self.view.addGestureRecognizer(swipeLeftGesture)
-//        
-        //滚动图
+       //滚动图
         var viewsArray = NSMutableArray()
         var colorArray = [UIColor.cyanColor(),UIColor.blueColor(),UIColor.greenColor(),UIColor.yellowColor(),UIColor.purpleColor()]
         for  i in 1...4 {
@@ -93,11 +58,6 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         mainTable.tableHeaderView = mainScorllView
         
-//        var ref = UIRefreshControl()
-//        ref.attributedTitle = NSAttributedString(string: "下拉刷新")
-//        ref.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
-//        mainTable.addSubview(ref)
-        
         //apple的下拉刷新
         self.refreshControl.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
         self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
@@ -105,33 +65,51 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         eHttp.delegate = self
         //http请求
-        eHttp.get(self.timeLineUrl,viewContro :self,{
-            //callback  隐藏读取动画
-            self.circle.stopAnimating()
-            self.circle.hidden = true
-            //显示tableview
-            self.mainTable.hidden = false
-            self.mainTable.reloadData()
-            
-            
-            
-
-        })
-       
-//        self.setupRefresh()
+        NSLog("viewDidLoad")
+        var reach = Reachability(hostName: Constant().ServerHost)
+        reach.reachableBlock = {(r:Reachability!) in
+            dispatch_async(dispatch_get_main_queue(), {
+                self.eHttp.get(self.timeLineUrl,viewContro :self,{
+                    //callback  隐藏读取动画
+                    self.circle.stopAnimating()
+                    self.circle.hidden = true
+                    //显示tableview
+                    self.mainTable.hidden = false
+                    self.mainTable.reloadData()
+                })
+            })
+        }
         
     }
     //下拉刷新绑定的方法
     func refreshData(){
         if self.refreshControl.refreshing {
-            self.refreshControl.attributedTitle = NSAttributedString(string: "加载中")
-            eHttp.get(self.timeLineUrl,viewContro :self,{
-                //停止下拉动画
-                self.refreshControl.endRefreshing()
-                self.mainTable.reloadData()
-                
-                
-                            })
+//检查手机网络
+            var reach = Reachability(hostName: Constant().ServerHost)
+            reach.unreachableBlock = {(r:Reachability!) -> Void in
+                NSLog("网络不可用")
+                dispatch_async(dispatch_get_main_queue(), {
+                    let alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
+                    self.refreshControl.endRefreshing()
+                    self.presentViewController(alert, animated: true, completion: nil)
+                })
+            }
+            
+            reach.reachableBlock = {(r:Reachability!) -> Void in
+                NSLog("网络可用")
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.refreshControl.attributedTitle = NSAttributedString(string: "加载中")
+                    self.eHttp.get(self.timeLineUrl,viewContro :self,{
+                        //停止下拉动画
+                        self.refreshControl.endRefreshing()
+                        self.mainTable.reloadData()
+                        
+                    })
+                })
+            }
+          
+            reach.startNotifier()
             
         }
     }
@@ -228,24 +206,11 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if indexPath.section == 0 {
-            var hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(99) as UILabel
-            id = hideId.text!
-            
-            //        self.presentViewController(vc, animated: true, completion: nil)
-            self.performSegueWithIdentifier("detail", sender: self)
+            if let hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(99) as? UILabel{
+                id = hideId.text?
+                self.performSegueWithIdentifier("detail", sender: self)
+            }
         }
-//        if indexPath.section == 1 {
-//            var user = NSUserDefaults()
-//            var username: NSString = user.valueForKey("username") as NSString
-//            if username.length > 0 {
-//                self.performSegueWithIdentifier("person", sender: self)
-//            }else{
-//               self.performSegueWithIdentifier("login", sender: self)
-//            }
-//
-//            
-//            
-//        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -253,8 +218,6 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         if segue.identifier == "detail"{
             var vc = segue.destinationViewController as LendDetailViewController
             vc.id = self.id
-//            println(self.id)
-//            println(vc.id)
         }
         if segue.identifier == "allList"{
             nextView = segue.destinationViewController as AllListViewController
@@ -276,9 +239,6 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     //初始化cell方法
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell : UITableViewCell!
-        
-        
-        
         var sec = indexPath.section.hashValue
         var row = indexPath.row
         
@@ -300,13 +260,6 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 
                 title.text = tmpListData[row].valueForKey("borrow_name")! as NSString
                 
-//                if let a = tmpListData[row].valueForKey("need") {
-//                    switch a{
-//                     case let b as Double:println("Double")
-//                     case let b as String:println("String")
-//                    default:break
-//                    }
-//                }
                 var d = tmpListData[row].valueForKey("need")! as Double
                 restMoney.text = "\(d)元"
                 restTime.text = tmpListData[row].valueForKey("leftdays")! as NSString
@@ -321,6 +274,9 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 hideId.text = tmpListData[row].valueForKey("id")! as NSString
                 cell.addSubview(hideId)
                 hideId.hidden = true
+            }else{
+//              如果没有数据，单元格不能点击
+                cell.accessoryType = .None
             }
         }
 //        if sec == 1{
@@ -357,10 +313,6 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
     }
     
-    func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath){
-        
-        
-    }
     //section数量
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -403,20 +355,31 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     //view将要加载的时候触发的事件
     override func viewWillAppear(animated: Bool) {
-        if self.tmpListData.count == 0 && self.listData.count == 0{
-        //如果没有获取到数据 就开始动画
-                mainTable.hidden = true
-        circle.hidden = false
-        circle.startAnimating()
-            var time = NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: "stopCircle", userInfo: nil, repeats: false)
-            
-
-        }
+         NSLog("viewWillAppear")
+//        if self.tmpListData.count == 0 && self.listData.count == 0{
+//        //如果没有获取到数据 就开始动画
+//                mainTable.hidden = true
+//        circle.hidden = false
+//        circle.startAnimating()
+//            var time = NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: "stopCircle", userInfo: nil, repeats: false)
+//            
+//
+//        }
 //        println("lendView")
         //隐藏筛选
         
-        hideSideMenuView()
-//        sideMenuController()?.sideMenu?.hideSideMenu()
+        //检查是否连接网络
+        NSLog("检查是否连接网络")
+        var reach = Reachability(hostName: Constant().ServerHost)
+        reach.unreachableBlock = {(r:Reachability!) -> Void in
+            dispatch_async(dispatch_get_main_queue(), {
+                let alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            })
+        }
+        reach.startNotifier()
+    
     }
     func stopCircle(){
         if self.circle.isAnimating() {

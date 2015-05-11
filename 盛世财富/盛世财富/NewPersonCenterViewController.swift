@@ -1,7 +1,7 @@
 //
 //  NewPersonCenterViewController.swift
 //  盛世财富
-//
+//  我的账号
 //  Created by 肖典 on 15/5/6.
 //  Copyright (c) 2015年 sscf88. All rights reserved.
 //
@@ -113,7 +113,16 @@ class NewPersonCenterViewController:UIViewController,UITableViewDataSource,UITab
     }
     
     override func viewWillAppear(animated: Bool) {
-        
+//        检查网络
+        var reach = Reachability(hostName: Constant().ServerHost)
+        reach.unreachableBlock = {(r:Reachability!)in
+            dispatch_async(dispatch_get_main_queue(), {
+                var alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            })
+        }
+        reach.startNotifier()
     }
     
 }

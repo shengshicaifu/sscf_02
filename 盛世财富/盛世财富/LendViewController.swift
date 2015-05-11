@@ -228,24 +228,11 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if indexPath.section == 0 {
-            var hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(99) as UILabel
-            id = hideId.text!
-            
-            //        self.presentViewController(vc, animated: true, completion: nil)
-            self.performSegueWithIdentifier("detail", sender: self)
+            if let hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(99) as? UILabel{
+                id = hideId.text?
+                self.performSegueWithIdentifier("detail", sender: self)
+            }
         }
-//        if indexPath.section == 1 {
-//            var user = NSUserDefaults()
-//            var username: NSString = user.valueForKey("username") as NSString
-//            if username.length > 0 {
-//                self.performSegueWithIdentifier("person", sender: self)
-//            }else{
-//               self.performSegueWithIdentifier("login", sender: self)
-//            }
-//
-//            
-//            
-//        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -253,8 +240,6 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         if segue.identifier == "detail"{
             var vc = segue.destinationViewController as LendDetailViewController
             vc.id = self.id
-//            println(self.id)
-//            println(vc.id)
         }
         if segue.identifier == "allList"{
             nextView = segue.destinationViewController as AllListViewController
@@ -276,9 +261,6 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     //初始化cell方法
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell : UITableViewCell!
-        
-        
-        
         var sec = indexPath.section.hashValue
         var row = indexPath.row
         
@@ -300,13 +282,6 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 
                 title.text = tmpListData[row].valueForKey("borrow_name")! as NSString
                 
-//                if let a = tmpListData[row].valueForKey("need") {
-//                    switch a{
-//                     case let b as Double:println("Double")
-//                     case let b as String:println("String")
-//                    default:break
-//                    }
-//                }
                 var d = tmpListData[row].valueForKey("need")! as Double
                 restMoney.text = "\(d)元"
                 restTime.text = tmpListData[row].valueForKey("leftdays")! as NSString
@@ -321,6 +296,8 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 hideId.text = tmpListData[row].valueForKey("id")! as NSString
                 cell.addSubview(hideId)
                 hideId.hidden = true
+            }else{
+                cell.accessoryType = .None
             }
         }
 //        if sec == 1{
@@ -385,20 +362,31 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     //view将要加载的时候触发的事件
     override func viewWillAppear(animated: Bool) {
-        if self.tmpListData.count == 0 && self.listData.count == 0{
-        //如果没有获取到数据 就开始动画
-                mainTable.hidden = true
-        circle.hidden = false
-        circle.startAnimating()
-            var time = NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: "stopCircle", userInfo: nil, repeats: false)
-            
-
-        }
+        
+//        if self.tmpListData.count == 0 && self.listData.count == 0{
+//        //如果没有获取到数据 就开始动画
+//                mainTable.hidden = true
+//        circle.hidden = false
+//        circle.startAnimating()
+//            var time = NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: "stopCircle", userInfo: nil, repeats: false)
+//            
+//
+//        }
 //        println("lendView")
         //隐藏筛选
         
-        hideSideMenuView()
-//        sideMenuController()?.sideMenu?.hideSideMenu()
+        //检查是否连接网络
+        NSLog("检查是否连接网络")
+        var reach = Reachability(hostName: Constant().ServerHost)
+        reach.unreachableBlock = {(r:Reachability!) -> Void in
+            dispatch_async(dispatch_get_main_queue(), {
+                let alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            })
+        }
+        reach.startNotifier()
+    
     }
     func stopCircle(){
         if self.circle.isAnimating() {

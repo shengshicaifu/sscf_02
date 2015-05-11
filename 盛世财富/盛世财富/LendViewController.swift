@@ -69,7 +69,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         var viewsArray = NSMutableArray()
         var colorArray = [UIColor.cyanColor(),UIColor.blueColor(),UIColor.greenColor(),UIColor.yellowColor(),UIColor.purpleColor()]
         for  i in 1...4 {
-            var tempImageView = UIImageView(frame:CGRectMake(0, 64, self.view.layer.frame.width, 100))//代码指定位置
+            var tempImageView = UIImageView(frame:CGRectMake(0, 64, self.view.layer.frame.width, 175))//代码指定位置
             tempImageView.image = UIImage(named:"\(i).jpeg")//图片名
             tempImageView.contentMode = UIViewContentMode.ScaleAspectFill
             tempImageView.clipsToBounds = true
@@ -77,7 +77,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             
         }
         //scrollview滚动
-        var mainScorllView = YYCycleScrollView(frame:CGRectMake(0, 64, self.view.layer.frame.width, 100),animationDuration:10.0)
+        var mainScorllView = YYCycleScrollView(frame:CGRectMake(0, 64, self.view.layer.frame.width, 175),animationDuration:10.0)
         mainScorllView.fetchContentViewAtIndex = {(pageIndex:Int)->UIView in
             return viewsArray.objectAtIndex(pageIndex) as UIView
         }
@@ -366,7 +366,25 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         return 1
         
     }
-    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0{
+            let v = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 35))
+            let title = UILabel(frame:CGRect(x: 13, y: 10, width: v.frame.width, height: 18))
+            title.text = "投资理财"
+            title.font = UIFont(name: "System", size: 16)
+            title.textColor = UIColor.grayColor()
+            v.addSubview(title)
+            return v
+        }
+        if section == 1{
+            let v = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 35))
+            let title = UILabel(frame:CGRect(x: 13, y: 10, width: v.frame.width, height: 18))
+            title.text = "热销产品"
+            title.font = UIFont(name: "System", size: 16)
+            return v
+        }
+        return UIView()
+    }
     //section的title
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0{
@@ -380,7 +398,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
 //        if section == 0 {
 //            return 130
 //        }
-        return 30
+        return 35
     }
     
     //view将要加载的时候触发的事件

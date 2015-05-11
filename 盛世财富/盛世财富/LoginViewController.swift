@@ -67,9 +67,12 @@ class LoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol {
                     var user = NSUserDefaults()
                     user.setObject(self.usernameLabel.text, forKey: "username")
                     user.setObject(result["data"]?["userPass"], forKey: "userpass")
-                    println(user.valueForKey("userpass"))
-                    
-                    self.performSegueWithIdentifier("loginIdentifier", sender: self)
+//                    println(user.valueForKey("userpass"))
+                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        var view = NewPersonCenterViewController()
+                        view.run(result)
+                    })
+//                    self.performSegueWithIdentifier("loginIdentifier", sender: self)
                 }
                 if(code == 0){
                     //报错弹窗

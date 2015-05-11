@@ -33,7 +33,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         }
         if choice.titleLabel?.text == "确定" {
             choice.setTitle("筛选", forState: nil)
-            eHttp.get(self.timeLineUrl+"-page-2",viewContro :self,{
+            eHttp.get(self.timeLineUrl+"-page-2",view :self.view,callback: {
                 self.mainTable.reloadData()
             })
             hideSideMenuView()
@@ -52,7 +52,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
 //        self.refreshControl.addTarget(self, action: "setupRefresh", forControlEvents: UIControlEvents.ValueChanged)
 //        self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
 //        mainTable.addSubview(self.refreshControl)
-        eHttp.get(self.timeLineUrl,viewContro :self,{
+        eHttp.get(self.timeLineUrl,view :self.view,callback: {
 //            self.mainTable.reloadData()
             self.circle.stopAnimating()
             self.circle.hidden = true
@@ -117,7 +117,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             var nextPage = String(self.page + 1)
             var tmpTimeLineUrl = self.timeLineUrl + "-page-" + nextPage as NSString
             self.eHttp.delegate = self
-            self.eHttp.get(tmpTimeLineUrl,viewContro :self,{
+            self.eHttp.get(tmpTimeLineUrl,view :self.view,callback: {
                 self.mainTable.reloadData()
             })
             

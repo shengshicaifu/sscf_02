@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class LoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol {
+    @IBOutlet weak var login: UIButton!
+    @IBOutlet weak var regist: UIButton!
     var timeLineUrl = "http://www.sscf88.com/App-Login"//链接地址
     var tmpListData: NSMutableArray = NSMutableArray()//临时数据  下拉添加
     var eHttp: HttpController = HttpController()//新建一个httpController
@@ -17,8 +19,10 @@ class LoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol {
         super.viewDidLoad()
         usernameLabel.delegate = self
         passwordLabel.delegate = self
-        var user = NSUserDefaults()
-        println(user.valueForKey("username"))
+        login.layer.cornerRadius = 5
+        regist.layer.cornerRadius = 5
+        regist.layer.borderColor = UIColor.grayColor().CGColor
+        regist.layer.borderWidth = 1
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -69,16 +73,15 @@ class LoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol {
                                 
                                 println(result)
                                 if(code == 200){
-                                    var user = NSUserDefaults()
+                                    var user = NSUserDefaults.standardUserDefaults()
                                     user.setObject(self.usernameLabel.text, forKey: "username")
                                     user.setObject(result["data"]?["userPass"], forKey: "userpass")
                                     user.setObject(result["data"]?["userPic"], forKey: "userpic")
-                                    user.setObject(result["data"]?["proInfo"], forKey: "proinfo")
+                                    user.setObject("1",forKey: "usermoney")
+                                    println(user.objectForKey("usermoney"))
+//                                    user.setObject(result["data"]?["proInfo"]?["total_all"], forKey: "usermoney")
                                     //                    println(user.valueForKey("userpass"))
-                                    self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                                        var view = NewPersonCenterViewController()
-                                        
-                                    })
+                                    self.dismissViewControllerAnimated(true, completion: nil)
                                     //                    self.performSegueWithIdentifier("loginIdentifier", sender: self)
                                 }
                                 if(code == 0){

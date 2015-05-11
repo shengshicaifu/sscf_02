@@ -64,12 +64,25 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         mainTable.addSubview(self.refreshControl)
         
         eHttp.delegate = self
+        
+        if self.tmpListData.count == 0 && self.listData.count == 0{
+            //如果没有获取到数据 就开始动画
+            self.mainTable.hidden = true
+            self.circle.hidden = false
+            self.circle.startAnimating()
+            var time = NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: "stopCircle", userInfo: nil, repeats: false)
+            
+            
+        }
         //http请求
-        NSLog("viewDidLoad")
+//        NSLog("viewDidLoad")
         var reach = Reachability(hostName: Constant().ServerHost)
-        reach.reachableBlock = {(r:Reachability!) in
+        reach.reachableBlock = {(r:Reachability!) -> Void in
+//
             dispatch_async(dispatch_get_main_queue(), {
-                self.eHttp.get(self.timeLineUrl,viewContro :self,{
+                
+
+                self.eHttp.get(self.timeLineUrl,view :self.view,callback: {
                     //callback  隐藏读取动画
                     self.circle.stopAnimating()
                     self.circle.hidden = true
@@ -79,6 +92,8 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 })
             })
         }
+        reach.startNotifier()
+
         
     }
     //下拉刷新绑定的方法
@@ -100,7 +115,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 NSLog("网络可用")
                 dispatch_async(dispatch_get_main_queue(), {
                     self.refreshControl.attributedTitle = NSAttributedString(string: "加载中")
-                    self.eHttp.get(self.timeLineUrl,viewContro :self,{
+                    self.eHttp.get(self.timeLineUrl,view :self.view,callback: {
                         //停止下拉动画
                         self.refreshControl.endRefreshing()
                         self.mainTable.reloadData()
@@ -169,35 +184,6 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             return 90
         }
     }
-   
-//    //划动手势
-//    func handleSwipeGesture(sender: UISwipeGestureRecognizer){
-//        //划动的方向
-//        var direction = sender.direction
-//        //判断是上下左右
-//        switch (direction){
-//        case UISwipeGestureRecognizerDirection.Left:
-//            
-//            count++;//下标++
-//            break
-//        case UISwipeGestureRecognizerDirection.Right:
-//            
-//            count--;//下标--
-//            break
-//            
-//        default:
-//            break;
-//        }
-//        if count > 4{
-//            count = 1
-//        }
-//        if count < 1 {
-//            count = 4
-//        }
-//        //imageView显示图片
-//        topImage.image = UIImage(named: "\(count).jpg")
-//    }
-//    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -355,21 +341,11 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     //view将要加载的时候触发的事件
     override func viewWillAppear(animated: Bool) {
-         NSLog("viewWillAppear")
-//        if self.tmpListData.count == 0 && self.listData.count == 0{
-//        //如果没有获取到数据 就开始动画
-//                mainTable.hidden = true
-//        circle.hidden = false
-//        circle.startAnimating()
-//            var time = NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: "stopCircle", userInfo: nil, repeats: false)
-//            
-//
-//        }
-//        println("lendView")
+        //        println("lendView")
         //隐藏筛选
         
         //检查是否连接网络
-        NSLog("检查是否连接网络")
+//        NSLog("检查是否连接网络")
         var reach = Reachability(hostName: Constant().ServerHost)
         reach.unreachableBlock = {(r:Reachability!) -> Void in
             dispatch_async(dispatch_get_main_queue(), {

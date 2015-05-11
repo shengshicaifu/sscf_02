@@ -8,15 +8,19 @@
 
 import Foundation
 import UIKit
-class NewPersonCenterViewController:UIViewController,UITableViewDataSource,UITableViewDelegate {
+class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,UITableViewDelegate {
     
     @IBOutlet weak var mainTable: UITableView!
+    @IBOutlet weak var head: UIImageView!
+    @IBOutlet weak var money: UILabel!
+
     var ehttp = HttpController()
     var url = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTable.dataSource = self
         mainTable.delegate = self
+        
 //        self.run(NSDictionary())
         
 //        手动添加蓝色大方块
@@ -33,73 +37,58 @@ class NewPersonCenterViewController:UIViewController,UITableViewDataSource,UITab
 //        img.addSubview(myMoney)
 //        mainTable.tableHeaderView = img
 //        
+        
     }
     
+    func refreshData(){
+        var user = NSUserDefaults.standardUserDefaults()
+        if let username:NSString = user.objectForKey("username") as? NSString {
+            self.navigationItem.title = username
+        }else {
+            self.navigationItem.title = "请登录"
+        }
+        if let usermoney:NSString = user.objectForKey("usermoney") as? NSString {
+            self.money.text = usermoney
+        }else {
+            self.money.text = "- -"
+        }
+        if let headImage:NSData = user.objectForKey("headImage") as? NSData {
+            self.head.image = UIImage(data: headImage)
+        }else if let userpic:NSString = user.objectForKey("userpic") as? NSString {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                let image = NSData(contentsOfURL: NSURL(string: userpic)!)
+                self.head.image = UIImage(data: image!)
+                user.setObject(image, forKey: "headImage")
+                //这里写需要大量时间的代码
+                println("这里写需要大量时间的代码")
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    //这里返回主线程，写需要主线程执行的代码
+                    println("这里返回主线程，写需要主线程执行的代码")
+                })
+               
+            })
+            let thread = NSThread(target: self, selector: "getHead:", object: userpic)
+            thread.start()
+        }else {
+            //放默认头像
+        }
+        
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+   
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section.hashValue == 0{
-            return 1
-        }
-        if section.hashValue == 1{
-            return 2
-        }
-        if section.hashValue == 2{
-            return 1
-        }
-        return 0
-    }
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        var sec = indexPath.section.hashValue
-        var row = indexPath.row
-        if sec == 0 {
-            if row == 0 {
-                return 200
-            }
-        }
-        if sec == 1 {
-            return 44
-        }
-        if sec == 2 {
-            return 44
-        }
-        return 0
-    }
-    
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell =  UITableViewCell()
-        var sec = indexPath.section.hashValue
-        var row = indexPath.row
-        if sec == 0{
-            if row == 0{
-                cell = self.mainTable.dequeueReusableCellWithIdentifier("totalMoney") as UITableViewCell
-            }
-            
-        }
-        if sec == 1{
-            if row == 0{
-                cell = self.mainTable.dequeueReusableCellWithIdentifier("finance") as UITableViewCell
-            }
-            if row == 1{
-                cell = self.mainTable.dequeueReusableCellWithIdentifier("record") as UITableViewCell
-            }
-            
-        }
-        if sec == 2{
-            cell = self.mainTable.dequeueReusableCellWithIdentifier("secure") as UITableViewCell
-        }
-        return cell
-    }
-    //section数量
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+    func getHead(sender:String){
+        
+        
         
     }
+    
     //section的header高度
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 1
         }
@@ -123,6 +112,8 @@ class NewPersonCenterViewController:UIViewController,UITableViewDataSource,UITab
             })
         }
         reach.startNotifier()
+        
+        refreshData()
     }
     
 }

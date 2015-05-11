@@ -9,13 +9,12 @@ class HttpController: NSObject{
     var delegate: HttpProtocol?
     
     //json get方法
-    func get(url: String,viewContro :UIViewController,callback : () -> Void){
+    func get(url: String,view :UIView,callback : () -> Void){
         var nsUrl: NSURL = NSURL(string: url)!
         var request: NSMutableURLRequest = NSMutableURLRequest(URL: nsUrl)
         var errorMessage = String()
         request.timeoutInterval = 10
-        
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!)->Void in
+                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse!,data: NSData!,error: NSError!)->Void in
             if(error == nil){
 //                println(data)
 //                println(NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil))
@@ -25,7 +24,7 @@ class HttpController: NSObject{
             }else{
                 //报错弹窗
                 println(error.localizedDescription)
-                AlertView.showMsg(error.localizedDescription, parentView: viewContro.view)
+                AlertView.showMsg(error.localizedDescription, parentView: view)
             }
             callback()
 
@@ -64,4 +63,16 @@ class HttpController: NSObject{
             }
         })
     }
+//    func testInternet(view :UIViewController) -> Bool{
+//        var reach = Reachability(hostName: Constant().ServerHost)
+//        reach.unreachableBlock = {(r:Reachability!) -> Void in
+//            dispatch_async(dispatch_get_main_queue(), {
+//                let alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)
+//                alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
+//                view.presentViewController(alert, animated: true, completion: nil)
+//            })
+//        }
+//        
+//        reach.startNotifier()
+//    }
 }

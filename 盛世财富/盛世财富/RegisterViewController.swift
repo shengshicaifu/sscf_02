@@ -16,6 +16,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var surePwdTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
+    @IBOutlet weak var regist: UIButton!
     var keyboardShown:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         surePwdTextField.delegate = self
         passwordTextField.delegate = self
         phoneTextField.delegate = self
+        regist.layer.cornerRadius = 5
         self.navigationItem.title = "用户注册"
     }
     

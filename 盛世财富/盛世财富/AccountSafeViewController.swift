@@ -29,13 +29,13 @@ class AccountSafeViewController: UIViewController,UITableViewDataSource,UITableV
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("firstCell") as UITableViewCell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("firstCell") as! UITableViewCell
         
-        var imageView:UIImageView = cell.viewWithTag(1) as UIImageView
-        var tempLabel:UILabel = cell.viewWithTag(2) as UILabel
-        var realNameLabel:UILabel = cell.viewWithTag(3) as UILabel
+        var imageView:UIImageView = cell.viewWithTag(1) as! UIImageView
+        var tempLabel:UILabel = cell.viewWithTag(2) as! UILabel
+        var realNameLabel:UILabel = cell.viewWithTag(3) as! UILabel
         //标识每一项的状态：未设置，已设置
-        var flagLabel:UILabel = cell.viewWithTag(4) as UILabel
+        var flagLabel:UILabel = cell.viewWithTag(4) as! UILabel
         //将该label隐藏
         flagLabel.hidden = true
         
@@ -69,12 +69,12 @@ class AccountSafeViewController: UIViewController,UITableViewDataSource,UITableV
 //        let cell = self.tableView.dequeueReusableCellWithIdentifier("firstCell") as UITableViewCell
 //        var flagLabel:UILabel = cell.viewWithTag(4) as UILabel
         let cell:UITableViewCell = self.tableView.cellForRowAtIndexPath(indexPath)!
-        var flagLabel:UILabel = cell.viewWithTag(4) as UILabel
+        var flagLabel:UILabel = cell.viewWithTag(4) as! UILabel
         if indexPath.row == 0 {
             if flagLabel.text == "未设置" {
                 //实名未认证
-                var adv = self.storyboard?.instantiateViewControllerWithIdentifier("realNameViewController") as RealNameViewController
-                self.presentViewController(adv, animated: true, completion: nil)
+                var adv = self.storyboard?.instantiateViewControllerWithIdentifier("realNameViewController") as? RealNameViewController
+                self.presentViewController(adv!, animated: true, completion: nil)
             }else{
                 //已认证,给出提示框
                 var alert = UIAlertController(title: "提示", message: "您的实名认证已经设置", preferredStyle: UIAlertControllerStyle.Alert)
@@ -82,17 +82,17 @@ class AccountSafeViewController: UIViewController,UITableViewDataSource,UITableV
                 self.presentViewController(alert, animated: true, completion: nil)
             }
         }else if indexPath.row == 1 {
-            var adv = self.storyboard?.instantiateViewControllerWithIdentifier("bindPhoneViewController") as BindPhoneViewController
+            var adv = self.storyboard?.instantiateViewControllerWithIdentifier("bindPhoneViewController") as? BindPhoneViewController
             //将状态值赋予BindPhoneViewController的属性
             //adv.flag = flagLabel.text
-            self.presentViewController(adv, animated: true, completion: nil)
+            self.presentViewController(adv!, animated: true, completion: nil)
         }else if indexPath.row == 2{
             if flagLabel.text == "未设置" {
-                var adv = self.storyboard?.instantiateViewControllerWithIdentifier("setTradePasswordViewController") as SetTradePasswordViewController
-                self.presentViewController(adv, animated: true, completion: nil)
+                var adv = self.storyboard?.instantiateViewControllerWithIdentifier("setTradePasswordViewController") as? SetTradePasswordViewController
+                self.presentViewController(adv!, animated: true, completion: nil)
            }else{
-                var adv = self.storyboard?.instantiateViewControllerWithIdentifier("updateTradePasswordViewController") as UpdateTradePasswordViewController
-                self.presentViewController(adv, animated: true, completion: nil)
+                var adv = self.storyboard?.instantiateViewControllerWithIdentifier("updateTradePasswordViewController") as? UpdateTradePasswordViewController
+                self.presentViewController(adv!, animated: true, completion: nil)
             }
             }else {
             if flagLabel.text == "未设置"{

@@ -13,7 +13,7 @@ class PersonCenterViewController: UIViewController,UITableViewDataSource,UITable
     var txt:UITextField!
     
     //点击其他的地方隐藏键盘
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
 //        txt.resignFirstResponder()
     }
     
@@ -61,12 +61,12 @@ class PersonCenterViewController: UIViewController,UITableViewDataSource,UITable
     }
     
     func recordTapped(sender:AnyObject){
-        var detail:TransRecordViewController = self.storyboard?.instantiateViewControllerWithIdentifier("transRecordViewController") as TransRecordViewController
+        var detail:TransRecordViewController = self.storyboard?.instantiateViewControllerWithIdentifier("transRecordViewController") as! TransRecordViewController
         self.presentViewController(detail, animated: true, completion: nil)
 //        self.navigationController?.pushViewController(detail, animated: true)
     }
     func searchTapped(sender:AnyObject){
-        var search:ReturnSearchViewController = self.storyboard?.instantiateViewControllerWithIdentifier("returnSearchViewController") as ReturnSearchViewController
+        var search:ReturnSearchViewController = self.storyboard?.instantiateViewControllerWithIdentifier("returnSearchViewController") as! ReturnSearchViewController
         self.presentViewController(search, animated: true, completion: nil)
 //        self.navigationController?.pushViewController(search, animated: true)
     }
@@ -89,7 +89,7 @@ class PersonCenterViewController: UIViewController,UITableViewDataSource,UITable
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("moneyCell") as UITableViewCell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("moneyCell") as! UITableViewCell
         
         if indexPath.section == 0 {
             if indexPath.row == 0{
@@ -188,7 +188,7 @@ class PersonCenterViewController: UIViewController,UITableViewDataSource,UITable
         var section:Int =  (self.tableView.indexPathForSelectedRow()?.section)!
         //每一行的索引
         var row:Int = (self.tableView.indexPathForSelectedRow()?.row)!
-        var detailViewController:DetailViewController = segue.destinationViewController as DetailViewController
+        var detailViewController:DetailViewController = segue.destinationViewController as! DetailViewController
         //此处执行传值操作
         var topTitle:String!
         
@@ -235,35 +235,35 @@ class PersonCenterViewController: UIViewController,UITableViewDataSource,UITable
         case 0 :
             if row == 0{
                 indentifer = "accountDetailViewController"
-                var adv = self.storyboard?.instantiateViewControllerWithIdentifier(indentifer) as AccountDetailViewController
+                var adv = self.storyboard?.instantiateViewControllerWithIdentifier(indentifer) as! AccountDetailViewController
 //                self.presentViewController(adv, animated: true, completion: nil)
                 self.navigationController?.pushViewController(adv, animated: true)
             }
         case 1 :
             if row == 0 {
                 indentifer = "moneyManagerViewController"
-                var adv = self.storyboard?.instantiateViewControllerWithIdentifier(indentifer) as MoneyManagerViewController
+                var adv = self.storyboard?.instantiateViewControllerWithIdentifier(indentifer) as! MoneyManagerViewController
                 self.presentViewController(adv, animated: true, completion: nil)
 //                self.navigationController?.pushViewController(adv, animated: true)
             }else if row == 1{
                 indentifer = "financeManagerViewController"
-                var adv = self.storyboard?.instantiateViewControllerWithIdentifier(indentifer) as FinanceManagerViewController
+                var adv = self.storyboard?.instantiateViewControllerWithIdentifier(indentifer) as! FinanceManagerViewController
                 self.presentViewController(adv, animated: true, completion: nil)
 //                self.navigationController?.pushViewController(adv, animated: true)
             }else if row == 2{
                 indentifer = "myBanksViewController"
-                var adv = self.storyboard?.instantiateViewControllerWithIdentifier(indentifer) as MyBanksViewController
+                var adv = self.storyboard?.instantiateViewControllerWithIdentifier(indentifer) as! MyBanksViewController
                 self.presentViewController(adv, animated: true, completion: nil)
 //                self.navigationController?.pushViewController(adv, animated: true)
             }
         case 2 :
             if row == 0{
                 indentifer = "accountSafeViewController"
-                var adv = self.storyboard?.instantiateViewControllerWithIdentifier(indentifer) as AccountSafeViewController
+                var adv = self.storyboard?.instantiateViewControllerWithIdentifier(indentifer) as! AccountSafeViewController
                 self.presentViewController(adv, animated: true, completion: nil)
 //                self.navigationController?.pushViewController(adv, animated: true)
             }else {
-                showAlert()
+//                showAlert()
             }
         default:
             indentifer = nil
@@ -271,25 +271,25 @@ class PersonCenterViewController: UIViewController,UITableViewDataSource,UITable
     }
     
     
-    func showAlert(){
-        let alert:SCLAlertView = SCLAlertView()
-        txt = alert.addTextField(title: "请输入您的登录密码")
-        //将textField的代理交由本控制器管理
-        self.txt.delegate = self
-        alert.addButton("取消"){
-            println("您按了取消")
-            alert.hideView()
-        }
-        alert.addButton("确定"){
-            println("您按了确定，登录密码为：\(self.txt.text)")
-            //alert.hideView()
-            //此处执行跳转页面的操作
-//            var tvc:TempViewController = self.storyboard?.instantiateViewControllerWithIdentifier("newPage") as TempViewController
-//            self.presentViewController(tvc, animated: true, completion: nil)
-        }
-        alert.showEdit("身份验证", subTitle: "")
-    }
-    
+//    func showAlert(){
+//        let alert:SCLAlertView = SCLAlertView()
+//        txt = alert.addTextField(title: "请输入您的登录密码")
+//        //将textField的代理交由本控制器管理
+//        self.txt.delegate = self
+//        alert.addButton("取消"){
+//            println("您按了取消")
+//            alert.hideView()
+//        }
+//        alert.addButton("确定"){
+//            println("您按了确定，登录密码为：\(self.txt.text)")
+//            //alert.hideView()
+//            //此处执行跳转页面的操作
+////            var tvc:TempViewController = self.storyboard?.instantiateViewControllerWithIdentifier("newPage") as TempViewController
+////            self.presentViewController(tvc, animated: true, completion: nil)
+//        }
+//        alert.showEdit("身份验证", subTitle: "")
+//    }
+//    
     //view将要加载的时候触发的事件
     override func viewWillAppear(animated: Bool) {
         

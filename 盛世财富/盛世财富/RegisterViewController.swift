@@ -11,8 +11,7 @@ import UIKit
 
 class RegisterViewController: UIViewController,UITextFieldDelegate {
     
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var usernameTextField: UITextField!
+    
     @IBOutlet weak var surePwdTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
@@ -20,7 +19,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     var keyboardShown:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        usernameTextField.delegate = self
+        
         surePwdTextField.delegate = self
         passwordTextField.delegate = self
         phoneTextField.delegate = self
@@ -29,11 +28,11 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func registerTapped(sender: AnyObject) {
-        usernameTextField.resignFirstResponder()
+        
         surePwdTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         phoneTextField.resignFirstResponder()
-        var username = usernameTextField.text
+        
         var surePwd = surePwdTextField.text
         var password = passwordTextField.text
         var phone = phoneTextField.text
@@ -43,8 +42,6 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
             AlertView.showMsg("密码不能为空", parentView: self.view)
         }else if password != surePwd{
             AlertView.showMsg("两次输入的密码不一致", parentView: self.view)
-        }else if username.isEmpty{
-            AlertView.showMsg("用户名不能为空", parentView: self.view)
         }else{
             //此处执行注册操作
 //            showAlert("执行注册操作")
@@ -99,15 +96,10 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         }
         
         var info:NSDictionary = aNSNotification.userInfo!
-        var value:NSValue = info.objectForKey(UIKeyboardAnimationCurveUserInfoKey!) as NSValue
+        var value:NSValue = info.objectForKey(UIKeyboardAnimationCurveUserInfoKey) as! NSValue
         var keyboardSize:CGSize = value.CGRectValue().size
         
-        var viewFrame:CGRect = scrollView.frame
-        viewFrame.size.height -= keyboardSize.height
-        scrollView.frame = viewFrame
         
-        var textFieldRect:CGRect = usernameTextField.frame
-        scrollView.scrollRectToVisible(textFieldRect, animated: true)
         
         keyboardShown = true
     }
@@ -115,15 +107,10 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     func keyboardWasHidden(aNSNotification:NSNotification){
         println("keyboardWasHidden")
         var info:NSDictionary = aNSNotification.userInfo!
-        var value:NSValue = info.objectForKey(UIKeyboardAnimationCurveUserInfoKey!) as NSValue
+        var value:NSValue = info.objectForKey(UIKeyboardAnimationCurveUserInfoKey) as! NSValue
         var keyboardSize:CGSize = value.CGRectValue().size
         
-        var viewFrame:CGRect = scrollView.frame
-        viewFrame.size.height += keyboardSize.height
-        scrollView.frame = viewFrame
         
-        var textFieldRect:CGRect = usernameTextField.frame
-        scrollView.scrollRectToVisible(textFieldRect, animated: true)
     }
     
     
@@ -133,14 +120,14 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         var rect:CGRect = CGRectMake( 0,  0,  self.view.frame.size.width,  self.view.frame.size.height)
         self.view.frame = rect;
         UIView.commitAnimations()
-        usernameTextField.resignFirstResponder()
+        
         surePwdTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         phoneTextField.resignFirstResponder()
         return true
     }
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        usernameTextField.resignFirstResponder()
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        
         surePwdTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         phoneTextField.resignFirstResponder()

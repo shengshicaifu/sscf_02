@@ -132,12 +132,12 @@ class RefreshBaseView: UIView {
         // 旧的父控件
          
         if (self.superview != nil) {
-            self.superview?.removeObserver(self, forKeyPath: RefreshContentSize, context: nil)
+            self.superview?.removeObserver(self, forKeyPath: RefreshContentSize as String, context: nil)
             
             }
         // 新的父控件
         if (newSuperview != nil) {
-            newSuperview.addObserver(self, forKeyPath: RefreshContentOffset, options: NSKeyValueObservingOptions.New, context: nil)
+            newSuperview.addObserver(self, forKeyPath: RefreshContentOffset as String, options: NSKeyValueObservingOptions.New, context: nil)
             var rect:CGRect = self.frame
             // 设置宽度   位置
             rect.size.width = newSuperview.frame.size.width
@@ -145,7 +145,7 @@ class RefreshBaseView: UIView {
             rect.origin.x = (newSuperview.frame.size.width - rect.size.width)/2
             self.frame = frame;
             //UIScrollView
-            scrollView = newSuperview as UIScrollView
+            scrollView = newSuperview as! UIScrollView
             scrollViewOriginalInset = scrollView.contentInset;
         }
     }

@@ -28,7 +28,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     @IBAction func showSearch(sender: AnyObject) {
         
         if choice.titleLabel?.text == "筛选" {
-            showSideMenuView()
+            
             choice.setTitle("确定", forState: nil)
         }
         if choice.titleLabel?.text == "确定" {
@@ -36,7 +36,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             eHttp.get(self.timeLineUrl+"-page-2",view :self.view,callback: {
                 self.mainTable.reloadData()
             })
-            hideSideMenuView()
+            
         }
     }
     
@@ -117,7 +117,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             var nextPage = String(self.page + 1)
             var tmpTimeLineUrl = self.timeLineUrl + "-page-" + nextPage as NSString
             self.eHttp.delegate = self
-            self.eHttp.get(tmpTimeLineUrl,view :self.view,callback: {
+            self.eHttp.get(tmpTimeLineUrl as String,view :self.view,callback: {
                 self.mainTable.reloadData()
             })
             
@@ -140,7 +140,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     }
     func didRecieveResult(result: NSDictionary){
         if(result["data"]?.valueForKey("list") != nil){
-            self.tmpListData = result["data"]?.valueForKey("list") as NSMutableArray //list数据
+            self.tmpListData = result["data"]?.valueForKey("list") as! NSMutableArray //list数据
 //            self.page = result["data"]?["page"] as Int
             self.mainTable.reloadData()
         }
@@ -164,23 +164,23 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.mainTable.dequeueReusableCellWithIdentifier("allList") as UITableViewCell
-        var money = cell.viewWithTag(100) as UILabel
-        var percent = cell.viewWithTag(101) as UILabel
-        var month = cell.viewWithTag(102) as UILabel
-        var title = cell.viewWithTag(103) as UILabel
-        var hideId = cell.viewWithTag(99) as UILabel
+        let cell = self.mainTable.dequeueReusableCellWithIdentifier("allList") as! UITableViewCell
+        var money = cell.viewWithTag(100) as! UILabel
+        var percent = cell.viewWithTag(101) as! UILabel
+        var month = cell.viewWithTag(102) as! UILabel
+        var title = cell.viewWithTag(103) as! UILabel
+        var hideId = cell.viewWithTag(99) as! UILabel
         var row = indexPath.row
         if listData.count > 0 {
-            var tmp = listData[row].valueForKey("borrow_money")! as NSString
+            var tmp = listData[row].valueForKey("borrow_money") as! String
             money.text = "\(tmp)元"
-            tmp = listData[row].valueForKey("borrow_interest_rate")! as NSString
+            tmp = listData[row].valueForKey("borrow_interest_rate") as! String
             percent.text = "\(tmp)%"
-            tmp = listData[row].valueForKey("borrow_duration")! as NSString
-            var unit = listData[row].valueForKey("duration_unit")! as NSString
+            tmp = listData[row].valueForKey("borrow_duration") as! String
+            var unit = listData[row].valueForKey("duration_unit") as! String
             month.text = "\(tmp)\(unit)"
-            title.text = listData[row].valueForKey("borrow_name")! as NSString
-            hideId.text = listData[row].valueForKey("id")! as NSString
+            title.text = listData[row].valueForKey("borrow_name") as? String
+            hideId.text = listData[row].valueForKey("id") as? String
         }
         return cell
         
@@ -188,15 +188,15 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(99) as UILabel
+        var hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(99) as! UILabel
         id = hideId.text!
         //        self.presentViewController(vc, animated: true, completion: nil)
         self.performSegueWithIdentifier("detail", sender: self)
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        hideSideMenuView()
+        
         if segue.identifier == "detail" {
-            var vc = segue.destinationViewController as LendDetailViewController
+            var vc = segue.destinationViewController as! LendDetailViewController
 
             vc.id = self.id	
 
@@ -213,7 +213,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             circle.hidden = false
             circle.startAnimating()
         }
-        hideSideMenuView()
+        
     }
 }
 

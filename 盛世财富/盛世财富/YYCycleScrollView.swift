@@ -88,12 +88,12 @@ class YYCycleScrollView: UIView,UIScrollViewDelegate {
 
     func configContentViews(){
         for view:AnyObject in self.scrollView.subviews{
-            (view  as UIView).removeFromSuperview()
+            (view  as! UIView).removeFromSuperview()
         }
         self.setScrollViewContentDataSource()
         var counter:Int = 0
         for i in 0 ..< self.contentViews.count {
-            var contentView = self.contentViews.objectAtIndex(i) as UIView
+            var contentView = self.contentViews.objectAtIndex(i) as! UIView
             contentView.userInteractionEnabled = true
             var tapGesture = UITapGestureRecognizer(target:self,action:"contentViewTapAction:")
             contentView.addGestureRecognizer(tapGesture)

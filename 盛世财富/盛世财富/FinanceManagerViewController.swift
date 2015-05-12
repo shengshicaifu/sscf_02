@@ -39,12 +39,12 @@ class FinanceManagerViewController: UIViewController,UITableViewDataSource,UITab
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        var cell = self.tableView.dequeueReusableCellWithIdentifier("transRecordCell") as UITableViewCell
+        var cell = self.tableView.dequeueReusableCellWithIdentifier("transRecordCell") as! UITableViewCell
         if indexPath.section == 0{
             if indexPath.row == 0{
             //取出控件
-            var label1 = cell.viewWithTag(1) as UILabel
-            var label2 = cell.viewWithTag(2) as UILabel
+            var label1 = cell.viewWithTag(1) as! UILabel
+            var label2 = cell.viewWithTag(2) as! UILabel
                 label1.text = "账户净资产"
                 label2.text = "0.00"
             label1 = UILabel(frame: CGRectMake(10, 10, self.tableView.bounds.width/2, 20))

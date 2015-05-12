@@ -58,7 +58,7 @@ class LendViewController1: UIViewController,UITableViewDataSource,UITableViewDel
         
         var mainScorllView = YYCycleScrollView(frame:CGRectMake(0, 0, 380, 100),animationDuration:10.0)
         mainScorllView.fetchContentViewAtIndex = {(pageIndex:Int)->UIView in
-            return viewsArray.objectAtIndex(pageIndex) as UIView
+            return viewsArray.objectAtIndex(pageIndex) as! UIView
         }
         
         mainScorllView.totalPagesCount = {()->Int in
@@ -122,7 +122,7 @@ class LendViewController1: UIViewController,UITableViewDataSource,UITableViewDel
     }
     func didRecieveResult(result: NSDictionary){
         if(result["data"]?.valueForKey("list") != nil){
-            self.tmpListData = result["data"]?.valueForKey("list") as NSMutableArray //list数据
+            self.tmpListData = result["data"]?.valueForKey("list") as! NSMutableArray //list数据
             //            self.page = result["data"]?["page"] as Int
             self.mainTable.reloadData()
         }
@@ -171,10 +171,10 @@ class LendViewController1: UIViewController,UITableViewDataSource,UITableViewDel
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var nextView:UIViewController?
         if segue.identifier == "detail"{
-            nextView = segue.destinationViewController as LendDetailViewController
+            nextView = segue.destinationViewController as! LendDetailViewController
         }
         if segue.identifier == "allList"{
-            nextView = segue.destinationViewController as AllListViewController
+            nextView = segue.destinationViewController as! AllListViewController
         }
         if nextView != nil {
             nextView!.hidesBottomBarWhenPushed = true
@@ -197,19 +197,19 @@ class LendViewController1: UIViewController,UITableViewDataSource,UITableViewDel
         var row = indexPath.row
         
         if val == 0{
-            cell = self.mainTable.dequeueReusableCellWithIdentifier("list") as UITableViewCell
-            var image = cell.viewWithTag(100) as UIImageView
-            var title = cell.viewWithTag(101) as UILabel
-            var restMoney = cell.viewWithTag(102) as UILabel
-            var restTime = cell.viewWithTag(103) as UILabel
-            var period = cell.viewWithTag(104) as UILabel
-            var totalMoney = cell.viewWithTag(105) as UILabel
-            var percent = cell.viewWithTag(106) as UILabel
+            cell = self.mainTable.dequeueReusableCellWithIdentifier("list") as! UITableViewCell
+            var image = cell.viewWithTag(100) as! UIImageView
+            var title = cell.viewWithTag(101) as! UILabel
+            var restMoney = cell.viewWithTag(102) as! UILabel
+            var restTime = cell.viewWithTag(103) as! UILabel
+            var period = cell.viewWithTag(104) as! UILabel
+            var totalMoney = cell.viewWithTag(105) as! UILabel
+            var percent = cell.viewWithTag(106) as! UILabel
             
             if tmpListData.count > 0 {
                 
                 
-                title.text = tmpListData[row].valueForKey("borrow_name")! as NSString
+                title.text = tmpListData[row].valueForKey("borrow_name") as? String
                 
                 //                if let a = tmpListData[row].valueForKey("need") {
                 //                    switch a{
@@ -218,22 +218,22 @@ class LendViewController1: UIViewController,UITableViewDataSource,UITableViewDel
                 //                    default:break
                 //                    }
                 //                }
-                var d = tmpListData[row].valueForKey("need")! as Double
+                var d = tmpListData[row].valueForKey("need")! as! Double
                 restMoney.text = "\(d)元"
-                restTime.text = tmpListData[row].valueForKey("leftdays")! as NSString
+                restTime.text = tmpListData[row].valueForKey("leftdays") as? String
                 
-                var tmp = tmpListData[row].valueForKey("borrow_duration")! as NSString
-                var unit = tmpListData[row].valueForKey("duration_unit")! as NSString
+                var tmp = tmpListData[row].valueForKey("borrow_duration") as? String
+                var unit = tmpListData[row].valueForKey("duration_unit") as? String
                 period.text = "\(tmp)\(unit)"
-                tmp = tmpListData[row].valueForKey("borrow_money")! as NSString
+                tmp = tmpListData[row].valueForKey("borrow_money") as? String
                 totalMoney.text = "\(tmp)元"
-                tmp = tmpListData[row].valueForKey("borrow_interest_rate")! as NSString
+                tmp = tmpListData[row].valueForKey("borrow_interest_rate") as? String
                 percent.text = "\(tmp)%"
                 
             }
         }
         if val == 1 {
-            cell = self.mainTable.dequeueReusableCellWithIdentifier("person") as UITableViewCell
+            cell = self.mainTable.dequeueReusableCellWithIdentifier("person") as? UITableViewCell
         }
         
         //        circle.hidden = true

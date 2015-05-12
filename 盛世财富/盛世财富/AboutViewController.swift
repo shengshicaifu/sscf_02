@@ -32,15 +32,15 @@ class AboutViewController: UIViewController ,UITableViewDataSource,UITableViewDe
         
         switch indexPath.row {
         case 0:
-            cell = self.mainTable.dequeueReusableCellWithIdentifier("version") as UITableViewCell
+            cell = self.mainTable.dequeueReusableCellWithIdentifier("version") as! UITableViewCell
             
         case 1:
-            cell = self.mainTable.dequeueReusableCellWithIdentifier("wechat") as UITableViewCell
+            cell = self.mainTable.dequeueReusableCellWithIdentifier("wechat") as! UITableViewCell
             
         case 2:
-            cell = self.mainTable.dequeueReusableCellWithIdentifier("weibo") as UITableViewCell
+            cell = self.mainTable.dequeueReusableCellWithIdentifier("weibo") as!UITableViewCell
         case 3:
-            cell = self.mainTable.dequeueReusableCellWithIdentifier("phone") as UITableViewCell
+            cell = self.mainTable.dequeueReusableCellWithIdentifier("phone") as! UITableViewCell
         default: cell = nil
         }
         return cell

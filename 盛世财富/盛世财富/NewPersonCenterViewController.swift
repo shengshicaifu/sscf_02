@@ -20,7 +20,9 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         super.viewDidLoad()
         mainTable.dataSource = self
         mainTable.delegate = self
-        
+        //自适应字体大小
+        money.adjustsFontSizeToFitWidth = true
+        //
 //        self.run(NSDictionary())
         
 //        手动添加蓝色大方块
@@ -42,12 +44,12 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
     
     func refreshData(){
         var user = NSUserDefaults.standardUserDefaults()
-        if let username:NSString = user.objectForKey("username") as? NSString {
+        if let username:String = user.objectForKey("username") as? String {
             self.navigationItem.title = username
         }else {
             self.navigationItem.title = "请登录"
         }
-        if let usermoney:NSString = user.objectForKey("usermoney") as? NSString {
+        if let usermoney:String = user.objectForKey("usermoney") as? String {
             self.money.text = usermoney
         }else {
             self.money.text = "- -"
@@ -56,7 +58,7 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
             self.head.image = UIImage(data: headImage)
         }else if let userpic:NSString = user.objectForKey("userpic") as? NSString {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                let image = NSData(contentsOfURL: NSURL(string: userpic)!)
+                let image = NSData(contentsOfURL: NSURL(string: userpic as String)!)
                 self.head.image = UIImage(data: image!)
                 user.setObject(image, forKey: "headImage")
                 //这里写需要大量时间的代码

@@ -73,7 +73,7 @@ class BindPhoneViewController: UIViewController,UITextFieldDelegate {
         oldPhoneCodeTextFied.resignFirstResponder()
         return true
     }
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         oldPhoneCodeTextFied.resignFirstResponder()
     }
     

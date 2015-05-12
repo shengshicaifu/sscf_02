@@ -32,11 +32,11 @@ class ReturnSearchViewController: UIViewController,UITableViewDataSource,UITable
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        var cell = self.tableView.dequeueReusableCellWithIdentifier("transRecordCell") as UITableViewCell
+        var cell = self.tableView.dequeueReusableCellWithIdentifier("transRecordCell") as! UITableViewCell
     
         //取出控件
-        var label1 = cell.viewWithTag(1) as UILabel
-        var label2 = cell.viewWithTag(2) as UILabel
+        var label1 = cell.viewWithTag(1) as! UILabel
+        var label2 = cell.viewWithTag(2) as! UILabel
     
         //对控件进行赋值
         for string in arrString {

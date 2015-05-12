@@ -45,7 +45,7 @@ class AccountDetailViewController: UIViewController,UITableViewDelegate,UITableV
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = self.tableView.dequeueReusableCellWithIdentifier("firstCell") as UITableViewCell
+        var cell = self.tableView.dequeueReusableCellWithIdentifier("firstCell") as! UITableViewCell
         
         if indexPath.section == 0 {
             if indexPath.row == 0{
@@ -114,7 +114,7 @@ class AccountDetailViewController: UIViewController,UITableViewDelegate,UITableV
         
         
         //跳转页面
-        var mainView:LoginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as LoginViewController
+        var mainView:LoginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController
         //???此处跳转到主页面会出现nav和bar没有的情况
 //        self.presentViewController(mainView, animated: true,completion: nil)
         //该方法是在右navigation的情况下使用的
@@ -147,7 +147,7 @@ class AccountDetailViewController: UIViewController,UITableViewDelegate,UITableV
     }
     
     //重写方法，使之能访问图库
-    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         imageView.image = image
         println(image.size.height)
         //此处可以将图片资源保存到数据库中

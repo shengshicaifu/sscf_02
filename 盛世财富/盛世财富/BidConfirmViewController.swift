@@ -30,7 +30,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         // Dispose of any resources that can be recreated.
     }
 
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         
         bidMoney.resignFirstResponder()
         reward.resignFirstResponder()

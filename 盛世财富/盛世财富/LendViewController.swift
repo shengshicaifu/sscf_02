@@ -38,13 +38,14 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             tempImageView.image = UIImage(named:"\(i).jpeg")//图片名
             tempImageView.contentMode = UIViewContentMode.ScaleAspectFill
             tempImageView.clipsToBounds = true
+            
             viewsArray.addObject(tempImageView)//添加
             
         }
         //scrollview滚动
         var mainScorllView = YYCycleScrollView(frame:CGRectMake(0, 64, self.view.layer.frame.width, 175),animationDuration:10.0)
         mainScorllView.fetchContentViewAtIndex = {(pageIndex:Int)->UIView in
-            return viewsArray.objectAtIndex(pageIndex) as UIView
+            return viewsArray.objectAtIndex(pageIndex) as! UIView
         }
         
         mainScorllView.totalPagesCount = {()->Int in
@@ -171,7 +172,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func didRecieveResult(result: NSDictionary){
 //        println(result)
         if(result["data"]?.valueForKey("list") != nil){
-            self.tmpListData = result["data"]?.valueForKey("list") as NSMutableArray //list数据
+            self.tmpListData = result["data"]?.valueForKey("list")as! NSMutableArray //list数据
 //            self.page = result["data"]?["page"] as Int
             self.mainTable.reloadData()
         }
@@ -193,7 +194,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         if indexPath.section == 0 {
             if let hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(99) as? UILabel{
-                id = hideId.text?
+                id = hideId.text
                 self.performSegueWithIdentifier("detail", sender: self)
             }
         }
@@ -202,11 +203,11 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var nextView:UIViewController?
         if segue.identifier == "detail"{
-            var vc = segue.destinationViewController as LendDetailViewController
+            var vc = segue.destinationViewController as! LendDetailViewController
             vc.id = self.id
         }
         if segue.identifier == "allList"{
-            nextView = segue.destinationViewController as AllListViewController
+            nextView = segue.destinationViewController as! AllListViewController
         }
         //隐藏tabbar
         if nextView != nil {
@@ -229,35 +230,35 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         var row = indexPath.row
         
         if sec == 0{
-            cell = self.mainTable.dequeueReusableCellWithIdentifier("list") as UITableViewCell
+            cell = self.mainTable.dequeueReusableCellWithIdentifier("list") as! UITableViewCell
             //重复的控件 必须用viewwithtag获取
-            var image = cell.viewWithTag(100) as UIImageView
-            var title = cell.viewWithTag(101) as UILabel
-            var restMoney = cell.viewWithTag(102) as UILabel
-            var restTime = cell.viewWithTag(103) as UILabel
-            var period = cell.viewWithTag(104) as UILabel
-            var totalMoney = cell.viewWithTag(105) as UILabel
-            var percent = cell.viewWithTag(106) as UILabel
+            var image = cell.viewWithTag(100) as! UIImageView
+            var title = cell.viewWithTag(101) as! UILabel
+            var restMoney = cell.viewWithTag(102) as! UILabel
+            var restTime = cell.viewWithTag(103) as! UILabel
+            var period = cell.viewWithTag(104) as! UILabel
+            var totalMoney = cell.viewWithTag(105) as! UILabel
+            var percent = cell.viewWithTag(106) as! UILabel
             var hideId =  UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
             hideId.tag = 99
             if tmpListData.count > 0 {
                 //图片  会产生阻滞
 //                image.image = UIImage(data:NSData(contentsOfURL: NSURL(string: "http://www.sscf88.com/uploadData/ad/2014093013251995.jpg")!)!)
                 
-                title.text = tmpListData[row].valueForKey("borrow_name")! as NSString
+                title.text = tmpListData[row].valueForKey("borrow_name") as? String
                 
-                var d = tmpListData[row].valueForKey("need")! as Double
+                var d = tmpListData[row].valueForKey("need") as! Double
                 restMoney.text = "\(d)元"
-                restTime.text = tmpListData[row].valueForKey("leftdays")! as NSString
+                restTime.text = tmpListData[row].valueForKey("leftdays") as? String
                 
-                var tmp = tmpListData[row].valueForKey("borrow_duration")! as NSString
-                var unit = tmpListData[row].valueForKey("duration_unit")! as NSString
+                var tmp = tmpListData[row].valueForKey("borrow_duration") as! String
+                var unit = tmpListData[row].valueForKey("duration_unit") as! String
                 period.text = "\(tmp)\(unit)"
-                tmp = tmpListData[row].valueForKey("borrow_money")! as NSString
+                tmp = tmpListData[row].valueForKey("borrow_money") as! String
                 totalMoney.text = "\(tmp)元"
-                tmp = tmpListData[row].valueForKey("borrow_interest_rate")! as NSString
+                tmp = tmpListData[row].valueForKey("borrow_interest_rate") as! String
                 percent.text = "\(tmp)%"
-                hideId.text = tmpListData[row].valueForKey("id")! as NSString
+                hideId.text = tmpListData[row].valueForKey("id") as? String
                 cell.addSubview(hideId)
                 hideId.hidden = true
             }else{

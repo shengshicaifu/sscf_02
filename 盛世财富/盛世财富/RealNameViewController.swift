@@ -32,7 +32,7 @@ class RealNameViewController: UIViewController,UITextFieldDelegate {
                 self.presentViewController(alert, animated: true, completion: nil)
         }else{
             let myStoryboard = self.storyboard
-            let anotherViewController:AccountSafeViewController =  myStoryboard?.instantiateViewControllerWithIdentifier("accountSafeViewController") as AccountSafeViewController
+            let anotherViewController:AccountSafeViewController =  myStoryboard?.instantiateViewControllerWithIdentifier("accountSafeViewController") as! AccountSafeViewController
             self.presentViewController(anotherViewController, animated: true, completion: nil)
         
 //            var alert = UIAlertController(title: "认证成功", message: "情况属实", preferredStyle: UIAlertControllerStyle.Alert)
@@ -41,7 +41,7 @@ class RealNameViewController: UIViewController,UITextFieldDelegate {
         }
     }
       //隐藏键盘
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         realNameText.resignFirstResponder()
         idNumberText.resignFirstResponder()
     }

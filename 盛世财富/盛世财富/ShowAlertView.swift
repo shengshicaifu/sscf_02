@@ -65,7 +65,7 @@ class ShowAlertView {
             //读入文件
             var str = NSString(contentsOfFile: (url?.path)!, encoding: NSUTF8StringEncoding, error: nil)
 //            println("content:\(str!)")
-            return str!
+            return str! as String
         }
         
         return ""

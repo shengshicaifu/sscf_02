@@ -18,7 +18,7 @@ class HttpController: NSObject{
             if(error == nil){
 //                println(data)
 //                println(NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil))
-                var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
+                var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
                 self.delegate?.didRecieveResult(jsonResult)
                 
             }else{
@@ -54,7 +54,7 @@ class HttpController: NSObject{
             if(error == nil){
 //                println(data)
 //                println(NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil))
-                var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
+                var jsonResult: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
                 self.delegate?.didRecieveResult(jsonResult)
                 callback(jsonResult)
             }else{

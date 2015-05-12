@@ -27,7 +27,7 @@ class SetTradePasswordViewController: UIViewController,UITextFieldDelegate {
     }
     
     //隐藏键盘
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         firstPasswordLabel.resignFirstResponder()
         secondPasswordLabel.resignFirstResponder()
     }

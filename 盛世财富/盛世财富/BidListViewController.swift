@@ -30,7 +30,7 @@ class BidListViewController: UIViewController,UITableViewDataSource,UITableViewD
   
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = mainTable.dequeueReusableCellWithIdentifier("list") as UITableViewCell
+        var cell = mainTable.dequeueReusableCellWithIdentifier("list") as! UITableViewCell
         return cell
     }
 

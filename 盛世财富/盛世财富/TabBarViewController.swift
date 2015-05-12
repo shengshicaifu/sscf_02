@@ -24,7 +24,7 @@ class TabBarViewController : UITabBarController,UITabBarDelegate{
                 
             }else{
                 println("unsign")
-                var view = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as LoginViewController
+                var view = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController
                 self.presentViewController(view, animated: true, completion: nil)
             }
         }

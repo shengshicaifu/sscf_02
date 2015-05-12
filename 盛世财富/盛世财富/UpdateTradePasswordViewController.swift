@@ -77,13 +77,13 @@ class UpdateTradePasswordViewController: UIViewController,UITextFieldDelegate {
     @IBAction func returnTapped(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
     //隐藏键盘
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         oldPasswordLabel.resignFirstResponder()
         newPasswordLabel.resignFirstResponder()
         surePasswordLabel.resignFirstResponder()
     }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         oldPasswordLabel.resignFirstResponder()
         newPasswordLabel.resignFirstResponder()

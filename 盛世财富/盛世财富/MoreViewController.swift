@@ -36,15 +36,15 @@ class MoreViewController: UIViewController ,UITableViewDataSource,UITableViewDel
         
         switch indexPath.row {
         case 0:
-            cell = self.mainTable.dequeueReusableCellWithIdentifier("forum") as UITableViewCell
+            cell = self.mainTable.dequeueReusableCellWithIdentifier("forum") as! UITableViewCell
             
         case 1:
-            cell = self.mainTable.dequeueReusableCellWithIdentifier("update") as UITableViewCell
+            cell = self.mainTable.dequeueReusableCellWithIdentifier("update") as! UITableViewCell
             
         case 2:
-            cell = self.mainTable.dequeueReusableCellWithIdentifier("feedback") as UITableViewCell
+            cell = self.mainTable.dequeueReusableCellWithIdentifier("feedback") as! UITableViewCell
         case 3:
-            cell = self.mainTable.dequeueReusableCellWithIdentifier("about") as UITableViewCell
+            cell = self.mainTable.dequeueReusableCellWithIdentifier("about") as! UITableViewCell
         default: cell = nil
         }
         return cell

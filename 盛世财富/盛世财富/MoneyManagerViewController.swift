@@ -64,7 +64,7 @@ class MoneyManagerViewController: UIViewController,UITableViewDataSource,UITable
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        var cell = self.tableView.dequeueReusableCellWithIdentifier("transRecordCell") as UITableViewCell
+        var cell = self.tableView.dequeueReusableCellWithIdentifier("transRecordCell") as! UITableViewCell
         cell.selectedBackgroundView.backgroundColor = UIColor.grayColor()
         cell.backgroundColor = UIColor.grayColor()
         if indexPath.section == 0{
@@ -148,7 +148,7 @@ class MoneyManagerViewController: UIViewController,UITableViewDataSource,UITable
     }
     
     func chargeAppTapped(sender:AnyObject){
-         var mainView = self.storyboard?.instantiateViewControllerWithIdentifier("chargeViewController") as  ChargeViewController
+         var mainView = self.storyboard?.instantiateViewControllerWithIdentifier("chargeViewController") as!  ChargeViewController
 //        self.navigationController?.pushViewController(mainView, animated: true)
         self.presentViewController(mainView, animated: true, completion: nil)
         

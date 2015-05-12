@@ -86,7 +86,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol {
                                 }
                                 if(code == 0){
                                     //报错弹窗
-                                    AlertView.showMsg(result["message"] as NSString, parentView: self.view)
+                                    AlertView.showMsg(result["message"] as! String, parentView: self.view)
                                     
                                     //                    var alert = UIAlertController(title: "错误", message: result["message"] as? String, preferredStyle:UIAlertControllerStyle.Alert)
                                     //                    alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
@@ -182,7 +182,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol {
 //        
 //    }
     
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
 //        self.count++
         usernameLabel.resignFirstResponder()
         passwordLabel.resignFirstResponder()

@@ -24,21 +24,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     var id = ""
     
     @IBOutlet weak var circle: UIActivityIndicatorView!
-    @IBOutlet weak var choice: UIButton!
-    @IBAction func showSearch(sender: AnyObject) {
-        
-        if choice.titleLabel?.text == "筛选" {
-            
-            choice.setTitle("确定", forState: nil)
-        }
-        if choice.titleLabel?.text == "确定" {
-            choice.setTitle("筛选", forState: nil)
-            eHttp.get(self.timeLineUrl+"-page-2",view :self.view,callback: {
-                self.mainTable.reloadData()
-            })
-            
-        }
-    }
+    
     
     
     @IBOutlet weak var mainTable: UITableView!
@@ -46,12 +32,6 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         super.viewDidLoad()
         mainTable.delegate = self
         eHttp.delegate = self
-//        eHttp.get(self.timeLineUrl,viewContro : self)
-//        self.setupRefresh()
-        
-//        self.refreshControl.addTarget(self, action: "setupRefresh", forControlEvents: UIControlEvents.ValueChanged)
-//        self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
-//        mainTable.addSubview(self.refreshControl)
         eHttp.get(self.timeLineUrl,view :self.view,callback: {
 //            self.mainTable.reloadData()
             self.circle.stopAnimating()
@@ -60,49 +40,12 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             self.mainTable.reloadData()
         })
         
-        if choice.titleLabel?.text != "筛选" {
-            choice.setTitle("筛选", forState: nil)
-        }
+       
         
         setupRefresh()
     }
     
     
-//    func refreshData(){
-//        if self.refreshControl.refreshing {
-//            self.refreshControl.attributedTitle = NSAttributedString(string: "加载中")
-//            eHttp.get(self.timeLineUrl,viewContro :self,{
-//                self.refreshControl.endRefreshing()
-//                self.mainTable.reloadData()
-//            })
-//            
-//        }
-//        self.mainTable.addFooterWithCallback({
-//            var nextPage = String(self.page + 1)
-//            var tmpTimeLineUrl = self.timeLineUrl + "-page-" + nextPage as NSString
-//            self.eHttp.delegate = self
-//            self.eHttp.get(self.timeLineUrl,viewContro :self,{
-//                self.mainTable.reloadData()
-//            })
-//            let delayInSeconds:Int64 = 1000000000 * 2
-//            var popTime:dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds)
-//            dispatch_after(popTime, dispatch_get_main_queue(), {
-//                self.mainTable.footerEndRefreshing()
-//                if(self.tmpListData != self.listData){
-//                    if(self.tmpListData.count != 0){
-//                        var tmpListDataCount = self.tmpListData.count
-//                        for(var i:Int = 0; i < tmpListDataCount; i++){
-//                            self.listData.addObject(self.tmpListData[i])
-//                        }
-//                    }
-//                    self.mainTable.reloadData()
-//                    self.tmpListData.removeAllObjects()
-//                }
-//            })
-//        })
-//    }
-
-//    //Refresh func
     func setupRefresh(){
         self.mainTable.addHeaderWithCallback({
             let delayInSeconds:Int64 =  1000000000  * 2
@@ -201,7 +144,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             vc.id = self.id	
 
         }
-        println("segue:\(segue.identifier)")
+//        println("segue:\(segue.identifier)")
 
     }
     

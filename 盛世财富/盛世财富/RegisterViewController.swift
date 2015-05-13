@@ -28,7 +28,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func registerTapped(sender: AnyObject) {
-        
+        loading.startLoading(self.view)
         surePwdTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         phoneTextField.resignFirstResponder()
@@ -47,6 +47,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
 //            showAlert("执行注册操作")
 //            self.navigationController?.pushViewController(LendViewController(), animated: true)
         }
+        loading.stopLoading()
     }
     @IBAction func returnKey(sender:AnyObject){
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -57,61 +58,61 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
 //        self.presentViewController(alert, animated: true, completion: nil)
 //    }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
-        if textField.tag == 1 {
-            moveView(-100)
-        }else if textField.tag == 2 {
-            moveView(-50)
-        }
-    }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        if textField.tag == 1 {
-            moveView(100)
-        }else if textField.tag == 2 {
-            moveView(50)
-        }
-    }
-    
-    //控制视图上下移动
-    func moveView(move:CGFloat){
-        var animationDuration:NSTimeInterval = 0.30;
-        var frame:CGRect  = self.view.frame;
-        frame.origin.y += move;//view的y轴上移
-        self.view.frame = frame;
-        UIView.beginAnimations("ResizeView", context: nil)
-        UIView.setAnimationDuration(animationDuration)
-        self.view.frame = frame;
-        UIView.commitAnimations()
-    }
+//    func textFieldDidBeginEditing(textField: UITextField) {
+//        if textField.tag == 1 {
+//            moveView(-100)
+//        }else if textField.tag == 2 {
+//            moveView(-50)
+//        }
+//    }
+//    
+//    func textFieldDidEndEditing(textField: UITextField) {
+//        if textField.tag == 1 {
+//            moveView(100)
+//        }else if textField.tag == 2 {
+//            moveView(50)
+//        }
+//    }
+//    
+//    //控制视图上下移动
+//    func moveView(move:CGFloat){
+//        var animationDuration:NSTimeInterval = 0.30;
+//        var frame:CGRect  = self.view.frame;
+//        frame.origin.y += move;//view的y轴上移
+//        self.view.frame = frame;
+//        UIView.beginAnimations("ResizeView", context: nil)
+//        UIView.setAnimationDuration(animationDuration)
+//        self.view.frame = frame;
+//        UIView.commitAnimations()
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func keyboardWasShown(aNSNotification:NSNotification){
-        println("keyboardWasShown")
-        if keyboardShown {
-            return
-        }
-        
-        var info:NSDictionary = aNSNotification.userInfo!
-        var value:NSValue = info.objectForKey(UIKeyboardAnimationCurveUserInfoKey) as! NSValue
-        var keyboardSize:CGSize = value.CGRectValue().size
-        
-        
-        
-        keyboardShown = true
-    }
-    
-    func keyboardWasHidden(aNSNotification:NSNotification){
-        println("keyboardWasHidden")
-        var info:NSDictionary = aNSNotification.userInfo!
-        var value:NSValue = info.objectForKey(UIKeyboardAnimationCurveUserInfoKey) as! NSValue
-        var keyboardSize:CGSize = value.CGRectValue().size
-        
-        
-    }
+//    func keyboardWasShown(aNSNotification:NSNotification){
+//        println("keyboardWasShown")
+//        if keyboardShown {
+//            return
+//        }
+//        
+//        var info:NSDictionary = aNSNotification.userInfo!
+//        var value:NSValue = info.objectForKey(UIKeyboardAnimationCurveUserInfoKey) as! NSValue
+//        var keyboardSize:CGSize = value.CGRectValue().size
+//        
+//        
+//        
+//        keyboardShown = true
+//    }
+//    
+//    func keyboardWasHidden(aNSNotification:NSNotification){
+//        println("keyboardWasHidden")
+//        var info:NSDictionary = aNSNotification.userInfo!
+//        var value:NSValue = info.objectForKey(UIKeyboardAnimationCurveUserInfoKey) as! NSValue
+//        var keyboardSize:CGSize = value.CGRectValue().size
+//        
+//        
+//    }
     
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

@@ -17,9 +17,13 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
     @IBOutlet weak var experience: UITextField!
     @IBOutlet weak var payPassword: UITextField!
     @IBOutlet weak var payBtn: UIButton!
+    @IBOutlet weak var usermoney: UILabel!
+    @IBOutlet weak var bidName: UILabel!
+    @IBOutlet weak var bidRate: UILabel!
     
     var id:String?
-    
+    var bidTitle:String?
+    var percent:String?
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -28,11 +32,24 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         experience.delegate = self
         payPassword.delegate = self
         payBtn.layer.cornerRadius = 5
+        if let usermoney:String = NSUserDefaults.standardUserDefaults().objectForKey("usermoney") as? String {
+            self.usermoney.text = usermoney
+        }
+        if let rate:String = percent{
+            self.bidRate.text = "\(rate)"
+        }
+        if let title:String = bidTitle {
+            self.bidName.text = title
+        }
         if let id = id {
 //            println(id)
         }
     }
     @IBAction func confirm(sender: AnyObject) {
+        bidMoney.resignFirstResponder()
+        reward.resignFirstResponder()
+        experience.resignFirstResponder()
+        payPassword.resignFirstResponder()
         loading.startLoading(self.view)
         let afnet = AFHTTPRequestOperationManager()
         let param = ["borrow_id":id,"invest_money":bidMoney.text,"pin":payPassword.text,"is_confirm":"0","reward_use":reward.text,"use_experince":experience.text,"to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! String]
@@ -63,7 +80,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        bidMoney.resignFirstResponder()
+        
         reward.resignFirstResponder()
         experience.resignFirstResponder()
         payPassword.resignFirstResponder()

@@ -20,7 +20,7 @@ class TabBarViewController : UITabBarController,UITabBarDelegate{
         if index?.title == "我的账号" {
             var user = NSUserDefaults()
             
-            if let username = user.valueForKey("username") as? String{
+            if let username = user.objectForKey("username") as? String{
                 
             }else{
 //                println("unsign")

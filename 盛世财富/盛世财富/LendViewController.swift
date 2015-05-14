@@ -20,6 +20,8 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var tid: String = ""
     var sign: String = ""
     var id:String?//页面传值的id
+    var percent:String?
+    var bidName:String?
     let refreshControl = UIRefreshControl() //apple自带的下拉刷新
     @IBOutlet weak var circle: UIActivityIndicatorView!//读取数据动画
     @IBOutlet weak var mainTable: UITableView!
@@ -30,6 +32,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         super.viewDidLoad()
         mainTable.delegate = self
         mainTable.dataSource = self
+        
        //滚动图
         var viewsArray = NSMutableArray()
         var colorArray = [UIColor.cyanColor(),UIColor.blueColor(),UIColor.greenColor(),UIColor.yellowColor(),UIColor.purpleColor()]
@@ -151,6 +154,16 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         super.didReceiveMemoryWarning()
         
     }
+    
+    @IBAction func buy(sender: UIButton) {
+        let cell = sender.superview?.superview as! UITableViewCell
+        let title = cell.viewWithTag(101) as! UILabel
+        let percent = cell.viewWithTag(106) as! UILabel
+        let id = cell.viewWithTag(99) as! UILabel
+        self.id = id.text
+        self.bidName = title.text
+        self.percent = percent.text
+    }
     //点击事件
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -170,6 +183,12 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
         if segue.identifier == "allList"{
             nextView = segue.destinationViewController as! AllListViewController
+        }
+        if segue.identifier == "buy"{
+            var vc = segue.destinationViewController as! BidConfirmViewController
+            vc.id = self.id
+            vc.bidTitle = self.bidName
+            vc.percent = self.percent
         }
         //隐藏tabbar
         if nextView != nil {
@@ -194,10 +213,9 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         if sec == 0{
             cell = self.mainTable.dequeueReusableCellWithIdentifier("list") as! UITableViewCell
             //重复的控件 必须用viewwithtag获取
-            var image = cell.viewWithTag(100) as! UIImageView
+            
             var title = cell.viewWithTag(101) as! UILabel
-            var restMoney = cell.viewWithTag(102) as! UILabel
-            var restTime = cell.viewWithTag(103) as! UILabel
+            
             var period = cell.viewWithTag(104) as! UILabel
             var totalMoney = cell.viewWithTag(105) as! UILabel
             var percent = cell.viewWithTag(106) as! UILabel
@@ -210,8 +228,6 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 title.text = tmpListData[row].valueForKey("borrow_name") as? String
                 
                 var d = tmpListData[row].valueForKey("need") as! Double
-                restMoney.text = "\(d)元"
-                restTime.text = tmpListData[row].valueForKey("leftdays") as? String
                 
                 var tmp = tmpListData[row].valueForKey("borrow_duration") as! String
                 var unit = tmpListData[row].valueForKey("duration_unit") as! String
@@ -223,6 +239,8 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 hideId.text = tmpListData[row].valueForKey("id") as? String
                 cell.addSubview(hideId)
                 hideId.hidden = true
+                
+                
             }else{
 //              如果没有数据，单元格不能点击
                 cell.accessoryType = .None
@@ -275,6 +293,8 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         //        println("lendView")
         //隐藏筛选
         
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.341, green: 0.713, blue: 0.945, alpha: 1)
         //检查是否连接网络
 //        NSLog("检查是否连接网络")
         var reach = Reachability(hostName: Constant().ServerHost)

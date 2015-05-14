@@ -48,7 +48,8 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
     var tmpListData: NSMutableArray = NSMutableArray()
     var eHttp: HttpController = HttpController()
     var id:String?
-
+    var bidTitle:String?
+    var percent:String?
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTable.dataSource = self
@@ -91,8 +92,10 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                         
                     //标题
                     var borrow_name = borrowinfo["borrow_name"] as! NSString!
+                    self.bidTitle = borrow_name as String
                     var borrow_money = borrowinfo["borrow_money"] as! NSString!
                     var borrow_interest_rate = borrowinfo["borrow_interest_rate"] as! NSString!
+                    self.percent = borrow_interest_rate as String
                     var borrow_duration = borrowinfo["borrow_duration"]
                         as! NSString!
 //                    //借款人信息
@@ -180,6 +183,8 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
         if segue.identifier == "buy"{
             var vc = segue.destinationViewController as! BidConfirmViewController
             vc.id = self.id
+            vc.percent = self.percent
+            vc.bidTitle = self.bidTitle
         }else if segue.identifier == "investorSegue" {
             var vc = segue.destinationViewController as! BidListViewController
             vc.bidId = self.id

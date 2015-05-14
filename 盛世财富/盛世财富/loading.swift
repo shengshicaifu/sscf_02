@@ -25,6 +25,8 @@ class loading{
         
         view.addSubview(circle)
         circle.startAnimating()
+        
+        
     }
     class func stopLoading(){
         circle.stopAnimating()

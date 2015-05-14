@@ -16,7 +16,8 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var regist: UIButton!
-    var keyboardShown:Bool = false
+    @IBOutlet weak var checkBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,9 +25,13 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         passwordTextField.delegate = self
         phoneTextField.delegate = self
         regist.layer.cornerRadius = 5
+        checkBtn.layer.cornerRadius = 5
         self.navigationItem.title = "用户注册"
     }
     
+    @IBAction func checkTapped(sender: UIButton) {
+        //验证码
+    }
     @IBAction func registerTapped(sender: AnyObject) {
         loading.startLoading(self.view)
         surePwdTextField.resignFirstResponder()
@@ -52,68 +57,20 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     @IBAction func returnKey(sender:AnyObject){
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-//    func showAlert(message:String){
-//        var alert = UIAlertController(title: "提示", message: message, preferredStyle:UIAlertControllerStyle.Alert)
-//        alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: nil))
-//        self.presentViewController(alert, animated: true, completion: nil)
-//    }
-    
-//    func textFieldDidBeginEditing(textField: UITextField) {
-//        if textField.tag == 1 {
-//            moveView(-100)
-//        }else if textField.tag == 2 {
-//            moveView(-50)
-//        }
-//    }
-//    
-//    func textFieldDidEndEditing(textField: UITextField) {
-//        if textField.tag == 1 {
-//            moveView(100)
-//        }else if textField.tag == 2 {
-//            moveView(50)
-//        }
-//    }
-//    
-//    //控制视图上下移动
-//    func moveView(move:CGFloat){
-//        var animationDuration:NSTimeInterval = 0.30;
-//        var frame:CGRect  = self.view.frame;
-//        frame.origin.y += move;//view的y轴上移
-//        self.view.frame = frame;
-//        UIView.beginAnimations("ResizeView", context: nil)
-//        UIView.setAnimationDuration(animationDuration)
-//        self.view.frame = frame;
-//        UIView.commitAnimations()
-//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-//    func keyboardWasShown(aNSNotification:NSNotification){
-//        println("keyboardWasShown")
-//        if keyboardShown {
-//            return
-//        }
-//        
-//        var info:NSDictionary = aNSNotification.userInfo!
-//        var value:NSValue = info.objectForKey(UIKeyboardAnimationCurveUserInfoKey) as! NSValue
-//        var keyboardSize:CGSize = value.CGRectValue().size
-//        
-//        
-//        
-//        keyboardShown = true
-//    }
-//    
-//    func keyboardWasHidden(aNSNotification:NSNotification){
-//        println("keyboardWasHidden")
-//        var info:NSDictionary = aNSNotification.userInfo!
-//        var value:NSValue = info.objectForKey(UIKeyboardAnimationCurveUserInfoKey) as! NSValue
-//        var keyboardSize:CGSize = value.CGRectValue().size
-//        
-//        
-//    }
+    override func viewWillAppear(animated: Bool) {
+        DaiDodgeKeyboard.addRegisterTheViewNeedDodgeKeyboard(self.view)
+        super.viewWillAppear(animated)
+    }
     
+    override func viewWillDisappear(animated: Bool) {
+        DaiDodgeKeyboard.removeRegisterTheViewNeedDodgeKeyboard()
+        super.viewWillDisappear(animated)
+    }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         UIView.beginAnimations("ResizeForKeyboard", context: nil)

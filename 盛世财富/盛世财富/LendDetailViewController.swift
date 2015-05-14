@@ -53,6 +53,8 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
         super.viewDidLoad()
         mainTable.dataSource = self
         mainTable.delegate = self
+        loading.startLoading(self.view)
+        mainTable.scrollEnabled = false
         //println(id!)
         if id != nil {
             let manager =  AFHTTPRequestOperationManager()
@@ -159,17 +161,19 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                         
                     }
                         
-                        
-                        
+                    loading.stopLoading()
+                        self.mainTable.scrollEnabled = true
                 }
                 },
                 failure: {(operation:AFHTTPRequestOperation!,error : NSError!) in
 //                println("jsonerror:"+error.localizedDescription)
                 AlertView.showMsg("服务器异常，请稍后再试", parentView: self.view)
+                    loading.stopLoading()
+                    self.mainTable.scrollEnabled = true
             })
         }
         
-        loading.stopLoading()
+        
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

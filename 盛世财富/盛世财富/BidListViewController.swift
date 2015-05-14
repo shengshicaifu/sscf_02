@@ -23,13 +23,16 @@ class BidListViewController: UITableViewController,UITableViewDataSource,UITable
         tableView.delegate = self
         tableView.dataSource = self
         
+        loading.startLoading(self.view)
+        self.tableView.scrollEnabled = false
         //获取投资人列表信息
         var manager = AFHTTPRequestOperationManager()
         var url = "http://www.sscf88.com/App-Invest-investorList"
         var params = ["bid":bidId!]
         manager.GET(url, parameters: params,
             success: {(operation:AFHTTPRequestOperation!,data:AnyObject!)in
-               
+                loading.stopLoading()
+                self.tableView.scrollEnabled = true
                 var result:NSDictionary = data as! NSDictionary
                 if (result["code"] as? Int) == 200 {
                     self.investorArray = result["data"] as? NSArray
@@ -39,6 +42,8 @@ class BidListViewController: UITableViewController,UITableViewDataSource,UITable
             },
             failure: {(operation:AFHTTPRequestOperation!,error:NSError!)in
                 NSLog("获取投资人失败:%@",error)
+                loading.stopLoading()
+                self.tableView.scrollEnabled = true
             }
         )
     }

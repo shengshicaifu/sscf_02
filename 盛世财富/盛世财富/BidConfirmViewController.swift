@@ -16,6 +16,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
     @IBOutlet weak var reward: UITextField!
     @IBOutlet weak var experience: UITextField!
     @IBOutlet weak var payPassword: UITextField!
+    @IBOutlet weak var payBtn: UIButton!
     
     var id:String?
     
@@ -26,6 +27,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         reward.delegate = self
         experience.delegate = self
         payPassword.delegate = self
+        payBtn.layer.cornerRadius = 5
         if let id = id {
 //            println(id)
         }
@@ -33,12 +35,13 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
     @IBAction func confirm(sender: AnyObject) {
         loading.startLoading(self.view)
         let afnet = AFHTTPRequestOperationManager()
-        let param = ["borrow_id":id,"invest_money":bidMoney.text,"pin":payPassword.text,"is_confirm":"0","reward_use":reward.text,"use_experince":experience.text]
-        let url = "http://www.sscf88.com/App-Invest-newtinvestmoney"
-        //       println(param)
+        let param = ["borrow_id":id,"invest_money":bidMoney.text,"pin":payPassword.text,"is_confirm":"0","reward_use":reward.text,"use_experince":experience.text,"to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! String]
+        let url = "http://www.sscf88.com/App-Invest-investmoney"
+        println(param)
         afnet.POST(url, parameters: param, success: { (opration :AFHTTPRequestOperation!, res :AnyObject!) -> Void in
             //            println(res["message"])
             AlertView.showMsg(res["message"] as! String, parentView: self.view)
+            println(res)
             }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
                 AlertView.showMsg(error.localizedDescription+"，请退出后重试或联系客服！"
                     , parentView: self.view)

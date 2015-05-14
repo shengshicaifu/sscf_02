@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		592A9F251B035095006B63D9 /* loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592A9F241B035095006B63D9 /* loading.swift */; };
+		592A9F271B046D56006B63D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 592A9F261B046D56006B63D9 /* Main.storyboard */; };
 		592F90741B03249E00B9969B /* DaiDodgeKeyboard+AccessObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 592F906B1B03249E00B9969B /* DaiDodgeKeyboard+AccessObject.m */; };
 		592F90751B03249E00B9969B /* DaiDodgeKeyboard+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 592F906D1B03249E00B9969B /* DaiDodgeKeyboard+Animation.m */; };
 		592F90761B03249E00B9969B /* DaiDodgeKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 592F906F1B03249E00B9969B /* DaiDodgeKeyboard.m */; };
@@ -30,7 +31,6 @@
 		E90EA27A1ABFA37A006D22E6 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA2711ABFA37A006D22E6 /* AFURLSessionManager.m */; };
 		E90EA27C1ABFAB5D006D22E6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */; };
 		E93732B11ACA32F600423B7E /* MyMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93732B01ACA32F600423B7E /* MyMenuTableViewController.swift */; };
-		E94E04651ABD015800A0EEC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E94E04641ABD015800A0EEC8 /* Main.storyboard */; };
 		E961E1241AC8DCBC0021ED14 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11B1AC8DCBC0021ED14 /* RECommonFunctions.m */; };
 		E961E1251AC8DCBC0021ED14 /* REMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11D1AC8DCBC0021ED14 /* REMenu.m */; };
 		E961E1261AC8DCBC0021ED14 /* REMenuContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11F1AC8DCBC0021ED14 /* REMenuContainerView.m */; };
@@ -75,6 +75,7 @@
 
 /* Begin PBXFileReference section */
 		592A9F241B035095006B63D9 /* loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loading.swift; sourceTree = "<group>"; };
+		592A9F261B046D56006B63D9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		592F906A1B03249E00B9969B /* DaiDodgeKeyboard+AccessObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DaiDodgeKeyboard+AccessObject.h"; sourceTree = "<group>"; };
 		592F906B1B03249E00B9969B /* DaiDodgeKeyboard+AccessObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DaiDodgeKeyboard+AccessObject.m"; sourceTree = "<group>"; };
 		592F906C1B03249E00B9969B /* DaiDodgeKeyboard+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DaiDodgeKeyboard+Animation.h"; sourceTree = "<group>"; };
@@ -114,7 +115,6 @@
 		E90EA2711ABFA37A006D22E6 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E93732B01ACA32F600423B7E /* MyMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMenuTableViewController.swift; sourceTree = "<group>"; };
-		E94E04641ABD015800A0EEC8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E961E11A1AC8DCBC0021ED14 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		E961E11B1AC8DCBC0021ED14 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 		E961E11C1AC8DCBC0021ED14 /* REMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenu.h; sourceTree = "<group>"; };
@@ -231,7 +231,7 @@
 		E91E81301AB27939000C5FD3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E94E04641ABD015800A0EEC8 /* Main.storyboard */,
+				592A9F261B046D56006B63D9 /* Main.storyboard */,
 				E9D660551AB1313B0020982D /* LaunchScreen.xib */,
 			);
 			name = Views;
@@ -479,9 +479,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9EEC97E1AB6A56600E09442 /* aaa.jpg in Resources */,
+				592A9F271B046D56006B63D9 /* Main.storyboard in Resources */,
 				E9D660571AB1313B0020982D /* LaunchScreen.xib in Resources */,
 				E9D660541AB1313B0020982D /* Images.xcassets in Resources */,
-				E94E04651ABD015800A0EEC8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -49,7 +49,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol {
                             let user = NSUserDefaults.standardUserDefaults()
                             let proInfo:NSDictionary = result["data"]?["proInfo"] as! NSDictionary
                             user.setObject(self.usernameLabel.text, forKey: "username")
-                            user.setObject(result["data"]?["userPass"], forKey: "userpass")
+                            user.setObject(result["data"]?["token"], forKey: "token")
                             user.setObject(result["data"]?["userPic"], forKey: "userpic")
                             user.setObject(proInfo.objectForKey("total_all"),forKey: "usermoney")
                             

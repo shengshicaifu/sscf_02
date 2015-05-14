@@ -53,7 +53,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
         super.viewDidLoad()
         mainTable.dataSource = self
         mainTable.delegate = self
-        println(id!)
+        //println(id!)
         if id != nil {
             let manager =  AFHTTPRequestOperationManager()
             let params = ["id" : id!]
@@ -70,7 +70,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                     var borrowinfo = data["borrowinfo"] as! NSDictionary
                    //借款人信息 ，标的介绍
                     var memberinfo = data["memberinfo"] as! NSDictionary
-                    println(borrowinfo)
+                    //println(borrowinfo)
                     if data.count>0{
                     //标的介绍
                     var add_time = borrowinfo["add_time"] as! NSString
@@ -171,14 +171,14 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
         
         
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "buy"{
             var vc = segue.destinationViewController as! LendDetailViewController
             vc.id = self.id
+        }else if segue.identifier == "investorSegue" {
+            var vc = segue.destinationViewController as! BidListViewController
+            vc.bidId = self.id
         }
         
     }

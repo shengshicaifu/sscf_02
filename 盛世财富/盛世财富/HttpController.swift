@@ -23,7 +23,7 @@ class HttpController: NSObject{
                 
             }else{
                 //报错弹窗
-                println(error.localizedDescription)
+//                println(error.localizedDescription)
                 AlertView.showMsg(error.localizedDescription, parentView: view)
             }
             callback()
@@ -58,7 +58,7 @@ class HttpController: NSObject{
                 self.delegate?.didRecieveResult(jsonResult)
                 callback(jsonResult)
             }else{
-                println(error)
+//                println(error)
                 AlertView.showMsg(error.localizedDescription, parentView: view)
             }
         })

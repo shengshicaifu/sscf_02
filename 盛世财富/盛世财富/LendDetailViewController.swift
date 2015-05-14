@@ -159,22 +159,22 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                         
                     }
                         
-                    
-                    
+                        
                         
                 }
                 },
                 failure: {(operation:AFHTTPRequestOperation!,error : NSError!) in
-                println("jsonerror:"+error.localizedDescription)
+//                println("jsonerror:"+error.localizedDescription)
+                AlertView.showMsg("服务器异常，请稍后再试", parentView: self.view)
             })
         }
         
-        
+        loading.stopLoading()
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "buy"{
-            var vc = segue.destinationViewController as! LendDetailViewController
+            var vc = segue.destinationViewController as! BidConfirmViewController
             vc.id = self.id
         }else if segue.identifier == "investorSegue" {
             var vc = segue.destinationViewController as! BidListViewController
@@ -182,6 +182,46 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
         }
         
     }
-
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0.1
+        }
+        return 35
+    }
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 1{
+            let v = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 35))
+            let title = UILabel(frame:CGRect(x: 13, y: 10, width: v.frame.width, height: 18))
+            title.text = "借款人信息"
+            title.font = UIFont(name: "System", size: 16)
+            title.textColor = UIColor.grayColor()
+            v.addSubview(title)
+            return v
+        }
+        if section == 2{
+            let v = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 35))
+            let title = UILabel(frame:CGRect(x: 13, y: 10, width: v.frame.width, height: 18))
+            title.text = "项目介绍"
+            title.font = UIFont(name: "System", size: 16)
+            title.textColor = UIColor.grayColor()
+            v.addSubview(title)
+            return v
+        }
+        return UIView()
+    }
+    override func viewWillAppear(animated: Bool) {
+        //        检查网络
+        var reach = Reachability(hostName: Constant().ServerHost)
+        reach.unreachableBlock = {(r:Reachability!)in
+            dispatch_async(dispatch_get_main_queue(), {
+                var alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            })
+        }
+        reach.startNotifier()
+        
+        
+    }
 }
 

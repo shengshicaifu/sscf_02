@@ -23,7 +23,7 @@ class TabBarViewController : UITabBarController,UITabBarDelegate{
             if let username = user.valueForKey("username") as? String{
                 
             }else{
-                println("unsign")
+//                println("unsign")
                 var view = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController
                 self.presentViewController(view, animated: true, completion: nil)
             }

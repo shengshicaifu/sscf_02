@@ -131,46 +131,8 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     
-    //Refresh func
-    //Refresh文件夹内开源代码
-    func setupRefresh(){
-        //下拉刷新
-        self.mainTable.addHeaderWithCallback({
-            let delayInSeconds:Int64 =  1000000000  * 2
-            var popTime:dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds)
-            dispatch_after(popTime, dispatch_get_main_queue(), {
-                self.mainTable.reloadData()
-                self.mainTable.headerEndRefreshing()
-                
-                
-            })
-        })
-        //上啦加载
-//        self.mainTable.addFooterWithCallback({
-//            var nextPage = String(self.page + 1)
-//            var tmpTimeLineUrl = self.timeLineUrl + "&page=" + nextPage as NSString
-//            self.eHttp.delegate = self
-//            self.eHttp.get(tmpTimeLineUrl)
-//            let delayInSeconds:Int64 = 1000000000 * 2
-//            var popTime:dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds)
-//            dispatch_after(popTime, dispatch_get_main_queue(), {
-//                self.mainTable.footerEndRefreshing()
-//                if(self.tmpListData != self.listData){
-//                    if(self.tmpListData.count != 0){
-//                        var tmpListDataCount = self.tmpListData.count
-//                        for(var i:Int = 0; i < tmpListDataCount; i++){
-//                            self.listData.addObject(self.tmpListData[i])
-//                        }
-//                    }
-//                    self.mainTable.reloadData()
-//                    self.tmpListData.removeAllObjects()
-//                }
-//            })
-//        })
-    }
     //读取json并解析
     func didRecieveResult(result: NSDictionary){
-//        println(result)
         if(result["data"]?.valueForKey("list") != nil){
             self.tmpListData = result["data"]?.valueForKey("list")as! NSMutableArray //list数据
 //            self.page = result["data"]?["page"] as Int
@@ -266,35 +228,6 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 cell.accessoryType = .None
             }
         }
-//        if sec == 1{
-//            cell = self.mainTable.dequeueReusableCellWithIdentifier("person") as UITableViewCell
-//            var user = NSUserDefaults()
-////            var username: NSString = user.valueForKey("username") as NSString
-////            if username.length > 0 {
-////                
-////            }else{
-////                var img = cell.viewWithTag(200) as UIImageView
-////                var title = cell.viewWithTag(201) as UILabel
-////                var money = cell.viewWithTag(202) as UILabel
-////                title.text = "请登录"
-////                money.text = ""
-////            }
-//            var img = cell.viewWithTag(200) as UIImageView
-//            var title = cell.viewWithTag(201) as UILabel
-//            var money = cell.viewWithTag(202) as UILabel
-//            if let username:AnyObject = user.valueForKey("username"){
-//                title.text = username as? String
-//            }else{
-//                
-//                title.text = "请登录"
-//                money.text = ""
-//            }
-//            
-//        }
-//        
-//        circle.hidden = true
-//        circle.stopAnimating()
-        
         
         return cell
         
@@ -334,9 +267,6 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     //section的header高度
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        if section == 0 {
-//            return 130
-//        }
         return 35
     }
     

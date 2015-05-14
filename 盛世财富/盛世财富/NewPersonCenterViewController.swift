@@ -22,23 +22,7 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         mainTable.delegate = self
         //自适应字体大小
         money.adjustsFontSizeToFitWidth = true
-        //
-//        self.run(NSDictionary())
         
-//        手动添加蓝色大方块
-//        var img = UIImageView(image: UIImage(named: "蓝色"))
-//        img.frame.size.height = 300
-//        img.frame.size.width = self.view.frame.width
-//        var myFinance = UILabel(frame: CGRect(x: (img.frame.width - 80)/2, y: img.frame.midY - 80, width: 80, height: 20))
-//        myFinance.text = "我的资产"
-//        var myMoney = UILabel(frame: CGRect(x: 0, y: myFinance.frame.maxY+10, width: self.view.frame.width, height: 60))
-//        myMoney.text = "8888.88"
-//        myMoney.font = UIFont(name: "Helvetica", size: 50)
-//        myMoney.textAlignment = NSTextAlignment.Center
-//        img.addSubview(myFinance)
-//        img.addSubview(myMoney)
-//        mainTable.tableHeaderView = img
-//        
         
     }
     
@@ -62,11 +46,11 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
                 self.head.image = UIImage(data: image!)
                 user.setObject(image, forKey: "headImage")
                 //这里写需要大量时间的代码
-                println("这里写需要大量时间的代码")
+//                println("这里写需要大量时间的代码")
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     //这里返回主线程，写需要主线程执行的代码
-                    println("这里返回主线程，写需要主线程执行的代码")
+//                    println("这里返回主线程，写需要主线程执行的代码")
                 })
                
             })

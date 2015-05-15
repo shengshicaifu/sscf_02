@@ -22,6 +22,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var id:String?//页面传值的id
     var percent:String?
     var bidName:String?
+    var type:String?
     let refreshControl = UIRefreshControl() //apple自带的下拉刷新
     @IBOutlet weak var circle: UIActivityIndicatorView!//读取数据动画
     @IBOutlet weak var mainTable: UITableView!
@@ -32,7 +33,8 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         super.viewDidLoad()
         mainTable.delegate = self
         mainTable.dataSource = self
-        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 54/255.0, green: 169/255.0, blue: 245/255.0, alpha: 1)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
        //滚动图
         var viewsArray = NSMutableArray()
         var colorArray = [UIColor.cyanColor(),UIColor.blueColor(),UIColor.greenColor(),UIColor.yellowColor(),UIColor.purpleColor()]
@@ -160,9 +162,11 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         let title = cell.viewWithTag(101) as! UILabel
         let percent = cell.viewWithTag(106) as! UILabel
         let id = cell.viewWithTag(99) as! UILabel
+        let type = cell.viewWithTag(98) as! UILabel
         self.id = id.text
         self.bidName = title.text
         self.percent = percent.text
+        self.type = type.text
     }
     //点击事件
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -170,6 +174,9 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         if indexPath.section == 0 {
             if let hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(99) as? UILabel{
                 id = hideId.text
+                if let hideType = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(98) as? UILabel {
+                    type = hideType.text
+                }
                 self.performSegueWithIdentifier("detail", sender: self)
             }
         }
@@ -180,6 +187,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         if segue.identifier == "detail"{
             var vc = segue.destinationViewController as! LendDetailViewController
             vc.id = self.id
+            vc.type = self.type
         }
         if segue.identifier == "allList"{
             nextView = segue.destinationViewController as! AllListViewController
@@ -189,6 +197,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             vc.id = self.id
             vc.bidTitle = self.bidName
             vc.percent = self.percent
+            vc.type = self.type
         }
         //隐藏tabbar
         if nextView != nil {
@@ -219,16 +228,20 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             var period = cell.viewWithTag(104) as! UILabel
             var totalMoney = cell.viewWithTag(105) as! UILabel
             var percent = cell.viewWithTag(106) as! UILabel
+            var progress = cell.viewWithTag(110) as! UIProgressView
             var hideId =  UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
             hideId.tag = 99
+            var hideType = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+            hideType.tag = 98
             if tmpListData.count > 0 {
                 //图片  会产生阻滞
 //                image.image = UIImage(data:NSData(contentsOfURL: NSURL(string: "http://www.sscf88.com/uploadData/ad/2014093013251995.jpg")!)!)
+//                println(tmpListData[row])
                 
                 title.text = tmpListData[row].valueForKey("borrow_name") as? String
                 
                 var d = tmpListData[row].valueForKey("need") as! Double
-                
+                var pro = tmpListData[row].objectForKey("progress") as! NSString
                 var tmp = tmpListData[row].valueForKey("borrow_duration") as! String
                 var unit = tmpListData[row].valueForKey("duration_unit") as! String
                 period.text = "\(tmp)\(unit)"
@@ -239,7 +252,11 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 hideId.text = tmpListData[row].valueForKey("id") as? String
                 cell.addSubview(hideId)
                 hideId.hidden = true
+                hideType.text = tmpListData[row].valueForKey("borrow_type") as? String
+                cell.addSubview(hideType)
+                hideType.hidden = true
                 
+                progress.progress = pro.floatValue/100.0
                 
             }else{
 //              如果没有数据，单元格不能点击
@@ -294,7 +311,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         //隐藏筛选
         
         
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.341, green: 0.713, blue: 0.945, alpha: 1)
+        
         //检查是否连接网络
 //        NSLog("检查是否连接网络")
         var reach = Reachability(hostName: Constant().ServerHost)

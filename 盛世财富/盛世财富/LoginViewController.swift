@@ -23,6 +23,12 @@ class LoginViewController: UIViewController,UITextFieldDelegate,HttpProtocol {
         regist.layer.cornerRadius = 5
         regist.layer.borderColor = UIColor.grayColor().CGColor
         regist.layer.borderWidth = 1
+        
+        usernameLabel.leftView = UIImageView(image: UIImage(named: "人.png"))
+        usernameLabel.leftViewMode = UITextFieldViewMode.Always
+        
+        passwordLabel.leftView = UIImageView(image: UIImage(named: "密码.png"))
+        passwordLabel.leftViewMode = UITextFieldViewMode.Always
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

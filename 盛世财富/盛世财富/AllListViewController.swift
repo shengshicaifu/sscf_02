@@ -22,7 +22,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     var isCheck: String = ""
     let refreshControl = UIRefreshControl()
     var id = ""
-    
+    var type:String?
     @IBOutlet weak var circle: UIActivityIndicatorView!
     
     
@@ -113,6 +113,8 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         var month = cell.viewWithTag(102) as! UILabel
         var title = cell.viewWithTag(103) as! UILabel
         var hideId = cell.viewWithTag(99) as! UILabel
+        var hideType = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        hideType.tag = 98
         var row = indexPath.row
         if listData.count > 0 {
             var tmp = listData[row].valueForKey("borrow_money") as! String
@@ -124,6 +126,9 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             month.text = "\(tmp)\(unit)"
             title.text = listData[row].valueForKey("borrow_name") as? String
             hideId.text = listData[row].valueForKey("id") as? String
+            hideType.text = tmpListData[row].valueForKey("borrow_type") as? String
+            cell.addSubview(hideType)
+            hideType.hidden = true
         }
         return cell
         
@@ -133,6 +138,8 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(99) as! UILabel
         id = hideId.text!
+        var hideType = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(98) as! UILabel
+        type = hideType.text!
         //        self.presentViewController(vc, animated: true, completion: nil)
         self.performSegueWithIdentifier("detail", sender: self)
     }
@@ -142,7 +149,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             var vc = segue.destinationViewController as! LendDetailViewController
 
             vc.id = self.id	
-
+            vc.type = self.type
         }
 //        println("segue:\(segue.identifier)")
 

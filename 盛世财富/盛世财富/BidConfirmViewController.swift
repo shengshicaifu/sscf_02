@@ -21,9 +21,11 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
     @IBOutlet weak var bidName: UILabel!
     @IBOutlet weak var bidRate: UILabel!
     
+    @IBOutlet weak var typeName: UILabel!
     var id:String?
     var bidTitle:String?
     var percent:String?
+    var type:String?
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -41,8 +43,10 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         if let title:String = bidTitle {
             self.bidName.text = title
         }
-        if let id = id {
-//            println(id)
+        if let type = self.type {
+            if type != "8"{
+                typeName.text = "认购份数："
+            }
         }
     }
     @IBAction func confirm(sender: AnyObject) {
@@ -54,13 +58,13 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         let afnet = AFHTTPRequestOperationManager()
         let param = ["borrow_id":id,"invest_money":bidMoney.text,"pin":payPassword.text,"is_confirm":"0","reward_use":reward.text,"use_experince":experience.text,"to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! String]
         let url = "http://www.sscf88.com/App-Invest-investmoney"
-        println(param)
+//        println(param)
         afnet.POST(url, parameters: param, success: { (opration :AFHTTPRequestOperation!, res :AnyObject!) -> Void in
             //            println(res["message"])
             AlertView.showMsg(res["message"] as! String, parentView: self.view)
             println(res)
             }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                AlertView.showMsg(error.localizedDescription+"，请退出后重试或联系客服！"
+                AlertView.showMsg("系统错误，请联系客服！"
                     , parentView: self.view)
         }
         loading.stopLoading()

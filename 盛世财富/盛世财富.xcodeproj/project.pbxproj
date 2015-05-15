@@ -30,6 +30,7 @@
 		E90EA27A1ABFA37A006D22E6 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA2711ABFA37A006D22E6 /* AFURLSessionManager.m */; };
 		E90EA27C1ABFAB5D006D22E6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */; };
 		E93732B11ACA32F600423B7E /* MyMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93732B01ACA32F600423B7E /* MyMenuTableViewController.swift */; };
+		E95ABEA31B05BCA5001EFD2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E95ABEA21B05BCA5001EFD2F /* Main.storyboard */; };
 		E961E1241AC8DCBC0021ED14 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11B1AC8DCBC0021ED14 /* RECommonFunctions.m */; };
 		E961E1251AC8DCBC0021ED14 /* REMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11D1AC8DCBC0021ED14 /* REMenu.m */; };
 		E961E1261AC8DCBC0021ED14 /* REMenuContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11F1AC8DCBC0021ED14 /* REMenuContainerView.m */; };
@@ -113,6 +114,7 @@
 		E90EA2711ABFA37A006D22E6 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E93732B01ACA32F600423B7E /* MyMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMenuTableViewController.swift; sourceTree = "<group>"; };
+		E95ABEA21B05BCA5001EFD2F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E961E11A1AC8DCBC0021ED14 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		E961E11B1AC8DCBC0021ED14 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 		E961E11C1AC8DCBC0021ED14 /* REMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenu.h; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 		E91E81301AB27939000C5FD3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E95ABEA21B05BCA5001EFD2F /* Main.storyboard */,
 				E9D660551AB1313B0020982D /* LaunchScreen.xib */,
 			);
 			name = Views;
@@ -479,6 +482,7 @@
 				E9EEC97E1AB6A56600E09442 /* aaa.jpg in Resources */,
 				E9D660571AB1313B0020982D /* LaunchScreen.xib in Resources */,
 				E9D660541AB1313B0020982D /* Images.xcassets in Resources */,
+				E95ABEA31B05BCA5001EFD2F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

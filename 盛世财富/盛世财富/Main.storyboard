@@ -867,10 +867,12 @@
                     <navigationItem key="navigationItem" id="qfY-8W-zKo"/>
                     <connections>
                         <outlet property="checkBtn" destination="SZU-0w-c0K" id="pet-B3-DWr"/>
+                        <outlet property="codeTextField" destination="uIS-hx-U8B" id="WMr-NL-E6y"/>
                         <outlet property="passwordTextField" destination="mce-VY-LfP" id="Tvs-yS-spC"/>
                         <outlet property="phoneTextField" destination="YQV-eR-DX4" id="B6U-B6-p06"/>
                         <outlet property="regist" destination="4G6-cC-W6K" id="dO7-EP-GBV"/>
                         <outlet property="surePwdTextField" destination="9g7-93-0gp" id="Kig-Wf-dCW"/>
+                        <segue destination="T6v-wi-K0w" kind="show" identifier="registerToMain" id="EcF-gu-9cT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t6F-xn-H8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>

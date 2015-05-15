@@ -86,11 +86,6 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     
     //注册
     @IBAction func registerTapped(sender: AnyObject) {
-
-//        self.performSegueWithIdentifier("registerToPersonCenterSegue", sender: nil)
-        self.navigationController?.popToViewController(NewPersonCenterViewController(), animated: true)
-        NSLog("跳转测试失败")
-        
         
         surePwdTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
@@ -110,8 +105,6 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
             AlertView.showMsg("验证码不能为空", parentView: self.view)
         }else{
             //此处执行注册操作
-//            showAlert("执行注册操作")
-//            self.navigationController?.pushViewController(LendViewController(), animated: true)
             loading.startLoading(self.view)
             var url = "http://www.sscf88.com/App-Register-regaction"
             var params = ["user_name":phone,"pass_word":password,"code":code]
@@ -130,7 +123,16 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
                         AlertView.showMsg("手机校验码不正确", parentView: self.view)
                     } else if code == 200 {
                         //注册成功,保存基本信息，跳转到我的账号页面
+                        
                         NSLog("注册成功")
+                        
+                        let user = NSUserDefaults.standardUserDefaults()
+                        let proInfo:NSDictionary = result["data"]?["proInfo"] as! NSDictionary
+                        user.setObject(result["data"]?["userName"], forKey: "username")
+                        user.setObject(result["data"]?["token"], forKey: "token")
+                        user.setObject(result["data"]?["userPic"], forKey: "userpic")
+                        user.setObject(proInfo.objectForKey("total_all"),forKey: "usermoney")
+                        self.performSegueWithIdentifier("registerToMain", sender: nil)
                     }
                 },
                 failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in

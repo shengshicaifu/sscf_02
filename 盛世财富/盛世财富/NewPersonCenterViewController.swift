@@ -32,7 +32,17 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
             self.navigationItem.rightBarButtonItem = barItem
             
         }
+        
+        //点击个人头像，跳转到账户信息页面
+        head.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toAccountInfo"))
+        
     }
+    //跳转到账户信息页面
+    func toAccountInfo(){
+        var controller = self.storyboard?.instantiateViewControllerWithIdentifier("AccountInfoTableViewController") as! AccountInfoTableViewController
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
     func loginBtn(){
         var view = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController
         self.presentViewController(view, animated: true, completion: nil)

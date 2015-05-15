@@ -615,13 +615,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="101" contentMode="center" tableViewCell="t8g-bN-Ywr" id="hJa-EI-rgj">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xzn-A9-yIe">
-                                                    <rect key="frame" x="275" y="33" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="0cx-em-iOX"/>
-                                                        <constraint firstAttribute="height" constant="50" id="0jR-vm-COA"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的资产" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1U-ei-DTp">
                                                     <rect key="frame" x="266" y="91" width="68" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -634,6 +627,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aaa.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Xzn-A9-yIe">
+                                                    <rect key="frame" x="275" y="33" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="0cx-em-iOX"/>
+                                                        <constraint firstAttribute="height" constant="50" id="0jR-vm-COA"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="nid-rp-Rba" firstAttribute="trailing" secondItem="hJa-EI-rgj" secondAttribute="trailingMargin" id="MTy-7g-qd1"/>
@@ -1226,7 +1226,13 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="投资列表" id="Qce-B4-vh4"/>
+                    <navigationItem key="navigationItem" title="投资列表" id="Qce-B4-vh4">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="QRC-ci-ewZ">
+                            <connections>
+                                <action selector="showConditionMenuView:" destination="llE-tr-dg8" id="AC1-Bu-9Xd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="circle" destination="3GP-AS-bLl" id="phK-CB-V6T"/>
                         <outlet property="mainTable" destination="Gr1-hd-e6b" id="0hX-va-zr6"/>
@@ -3132,10 +3138,10 @@
             </objects>
             <point key="canvasLocation" x="-737" y="1129"/>
         </scene>
-        <!--Account Info Table View Controller-->
+        <!--账户信息-->
         <scene sceneID="x7C-o7-dUo">
             <objects>
-                <tableViewController id="bWu-jp-4hG" customClass="AccountInfoTableViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AccountInfoTableViewController" title="账户信息" id="bWu-jp-4hG" customClass="AccountInfoTableViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="P1V-cN-dhl">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3289,6 +3295,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                                     <state key="normal" title="退出登录"/>
+                                                    <connections>
+                                                        <action selector="loginOutAction:" destination="bWu-jp-4hG" eventType="touchUpInside" id="H8n-1L-wAV"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -3306,10 +3315,10 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="accountLabel" destination="51y-aD-uZK" id="pAc-TZ-mki"/>
-                        <outlet property="birthlabel" destination="gu3-E2-3sY" id="JKZ-Ld-DbD"/>
-                        <outlet property="photoImageView" destination="4zE-Qo-LsX" id="45c-mD-nRs"/>
-                        <outlet property="sexLabel" destination="cyx-Ka-Ec7" id="Irl-KE-bam"/>
+                        <outlet property="PhoneLabel" destination="51y-aD-uZK" id="U9V-Lh-rC2"/>
+                        <outlet property="birthdayLabel" destination="gu3-E2-3sY" id="MSG-Nq-fyJ"/>
+                        <outlet property="genderLabel" destination="cyx-Ka-Ec7" id="Lfa-2j-ySb"/>
+                        <outlet property="headImage" destination="4zE-Qo-LsX" id="dFm-S0-c6l"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odP-iN-iZ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3506,8 +3515,8 @@
         <image name="person" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sOw-AT-9oo"/>
-        <segue reference="5ZP-m5-drk"/>
         <segue reference="tpR-eQ-WEg"/>
+        <segue reference="sOw-AT-9oo"/>
+        <segue reference="vdr-P8-5iY"/>
     </inferredMetricsTieBreakers>
 </document>

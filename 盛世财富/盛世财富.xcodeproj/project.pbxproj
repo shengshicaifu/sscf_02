@@ -31,6 +31,7 @@
 		E90EA27C1ABFAB5D006D22E6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */; };
 		E93732B11ACA32F600423B7E /* MyMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93732B01ACA32F600423B7E /* MyMenuTableViewController.swift */; };
 		E95ABEA31B05BCA5001EFD2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E95ABEA21B05BCA5001EFD2F /* Main.storyboard */; };
+		E95ABEA51B05CBFE001EFD2F /* AccountInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95ABEA41B05CBFE001EFD2F /* AccountInfoTableViewController.swift */; };
 		E961E1241AC8DCBC0021ED14 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11B1AC8DCBC0021ED14 /* RECommonFunctions.m */; };
 		E961E1251AC8DCBC0021ED14 /* REMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11D1AC8DCBC0021ED14 /* REMenu.m */; };
 		E961E1261AC8DCBC0021ED14 /* REMenuContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11F1AC8DCBC0021ED14 /* REMenuContainerView.m */; };
@@ -38,8 +39,6 @@
 		E961E1281AC8DCBC0021ED14 /* REMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E1231AC8DCBC0021ED14 /* REMenuItemView.m */; };
 		E96B1E731AB6BFB300C61870 /* AllListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96B1E721AB6BFB300C61870 /* AllListViewController.swift */; };
 		E977F3F41AC540E7008C2F8A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */; };
-		E98091AF1AC63EAD001A8F12 /* YYCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98091AE1AC63EAD001A8F12 /* YYCycleScrollView.swift */; };
-		E993F3321ABC0667001B9EA5 /* FVCustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E993F3311ABC0667001B9EA5 /* FVCustomAlertView.swift */; };
 		E9B9EF4C1AC8E00600E46714 /* BidListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B9EF4B1AC8E00600E46714 /* BidListViewController.swift */; };
 		E9BEE1AD1AC24CF10049600C /* HttpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BEE1AC1AC24CF10049600C /* HttpController.swift */; };
 		E9BEE1AF1AC24D7E0049600C /* baseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BEE1AE1AC24D7E0049600C /* baseClass.swift */; };
@@ -59,8 +58,8 @@
 		E9D660541AB1313B0020982D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9D660531AB1313B0020982D /* Images.xcassets */; };
 		E9D660571AB1313B0020982D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9D660551AB1313B0020982D /* LaunchScreen.xib */; };
 		E9D660631AB1313B0020982D /* ____Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D660621AB1313B0020982D /* ____Tests.swift */; };
+		E9E5211F1B05E3D900A41EEA /* YYCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E5211E1B05E3D900A41EEA /* YYCycleScrollView.swift */; };
 		E9EEC97E1AB6A56600E09442 /* aaa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E9EEC97D1AB6A56600E09442 /* aaa.jpg */; };
-		E9FDC1481AC3B71F0088B6F5 /* ShowAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FDC1471AC3B71F0088B6F5 /* ShowAlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +114,7 @@
 		E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E93732B01ACA32F600423B7E /* MyMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMenuTableViewController.swift; sourceTree = "<group>"; };
 		E95ABEA21B05BCA5001EFD2F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		E95ABEA41B05CBFE001EFD2F /* AccountInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoTableViewController.swift; sourceTree = "<group>"; };
 		E961E11A1AC8DCBC0021ED14 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		E961E11B1AC8DCBC0021ED14 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 		E961E11C1AC8DCBC0021ED14 /* REMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenu.h; sourceTree = "<group>"; };
@@ -127,8 +127,6 @@
 		E961E1231AC8DCBC0021ED14 /* REMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuItemView.m; sourceTree = "<group>"; };
 		E96B1E721AB6BFB300C61870 /* AllListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllListViewController.swift; sourceTree = "<group>"; };
 		E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		E98091AE1AC63EAD001A8F12 /* YYCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYCycleScrollView.swift; sourceTree = "<group>"; };
-		E993F3311ABC0667001B9EA5 /* FVCustomAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FVCustomAlertView.swift; sourceTree = "<group>"; };
 		E9B9EF4B1AC8E00600E46714 /* BidListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BidListViewController.swift; sourceTree = "<group>"; };
 		E9BEE1AC1AC24CF10049600C /* HttpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpController.swift; sourceTree = "<group>"; };
 		E9BEE1AE1AC24D7E0049600C /* baseClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = baseClass.swift; sourceTree = "<group>"; };
@@ -152,8 +150,8 @@
 		E9D6605C1AB1313B0020982D /* 盛世财富Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "盛世财富Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D660611AB1313B0020982D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9D660621AB1313B0020982D /* ____Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "____Tests.swift"; sourceTree = "<group>"; };
+		E9E5211E1B05E3D900A41EEA /* YYCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYCycleScrollView.swift; sourceTree = "<group>"; };
 		E9EEC97D1AB6A56600E09442 /* aaa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = aaa.jpg; sourceTree = "<group>"; };
-		E9FDC1471AC3B71F0088B6F5 /* ShowAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,9 +238,8 @@
 		E91E81311AB2794D000C5FD3 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				E98091AE1AC63EAD001A8F12 /* YYCycleScrollView.swift */,
+				E9D660531AB1313B0020982D /* Images.xcassets */,
 				E90EA25D1ABFA1A5006D22E6 /* 盛世财富-Bridging-Header.h */,
-				E993F3311ABC0667001B9EA5 /* FVCustomAlertView.swift */,
 				E9EEC97D1AB6A56600E09442 /* aaa.jpg */,
 				E9D6604C1AB1313B0020982D /* AppDelegate.swift */,
 			);
@@ -255,7 +252,6 @@
 				E93732B01ACA32F600423B7E /* MyMenuTableViewController.swift */,
 				E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */,
 				E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */,
-				E98EE15A1ABAD3EC00CAE127 /* PersonCenter */,
 				E9D6604E1AB1313B0020982D /* LendViewController.swift */,
 				E96B1E721AB6BFB300C61870 /* AllListViewController.swift */,
 				E9C54E051AB7BCD400D4722C /* LendDetailViewController.swift */,
@@ -266,23 +262,9 @@
 				E9C544C31AE8914800B50D8C /* BidConfirmViewController.swift */,
 				598A77831AF9E48600DE4271 /* TabBarViewController.swift */,
 				594E5B4E1AFA102500218DA5 /* NewPersonCenterViewController.swift */,
+				E95ABEA41B05CBFE001EFD2F /* AccountInfoTableViewController.swift */,
 			);
 			name = Controllers;
-			sourceTree = "<group>";
-		};
-		E91E81331AB27967000C5FD3 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		E91E81341AB27972000C5FD3 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				E9D660531AB1313B0020982D /* Images.xcassets */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		E961E1191AC8DCBC0021ED14 /* REMenu */ = {
@@ -300,13 +282,6 @@
 				E961E1231AC8DCBC0021ED14 /* REMenuItemView.m */,
 			);
 			path = REMenu;
-			sourceTree = "<group>";
-		};
-		E98EE15A1ABAD3EC00CAE127 /* PersonCenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = PersonCenter;
 			sourceTree = "<group>";
 		};
 		E9C605AB1ABBB9C500752D91 /* Refresh */ = {
@@ -350,8 +325,6 @@
 				E9FDC1461AC3B70F0088B6F5 /* Common */,
 				E90EA25E1ABFA37A006D22E6 /* AFNetworking */,
 				E9C605AB1ABBB9C500752D91 /* Refresh */,
-				E91E81341AB27972000C5FD3 /* Resources */,
-				E91E81331AB27967000C5FD3 /* Models */,
 				E91E81321AB27956000C5FD3 /* Controllers */,
 				E91E81311AB2794D000C5FD3 /* Source */,
 				E91E81301AB27939000C5FD3 /* Views */,
@@ -388,10 +361,10 @@
 		E9FDC1461AC3B70F0088B6F5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				E9E5211E1B05E3D900A41EEA /* YYCycleScrollView.swift */,
 				592A9F241B035095006B63D9 /* loading.swift */,
 				E9BEE1AE1AC24D7E0049600C /* baseClass.swift */,
 				E9BEE1AC1AC24CF10049600C /* HttpController.swift */,
-				E9FDC1471AC3B71F0088B6F5 /* ShowAlertView.swift */,
 				59D214BA1AFC9AD800677C26 /* AlertView.swift */,
 				D8B2511B1B004B8600360F4E /* Constant.swift */,
 			);
@@ -537,17 +510,16 @@
 				E90EA2781ABFA37A006D22E6 /* AFURLRequestSerialization.m in Sources */,
 				E9C70C0A1AC108AC00E1CA8D /* AboutViewController.swift in Sources */,
 				E9D6604D1AB1313B0020982D /* AppDelegate.swift in Sources */,
+				E95ABEA51B05CBFE001EFD2F /* AccountInfoTableViewController.swift in Sources */,
 				D8B2511C1B004B8600360F4E /* Constant.swift in Sources */,
 				592A9F251B035095006B63D9 /* loading.swift in Sources */,
-				E9FDC1481AC3B71F0088B6F5 /* ShowAlertView.swift in Sources */,
 				D8B251181B0041AE00360F4E /* Reachability.m in Sources */,
-				E993F3321ABC0667001B9EA5 /* FVCustomAlertView.swift in Sources */,
 				E961E1261AC8DCBC0021ED14 /* REMenuContainerView.m in Sources */,
 				E9BEE1AF1AC24D7E0049600C /* baseClass.swift in Sources */,
 				E9C70C081AC1035B00E1CA8D /* IdeaViewController.swift in Sources */,
+				E9E5211F1B05E3D900A41EEA /* YYCycleScrollView.swift in Sources */,
 				E9C605B71ABBB9C500752D91 /* UIScrollView+Refresh.swift in Sources */,
 				E961E1251AC8DCBC0021ED14 /* REMenu.m in Sources */,
-				E98091AF1AC63EAD001A8F12 /* YYCycleScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

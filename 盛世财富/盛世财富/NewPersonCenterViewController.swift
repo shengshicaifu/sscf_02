@@ -24,6 +24,18 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         money.adjustsFontSizeToFitWidth = true
         
         
+        if let username = NSUserDefaults.standardUserDefaults().objectForKey("username") as? String{
+            self.navigationItem.rightBarButtonItem?.title = ""
+        }else{
+            //                println("unsign")
+            var barItem = UIBarButtonItem(title: "登录", style: UIBarButtonItemStyle.Plain, target: self, action: "loginBtn")
+            self.navigationItem.rightBarButtonItem = barItem
+            
+        }
+    }
+    func loginBtn(){
+        var view = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController
+        self.presentViewController(view, animated: true, completion: nil)
     }
     
     func refreshData(){
@@ -98,7 +110,9 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
             })
         }
         reach.startNotifier()
-        
+        if let username = NSUserDefaults.standardUserDefaults().objectForKey("username") as? String{
+            self.navigationItem.rightBarButtonItem?.title = ""
+        }
         refreshData()
     }
     

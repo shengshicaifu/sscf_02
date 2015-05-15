@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		592A9F251B035095006B63D9 /* loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592A9F241B035095006B63D9 /* loading.swift */; };
-		592A9F271B046D56006B63D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 592A9F261B046D56006B63D9 /* Main.storyboard */; };
 		592F90741B03249E00B9969B /* DaiDodgeKeyboard+AccessObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 592F906B1B03249E00B9969B /* DaiDodgeKeyboard+AccessObject.m */; };
 		592F90751B03249E00B9969B /* DaiDodgeKeyboard+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 592F906D1B03249E00B9969B /* DaiDodgeKeyboard+Animation.m */; };
 		592F90761B03249E00B9969B /* DaiDodgeKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 592F906F1B03249E00B9969B /* DaiDodgeKeyboard.m */; };
@@ -75,7 +74,6 @@
 
 /* Begin PBXFileReference section */
 		592A9F241B035095006B63D9 /* loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loading.swift; sourceTree = "<group>"; };
-		592A9F261B046D56006B63D9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		592F906A1B03249E00B9969B /* DaiDodgeKeyboard+AccessObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DaiDodgeKeyboard+AccessObject.h"; sourceTree = "<group>"; };
 		592F906B1B03249E00B9969B /* DaiDodgeKeyboard+AccessObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DaiDodgeKeyboard+AccessObject.m"; sourceTree = "<group>"; };
 		592F906C1B03249E00B9969B /* DaiDodgeKeyboard+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DaiDodgeKeyboard+Animation.h"; sourceTree = "<group>"; };
@@ -231,7 +229,6 @@
 		E91E81301AB27939000C5FD3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				592A9F261B046D56006B63D9 /* Main.storyboard */,
 				E9D660551AB1313B0020982D /* LaunchScreen.xib */,
 			);
 			name = Views;
@@ -480,7 +477,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9EEC97E1AB6A56600E09442 /* aaa.jpg in Resources */,
-				592A9F271B046D56006B63D9 /* Main.storyboard in Resources */,
 				E9D660571AB1313B0020982D /* LaunchScreen.xib in Resources */,
 				E9D660541AB1313B0020982D /* Images.xcassets in Resources */,
 			);

@@ -12,7 +12,7 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
     
     @IBOutlet weak var mainTable: UITableView!
     @IBOutlet weak var head: UIImageView!
-    @IBOutlet weak var money: UILabel!
+    @IBOutlet weak var money: UIButton!
 
     var ehttp = HttpController()
     var url = ""
@@ -21,8 +21,9 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         mainTable.dataSource = self
         mainTable.delegate = self
         //自适应字体大小
-        money.adjustsFontSizeToFitWidth = true
-        
+        money.titleLabel!.adjustsFontSizeToFitWidth = true
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 54/255.0, green: 169/255.0, blue: 245/255.0, alpha: 1)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         
         if let username = NSUserDefaults.standardUserDefaults().objectForKey("username") as? String{
             self.navigationItem.rightBarButtonItem?.title = ""
@@ -56,9 +57,9 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
             self.navigationItem.title = "请登录"
         }
         if let usermoney:String = user.objectForKey("usermoney") as? String {
-            self.money.text = usermoney
+            self.money.setTitle(usermoney, forState: UIControlState.Normal)
         }else {
-            self.money.text = "- -"
+            self.money.setTitle(" - - ", forState: UIControlState.Normal)
         }
         if let headImage:NSData = user.objectForKey("headImage") as? NSData {
             self.head.image = UIImage(data: headImage)
@@ -98,7 +99,7 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
     //section的header高度
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 1
+            return 0.1
         }
         if section == 1{
             return 10

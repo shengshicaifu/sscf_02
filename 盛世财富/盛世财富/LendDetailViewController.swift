@@ -50,6 +50,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
     var id:String?
     var bidTitle:String?
     var percent:String?
+    var type:String?
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTable.dataSource = self
@@ -163,16 +164,19 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                         
                         
                     }
-                        
+                    print(123)
                     loading.stopLoading()
-                        self.mainTable.scrollEnabled = true
+                    self.mainTable.scrollEnabled = true
                 }
                 },
                 failure: {(operation:AFHTTPRequestOperation!,error : NSError!) in
 //                println("jsonerror:"+error.localizedDescription)
-                AlertView.showMsg("服务器异常，请稍后再试", parentView: self.view)
+//                AlertView.showMsg("服务器异常，请稍后再试", parentView: self.view)
                     loading.stopLoading()
                     self.mainTable.scrollEnabled = true
+                    let alert = UIAlertController(title: "提示", message: "服务器异常，请稍后再试", preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
             })
         }
         

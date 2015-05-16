@@ -612,19 +612,18 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100000000000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nid-rp-Rba">
-                                                    <rect key="frame" x="8" y="113" width="584" height="77"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="64"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aaa.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Xzn-A9-yIe">
-                                                    <rect key="frame" x="275" y="33" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="0cx-em-iOX"/>
-                                                        <constraint firstAttribute="height" constant="50" id="0jR-vm-COA"/>
-                                                    </constraints>
-                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x5x-1h-eXh">
+                                                    <rect key="frame" x="0.0" y="123" width="600" height="76"/>
+                                                    <color key="backgroundColor" red="0.32981478069999998" green="0.62642369539999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="53"/>
+                                                    <state key="normal" title="10000000000000">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="mCj-uE-yam" kind="show" id="rhU-oc-ban"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="x5x-1h-eXh" secondAttribute="trailing" constant="-8" id="ARt-JU-ZDb"/>
@@ -3685,8 +3684,8 @@
         <image name="person" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="cgO-r2-Qw7"/>
         <segue reference="tpR-eQ-WEg"/>
-        <segue reference="sOw-AT-9oo"/>
-        <segue reference="vdr-P8-5iY"/>
+        <segue reference="5ZP-m5-drk"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -264,7 +264,7 @@
 				E9C544C31AE8914800B50D8C /* BidConfirmViewController.swift */,
 				598A77831AF9E48600DE4271 /* TabBarViewController.swift */,
 				594E5B4E1AFA102500218DA5 /* NewPersonCenterViewController.swift */,
-				E95ABEA41B05CBFE001EFD2F /* AccountInfoTableViewController.swift */,
+				59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

@@ -153,7 +153,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
 //            self.mainTable.hidden = false
 //            self.mainTable.reloadData()
 //        })
-        var params = ["Borrow_id":"950", "Borrow_status":status,"Borrow_money":money,"Borrow_duration":period]
+        var params = ["borrow_status":status,"borrow_money":money,"borrow_duration":period]
         NSLog("筛选参数%@", params)
         var manager = AFHTTPRequestOperationManager()
         manager.GET(url, parameters: params,
@@ -275,7 +275,9 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             month.text = "\(tmp)\(unit)"
             title.text = listData[row].valueForKey("borrow_name") as? String
             hideId.text = listData[row].valueForKey("id") as? String
-            NSLog("%@,%@", title.text!,listData[row].valueForKey("borrow_status") as! String)
+            hideType.text = tmpListData[row].valueForKey("borrow_type") as? String
+            cell.addSubview(hideType)
+            hideType.hidden = true
         }
         return cell
         

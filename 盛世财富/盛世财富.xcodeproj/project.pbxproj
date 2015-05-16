@@ -271,6 +271,7 @@
 				E9D6604C1AB1313B0020982D /* AppDelegate.swift */,
 				59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */,
 				E93B725D1B070DDE00B28672 /* InvestorSummaryTableViewController.swift */,
+				59BEC41A1B07124200F5690D /* BidRecordViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

@@ -31,6 +31,7 @@
 		E90EA27A1ABFA37A006D22E6 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA2711ABFA37A006D22E6 /* AFURLSessionManager.m */; };
 		E90EA27C1ABFAB5D006D22E6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */; };
 		E93732B11ACA32F600423B7E /* MyMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93732B01ACA32F600423B7E /* MyMenuTableViewController.swift */; };
+		E93B725E1B070DDE00B28672 /* InvestorSummaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B725D1B070DDE00B28672 /* InvestorSummaryTableViewController.swift */; };
 		E95684F21B06D8FA00F46FF0 /* AccountInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95684F11B06D8FA00F46FF0 /* AccountInfoTableViewController.swift */; };
 		E95ABEA31B05BCA5001EFD2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E95ABEA21B05BCA5001EFD2F /* Main.storyboard */; };
 		E961E1241AC8DCBC0021ED14 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11B1AC8DCBC0021ED14 /* RECommonFunctions.m */; };
@@ -115,6 +116,7 @@
 		E90EA2711ABFA37A006D22E6 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E93732B01ACA32F600423B7E /* MyMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMenuTableViewController.swift; sourceTree = "<group>"; };
+		E93B725D1B070DDE00B28672 /* InvestorSummaryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestorSummaryTableViewController.swift; sourceTree = "<group>"; };
 		E95684F11B06D8FA00F46FF0 /* AccountInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoTableViewController.swift; sourceTree = "<group>"; };
 		E95ABEA21B05BCA5001EFD2F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E961E11A1AC8DCBC0021ED14 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				594E5B4E1AFA102500218DA5 /* NewPersonCenterViewController.swift */,
 				E9D6604C1AB1313B0020982D /* AppDelegate.swift */,
 				59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */,
+				E93B725D1B070DDE00B28672 /* InvestorSummaryTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				E96B1E731AB6BFB300C61870 /* AllListViewController.swift in Sources */,
 				E961E1281AC8DCBC0021ED14 /* REMenuItemView.m in Sources */,
 				E9C605B31ABBB9C500752D91 /* RefreshBaseView.swift in Sources */,
+				E93B725E1B070DDE00B28672 /* InvestorSummaryTableViewController.swift in Sources */,
 				E90EA27C1ABFAB5D006D22E6 /* LoginViewController.swift in Sources */,
 				E9C605B21ABBB9C500752D91 /* Refresh.swift in Sources */,
 				E9C605B51ABBB9C500752D91 /* RefreshFooterView.swift in Sources */,

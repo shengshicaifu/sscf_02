@@ -665,6 +665,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="mCj-uE-yam" kind="show" id="J3O-nz-jJh"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="record" textLabel="MGe-I1-f0T" style="IBUITableViewCellStyleDefault" id="1Pb-aw-39w">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3682,8 +3685,9 @@
         <image name="person" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cgO-r2-Qw7"/>
-        <segue reference="tpR-eQ-WEg"/>
         <segue reference="5ZP-m5-drk"/>
+        <segue reference="cgO-r2-Qw7"/>
+        <segue reference="rhU-oc-ban"/>
+        <segue reference="tpR-eQ-WEg"/>
     </inferredMetricsTieBreakers>
 </document>

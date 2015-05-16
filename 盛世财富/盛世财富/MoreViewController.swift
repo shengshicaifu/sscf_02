@@ -10,7 +10,7 @@
 
 import UIKit
 
-class MoreViewController: UIViewController ,UITableViewDataSource,UITableViewDelegate{
+class MoreViewController: UITableViewController ,UITableViewDataSource,UITableViewDelegate{
 
     @IBOutlet weak var mainTable: UITableView!
     
@@ -21,36 +21,23 @@ class MoreViewController: UIViewController ,UITableViewDataSource,UITableViewDel
         self.mainTable.rowHeight = 44.0
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 54/255.0, green: 169/255.0, blue: 245/255.0, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.mainTable.frame.width, height: 175))
+        let image = UIImage(named: "1.jpg")
+        imageView.image = image
+        self.mainTable.tableHeaderView?.addSubview(imageView)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
-    }
     
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell!
-        
-        switch indexPath.row {
-        case 0:
-            cell = self.mainTable.dequeueReusableCellWithIdentifier("forum") as! UITableViewCell
-            
-        case 1:
-            cell = self.mainTable.dequeueReusableCellWithIdentifier("update") as! UITableViewCell
-            
-        case 2:
-            cell = self.mainTable.dequeueReusableCellWithIdentifier("feedback") as! UITableViewCell
-        case 3:
-            cell = self.mainTable.dequeueReusableCellWithIdentifier("about") as! UITableViewCell
-        default: cell = nil
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0.1
         }
-        return cell
+        return 10
     }
-
 }
 

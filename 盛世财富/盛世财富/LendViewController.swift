@@ -327,6 +327,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 let alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)
                 alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
+                
             })
         }
         reach.startNotifier()

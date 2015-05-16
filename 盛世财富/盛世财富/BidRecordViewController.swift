@@ -1,0 +1,66 @@
+//
+//  BidRecordViewController.swift
+//  盛世财富
+//
+//  Created by 肖典 on 15/5/16.
+//  Copyright (c) 2015年 sscf88. All rights reserved.
+//
+
+import Foundation
+import UIKit
+class BidRecordViewController:UITableViewController,UITableViewDataSource,UITableViewDelegate {
+    
+    var data:NSMutableArray = NSMutableArray()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        if let token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String {
+            let afnet = AFHTTPRequestOperationManager()
+            let url = "http://www.sscf88.com/App-Myinvest-getAllTending"
+            let param = ["to":token]
+            
+            afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
+                
+                self.data = res["data"] as! NSMutableArray
+                self.tableView.reloadData()
+                }, failure: { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                    AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
+                    self.tableView.reloadData()
+            })
+        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "投标记录"
+        }
+        return ""
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCellWithIdentifier("list")  as! UITableViewCell
+        var name = cell.contentView.viewWithTag(100) as! UILabel
+        var time = cell.contentView.viewWithTag(101) as! UILabel
+        var money = cell.contentView.viewWithTag(102) as! UILabel
+        var row = indexPath.row
+        if data.count > 0{
+            println(data[row])
+            name.text = data[row].valueForKey("borrow_name") as? String
+            time.text = data[row].objectForKey("borrow_time") as? String
+            money.text = data[row].objectForKey("borrow_money") as? String
+        }
+        return cell
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if data.count > 0 {
+            return data.count
+        }
+        return 20
+    }
+}

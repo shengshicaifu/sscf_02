@@ -29,4 +29,10 @@ class AlertView {
                 hintLabel.removeFromSuperview()
         })
     }
+    
+    class func alert(title:String,message:String,buttonTitle:String,viewController:UIViewController){
+        var alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: buttonTitle, style: .Cancel, handler: nil))
+        viewController.presentViewController(alert, animated: true, completion: nil)
+    }
 }

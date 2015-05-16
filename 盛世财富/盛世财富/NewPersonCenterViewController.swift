@@ -40,8 +40,19 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
     }
     //跳转到账户信息页面
     func toAccountInfo(){
-        var controller = self.storyboard?.instantiateViewControllerWithIdentifier("AccountInfoTableViewController") as! AccountInfoTableViewController
-        self.navigationController?.pushViewController(controller, animated: true)
+        NSLog("跳转到账户信息页面")
+        //判断是否有登录
+        var info = NSUserDefaults.standardUserDefaults()
+        if info.objectForKey("username") == nil {
+            
+            AlertView.alert("提示", message: "请登录后再访问", buttonTitle: "确定", viewController: self)
+            
+        } else {
+            
+            var controller = self.storyboard?.instantiateViewControllerWithIdentifier("AccountInfoTableViewController") as! AccountInfoTableViewController
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+        
     }
     
     func loginBtn(){

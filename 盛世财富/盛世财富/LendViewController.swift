@@ -245,8 +245,15 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 var tmp = tmpListData[row].valueForKey("borrow_duration") as! String
                 var unit = tmpListData[row].valueForKey("duration_unit") as! String
                 period.text = "\(tmp)\(unit)"
-                tmp = tmpListData[row].valueForKey("borrow_money") as! String
-                totalMoney.text = "\(tmp)元"
+                var totalMoneyTmp = tmpListData[row].valueForKey("borrow_money") as! NSString
+                if totalMoneyTmp.integerValue > 10000 {
+                    totalMoneyTmp = "\(totalMoneyTmp.integerValue/10000)"
+                    totalMoney.text = "\(totalMoneyTmp)万元"
+                } else {
+                    totalMoney.text = "\(totalMoneyTmp)元"
+                }
+                
+                
                 tmp = tmpListData[row].valueForKey("borrow_interest_rate") as! String
                 percent.text = "\(tmp)%"
                 hideId.text = tmpListData[row].valueForKey("id") as? String

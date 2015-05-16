@@ -37,63 +37,72 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     //显示筛选菜单
     @IBAction func showConditionMenuView(sender: UIBarButtonItem) {
         if !isConditionMenuViewVisiable {
-            conditionMenuView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 350))
-            conditionMenuView!.backgroundColor = UIColor.blackColor()
-            conditionMenuView!.alpha = 0.8
+            if conditionMenuView == nil {
+                conditionMenuView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 350))
+                conditionMenuView?.tag = 1001
+                
+                conditionMenuView!.backgroundColor = UIColor.blackColor()
+                conditionMenuView!.alpha = 0.8
+                
+                //借款状态
+                var statusLabel = UILabel(frame: CGRectMake(5, 80, 120, 40))
+                statusLabel.text = "借款状态"
+                statusLabel.textColor = UIColor.whiteColor()
+                conditionMenuView?.addSubview(statusLabel)
+                
+                var statusCondition = UISegmentedControl(items: ["不限","所有","招标中","已成功","已完成"])
+                statusCondition.frame = CGRectMake(5, 120, self.view.frame.width-5, 30)
+                statusCondition.selectedSegmentIndex = statusValue
+                statusCondition.tintColor = UIColor.whiteColor()
+                statusCondition.tag = 101
+                conditionMenuView?.addSubview(statusCondition)
+                
+                //借款金额
+                var moneyLabel = UILabel(frame: CGRectMake(5, 150, 120, 40))
+                moneyLabel.text = "借款金额(万)"
+                moneyLabel.textColor = UIColor.whiteColor()
+                conditionMenuView?.addSubview(moneyLabel)
+                
+                var moneyCondition = UISegmentedControl(items: ["不限","<10","50-200","200-1000",">100"])
+                moneyCondition.frame = CGRectMake(5, 190, self.view.frame.width-5, 30)
+                moneyCondition.selectedSegmentIndex = moneyValue
+                moneyCondition.tintColor = UIColor.whiteColor()
+                moneyCondition.tag = 102
+                conditionMenuView?.addSubview(moneyCondition)
+                
+                
+                //借款期限
+                var periodLabel = UILabel(frame: CGRectMake(5, 220, 120, 40))
+                periodLabel.text = "借款期限(月)"
+                periodLabel.textColor = UIColor.whiteColor()
+                conditionMenuView?.addSubview(periodLabel)
+                
+                var periodCondition = UISegmentedControl(items: ["不限","<1","1-3","4-6","7-12"])
+                periodCondition.frame = CGRectMake(5, 260, self.view.frame.width-5, 30)
+                periodCondition.selectedSegmentIndex = periodValue
+                periodCondition.tintColor = UIColor.whiteColor()
+                periodCondition.tag = 103
+                conditionMenuView?.addSubview(periodCondition)
+                
+                //确定
+                var okBtn = UIButton(frame: CGRectMake((self.view.frame.width-150)/2, 300, 150, 30))
+                okBtn.setTitle("确定", forState: UIControlState.Normal)
+                //okBtn.backgroundColor = UIColor.redColor()
+                okBtn.addTarget(self, action: "conditionChoosed", forControlEvents: UIControlEvents.TouchUpInside)
+                
+                conditionMenuView?.addSubview(okBtn)
+                
+                self.view.addSubview(conditionMenuView!)
+            } else {
+               (self.conditionMenuView?.viewWithTag(101) as! UISegmentedControl).selectedSegmentIndex = statusValue
+                (self.conditionMenuView?.viewWithTag(102) as! UISegmentedControl).selectedSegmentIndex = moneyValue
+                (self.conditionMenuView?.viewWithTag(103) as! UISegmentedControl).selectedSegmentIndex = periodValue
+            }
             
-            //借款状态
-            var statusLabel = UILabel(frame: CGRectMake(5, 80, 120, 40))
-            statusLabel.text = "借款状态"
-            statusLabel.textColor = UIColor.whiteColor()
-            conditionMenuView?.addSubview(statusLabel)
-            
-            var statusCondition = UISegmentedControl(items: ["不限","所有","招标中","已成功","已完成"])
-            statusCondition.frame = CGRectMake(5, 120, self.view.frame.width-5, 30)
-            statusCondition.selectedSegmentIndex = statusValue
-            statusCondition.tintColor = UIColor.whiteColor()
-            statusCondition.tag = 101
-            conditionMenuView?.addSubview(statusCondition)
-            
-            //借款金额
-            var moneyLabel = UILabel(frame: CGRectMake(5, 150, 120, 40))
-            moneyLabel.text = "借款金额(万)"
-            moneyLabel.textColor = UIColor.whiteColor()
-            conditionMenuView?.addSubview(moneyLabel)
-            
-            var moneyCondition = UISegmentedControl(items: ["不限","<10","50-200","200-1000",">100"])
-            moneyCondition.frame = CGRectMake(5, 190, self.view.frame.width-5, 30)
-            moneyCondition.selectedSegmentIndex = moneyValue
-            moneyCondition.tintColor = UIColor.whiteColor()
-            moneyCondition.tag = 102
-            conditionMenuView?.addSubview(moneyCondition)
-            
-            
-            //借款期限
-            var periodLabel = UILabel(frame: CGRectMake(5, 220, 120, 40))
-            periodLabel.text = "借款期限(月)"
-            periodLabel.textColor = UIColor.whiteColor()
-            conditionMenuView?.addSubview(periodLabel)
-            
-            var periodCondition = UISegmentedControl(items: ["不限","<1","1-3","4-6","7-12"])
-            periodCondition.frame = CGRectMake(5, 260, self.view.frame.width-5, 30)
-            periodCondition.selectedSegmentIndex = periodValue
-            periodCondition.tintColor = UIColor.whiteColor()
-            periodCondition.tag = 103
-            conditionMenuView?.addSubview(periodCondition)
-            
-            //确定
-            var okBtn = UIButton(frame: CGRectMake((self.view.frame.width-150)/2, 300, 150, 30))
-            okBtn.setTitle("确定", forState: UIControlState.Normal)
-            //okBtn.backgroundColor = UIColor.redColor()
-            okBtn.addTarget(self, action: "conditionChoosed", forControlEvents: UIControlEvents.TouchUpInside)
-            
-            conditionMenuView?.addSubview(okBtn)
-            
-            self.view.addSubview(conditionMenuView!)
-            
+            self.conditionMenuView?.hidden = false
             isConditionMenuViewVisiable = true
         }else {
-            self.conditionMenuView?.removeFromSuperview()
+            self.conditionMenuView?.hidden = true
             isConditionMenuViewVisiable = false
         }
         
@@ -105,7 +114,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         moneyValue = (self.conditionMenuView?.viewWithTag(102) as! UISegmentedControl).selectedSegmentIndex
         periodValue = (self.conditionMenuView?.viewWithTag(103) as! UISegmentedControl).selectedSegmentIndex
     
-        self.conditionMenuView?.removeFromSuperview()
+        self.conditionMenuView?.hidden = true
         isConditionMenuViewVisiable = false
         
         //加载数据
@@ -161,7 +170,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                 var result:NSDictionary = data as! NSDictionary
                 //if(result["data"]?.valueForKey("list") != nil){
                     self.listData = result["data"]?.valueForKey("list") as! NSMutableArray //list数据
-                    //NSLog("筛选结果%@",self.listData)
+//                    NSLog("筛选结果%@",self.listData)
                     self.mainTable.reloadData()
                 //}
                 
@@ -278,6 +287,8 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             hideType.text = tmpListData[row].valueForKey("borrow_type") as? String
             cell.addSubview(hideType)
             hideType.hidden = true
+            
+            //NSLog("%@,%@",listData[row].valueForKey("id") as! String,listData[row].valueForKey("borrow_name") as! String)
         }
         return cell
         

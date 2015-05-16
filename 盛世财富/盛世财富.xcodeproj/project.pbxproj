@@ -31,8 +31,8 @@
 		E90EA27A1ABFA37A006D22E6 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90EA2711ABFA37A006D22E6 /* AFURLSessionManager.m */; };
 		E90EA27C1ABFAB5D006D22E6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */; };
 		E93732B11ACA32F600423B7E /* MyMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93732B01ACA32F600423B7E /* MyMenuTableViewController.swift */; };
+		E95684F21B06D8FA00F46FF0 /* AccountInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95684F11B06D8FA00F46FF0 /* AccountInfoTableViewController.swift */; };
 		E95ABEA31B05BCA5001EFD2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E95ABEA21B05BCA5001EFD2F /* Main.storyboard */; };
-		E95ABEA51B05CBFE001EFD2F /* AccountInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95ABEA41B05CBFE001EFD2F /* AccountInfoTableViewController.swift */; };
 		E961E1241AC8DCBC0021ED14 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11B1AC8DCBC0021ED14 /* RECommonFunctions.m */; };
 		E961E1251AC8DCBC0021ED14 /* REMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11D1AC8DCBC0021ED14 /* REMenu.m */; };
 		E961E1261AC8DCBC0021ED14 /* REMenuContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11F1AC8DCBC0021ED14 /* REMenuContainerView.m */; };
@@ -115,8 +115,8 @@
 		E90EA2711ABFA37A006D22E6 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E93732B01ACA32F600423B7E /* MyMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMenuTableViewController.swift; sourceTree = "<group>"; };
+		E95684F11B06D8FA00F46FF0 /* AccountInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoTableViewController.swift; sourceTree = "<group>"; };
 		E95ABEA21B05BCA5001EFD2F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		E95ABEA41B05CBFE001EFD2F /* AccountInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoTableViewController.swift; sourceTree = "<group>"; };
 		E961E11A1AC8DCBC0021ED14 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		E961E11B1AC8DCBC0021ED14 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 		E961E11C1AC8DCBC0021ED14 /* REMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenu.h; sourceTree = "<group>"; };
@@ -243,7 +243,6 @@
 				E9D660531AB1313B0020982D /* Images.xcassets */,
 				E90EA25D1ABFA1A5006D22E6 /* 盛世财富-Bridging-Header.h */,
 				E9EEC97D1AB6A56600E09442 /* aaa.jpg */,
-				E9D6604C1AB1313B0020982D /* AppDelegate.swift */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -251,6 +250,7 @@
 		E91E81321AB27956000C5FD3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E95684F11B06D8FA00F46FF0 /* AccountInfoTableViewController.swift */,
 				E93732B01ACA32F600423B7E /* MyMenuTableViewController.swift */,
 				E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */,
 				E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */,
@@ -264,6 +264,7 @@
 				E9C544C31AE8914800B50D8C /* BidConfirmViewController.swift */,
 				598A77831AF9E48600DE4271 /* TabBarViewController.swift */,
 				594E5B4E1AFA102500218DA5 /* NewPersonCenterViewController.swift */,
+				E9D6604C1AB1313B0020982D /* AppDelegate.swift */,
 				59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */,
 			);
 			name = Controllers;
@@ -513,7 +514,6 @@
 				E90EA2781ABFA37A006D22E6 /* AFURLRequestSerialization.m in Sources */,
 				E9C70C0A1AC108AC00E1CA8D /* AboutViewController.swift in Sources */,
 				E9D6604D1AB1313B0020982D /* AppDelegate.swift in Sources */,
-				E95ABEA51B05CBFE001EFD2F /* AccountInfoTableViewController.swift in Sources */,
 				D8B2511C1B004B8600360F4E /* Constant.swift in Sources */,
 				592A9F251B035095006B63D9 /* loading.swift in Sources */,
 				D8B251181B0041AE00360F4E /* Reachability.m in Sources */,
@@ -523,6 +523,7 @@
 				E9E5211F1B05E3D900A41EEA /* YYCycleScrollView.swift in Sources */,
 				E9C605B71ABBB9C500752D91 /* UIScrollView+Refresh.swift in Sources */,
 				E961E1251AC8DCBC0021ED14 /* REMenu.m in Sources */,
+				E95684F21B06D8FA00F46FF0 /* AccountInfoTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

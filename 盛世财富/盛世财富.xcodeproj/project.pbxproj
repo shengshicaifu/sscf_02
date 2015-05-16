@@ -14,6 +14,7 @@
 		592F90771B03249E00B9969B /* DaiDodgeKeyboardObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 592F90711B03249E00B9969B /* DaiDodgeKeyboardObjects.m */; };
 		592F90781B03249E00B9969B /* UIView+FirstResponderNotify.m in Sources */ = {isa = PBXBuildFile; fileRef = 592F90731B03249E00B9969B /* UIView+FirstResponderNotify.m */; };
 		594E5B4F1AFA102500218DA5 /* NewPersonCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594E5B4E1AFA102500218DA5 /* NewPersonCenterViewController.swift */; };
+		595C8DC51B07317800989977 /* NavigationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595C8DC41B07317800989977 /* NavigationExtension.swift */; };
 		598A77841AF9E48600DE4271 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598A77831AF9E48600DE4271 /* TabBarViewController.swift */; };
 		59BEC4191B05CD5300F5690D /* UserMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */; };
 		59BEC41B1B07124200F5690D /* BidRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BEC41A1B07124200F5690D /* BidRecordViewController.swift */; };
@@ -88,6 +89,7 @@
 		592F90721B03249E00B9969B /* UIView+FirstResponderNotify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FirstResponderNotify.h"; sourceTree = "<group>"; };
 		592F90731B03249E00B9969B /* UIView+FirstResponderNotify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FirstResponderNotify.m"; sourceTree = "<group>"; };
 		594E5B4E1AFA102500218DA5 /* NewPersonCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPersonCenterViewController.swift; sourceTree = "<group>"; };
+		595C8DC41B07317800989977 /* NavigationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationExtension.swift; sourceTree = "<group>"; };
 		598A77831AF9E48600DE4271 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMoneyViewController.swift; sourceTree = "<group>"; };
 		59BEC41A1B07124200F5690D /* BidRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BidRecordViewController.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */,
 				E93B725D1B070DDE00B28672 /* InvestorSummaryTableViewController.swift */,
 				59BEC41A1B07124200F5690D /* BidRecordViewController.swift */,
+				595C8DC41B07317800989977 /* NavigationExtension.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				E961E1271AC8DCBC0021ED14 /* REMenuItem.m in Sources */,
 				E90EA2791ABFA37A006D22E6 /* AFURLResponseSerialization.m in Sources */,
 				E9C54E061AB7BCD400D4722C /* LendDetailViewController.swift in Sources */,
+				595C8DC51B07317800989977 /* NavigationExtension.swift in Sources */,
 				E9C70C061AC0FB2100E1CA8D /* MoreViewController.swift in Sources */,
 				E9C544C41AE8914800B50D8C /* BidConfirmViewController.swift in Sources */,
 				59BEC4191B05CD5300F5690D /* UserMoneyViewController.swift in Sources */,

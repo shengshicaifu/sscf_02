@@ -20,12 +20,17 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
     @IBOutlet weak var usermoney: UILabel!
     @IBOutlet weak var bidName: UILabel!
     @IBOutlet weak var bidRate: UILabel!
+    @IBOutlet weak var unit: UILabel!
+    
     
     @IBOutlet weak var typeName: UILabel!
     var id:String?
     var bidTitle:String?
     var percent:String?
     var type:String?
+    var per_transferData:String?
+    var duration:String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -46,6 +51,9 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         if let type = self.type {
             if type != "8"{
                 typeName.text = "认购份数："
+                unit.text = "份"
+                bidMoney.placeholder = "每份\(self.per_transferData!)元"
+//               println(duration)
             }
         }
     }
@@ -56,16 +64,26 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         payPassword.resignFirstResponder()
         loading.startLoading(self.view)
         let afnet = AFHTTPRequestOperationManager()
-        let param = ["borrow_id":id,"invest_money":bidMoney.text,"pin":payPassword.text,"is_confirm":"0","reward_use":reward.text,"use_experince":experience.text,"to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! String]
-        let url = "http://www.sscf88.com/App-Invest-investmoney"
-//        println(param)
+        var param = NSMutableDictionary()
+        var url = String()
+        if let type = self.type {
+            if type == "8"{
+                param = ["borrow_id":id!,"invest_money":bidMoney.text,"pin":payPassword.text,"is_confirm":"0","reward_use":reward.text,"use_experince":experience.text,"to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! String]
+                url = "http://www.sscf88.com/App-Invest-investmoney"
+            }else{
+                url = "http://www.sscf88.com/App-Invest-newtinvestmoney"
+                param = ["borrow_id":id!,"duration":duration!,"transfer_invest_num":bidMoney.text,"pin":payPassword.text,"is_confirm":"0","reward_use":reward.text,"use_experince":experience.text,"to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! String]
+            }
+        }
+        
+        println(param)
         afnet.POST(url, parameters: param, success: { (opration :AFHTTPRequestOperation!, res :AnyObject!) -> Void in
             //            println(res["message"])
             AlertView.showMsg(res["message"] as! String, parentView: self.view)
-            println(res)
+//            println(res["message"])
             }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                AlertView.showMsg("系统错误，请联系客服！"
-                    , parentView: self.view)
+                println(error.localizedDescription)
+                AlertView.alert("错误", message: "系统错误，请联系客服！", buttonTitle: "确定", viewController: self)
         }
         loading.stopLoading()
     }

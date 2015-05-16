@@ -16,6 +16,8 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
         self.tableView.dataSource = self
         self.tableView.delegate = self
         if let token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String {
+            loading.startLoading(self.view)
+            self.tableView.scrollEnabled = false
             let afnet = AFHTTPRequestOperationManager()
             let url = "http://www.sscf88.com/App-Myinvest-getAllTending"
             let param = ["to":token]
@@ -24,9 +26,13 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
                 
                 self.data = res["data"] as! NSMutableArray
                 self.tableView.reloadData()
+                loading.stopLoading()
+                self.tableView.scrollEnabled = true
                 }, failure: { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
                     AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
                     self.tableView.reloadData()
+                    loading.stopLoading()
+                    self.tableView.scrollEnabled = true
             })
         }
     }
@@ -51,8 +57,15 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
         if data.count > 0{
             println(data[row])
             name.text = data[row].valueForKey("borrow_name") as? String
-            time.text = data[row].objectForKey("borrow_time") as? String
-            money.text = data[row].objectForKey("borrow_money") as? String
+            
+            var timeNumber = data[row].valueForKey("borrow_time") as! NSString
+            var interval = timeNumber.doubleValue
+            var date = NSDate(timeIntervalSince1970: interval)
+            var formatter = NSDateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            time.text = formatter.stringFromDate(date)
+            
+            money.text = data[row].objectForKey("investor_capital") as? String
         }
         return cell
     }

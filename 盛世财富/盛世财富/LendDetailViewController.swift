@@ -51,6 +51,8 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
     var bidTitle:String?
     var percent:String?
     var type:String?
+    var duration:String?
+    var per_transferData:String?
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTable.dataSource = self
@@ -88,8 +90,8 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                         self.need.text = "\(needFloat)"
                     }
                     
-                        
-                        
+                    self.type = borrowinfo["borrow_type"] as? String
+                    self.per_transferData = borrowinfo["per_transferData"] as? String
                         
                     //标题
                     var borrow_name = borrowinfo["borrow_name"] as! NSString!
@@ -144,6 +146,8 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                     self.borrowMoney.text = borrow_money as String
                     self.borrowInterestRate.text = "\(borrow_interest_rate)%"
                     self.borrowDuration.text = "\(borrow_duration)个月"
+                        
+                    self.duration = borrow_duration as? String
                     //项目介绍
                     self.borrowMin.text = borrowmin as String
                     self.interestRate.text = "\(borrow_interest_rate)%"
@@ -164,7 +168,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                         
                         
                     }
-                    print(123)
+//                    print(123)
                     loading.stopLoading()
                     self.mainTable.scrollEnabled = true
                 }
@@ -189,6 +193,9 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
             vc.id = self.id
             vc.percent = self.percent
             vc.bidTitle = self.bidTitle
+            vc.type = self.type
+            vc.duration = self.duration
+            vc.per_transferData = self.per_transferData
         }else if segue.identifier == "investorSegue" {
             var vc = segue.destinationViewController as! BidListViewController
             vc.bidId = self.id

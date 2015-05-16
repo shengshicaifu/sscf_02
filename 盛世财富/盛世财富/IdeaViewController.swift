@@ -14,13 +14,14 @@ class IdeaViewController: UIViewController ,UITextViewDelegate,UITextFieldDelega
 
     @IBOutlet weak var content: UITextView!
     @IBOutlet weak var phone: UITextField!
+    @IBOutlet weak var submit: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         content.delegate = self
         phone.delegate = self
         content.layer.borderWidth = 1
         content.layer.borderColor = UIColor.blackColor().CGColor
-        
+        submit.layer.cornerRadius = 5
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,6 +29,9 @@ class IdeaViewController: UIViewController ,UITextViewDelegate,UITextFieldDelega
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func submitIdea(sender: UIButton) {
+        AlertView.alert("提示", message: "感谢您的反馈！", buttonTitle: "确定", viewController: self)
+    }
     func textViewShouldBeginEditing(textView: UITextView) -> Bool{
         if content.text == "请输入您的意见" {
             content.text = ""

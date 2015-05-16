@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-class UserMoneyViewController:UIViewController {
+class UserMoneyViewController:UITableViewController {
     @IBOutlet weak var accountMoney: UILabel!
     @IBOutlet weak var totalAll: UILabel!
     @IBOutlet weak var moneyCollect: UILabel!

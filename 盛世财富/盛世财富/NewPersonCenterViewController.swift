@@ -25,20 +25,14 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 54/255.0, green: 169/255.0, blue: 245/255.0, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         
-        if let username = NSUserDefaults.standardUserDefaults().objectForKey("username") as? String{
-            self.navigationItem.rightBarButtonItem?.title = ""
-        }else{
-            //                println("unsign")
-            var barItem = UIBarButtonItem(title: "登录", style: UIBarButtonItemStyle.Plain, target: self, action: "loginBtn")
-            barItem.tintColor = UIColor.whiteColor()
-            self.navigationItem.rightBarButtonItem = barItem
-            
-        }
+        
         
         //点击个人头像，跳转到账户信息页面
         head.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toAccountInfo"))
         
     }
+    
+    
     //跳转到账户信息页面
     func toAccountInfo(){
         NSLog("跳转到账户信息页面")
@@ -123,6 +117,22 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
     }
     
     override func viewWillAppear(animated: Bool) {
+        //检查是否登录，为登录即禁用页面交互
+        if let username = NSUserDefaults.standardUserDefaults().objectForKey("username") as? String{
+            self.navigationItem.rightBarButtonItem?.title = ""
+            self.tableView.allowsSelection = true
+        }else{
+            //                println("unsign")
+            var barItem = UIBarButtonItem(title: "登录", style: UIBarButtonItemStyle.Plain, target: self, action: "loginBtn")
+            barItem.tintColor = UIColor.whiteColor()
+            self.navigationItem.rightBarButtonItem = barItem
+            
+            self.tableView.allowsSelection = false
+            
+        }
+        
+        
+        
 //        检查网络
         var reach = Reachability(hostName: Constant().ServerHost)
         reach.unreachableBlock = {(r:Reachability!)in
@@ -138,5 +148,16 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         }
         refreshData()
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "capitalSegue" {
+            var info = NSUserDefaults.standardUserDefaults()
+            if info.objectForKey("username") == nil {
+                AlertView.alert("提示", message: "请登录后再访问", buttonTitle: "确定", viewController: self)
+                return
+            }
+        }
+    }
+    
     
 }

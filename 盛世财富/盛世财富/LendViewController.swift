@@ -19,10 +19,14 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var imageCache = Dictionary<String,UIImage>()
     var tid: String = ""
     var sign: String = ""
+    
     var id:String?//页面传值的id
     var percent:String?
     var bidName:String?
     var type:String?
+    var per_transferData:String?
+    var duration:String?
+    
     let refreshControl = UIRefreshControl() //apple自带的下拉刷新
     @IBOutlet weak var circle: UIActivityIndicatorView!//读取数据动画
     @IBOutlet weak var mainTable: UITableView!
@@ -33,8 +37,8 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         super.viewDidLoad()
         mainTable.delegate = self
         mainTable.dataSource = self
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 54/255.0, green: 169/255.0, blue: 245/255.0, alpha: 1)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+//        self.navigationController?.navigationBar.barTintColor = UIColor(red: 54/255.0, green: 169/255.0, blue: 245/255.0, alpha: 1)
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
        //滚动图
         var viewsArray = NSMutableArray()
         var colorArray = [UIColor.cyanColor(),UIColor.blueColor(),UIColor.greenColor(),UIColor.yellowColor(),UIColor.purpleColor()]
@@ -167,6 +171,13 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.bidName = title.text
         self.percent = percent.text
         self.type = type.text
+        
+        let transferData = cell.viewWithTag(90) as! UILabel
+        self.per_transferData = transferData.text
+        
+        let duration = cell.viewWithTag(91) as! UILabel
+        self.duration = duration.text
+
     }
     //点击事件
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -198,6 +209,11 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             vc.bidTitle = self.bidName
             vc.percent = self.percent
             vc.type = self.type
+            
+            if self.type != "8" {
+                vc.per_transferData = self.per_transferData
+                vc.duration = self.duration
+            }
         }
         //隐藏tabbar
         if nextView != nil {
@@ -233,6 +249,12 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             hideId.tag = 99
             var hideType = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
             hideType.tag = 98
+            
+            var transferData = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+            transferData.tag = 90
+            var duration = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+            duration.tag = 91
+            
             if tmpListData.count > 0 {
                 //图片  会产生阻滞
 //                image.image = UIImage(data:NSData(contentsOfURL: NSURL(string: "http://www.sscf88.com/uploadData/ad/2014093013251995.jpg")!)!)
@@ -256,6 +278,16 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 
                 tmp = tmpListData[row].valueForKey("borrow_interest_rate") as! String
                 percent.text = "\(tmp)%"
+                progress.progress = pro.floatValue/100.0
+                
+                transferData.text = tmpListData[row].valueForKey("per_transferData") as? String
+                cell.addSubview(transferData)
+                transferData.hidden = true
+                
+                duration.text = tmpListData[row].valueForKey("borrow_duration") as? String
+                cell.addSubview(duration)
+                duration.hidden = true
+                
                 hideId.text = tmpListData[row].valueForKey("id") as? String
                 cell.addSubview(hideId)
                 hideId.hidden = true
@@ -263,7 +295,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 cell.addSubview(hideType)
                 hideType.hidden = true
                 
-                progress.progress = pro.floatValue/100.0
+                
                 
             }else{
 //              如果没有数据，单元格不能点击

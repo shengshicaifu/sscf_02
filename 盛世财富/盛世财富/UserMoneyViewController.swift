@@ -27,13 +27,14 @@ class UserMoneyViewController:UITableViewController {
         if let token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String {
             let afnet = AFHTTPRequestOperationManager()
             let param = ["to":token]
-            let url = "http://www.sscf88.com/App-Index"
+            let url = "http://www.sscf88.com/App-Ucenter-userInfo"
             
             afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
                 let code = res["code"] as! Int
                 let message = res["message"] as! String
                 let data  = res["data"] as! NSDictionary
                 let proInfo = data.objectForKey("proInfo") as! NSDictionary
+                println(res)
                 self.accountMoney.text = proInfo.objectForKey("account_money") as? String
                 self.totalAll.text = proInfo.objectForKey("total_all") as? String
                 self.moneyCollect.text = proInfo.objectForKey("money_collect") as? String
@@ -47,7 +48,7 @@ class UserMoneyViewController:UITableViewController {
                 self.kyAll.text = proInfo.objectForKey("ky_all") as? String
                 self.jzlx.text = proInfo.objectForKey("jzlx") as? String
                 }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                    AlertView.showMsg(error.localizedDescription, parentView: self.view)
+                    AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
             }
         }
     }

@@ -268,20 +268,23 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         let cell = self.mainTable.dequeueReusableCellWithIdentifier("allList") as! UITableViewCell
         var money = cell.viewWithTag(100) as! UILabel
         var percent = cell.viewWithTag(101) as! UILabel
-        var month = cell.viewWithTag(102) as! UILabel
+        var progressLabel = cell.viewWithTag(102) as! UILabel
         var title = cell.viewWithTag(103) as! UILabel
         var hideId = cell.viewWithTag(99) as! UILabel
+        var progress = cell.viewWithTag(90) as! UIProgressView
         var hideType = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         hideType.tag = 98
         var row = indexPath.row
         if listData.count > 0 {
+//            println(listData)
             var tmp = listData[row].valueForKey("borrow_money") as! String
             money.text = "\(tmp)元"
             tmp = listData[row].valueForKey("borrow_interest_rate") as! String
             percent.text = "\(tmp)%"
             tmp = listData[row].valueForKey("borrow_duration") as! String
-            var unit = listData[row].valueForKey("duration_unit") as! String
-            month.text = "\(tmp)\(unit)"
+            var unit = listData[row].valueForKey("progress") as! NSString
+            progressLabel.text = "\(unit)%"
+            progress.progress = unit.floatValue/100.0
             title.text = listData[row].valueForKey("borrow_name") as? String
             hideId.text = listData[row].valueForKey("id") as? String
             hideType.text = tmpListData[row].valueForKey("borrow_type") as? String

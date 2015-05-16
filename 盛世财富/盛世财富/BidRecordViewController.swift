@@ -55,7 +55,7 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
         var money = cell.contentView.viewWithTag(102) as! UILabel
         var row = indexPath.row
         if data.count > 0{
-            println(data[row])
+//            println(data[row])
             name.text = data[row].valueForKey("borrow_name") as? String
             
             var timeNumber = data[row].valueForKey("borrow_time") as! NSString

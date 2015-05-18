@@ -37,6 +37,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         super.viewDidLoad()
         mainTable.delegate = self
         mainTable.dataSource = self
+//        mainTable.allowsSelection = false
 //        self.navigationController?.navigationBar.barTintColor = UIColor(red: 54/255.0, green: 169/255.0, blue: 245/255.0, alpha: 1)
 //        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
        //滚动图

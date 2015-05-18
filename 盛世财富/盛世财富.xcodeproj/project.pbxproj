@@ -70,7 +70,6 @@
 		E9E304041B09A6A90021D006 /* SetPinPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E304031B09A6A90021D006 /* SetPinPasswordViewController.swift */; };
 		E9E304061B09AAD20021D006 /* AccountSafeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E304051B09AAD20021D006 /* AccountSafeTableViewController.swift */; };
 		E9E5211F1B05E3D900A41EEA /* YYCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E5211E1B05E3D900A41EEA /* YYCycleScrollView.swift */; };
-		E9EEC97E1AB6A56600E09442 /* aaa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E9EEC97D1AB6A56600E09442 /* aaa.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,7 +175,6 @@
 		E9E304031B09A6A90021D006 /* SetPinPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPinPasswordViewController.swift; sourceTree = "<group>"; };
 		E9E304051B09AAD20021D006 /* AccountSafeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSafeTableViewController.swift; sourceTree = "<group>"; };
 		E9E5211E1B05E3D900A41EEA /* YYCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYCycleScrollView.swift; sourceTree = "<group>"; };
-		E9EEC97D1AB6A56600E09442 /* aaa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = aaa.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,7 +263,6 @@
 			children = (
 				E9D660531AB1313B0020982D /* Images.xcassets */,
 				E90EA25D1ABFA1A5006D22E6 /* 盛世财富-Bridging-Header.h */,
-				E9EEC97D1AB6A56600E09442 /* aaa.jpg */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -499,7 +496,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9EEC97E1AB6A56600E09442 /* aaa.jpg in Resources */,
 				E9D660571AB1313B0020982D /* LaunchScreen.xib in Resources */,
 				E9D660541AB1313B0020982D /* Images.xcassets in Resources */,
 				E95ABEA31B05BCA5001EFD2F /* Main.storyboard in Resources */,

@@ -34,7 +34,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         
         
         
-        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

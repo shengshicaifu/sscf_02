@@ -12,7 +12,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
 
     var eHttp: HttpController = HttpController()//新建一个httpController
     var base: baseClass = baseClass()
-    var timeLineUrl = Constant.getServerHost() + "/app-invest-content"//链接地址
+    var timeLineUrl = Constant.getServerHost() + "/App-invest-content"//链接地址
     var tmpListData: NSMutableArray = NSMutableArray()//临时数据  下拉添加
     var listData: NSMutableArray = NSMutableArray()//存数据
     var page = 1 //page

@@ -125,7 +125,7 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         }else{
             //                println("unsign")
             var barItem = UIBarButtonItem(title: "登录", style: UIBarButtonItemStyle.Plain, target: self, action: "loginBtn")
-            barItem.tintColor = UIColor.whiteColor()
+            
             self.navigationItem.rightBarButtonItem = barItem
             
             self.tableView.allowsSelection = false

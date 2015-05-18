@@ -48,7 +48,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "repeat", userInfo: nil, repeats: true)
         
         //获取验证码
-        var url = "http://www.sscf88.com/App-Register-sendphone"
+        var url = Constant.getServerHost() + "/App-Register-sendphone"
         var params = ["cellphone":phone]
         var manager = AFHTTPRequestOperationManager()
         manager.POST(url, parameters: params,
@@ -74,7 +74,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     
     var i = 60
     func repeat(){
-        checkBtn.setTitle("重新获取（\(i)）", forState: UIControlState.Disabled)
+        checkBtn.setTitle("\(i)", forState: UIControlState.Disabled)
         i--
         if i == 0 {
             i = 60
@@ -106,7 +106,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         }else{
             //此处执行注册操作
             loading.startLoading(self.view)
-            var url = "http://www.sscf88.com/App-Register-regaction"
+            var url = Constant.getServerHost() + "/App-Register-regaction"
             var params = ["user_name":phone,"pass_word":password,"code":code]
             var manager = AFHTTPRequestOperationManager()
             manager.POST(url, parameters: params,

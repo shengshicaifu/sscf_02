@@ -32,7 +32,7 @@ class InvestorSummaryViewController: UITableViewController,UITableViewDataSource
         
         //获取网络数据
         var manager = AFHTTPRequestOperationManager()
-        var url = "http://www.sscf88.com/App-Myinvest-summary"
+        var url = Constant.getServerHost() + "/App-Myinvest-summary"
         var params = ["to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! NSString]
         NSLog("投资总表参数：%@", params)
         manager.POST(url, parameters: params,
@@ -91,7 +91,7 @@ class InvestorSummaryViewController: UITableViewController,UITableViewDataSource
     func getData(){
         //获取网络数据
         var manager = AFHTTPRequestOperationManager()
-        var url = "http://www.sscf88.com/App-Myinvest-summary"
+        var url = Constant.getServerHost() + "/App-Myinvest-summary"
         var params = ["to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! NSString]
         NSLog("投资总表参数：%@", params)
         manager.POST(url, parameters: params,

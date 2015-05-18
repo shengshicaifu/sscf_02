@@ -22,12 +22,13 @@ class UserMoneyViewController:UITableViewController {
     @IBOutlet weak var kyAll: UILabel!
     @IBOutlet weak var jzlx: UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String {
             let afnet = AFHTTPRequestOperationManager()
             let param = ["to":token]
-            let url = "http://www.sscf88.com/App-Ucenter-userInfo"
+            let url = Constant.getServerHost() + "/App-Ucenter-userInfo"
             
             afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
                 let code = res["code"] as! Int
@@ -59,7 +60,7 @@ class UserMoneyViewController:UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         //        检查网络
-        var reach = Reachability(hostName: Constant().ServerHost)
+        var reach = Reachability(hostName: Constant.getDomain())
         reach.unreachableBlock = {(r:Reachability!)in
             dispatch_async(dispatch_get_main_queue(), {
                 var alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)

@@ -44,9 +44,9 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
     @IBOutlet weak var finIncomedes: UILabel!
     @IBOutlet weak var vouchNeed: UILabel!
     @IBOutlet weak var borrowDate: UILabel!
-    var timeLineUrl = "http://www.sscf88.com/app-invest-detailcontent-id-"
+    var timeLineUrl = Constant.getServerHost() + "/app-invest-detailcontent-id-"
     var tmpListData: NSMutableArray = NSMutableArray()
-    var eHttp: HttpController = HttpController()
+//    var eHttp: HttpController = HttpController()
     var id:String?
     var bidTitle:String?
     var percent:String?
@@ -251,7 +251,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
     }
     override func viewWillAppear(animated: Bool) {
         //        检查网络
-        var reach = Reachability(hostName: Constant().ServerHost)
+        var reach = Reachability(hostName: Constant.getDomain())
         reach.unreachableBlock = {(r:Reachability!)in
             dispatch_async(dispatch_get_main_queue(), {
                 var alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)

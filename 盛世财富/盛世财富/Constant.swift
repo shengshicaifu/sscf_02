@@ -8,5 +8,14 @@
 
 import Foundation
 class Constant{
-    let ServerHost = "www.sscf88.com"
+    //let ServerHost = "http://61.183.178.86:10888"
+    //内网：http://192.168.1.253:8080
+    //外网：http://61.183.178.86:10888
+    //http://www.sscf88.com
+    class func getServerHost() -> String {
+        return "http://61.183.178.86:10888/MidServer"
+    }
+    class func getDomain() -> String {
+        return "www.baidu.com"
+    }
 }

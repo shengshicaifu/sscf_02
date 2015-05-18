@@ -28,7 +28,7 @@ class ModifyLoginPasswordViewController: UIViewController {
         var newpass = newPassTextField.text
         var confirmpass = confirmPassTextField.text
         if oldpass.isEmpty {
-            AlertView.showMsg("请输入旧密码", parentView: self.view)
+            AlertView.showMsg("请输入原密码", parentView: self.view)
             return
         }
         if newpass.isEmpty {
@@ -46,7 +46,7 @@ class ModifyLoginPasswordViewController: UIViewController {
         }
         //其他输入限制再加
         var manager = AFHTTPRequestOperationManager()
-        var url = "http://www.sscf88.com/App-Ucenter-setPassWord"
+        var url = Constant.getServerHost() + "/App-Ucenter-setPassWord"
         var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
         var params = ["oldpass":oldpass,"newpass":newpass,"to":token]
         manager.POST(url, parameters: params,
@@ -67,5 +67,32 @@ class ModifyLoginPasswordViewController: UIViewController {
             }
         )
         
+    }
+    
+    //MARK:- 隐藏键盘
+    override func viewWillAppear(animated: Bool) {
+        DaiDodgeKeyboard.addRegisterTheViewNeedDodgeKeyboard(self.view)
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        DaiDodgeKeyboard.removeRegisterTheViewNeedDodgeKeyboard()
+        super.viewWillDisappear(animated)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        oldPassTextField.resignFirstResponder()
+        newPassTextField.resignFirstResponder()
+        confirmPassTextField.resignFirstResponder()
+
+        return true
+    }
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        
+        oldPassTextField.resignFirstResponder()
+        newPassTextField.resignFirstResponder()
+        confirmPassTextField.resignFirstResponder()
+       
     }
 }

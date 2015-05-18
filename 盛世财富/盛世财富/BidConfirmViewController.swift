@@ -69,9 +69,9 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         if let type = self.type {
             if type == "8"{
                 param = ["borrow_id":id!,"invest_money":bidMoney.text,"pin":payPassword.text,"is_confirm":"0","reward_use":reward.text,"use_experince":experience.text,"to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! String]
-                url = "http://www.sscf88.com/App-Invest-investmoney"
+                url = Constant.getServerHost() + "/App-Invest-investmoney"
             }else{
-                url = "http://www.sscf88.com/App-Invest-newtinvestmoney"
+                url = Constant.getServerHost() + "/App-Invest-newtinvestmoney"
                 param = ["borrow_id":id!,"duration":duration!,"transfer_invest_num":bidMoney.text,"pin":payPassword.text,"is_confirm":"0","reward_use":reward.text,"use_experince":experience.text,"to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! String]
             }
         }

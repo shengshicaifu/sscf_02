@@ -1,0 +1,92 @@
+//
+//  SetPinPasswordViewController.swift
+//  盛世财富
+//  设置交易密码
+//  Created by 云笺 on 15/5/18.
+//  Copyright (c) 2015年 sscf88. All rights reserved.
+//
+
+import UIKit
+
+class SetPinPasswordViewController: UIViewController {
+
+    @IBOutlet weak var pinPasswordTextField: UITextField!
+    
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func modifyTapped(sender: UIButton) {
+        var pinpass = pinPasswordTextField.text
+        var confirmpass = confirmPasswordTextField.text
+
+        if pinpass.isEmpty {
+            AlertView.showMsg("请输入交易密码", parentView: self.view)
+            return
+        }
+        
+        if confirmpass.isEmpty {
+            AlertView.showMsg("请输入确认密码", parentView: self.view)
+            return
+        }
+        if pinpass != confirmpass {
+            AlertView.showMsg("两次密码不一致", parentView: self.view)
+            return
+        }
+        //其他输入限制再加
+        var manager = AFHTTPRequestOperationManager()
+        var url = Constant.getServerHost() + "/App-Ucenter-setFirstPin"
+        var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
+        var params = ["pin_pass":pinpass,"to":token]
+        manager.POST(url, parameters: params,
+            success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                var result = data as! NSDictionary
+                var code = result["code"] as! Int
+                if code == 0 {
+                    AlertView.showMsg("设置交易密码失败，请稍候再试", parentView: self.view)
+                }else if code == 200 {
+                    NSLog("设置交易密码成功")
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
+                
+            },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+            }
+        )
+    }
+    
+    
+    //MARK:- 隐藏键盘
+    override func viewWillAppear(animated: Bool) {
+        DaiDodgeKeyboard.addRegisterTheViewNeedDodgeKeyboard(self.view)
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        DaiDodgeKeyboard.removeRegisterTheViewNeedDodgeKeyboard()
+        super.viewWillDisappear(animated)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        pinPasswordTextField.resignFirstResponder()
+        confirmPasswordTextField.resignFirstResponder()
+        
+        return true
+    }
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        
+        pinPasswordTextField.resignFirstResponder()
+        confirmPasswordTextField.resignFirstResponder()
+        
+    }
+
+}

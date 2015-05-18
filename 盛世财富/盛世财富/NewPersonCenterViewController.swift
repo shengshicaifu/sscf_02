@@ -25,7 +25,8 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
 //        self.navigationController?.navigationBar.barTintColor = UIColor(red: 54/255.0, green: 169/255.0, blue: 245/255.0, alpha: 1)
 //        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         
-        
+        head.layer.masksToBounds = true
+        head.layer.cornerRadius = 25
         
         //点击个人头像，跳转到账户信息页面
         head.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toAccountInfo"))
@@ -134,7 +135,7 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         
         
 //        检查网络
-        var reach = Reachability(hostName: Constant().ServerHost)
+        var reach = Reachability(hostName: Constant.getDomain())
         reach.unreachableBlock = {(r:Reachability!)in
             dispatch_async(dispatch_get_main_queue(), {
                 var alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)

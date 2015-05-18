@@ -12,7 +12,7 @@ import UIKit
 class AllListViewController: UIViewController ,UITableViewDataSource,UITableViewDelegate,HttpProtocol{
     var eHttp: HttpController = HttpController()
     var base: baseClass = baseClass()
-    var timeLineUrl = "http://www.sscf88.com/app-invest-content"
+    var timeLineUrl = Constant.getServerHost() + "/app-invest-content"
     var tmpListData: NSMutableArray = NSMutableArray()
     var listData: NSMutableArray = NSMutableArray()
     var page = 1 //page
@@ -33,16 +33,21 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     var moneyValue:Int = 0
     var periodValue:Int = 0
     
+    var status:String = "0"
+    var money:String = "0"
+    var period:String = "0"
     
     //显示筛选菜单
     @IBAction func showConditionMenuView(sender: UIBarButtonItem) {
         if !isConditionMenuViewVisiable {
             if conditionMenuView == nil {
                 conditionMenuView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 350))
+                //conditionMenuView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
+                //conditionMenuView?.frame = CGRectMake(0, 0, self.view.frame.width, 350)
                 conditionMenuView?.tag = 1001
                 
-                conditionMenuView!.backgroundColor = UIColor.blackColor()
-                conditionMenuView!.alpha = 0.8
+                conditionMenuView!.backgroundColor = UIColor(red: 68/255.0, green: 138/255.0, blue: 255/255.0, alpha: 1.0)
+//                conditionMenuView!.alpha = 0.8
                 
                 //借款状态
                 var statusLabel = UILabel(frame: CGRectMake(5, 80, 120, 40))
@@ -123,7 +128,9 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     
     //加载数据
     func getData(){
-        var status:String
+        self.circle.hidden = false
+        self.circle.startAnimating()
+        
         switch statusValue {
             case 0:status = "0" ;break
             case 1:status = "0" ;break
@@ -134,7 +141,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             
         }
         
-        var money:String
+        
         switch moneyValue {
             case 0:money = "0" ;break
             case 1:money = "0|100000" ;break
@@ -144,7 +151,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             default:money = "0" ;
         }
         
-        var period:String
+        
         switch periodValue {
             case 0:period = "0" ;break
             case 1:period = "0|1" ;break
@@ -163,16 +170,30 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
 //            self.mainTable.reloadData()
 //        })
         var params = ["borrow_status":status,"borrow_money":money,"borrow_duration":period]
-        NSLog("筛选参数%@", params)
+//        NSLog("筛选参数%@", params)
         var manager = AFHTTPRequestOperationManager()
-        manager.GET(url, parameters: params,
+        manager.POST(url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                //NSLog("listData:%@",self.listData.isKindOfClass(NSMutableArray))
+                
+                self.circle.stopAnimating()
+                self.circle.hidden = true
+                
                 var result:NSDictionary = data as! NSDictionary
-                //if(result["data"]?.valueForKey("list") != nil){
-                    self.listData = result["data"]?.valueForKey("list") as! NSMutableArray //list数据
-//                    NSLog("筛选结果%@",self.listData)
-                    self.mainTable.reloadData()
-                //}
+                
+                if let resultData = result["data"]?.valueForKey("list") as? NSMutableArray {
+                    self.listData = resultData
+                } else {
+                    if self.listData.isKindOfClass(NSMutableArray) {
+                        NSLog("listData是NSMutableArray")
+                    }
+                    self.listData.removeAllObjects()
+                }
+                
+                for var i=0 ; i < self.listData.count; i++ {
+                    NSLog("筛选结果%@",(self.listData[i] as! NSDictionary)["id"] as! String)
+                }
+                self.mainTable.reloadData()
                 
             },
             failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
@@ -188,13 +209,33 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         super.viewDidLoad()
         mainTable.delegate = self
         eHttp.delegate = self
-        eHttp.get(self.timeLineUrl,view :self.view,callback: {
+        var params = [:]
+        var manager = AFHTTPRequestOperationManager()
+        manager.POST(timeLineUrl, parameters: params,
+            success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                var result:NSDictionary = data as! NSDictionary
+                
+                self.tmpListData = result["data"]?.valueForKey("list") as! NSMutableArray //list数据
+
+                self.circle.stopAnimating()
+                self.circle.hidden = true
+                self.mainTable.hidden = false
+                
+                self.mainTable.reloadData()
+                
+            },
+            failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
+                
+            }
+        )
+
+//        eHttp.get(self.timeLineUrl,view :self.view,callback: {
+////            self.mainTable.reloadData()
+//            self.circle.stopAnimating()
+//            self.circle.hidden = true
+//            self.mainTable.hidden = false
 //            self.mainTable.reloadData()
-            self.circle.stopAnimating()
-            self.circle.hidden = true
-            self.mainTable.hidden = false
-            self.mainTable.reloadData()
-        })
+//        })
         
        
         
@@ -203,6 +244,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     
     //为table添加下拉刷新和上拉加载功能
     func setupRefresh(){
+        //下拉刷新
         self.mainTable.addHeaderWithCallback({
             let delayInSeconds:Int64 =  1000000000  * 2
             var popTime:dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds)
@@ -212,7 +254,10 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             })
         })
         
+        //上拉加载
         self.mainTable.addFooterWithCallback({
+            
+            /*
             var nextPage = String(self.page + 1)
             var tmpTimeLineUrl = self.timeLineUrl + "-page-" + nextPage as NSString
             
@@ -221,22 +266,60 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             self.eHttp.get(tmpTimeLineUrl as String,view :self.view,callback: {
                 self.mainTable.reloadData()
             })
+            */
+            //记录最后一个[标的]的ID号码
+            var borrow_id = 0
             
-            let delayInSeconds:Int64 = 1000000000 * 2
-            var popTime:dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds)
-            dispatch_after(popTime, dispatch_get_main_queue(), {
-                self.mainTable.footerEndRefreshing()
-                if(self.tmpListData != self.listData){
-                    if(self.tmpListData.count != 0){
-                        var tmpListDataCount = self.tmpListData.count
+            var count = self.listData.count
+            if count > 0 {
+                borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
+            }
+            NSLog("最后一个[标的]的ID号码:%i", borrow_id)
+            var params = ["borrow_id":borrow_id,"borrow_status":self.status,"borrow_money":self.money,"borrow_duration":self.period]
+            var manager = AFHTTPRequestOperationManager()
+            manager.POST(self.timeLineUrl, parameters: params,
+                success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                    var result:NSDictionary = data as! NSDictionary
+                    
+                    var a = result["data"]?.valueForKey("list") as! NSMutableArray //list数据
+                    
+                    //self.mainTable.reloadData()
+                    self.mainTable.footerEndRefreshing()
+                    
+
+                    if(a.count > 0){
+                        var tmpListDataCount = a.count
                         for(var i:Int = 0; i < tmpListDataCount; i++){
-                            self.listData.addObject(self.tmpListData[i])
+                            self.listData.addObject(a[i])
                         }
                     }
                     self.mainTable.reloadData()
                     self.tmpListData.removeAllObjects()
+
+                },
+                failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
+                    
                 }
-            })
+            )
+            
+            
+            
+            
+//            let delayInSeconds:Int64 = 1000000000 * 2
+//            var popTime:dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds)
+//            dispatch_after(popTime, dispatch_get_main_queue(), {
+//                self.mainTable.footerEndRefreshing()
+//                if(self.tmpListData != self.listData){
+//                    if(self.tmpListData.count != 0){
+//                        var tmpListDataCount = self.tmpListData.count
+//                        for(var i:Int = 0; i < tmpListDataCount; i++){
+//                            self.listData.addObject(self.tmpListData[i])
+//                        }
+//                    }
+//                    self.mainTable.reloadData()
+//                    self.tmpListData.removeAllObjects()
+//                }
+//            })
         })
     }
     func didRecieveResult(result: NSDictionary){
@@ -271,19 +354,36 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         var progressLabel = cell.viewWithTag(102) as! UILabel
         var title = cell.viewWithTag(103) as! UILabel
         var hideId = cell.viewWithTag(99) as! UILabel
+        
         var progress = cell.viewWithTag(90) as! UIProgressView
+        progress.progressTintColor = UIColor(red: 68/255.0, green: 138/255.0, blue: 255/255.0, alpha: 1.0)
+        progress.trackTintColor = UIColor(red: 235/255.0, green: 235/255.0, blue: 235/255.0, alpha: 1.0)
+        progress.layer.masksToBounds = true
+        progress.layer.cornerRadius = 4
+        
         var hideType = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         hideType.tag = 98
         var row = indexPath.row
         if listData.count > 0 {
 //            println(listData)
-            var tmp = listData[row].valueForKey("borrow_money") as! String
-            money.text = "\(tmp)元"
-            tmp = listData[row].valueForKey("borrow_interest_rate") as! String
+            var m = listData[row].valueForKey("borrow_money") as! NSString
+            if m.integerValue > 10000 {
+                var wm = m.integerValue/10000
+                money.text = "\(wm)万元"
+            } else {
+                money.text = "\(m)元"
+            }
+            
+            var tmp = listData[row].valueForKey("borrow_interest_rate") as! String
             percent.text = "\(tmp)%"
             tmp = listData[row].valueForKey("borrow_duration") as! String
             var unit = listData[row].valueForKey("progress") as! NSString
-            progressLabel.text = "\(unit)%"
+            progressLabel.text = "\(unit.integerValue)%"
+            progressLabel.layer.borderWidth = 1
+            progressLabel.layer.borderColor = UIColor(red: 68/255.0, green: 138/255.0, blue: 255/255.0, alpha: 1.0).CGColor
+            progressLabel.layer.cornerRadius = 10
+            
+            
             progress.progress = unit.floatValue/100.0
             title.text = listData[row].valueForKey("borrow_name") as? String
             hideId.text = listData[row].valueForKey("id") as? String

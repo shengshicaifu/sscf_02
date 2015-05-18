@@ -27,7 +27,7 @@ class BidListViewController: UITableViewController,UITableViewDataSource,UITable
         self.tableView.scrollEnabled = false
         //获取投资人列表信息
         var manager = AFHTTPRequestOperationManager()
-        var url = "http://www.sscf88.com/App-Invest-investorList"
+        var url = Constant.getServerHost() + "/App-Invest-investorList"
         var params = ["bid":bidId!]
         manager.GET(url, parameters: params,
             success: {(operation:AFHTTPRequestOperation!,data:AnyObject!)in
@@ -42,6 +42,7 @@ class BidListViewController: UITableViewController,UITableViewDataSource,UITable
             },
             failure: {(operation:AFHTTPRequestOperation!,error:NSError!)in
                 NSLog("获取投资人失败:%@",error)
+                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
                 loading.stopLoading()
                 self.tableView.scrollEnabled = true
             }

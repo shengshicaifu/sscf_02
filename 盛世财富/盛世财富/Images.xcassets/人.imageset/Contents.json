@@ -3,16 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "人.png"
+      "filename" : "人-1-1.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "人@2x.png"
+      "filename" : "人-1.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "人-2.png"
     }
   ],
   "info" : {

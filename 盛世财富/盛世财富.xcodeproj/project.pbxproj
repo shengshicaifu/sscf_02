@@ -43,6 +43,10 @@
 		E961E1271AC8DCBC0021ED14 /* REMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E1211AC8DCBC0021ED14 /* REMenuItem.m */; };
 		E961E1281AC8DCBC0021ED14 /* REMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E1231AC8DCBC0021ED14 /* REMenuItemView.m */; };
 		E96B1E731AB6BFB300C61870 /* AllListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96B1E721AB6BFB300C61870 /* AllListViewController.swift */; };
+		E96B2ED21B0833A500B4197B /* ModifyPinPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96B2ED11B0833A500B4197B /* ModifyPinPasswordViewController.swift */; };
+		E96B2F081B08673900B4197B /* MDRadialProgressLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E96B2F031B08673900B4197B /* MDRadialProgressLabel.m */; };
+		E96B2F091B08673900B4197B /* MDRadialProgressTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = E96B2F051B08673900B4197B /* MDRadialProgressTheme.m */; };
+		E96B2F0A1B08673900B4197B /* MDRadialProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E96B2F071B08673900B4197B /* MDRadialProgressView.m */; };
 		E977F3F41AC540E7008C2F8A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */; };
 		E9B9EF4C1AC8E00600E46714 /* BidListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B9EF4B1AC8E00600E46714 /* BidListViewController.swift */; };
 		E9BEE1AD1AC24CF10049600C /* HttpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BEE1AC1AC24CF10049600C /* HttpController.swift */; };
@@ -63,6 +67,8 @@
 		E9D660541AB1313B0020982D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9D660531AB1313B0020982D /* Images.xcassets */; };
 		E9D660571AB1313B0020982D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9D660551AB1313B0020982D /* LaunchScreen.xib */; };
 		E9D660631AB1313B0020982D /* ____Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D660621AB1313B0020982D /* ____Tests.swift */; };
+		E9E304041B09A6A90021D006 /* SetPinPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E304031B09A6A90021D006 /* SetPinPasswordViewController.swift */; };
+		E9E304061B09AAD20021D006 /* AccountSafeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E304051B09AAD20021D006 /* AccountSafeTableViewController.swift */; };
 		E9E5211F1B05E3D900A41EEA /* YYCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E5211E1B05E3D900A41EEA /* YYCycleScrollView.swift */; };
 		E9EEC97E1AB6A56600E09442 /* aaa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E9EEC97D1AB6A56600E09442 /* aaa.jpg */; };
 /* End PBXBuildFile section */
@@ -136,6 +142,13 @@
 		E961E1221AC8DCBC0021ED14 /* REMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuItemView.h; sourceTree = "<group>"; };
 		E961E1231AC8DCBC0021ED14 /* REMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuItemView.m; sourceTree = "<group>"; };
 		E96B1E721AB6BFB300C61870 /* AllListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllListViewController.swift; sourceTree = "<group>"; };
+		E96B2ED11B0833A500B4197B /* ModifyPinPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyPinPasswordViewController.swift; sourceTree = "<group>"; };
+		E96B2F021B08673900B4197B /* MDRadialProgressLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDRadialProgressLabel.h; sourceTree = "<group>"; };
+		E96B2F031B08673900B4197B /* MDRadialProgressLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDRadialProgressLabel.m; sourceTree = "<group>"; };
+		E96B2F041B08673900B4197B /* MDRadialProgressTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDRadialProgressTheme.h; sourceTree = "<group>"; };
+		E96B2F051B08673900B4197B /* MDRadialProgressTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDRadialProgressTheme.m; sourceTree = "<group>"; };
+		E96B2F061B08673900B4197B /* MDRadialProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDRadialProgressView.h; sourceTree = "<group>"; };
+		E96B2F071B08673900B4197B /* MDRadialProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDRadialProgressView.m; sourceTree = "<group>"; };
 		E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		E9B9EF4B1AC8E00600E46714 /* BidListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BidListViewController.swift; sourceTree = "<group>"; };
 		E9BEE1AC1AC24CF10049600C /* HttpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpController.swift; sourceTree = "<group>"; };
@@ -160,6 +173,8 @@
 		E9D6605C1AB1313B0020982D /* 盛世财富Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "盛世财富Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D660611AB1313B0020982D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9D660621AB1313B0020982D /* ____Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "____Tests.swift"; sourceTree = "<group>"; };
+		E9E304031B09A6A90021D006 /* SetPinPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPinPasswordViewController.swift; sourceTree = "<group>"; };
+		E9E304051B09AAD20021D006 /* AccountSafeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSafeTableViewController.swift; sourceTree = "<group>"; };
 		E9E5211E1B05E3D900A41EEA /* YYCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYCycleScrollView.swift; sourceTree = "<group>"; };
 		E9EEC97D1AB6A56600E09442 /* aaa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = aaa.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -258,25 +273,29 @@
 		E91E81321AB27956000C5FD3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E95684F11B06D8FA00F46FF0 /* AccountInfoTableViewController.swift */,
-				E93732B01ACA32F600423B7E /* MyMenuTableViewController.swift */,
-				E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */,
-				E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */,
-				E9D6604E1AB1313B0020982D /* LendViewController.swift */,
-				E96B1E721AB6BFB300C61870 /* AllListViewController.swift */,
-				E9C54E051AB7BCD400D4722C /* LendDetailViewController.swift */,
-				E9C70C051AC0FB2100E1CA8D /* MoreViewController.swift */,
-				E9C70C071AC1035B00E1CA8D /* IdeaViewController.swift */,
 				E9C70C091AC108AC00E1CA8D /* AboutViewController.swift */,
-				E9B9EF4B1AC8E00600E46714 /* BidListViewController.swift */,
-				E9C544C31AE8914800B50D8C /* BidConfirmViewController.swift */,
-				598A77831AF9E48600DE4271 /* TabBarViewController.swift */,
-				594E5B4E1AFA102500218DA5 /* NewPersonCenterViewController.swift */,
+				E95684F11B06D8FA00F46FF0 /* AccountInfoTableViewController.swift */,
+				E96B1E721AB6BFB300C61870 /* AllListViewController.swift */,
 				E9D6604C1AB1313B0020982D /* AppDelegate.swift */,
-				59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */,
-				E93B725D1B070DDE00B28672 /* InvestorSummaryTableViewController.swift */,
+				E9C544C31AE8914800B50D8C /* BidConfirmViewController.swift */,
+				E9B9EF4B1AC8E00600E46714 /* BidListViewController.swift */,
 				59BEC41A1B07124200F5690D /* BidRecordViewController.swift */,
+				E9C70C071AC1035B00E1CA8D /* IdeaViewController.swift */,
+				E93B725D1B070DDE00B28672 /* InvestorSummaryTableViewController.swift */,
+				E9C54E051AB7BCD400D4722C /* LendDetailViewController.swift */,
+				E9D6604E1AB1313B0020982D /* LendViewController.swift */,
+				E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */,
 				E93714C91B074F79009B9B80 /* ModifyLoginPasswordViewController.swift */,
+				E96B2ED11B0833A500B4197B /* ModifyPinPasswordViewController.swift */,
+				E9C70C051AC0FB2100E1CA8D /* MoreViewController.swift */,
+				E93732B01ACA32F600423B7E /* MyMenuTableViewController.swift */,
+				595C8DC41B07317800989977 /* NavigationExtension.swift */,
+				594E5B4E1AFA102500218DA5 /* NewPersonCenterViewController.swift */,
+				E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */,
+				598A77831AF9E48600DE4271 /* TabBarViewController.swift */,
+				59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */,
+				E9E304031B09A6A90021D006 /* SetPinPasswordViewController.swift */,
+				E9E304051B09AAD20021D006 /* AccountSafeTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -298,6 +317,19 @@
 			path = REMenu;
 			sourceTree = "<group>";
 		};
+		E96B2F011B08673900B4197B /* MDRadialProgress */ = {
+			isa = PBXGroup;
+			children = (
+				E96B2F021B08673900B4197B /* MDRadialProgressLabel.h */,
+				E96B2F031B08673900B4197B /* MDRadialProgressLabel.m */,
+				E96B2F041B08673900B4197B /* MDRadialProgressTheme.h */,
+				E96B2F051B08673900B4197B /* MDRadialProgressTheme.m */,
+				E96B2F061B08673900B4197B /* MDRadialProgressView.h */,
+				E96B2F071B08673900B4197B /* MDRadialProgressView.m */,
+			);
+			path = MDRadialProgress;
+			sourceTree = "<group>";
+		};
 		E9C605AB1ABBB9C500752D91 /* Refresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,11 +346,11 @@
 		E9D6603E1AB1313B0020982D = {
 			isa = PBXGroup;
 			children = (
-				592F90691B03249E00B9969B /* DaiDodgeKeyboard */,
-				D8B251191B00460B00360F4E /* SystemConfiguration.framework */,
 				E9D660491AB1313B0020982D /* 盛世财富 */,
 				E9D6605F1AB1313B0020982D /* 盛世财富Tests */,
+				592F90691B03249E00B9969B /* DaiDodgeKeyboard */,
 				E9D660481AB1313B0020982D /* Products */,
+				D8B251191B00460B00360F4E /* SystemConfiguration.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -334,6 +366,7 @@
 		E9D660491AB1313B0020982D /* 盛世财富 */ = {
 			isa = PBXGroup;
 			children = (
+				E96B2F011B08673900B4197B /* MDRadialProgress */,
 				D8B251151B00418900360F4E /* Reachability */,
 				E961E1191AC8DCBC0021ED14 /* REMenu */,
 				E9FDC1461AC3B70F0088B6F5 /* Common */,
@@ -487,6 +520,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9E304061B09AAD20021D006 /* AccountSafeTableViewController.swift in Sources */,
+				E96B2F091B08673900B4197B /* MDRadialProgressTheme.m in Sources */,
 				E90EA2721ABFA37A006D22E6 /* AFHTTPRequestOperation.m in Sources */,
 				E961E1241AC8DCBC0021ED14 /* RECommonFunctions.m in Sources */,
 				E961E1271AC8DCBC0021ED14 /* REMenuItem.m in Sources */,
@@ -512,6 +547,7 @@
 				E90EA27A1ABFA37A006D22E6 /* AFURLSessionManager.m in Sources */,
 				598A77841AF9E48600DE4271 /* TabBarViewController.swift in Sources */,
 				E9BEE1AD1AC24CF10049600C /* HttpController.swift in Sources */,
+				E9E304041B09A6A90021D006 /* SetPinPasswordViewController.swift in Sources */,
 				E977F3F41AC540E7008C2F8A /* RegisterViewController.swift in Sources */,
 				E9D6604F1AB1313B0020982D /* LendViewController.swift in Sources */,
 				594E5B4F1AFA102500218DA5 /* NewPersonCenterViewController.swift in Sources */,
@@ -523,8 +559,11 @@
 				59BEC41B1B07124200F5690D /* BidRecordViewController.swift in Sources */,
 				592F90751B03249E00B9969B /* DaiDodgeKeyboard+Animation.m in Sources */,
 				E93732B11ACA32F600423B7E /* MyMenuTableViewController.swift in Sources */,
+				E96B2ED21B0833A500B4197B /* ModifyPinPasswordViewController.swift in Sources */,
 				E90EA2751ABFA37A006D22E6 /* AFNetworkReachabilityManager.m in Sources */,
+				E96B2F0A1B08673900B4197B /* MDRadialProgressView.m in Sources */,
 				E9C605B61ABBB9C500752D91 /* RefreshHeaderView.swift in Sources */,
+				E96B2F081B08673900B4197B /* MDRadialProgressLabel.m in Sources */,
 				E90EA2741ABFA37A006D22E6 /* AFHTTPSessionManager.m in Sources */,
 				E90EA2781ABFA37A006D22E6 /* AFURLRequestSerialization.m in Sources */,
 				E9C70C0A1AC108AC00E1CA8D /* AboutViewController.swift in Sources */,

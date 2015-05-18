@@ -23,6 +23,21 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
 
     //退出登录
     @IBAction func loginOutAction(sender: UIButton) {
+        //提示是否退出
+        var alertController = UIAlertController(title: "提示", message: "退出后将无法投资，是否确定退出", preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
+            //删除用户信息
+            var userDefaults = NSUserDefaults.standardUserDefaults()
+            userDefaults.removeObjectForKey("username")
+            userDefaults.removeObjectForKey("token")
+            userDefaults.removeObjectForKey("userpic")
+            userDefaults.removeObjectForKey("usermoney")
+            AlertView.showMsg("注销成功", parentView: self.view)
+            self.performSegueWithIdentifier("accountToMain", sender: nil)
+            
+        }))
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 
 }

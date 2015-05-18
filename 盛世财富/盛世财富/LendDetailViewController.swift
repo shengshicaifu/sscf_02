@@ -44,9 +44,9 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
     @IBOutlet weak var finIncomedes: UILabel!
     @IBOutlet weak var vouchNeed: UILabel!
     @IBOutlet weak var borrowDate: UILabel!
-    var timeLineUrl = "http://www.sscf88.com/app-invest-detailcontent-id-"
+    var timeLineUrl = Constant.getServerHost() + "/app-invest-detailcontent-id-"
     var tmpListData: NSMutableArray = NSMutableArray()
-    var eHttp: HttpController = HttpController()
+//    var eHttp: HttpController = HttpController()
     var id:String?
     var bidTitle:String?
     var percent:String?
@@ -86,8 +86,8 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                     var progress = borrowinfo["progress"] as! NSString
                     var type = borrowinfo["repaymentType"] as! NSString
                     
-                    if let needFloat = borrowinfo["need"] as? Float {
-                        self.need.text = "\(needFloat)"
+                    if var needFloat = borrowinfo["need"] as? Float {
+                        self.need.text = "\(needFloat)元"
                     }
                     
                     self.type = borrowinfo["borrow_type"] as? String
@@ -96,7 +96,20 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                     //标题
                     var borrow_name = borrowinfo["borrow_name"] as! NSString!
                     self.bidTitle = borrow_name as String
-                    var borrow_money = borrowinfo["borrow_money"] as! NSString!
+                        
+                        
+                    var borrow_money = borrowinfo["borrow_money"] as! NSString
+                    var borrow_money_tmp:NSInteger = borrow_money.integerValue
+                    var bm:String
+                    if borrow_money_tmp > 10000 {
+                        borrow_money_tmp = borrow_money_tmp / 10000
+                        bm = "\(borrow_money_tmp)万元"
+                    } else {
+                        bm = "\(borrow_money_tmp)元"
+                    }
+                    self.borrowMoney.text = bm
+                        
+                        
                     var borrow_interest_rate = borrowinfo["borrow_interest_rate"] as! NSString!
                     self.percent = borrow_interest_rate as String
                     var borrow_duration = borrowinfo["borrow_duration"]
@@ -117,7 +130,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                     //标的介绍
                     
 //                    
-                    self.progressLabel.text = "\(progress)%"
+                    self.progressLabel.text = "\(progress.integerValue)%"
                     var progressFloat = progress.floatValue/100
                     self.progressView.progress = progressFloat
                         
@@ -143,7 +156,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                     self.userEnducation.text = education as String
                     self.userMarray.text = marry as String
                     //标题
-                    self.borrowMoney.text = borrow_money as String
+                    
                     self.borrowInterestRate.text = "\(borrow_interest_rate)%"
                     self.borrowDuration.text = "\(borrow_duration)个月"
                         
@@ -151,7 +164,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                     //项目介绍
                     self.borrowMin.text = borrowmin as String
                     self.interestRate.text = "\(borrow_interest_rate)%"
-                    self.loanMoney.text = "\(borrow_money)元"
+                    self.loanMoney.text = bm
 //                    self.finIncomedes.text = finIncomedes
                     self.borrowDate.text = "\(borrow_duration)个月"
 //                    var borrowNameTextLabel =  self.mainTable.headerViewForSection(0)?.textLabel
@@ -161,7 +174,14 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                     self.borrowName.text = borrow_name as String
                     var lefttime = borrowinfo["lefttime"] as! Int
                     if lefttime > 0 {
-                        self.leftTime.text = "\(lefttime)"
+                        var leftDay = lefttime / (24*3600)
+                        var leftHour = (lefttime % (24*3600))/3600
+                        var leftMinute = (lefttime % 3600)/60
+                        var leftSecond = (lefttime % 60)
+                        
+                        self.leftTime.text = "\(leftDay)天\(leftHour)时\(leftMinute)分\(leftSecond)秒"
+                        
+                        
                     }else{
                         self.leftTime.text = "已结束"
                         self.buyButton.enabled = false
@@ -231,7 +251,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
     }
     override func viewWillAppear(animated: Bool) {
         //        检查网络
-        var reach = Reachability(hostName: Constant().ServerHost)
+        var reach = Reachability(hostName: Constant.getDomain())
         reach.unreachableBlock = {(r:Reachability!)in
             dispatch_async(dispatch_get_main_queue(), {
                 var alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)

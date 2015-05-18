@@ -12,7 +12,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
 
     var eHttp: HttpController = HttpController()//新建一个httpController
     var base: baseClass = baseClass()
-    var timeLineUrl = "http://www.sscf88.com/app-invest-content"//链接地址
+    var timeLineUrl = Constant.getServerHost() + "/app-invest-content"//链接地址
     var tmpListData: NSMutableArray = NSMutableArray()//临时数据  下拉添加
     var listData: NSMutableArray = NSMutableArray()//存数据
     var page = 1 //page
@@ -40,7 +40,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
 //        mainTable.allowsSelection = false
 //        self.navigationController?.navigationBar.barTintColor = UIColor(red: 54/255.0, green: 169/255.0, blue: 245/255.0, alpha: 1)
 //        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
-       //滚动图
+       //滚动图-------------------------------
         var viewsArray = NSMutableArray()
         var colorArray = [UIColor.cyanColor(),UIColor.blueColor(),UIColor.greenColor(),UIColor.yellowColor(),UIColor.purpleColor()]
         for  i in 1...4 {
@@ -68,6 +68,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
         
         mainTable.tableHeaderView = mainScorllView
+        //滚动图-------------------------------
         
         //apple的下拉刷新
         self.refreshControl.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
@@ -87,7 +88,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
         //http请求
 //        NSLog("viewDidLoad")
-        var reach = Reachability(hostName: Constant().ServerHost)
+        var reach = Reachability(hostName: Constant.getDomain())
         reach.reachableBlock = {(r:Reachability!) -> Void in
 //
             dispatch_async(dispatch_get_main_queue(), {
@@ -111,7 +112,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func refreshData(){
         if self.refreshControl.refreshing {
 //检查手机网络
-            var reach = Reachability(hostName: Constant().ServerHost)
+            var reach = Reachability(hostName: Constant.getDomain())
             reach.unreachableBlock = {(r:Reachability!) -> Void in
                 NSLog("网络不可用")
                 dispatch_async(dispatch_get_main_queue(), {
@@ -245,7 +246,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             var period = cell.viewWithTag(104) as! UILabel
             var totalMoney = cell.viewWithTag(105) as! UILabel
             var percent = cell.viewWithTag(106) as! UILabel
-            var progress = cell.viewWithTag(110) as! UIProgressView
+            //var progress = cell.viewWithTag(110) as! UIProgressView
             var hideId =  UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
             hideId.tag = 99
             var hideType = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
@@ -279,7 +280,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 
                 tmp = tmpListData[row].valueForKey("borrow_interest_rate") as! String
                 percent.text = "\(tmp)%"
-                progress.progress = pro.floatValue/100.0
+                //progress.progress = pro.floatValue/100.0
                 
                 transferData.text = tmpListData[row].valueForKey("per_transferData") as? String
                 cell.addSubview(transferData)
@@ -297,6 +298,21 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 hideType.hidden = true
                 
                 
+                //圆形进度条
+                var circleProgress =  cell.viewWithTag(201) as! MDRadialProgressView
+                var circleProgressTheme = MDRadialProgressTheme()
+                //circleProgressTheme.completedColor = UIColor(red: 90/255.0, green: 212/255.0, blue: 39/255.0, alpha: 1.0)
+                circleProgressTheme.completedColor = UIColor(red: 68/255.0, green: 138/255.0, blue: 255/255.0, alpha: 1.0)
+                circleProgressTheme.incompletedColor = UIColor(red: 235/255.0, green: 235/255.0, blue: 235/255.0, alpha: 1.0)
+                circleProgressTheme.centerColor = UIColor.clearColor()
+                circleProgressTheme.centerColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
+                circleProgressTheme.sliceDividerHidden = true
+                circleProgressTheme.labelColor = UIColor.blackColor()
+                circleProgressTheme.labelShadowColor = UIColor.whiteColor()
+                
+                circleProgress.theme = circleProgressTheme
+                circleProgress.progressTotal = 100
+                circleProgress.progressCounter = UInt(pro.integerValue)
                 
             }else{
 //              如果没有数据，单元格不能点击
@@ -354,7 +370,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         //检查是否连接网络
 //        NSLog("检查是否连接网络")
-        var reach = Reachability(hostName: Constant().ServerHost)
+        var reach = Reachability(hostName: Constant.getDomain())
         reach.unreachableBlock = {(r:Reachability!) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 let alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)

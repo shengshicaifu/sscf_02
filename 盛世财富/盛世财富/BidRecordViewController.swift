@@ -1,7 +1,7 @@
 //
 //  BidRecordViewController.swift
 //  盛世财富
-//
+//  投标记录
 //  Created by 肖典 on 15/5/16.
 //  Copyright (c) 2015年 sscf88. All rights reserved.
 //
@@ -19,13 +19,18 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
             loading.startLoading(self.view)
             self.tableView.scrollEnabled = false
             let afnet = AFHTTPRequestOperationManager()
-            let url = "http://www.sscf88.com/App-Myinvest-getAllTending"
+            let url = Constant.getServerHost() + "/App-Myinvest-getAllTending"
             let param = ["to":token]
             
             afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
+                NSLog("投标记录：%@",res as! NSDictionary)
                 
-                self.data = res["data"] as! NSMutableArray
-                self.tableView.reloadData()
+                if let d = res["data"] as? NSMutableArray{
+                    self.data = d
+                    self.tableView.reloadData()
+                }
+
+                
                 loading.stopLoading()
                 self.tableView.scrollEnabled = true
                 }, failure: { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in

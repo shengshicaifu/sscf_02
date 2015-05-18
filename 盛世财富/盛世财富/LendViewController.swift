@@ -345,36 +345,36 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         return 1
         
     }
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0{
-            let v = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 35))
-            let title = UILabel(frame:CGRect(x: 13, y: 10, width: v.frame.width, height: 18))
-            title.text = "投资理财"
-            title.font = UIFont(name: "System", size: 16)
-            title.textColor = UIColor.grayColor()
-            v.addSubview(title)
-            return v
-        }
-        if section == 1{
-            let v = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 35))
-            let title = UILabel(frame:CGRect(x: 13, y: 10, width: v.frame.width, height: 18))
-            title.text = "热销产品"
-            title.font = UIFont(name: "System", size: 16)
-            return v
-        }
-        return UIView()
-    }
-    //section的title
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0{
-            return "投资列表"
-        }else{
-            return ""
-        }
-    }
+//    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        if section == 0{
+//            let v = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 35))
+//            let title = UILabel(frame:CGRect(x: 13, y: 10, width: v.frame.width, height: 18))
+//            title.text = "投资理财"
+//            title.font = UIFont(name: "System", size: 16)
+//            title.textColor = UIColor.grayColor()
+//            v.addSubview(title)
+//            return v
+//        }
+//        if section == 1{
+//            let v = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 35))
+//            let title = UILabel(frame:CGRect(x: 13, y: 10, width: v.frame.width, height: 18))
+//            title.text = "热销产品"
+//            title.font = UIFont(name: "System", size: 16)
+//            return v
+//        }
+//        return UIView()
+//    }
+//    //section的title
+//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if section == 0{
+//            return "投资列表"
+//        }else{
+//            return ""
+//        }
+//    }
     //section的header高度
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 35
+        return 0.1
     }
     
     //view将要加载的时候触发的事件

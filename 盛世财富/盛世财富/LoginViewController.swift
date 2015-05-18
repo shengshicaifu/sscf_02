@@ -78,9 +78,14 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                         let proInfo:NSDictionary = result["data"]?["proInfo"] as! NSDictionary
                         user.setObject(self.usernameLabel.text, forKey: "username")
                         user.setObject(result["data"]?["token"], forKey: "token")
-                        user.setObject(result["data"]?["userPic"], forKey: "userpic")
+                        
                         user.setObject(proInfo.objectForKey("total_all"),forKey: "usermoney")
-                        user.setObject(nil, forKey: "pinpass")
+                        
+                        var userInfo = result["data"]?["userInfo"] as! NSDictionary
+                        user.setObject(userInfo["pinPass"], forKey: "pinpass")
+                        user.setObject(userInfo["birthday"], forKey: "birthday")
+                        user.setObject(userInfo["gender"], forKey: "gender")
+                        user.setObject(userInfo["headpic"], forKey: "userpic")
                         
                         self.dismissViewControllerAnimated(true, completion: nil)
                     }

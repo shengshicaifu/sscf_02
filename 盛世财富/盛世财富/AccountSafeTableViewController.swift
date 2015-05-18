@@ -23,8 +23,17 @@ class AccountSafeTableViewController: UITableViewController,UITableViewDelegate 
         
     }
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //NSLog("%@",indexPath.row)
+        if indexPath.row == 1 {
+            if setPinPasswordLabel.text == "请设置交易密码" {
+                //self.prepareForSegue(<#segue: UIStoryboardSegue#>, sender: <#AnyObject?#>)
+                //setPinPassSegue  modifyPinPassSegue
+                self.performSegueWithIdentifier("setPinPassSegue", sender: nil)
+            } else {
+                self.performSegueWithIdentifier("modifyPinPassSegue", sender: nil)
+            }
+        }
     }
 
 

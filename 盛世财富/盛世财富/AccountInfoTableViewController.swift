@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountInfoTableViewController: UITableViewController,UITableViewDataSource,UITableViewDelegate {
+class AccountInfoTableViewController: UITableViewController,UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     
     @IBOutlet weak var headImage: UIImageView!
@@ -16,11 +16,14 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
     @IBOutlet weak var PhoneLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var birthdayLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
-
+    
+    
     //退出登录
     @IBAction func loginOutAction(sender: UIButton) {
         //提示是否退出
@@ -39,5 +42,55 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
         }))
         self.presentViewController(alertController, animated: true, completion: nil)
     }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
+        if indexPath.section == 0{
+            var source = UIImagePickerControllerSourceType.Camera
+            let controller = UIAlertController(title: "请选择相册或照相机", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
+            let actionPhoto = UIAlertAction(title: "相册", style: UIAlertActionStyle.Default, handler: { (paramAction:UIAlertAction!) -> Void in
+                source = UIImagePickerControllerSourceType.PhotoLibrary
+                var picker = UIImagePickerController()
+                picker.allowsEditing = true//设置可编辑
+                picker.delegate = self
+                picker.sourceType = source
+                self.presentViewController(picker, animated: true, completion: nil)
+            })
+            let actionCamera = UIAlertAction(title: "拍照", style: UIAlertActionStyle.Destructive, handler: { (paramAction:UIAlertAction!) -> Void in
+                if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
+                    source = UIImagePickerControllerSourceType.PhotoLibrary
+                    
+                }
+                var picker = UIImagePickerController()
+                picker.allowsEditing = true//设置可编辑
+                picker.delegate = self
+                picker.sourceType = source
+                self.presentViewController(picker, animated: true, completion: nil)
+                
+            })
+            let actionCancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (paramAction:UIAlertAction!) -> Void in
+                self.dismissViewControllerAnimated(true, completion:nil)
+            })
+            controller.addAction(actionPhoto)
+            controller.addAction(actionCamera)
+            controller.addAction(actionCancel)
+            
+            self.presentViewController(controller, animated: true, completion: nil)
+        }
+    }
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+//        var imageview:UIImageView = UIImageView(frame: CGRectMake(0, 100, 320, 300))
+        
+        var user = NSUserDefaults.standardUserDefaults()
+        user.setObject(UIImageJPEGRepresentation(image, 1.0), forKey: "headImage")
+//        imageview.image = image
+        headImage.image = image
+        headImage.layer.cornerRadius = 35
+        headImage.layer.masksToBounds = true
+        println(editingInfo);
+        
+        self.dismissViewControllerAnimated(true, completion: nil);
+    }
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        self.dismissViewControllerAnimated(true, completion: nil);
+    }
 }

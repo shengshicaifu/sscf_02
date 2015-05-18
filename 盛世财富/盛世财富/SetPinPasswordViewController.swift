@@ -25,6 +25,7 @@ class SetPinPasswordViewController: UIViewController {
     }
     
     @IBAction func modifyTapped(sender: UIButton) {
+        resignAll()
         var pinpass = pinPasswordTextField.text
         var confirmpass = confirmPasswordTextField.text
 
@@ -49,6 +50,7 @@ class SetPinPasswordViewController: UIViewController {
         manager.POST(url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                 var result = data as! NSDictionary
+                NSLog("设置交易密码：%@", result)
                 var code = result["code"] as! Int
                 if code == 0 {
                     AlertView.showMsg("设置交易密码失败，请稍候再试", parentView: self.view)
@@ -77,16 +79,17 @@ class SetPinPasswordViewController: UIViewController {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
-        pinPasswordTextField.resignFirstResponder()
-        confirmPasswordTextField.resignFirstResponder()
-        
+        resignAll()
         return true
     }
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         
-        pinPasswordTextField.resignFirstResponder()
-        confirmPasswordTextField.resignFirstResponder()
+        resignAll()
         
     }
-
+    
+    func resignAll(){
+        pinPasswordTextField.resignFirstResponder()
+        confirmPasswordTextField.resignFirstResponder()
+    }
 }

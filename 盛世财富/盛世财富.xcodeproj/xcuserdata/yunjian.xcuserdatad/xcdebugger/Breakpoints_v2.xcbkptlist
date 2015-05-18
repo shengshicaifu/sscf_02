@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x76db;&#x4e16;&#x8d22;&#x5bcc;/AccountSafeTableViewController.swift"
-            timestampString = "453619127.184247"
+            filePath = "&#x76db;&#x4e16;&#x8d22;&#x5bcc;/SetPinPasswordViewController.swift"
+            timestampString = "453621453.523869"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "modifyTapped(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

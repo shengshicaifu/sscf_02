@@ -62,6 +62,14 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         reward.resignFirstResponder()
         experience.resignFirstResponder()
         payPassword.resignFirstResponder()
+        if bidMoney.text.isEmpty {
+            AlertView.alert("提示", message: "请填写投标金额", buttonTitle: "确定", viewController: self)
+            return
+        }
+        if payPassword.text.isEmpty {
+            AlertView.alert("提示", message: "请输入支付密码", buttonTitle: "确定", viewController: self)
+            return
+        }
         loading.startLoading(self.view)
         let afnet = AFHTTPRequestOperationManager()
         var param = NSMutableDictionary()

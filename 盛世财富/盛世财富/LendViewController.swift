@@ -246,6 +246,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             var period = cell.viewWithTag(104) as! UILabel
             var totalMoney = cell.viewWithTag(105) as! UILabel
             var percent = cell.viewWithTag(106) as! UILabel
+            var btn = cell.viewWithTag(55) as! UIButton
             //var progress = cell.viewWithTag(110) as! UIProgressView
             var hideId =  UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
             hideId.tag = 99
@@ -260,7 +261,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             if tmpListData.count > 0 {
                 //图片  会产生阻滞
 //                image.image = UIImage(data:NSData(contentsOfURL: NSURL(string: "http://www.sscf88.com/uploadData/ad/2014093013251995.jpg")!)!)
-//                println(tmpListData[row])
+                println(tmpListData[row])
                 
                 title.text = tmpListData[row].valueForKey("borrow_name") as? String
                 
@@ -275,6 +276,21 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                     totalMoney.text = "\(totalMoneyTmp)万元"
                 } else {
                     totalMoney.text = "\(totalMoneyTmp)元"
+                }
+                //借款状态
+                var status = tmpListData[row].objectForKey("borrow_status") as! NSString
+                switch status {
+                
+                case "6":
+                    btn.layer.backgroundColor = UIColor.grayColor().CGColor
+                    btn.setTitle("还款中", forState: nil)
+                    btn.enabled = false
+                case "7":
+                    btn.layer.backgroundColor = UIColor.grayColor().CGColor
+                    btn.setTitle("已完成", forState: nil)
+                    btn.enabled = true
+                default:
+                    break
                 }
                 
                 

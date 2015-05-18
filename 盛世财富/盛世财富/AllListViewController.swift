@@ -9,7 +9,7 @@
 
 import UIKit
 
-class AllListViewController: UIViewController ,UITableViewDataSource,UITableViewDelegate,HttpProtocol{
+class AllListViewController: UIViewController ,UITableViewDataSource,UITableViewDelegate{
     var eHttp: HttpController = HttpController()
     var base: baseClass = baseClass()
     var timeLineUrl = Constant.getServerHost() + "/app-invest-content"
@@ -162,13 +162,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         }
         
         var url = self.timeLineUrl
-        
-//        eHttp.get(url,view :self.view,callback: {
-//            self.circle.stopAnimating()
-//            self.circle.hidden = true
-//            self.mainTable.hidden = false
-//            self.mainTable.reloadData()
-//        })
+
         var params = ["borrow_status":status,"borrow_money":money,"borrow_duration":period]
 //        NSLog("筛选参数%@", params)
         var manager = AFHTTPRequestOperationManager()
@@ -187,13 +181,17 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                     if self.listData.isKindOfClass(NSMutableArray) {
                         NSLog("listData是NSMutableArray")
                     }
+                    self.listData = NSMutableArray()
                     self.listData.removeAllObjects()
+                    AlertView.alert("提示", message: "没有找到数据", buttonTitle: "确定", viewController: self)
                 }
                 
                 for var i=0 ; i < self.listData.count; i++ {
                     NSLog("筛选结果%@",(self.listData[i] as! NSDictionary)["id"] as! String)
                 }
+//                println(self.listData.count)
                 self.mainTable.reloadData()
+                
                 
             },
             failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
@@ -208,7 +206,6 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTable.delegate = self
-        eHttp.delegate = self
         var params = [:]
         var manager = AFHTTPRequestOperationManager()
         manager.POST(timeLineUrl, parameters: params,
@@ -228,17 +225,6 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                 
             }
         )
-
-//        eHttp.get(self.timeLineUrl,view :self.view,callback: {
-////            self.mainTable.reloadData()
-//            self.circle.stopAnimating()
-//            self.circle.hidden = true
-//            self.mainTable.hidden = false
-//            self.mainTable.reloadData()
-//        })
-        
-       
-        
         setupRefresh()
     }
     
@@ -281,20 +267,25 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                 success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     var result:NSDictionary = data as! NSDictionary
                     
-                    var a = result["data"]?.valueForKey("list") as! NSMutableArray //list数据
+                    self.tmpListData = result["data"]?.valueForKey("list") as! NSMutableArray //list数据
                     
                     //self.mainTable.reloadData()
                     self.mainTable.footerEndRefreshing()
                     
-
-                    if(a.count > 0){
-                        var tmpListDataCount = a.count
-                        for(var i:Int = 0; i < tmpListDataCount; i++){
-                            self.listData.addObject(a[i])
-                        }
+                    var newList = NSMutableArray()
+                    if self.listData.count > 0 {
+                        newList.addObjectsFromArray(self.listData as [AnyObject])
                     }
+                    if(self.tmpListData.count > 0){
+//                        var tmpListDataCount = self.tmpListData.count
+//                        for(var i:Int = 0; i < tmpListDataCount; i++){
+//                            self.listData.addObject(self.tmpListData[i])
+//                        }
+                        newList.addObjectsFromArray(self.tmpListData as [AnyObject])
+                    }
+                    self.listData = newList
                     self.mainTable.reloadData()
-                    self.tmpListData.removeAllObjects()
+                    self.tmpListData = NSMutableArray()
 
                 },
                 failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
@@ -322,14 +313,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
 //            })
         })
     }
-    func didRecieveResult(result: NSDictionary){
-        if(result["data"]?.valueForKey("list") != nil){
-            self.tmpListData = result["data"]?.valueForKey("list") as! NSMutableArray //list数据
-//            self.page = result["data"]?["page"] as Int
-            self.mainTable.reloadData()
-        }
-    }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -364,6 +348,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         var hideType = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         hideType.tag = 98
         var row = indexPath.row
+//        println(listData.count)
         if listData.count > 0 {
 //            println(listData)
             var m = listData[row].valueForKey("borrow_money") as! NSString
@@ -387,11 +372,14 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             progress.progress = unit.floatValue/100.0
             title.text = listData[row].valueForKey("borrow_name") as? String
             hideId.text = listData[row].valueForKey("id") as? String
-            hideType.text = tmpListData[row].valueForKey("borrow_type") as? String
+            hideType.text = listData[row].valueForKey("borrow_type") as? String
             cell.addSubview(hideType)
             hideType.hidden = true
             
             //NSLog("%@,%@",listData[row].valueForKey("id") as! String,listData[row].valueForKey("borrow_name") as! String)
+        }else{
+            
+            AlertView.alert("提示", message: "没有找到数据", buttonTitle: "确定", viewController: self)
         }
         return cell
         

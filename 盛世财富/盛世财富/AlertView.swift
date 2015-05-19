@@ -17,15 +17,16 @@ class AlertView {
         hintLabel.backgroundColor = UIColor.blackColor()
         hintLabel.layer.masksToBounds = true
         hintLabel.layer.cornerRadius = 10.0
-        hintLabel.alpha = 1.0
+        hintLabel.alpha = 0.0
         hintLabel.text = msg
         hintLabel.textColor = UIColor.whiteColor()
         
         parentView.addSubview(hintLabel)
         
-        UIView.animateWithDuration(3.0, delay: 0.0, options: nil, animations: {
-            hintLabel.alpha = 0
+        UIView.animateWithDuration(1.0, delay: 0.0, options: nil, animations: {
+            hintLabel.alpha = 1
             }, completion: {(finished:Bool) -> Void in
+                NSThread.sleepForTimeInterval(2)
                 hintLabel.removeFromSuperview()
         })
     }

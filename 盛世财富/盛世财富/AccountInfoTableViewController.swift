@@ -21,8 +21,15 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        headImage.layer.cornerRadius = 35
+        headImage.layer.masksToBounds = true
         
         var userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        if let i:NSData = userDefaults.objectForKey("headImage") as? NSData {
+            headImage.image = UIImage(data: i)
+        }
+        
         if let phone = userDefaults.objectForKey("username") as? String {
             PhoneLabel.text = phone
         }
@@ -103,8 +110,7 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
         user.setObject(UIImageJPEGRepresentation(image, 1.0), forKey: "headImage")
 //        imageview.image = image
         headImage.image = image
-        headImage.layer.cornerRadius = 35
-        headImage.layer.masksToBounds = true
+        
         println(editingInfo);
         
         self.dismissViewControllerAnimated(true, completion: nil);

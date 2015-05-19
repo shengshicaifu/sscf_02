@@ -701,6 +701,12 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="101" contentMode="center" tableViewCell="t8g-bN-Ywr" id="hJa-EI-rgj">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的资产" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1U-ei-DTp">
+                                                    <rect key="frame" x="266" y="105" width="68" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <imageView tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="member_top5" translatesAutoresizingMaskIntoConstraints="NO" id="Xzn-A9-yIe">
                                                     <rect key="frame" x="275" y="33" width="50" height="50"/>
                                                     <constraints>
@@ -708,28 +714,24 @@
                                                         <constraint firstAttribute="height" constant="50" id="0jR-vm-COA"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的资产" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1U-ei-DTp">
-                                                    <rect key="frame" x="266" y="105" width="68" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2f-MS-EHu" customClass="ADTickerLabel">
-                                                    <rect key="frame" x="8" y="134" width="584" height="65"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CxF-SW-SIG">
+                                                    <rect key="frame" x="8" y="131" width="584" height="68"/>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="f2f-MS-EHu" firstAttribute="top" secondItem="i1U-ei-DTp" secondAttribute="bottom" constant="8" id="99Z-8S-y9D"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="f2f-MS-EHu" secondAttribute="bottom" constant="-8" id="Nfi-7P-ka0"/>
-                                                <constraint firstItem="f2f-MS-EHu" firstAttribute="leading" secondItem="hJa-EI-rgj" secondAttribute="leadingMargin" id="Q5b-zg-mU5"/>
-                                                <constraint firstItem="f2f-MS-EHu" firstAttribute="trailing" secondItem="hJa-EI-rgj" secondAttribute="trailingMargin" id="Ssw-YA-H02"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="CxF-SW-SIG" secondAttribute="bottom" constant="-8" id="G2O-g0-yF3"/>
+                                                <constraint firstItem="CxF-SW-SIG" firstAttribute="leading" secondItem="hJa-EI-rgj" secondAttribute="leadingMargin" id="JDu-fg-306"/>
+                                                <constraint firstItem="CxF-SW-SIG" firstAttribute="trailing" secondItem="hJa-EI-rgj" secondAttribute="trailingMargin" id="SqU-pG-tUs"/>
                                                 <constraint firstAttribute="centerX" secondItem="Xzn-A9-yIe" secondAttribute="centerX" id="UqY-0n-onP"/>
                                                 <constraint firstItem="Xzn-A9-yIe" firstAttribute="top" secondItem="hJa-EI-rgj" secondAttribute="topMargin" constant="25" id="dbO-Px-Ihu"/>
+                                                <constraint firstItem="CxF-SW-SIG" firstAttribute="top" secondItem="i1U-ei-DTp" secondAttribute="bottom" constant="5" id="hlL-Si-KGD"/>
                                                 <constraint firstAttribute="centerX" secondItem="i1U-ei-DTp" secondAttribute="centerX" id="iUo-4E-ua3"/>
                                                 <constraint firstItem="i1U-ei-DTp" firstAttribute="top" secondItem="Xzn-A9-yIe" secondAttribute="bottom" constant="22" id="jXr-xZ-hJx"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="rNd-dg-sRS" kind="show" identifier="moneySegue" id="1Oc-Wy-fyN"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -814,7 +816,7 @@
                     <connections>
                         <outlet property="head" destination="Xzn-A9-yIe" id="pQq-Tb-3Gh"/>
                         <outlet property="mainTable" destination="9X4-sK-l7A" id="nBx-Dx-bxI"/>
-                        <outlet property="moneyTickerLabel" destination="f2f-MS-EHu" id="alw-9F-kUZ"/>
+                        <outlet property="moneyView" destination="CxF-SW-SIG" id="uMa-zq-sn4"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vE5-D8-yos" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4364,9 +4366,10 @@
         <image name="person" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cgO-r2-Qw7"/>
-        <segue reference="7ed-5F-w9c"/>
-        <segue reference="01C-9g-NgZ"/>
         <segue reference="5ZP-m5-drk"/>
+        <segue reference="01C-9g-NgZ"/>
+        <segue reference="tpR-eQ-WEg"/>
+        <segue reference="1Oc-Wy-fyN"/>
+        <segue reference="cgO-r2-Qw7"/>
     </inferredMetricsTieBreakers>
 </document>

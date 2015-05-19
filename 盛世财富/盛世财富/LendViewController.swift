@@ -280,19 +280,31 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 //借款状态
                 var status = tmpListData[row].objectForKey("borrow_status") as! NSString
                 switch status {
-                
-                case "6":
-                    btn.layer.backgroundColor = UIColor.grayColor().CGColor
-                    btn.setTitle("还款中", forState: nil)
-                    btn.enabled = false
-                case "7":
-                    btn.layer.backgroundColor = UIColor.grayColor().CGColor
-                    btn.setTitle("已完成", forState: nil)
-                    btn.enabled = true
-                default:
-                    break
+                    case "4":
+                        btn.layer.backgroundColor = UIColor.grayColor().CGColor
+                        btn.setTitle("复审中", forState: nil)
+                        btn.enabled = false
+                    case "6":
+                        btn.layer.backgroundColor = UIColor.grayColor().CGColor
+                        btn.setTitle("还款中", forState: nil)
+                        btn.enabled = false
+                    case "7":
+                        btn.layer.backgroundColor = UIColor.grayColor().CGColor
+                        btn.setTitle("已完成", forState: nil)
+                        btn.enabled = false
+                    default:
+                        break
                 }
-                
+                //募集期小于当前日期的不能投
+                var collectTimeStr = tmpListData[row].objectForKey("collect_time") as? NSString
+                if collectTimeStr != nil {
+                    var curTime = NSDate().timeIntervalSinceNow
+                    if collectTimeStr?.doubleValue < curTime {
+                        btn.layer.backgroundColor = UIColor.grayColor().CGColor
+                        btn.setTitle("已结束", forState: nil)
+                        btn.enabled = false
+                    }
+                }
                 
                 tmp = tmpListData[row].valueForKey("borrow_interest_rate") as! String
                 percent.text = "\(tmp)%"

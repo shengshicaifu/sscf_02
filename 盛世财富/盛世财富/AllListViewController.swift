@@ -41,7 +41,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     @IBAction func showConditionMenuView(sender: UIBarButtonItem) {
         if !isConditionMenuViewVisiable {
             if conditionMenuView == nil {
-                conditionMenuView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 350))
+                conditionMenuView = UIView(frame: CGRectMake(0, -350, self.view.frame.width, 350))
                 //conditionMenuView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
                 //conditionMenuView?.frame = CGRectMake(0, 0, self.view.frame.width, 350)
                 conditionMenuView?.tag = 1001
@@ -68,7 +68,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                 moneyLabel.textColor = UIColor.whiteColor()
                 conditionMenuView?.addSubview(moneyLabel)
                 
-                var moneyCondition = UISegmentedControl(items: ["不限","<10","50-200","200-1000",">100"])
+                var moneyCondition = UISegmentedControl(items: ["不限","<10","50-200","200-1000",">1000"])
                 moneyCondition.frame = CGRectMake(5, 190, self.view.frame.width-5, 30)
                 moneyCondition.selectedSegmentIndex = moneyValue
                 moneyCondition.tintColor = UIColor.whiteColor()
@@ -98,16 +98,28 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                 conditionMenuView?.addSubview(okBtn)
                 
                 self.view.addSubview(conditionMenuView!)
+
             } else {
                (self.conditionMenuView?.viewWithTag(101) as! UISegmentedControl).selectedSegmentIndex = statusValue
                 (self.conditionMenuView?.viewWithTag(102) as! UISegmentedControl).selectedSegmentIndex = moneyValue
                 (self.conditionMenuView?.viewWithTag(103) as! UISegmentedControl).selectedSegmentIndex = periodValue
             }
+            UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                conditionMenuView?.frame = CGRectMake(0, 0, self.view.frame.width, 350)
+                }) { (Bool) -> Void in
+                    
+            }
             
-            self.conditionMenuView?.hidden = false
+            //self.conditionMenuView?.hidden = false
             isConditionMenuViewVisiable = true
         }else {
-            self.conditionMenuView?.hidden = true
+
+            UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                conditionMenuView?.frame = CGRectMake(0, -350, self.view.frame.width, 350)
+                }) { (Bool) -> Void in
+                    
+            }
+            //self.conditionMenuView?.hidden = true
             isConditionMenuViewVisiable = false
         }
         
@@ -119,7 +131,18 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         moneyValue = (self.conditionMenuView?.viewWithTag(102) as! UISegmentedControl).selectedSegmentIndex
         periodValue = (self.conditionMenuView?.viewWithTag(103) as! UISegmentedControl).selectedSegmentIndex
     
-        self.conditionMenuView?.hidden = true
+        UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+           conditionMenuView?.frame = CGRectMake(0, -350, self.view.frame.width, 350)
+        }) { (Bool) -> Void in
+            
+        }
+        
+//        UIView.animateWithDuration(0.5, animations: { () -> Void in
+//            
+//            conditionMenuView?.frame = CGRectMake(0, -350, self.view.frame.width, 350)
+//        })
+        
+        //self.conditionMenuView?.hidden = true
         isConditionMenuViewVisiable = false
         
         //加载数据
@@ -147,7 +170,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             case 1:money = "0|100000" ;break
             case 2:money = "500000|2000000" ;break
             case 3:money = "2000000|10000000" ;break
-            case 4:money = "1000000" ;break
+            case 4:money = "10000000|100000000" ;break
             default:money = "0" ;
         }
         

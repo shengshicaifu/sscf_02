@@ -66,7 +66,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
         mainScorllView.TapActionBlock = {(pageIndex:Int)->() in
             //此处根据点击的索引跳转到指定的页面
-            println("点击了\(pageIndex)")
+            //println("点击了\(pageIndex)")
             
             var contentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ContentViewController") as! ContentViewController
             contentViewController.contentUrl = "http://www.sscf88.com"
@@ -120,7 +120,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
 //检查手机网络
             var reach = Reachability(hostName: Constant.getDomain())
             reach.unreachableBlock = {(r:Reachability!) -> Void in
-                NSLog("网络不可用")
+                //NSLog("网络不可用")
                 dispatch_async(dispatch_get_main_queue(), {
                     let alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)
                     alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
@@ -130,7 +130,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             }
             
             reach.reachableBlock = {(r:Reachability!) -> Void in
-                NSLog("网络可用")
+               //NSLog("网络可用")
                 dispatch_async(dispatch_get_main_queue(), {
                     self.refreshControl.attributedTitle = NSAttributedString(string: "加载中")
                     self.eHttp.get(self.timeLineUrl,view :self.view,callback: {
@@ -267,7 +267,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             if tmpListData.count > 0 {
                 //图片  会产生阻滞
 //                image.image = UIImage(data:NSData(contentsOfURL: NSURL(string: "http://www.sscf88.com/uploadData/ad/2014093013251995.jpg")!)!)
-                //println(tmpListData[row])
+//                println(tmpListData[row])
                 
                 title.text = tmpListData[row].valueForKey("borrow_name") as? String
                 
@@ -310,7 +310,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                         btn.setTitle("已结束", forState: nil)
                         btn.enabled = false
                         
-                        NSLog("募集期\(collectTimeStr!)小于当前日期\(curTime)")
+                        //NSLog("募集期\(collectTimeStr!)小于当前日期\(curTime)")
                     }
                 }
                 

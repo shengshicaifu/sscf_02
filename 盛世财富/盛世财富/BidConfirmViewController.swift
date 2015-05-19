@@ -84,9 +84,9 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
             }
         }
         
-        println(param)
+//        println(param)
         afnet.POST(url, parameters: param, success: { (opration :AFHTTPRequestOperation!, res :AnyObject!) -> Void in
-            //            println(res["message"])
+                        println(res)
             AlertView.showMsg(res["message"] as! String, parentView: self.view)
 //            println(res["message"])
             }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in

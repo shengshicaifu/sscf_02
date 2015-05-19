@@ -30,6 +30,8 @@ class InvestorSummaryViewController: UITableViewController,UITableViewDataSource
         rc.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
         self.refreshControl = rc
         
+        loading.startLoading(self.tableView)
+        
         //获取网络数据
         var manager = AFHTTPRequestOperationManager()
         var url = Constant.getServerHost() + "/App-Myinvest-summary"
@@ -72,7 +74,10 @@ class InvestorSummaryViewController: UITableViewController,UITableViewDataSource
                     
                 }
                 
+                loading.stopLoading()
+                
             },failure:{ (op:AFHTTPRequestOperation!,error: NSError!) -> Void in
+                loading.stopLoading()
                 AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
             }
         )
@@ -89,6 +94,7 @@ class InvestorSummaryViewController: UITableViewController,UITableViewDataSource
     
     
     func getData(){
+        loading.startLoading(self.tableView)
         //获取网络数据
         var manager = AFHTTPRequestOperationManager()
         var url = Constant.getServerHost() + "/App-Myinvest-summary"
@@ -96,6 +102,8 @@ class InvestorSummaryViewController: UITableViewController,UITableViewDataSource
         NSLog("投资总表参数：%@", params)
         manager.POST(url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                loading.stopLoading()
+                
                 var result = data as! NSDictionary
                 NSLog("投资总表：%@", result)
                 var code = result["code"] as! Int
@@ -137,27 +145,12 @@ class InvestorSummaryViewController: UITableViewController,UITableViewDataSource
              
                 
             },failure:{ (op:AFHTTPRequestOperation!,error: NSError!) -> Void in
+                loading.stopLoading()
                 AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                
             }
         )
     }
 
 }
-//
-//2.传递方式:
-//POST
-//3.传递参数(1个):
-//
-//类型	名称	含义
-//String	to	Token不解释
-//
-//4.返回值:
-//返回码	含义	备注
-//-1	token错误/用户没有登录
-//0	查询失败--一般没有
-//200	返回数据成功	json{200,'',Array data}
-//
-//5.返回一维数组DATA参数详解
-//类型	名称	含义
-//String	inving_money	竞标中的投资金额
 

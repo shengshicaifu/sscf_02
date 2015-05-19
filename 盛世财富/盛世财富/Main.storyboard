@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6v-wi-K0w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6v-wi-K0w">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -681,23 +681,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="101" contentMode="center" tableViewCell="t8g-bN-Ywr" id="hJa-EI-rgj">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的资产" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1U-ei-DTp">
-                                                    <rect key="frame" x="266" y="105" width="68" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x5x-1h-eXh">
-                                                    <rect key="frame" x="0.0" y="123" width="600" height="76"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="53"/>
-                                                    <state key="normal" title="0">
-                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <segue destination="rNd-dg-sRS" kind="show" identifier="capitalSegue" id="7ed-5F-w9c"/>
-                                                    </connections>
-                                                </button>
                                                 <imageView tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="member_top5" translatesAutoresizingMaskIntoConstraints="NO" id="Xzn-A9-yIe">
                                                     <rect key="frame" x="275" y="33" width="50" height="50"/>
                                                     <constraints>
@@ -705,14 +688,25 @@
                                                         <constraint firstAttribute="height" constant="50" id="0jR-vm-COA"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的资产" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1U-ei-DTp">
+                                                    <rect key="frame" x="266" y="105" width="68" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2f-MS-EHu" customClass="ADTickerLabel">
+                                                    <rect key="frame" x="8" y="134" width="584" height="65"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="x5x-1h-eXh" secondAttribute="trailing" constant="-8" id="ARt-JU-ZDb"/>
+                                                <constraint firstItem="f2f-MS-EHu" firstAttribute="top" secondItem="i1U-ei-DTp" secondAttribute="bottom" constant="8" id="99Z-8S-y9D"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="f2f-MS-EHu" secondAttribute="bottom" constant="-8" id="Nfi-7P-ka0"/>
+                                                <constraint firstItem="f2f-MS-EHu" firstAttribute="leading" secondItem="hJa-EI-rgj" secondAttribute="leadingMargin" id="Q5b-zg-mU5"/>
+                                                <constraint firstItem="f2f-MS-EHu" firstAttribute="trailing" secondItem="hJa-EI-rgj" secondAttribute="trailingMargin" id="Ssw-YA-H02"/>
                                                 <constraint firstAttribute="centerX" secondItem="Xzn-A9-yIe" secondAttribute="centerX" id="UqY-0n-onP"/>
-                                                <constraint firstItem="x5x-1h-eXh" firstAttribute="leading" secondItem="hJa-EI-rgj" secondAttribute="leadingMargin" constant="-8" id="VrO-Jc-Uua"/>
                                                 <constraint firstItem="Xzn-A9-yIe" firstAttribute="top" secondItem="hJa-EI-rgj" secondAttribute="topMargin" constant="25" id="dbO-Px-Ihu"/>
                                                 <constraint firstAttribute="centerX" secondItem="i1U-ei-DTp" secondAttribute="centerX" id="iUo-4E-ua3"/>
-                                                <constraint firstItem="x5x-1h-eXh" firstAttribute="top" secondItem="i1U-ei-DTp" secondAttribute="bottom" constant="-3" id="ig9-J2-Im3"/>
                                                 <constraint firstItem="i1U-ei-DTp" firstAttribute="top" secondItem="Xzn-A9-yIe" secondAttribute="bottom" constant="22" id="jXr-xZ-hJx"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -800,7 +794,7 @@
                     <connections>
                         <outlet property="head" destination="Xzn-A9-yIe" id="pQq-Tb-3Gh"/>
                         <outlet property="mainTable" destination="9X4-sK-l7A" id="nBx-Dx-bxI"/>
-                        <outlet property="money" destination="x5x-1h-eXh" id="bhm-So-w9f"/>
+                        <outlet property="moneyTickerLabel" destination="f2f-MS-EHu" id="alw-9F-kUZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vE5-D8-yos" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4326,6 +4320,5 @@
         <segue reference="sOw-AT-9oo"/>
         <segue reference="tpR-eQ-WEg"/>
         <segue reference="5ZP-m5-drk"/>
-        <segue reference="7ed-5F-w9c"/>
     </inferredMetricsTieBreakers>
 </document>

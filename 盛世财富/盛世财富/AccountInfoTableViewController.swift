@@ -18,7 +18,24 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
     @IBOutlet weak var birthdayLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
+        var userDefaults = NSUserDefaults.standardUserDefaults()
+        if let phone = userDefaults.objectForKey("username") as? String {
+            PhoneLabel.text = phone
+        }
+        if let gender = userDefaults.objectForKey("gender") as? String {
+            genderLabel.text = gender
+        }
+        
+        if let birth = userDefaults.objectForKey("birthday") as? String {
+            var formatter = NSDateFormatter()
+            formatter.dateFormat = "yyyyMMdd"
+            var birthDate = formatter.dateFromString(birth)
+            formatter.dateFormat = "yyyy年MM月dd日"
+            //birthdayLabel.text = formatter.stringFromDate(birthDate!)
+        }
+        
     }
 
     //退出登录
@@ -33,6 +50,8 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
             userDefaults.removeObjectForKey("token")
             userDefaults.removeObjectForKey("userpic")
             userDefaults.removeObjectForKey("usermoney")
+            userDefaults.removeObjectForKey("gender")
+            userDefaults.removeObjectForKey("birthday")
             AlertView.showMsg("注销成功", parentView: self.view)
             self.presentViewController(self.storyboard?.instantiateViewControllerWithIdentifier("tabBarViewController") as! TabBarViewController, animated: true, completion: nil)
             

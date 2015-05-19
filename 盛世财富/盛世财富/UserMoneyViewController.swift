@@ -1,7 +1,7 @@
 //
 //  UserMoneyViewController.swift
 //  盛世财富
-//
+//  资产管理
 //  Created by 肖典 on 15/5/15.
 //  Copyright (c) 2015年 sscf88. All rights reserved.
 //
@@ -29,7 +29,7 @@ class UserMoneyViewController:UITableViewController {
             let afnet = AFHTTPRequestOperationManager()
             let param = ["to":token]
             let url = Constant.getServerHost() + "/App-Ucenter-userInfo"
-            
+            loading.startLoading(self.tableView)
             afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
                 let code = res["code"] as! Int
                 let message = res["message"] as! String
@@ -48,7 +48,9 @@ class UserMoneyViewController:UITableViewController {
                 self.ljtzje.text = proInfo.objectForKey("ljtzje") as? String
                 self.kyAll.text = proInfo.objectForKey("ky_all") as? String
                 self.jzlx.text = proInfo.objectForKey("jzlx") as? String
+                loading.stopLoading()
                 }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                    loading.stopLoading()
                     AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
             }
         }

@@ -28,7 +28,20 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         phoneTextField.delegate = self
         regist.layer.cornerRadius = 5
         checkBtn.layer.cornerRadius = 5
+        
         self.navigationItem.title = "用户注册"
+        
+        surePwdTextField.leftView = UIImageView(image: UIImage(named: "密码.png"))
+        surePwdTextField.leftViewMode = UITextFieldViewMode.Always
+        
+        passwordTextField.leftView = UIImageView(image: UIImage(named: "密码.png"))
+        passwordTextField.leftViewMode = UITextFieldViewMode.Always
+        
+        phoneTextField.leftView = UIImageView(image: UIImage(named: "电话.png"))
+        phoneTextField.leftViewMode = UITextFieldViewMode.Always
+        
+        codeTextField.leftView = UIImageView(image: UIImage(named: "齿轮.png"))
+        codeTextField.leftViewMode = UITextFieldViewMode.Always
     }
     
     //发送验证码

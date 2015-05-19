@@ -1,7 +1,7 @@
 //
 //  IdeaViewController.swift
 //  盛世财富
-//
+//  意见反馈
 //  Created by xiao on 15-3-24.
 //  Copyright (c) 2015年 sscf88. All rights reserved.
 //

@@ -1,7 +1,7 @@
 //
 //  LendDetailViewController.swift
 //  盛世财富
-//
+//  标的详情
 //  Created by xiao on 15-3-17.
 //  Copyright (c) 2015年 sscf88. All rights reserved.
 //
@@ -184,18 +184,45 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                         
                     }else{
                         self.leftTime.text = "已结束"
-                        self.buyButton.enabled = false
-                        
-                        
+                        //self.buyButton.enabled = false
+                       
                     }
-//                    print(123)
+                        //print(borrowinfo["borrow_status"])
+                        //println(borrowinfo["collect_time"])
+                        //借款状态
+                        var status = borrowinfo["borrow_status"] as! NSString
+                        switch status {
+                        case "4":
+                            //btn.layer.backgroundColor = UIColor.grayColor().CGColor
+                            //btn.setTitle("复审中", forState: nil)
+                            self.buyButton.enabled = false
+                        case "6":
+                            //btn.layer.backgroundColor = UIColor.grayColor().CGColor
+                            //btn.setTitle("还款中", forState: nil)
+                            self.buyButton.enabled = false
+                        case "7":
+                            //btn.layer.backgroundColor = UIColor.grayColor().CGColor
+                            //btn.setTitle("已完成", forState: nil)
+                            self.buyButton.enabled = false
+                        default:
+                            break
+                        }
+                        //募集期小于当前日期的不能投
+                        var collectTimeStr = borrowinfo["collect_time"] as? NSString
+                        if collectTimeStr != nil {
+                            var curTime = NSDate().timeIntervalSince1970
+                            if collectTimeStr?.doubleValue < curTime {
+//                                btn.layer.backgroundColor = UIColor.grayColor().CGColor
+//                                btn.setTitle("已结束", forState: nil)
+                                self.buyButton.enabled = false
+                            }
+                        }
+
                     loading.stopLoading()
                     self.mainTable.scrollEnabled = true
                 }
                 },
                 failure: {(operation:AFHTTPRequestOperation!,error : NSError!) in
-//                println("jsonerror:"+error.localizedDescription)
-//                AlertView.showMsg("服务器异常，请稍后再试", parentView: self.view)
                     loading.stopLoading()
                     self.mainTable.scrollEnabled = true
                     let alert = UIAlertController(title: "提示", message: "服务器异常，请稍后再试", preferredStyle: .Alert)

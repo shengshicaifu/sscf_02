@@ -1,7 +1,7 @@
 //
 //  ViewController.swift
 //  盛世财富
-//
+//  首页
 //  Created by mo on 15-3-12.
 //  Copyright (c) 2015年 sscf88. All rights reserved.
 //
@@ -65,6 +65,10 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         mainScorllView.TapActionBlock = {(pageIndex:Int)->() in
             //此处根据点击的索引跳转到指定的页面
             println("点击了\(pageIndex)")
+            
+            var contentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ContentViewController") as! ContentViewController
+            contentViewController.contentUrl = "http://www.sscf88.com"
+            self.navigationController?.pushViewController(contentViewController, animated: true)
         }
         
         mainTable.tableHeaderView = mainScorllView
@@ -261,7 +265,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             if tmpListData.count > 0 {
                 //图片  会产生阻滞
 //                image.image = UIImage(data:NSData(contentsOfURL: NSURL(string: "http://www.sscf88.com/uploadData/ad/2014093013251995.jpg")!)!)
-                println(tmpListData[row])
+                //println(tmpListData[row])
                 
                 title.text = tmpListData[row].valueForKey("borrow_name") as? String
                 
@@ -298,11 +302,13 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 //募集期小于当前日期的不能投
                 var collectTimeStr = tmpListData[row].objectForKey("collect_time") as? NSString
                 if collectTimeStr != nil {
-                    var curTime = NSDate().timeIntervalSinceNow
+                    var curTime = NSDate().timeIntervalSince1970
                     if collectTimeStr?.doubleValue < curTime {
                         btn.layer.backgroundColor = UIColor.grayColor().CGColor
                         btn.setTitle("已结束", forState: nil)
                         btn.enabled = false
+                        
+                        NSLog("募集期\(collectTimeStr!)小于当前日期\(curTime)")
                     }
                 }
                 

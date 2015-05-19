@@ -1,7 +1,7 @@
 //
 //  BidConfirmViewController.swift
 //  盛世财富
-//
+//  投标
 //  Created by xiao on 15-4-23.
 //  Copyright (c) 2015年 sscf88. All rights reserved.
 //

@@ -69,7 +69,11 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
+        
+        if UIDevice.currentDevice().model == "iPad" {
+            AlertView.alert("提示", message: "iPad无法更换头像", buttonTitle: "确定", viewController: self)
+            return
+        }
         if indexPath.section == 0{
             var source = UIImagePickerControllerSourceType.Camera
             let controller = UIAlertController(title: "请选择相册或照相机", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
@@ -102,6 +106,7 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
             
             self.presentViewController(controller, animated: true, completion: nil)
         }
+        
     }
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
 //        var imageview:UIImageView = UIImageView(frame: CGRectMake(0, 100, 320, 300))
@@ -111,7 +116,22 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
 //        imageview.image = image
         headImage.image = image
         
-        println(editingInfo);
+        var token:String = user.objectForKey("token") as! String
+        var afnet = AFHTTPRequestOperationManager()
+        var url = Constant.getServerHost()+"/App-Ucenter-setUserInfo"
+        var param = ["to":user.objectForKey("token") as! String,"gender":"","birthday":""]
+        afnet.POST(url, parameters: param, constructingBodyWithBlock: { (formData:AFMultipartFormData!) -> Void in
+            var fileName = "headpic.jpg"
+            formData.appendPartWithFileData(UIImageJPEGRepresentation(image, 1.0), name: "headpic", fileName: fileName, mimeType: "image/jpeg")
+            }, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                AlertView.alert("提示", message: data["message"] as! String, buttonTitle: "确定", viewController: self)
+            }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
+        }
+        
+        
+        
+//        println(editingInfo);
         
         self.dismissViewControllerAnimated(true, completion: nil);
     }

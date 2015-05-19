@@ -37,6 +37,8 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         super.viewDidLoad()
         mainTable.delegate = self
         mainTable.dataSource = self
+        
+        
 //        mainTable.allowsSelection = false
 //        self.navigationController?.navigationBar.barTintColor = UIColor(red: 54/255.0, green: 169/255.0, blue: 245/255.0, alpha: 1)
 //        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
@@ -261,7 +263,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             if tmpListData.count > 0 {
                 //图片  会产生阻滞
 //                image.image = UIImage(data:NSData(contentsOfURL: NSURL(string: "http://www.sscf88.com/uploadData/ad/2014093013251995.jpg")!)!)
-                println(tmpListData[row])
+//                println(tmpListData[row])
                 
                 title.text = tmpListData[row].valueForKey("borrow_name") as? String
                 

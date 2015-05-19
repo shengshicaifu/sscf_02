@@ -14,6 +14,7 @@ class MoreViewController: UITableViewController ,UITableViewDataSource,UITableVi
 
     @IBOutlet weak var mainTable: UITableView!
     
+   
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -32,7 +33,17 @@ class MoreViewController: UITableViewController ,UITableViewDataSource,UITableVi
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    @IBAction func call(sender: AnyObject) {
+//        println(1)
+        var alert = UIAlertController(title: "提示", message: "是否拨打客服电话？", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "拨打", style: UIAlertActionStyle.Destructive, handler: { (action:UIAlertAction!) -> Void in
+            var url1 = NSURL(string: "tel://4008573588")
+            UIApplication.sharedApplication().openURL(url1!)
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 0.1

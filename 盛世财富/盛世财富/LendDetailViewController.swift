@@ -59,6 +59,8 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
         mainTable.delegate = self
         loading.startLoading(self.view)
         mainTable.scrollEnabled = false
+        
+        
         //println(id!)
         if id != nil {
             let manager =  AFHTTPRequestOperationManager()

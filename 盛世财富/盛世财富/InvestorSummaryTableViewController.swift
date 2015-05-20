@@ -37,6 +37,7 @@ class InvestorSummaryViewController: UITableViewController,UITableViewDataSource
         var url = Constant.getServerHost() + "/App-Myinvest-summary"
         var params = ["to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! NSString]
         NSLog("投资总表参数：%@", params)
+        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
         manager.POST(url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                 var result = data as! NSDictionary
@@ -101,6 +102,7 @@ class InvestorSummaryViewController: UITableViewController,UITableViewDataSource
         var url = Constant.getServerHost() + "/App-Myinvest-summary"
         var params = ["to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! NSString]
         NSLog("投资总表参数：%@", params)
+        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
         manager.POST(url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                 //loading.stopLoading()

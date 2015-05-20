@@ -63,7 +63,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             NSLog("%@登录返回结果%@", self.usernameLabel.text,result)
             
                 if let code = result["code"] as? Int{
-                    
+                    println(result)
                     
                     if(code == 200){
                         let user = NSUserDefaults.standardUserDefaults()
@@ -74,10 +74,27 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                         user.setObject(proInfo.objectForKey("total_all"),forKey: "usermoney")
                         
                         var userInfo = result["data"]?["userInfo"] as! NSDictionary
+                        if let birthday = userInfo.objectForKey("birthday") as? String {
+                            user.setObject(birthday, forKey: "birthday")
+                        }else{
+                            user.setObject("", forKey: "birthday")
+                            
+                        }
+                        if let gender = userInfo.objectForKey("gender") as? String {
+                            user.setObject(gender, forKey: "gender")
+                        }else{
+                            user.setObject("", forKey: "gender")
+                            
+                        }
+                        if let headpic = userInfo.objectForKey("headpic") as? String {
+                            user.setObject(headpic, forKey: "headpic")
+                        }else{
+                            user.setObject("", forKey: "headpic")
+                            
+                        }
+
                         user.setObject(userInfo["pinPass"], forKey: "pinpass")
-                        user.setObject(userInfo["birthday"], forKey: "birthday")
-                        user.setObject(userInfo["gender"], forKey: "gender")
-                        user.setObject(userInfo["headpic"], forKey: "userpic")
+                   
                         
                         self.dismissViewControllerAnimated(true, completion: nil)
                     }

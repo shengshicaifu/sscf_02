@@ -82,17 +82,23 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         let afnet = AFHTTPRequestOperationManager()
         var param = NSMutableDictionary()
         var url = String()
-        if let type = self.type {
-            if type == "8"{
-                param = ["borrow_id":id!,"invest_money":bidMoney.text,"pin":payPassword.text,"is_confirm":"0","reward_use":reward.text,"use_experince":experience.text,"to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! String]
-                url = Constant.getServerHost() + "/App-Invest-investmoney"
-            }else{
-                url = Constant.getServerHost() + "/App-Invest-newtinvestmoney"
-                param = ["borrow_id":id!,"duration":duration!,"transfer_invest_num":bidMoney.text,"pin":payPassword.text,"is_confirm":"0","reward_use":reward.text,"use_experince":experience.text,"to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! String]
+        if let token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String{
+            if let type = self.type {
+                if type == "8"{
+                    param = ["borrow_id":id!,"invest_money":bidMoney.text,"pin":payPassword.text,"is_confirm":"0","reward_use":reward.text,"use_experince":experience.text,"to":token]
+                    url = Constant.getServerHost() + "/App-Invest-investmoney"
+                }else{
+                    url = Constant.getServerHost() + "/App-Invest-newtinvestmoney"
+                    param = ["borrow_id":id!,"duration":duration!,"transfer_invest_num":bidMoney.text,"pin":payPassword.text,"is_confirm":"0","reward_use":reward.text,"use_experince":experience.text,"to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! String]
+                }
             }
+        }else{
+            AlertView.alert("提示", message: "请登录后操作", buttonTitle: "确定", viewController: self)
+            return
         }
         
 //        println(param)
+        afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
         afnet.POST(url, parameters: param, success: { (opration :AFHTTPRequestOperation!, res :AnyObject!) -> Void in
                         println(res)
             AlertView.showMsg(res["message"] as! String, parentView: self.view)

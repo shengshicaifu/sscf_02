@@ -161,6 +161,7 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         if let username = NSUserDefaults.standardUserDefaults().objectForKey("username") as? String{
             self.navigationItem.rightBarButtonItem?.title = ""
             self.tableView.allowsSelection = true
+            self.tableView.reloadData()
         }else{
             //                println("unsign")
             var barItem = UIBarButtonItem(title: "登录", style: UIBarButtonItemStyle.Plain, target: self, action: "loginBtn")

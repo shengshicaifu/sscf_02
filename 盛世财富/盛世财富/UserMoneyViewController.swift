@@ -30,6 +30,7 @@ class UserMoneyViewController:UITableViewController {
             let param = ["to":token]
             let url = Constant.getServerHost() + "/App-Ucenter-userInfo"
             loading.startLoading(self.tableView)
+            afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
             afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
                 let code = res["code"] as! Int
                 let message = res["message"] as! String

@@ -183,6 +183,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
 //        NSLog("筛选参数%@", params)
         var manager = AFHTTPRequestOperationManager()
         loading.startLoading(self.view)
+        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
         manager.POST(url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                 //NSLog("listData:%@",self.listData.isKindOfClass(NSMutableArray))
@@ -227,6 +228,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         loading.startLoading(self.view)
         var params = [:]
         var manager = AFHTTPRequestOperationManager()
+        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
         manager.POST(timeLineUrl, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                 loading.stopLoading()

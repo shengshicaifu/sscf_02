@@ -21,7 +21,7 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
             let afnet = AFHTTPRequestOperationManager()
             let url = Constant.getServerHost() + "/App-Myinvest-getAllTending"
             let param = ["to":token]
-            
+            afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
             afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
                 NSLog("投标记录：%@",res as! NSDictionary)
                 

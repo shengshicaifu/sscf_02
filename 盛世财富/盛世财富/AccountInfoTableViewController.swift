@@ -25,7 +25,7 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
         headImage.layer.masksToBounds = true
         
         var userDefaults = NSUserDefaults.standardUserDefaults()
-        
+//        print(userDefaults.objectForKey("token"))
         if let i:NSData = userDefaults.objectForKey("headImage") as? NSData {
             headImage.image = UIImage(data: i)
         }
@@ -36,7 +36,7 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
         if let gender = userDefaults.objectForKey("gender") as? String {
             genderLabel.text = gender
         }
-        println(userDefaults.objectForKey("birthday") as? String)
+//        println(userDefaults.objectForKey("birthday") as? String)
         if let birth = userDefaults.objectForKey("birthday") as? String {
             
             var formatter = NSDateFormatter()
@@ -125,18 +125,23 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
         var token:String = user.objectForKey("token") as! String
         var afnet = AFHTTPRequestOperationManager()
         var url = Constant.getServerHost()+"/App-Ucenter-setUserInfo"
-        var param = ["to":user.objectForKey("token") as! String,"gender":"","birthday":""]
-        afnet.POST(url, parameters: param, constructingBodyWithBlock: { (formData:AFMultipartFormData!) -> Void in
-            var fileName = "headpic.jpg"
-            formData.appendPartWithFileData(UIImageJPEGRepresentation(image, 1.0), name: "headpic", fileName: fileName, mimeType: "image/jpeg")
-            }, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                AlertView.alert("提示", message: data["message"] as! String, buttonTitle: "确定", viewController: self)
-            }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
-        }
+        var param = ["to":token,"headpic":UIImageJPEGRepresentation(image, 1.0)]
+        afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+//        afnet.POST(url, parameters: param, constructingBodyWithBlock: { (formData:AFMultipartFormData!) -> Void in
+//            var fileName = "headpic.jpg"
+//            formData.appendPartWithFileData(UIImageJPEGRepresentation(image, 1.0), name: "headpic", fileName: fileName, mimeType: "image/jpeg")
+//            }, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+//                AlertView.alert("提示", message: data["message"] as! String, buttonTitle: "确定", viewController: self)
+//            }, failure: { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
+//                AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
+//        })
         
-        
-        
+        afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+            println(data)
+            }, failure: { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
+            println(error)
+        })
+        NSData()
 //        println(editingInfo);
         
         self.dismissViewControllerAnimated(true, completion: nil);

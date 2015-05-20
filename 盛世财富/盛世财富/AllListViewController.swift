@@ -151,8 +151,8 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     
     //加载数据
     func getData(){
-        self.circle.hidden = false
-        self.circle.startAnimating()
+//        self.circle.hidden = false
+//        self.circle.startAnimating()
         
         switch statusValue {
             case 0:status = "0" ;break
@@ -189,13 +189,14 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         var params = ["borrow_status":status,"borrow_money":money,"borrow_duration":period]
 //        NSLog("筛选参数%@", params)
         var manager = AFHTTPRequestOperationManager()
+        loading.startLoading(self.view)
         manager.POST(url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                 //NSLog("listData:%@",self.listData.isKindOfClass(NSMutableArray))
                 
-                self.circle.stopAnimating()
-                self.circle.hidden = true
-                
+//                self.circle.stopAnimating()
+//                self.circle.hidden = true
+                loading.stopLoading()
                 var result:NSDictionary = data as! NSDictionary
                 
                 if let resultData = result["data"]?.valueForKey("list") as? NSMutableArray {
@@ -218,7 +219,8 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                 
             },
             failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
-            
+                loading.stopLoading()
+                AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
             }
         )
         
@@ -229,16 +231,18 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         mainTable.delegate = self
+        loading.startLoading(self.view)
         var params = [:]
         var manager = AFHTTPRequestOperationManager()
         manager.POST(timeLineUrl, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                loading.stopLoading()
                 var result:NSDictionary = data as! NSDictionary
                 
                 self.tmpListData = result["data"]?.valueForKey("list") as! NSMutableArray //list数据
 
-                self.circle.stopAnimating()
-                self.circle.hidden = true
+                //self.circle.stopAnimating()
+                //self.circle.hidden = true
                 self.mainTable.hidden = false
                 
                 self.mainTable.reloadData()

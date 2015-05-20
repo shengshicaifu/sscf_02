@@ -54,8 +54,10 @@ class ModifyPinPasswordViewController: UIViewController {
         var url = Constant.getServerHost() + "/App-Ucenter-setPinPassWord"
         var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
         var params = ["pin_pass":oldpass,"newPinpass":newpass,"to":token]
+        loading.startLoading(self.view)
         manager.POST(url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                loading.stopLoading()
                 var result = data as! NSDictionary
                 var code = result["code"] as! Int
                 if code == -1 {
@@ -68,7 +70,8 @@ class ModifyPinPasswordViewController: UIViewController {
                 }
                 
             },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                loading.stopLoading()
+                AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
             }
         )
     }

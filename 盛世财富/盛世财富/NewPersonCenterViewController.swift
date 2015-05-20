@@ -31,7 +31,7 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         
         
         
-        println("head  x:\(head?.frame.origin.x) y\(head?.frame.origin.y) width\(head?.frame.width) height\(head?.frame.height)")
+        //println("head  x:\(head?.frame.origin.x) y\(head?.frame.origin.y) width\(head?.frame.width) height\(head?.frame.height)")
         
         //钱
         textLayer = CACustomTextLayer()
@@ -48,8 +48,8 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         moneyView.layer.addSublayer(textLayer)
         moneyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toMoneyInfo"))
         
-        println("textLayer  x:\(textLayer?.frame.origin.x) y\(textLayer?.frame.origin.y) width\(textLayer?.frame.width) height\(textLayer?.frame.height)")
-        println("moneyView  x:\(moneyView?.frame.origin.x) y\(moneyView?.frame.origin.y) width\(moneyView?.frame.width) height\(moneyView?.frame.height)")
+        //println("textLayer  x:\(textLayer?.frame.origin.x) y\(textLayer?.frame.origin.y) width\(textLayer?.frame.width) height\(textLayer?.frame.height)")
+        //println("moneyView  x:\(moneyView?.frame.origin.x) y\(moneyView?.frame.origin.y) width\(moneyView?.frame.width) height\(moneyView?.frame.height)")
     }
     
     //跳到资产管理
@@ -93,45 +93,39 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         var user = NSUserDefaults.standardUserDefaults()
         if let username:String = user.objectForKey("username") as? String {
             self.navigationItem.title = username
+            
+            if let usermoney:NSString = user.objectForKey("usermoney") as? NSString {
+                textLayer?.jumpNumberWithDuration(1, fromNumber: 0.0, toNumber: usermoney.floatValue)
+            }
+            
+            if let headImage:NSData = user.objectForKey("headImage") as? NSData {
+                self.head.image = UIImage(data: headImage)
+            }else if let userpic:String = user.objectForKey("userpic") as? String {
+                if userpic.isEmpty == false {
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                        
+                        if let image = NSData(contentsOfURL: NSURL(string: userpic as String)!) {
+                            self.head.image = UIImage(data: image)
+                            user.setObject(image, forKey: "headImage")
+                            
+                            //这里写需要大量时间的代码
+                            //                println("这里写需要大量时间的代码")
+                            
+                            //                        dispatch_async(dispatch_get_main_queue(), {
+                            //                            //这里返回主线程，写需要主线程执行的代码
+                            //                            //                    println("这里返回主线程，写需要主线程执行的代码")
+                            //                        })
+                        }
+                        
+                    })
+                    //let thread = NSThread(target: self, selector: "getHead:", object: userpic)
+                    //thread.start()
+                }
+            }
+            
         }else {
             self.navigationItem.title = "请登录"
         }
-        if let usermoney:NSString = user.objectForKey("usermoney") as? NSString {
-            
-            textLayer?.jumpNumberWithDuration(1, fromNumber: 0.0, toNumber: usermoney.floatValue)
-            
-            
-        }
-        
-        
-        if let headImage:NSData = user.objectForKey("headImage") as? NSData {
-            self.head.image = UIImage(data: headImage)
-        }else if let userpic:String = user.objectForKey("userpic") as? String {
-            if userpic.isEmpty == false {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                    
-                    if let image = NSData(contentsOfURL: NSURL(string: userpic as String)!) {
-                        self.head.image = UIImage(data: image)
-                        user.setObject(image, forKey: "headImage")
-                        
-                        //这里写需要大量时间的代码
-                        //                println("这里写需要大量时间的代码")
-                        
-//                        dispatch_async(dispatch_get_main_queue(), {
-//                            //这里返回主线程，写需要主线程执行的代码
-//                            //                    println("这里返回主线程，写需要主线程执行的代码")
-//                        })
-                    }
-
-                })
-                //let thread = NSThread(target: self, selector: "getHead:", object: userpic)
-                //thread.start()
-            }
-        }else {
-            //放默认头像
-        }
-        
-        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

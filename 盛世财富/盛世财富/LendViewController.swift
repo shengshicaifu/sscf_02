@@ -45,9 +45,9 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
        //滚动图-------------------------------
         var viewsArray = NSMutableArray()
         var colorArray = [UIColor.cyanColor(),UIColor.blueColor(),UIColor.greenColor(),UIColor.yellowColor(),UIColor.purpleColor()]
-        for  i in 1...4 {
+        for  i in 1...2 {
             var tempImageView = UIImageView(frame:CGRectMake(0, 64, self.view.layer.frame.width, 175))//代码指定位置
-            tempImageView.image = UIImage(named:"\(i).jpeg")//图片名
+            tempImageView.image = UIImage(named:"content_\(i).png")//图片名
             tempImageView.contentMode = UIViewContentMode.ScaleAspectFill
             tempImageView.clipsToBounds = true
             
@@ -62,14 +62,14 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         mainScorllView.totalPagesCount = {()->Int in
             //图片的个数
-            return 4;
+            return 2;
         }
         mainScorllView.TapActionBlock = {(pageIndex:Int)->() in
             //此处根据点击的索引跳转到指定的页面
             //println("点击了\(pageIndex)")
             
             var contentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ContentViewController") as! ContentViewController
-            contentViewController.contentUrl = "http://www.sscf88.com"
+            contentViewController.contentUrl = "http://61.183.178.86:10080//ktv_zs/"
             self.navigationController?.pushViewController(contentViewController, animated: true)
         }
         
@@ -99,11 +99,12 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
 //
             dispatch_async(dispatch_get_main_queue(), {
                 
-
+                loading.startLoading(self.view)
                 self.eHttp.get(self.timeLineUrl,view :self.view,callback: {
+                    loading.stopLoading()
                     //callback  隐藏读取动画
-                    self.circle.stopAnimating()
-                    self.circle.hidden = true
+//                    self.circle.stopAnimating()
+//                    self.circle.hidden = true
                     //显示tableview
                     self.mainTable.hidden = false
                     self.mainTable.reloadData()
@@ -133,9 +134,11 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                //NSLog("网络可用")
                 dispatch_async(dispatch_get_main_queue(), {
                     self.refreshControl.attributedTitle = NSAttributedString(string: "加载中")
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = true
                     self.eHttp.get(self.timeLineUrl,view :self.view,callback: {
                         //停止下拉动画
                         self.refreshControl.endRefreshing()
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         self.mainTable.reloadData()
                         
                     })
@@ -287,15 +290,15 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 var status = tmpListData[row].objectForKey("borrow_status") as! NSString
                 switch status {
                     case "4":
-                        btn.layer.backgroundColor = UIColor.grayColor().CGColor
+                        btn.layer.backgroundColor = UIColor(red: 193/255.0, green: 193/255.0, blue: 193/255.0, alpha: 1).CGColor
                         btn.setTitle("复审中", forState: nil)
                         btn.enabled = false
                     case "6":
-                        btn.layer.backgroundColor = UIColor.grayColor().CGColor
+                        btn.layer.backgroundColor = UIColor(red: 193/255.0, green: 193/255.0, blue: 193/255.0, alpha: 1).CGColor
                         btn.setTitle("还款中", forState: nil)
                         btn.enabled = false
                     case "7":
-                        btn.layer.backgroundColor = UIColor.grayColor().CGColor
+                        btn.layer.backgroundColor = UIColor(red: 193/255.0, green: 193/255.0, blue: 193/255.0, alpha: 1).CGColor
                         btn.setTitle("已完成", forState: nil)
                         btn.enabled = false
                     default:
@@ -306,7 +309,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 if collectTimeStr != nil {
                     var curTime = NSDate().timeIntervalSince1970
                     if collectTimeStr?.doubleValue < curTime {
-                        btn.layer.backgroundColor = UIColor.grayColor().CGColor
+                        btn.layer.backgroundColor = UIColor(red: 193/255.0, green: 193/255.0, blue: 193/255.0, alpha: 1).CGColor
                         btn.setTitle("已结束", forState: nil)
                         btn.enabled = false
                         

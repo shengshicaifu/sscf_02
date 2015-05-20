@@ -47,8 +47,10 @@ class SetPinPasswordViewController: UIViewController {
         var url = Constant.getServerHost() + "/App-Ucenter-setFirstPin"
         var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
         var params = ["pin_pass":pinpass,"to":token]
+        loading.startLoading(self.view)
         manager.POST(url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                loading.stopLoading()
                 var result = data as! NSDictionary
                 NSLog("设置交易密码：%@", result)
                 var code = result["code"] as! Int
@@ -60,6 +62,7 @@ class SetPinPasswordViewController: UIViewController {
                 }
                 
             },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                loading.stopLoading()
                 AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
             }
         )

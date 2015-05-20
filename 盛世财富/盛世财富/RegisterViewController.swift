@@ -53,8 +53,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
             return
         }
         
-        //网络等待指示器
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        
         
         //禁用获取验证码按钮60秒
         checkBtn.enabled = false
@@ -64,9 +63,11 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         var url = Constant.getServerHost() + "/App-Register-sendphone"
         var params = ["cellphone":phone]
         var manager = AFHTTPRequestOperationManager()
+        loading.startLoading(self.view)
         manager.POST(url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                loading.stopLoading()
+                
                 var result = data as! NSDictionary
                 NSLog("验证码%@", result)
                 var code = result["code"] as! Int
@@ -81,6 +82,8 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
                 AlertView.showMsg(msg, parentView: self.view)
             },
             failure:{ (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                loading.stopLoading()
+                AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
             }
         )
     }

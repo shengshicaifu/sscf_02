@@ -36,13 +36,18 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
         if let gender = userDefaults.objectForKey("gender") as? String {
             genderLabel.text = gender
         }
-        
+        println(userDefaults.objectForKey("birthday") as? String)
         if let birth = userDefaults.objectForKey("birthday") as? String {
+            
             var formatter = NSDateFormatter()
             formatter.dateFormat = "yyyyMMdd"
-            var birthDate = formatter.dateFromString(birth)
-            formatter.dateFormat = "yyyy年MM月dd日"
-            //birthdayLabel.text = formatter.stringFromDate(birthDate!)
+            if let birthDate = formatter.dateFromString(birth) {
+                formatter.dateFormat = "yyyy年MM月dd日"
+                birthdayLabel.text = formatter.stringFromDate(birthDate)
+            }
+            
+        } else {
+            birthdayLabel.text = ""
         }
         
     }

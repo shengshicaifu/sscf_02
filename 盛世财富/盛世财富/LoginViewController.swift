@@ -45,34 +45,27 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
 //        self.count++
         usernameLabel.resignFirstResponder()
         passwordLabel.resignFirstResponder()
-
-        loading.startLoading(self.view)
-        
         var name = usernameLabel.text
         var pwd = passwordLabel.text
         if name.isEmpty {
-            loading.stopLoading()
             AlertView.showMsg("请填写用户名！", parentView: self.view)
             return
         }
         if pwd.isEmpty {
-            loading.stopLoading()
             AlertView.showMsg("请填写密码！", parentView: self.view)
-            
             return
         }
         
-        
+        loading.startLoading(self.view)
                 
         eHttp.post(timeLineUrl, params: ["userName":usernameLabel.text,"userPass":passwordLabel.text,"userFlag":0] ,view: self.view ) { (result:NSDictionary)->Void in
-            
+            loading.stopLoading()
             NSLog("%@登录返回结果%@", self.usernameLabel.text,result)
             
                 if let code = result["code"] as? Int{
                     
-//                        println(result)
+                    
                     if(code == 200){
-                        print(result)
                         let user = NSUserDefaults.standardUserDefaults()
                         let proInfo:NSDictionary = result["data"]?["proInfo"] as! NSDictionary
                         user.setObject(self.usernameLabel.text, forKey: "username")
@@ -98,7 +91,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             }
         
     
-        loading.stopLoading()
+        
     }
 
 

@@ -94,7 +94,8 @@ class InvestorSummaryViewController: UITableViewController,UITableViewDataSource
     
     
     func getData(){
-        loading.startLoading(self.tableView)
+        //loading.startLoading(self.tableView)
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         //获取网络数据
         var manager = AFHTTPRequestOperationManager()
         var url = Constant.getServerHost() + "/App-Myinvest-summary"
@@ -102,8 +103,8 @@ class InvestorSummaryViewController: UITableViewController,UITableViewDataSource
         NSLog("投资总表参数：%@", params)
         manager.POST(url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                loading.stopLoading()
-                
+                //loading.stopLoading()
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 var result = data as! NSDictionary
                 NSLog("投资总表：%@", result)
                 var code = result["code"] as! Int
@@ -145,7 +146,8 @@ class InvestorSummaryViewController: UITableViewController,UITableViewDataSource
              
                 
             },failure:{ (op:AFHTTPRequestOperation!,error: NSError!) -> Void in
-                loading.stopLoading()
+                //loading.stopLoading()
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
                 
             }

@@ -49,6 +49,9 @@
 		E96B2F081B08673900B4197B /* MDRadialProgressLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E96B2F031B08673900B4197B /* MDRadialProgressLabel.m */; };
 		E96B2F091B08673900B4197B /* MDRadialProgressTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = E96B2F051B08673900B4197B /* MDRadialProgressTheme.m */; };
 		E96B2F0A1B08673900B4197B /* MDRadialProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E96B2F071B08673900B4197B /* MDRadialProgressView.m */; };
+		E96E52411B0C577800CFD8E2 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96E52401B0C577800CFD8E2 /* Common.swift */; };
+		E96E52451B0C865800CFD8E2 /* ModifyPhoneStepFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96E52441B0C865800CFD8E2 /* ModifyPhoneStepFirstViewController.swift */; };
+		E96E52471B0C868900CFD8E2 /* ModifyPhoneStepSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96E52461B0C868900CFD8E2 /* ModifyPhoneStepSecondViewController.swift */; };
 		E977F3F41AC540E7008C2F8A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */; };
 		E9B9EF4C1AC8E00600E46714 /* BidListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B9EF4B1AC8E00600E46714 /* BidListViewController.swift */; };
 		E9BEE1AD1AC24CF10049600C /* HttpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BEE1AC1AC24CF10049600C /* HttpController.swift */; };
@@ -155,6 +158,9 @@
 		E96B2F051B08673900B4197B /* MDRadialProgressTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDRadialProgressTheme.m; sourceTree = "<group>"; };
 		E96B2F061B08673900B4197B /* MDRadialProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDRadialProgressView.h; sourceTree = "<group>"; };
 		E96B2F071B08673900B4197B /* MDRadialProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDRadialProgressView.m; sourceTree = "<group>"; };
+		E96E52401B0C577800CFD8E2 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		E96E52441B0C865800CFD8E2 /* ModifyPhoneStepFirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyPhoneStepFirstViewController.swift; sourceTree = "<group>"; };
+		E96E52461B0C868900CFD8E2 /* ModifyPhoneStepSecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifyPhoneStepSecondViewController.swift; sourceTree = "<group>"; };
 		E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		E9B9EF4B1AC8E00600E46714 /* BidListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BidListViewController.swift; sourceTree = "<group>"; };
 		E9BEE1AC1AC24CF10049600C /* HttpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpController.swift; sourceTree = "<group>"; };
@@ -301,6 +307,8 @@
 				E9E304031B09A6A90021D006 /* SetPinPasswordViewController.swift */,
 				E9E304051B09AAD20021D006 /* AccountSafeTableViewController.swift */,
 				E9E8E9451B0B22FA0074F41A /* ContentViewController.swift */,
+				E96E52441B0C865800CFD8E2 /* ModifyPhoneStepFirstViewController.swift */,
+				E96E52461B0C868900CFD8E2 /* ModifyPhoneStepSecondViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -431,6 +439,7 @@
 				59D214BA1AFC9AD800677C26 /* AlertView.swift */,
 				E9C605AB1ABBB9C500752D91 /* Refresh */,
 				D8B2511B1B004B8600360F4E /* Constant.swift */,
+				E96E52401B0C577800CFD8E2 /* Common.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -536,6 +545,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E96E52411B0C577800CFD8E2 /* Common.swift in Sources */,
 				E9E304061B09AAD20021D006 /* AccountSafeTableViewController.swift in Sources */,
 				E96B2F091B08673900B4197B /* MDRadialProgressTheme.m in Sources */,
 				E90EA2721ABFA37A006D22E6 /* AFHTTPRequestOperation.m in Sources */,
@@ -562,7 +572,9 @@
 				E9C605B21ABBB9C500752D91 /* Refresh.swift in Sources */,
 				E9C605B51ABBB9C500752D91 /* RefreshFooterView.swift in Sources */,
 				E90EA27A1ABFA37A006D22E6 /* AFURLSessionManager.m in Sources */,
+				E96E52451B0C865800CFD8E2 /* ModifyPhoneStepFirstViewController.swift in Sources */,
 				598A77841AF9E48600DE4271 /* TabBarViewController.swift in Sources */,
+				E96E52471B0C868900CFD8E2 /* ModifyPhoneStepSecondViewController.swift in Sources */,
 				E9BEE1AD1AC24CF10049600C /* HttpController.swift in Sources */,
 				E9E304041B09A6A90021D006 /* SetPinPasswordViewController.swift in Sources */,
 				E977F3F41AC540E7008C2F8A /* RegisterViewController.swift in Sources */,

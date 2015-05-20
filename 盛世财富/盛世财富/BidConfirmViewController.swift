@@ -39,6 +39,8 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         experience.delegate = self
         payPassword.delegate = self
         payBtn.layer.cornerRadius = 5
+    
+        
         if let usermoney:String = NSUserDefaults.standardUserDefaults().objectForKey("usermoney") as? String {
             self.usermoney.text = usermoney
         }
@@ -62,6 +64,12 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         reward.resignFirstResponder()
         experience.resignFirstResponder()
         payPassword.resignFirstResponder()
+        
+        if Common.isLogin() == false {
+            AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
+            return
+        }
+        
         if bidMoney.text.isEmpty {
             AlertView.alert("提示", message: "请填写投标金额", buttonTitle: "确定", viewController: self)
             return
@@ -91,7 +99,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
 //            println(res["message"])
             }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
                 println(error.localizedDescription)
-                AlertView.alert("错误", message: "系统错误，请联系客服！", buttonTitle: "确定", viewController: self)
+                AlertView.alert("错误", message: "服务器错误", buttonTitle: "确定", viewController: self)
         }
         loading.stopLoading()
     }

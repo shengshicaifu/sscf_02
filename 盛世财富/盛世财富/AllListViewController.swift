@@ -136,13 +136,6 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         }) { (Bool) -> Void in
             
         }
-        
-//        UIView.animateWithDuration(0.5, animations: { () -> Void in
-//            
-//            conditionMenuView?.frame = CGRectMake(0, -350, self.view.frame.width, 350)
-//        })
-        
-        //self.conditionMenuView?.hidden = true
         isConditionMenuViewVisiable = false
         
         //加载数据
@@ -240,16 +233,14 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                 var result:NSDictionary = data as! NSDictionary
                 
                 self.tmpListData = result["data"]?.valueForKey("list") as! NSMutableArray //list数据
-
-                //self.circle.stopAnimating()
-                //self.circle.hidden = true
                 self.mainTable.hidden = false
                 
                 self.mainTable.reloadData()
                 
             },
             failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
-                
+                loading.stopLoading()
+                AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
             }
         )
         setupRefresh()
@@ -259,27 +250,32 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     func setupRefresh(){
         //下拉刷新
         self.mainTable.addHeaderWithCallback({
-            let delayInSeconds:Int64 =  1000000000  * 2
-            var popTime:dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds)
-            dispatch_after(popTime, dispatch_get_main_queue(), {
-                self.mainTable.reloadData()
-                self.mainTable.headerEndRefreshing()
-            })
+            //println("下拉刷新")
+            var params = [:]
+            var manager = AFHTTPRequestOperationManager()
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+            manager.POST(self.timeLineUrl, parameters: params,
+                success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    var result:NSDictionary = data as! NSDictionary
+                    //println(result)
+                    self.tmpListData = result["data"]?.valueForKey("list") as! NSMutableArray //list数据
+                    self.mainTable.hidden = false
+                    
+                    self.mainTable.reloadData()
+                    self.mainTable.headerEndRefreshing()
+                    
+                },
+                failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    self.mainTable.headerEndRefreshing()
+                    AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
+                }
+            )
         })
         
         //上拉加载
         self.mainTable.addFooterWithCallback({
-            
-            /*
-            var nextPage = String(self.page + 1)
-            var tmpTimeLineUrl = self.timeLineUrl + "-page-" + nextPage as NSString
-            
-            
-            self.eHttp.delegate = self
-            self.eHttp.get(tmpTimeLineUrl as String,view :self.view,callback: {
-                self.mainTable.reloadData()
-            })
-            */
             //记录最后一个[标的]的ID号码
             var borrow_id = 0
             
@@ -290,8 +286,11 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             NSLog("最后一个[标的]的ID号码:%i", borrow_id)
             var params = ["borrow_id":borrow_id,"borrow_status":self.status,"borrow_money":self.money,"borrow_duration":self.period]
             var manager = AFHTTPRequestOperationManager()
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             manager.POST(self.timeLineUrl, parameters: params,
                 success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    
                     var result:NSDictionary = data as! NSDictionary
                     
                     self.tmpListData = result["data"]?.valueForKey("list") as! NSMutableArray //list数据
@@ -316,35 +315,13 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
 
                 },
                 failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
-                    
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
                 }
             )
-            
-            
-            
-            
-//            let delayInSeconds:Int64 = 1000000000 * 2
-//            var popTime:dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW,delayInSeconds)
-//            dispatch_after(popTime, dispatch_get_main_queue(), {
-//                self.mainTable.footerEndRefreshing()
-//                if(self.tmpListData != self.listData){
-//                    if(self.tmpListData.count != 0){
-//                        var tmpListDataCount = self.tmpListData.count
-//                        for(var i:Int = 0; i < tmpListDataCount; i++){
-//                            self.listData.addObject(self.tmpListData[i])
-//                        }
-//                    }
-//                    self.mainTable.reloadData()
-//                    self.tmpListData.removeAllObjects()
-//                }
-//            })
         })
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         
         if(self.listData.count == 0){

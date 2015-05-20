@@ -1,0 +1,141 @@
+//
+//  ModifyPhoneStepSecondViewController.swift
+//  盛世财富
+//  修改手机号码第二步
+//  Created by 云笺 on 15/5/20.
+//  Copyright (c) 2015年 sscf88. All rights reserved.
+//
+
+import UIKit
+
+class ModifyPhoneStepSecondViewController: UIViewController {
+    
+    var f_id:String?
+
+    @IBOutlet weak var newPhoneTextField: UITextField!
+    
+    
+    @IBOutlet weak var codeTextField: UITextField!
+    
+    
+    @IBOutlet weak var getCodeButton: UIButton!
+    
+    var timer:NSTimer!
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+    }
+    
+    //获取验证码
+    @IBAction func getCodeTapped(sender: UIButton) {
+        var phone = newPhoneTextField.text
+        if phone.isEmpty {
+            AlertView.alert("提示", message: "请填写新的手机号码", buttonTitle: "确定", viewController: self)
+            newPhoneTextField.becomeFirstResponder()
+            return
+        }
+        
+        
+        //禁用获取验证码按钮60秒
+        getCodeButton.enabled = false
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "repeat", userInfo: nil, repeats: true)
+        
+        //获取验证码
+        var url = Constant.getServerHost() + "/App-Register-sendphone"
+        var params = ["cellphone":phone]
+        var manager = AFHTTPRequestOperationManager()
+        loading.startLoading(self.view)
+        manager.POST(url, parameters: params,
+            success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                loading.stopLoading()
+                
+                var result = data as! NSDictionary
+                NSLog("验证码%@", result)
+                var code = result["code"] as! Int
+                var msg:String = ""
+                if code == 0 {
+                    msg = "验证码生送失败，请重试!"
+                }else if code == 1 {
+                    msg = "手机号已被别人使用!"
+                }else if code == 100 {
+                    msg = "短信验证码发送成功"
+                }
+                AlertView.showMsg(msg, parentView: self.view)
+            },
+            failure:{ (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                loading.stopLoading()
+                AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
+            }
+        )
+    }
+    
+    var i = 60
+    func repeat(){
+        getCodeButton.setTitle("\(i)", forState: UIControlState.Disabled)
+        i--
+        if i == 0 {
+            i = 60
+            timer.invalidate()
+            getCodeButton.enabled = true
+            getCodeButton.setTitle("获取验证码", forState: UIControlState.Normal)
+        }
+    }
+    
+    
+    //确定绑定新的手机号码
+    @IBAction func okTapped(sender: UIButton) {
+        
+        var phone = newPhoneTextField.text
+        if phone.isEmpty {
+            AlertView.alert("提示", message: "请填写新的手机号码", buttonTitle: "确定", viewController: self)
+            newPhoneTextField.becomeFirstResponder()
+            return
+        }
+        
+        var code = codeTextField.text
+        if code.isEmpty {
+            AlertView.alert("提示", message: "请填写手机验证码", buttonTitle: "确定", viewController: self)
+            codeTextField.becomeFirstResponder()
+            return
+        }
+        
+        var manager = AFHTTPRequestOperationManager()
+        var url = "http://www.sscf88.com/App-Ucenter-alertPhone"
+        var userDefaults = NSUserDefaults.standardUserDefaults()
+        var token = userDefaults.objectForKey("token") as? String
+        var params = ["to":token,"step":"2","cellphone":phone,"code":code,"f_id":self.f_id]
+        loading.startLoading(self.view)
+        manager.POST(url, parameters: params,
+            success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                loading.stopLoading()
+                var result = data as! NSDictionary
+                var resultCode = result["code"] as! Int
+                if resultCode == -1 {
+                    AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
+                    
+                } else if resultCode == 0 {
+                    AlertView.alert("提示", message: "手机验证码错误", buttonTitle: "确定", viewController: self)
+                    self.codeTextField.becomeFirstResponder()
+                } else if resultCode == 200 {
+                    userDefaults.setObject(phone, forKey: "phone")
+                    
+                    //self.performSegueWithIdentifier("modifyPhoneNextStepSegue", sender: self)
+                    //连着返回两次到
+                    var count = self.navigationController?.viewControllers.count
+                    var destiationController = self.navigationController?.viewControllers[count! - 2] as! UIViewController
+                    self.navigationController?.popToViewController(destiationController, animated: true)
+                }
+                
+            },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                loading.stopLoading()
+                AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
+            }
+        )
+
+    }
+
+}

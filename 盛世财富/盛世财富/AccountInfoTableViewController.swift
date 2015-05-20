@@ -67,6 +67,7 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
             userDefaults.removeObjectForKey("usermoney")
             userDefaults.removeObjectForKey("gender")
             userDefaults.removeObjectForKey("birthday")
+            userDefaults.removeObjectForKey("headImage")
             AlertView.showMsg("注销成功", parentView: self.view)
             self.presentViewController(self.storyboard?.instantiateViewControllerWithIdentifier("tabBarViewController") as! TabBarViewController, animated: true, completion: nil)
             

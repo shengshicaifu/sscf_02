@@ -488,11 +488,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Npr-hm-0FD">
-                                <rect key="frame" x="160" y="273" width="424" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWi-bi-nVX">
                                 <rect key="frame" x="567" y="163" width="17" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -536,6 +531,11 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Npr-hm-0FD">
+                                <rect key="frame" x="160" y="273" width="424" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -1370,6 +1370,35 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="CE0-ts-aR9" detailTextLabel="Avz-8m-U8J" style="IBUITableViewCellStyleValue1" id="PRv-Ai-wLt">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PRv-Ai-wLt" id="8gO-9W-EA7">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="绑定手机" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CE0-ts-aR9">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    </variation>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="155****0109" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Avz-8m-U8J">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    </variation>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="dFx-jP-89V" kind="show" id="1Ua-wc-rPz"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -1663,7 +1692,6 @@
                                         <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8Z-oR-ZGy">
                                             <rect key="frame" x="8" y="8" width="376" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -4392,6 +4420,158 @@
             </objects>
             <point key="canvasLocation" x="1598" y="3768"/>
         </scene>
+        <!--验证原手机-->
+        <scene sceneID="bK7-0C-vKj">
+            <objects>
+                <viewController title="验证原手机" id="dFx-jP-89V" customClass="ModifyPhoneStepFirstViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zcp-vd-9wq"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bhy-u3-13y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NqA-kw-piJ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="原手机号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKZ-Q2-23b">
+                                <rect key="frame" x="16" y="72" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="155****0109" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQx-e6-BXd">
+                                <rect key="frame" x="240" y="106" width="120" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="ZEr-FP-9ob"/>
+                                    <constraint firstAttribute="width" constant="120" id="eWD-NS-Da7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入验证码" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="eXd-9A-YWM">
+                                <rect key="frame" x="16" y="156" width="407" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o10-Wz-hfB">
+                                <rect key="frame" x="16" y="200" width="568" height="30"/>
+                                <state key="normal" title="下一步">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextStepTapped:" destination="dFx-jP-89V" eventType="touchUpInside" id="bx3-VX-ObA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qBd-eV-DXl">
+                                <rect key="frame" x="431" y="156" width="153" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="153" id="LJO-Ix-FZV"/>
+                                </constraints>
+                                <state key="normal" title="获取验证码">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="getCodeTapped:" destination="dFx-jP-89V" eventType="touchUpInside" id="Eet-yf-9sc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eXd-9A-YWM" firstAttribute="leading" secondItem="NqA-kw-piJ" secondAttribute="leadingMargin" id="2NU-Ex-abL"/>
+                            <constraint firstItem="nQx-e6-BXd" firstAttribute="top" secondItem="hKZ-Q2-23b" secondAttribute="bottom" constant="13" id="2QN-iD-zoo"/>
+                            <constraint firstItem="o10-Wz-hfB" firstAttribute="leading" secondItem="NqA-kw-piJ" secondAttribute="leadingMargin" id="Dzv-FD-b8a"/>
+                            <constraint firstItem="o10-Wz-hfB" firstAttribute="trailing" secondItem="NqA-kw-piJ" secondAttribute="trailingMargin" id="FkS-6K-Bhi"/>
+                            <constraint firstItem="qBd-eV-DXl" firstAttribute="trailing" secondItem="NqA-kw-piJ" secondAttribute="trailingMargin" id="GNV-fU-Ven"/>
+                            <constraint firstItem="qBd-eV-DXl" firstAttribute="leading" secondItem="eXd-9A-YWM" secondAttribute="trailing" constant="8" id="Q36-Uj-H4M"/>
+                            <constraint firstItem="qBd-eV-DXl" firstAttribute="top" secondItem="nQx-e6-BXd" secondAttribute="bottom" constant="19" id="RCA-AR-BD0"/>
+                            <constraint firstItem="eXd-9A-YWM" firstAttribute="top" secondItem="nQx-e6-BXd" secondAttribute="bottom" constant="19" id="SUA-xx-MWs"/>
+                            <constraint firstItem="hKZ-Q2-23b" firstAttribute="top" secondItem="zcp-vd-9wq" secondAttribute="bottom" constant="8" id="WWT-5k-MkL"/>
+                            <constraint firstAttribute="centerX" secondItem="nQx-e6-BXd" secondAttribute="centerX" id="cUm-k5-K2k"/>
+                            <constraint firstAttribute="centerX" secondItem="o10-Wz-hfB" secondAttribute="centerX" id="omG-eM-kVU"/>
+                            <constraint firstItem="o10-Wz-hfB" firstAttribute="top" secondItem="qBd-eV-DXl" secondAttribute="bottom" constant="14" id="riZ-N6-UE2"/>
+                            <constraint firstItem="hKZ-Q2-23b" firstAttribute="leading" secondItem="NqA-kw-piJ" secondAttribute="leadingMargin" id="ydW-IM-GLK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="codeTextField" destination="eXd-9A-YWM" id="ek0-Bl-aRI"/>
+                        <outlet property="getCodeButton" destination="qBd-eV-DXl" id="D65-gB-c0S"/>
+                        <outlet property="oldPhoneLabel" destination="nQx-e6-BXd" id="cYU-Pq-9xY"/>
+                        <segue destination="65D-gX-HiU" kind="show" identifier="modifyPhoneNextStepSegue" id="678-RL-2Cc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j4R-nJ-xZS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1598" y="4485"/>
+        </scene>
+        <!--绑定新手机-->
+        <scene sceneID="HhD-eo-Gsf">
+            <objects>
+                <viewController title="绑定新手机" id="65D-gX-HiU" customClass="ModifyPhoneStepSecondViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2dQ-jr-XaM"/>
+                        <viewControllerLayoutGuide type="bottom" id="40U-ip-BdY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="awt-rK-Wpl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请填写11位手机号码" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="NAQ-Ac-H8a">
+                                <rect key="frame" x="16" y="72" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入验证码" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="d8Y-7d-keF">
+                                <rect key="frame" x="16" y="110" width="407" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Paj-Rd-7LC">
+                                <rect key="frame" x="431" y="110" width="153" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="153" id="Y7v-23-yqu"/>
+                                </constraints>
+                                <state key="normal" title="获取验证码">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="getCodeTapped:" destination="65D-gX-HiU" eventType="touchUpInside" id="1Uv-Es-xKm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0Q-PZ-rhi">
+                                <rect key="frame" x="16" y="156" width="568" height="30"/>
+                                <state key="normal" title="确定">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="okTapped:" destination="65D-gX-HiU" eventType="touchUpInside" id="JEA-Ze-SJt"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Paj-Rd-7LC" firstAttribute="top" secondItem="NAQ-Ac-H8a" secondAttribute="bottom" constant="8" id="3ZT-Yn-8BN"/>
+                            <constraint firstItem="h0Q-PZ-rhi" firstAttribute="top" secondItem="Paj-Rd-7LC" secondAttribute="bottom" constant="16" id="830-iC-AdH"/>
+                            <constraint firstAttribute="centerX" secondItem="h0Q-PZ-rhi" secondAttribute="centerX" id="Pg9-m8-Kmz"/>
+                            <constraint firstItem="Paj-Rd-7LC" firstAttribute="leading" secondItem="d8Y-7d-keF" secondAttribute="trailing" constant="8" id="V7h-Im-ubD"/>
+                            <constraint firstItem="NAQ-Ac-H8a" firstAttribute="trailing" secondItem="awt-rK-Wpl" secondAttribute="trailingMargin" id="ZbS-X5-Kax"/>
+                            <constraint firstItem="NAQ-Ac-H8a" firstAttribute="leading" secondItem="awt-rK-Wpl" secondAttribute="leadingMargin" id="d6x-xB-S40"/>
+                            <constraint firstItem="NAQ-Ac-H8a" firstAttribute="top" secondItem="2dQ-jr-XaM" secondAttribute="bottom" constant="8" id="hio-wm-62a"/>
+                            <constraint firstItem="d8Y-7d-keF" firstAttribute="leading" secondItem="awt-rK-Wpl" secondAttribute="leadingMargin" id="l1y-NC-jPX"/>
+                            <constraint firstItem="h0Q-PZ-rhi" firstAttribute="leading" secondItem="awt-rK-Wpl" secondAttribute="leadingMargin" id="meQ-wV-8EJ"/>
+                            <constraint firstItem="Paj-Rd-7LC" firstAttribute="trailing" secondItem="awt-rK-Wpl" secondAttribute="trailingMargin" id="paa-aA-p3R"/>
+                            <constraint firstItem="d8Y-7d-keF" firstAttribute="top" secondItem="NAQ-Ac-H8a" secondAttribute="bottom" constant="8" id="vki-nR-Gnl"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="codeTextField" destination="d8Y-7d-keF" id="Jf1-ej-B9t"/>
+                        <outlet property="getCodeButton" destination="Paj-Rd-7LC" id="N1K-Nv-9qn"/>
+                        <outlet property="newPhoneTextField" destination="NAQ-Ac-H8a" id="WpD-ix-8eQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SB7-1K-yHX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2327" y="4485"/>
+        </scene>
     </scenes>
     <resources>
         <image name="750" width="750" height="350"/>
@@ -4402,10 +4582,10 @@
         <image name="person" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5ZP-m5-drk"/>
         <segue reference="01C-9g-NgZ"/>
         <segue reference="tpR-eQ-WEg"/>
-        <segue reference="1Oc-Wy-fyN"/>
+        <segue reference="vdr-P8-5iY"/>
         <segue reference="cgO-r2-Qw7"/>
+        <segue reference="1Oc-Wy-fyN"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -35,7 +35,7 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         
         //钱
         textLayer = CACustomTextLayer()
-        textLayer?.string = "0.00"
+        textLayer?.string = "1"
         textLayer?.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, moneyView.frame.height)
         textLayer?.fontSize = 36.0
         //textLayer?.backgroundColor = UIColor.grayColor().CGColor
@@ -48,8 +48,8 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         moneyView.layer.addSublayer(textLayer)
         moneyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toMoneyInfo"))
         
-        //println("textLayer  x:\(textLayer?.frame.origin.x) y\(textLayer?.frame.origin.y) width\(textLayer?.frame.width) height\(textLayer?.frame.height)")
-        //println("moneyView  x:\(moneyView?.frame.origin.x) y\(moneyView?.frame.origin.y) width\(moneyView?.frame.width) height\(moneyView?.frame.height)")
+        println("textLayer  x:\(textLayer?.frame.origin.x) y\(textLayer?.frame.origin.y) width\(textLayer?.frame.width) height\(textLayer?.frame.height)")
+        println("moneyView  x:\(moneyView?.frame.origin.x) y\(moneyView?.frame.origin.y) width\(moneyView?.frame.width) height\(moneyView?.frame.height)")
     }
     
     //跳到资产管理
@@ -152,6 +152,10 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         return 10
     }
     
+//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        
+//    }
+    
     override func viewWillAppear(animated: Bool) {
         //检查是否登录，为登录即禁用页面交互
         if let username = NSUserDefaults.standardUserDefaults().objectForKey("username") as? String{
@@ -164,7 +168,7 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
             self.navigationItem.rightBarButtonItem = barItem
             
             self.tableView.allowsSelection = false
-            
+            self.tableView.reloadData()
         }
         
         

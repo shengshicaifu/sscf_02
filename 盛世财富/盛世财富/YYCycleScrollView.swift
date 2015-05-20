@@ -131,7 +131,7 @@ class YYCycleScrollView: UIView,UIScrollViewDelegate {
         }
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView!){
+    func scrollViewDidScroll(scrollView: UIScrollView){
         var contentOffsetX = scrollView.contentOffset.x
         if contentOffsetX >= 2.0 * CGRectGetWidth(scrollView.frame) {
             self.currentPageIndex = self.getValidNextPageIndexWithPageIndex(self.currentPageIndex + 1)
@@ -143,7 +143,7 @@ class YYCycleScrollView: UIView,UIScrollViewDelegate {
         }
     }
     
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView!){
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView){
         scrollView.setContentOffset(CGPointMake(CGRectGetWidth(scrollView.frame), 0),animated:true)
     }
     

@@ -190,6 +190,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
 //        NSLog("筛选参数%@", params)
         var manager = AFHTTPRequestOperationManager()
         loading.startLoading(self.view)
+        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
         manager.POST(url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                 //NSLog("listData:%@",self.listData.isKindOfClass(NSMutableArray))
@@ -234,6 +235,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         loading.startLoading(self.view)
         var params = [:]
         var manager = AFHTTPRequestOperationManager()
+        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
         manager.POST(timeLineUrl, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                 loading.stopLoading()
@@ -290,6 +292,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             NSLog("最后一个[标的]的ID号码:%i", borrow_id)
             var params = ["borrow_id":borrow_id,"borrow_status":self.status,"borrow_money":self.money,"borrow_duration":self.period]
             var manager = AFHTTPRequestOperationManager()
+            manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
             manager.POST(self.timeLineUrl, parameters: params,
                 success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     var result:NSDictionary = data as! NSDictionary

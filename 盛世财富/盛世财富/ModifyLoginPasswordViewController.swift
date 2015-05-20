@@ -50,6 +50,7 @@ class ModifyLoginPasswordViewController: UIViewController {
         var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
         var params = ["oldpass":oldpass,"newpass":newpass,"to":token]
         loading.startLoading(self.view)
+        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
         manager.POST(url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                 loading.stopLoading()

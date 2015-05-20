@@ -12,6 +12,7 @@ import UIKit
 class RegisterViewController: UIViewController,UITextFieldDelegate {
     
     
+    @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var codeTextField: UITextField!
     @IBOutlet weak var surePwdTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -22,7 +23,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        userNameTextField.delegate = self
         surePwdTextField.delegate = self
         passwordTextField.delegate = self
         phoneTextField.delegate = self
@@ -42,6 +43,9 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         
         codeTextField.leftView = UIImageView(image: UIImage(named: "齿轮.png"))
         codeTextField.leftViewMode = UITextFieldViewMode.Always
+        
+        userNameTextField.leftView = UIImageView(image: UIImage(named: "人.png"))
+        userNameTextField.leftViewMode = UITextFieldViewMode.Always
     }
     
     //发送验证码
@@ -64,6 +68,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         var params = ["cellphone":phone]
         var manager = AFHTTPRequestOperationManager()
         loading.startLoading(self.view)
+        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
         manager.POST(url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                 loading.stopLoading()
@@ -102,7 +107,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     
     //注册
     @IBAction func registerTapped(sender: AnyObject) {
-        
+        userNameTextField.resignFirstResponder()
         surePwdTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         phoneTextField.resignFirstResponder()
@@ -111,7 +116,10 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         var password = passwordTextField.text
         var phone = phoneTextField.text
         var code = codeTextField.text
-        if phone.isEmpty {
+        var username = userNameTextField.text
+        if username.isEmpty {
+            AlertView.showMsg("用户名不能为空", parentView: self.view)
+        }else if phone.isEmpty {
             AlertView.showMsg("手机号码不能为空", parentView: self.view)
         }else if password.isEmpty {
             AlertView.showMsg("密码不能为空", parentView: self.view)
@@ -123,8 +131,9 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
             //此处执行注册操作
             loading.startLoading(self.view)
             var url = Constant.getServerHost() + "/App-Register-regaction"
-            var params = ["user_name":phone,"pass_word":password,"code":code]
+            var params = ["cellphone":phone,"pass_word":password,"code":code,"user_name":username]
             var manager = AFHTTPRequestOperationManager()
+            manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
             manager.POST(url, parameters: params,
                 success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     loading.stopLoading()
@@ -144,10 +153,31 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
                         
                         let user = NSUserDefaults.standardUserDefaults()
                         let proInfo:NSDictionary = result["data"]?["proInfo"] as! NSDictionary
-                        user.setObject(result["data"]?["userName"], forKey: "username")
+                        let userinfo:NSDictionary = result["data"]?["userInfo"] as! NSDictionary
                         user.setObject(result["data"]?["token"], forKey: "token")
-                        user.setObject(result["data"]?["userPic"], forKey: "userpic")
+                        user.setObject(userinfo.objectForKey("userName"), forKey: "username")
+                        if let birthday = userinfo.objectForKey("birthday") as? String {
+                            user.setObject(birthday, forKey: "birthday")
+                        }else{
+                            user.setObject("", forKey: "birthday")
+
+                        }
+                        if let gender = userinfo.objectForKey("gender") as? String {
+                            user.setObject(gender, forKey: "gender")
+                        }else{
+                            user.setObject("", forKey: "gender")
+                            
+                        }
+                        if let headpic = userinfo.objectForKey("headpic") as? String {
+                            user.setObject(headpic, forKey: "headpic")
+                        }else{
+                            user.setObject("", forKey: "headpic")
+                            
+                        }
+                        
+                        user.setObject(userinfo.objectForKey("pinPass"), forKey: "pinpass")
                         user.setObject(proInfo.objectForKey("total_all"),forKey: "usermoney")
+                        
                         self.performSegueWithIdentifier("registerToMain", sender: nil)
                     }
                 },

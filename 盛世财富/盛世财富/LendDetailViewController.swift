@@ -71,7 +71,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
             manager.POST(url,
                 parameters: nil,
                 success: { (operation: AFHTTPRequestOperation!,responseObject: AnyObject! ) in
-//                println("responseObject:"+responseObject.description!)
+//                println(responseObject)
                    
                     var json = responseObject as! NSDictionary
                     var data = json["data"] as! NSDictionary

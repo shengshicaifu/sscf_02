@@ -131,24 +131,18 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
         
         var token:String = user.objectForKey("token") as! String
         var afnet = AFHTTPRequestOperationManager()
-        var url = Constant.getServerHost()+"/App-Up-index"
-        var param = ["headpic":UIImageJPEGRepresentation(image, 1.0)]
+        var url = Constant.getServerHost()+"/App-Ucenter-setUserInfo"
+        var param = ["to":token]
         afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-//        afnet.POST(url, parameters: param, constructingBodyWithBlock: { (formData:AFMultipartFormData!) -> Void in
-//            var fileName = "headpic.jpg"
-//            formData.appendPartWithFileData(UIImageJPEGRepresentation(image, 1.0), name: "headpic", fileName: fileName, mimeType: "image/jpeg")
-//            }, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-//                AlertView.alert("提示", message: data["message"] as! String, buttonTitle: "确定", viewController: self)
-//            }, failure: { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
-//                AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
-//        })
-        
-        afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-            println(data)
+        afnet.POST(url, parameters: param, constructingBodyWithBlock: { (formData:AFMultipartFormData!) -> Void in
+            var fileName = "headpic.jpg"
+            formData.appendPartWithFileData(UIImageJPEGRepresentation(image, 1.0), name: "headpic", fileName: fileName, mimeType: "image/jpeg")
+            }, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                AlertView.alert("提示", message: data["message"] as! String, buttonTitle: "确定", viewController: self)
             }, failure: { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
-            println(error)
+                AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
         })
-       
+        
 //        println(editingInfo);
         
         self.dismissViewControllerAnimated(true, completion: nil);

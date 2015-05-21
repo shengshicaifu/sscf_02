@@ -124,8 +124,8 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
         
         var token:String = user.objectForKey("token") as! String
         var afnet = AFHTTPRequestOperationManager()
-        var url = Constant.getServerHost()+"/App-Ucenter-setUserInfo"
-        var param = ["to":token,"headpic":UIImageJPEGRepresentation(image, 1.0)]
+        var url = Constant.getServerHost()+"/App-Up-index"
+        var param = ["headpic":UIImageJPEGRepresentation(image, 1.0)]
         afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
 //        afnet.POST(url, parameters: param, constructingBodyWithBlock: { (formData:AFMultipartFormData!) -> Void in
 //            var fileName = "headpic.jpg"
@@ -141,7 +141,7 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
             }, failure: { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
             println(error)
         })
-        NSData()
+       
 //        println(editingInfo);
         
         self.dismissViewControllerAnimated(true, completion: nil);

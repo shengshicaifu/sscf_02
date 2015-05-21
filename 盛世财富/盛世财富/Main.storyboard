@@ -4604,10 +4604,10 @@
         <image name="person" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="01C-9g-NgZ"/>
-        <segue reference="tpR-eQ-WEg"/>
-        <segue reference="vdr-P8-5iY"/>
         <segue reference="cgO-r2-Qw7"/>
         <segue reference="1Oc-Wy-fyN"/>
+        <segue reference="01C-9g-NgZ"/>
+        <segue reference="5ZP-m5-drk"/>
+        <segue reference="tpR-eQ-WEg"/>
     </inferredMetricsTieBreakers>
 </document>

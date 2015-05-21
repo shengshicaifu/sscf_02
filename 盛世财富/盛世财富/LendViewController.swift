@@ -172,23 +172,27 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
     }
     
+    
     @IBAction func buy(sender: UIButton) {
-        let cell = sender.superview?.superview as! UITableViewCell
-        let title = cell.viewWithTag(101) as! UILabel
-        let percent = cell.viewWithTag(106) as! UILabel
-        let id = cell.viewWithTag(99) as! UILabel
-        let type = cell.viewWithTag(98) as! UILabel
-        self.id = id.text
-        self.bidName = title.text
-        self.percent = percent.text
-        self.type = type.text
-        
-        let transferData = cell.viewWithTag(90) as! UILabel
-        self.per_transferData = transferData.text
-        
-        let duration = cell.viewWithTag(91) as! UILabel
-        self.duration = duration.text
-
+        var reach = Reachability(hostName: Constant.getDomain())
+        if reach.isReachable() {
+            
+            let cell = sender.superview?.superview as! UITableViewCell
+            let title = cell.viewWithTag(101) as! UILabel
+            let percent = cell.viewWithTag(106) as! UILabel
+            let id = cell.viewWithTag(99) as! UILabel
+            let type = cell.viewWithTag(98) as! UILabel
+            self.id = id.text
+            self.bidName = title.text
+            self.percent = percent.text
+            self.type = type.text
+            
+            let transferData = cell.viewWithTag(90) as! UILabel
+            self.per_transferData = transferData.text
+            
+            let duration = cell.viewWithTag(91) as! UILabel
+            self.duration = duration.text
+        }
     }
     //点击事件
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -215,6 +219,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             nextView = segue.destinationViewController as! AllListViewController
         }
         if segue.identifier == "buy"{
+            
             var vc = segue.destinationViewController as! BidConfirmViewController
             vc.id = self.id
             vc.bidTitle = self.bidName

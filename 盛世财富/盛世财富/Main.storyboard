@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6v-wi-K0w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6v-wi-K0w">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -1675,7 +1675,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z2K-7i-3xz" id="8S5-QG-msF">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100000000000000000000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmd-1Q-f0Q">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- -" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmd-1Q-f0Q">
                                             <rect key="frame" x="465" y="24" width="127" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="127" id="gGb-eO-eWY"/>
@@ -1690,8 +1690,8 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8Z-oR-ZGy">
-                                            <rect key="frame" x="8" y="8" width="376" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- -" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j8Z-oR-ZGy">
+                                            <rect key="frame" x="8" y="8" width="449" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1703,6 +1703,7 @@
                                         <constraint firstItem="Xmd-1Q-f0Q" firstAttribute="trailing" secondItem="8S5-QG-msF" secondAttribute="trailingMargin" id="d7A-aP-phX"/>
                                         <constraint firstItem="X78-d2-OtF" firstAttribute="top" secondItem="j8Z-oR-ZGy" secondAttribute="bottom" constant="8" id="kmA-fq-TIW"/>
                                         <constraint firstItem="j8Z-oR-ZGy" firstAttribute="leading" secondItem="8S5-QG-msF" secondAttribute="leadingMargin" id="oZ4-rE-Bpn"/>
+                                        <constraint firstItem="Xmd-1Q-f0Q" firstAttribute="leading" secondItem="j8Z-oR-ZGy" secondAttribute="trailing" constant="8" id="zrN-5f-rrK"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>

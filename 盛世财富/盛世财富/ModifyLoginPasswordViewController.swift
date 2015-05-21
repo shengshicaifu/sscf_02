@@ -32,11 +32,19 @@ class ModifyLoginPasswordViewController: UIViewController {
             AlertView.showMsg("请输入原密码", parentView: self.view)
             return
         }
+        if !Common.isPassword(oldpass) {
+            AlertView.showMsg(Common.passwordErrorTip, parentView: self.view)
+            return
+        }
         if newpass.isEmpty {
             AlertView.showMsg("请输入新密码", parentView: self.view)
             return
         }
-        
+        if !Common.isPassword(newpass) {
+            AlertView.showMsg(Common.passwordErrorTip, parentView: self.view)
+            return
+        }
+
         if confirmpass.isEmpty {
             AlertView.showMsg("请输入确认密码", parentView: self.view)
             return

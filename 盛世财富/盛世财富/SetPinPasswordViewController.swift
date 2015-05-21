@@ -33,6 +33,10 @@ class SetPinPasswordViewController: UIViewController {
             AlertView.showMsg("请输入交易密码", parentView: self.view)
             return
         }
+        if !Common.isPassword(pinpass) {
+            AlertView.showMsg(Common.passwordErrorTip, parentView: self.view)
+            return
+        }
         
         if confirmpass.isEmpty {
             AlertView.showMsg("请输入确认密码", parentView: self.view)

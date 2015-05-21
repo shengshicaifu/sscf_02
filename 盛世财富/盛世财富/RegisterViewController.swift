@@ -115,76 +115,97 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         var username = userNameTextField.text
         if username.isEmpty {
             AlertView.showMsg("用户名不能为空", parentView: self.view)
-        }else if phone.isEmpty {
-            AlertView.showMsg("手机号码不能为空", parentView: self.view)
-        }else if password.isEmpty {
-            AlertView.showMsg("密码不能为空", parentView: self.view)
-        }else if password != surePwd{
-            AlertView.showMsg("两次输入的密码不一致", parentView: self.view)
-        }else if code.isEmpty{
-            AlertView.showMsg("验证码不能为空", parentView: self.view)
-        }else{
-            //此处执行注册操作
-            loading.startLoading(self.view)
-            var url = Constant.getServerHost() + "/App-Register-regaction"
-            var params = ["cellphone":phone,"pass_word":password,"code":code,"user_name":username]
-            var manager = AFHTTPRequestOperationManager()
-            manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-            manager.POST(url, parameters: params,
-                success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                    loading.stopLoading()
-                    var result = data as! NSDictionary
-                    NSLog("注册返回结果：%@",result)
-                    var code = result["code"] as! Int
-                    if code == 0 {
-                        AlertView.showMsg("手机号码不合法", parentView: self.view)
-                    } else if code == 1 {
-                        AlertView.showMsg("手机号码已经被注册", parentView: self.view)
-                    } else if code == 4 {
-                        AlertView.showMsg("手机校验码不正确", parentView: self.view)
-                    } else if code == 200 {
-                        //注册成功,保存基本信息，跳转到我的账号页面
-                        
-                        NSLog("注册成功")
-                        
-                        let user = NSUserDefaults.standardUserDefaults()
-                        let proInfo:NSDictionary = result["data"]?["proInfo"] as! NSDictionary
-                        let userinfo:NSDictionary = result["data"]?["userInfo"] as! NSDictionary
-                        user.setObject(result["data"]?["token"], forKey: "token")
-                        user.setObject(userinfo.objectForKey("userName"), forKey: "username")
-                        if let birthday = userinfo.objectForKey("birthday") as? String {
-                            user.setObject(birthday, forKey: "birthday")
-                        }else{
-                            user.setObject("", forKey: "birthday")
-
-                        }
-                        if let gender = userinfo.objectForKey("gender") as? String {
-                            user.setObject(gender, forKey: "gender")
-                        }else{
-                            user.setObject("", forKey: "gender")
-                            
-                        }
-                        if let headpic = userinfo.objectForKey("headpic") as? String {
-                            user.setObject(headpic, forKey: "headpic")
-                        }else{
-                            user.setObject("", forKey: "headpic")
-                            
-                        }
-                        
-                        user.setObject(userinfo.objectForKey("pinPass"), forKey: "pinpass")
-                        user.setObject(proInfo.objectForKey("total_all"),forKey: "usermoney")
-                        user.setObject(phone, forKey: "phone")
-                        
-                        self.performSegueWithIdentifier("registerToMain", sender: nil)
-                    }
-                },
-                failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                    NSLog("注册请求失败：%@", error)
-                    loading.stopLoading()
-                    AlertView.showMsg("注册失败", parentView: self.view)
-                }
-            )
+            return
         }
+        if !Common.isUserName(username) {
+            AlertView.showMsg(Common.userNameErrorTip, parentView: self.view)
+            return
+        }
+        if phone.isEmpty {
+            AlertView.showMsg("手机号码不能为空", parentView: self.view)
+            return
+        }
+        if !Common.isTelephone(phone) {
+            AlertView.showMsg(Common.telephoneErrorTip, parentView: self.view)
+            return
+        }
+        if password.isEmpty {
+            AlertView.showMsg("密码不能为空", parentView: self.view)
+            return
+        }
+        if !Common.isPassword(password) {
+            AlertView.showMsg(Common.passwordErrorTip, parentView: self.view)
+            return
+        }
+        if password != surePwd{
+            AlertView.showMsg("两次输入的密码不一致", parentView: self.view)
+            return
+        }
+        if code.isEmpty{
+            AlertView.showMsg("验证码不能为空", parentView: self.view)
+            return
+        }
+        //此处执行注册操作
+        loading.startLoading(self.view)
+        var url = Constant.getServerHost() + "/App-Register-regaction"
+        var params = ["cellphone":phone,"pass_word":password,"code":code,"user_name":username]
+        var manager = AFHTTPRequestOperationManager()
+        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+        manager.POST(url, parameters: params,
+            success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                loading.stopLoading()
+                var result = data as! NSDictionary
+                NSLog("注册返回结果：%@",result)
+                var code = result["code"] as! Int
+                if code == 0 {
+                    AlertView.showMsg("手机号码不合法", parentView: self.view)
+                } else if code == 1 {
+                    AlertView.showMsg("手机号码已经被注册", parentView: self.view)
+                } else if code == 4 {
+                    AlertView.showMsg("手机校验码不正确", parentView: self.view)
+                } else if code == 200 {
+                    //注册成功,保存基本信息，跳转到我的账号页面
+                    
+                    NSLog("注册成功")
+                    
+                    let user = NSUserDefaults.standardUserDefaults()
+                    let proInfo:NSDictionary = result["data"]?["proInfo"] as! NSDictionary
+                    let userinfo:NSDictionary = result["data"]?["userInfo"] as! NSDictionary
+                    user.setObject(result["data"]?["token"], forKey: "token")
+                    user.setObject(userinfo.objectForKey("userName"), forKey: "username")
+                    if let birthday = userinfo.objectForKey("birthday") as? String {
+                        user.setObject(birthday, forKey: "birthday")
+                    }else{
+                        user.setObject("", forKey: "birthday")
+
+                    }
+                    if let gender = userinfo.objectForKey("gender") as? String {
+                        user.setObject(gender, forKey: "gender")
+                    }else{
+                        user.setObject("", forKey: "gender")
+                        
+                    }
+                    if let headpic = userinfo.objectForKey("headpic") as? String {
+                        user.setObject(headpic, forKey: "headpic")
+                    }else{
+                        user.setObject("", forKey: "headpic")
+                        
+                    }
+                    
+                    user.setObject(userinfo.objectForKey("pinPass"), forKey: "pinpass")
+                    user.setObject(proInfo.objectForKey("total_all"),forKey: "usermoney")
+                    user.setObject(phone, forKey: "phone")
+                    
+                    self.performSegueWithIdentifier("registerToMain", sender: nil)
+                }
+            },
+            failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                NSLog("注册请求失败：%@", error)
+                loading.stopLoading()
+                AlertView.showMsg("注册失败", parentView: self.view)
+            }
+        )
+        
     }
     @IBAction func returnKey(sender:AnyObject){
         self.dismissViewControllerAnimated(true, completion: nil)

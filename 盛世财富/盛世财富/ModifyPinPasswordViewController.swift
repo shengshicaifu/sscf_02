@@ -29,6 +29,7 @@ class ModifyPinPasswordViewController: UIViewController {
     }
     
     @IBAction func modifyTapped(sender: UIButton) {
+        resignAll()
         var oldpass = oldPinPasswordTextField.text
         var newpass = newPinPasswordTextField.text
         var confirmpass = confirmPasswordTextField.text
@@ -64,9 +65,10 @@ class ModifyPinPasswordViewController: UIViewController {
                 if code == -1 {
                     AlertView.showMsg("请登录后再试", parentView: self.view)
                 }else if code == 0 {
-                    AlertView.showMsg("修改密码失败，请稍候再试", parentView: self.view)
+                    AlertView.showMsg(result["message"] as! String, parentView: self.view)
                 }else if code == 200 {
-                    NSLog("修改登录密码成功")
+                    AlertView.showMsg("修改交易密码成功", parentView: self.view)
+                    NSThread.sleepForTimeInterval(3)
                     self.navigationController?.popViewControllerAnimated(true)
                 }
                 
@@ -90,18 +92,16 @@ class ModifyPinPasswordViewController: UIViewController {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        oldPinPasswordTextField.resignFirstResponder()
-        newPinPasswordTextField.resignFirstResponder()
-        confirmPasswordTextField.resignFirstResponder()
-        
+        resignAll()
         return true
     }
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        
+        resignAll()
+    }
+    
+    func resignAll() {
         oldPinPasswordTextField.resignFirstResponder()
         newPinPasswordTextField.resignFirstResponder()
         confirmPasswordTextField.resignFirstResponder()
-        
     }
 }

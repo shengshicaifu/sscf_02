@@ -107,11 +107,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     
     //注册
     @IBAction func registerTapped(sender: AnyObject) {
-        userNameTextField.resignFirstResponder()
-        surePwdTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        phoneTextField.resignFirstResponder()
-        codeTextField.resignFirstResponder()
+        resignAll()
         var surePwd = surePwdTextField.text
         var password = passwordTextField.text
         var phone = phoneTextField.text
@@ -177,6 +173,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
                         
                         user.setObject(userinfo.objectForKey("pinPass"), forKey: "pinpass")
                         user.setObject(proInfo.objectForKey("total_all"),forKey: "usermoney")
+                        user.setObject(phone, forKey: "phone")
                         
                         self.performSegueWithIdentifier("registerToMain", sender: nil)
                     }
@@ -208,15 +205,14 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-
-        surePwdTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        phoneTextField.resignFirstResponder()
-        codeTextField.resignFirstResponder()
+        resignAll()
         return true
     }
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        
+        resignAll()
+    }
+    func resignAll() {
+        userNameTextField.resignFirstResponder()
         surePwdTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         phoneTextField.resignFirstResponder()

@@ -10,16 +10,13 @@ import UIKit
 
 class AccountSafeTableViewController: UITableViewController,UITableViewDelegate {
 
+    @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var setPinPasswordLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         
-        var userDefaults = NSUserDefaults.standardUserDefaults()
-        let pinpass = userDefaults.objectForKey("pinpass") as? NSString
-        if pinpass == nil {
-            setPinPasswordLabel.text = "请设置交易密码"
-        }
+        
         
     }
     
@@ -34,6 +31,21 @@ class AccountSafeTableViewController: UITableViewController,UITableViewDelegate 
                 self.performSegueWithIdentifier("modifyPinPassSegue", sender: nil)
             }
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        var userDefaults = NSUserDefaults.standardUserDefaults()
+        let pinpass = userDefaults.objectForKey("pinpass") as? NSString
+        //NSLog("交易密码:%@", pinpass?)
+        if pinpass == nil {
+            setPinPasswordLabel.text = "请设置交易密码"
+        } else {
+            setPinPasswordLabel.text = "修改交易密码"
+        }
+        
+        self.phoneLabel.text = userDefaults.objectForKey("phone") as? String
     }
 
 

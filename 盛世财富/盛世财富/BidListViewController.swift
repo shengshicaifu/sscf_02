@@ -29,6 +29,7 @@ class BidListViewController: UITableViewController,UITableViewDataSource,UITable
         var manager = AFHTTPRequestOperationManager()
         var url = Constant.getServerHost() + "/App-Invest-investorList"
         var params = ["bid":bidId!]
+        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
         manager.GET(url, parameters: params,
             success: {(operation:AFHTTPRequestOperation!,data:AnyObject!)in
                 loading.stopLoading()

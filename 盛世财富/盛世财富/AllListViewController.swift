@@ -255,6 +255,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             //println("下拉刷新")
             var params = [:]
             var manager = AFHTTPRequestOperationManager()
+            manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             manager.POST(self.timeLineUrl, parameters: params,
                 success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
@@ -288,6 +289,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             NSLog("最后一个[标的]的ID号码:%i", borrow_id)
             var params = ["borrow_id":borrow_id,"borrow_status":self.status,"borrow_money":self.money,"borrow_duration":self.period]
             var manager = AFHTTPRequestOperationManager()
+            manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             manager.POST(self.timeLineUrl, parameters: params,
                 success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in

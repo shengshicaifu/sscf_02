@@ -13,7 +13,8 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
     
     @IBOutlet weak var headImage: UIImageView!
     
-    @IBOutlet weak var PhoneLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var birthdayLabel: UILabel!
     
@@ -30,9 +31,14 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
             headImage.image = UIImage(data: i)
         }
         
-        if let phone = userDefaults.objectForKey("username") as? String {
-            PhoneLabel.text = phone
+        if let username = userDefaults.objectForKey("username") as? String {
+            usernameLabel.text = username
         }
+        if let phone = userDefaults.objectForKey("phone") as? String {
+            phoneLabel.text = phone
+        }
+        
+        
         if let gender = userDefaults.objectForKey("gender") as? String {
             genderLabel.text = gender
         }
@@ -68,6 +74,7 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
             userDefaults.removeObjectForKey("gender")
             userDefaults.removeObjectForKey("birthday")
             userDefaults.removeObjectForKey("headImage")
+            userDefaults.removeObjectForKey("phone")
             AlertView.showMsg("注销成功", parentView: self.view)
             self.presentViewController(self.storyboard?.instantiateViewControllerWithIdentifier("tabBarViewController") as! TabBarViewController, animated: true, completion: nil)
             

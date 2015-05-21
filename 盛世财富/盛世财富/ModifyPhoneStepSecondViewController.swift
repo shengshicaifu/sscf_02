@@ -91,6 +91,10 @@ class ModifyPhoneStepSecondViewController: UIViewController {
             newPhoneTextField.becomeFirstResponder()
             return
         }
+        if !Common.isTelephone(phone) {
+            AlertView.showMsg(Common.telephoneErrorTip, parentView: self.view)
+            return
+        }
         
         var code = codeTextField.text
         if code.isEmpty {

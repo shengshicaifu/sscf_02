@@ -11,24 +11,29 @@ import Foundation
 
 class AlertView {
     class func showMsg(msg:String,parentView:UIView){
-        var hintLabel = UILabel(frame: CGRectMake(parentView.frame.size.width/2-80, parentView.frame.size.height-100, 160, 30))
-        hintLabel.textAlignment = NSTextAlignment.Center
         
-        hintLabel.backgroundColor = UIColor.blackColor()
-        hintLabel.layer.masksToBounds = true
-        hintLabel.layer.cornerRadius = 10.0
-        hintLabel.alpha = 0.0
-        hintLabel.text = msg
-        hintLabel.textColor = UIColor.whiteColor()
-        
-        parentView.addSubview(hintLabel)
-        
-        UIView.animateWithDuration(1.0, delay: 0.0, options: nil, animations: {
-            hintLabel.alpha = 1
-            }, completion: {(finished:Bool) -> Void in
-                NSThread.sleepForTimeInterval(2)
-                hintLabel.removeFromSuperview()
-        })
+//        var hintLabel = UILabel()
+//        hintLabel.textAlignment = NSTextAlignment.Center
+//        hintLabel.backgroundColor = UIColor.blackColor()
+//        hintLabel.layer.masksToBounds = true
+//        hintLabel.layer.cornerRadius = 10.0
+//        hintLabel.alpha = 0.0
+//        hintLabel.text = msg
+//        hintLabel.textColor = UIColor.whiteColor()
+//        hintLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+//        hintLabel.numberOfLines = 0
+//        hintLabel.sizeToFit()
+//    
+//        hintLabel.frame = CGRectMake(parentView.frame.size.width/2-80, parentView.frame.size.height-100, 160, 30)
+//        parentView.addSubview(hintLabel)
+//        
+//        UIView.animateWithDuration(1.0, delay: 0.0, options: nil, animations: {
+//            hintLabel.alpha = 1
+//            }, completion: {(finished:Bool) -> Void in
+//                NSThread.sleepForTimeInterval(2)
+//                hintLabel.removeFromSuperview()
+//        })
+        parentView.makeToast(msg, duration: 3, position: CSToastPositionCenter)
     }
     
     class func alert(title:String,message:String,buttonTitle:String,viewController:UIViewController){

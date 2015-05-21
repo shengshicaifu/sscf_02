@@ -51,8 +51,16 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             AlertView.showMsg("请填写用户名！", parentView: self.view)
             return
         }
+        if !Common.isUserName(name) {
+            AlertView.showMsg(Common.userNameErrorTip, parentView: self.view)
+            return
+        }
         if pwd.isEmpty {
             AlertView.showMsg("请填写密码！", parentView: self.view)
+            return
+        }
+        if !Common.isPassword(pwd) {
+            AlertView.showMsg(Common.passwordErrorTip, parentView: self.view)
             return
         }
         

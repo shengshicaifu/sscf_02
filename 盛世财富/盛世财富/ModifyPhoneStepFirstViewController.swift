@@ -22,20 +22,26 @@ class ModifyPhoneStepFirstViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         phone = NSUserDefaults.standardUserDefaults().objectForKey("phone") as! String
+        ///phone = "15527410109"
         self.oldPhoneLabel.text = phone
         
     }
     
     //获取验证码
     @IBAction func getCodeTapped(sender: UIButton) {
+        resignAll()
+        
         //禁用获取验证码按钮60秒
         getCodeButton.enabled = false
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "repeat", userInfo: nil, repeats: true)
         
         //获取验证码
-        var url = Constant.getServerHost() + "/App-Register-sendphone"
-        var params = ["cellphone":phone]
+        var url = Constant.getServerHost() + "/App-Ucenter-sendphone"
+        var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
+        var params = ["to":token,"cellphone":phone]
+        NSLog("发送验证码参数：%@", params)
         var manager = AFHTTPRequestOperationManager()
+        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
         loading.startLoading(self.view)
         manager.POST(url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
@@ -46,7 +52,7 @@ class ModifyPhoneStepFirstViewController: UIViewController {
                 var code = result["code"] as! Int
                 var msg:String = ""
                 if code == 0 {
-                    msg = "验证码生送失败，请重试!"
+                    msg = "验证码发送失败，请重试!"
                 }else if code == 1 {
                     msg = "手机号已被别人使用!"
                 }else if code == 100 {
@@ -56,6 +62,7 @@ class ModifyPhoneStepFirstViewController: UIViewController {
             },
             failure:{ (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
                 loading.stopLoading()
+                println(error)
                 AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
             }
         )
@@ -85,9 +92,11 @@ class ModifyPhoneStepFirstViewController: UIViewController {
         }
 
         var manager = AFHTTPRequestOperationManager()
-        var url = "http://www.sscf88.com/App-Ucenter-alertPhone"
+        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+        var url = Constant.getServerHost() + "/App-Ucenter-alertPhone"
         var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
         var params = ["to":token,"step":"1","cellphone":phone,"code":code,"f_id":""]
+        println(params)
         loading.startLoading(self.view)
         manager.POST(url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in

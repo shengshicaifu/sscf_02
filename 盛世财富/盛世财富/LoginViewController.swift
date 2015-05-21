@@ -94,7 +94,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                         }
 
                         user.setObject(userInfo["pinPass"], forKey: "pinpass")
-                   
+                        user.setObject(userInfo["cellphone"], forKey: "phone")
                         
                         self.dismissViewControllerAnimated(true, completion: nil)
                     }

@@ -67,7 +67,8 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
             let params = ["id" : id!]
             
             let  url = timeLineUrl+"\(id!)"
-            manager.GET(url,
+            manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+            manager.POST(url,
                 parameters: nil,
                 success: { (operation: AFHTTPRequestOperation!,responseObject: AnyObject! ) in
 //                println("responseObject:"+responseObject.description!)
@@ -225,12 +226,15 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                 }
                 },
                 failure: {(operation:AFHTTPRequestOperation!,error : NSError!) in
+                    println(error)
                     loading.stopLoading()
                     self.mainTable.scrollEnabled = true
-                    let alert = UIAlertController(title: "提示", message: "服务器异常，请稍后再试", preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
-                    self.presentViewController(alert, animated: true, completion: nil)
-            })
+//                    let alert = UIAlertController(title: "提示", message: "服务器异常，请稍后再试", preferredStyle: .Alert)
+//                    alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
+//                    self.presentViewController(alert, animated: true, completion: nil)
+                    AlertView.alert("提示", message: "服务器异常，请稍后再试", buttonTitle: "确定", viewController: self)
+            }
+            )
         }
         
         

@@ -53,12 +53,15 @@ class SetPinPasswordViewController: UIViewController {
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                 loading.stopLoading()
                 var result = data as! NSDictionary
-                NSLog("设置交易密码：%@", result)
+                //NSLog("设置交易密码：%@", result)
                 var code = result["code"] as! Int
                 if code == 0 {
+                    NSLog("设置交易密码失败:%@", result["message"] as! String)
                     AlertView.showMsg("设置交易密码失败，请稍候再试", parentView: self.view)
                 }else if code == 200 {
-                    NSLog("设置交易密码成功")
+                    //NSLog("设置交易密码成功")
+                    AlertView.showMsg("设置交易密码成功", parentView: self.view)
+                    NSThread.sleepForTimeInterval(3)
                     self.navigationController?.popViewControllerAnimated(true)
                 }
                 

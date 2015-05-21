@@ -13,17 +13,10 @@ class ModifyPhoneStepSecondViewController: UIViewController {
     var f_id:String?
 
     @IBOutlet weak var newPhoneTextField: UITextField!
-    
-    
     @IBOutlet weak var codeTextField: UITextField!
-    
-    
     @IBOutlet weak var getCodeButton: UIButton!
-    
     var timer:NSTimer!
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +25,7 @@ class ModifyPhoneStepSecondViewController: UIViewController {
     
     //获取验证码
     @IBAction func getCodeTapped(sender: UIButton) {
+        resignAll()
         var phone = newPhoneTextField.text
         if phone.isEmpty {
             AlertView.alert("提示", message: "请填写新的手机号码", buttonTitle: "确定", viewController: self)
@@ -45,9 +39,11 @@ class ModifyPhoneStepSecondViewController: UIViewController {
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "repeat", userInfo: nil, repeats: true)
         
         //获取验证码
-        var url = Constant.getServerHost() + "/App-Register-sendphone"
-        var params = ["cellphone":phone]
+        var url = Constant.getServerHost() + "/App-Ucenter-sendphone"
+        var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
+        var params = ["to":token,"cellphone":phone]
         var manager = AFHTTPRequestOperationManager()
+        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
         loading.startLoading(self.view)
         manager.POST(url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
@@ -88,7 +84,7 @@ class ModifyPhoneStepSecondViewController: UIViewController {
     
     //确定绑定新的手机号码
     @IBAction func okTapped(sender: UIButton) {
-        
+        resignAll()
         var phone = newPhoneTextField.text
         if phone.isEmpty {
             AlertView.alert("提示", message: "请填写新的手机号码", buttonTitle: "确定", viewController: self)
@@ -104,7 +100,8 @@ class ModifyPhoneStepSecondViewController: UIViewController {
         }
         
         var manager = AFHTTPRequestOperationManager()
-        var url = "http://www.sscf88.com/App-Ucenter-alertPhone"
+        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+        var url = Constant.getServerHost() + "/App-Ucenter-alertPhone"
         var userDefaults = NSUserDefaults.standardUserDefaults()
         var token = userDefaults.objectForKey("token") as? String
         var params = ["to":token,"step":"2","cellphone":phone,"code":code,"f_id":self.f_id]
@@ -126,7 +123,7 @@ class ModifyPhoneStepSecondViewController: UIViewController {
                     //self.performSegueWithIdentifier("modifyPhoneNextStepSegue", sender: self)
                     //连着返回两次到
                     var count = self.navigationController?.viewControllers.count
-                    var destiationController = self.navigationController?.viewControllers[count! - 2] as! UIViewController
+                    var destiationController = self.navigationController?.viewControllers[count! - 3] as! UIViewController
                     self.navigationController?.popToViewController(destiationController, animated: true)
                 }
                 
@@ -136,6 +133,33 @@ class ModifyPhoneStepSecondViewController: UIViewController {
             }
         )
 
+    }
+    
+    //MARK:- 隐藏键盘
+    override func viewWillAppear(animated: Bool) {
+        DaiDodgeKeyboard.addRegisterTheViewNeedDodgeKeyboard(self.view)
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        DaiDodgeKeyboard.removeRegisterTheViewNeedDodgeKeyboard()
+        super.viewWillDisappear(animated)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        resignAll()
+        return true
+    }
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        
+        resignAll()
+        
+    }
+    
+    func resignAll(){
+        newPhoneTextField.resignFirstResponder()
+        codeTextField.resignFirstResponder()
     }
 
 }

@@ -24,6 +24,7 @@ class ModifyLoginPasswordViewController: UIViewController {
     }
 
     @IBAction func modifyTapped(sender: UIButton) {
+        resignAll()
         var oldpass = oldPassTextField.text
         var newpass = newPassTextField.text
         var confirmpass = confirmPassTextField.text
@@ -85,18 +86,16 @@ class ModifyLoginPasswordViewController: UIViewController {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        oldPassTextField.resignFirstResponder()
-        newPassTextField.resignFirstResponder()
-        confirmPassTextField.resignFirstResponder()
-
+        resignAll()
         return true
     }
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        
+        resignAll()
+    }
+    
+    func resignAll() {
         oldPassTextField.resignFirstResponder()
         newPassTextField.resignFirstResponder()
         confirmPassTextField.resignFirstResponder()
-       
     }
 }

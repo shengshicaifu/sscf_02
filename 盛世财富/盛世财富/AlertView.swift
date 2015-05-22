@@ -33,7 +33,13 @@ class AlertView {
 //                NSThread.sleepForTimeInterval(2)
 //                hintLabel.removeFromSuperview()
 //        })
-        parentView.makeToast(msg, duration: 3, position: CSToastPositionCenter)
+        //CSToastDisplayShadow ＝ false
+        var screenBounds = UIScreen.mainScreen().bounds
+        var x = screenBounds.width / 2
+        var y = screenBounds.height - 100
+        var position = NSValue(CGPoint: CGPointMake(x, y))
+        
+        parentView.makeToast(msg, duration: 3, position: position)
     }
     
     class func alert(title:String,message:String,buttonTitle:String,viewController:UIViewController){

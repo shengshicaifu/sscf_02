@@ -363,7 +363,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 cell.accessoryType = .None
             }
         }
-        
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         return cell
         
     }

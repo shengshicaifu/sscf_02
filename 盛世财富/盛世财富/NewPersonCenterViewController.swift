@@ -35,7 +35,7 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         
         //钱
         textLayer = CACustomTextLayer()
-        textLayer?.string = "1"
+        textLayer?.string = "0"
         textLayer?.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, moneyView.frame.height)
         textLayer?.fontSize = 36.0
         //textLayer?.backgroundColor = UIColor.grayColor().CGColor

@@ -31,7 +31,7 @@ static const NSTimeInterval CSToastFadeDuration = 0.2;
 static const CGFloat CSToastShadowOpacity       = 0.8;
 static const CGFloat CSToastShadowRadius        = 6.0;
 static const CGSize  CSToastShadowOffset        = { 4.0, 4.0 };
-static const BOOL    CSToastDisplayShadow       = YES;
+static const BOOL    CSToastDisplayShadow       = NO;
 
 // display duration
 static const NSTimeInterval CSToastDefaultDuration  = 3.0;

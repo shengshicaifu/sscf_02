@@ -21,9 +21,10 @@ class ModifyPhoneStepFirstViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        phone = NSUserDefaults.standardUserDefaults().objectForKey("phone") as! String
+        if let phone = NSUserDefaults.standardUserDefaults().objectForKey("phone") as? String{
         ///phone = "15527410109"
-        self.oldPhoneLabel.text = phone
+            self.oldPhoneLabel.text = phone
+        }
         
     }
     

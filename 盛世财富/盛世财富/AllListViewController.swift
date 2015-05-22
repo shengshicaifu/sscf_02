@@ -11,8 +11,8 @@ import UIKit
 
 class AllListViewController: UIViewController ,UITableViewDataSource,UITableViewDelegate{
     var eHttp: HttpController = HttpController()
-    var base: baseClass = baseClass()
-    var timeLineUrl = Constant.getServerHost() + "/app-invest-content"
+
+    var timeLineUrl = Common.serverHost + "/app-invest-content"
     var tmpListData: NSMutableArray = NSMutableArray()
     var listData: NSMutableArray = NSMutableArray()
     var page = 1 //page

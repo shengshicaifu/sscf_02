@@ -34,7 +34,7 @@ class InvestorSummaryViewController: UITableViewController,UITableViewDataSource
         
         //获取网络数据
         var manager = AFHTTPRequestOperationManager()
-        var url = Constant.getServerHost() + "/App-Myinvest-summary"
+        var url = Common.serverHost + "/App-Myinvest-summary"
         var params = ["to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! NSString]
         NSLog("投资总表参数：%@", params)
         manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
@@ -99,7 +99,7 @@ class InvestorSummaryViewController: UITableViewController,UITableViewDataSource
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         //获取网络数据
         var manager = AFHTTPRequestOperationManager()
-        var url = Constant.getServerHost() + "/App-Myinvest-summary"
+        var url = Common.serverHost + "/App-Myinvest-summary"
         var params = ["to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! NSString]
         NSLog("投资总表参数：%@", params)
         manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>

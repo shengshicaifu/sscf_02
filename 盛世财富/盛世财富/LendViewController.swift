@@ -11,8 +11,7 @@ import UIKit
 class LendViewController: UIViewController,UITableViewDataSource,UITableViewDelegate ,HttpProtocol{
 
     var eHttp: HttpController = HttpController()//新建一个httpController
-    var base: baseClass = baseClass()
-    var timeLineUrl = Constant.getServerHost() + "/App-invest-content"//链接地址
+    var timeLineUrl = Common.serverHost + "/App-invest-content"//链接地址
     var tmpListData: NSMutableArray = NSMutableArray()//临时数据  下拉添加
     var listData: NSMutableArray = NSMutableArray()//存数据
     var page = 1 //page
@@ -94,7 +93,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
         //http请求
 //        NSLog("viewDidLoad")
-        var reach = Reachability(hostName: Constant.getDomain())
+        var reach = Reachability(hostName: Common.domain)
         reach.reachableBlock = {(r:Reachability!) -> Void in
 //
             dispatch_async(dispatch_get_main_queue(), {
@@ -119,7 +118,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func refreshData(){
         if self.refreshControl.refreshing {
 //检查手机网络
-            var reach = Reachability(hostName: Constant.getDomain())
+            var reach = Reachability(hostName: Common.domain)
             reach.unreachableBlock = {(r:Reachability!) -> Void in
                 //NSLog("网络不可用")
                 dispatch_async(dispatch_get_main_queue(), {
@@ -174,7 +173,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     
     @IBAction func buy(sender: UIButton) {
-        var reach = Reachability(hostName: Constant.getDomain())
+        var reach = Reachability(hostName: Common.domain)
         if reach.isReachable() {
             
             let cell = sender.superview?.superview as! UITableViewCell
@@ -414,7 +413,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         //检查是否连接网络
 //        NSLog("检查是否连接网络")
-        var reach = Reachability(hostName: Constant.getDomain())
+        var reach = Reachability(hostName: Common.domain)
         reach.unreachableBlock = {(r:Reachability!) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 let alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)

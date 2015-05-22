@@ -131,7 +131,7 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
         
         var token:String = user.objectForKey("token") as! String
         var afnet = AFHTTPRequestOperationManager()
-        var url = Constant.getServerHost()+"/App-Ucenter-setUserInfo"
+        var url = Common.serverHost+"/App-Ucenter-setUserInfo"
         var param = ["to":token]
         afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
         afnet.POST(url, parameters: param, constructingBodyWithBlock: { (formData:AFMultipartFormData!) -> Void in

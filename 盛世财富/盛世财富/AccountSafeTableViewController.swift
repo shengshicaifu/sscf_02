@@ -44,8 +44,10 @@ class AccountSafeTableViewController: UITableViewController,UITableViewDelegate 
         } else {
             setPinPasswordLabel.text = "修改交易密码"
         }
-        
-        self.phoneLabel.text = userDefaults.objectForKey("phone") as? String
+        var phone = userDefaults.objectForKey("phone") as? NSString
+        if phone != nil {
+            self.phoneLabel.text = Common.replaceStringToX(phone!, start: 3, end: 7)
+        }
     }
 
 

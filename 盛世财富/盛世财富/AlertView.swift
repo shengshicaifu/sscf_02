@@ -2,7 +2,7 @@
 //
 //  AlertView.swift
 //  盛世财富
-//
+//  Alert和Toast框
 //  Created by 肖典 on 15/5/8.
 //  Copyright (c) 2015年 sscf88. All rights reserved.
 //

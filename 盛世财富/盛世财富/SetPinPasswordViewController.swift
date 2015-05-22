@@ -48,7 +48,7 @@ class SetPinPasswordViewController: UIViewController {
         }
         //其他输入限制再加
         var manager = AFHTTPRequestOperationManager()
-        var url = Constant.getServerHost() + "/App-Ucenter-setFirstPin"
+        var url = Common.serverHost + "/App-Ucenter-setFirstPin"
         var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
         var params = ["pin_pass":pinpass,"to":token]
         loading.startLoading(self.view)

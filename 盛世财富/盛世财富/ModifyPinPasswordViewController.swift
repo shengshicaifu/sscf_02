@@ -59,7 +59,7 @@ class ModifyPinPasswordViewController: UIViewController {
         }
         //其他输入限制再加
         var manager = AFHTTPRequestOperationManager()
-        var url = Constant.getServerHost() + "/App-Ucenter-setPinPassWord"
+        var url = Common.serverHost + "/App-Ucenter-setPinPassWord"
         var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
         var params = ["pin_pass":oldpass,"newPinpass":newpass,"to":token]
         loading.startLoading(self.view)

@@ -14,7 +14,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var passwordLabel: UITextField!
     @IBOutlet weak var login: UIButton!
     @IBOutlet weak var regist: UIButton!
-    var timeLineUrl = Constant.getServerHost() + "/App-Login"//链接地址
+    var timeLineUrl = Common.serverHost + "/App-Login"//链接地址
 //    var tmpListData: NSMutableArray = NSMutableArray()//临时数据  下拉添加
     var eHttp: HttpController = HttpController()//新建一个httpController
     override func viewDidLoad() {

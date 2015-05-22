@@ -37,7 +37,7 @@ class ModifyPhoneStepFirstViewController: UIViewController {
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "repeat", userInfo: nil, repeats: true)
         
         //获取验证码
-        var url = Constant.getServerHost() + "/App-Ucenter-sendphone"
+        var url = Common.serverHost + "/App-Ucenter-sendphone"
         var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
         var params = ["to":token,"cellphone":phone]
         NSLog("发送验证码参数：%@", params)
@@ -94,7 +94,7 @@ class ModifyPhoneStepFirstViewController: UIViewController {
 
         var manager = AFHTTPRequestOperationManager()
         manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-        var url = Constant.getServerHost() + "/App-Ucenter-alertPhone"
+        var url = Common.serverHost + "/App-Ucenter-alertPhone"
         var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
         var params = ["to":token,"step":"1","cellphone":phone,"code":code,"f_id":""]
         println(params)

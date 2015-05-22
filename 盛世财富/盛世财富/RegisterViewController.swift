@@ -64,7 +64,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "repeat", userInfo: nil, repeats: true)
         
         //获取验证码
-        var url = Constant.getServerHost() + "/App-Register-sendphone"
+        var url = Common.serverHost + "/App-Register-sendphone"
         var params = ["cellphone":phone]
         var manager = AFHTTPRequestOperationManager()
         loading.startLoading(self.view)
@@ -147,7 +147,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         }
         //此处执行注册操作
         loading.startLoading(self.view)
-        var url = Constant.getServerHost() + "/App-Register-regaction"
+        var url = Common.serverHost + "/App-Register-regaction"
         var params = ["cellphone":phone,"pass_word":password,"code":code,"user_name":username]
         var manager = AFHTTPRequestOperationManager()
         manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>

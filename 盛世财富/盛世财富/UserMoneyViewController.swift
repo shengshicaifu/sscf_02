@@ -28,7 +28,7 @@ class UserMoneyViewController:UITableViewController {
         if let token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String {
             let afnet = AFHTTPRequestOperationManager()
             let param = ["to":token]
-            let url = Constant.getServerHost() + "/App-Ucenter-userInfo"
+            let url = Common.serverHost + "/App-Ucenter-userInfo"
             loading.startLoading(self.tableView)
             afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
             afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
@@ -66,7 +66,7 @@ class UserMoneyViewController:UITableViewController {
 
     override func viewWillAppear(animated: Bool) {
         //        检查网络
-        var reach = Reachability(hostName: Constant.getDomain())
+        var reach = Reachability(hostName: Common.domain)
         reach.unreachableBlock = {(r:Reachability!)in
             dispatch_async(dispatch_get_main_queue(), {
                 var alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)

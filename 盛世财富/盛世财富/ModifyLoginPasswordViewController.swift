@@ -55,7 +55,7 @@ class ModifyLoginPasswordViewController: UIViewController {
         }
         //其他输入限制再加
         var manager = AFHTTPRequestOperationManager()
-        var url = Constant.getServerHost() + "/App-Ucenter-setPassWord"
+        var url = Common.serverHost + "/App-Ucenter-setPassWord"
         var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
         var params = ["oldpass":oldpass,"newpass":newpass,"to":token]
         loading.startLoading(self.view)

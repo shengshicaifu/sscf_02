@@ -27,7 +27,7 @@ class BidListViewController: UITableViewController,UITableViewDataSource,UITable
         self.tableView.scrollEnabled = false
         //获取投资人列表信息
         var manager = AFHTTPRequestOperationManager()
-        var url = Constant.getServerHost() + "/App-Invest-investorList"
+        var url = Common.serverHost + "/App-Invest-investorList"
         var params = ["bid":bidId!]
         manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
         manager.GET(url, parameters: params,

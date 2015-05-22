@@ -18,7 +18,16 @@ class Common {
         return false
         
     }
+    //MARK:- 系统常量
+    class var serverHost:String {
+        return "http://61.183.178.86:10888/MidServer"
+    }
+    class var domain:String {
+        return "www.baidu.com"
+    }
     
+    
+    //MARK:- 正则表达式验证
     class var userNameErrorTip:String{
         return "用户名为英文字母和数字，长度在6到20之间"
     }
@@ -68,5 +77,14 @@ class Common {
         var pred = NSPredicate(format: "SELF MATCHES %@", regex)
         return pred.evaluateWithObject(str)
     }
+    
+    //MARK:- 字符串操作
+    //将指定位置的字符替换为*
+    class func replaceStringToX(str:NSString,start:Int,end:Int) -> String{
+        var f = str.substringToIndex(start)
+        var e = str.substringFromIndex(end)
+        return f + "****" + e
+    }
+    
     
 }

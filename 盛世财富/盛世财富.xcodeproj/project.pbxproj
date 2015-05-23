@@ -13,6 +13,7 @@
 		5906B2481B0F103F00ADA082 /* LLLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5906B2431B0F103F00ADA082 /* LLLockViewController.m */; };
 		5906B2491B0F103F00ADA082 /* LLLockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5906B2441B0F103F00ADA082 /* LLLockViewController.xib */; };
 		5906B24B1B0F125E00ADA082 /* HandPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5906B24A1B0F125E00ADA082 /* HandPasswordViewController.swift */; };
+		5906B24F1B104C0100ADA082 /* OffLineChargeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5906B24E1B104C0100ADA082 /* OffLineChargeViewController.swift */; };
 		591FD1381B0C7CF000BFD74D /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 591FD1261B0C7CF000BFD74D /* AFHTTPRequestOperation.m */; };
 		591FD1391B0C7CF000BFD74D /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 591FD1281B0C7CF000BFD74D /* AFHTTPRequestOperationManager.m */; };
 		591FD13A1B0C7CF000BFD74D /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 591FD12A1B0C7CF000BFD74D /* AFHTTPSessionManager.m */; };
@@ -105,6 +106,7 @@
 		5906B2431B0F103F00ADA082 /* LLLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLockViewController.m; sourceTree = "<group>"; };
 		5906B2441B0F103F00ADA082 /* LLLockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLLockViewController.xib; sourceTree = "<group>"; };
 		5906B24A1B0F125E00ADA082 /* HandPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandPasswordViewController.swift; sourceTree = "<group>"; };
+		5906B24E1B104C0100ADA082 /* OffLineChargeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OffLineChargeViewController.swift; sourceTree = "<group>"; };
 		591FD1251B0C7CF000BFD74D /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		591FD1261B0C7CF000BFD74D /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		591FD1271B0C7CF000BFD74D /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				E96E52441B0C865800CFD8E2 /* ModifyPhoneStepFirstViewController.swift */,
 				E96E52461B0C868900CFD8E2 /* ModifyPhoneStepSecondViewController.swift */,
 				5906B24A1B0F125E00ADA082 /* HandPasswordViewController.swift */,
+				5906B24E1B104C0100ADA082 /* OffLineChargeViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				E961E1281AC8DCBC0021ED14 /* REMenuItemView.m in Sources */,
 				E9C605B31ABBB9C500752D91 /* RefreshBaseView.swift in Sources */,
 				E93B725E1B070DDE00B28672 /* InvestorSummaryTableViewController.swift in Sources */,
+				5906B24F1B104C0100ADA082 /* OffLineChargeViewController.swift in Sources */,
 				E93714CA1B074F79009B9B80 /* ModifyLoginPasswordViewController.swift in Sources */,
 				E90EA27C1ABFAB5D006D22E6 /* LoginViewController.swift in Sources */,
 				E9C605B21ABBB9C500752D91 /* Refresh.swift in Sources */,

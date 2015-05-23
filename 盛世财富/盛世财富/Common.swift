@@ -86,6 +86,12 @@ class Common {
         return f + "****" + e
     }
 
-    
+    //MARK:- 时间处理
+    class func dateFromTimestamp(timestamp:Double) -> String{
+        var date = NSDate(timeIntervalSince1970: timestamp)
+        var formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter.stringFromDate(date)
+    }
     
 }

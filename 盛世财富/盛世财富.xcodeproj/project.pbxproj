@@ -58,6 +58,7 @@
 		E96E52451B0C865800CFD8E2 /* ModifyPhoneStepFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96E52441B0C865800CFD8E2 /* ModifyPhoneStepFirstViewController.swift */; };
 		E96E52471B0C868900CFD8E2 /* ModifyPhoneStepSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96E52461B0C868900CFD8E2 /* ModifyPhoneStepSecondViewController.swift */; };
 		E977F3F41AC540E7008C2F8A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */; };
+		E9B370FE1B1046CF00C6766C /* PayLogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B370FD1B1046CF00C6766C /* PayLogTableViewController.swift */; };
 		E9B9EF4C1AC8E00600E46714 /* BidListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B9EF4B1AC8E00600E46714 /* BidListViewController.swift */; };
 		E9BEE1AD1AC24CF10049600C /* HttpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BEE1AC1AC24CF10049600C /* HttpController.swift */; };
 		E9C544C41AE8914800B50D8C /* BidConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C544C31AE8914800B50D8C /* BidConfirmViewController.swift */; };
@@ -177,6 +178,7 @@
 		E96E52441B0C865800CFD8E2 /* ModifyPhoneStepFirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModifyPhoneStepFirstViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E96E52461B0C868900CFD8E2 /* ModifyPhoneStepSecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModifyPhoneStepSecondViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RegisterViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		E9B370FD1B1046CF00C6766C /* PayLogTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayLogTableViewController.swift; sourceTree = "<group>"; };
 		E9B9EF4B1AC8E00600E46714 /* BidListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BidListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E9BEE1AC1AC24CF10049600C /* HttpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpController.swift; sourceTree = "<group>"; };
 		E9C544C31AE8914800B50D8C /* BidConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BidConfirmViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -343,6 +345,7 @@
 				E96E52441B0C865800CFD8E2 /* ModifyPhoneStepFirstViewController.swift */,
 				E96E52461B0C868900CFD8E2 /* ModifyPhoneStepSecondViewController.swift */,
 				5906B24A1B0F125E00ADA082 /* HandPasswordViewController.swift */,
+				E9B370FD1B1046CF00C6766C /* PayLogTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				592F90741B03249E00B9969B /* DaiDodgeKeyboard+AccessObject.m in Sources */,
 				591FD13E1B0C7CF000BFD74D /* AFURLRequestSerialization.m in Sources */,
 				59D214BB1AFC9AD800677C26 /* AlertView.swift in Sources */,
+				E9B370FE1B1046CF00C6766C /* PayLogTableViewController.swift in Sources */,
 				591FD13F1B0C7CF000BFD74D /* AFURLResponseSerialization.m in Sources */,
 				592F90761B03249E00B9969B /* DaiDodgeKeyboard.m in Sources */,
 				591FD13D1B0C7CF000BFD74D /* AFURLConnectionOperation.m in Sources */,

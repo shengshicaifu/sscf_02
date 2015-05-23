@@ -1817,16 +1817,55 @@
         <!--充值记录-->
         <scene sceneID="3dD-Bn-fxZ">
             <objects>
-                <tableViewController title="充值记录" id="dVw-Gt-Vtp" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2UG-4f-Oaw">
+                <tableViewController title="充值记录" id="dVw-Gt-Vtp" customClass="PayLogTableViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="2UG-4f-Oaw">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="oGs-Jb-g1F">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="payLogCell" id="oGs-Jb-g1F">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oGs-Jb-g1F" id="czS-z3-vLv">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-02-04 09:50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18E-hg-PQ7">
+                                            <rect key="frame" x="449" y="30" width="143" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="8At-i3-2at"/>
+                                                <constraint firstAttribute="width" constant="143" id="Nhq-Kh-E28"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000000.00元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1E8-Gg-VTo">
+                                            <rect key="frame" x="8" y="19" width="141" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="141" id="doL-Hb-IkG"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="充值未完成" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnK-h0-38c">
+                                            <rect key="frame" x="449" y="8" width="143" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="Cuz-zM-yrC"/>
+                                                <constraint firstAttribute="width" constant="143" id="ECh-Rp-FrF"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="1E8-Gg-VTo" secondAttribute="centerY" id="BvP-PT-gbR"/>
+                                        <constraint firstItem="1E8-Gg-VTo" firstAttribute="leading" secondItem="czS-z3-vLv" secondAttribute="leadingMargin" id="JHU-oO-vA5"/>
+                                        <constraint firstItem="18E-hg-PQ7" firstAttribute="trailing" secondItem="czS-z3-vLv" secondAttribute="trailingMargin" id="Xi7-S9-Dyi"/>
+                                        <constraint firstItem="tnK-h0-38c" firstAttribute="trailing" secondItem="czS-z3-vLv" secondAttribute="trailingMargin" id="Xqd-C1-YkK"/>
+                                        <constraint firstItem="18E-hg-PQ7" firstAttribute="bottom" secondItem="czS-z3-vLv" secondAttribute="bottomMargin" id="uT5-85-tuf"/>
+                                        <constraint firstItem="tnK-h0-38c" firstAttribute="top" secondItem="czS-z3-vLv" secondAttribute="topMargin" id="wZE-z4-eP2"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>

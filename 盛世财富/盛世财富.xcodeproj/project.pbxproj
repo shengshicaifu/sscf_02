@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5906B2451B0F103F00ADA082 /* LLLockIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5906B23D1B0F103F00ADA082 /* LLLockIndicator.m */; };
+		5906B2461B0F103F00ADA082 /* LLLockPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 5906B23F1B0F103F00ADA082 /* LLLockPassword.m */; };
+		5906B2471B0F103F00ADA082 /* LLLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5906B2411B0F103F00ADA082 /* LLLockView.m */; };
+		5906B2481B0F103F00ADA082 /* LLLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5906B2431B0F103F00ADA082 /* LLLockViewController.m */; };
+		5906B2491B0F103F00ADA082 /* LLLockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5906B2441B0F103F00ADA082 /* LLLockViewController.xib */; };
+		5906B24B1B0F125E00ADA082 /* HandPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5906B24A1B0F125E00ADA082 /* HandPasswordViewController.swift */; };
 		591FD1381B0C7CF000BFD74D /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 591FD1261B0C7CF000BFD74D /* AFHTTPRequestOperation.m */; };
 		591FD1391B0C7CF000BFD74D /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 591FD1281B0C7CF000BFD74D /* AFHTTPRequestOperationManager.m */; };
 		591FD13A1B0C7CF000BFD74D /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 591FD12A1B0C7CF000BFD74D /* AFHTTPSessionManager.m */; };
@@ -88,6 +94,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5906B23B1B0F103F00ADA082 /* LLLockConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLockConfig.h; sourceTree = "<group>"; };
+		5906B23C1B0F103F00ADA082 /* LLLockIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLockIndicator.h; sourceTree = "<group>"; };
+		5906B23D1B0F103F00ADA082 /* LLLockIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLockIndicator.m; sourceTree = "<group>"; };
+		5906B23E1B0F103F00ADA082 /* LLLockPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLockPassword.h; sourceTree = "<group>"; };
+		5906B23F1B0F103F00ADA082 /* LLLockPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLockPassword.m; sourceTree = "<group>"; };
+		5906B2401B0F103F00ADA082 /* LLLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLockView.h; sourceTree = "<group>"; };
+		5906B2411B0F103F00ADA082 /* LLLockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLockView.m; sourceTree = "<group>"; };
+		5906B2421B0F103F00ADA082 /* LLLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLLockViewController.h; sourceTree = "<group>"; };
+		5906B2431B0F103F00ADA082 /* LLLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLLockViewController.m; sourceTree = "<group>"; };
+		5906B2441B0F103F00ADA082 /* LLLockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLLockViewController.xib; sourceTree = "<group>"; };
+		5906B24A1B0F125E00ADA082 /* HandPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandPasswordViewController.swift; sourceTree = "<group>"; };
 		591FD1251B0C7CF000BFD74D /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		591FD1261B0C7CF000BFD74D /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		591FD1271B0C7CF000BFD74D /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -209,6 +226,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5906B23A1B0F103F00ADA082 /* LLLockView */ = {
+			isa = PBXGroup;
+			children = (
+				5906B23B1B0F103F00ADA082 /* LLLockConfig.h */,
+				5906B23C1B0F103F00ADA082 /* LLLockIndicator.h */,
+				5906B23D1B0F103F00ADA082 /* LLLockIndicator.m */,
+				5906B23E1B0F103F00ADA082 /* LLLockPassword.h */,
+				5906B23F1B0F103F00ADA082 /* LLLockPassword.m */,
+				5906B2401B0F103F00ADA082 /* LLLockView.h */,
+				5906B2411B0F103F00ADA082 /* LLLockView.m */,
+				5906B2421B0F103F00ADA082 /* LLLockViewController.h */,
+				5906B2431B0F103F00ADA082 /* LLLockViewController.m */,
+				5906B2441B0F103F00ADA082 /* LLLockViewController.xib */,
+			);
+			path = LLLockView;
+			sourceTree = "<group>";
+		};
 		591FD1241B0C7CF000BFD74D /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,6 +342,7 @@
 				E9E8E9451B0B22FA0074F41A /* ContentViewController.swift */,
 				E96E52441B0C865800CFD8E2 /* ModifyPhoneStepFirstViewController.swift */,
 				E96E52461B0C868900CFD8E2 /* ModifyPhoneStepSecondViewController.swift */,
+				5906B24A1B0F125E00ADA082 /* HandPasswordViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -434,6 +469,7 @@
 		E9FDC1461AC3B70F0088B6F5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5906B23A1B0F103F00ADA082 /* LLLockView */,
 				E9F3DFEE1B0DD52200F8F3AA /* Toast */,
 				E9C605AB1ABBB9C500752D91 /* Refresh */,
 				591FD1241B0C7CF000BFD74D /* AFNetworking */,
@@ -533,6 +569,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E94E95A81B0AD3DD00E717DE /* Main.storyboard in Resources */,
+				5906B2491B0F103F00ADA082 /* LLLockViewController.xib in Resources */,
 				E9D660571AB1313B0020982D /* LaunchScreen.xib in Resources */,
 				E9D660541AB1313B0020982D /* Images.xcassets in Resources */,
 			);
@@ -553,6 +590,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E96E52411B0C577800CFD8E2 /* Common.swift in Sources */,
+				5906B2481B0F103F00ADA082 /* LLLockViewController.m in Sources */,
 				E9E304061B09AAD20021D006 /* AccountSafeTableViewController.swift in Sources */,
 				E96B2F091B08673900B4197B /* MDRadialProgressTheme.m in Sources */,
 				E961E1241AC8DCBC0021ED14 /* RECommonFunctions.m in Sources */,
@@ -575,6 +613,7 @@
 				E93714CA1B074F79009B9B80 /* ModifyLoginPasswordViewController.swift in Sources */,
 				E90EA27C1ABFAB5D006D22E6 /* LoginViewController.swift in Sources */,
 				E9C605B21ABBB9C500752D91 /* Refresh.swift in Sources */,
+				5906B2471B0F103F00ADA082 /* LLLockView.m in Sources */,
 				E9C605B51ABBB9C500752D91 /* RefreshFooterView.swift in Sources */,
 				E96E52451B0C865800CFD8E2 /* ModifyPhoneStepFirstViewController.swift in Sources */,
 				598A77841AF9E48600DE4271 /* TabBarViewController.swift in Sources */,
@@ -596,6 +635,8 @@
 				59BEC41B1B07124200F5690D /* BidRecordViewController.swift in Sources */,
 				592F90751B03249E00B9969B /* DaiDodgeKeyboard+Animation.m in Sources */,
 				E93732B11ACA32F600423B7E /* MyMenuTableViewController.swift in Sources */,
+				5906B2451B0F103F00ADA082 /* LLLockIndicator.m in Sources */,
+				5906B2461B0F103F00ADA082 /* LLLockPassword.m in Sources */,
 				E96B2ED21B0833A500B4197B /* ModifyPinPasswordViewController.swift in Sources */,
 				591FD13B1B0C7CF000BFD74D /* AFNetworkReachabilityManager.m in Sources */,
 				E94E95A51B0AD34F00E717DE /* CACustomTextLayer.m in Sources */,
@@ -607,6 +648,7 @@
 				591FD1381B0C7CF000BFD74D /* AFHTTPRequestOperation.m in Sources */,
 				591FD13C1B0C7CF000BFD74D /* AFSecurityPolicy.m in Sources */,
 				592A9F251B035095006B63D9 /* loading.swift in Sources */,
+				5906B24B1B0F125E00ADA082 /* HandPasswordViewController.swift in Sources */,
 				D8B251181B0041AE00360F4E /* Reachability.m in Sources */,
 				E961E1261AC8DCBC0021ED14 /* REMenuContainerView.m in Sources */,
 				591FD1401B0C7CF000BFD74D /* AFURLSessionManager.m in Sources */,

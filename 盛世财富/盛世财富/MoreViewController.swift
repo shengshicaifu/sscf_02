@@ -38,7 +38,7 @@ class MoreViewController: UITableViewController ,UITableViewDataSource,UITableVi
         var alert = UIAlertController(title: "提示", message: "是否拨打客服电话？", preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "拨打", style: UIAlertActionStyle.Destructive, handler: { (action:UIAlertAction!) -> Void in
-            var url1 = NSURL(string: "tel://4008573588")
+            var url1 = NSURL(string: "tel://4008573088")
             UIApplication.sharedApplication().openURL(url1!)
         }))
         self.presentViewController(alert, animated: true, completion: nil)

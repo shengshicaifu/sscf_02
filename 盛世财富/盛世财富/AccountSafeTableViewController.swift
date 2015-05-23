@@ -12,6 +12,8 @@ class AccountSafeTableViewController: UITableViewController,UITableViewDelegate 
 
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var setPinPasswordLabel: UILabel!
+    
+    @IBOutlet weak var handCell: UITableViewCell!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self

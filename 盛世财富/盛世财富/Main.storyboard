@@ -864,7 +864,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dfb-bn-iTi" id="gnQ-Yf-eod">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="账户安全" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mF6-DV-5FV">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="充值" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mF6-DV-5FV">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -875,6 +875,30 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="RrY-lP-Y0p" kind="show" id="hIx-kR-PTV"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="secure" textLabel="jco-WM-hG5" style="IBUITableViewCellStyleDefault" id="FPc-aa-h8i">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FPc-aa-h8i" id="hWI-OJ-byZ">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="充值记录" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jco-WM-hG5">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    </variation>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="dVw-Gt-Vtp" kind="show" id="txb-BV-hAo"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1771,6 +1795,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VXR-JC-cIW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1598" y="845"/>
+        </scene>
+        <!--线下充值-->
+        <scene sceneID="khi-rj-y7L">
+            <objects>
+                <viewController title="线下充值" id="RrY-lP-Y0p" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vm0-Aj-VGf"/>
+                        <viewControllerLayoutGuide type="bottom" id="YGv-vL-frH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="q9K-6R-ZEj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xcy-ae-Dld" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2801" y="893"/>
+        </scene>
+        <!--充值记录-->
+        <scene sceneID="3dD-Bn-fxZ">
+            <objects>
+                <tableViewController title="充值记录" id="dVw-Gt-Vtp" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2UG-4f-Oaw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="oGs-Jb-g1F">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oGs-Jb-g1F" id="czS-z3-vLv">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="dVw-Gt-Vtp" id="sfg-YY-aYD"/>
+                            <outlet property="delegate" destination="dVw-Gt-Vtp" id="lcz-23-W9G"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="euh-5y-Fue" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2825" y="1869"/>
         </scene>
         <!--投标记录-->
         <scene sceneID="iTR-iX-Elx">
@@ -4766,9 +4834,6 @@
         <segue reference="sOw-AT-9oo"/>
         <segue reference="01C-9g-NgZ"/>
         <segue reference="5ZP-m5-drk"/>
-        <segue reference="01C-9g-NgZ"/>
-        <segue reference="sOw-AT-9oo"/>
-        <segue reference="1Oc-Wy-fyN"/>
         <segue reference="tpR-eQ-WEg"/>
         <segue reference="1Oc-Wy-fyN"/>
     </inferredMetricsTieBreakers>

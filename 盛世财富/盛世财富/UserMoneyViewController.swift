@@ -25,53 +25,61 @@ class UserMoneyViewController:UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String {
-            let afnet = AFHTTPRequestOperationManager()
-            let param = ["to":token]
-            let url = Common.serverHost + "/App-Ucenter-userInfo"
-            loading.startLoading(self.tableView)
-            afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-            afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
-                NSLog("资产管理：%@", res as! NSDictionary)
-                var resDictionary = res as! NSDictionary
-                var code = resDictionary["code"] as! Int
-                if code == -1 {
-                    AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
-                } else if code == 200 {
-                    let code = res["code"] as! Int
-                    let message = res["message"] as! String
-                    let data  = res["data"] as! NSDictionary
-                    let proInfo = data.objectForKey("proInfo") as! NSDictionary
-                    
-                    self.accountMoney.text = proInfo.objectForKey("account_money") as? String
-                    self.totalAll.text = proInfo.objectForKey("total_all") as? String
-                    self.moneyCollect.text = proInfo.objectForKey("money_collect") as? String
-                    self.rewardMoney.text = proInfo.objectForKey("reward_money") as? String
-                    self.vexperince.text = proInfo.objectForKey("vexperince") as? String
-                    self.moneyFreeze.text = proInfo.objectForKey("money_freeze") as? String
-                    self.ljtxje.text = proInfo.objectForKey("ljtxje") as? String
-                    self.ljczje.text = proInfo.objectForKey("ljczje") as? String
-                    self.dslxze.text = proInfo.objectForKey("dslxze") as? String
-                    self.ljtzje.text = proInfo.objectForKey("ljtzje") as? String
-                    self.kyAll.text = proInfo.objectForKey("ky_all") as? String
-                    self.jzlx.text = proInfo.objectForKey("jzlx") as? String
+        //检查手机网络
+        var reach = Reachability(hostName: Common.domain)
+        reach.reachableBlock = {(r:Reachability!) -> Void in
+           //NSLog("网络可用")
+            dispatch_async(dispatch_get_main_queue(), {
+                if let token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String {
+                    let afnet = AFHTTPRequestOperationManager()
+                    let param = ["to":token]
+                    let url = Common.serverHost + "/App-Ucenter-userInfo"
+                    loading.startLoading(self.tableView)
+                    afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+                    afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
+                        NSLog("资产管理：%@", res as! NSDictionary)
+                        var resDictionary = res as! NSDictionary
+                        var code = resDictionary["code"] as! Int
+                        if code == -1 {
+                            AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
+                        } else if code == 200 {
+                            let code = res["code"] as! Int
+                            let message = res["message"] as! String
+                            let data  = res["data"] as! NSDictionary
+                            let proInfo = data.objectForKey("proInfo") as! NSDictionary
+                            
+                            self.accountMoney.text = proInfo.objectForKey("account_money") as? String
+                            self.totalAll.text = proInfo.objectForKey("total_all") as? String
+                            self.moneyCollect.text = proInfo.objectForKey("money_collect") as? String
+                            self.rewardMoney.text = proInfo.objectForKey("reward_money") as? String
+                            self.vexperince.text = proInfo.objectForKey("vexperince") as? String
+                            self.moneyFreeze.text = proInfo.objectForKey("money_freeze") as? String
+                            self.ljtxje.text = proInfo.objectForKey("ljtxje") as? String
+                            self.ljczje.text = proInfo.objectForKey("ljczje") as? String
+                            self.dslxze.text = proInfo.objectForKey("dslxze") as? String
+                            self.ljtzje.text = proInfo.objectForKey("ljtzje") as? String
+                            self.kyAll.text = proInfo.objectForKey("ky_all") as? String
+                            self.jzlx.text = proInfo.objectForKey("jzlx") as? String
+                        }
+                        loading.stopLoading()
+                        }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                            loading.stopLoading()
+                            AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
+                    }
                 }
-                loading.stopLoading()
-                }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                    loading.stopLoading()
-                    AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
-            }
+
+            })
         }
+        reach.startNotifier()
+
     }
 
     override func viewWillAppear(animated: Bool) {
-        //        检查网络
+        //检查网络
         var reach = Reachability(hostName: Common.domain)
         reach.unreachableBlock = {(r:Reachability!)in
             dispatch_async(dispatch_get_main_queue(), {
-                var alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
             })
         }
         reach.startNotifier()

@@ -23,7 +23,7 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
             let param = ["to":token]
             afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
             afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
-                NSLog("投标记录：%@",res as! NSDictionary)
+//                NSLog("投标记录：%@",res as! NSDictionary)
                 
                 if let d = res["data"] as? NSMutableArray{
                     self.data = d
@@ -63,7 +63,7 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
 //            println(data[row])
             name.text = data[row].valueForKey("borrow_name") as? String
             
-            var timeNumber = data[row].valueForKey("borrow_time") as! NSString
+            var timeNumber = data[row].valueForKey("invest_time") as! NSString
             var interval = timeNumber.doubleValue
             var date = NSDate(timeIntervalSince1970: interval)
             var formatter = NSDateFormatter()

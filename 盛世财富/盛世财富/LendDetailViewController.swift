@@ -57,15 +57,16 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
         super.viewDidLoad()
         mainTable.dataSource = self
         mainTable.delegate = self
+        
+        
+        
+        
         loading.startLoading(self.view)
         mainTable.scrollEnabled = false
         
-        
-        //println(id!)
         if id != nil {
             let manager =  AFHTTPRequestOperationManager()
             let params = ["id" : id!]
-            
             let  url = timeLineUrl+"\(id!)"
             manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
             manager.POST(url,
@@ -229,10 +230,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                     println(error)
                     loading.stopLoading()
                     self.mainTable.scrollEnabled = true
-//                    let alert = UIAlertController(title: "提示", message: "服务器异常，请稍后再试", preferredStyle: .Alert)
-//                    alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
-//                    self.presentViewController(alert, animated: true, completion: nil)
-                    AlertView.alert("提示", message: "服务器异常，请稍后再试", buttonTitle: "确定", viewController: self)
+                    //AlertView.alert("提示", message: "服务器异常，请稍后再试", buttonTitle: "确定", viewController: self)
             }
             )
         }
@@ -283,13 +281,11 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
         return UIView()
     }
     override func viewWillAppear(animated: Bool) {
-        //        检查网络
+        //检查网络
         var reach = Reachability(hostName: Common.domain)
         reach.unreachableBlock = {(r:Reachability!)in
             dispatch_async(dispatch_get_main_queue(), {
-                var alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
             })
         }
         reach.startNotifier()

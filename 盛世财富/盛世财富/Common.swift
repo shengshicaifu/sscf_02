@@ -85,6 +85,7 @@ class Common {
         var e = str.substringFromIndex(end)
         return f + "****" + e
     }
+
     
     
 }

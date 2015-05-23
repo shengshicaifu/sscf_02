@@ -223,6 +223,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     
     @IBOutlet weak var mainTable: UITableView!
     override func viewDidLoad() {
+        NSLog("viewDidLoad")
         super.viewDidLoad()
         mainTable.delegate = self
         loading.startLoading(self.view)
@@ -242,7 +243,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             },
             failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
                 loading.stopLoading()
-                AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
+                //AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
             }
         )
         setupRefresh()
@@ -320,6 +321,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                 },
                 failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    self.mainTable.footerEndRefreshing()
                     AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
                 }
             )
@@ -340,6 +342,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        NSLog("cellForRowAtIndexPath")
         let cell = self.mainTable.dequeueReusableCellWithIdentifier("allList") as! UITableViewCell
         var money = cell.viewWithTag(100) as! UILabel
         var percent = cell.viewWithTag(101) as! UILabel
@@ -402,6 +405,8 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         //        self.presentViewController(vc, animated: true, completion: nil)
         self.performSegueWithIdentifier("detail", sender: self)
     }
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "detail" {
@@ -415,14 +420,23 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     }
     
     override func viewWillAppear(animated: Bool) {
-//        println(self.tmpListData.count)
-        
-        if self.tmpListData.count == 0 && self.listData.count == 0{
-            mainTable.hidden = true	
-            circle.hidden = false
-            circle.startAnimating()
+        NSLog("viewWillAppear")
+////        println(self.tmpListData.count)
+//        
+//        if self.tmpListData.count == 0 && self.listData.count == 0{
+//            mainTable.hidden = true	
+//            circle.hidden = false
+//            circle.startAnimating()
+//        }
+        //检查是否连接网络
+        var reach = Reachability(hostName: Common.domain)
+        reach.unreachableBlock = {(r:Reachability!) -> Void in
+            dispatch_async(dispatch_get_main_queue(), {
+                //self.mainTable.hidden = true
+                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+            })
         }
-        
+        reach.startNotifier()
     }
 }
 

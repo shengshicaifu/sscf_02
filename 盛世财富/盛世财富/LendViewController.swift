@@ -38,10 +38,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         mainTable.dataSource = self
             
         
-//        mainTable.allowsSelection = false
-//        self.navigationController?.navigationBar.barTintColor = UIColor(red: 54/255.0, green: 169/255.0, blue: 245/255.0, alpha: 1)
-//        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
-       //滚动图-------------------------------
+//滚动图-------------------------------
         var viewsArray = NSMutableArray()
         var colorArray = [UIColor.cyanColor(),UIColor.blueColor(),UIColor.greenColor(),UIColor.yellowColor(),UIColor.purpleColor()]
         for  i in 1...2 {
@@ -73,38 +70,24 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
         
         mainTable.tableHeaderView = mainScorllView
-        //滚动图-------------------------------
+//滚动图-------------------------------
         
-        //apple的下拉刷新
+//apple的下拉刷新
         self.refreshControl.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
         self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
         mainTable.addSubview(self.refreshControl)
         
-        eHttp.delegate = self
         
-        if self.tmpListData.count == 0 && self.listData.count == 0{
-            //如果没有获取到数据 就开始动画
-            self.mainTable.hidden = true
-            self.circle.hidden = false
-            self.circle.startAnimating()
-            var time = NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: "stopCircle", userInfo: nil, repeats: false)
-            
-            
-        }
-        //http请求
-//        NSLog("viewDidLoad")
+        
+//http请求标列表
+        eHttp.delegate = self
         var reach = Reachability(hostName: Common.domain)
         reach.reachableBlock = {(r:Reachability!) -> Void in
-//
             dispatch_async(dispatch_get_main_queue(), {
                 
                 loading.startLoading(self.view)
                 self.eHttp.get(self.timeLineUrl,view :self.view,callback: {
                     loading.stopLoading()
-                    //callback  隐藏读取动画
-//                    self.circle.stopAnimating()
-//                    self.circle.hidden = true
-                    //显示tableview
                     self.mainTable.hidden = false
                     self.mainTable.reloadData()
                 })
@@ -114,6 +97,8 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
 
         
     }
+    
+    
     //下拉刷新绑定的方法
     func refreshData(){
         if self.refreshControl.refreshing {
@@ -122,10 +107,9 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             reach.unreachableBlock = {(r:Reachability!) -> Void in
                 //NSLog("网络不可用")
                 dispatch_async(dispatch_get_main_queue(), {
-                    let alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
                     self.refreshControl.endRefreshing()
-                    self.presentViewController(alert, animated: true, completion: nil)
+
+                    AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
                 })
             }
             
@@ -406,34 +390,25 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     //view将要加载的时候触发的事件
     override func viewWillAppear(animated: Bool) {
-        //        println("lendView")
-        //隐藏筛选
-        
-        
-        
         //检查是否连接网络
-//        NSLog("检查是否连接网络")
         var reach = Reachability(hostName: Common.domain)
         reach.unreachableBlock = {(r:Reachability!) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
-                let alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Cancel, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-                
+                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
             })
         }
         reach.startNotifier()
     
     }
-    func stopCircle(){
-        if self.circle.isAnimating() {
-            self.circle.stopAnimating()
-            self.circle.hidden = true
-            //显示tableview
-            self.mainTable.hidden = false
-        }
-        
-    }
+//    func stopCircle(){
+//        if self.circle.isAnimating() {
+//            self.circle.stopAnimating()
+//            self.circle.hidden = true
+//            //显示tableview
+//            self.mainTable.hidden = false
+//        }
+//        
+//    }
     //返回
     @IBAction func closed(segue:UIStoryboardSegue){
     }

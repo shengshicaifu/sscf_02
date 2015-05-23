@@ -15,7 +15,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var login: UIButton!
     @IBOutlet weak var regist: UIButton!
     var timeLineUrl = Common.serverHost + "/App-Login"//链接地址
-//    var tmpListData: NSMutableArray = NSMutableArray()//临时数据  下拉添加
+
     var eHttp: HttpController = HttpController()//新建一个httpController
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,16 +35,11 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         
         
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     
     
     @IBAction func loginTapped(sender: AnyObject) {
 //        self.count++
-        usernameLabel.resignFirstResponder()
-        passwordLabel.resignFirstResponder()
+        resignAll()
         var name = usernameLabel.text
         var pwd = passwordLabel.text
         if name.isEmpty {
@@ -64,59 +59,75 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             return
         }
         
-        loading.startLoading(self.view)
-                
-        eHttp.post(timeLineUrl, params: ["userName":usernameLabel.text,"userPass":passwordLabel.text,"userFlag":0] ,view: self.view ) { (result:NSDictionary)->Void in
-            loading.stopLoading()
-            NSLog("%@登录返回结果%@", self.usernameLabel.text,result)
-            
-                if let code = result["code"] as? Int{
-                    println(result)
-                    
-                    if(code == 200){
-                        let user = NSUserDefaults.standardUserDefaults()
-                        let proInfo:NSDictionary = result["data"]?["proInfo"] as! NSDictionary
-                        user.setObject(self.usernameLabel.text, forKey: "username")
-                        user.setObject(result["data"]?["token"], forKey: "token")
-                        
-                        user.setObject(proInfo.objectForKey("total_all"),forKey: "usermoney")
-                        
-                        var userInfo = result["data"]?["userInfo"] as! NSDictionary
-                        if let birthday = userInfo.objectForKey("birthday") as? String {
-                            user.setObject(birthday, forKey: "birthday")
-                        }else{
-                            user.setObject("", forKey: "birthday")
-                            
-                        }
-                        if let gender = userInfo.objectForKey("gender") as? String {
-                            user.setObject(gender, forKey: "gender")
-                        }else{
-                            user.setObject("", forKey: "gender")
-                            
-                        }
-                        if let headpic = userInfo.objectForKey("headpic") as? String {
-                            user.setObject(headpic, forKey: "headpic")
-                        }else{
-                            user.setObject("", forKey: "headpic")
-                            
-                        }
+        //检查手机网络
+        var reach = Reachability(hostName: Common.domain)
+        reach.unreachableBlock = {(r:Reachability!) -> Void in
+            //NSLog("网络不可用")
+            dispatch_async(dispatch_get_main_queue(), {
 
-                        user.setObject(userInfo["pinPass"], forKey: "pinpass")
-                        user.setObject(userInfo["cellphone"], forKey: "phone")
+                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+            })
+        }
+        
+        reach.reachableBlock = {(r:Reachability!) -> Void in
+           //NSLog("网络可用")
+            dispatch_async(dispatch_get_main_queue(), {
+                loading.startLoading(self.view)
+                
+                self.eHttp.post(self.timeLineUrl, params: ["userName":self.usernameLabel.text,"userPass":self.passwordLabel.text,"userFlag":0] ,view: self.view ) { (result:NSDictionary)->Void in
+                    loading.stopLoading()
+                    NSLog("%@登录返回结果%@", self.usernameLabel.text,result)
+                    
+                    if let code = result["code"] as? Int{
+                        println(result)
                         
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                        if(code == 200){
+                            let user = NSUserDefaults.standardUserDefaults()
+                            let proInfo:NSDictionary = result["data"]?["proInfo"] as! NSDictionary
+                            user.setObject(self.usernameLabel.text, forKey: "username")
+                            user.setObject(result["data"]?["token"], forKey: "token")
+                            
+                            user.setObject(proInfo.objectForKey("total_all"),forKey: "usermoney")
+                            
+                            var userInfo = result["data"]?["userInfo"] as! NSDictionary
+                            if let birthday = userInfo.objectForKey("birthday") as? String {
+                                user.setObject(birthday, forKey: "birthday")
+                            }else{
+                                user.setObject("", forKey: "birthday")
+                                
+                            }
+                            if let gender = userInfo.objectForKey("gender") as? String {
+                                user.setObject(gender, forKey: "gender")
+                            }else{
+                                user.setObject("", forKey: "gender")
+                                
+                            }
+                            if let headpic = userInfo.objectForKey("headpic") as? String {
+                                user.setObject(headpic, forKey: "headpic")
+                            }else{
+                                user.setObject("", forKey: "headpic")
+                                
+                            }
+                            
+                            user.setObject(userInfo["pinPass"], forKey: "pinpass")
+                            user.setObject(userInfo["cellphone"], forKey: "phone")
+                            
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        }
+                        if(code == 0){
+                            //报错弹窗
+                            AlertView.showMsg(result["message"] as! String, parentView: self.view)
+                        }
+                    }else{
+                        AlertView.showMsg("服务器异常!", parentView: self.view)
                     }
-                    if(code == 0){
-                        //报错弹窗
-                        AlertView.showMsg(result["message"] as! String, parentView: self.view)
-                    }
-                }else{
-                    AlertView.showMsg("服务器异常!", parentView: self.view)
                 }
-            }
-        
-    
-        
+                
+
+                
+            })
+        }
+        reach.startNotifier()
     }
 
 
@@ -133,13 +144,16 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
 
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        usernameLabel.resignFirstResponder()
-        passwordLabel.resignFirstResponder()
+        resignAll()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        resignAll()
+        return true
+    }
+    
+    func resignAll(){
         usernameLabel.resignFirstResponder()
         passwordLabel.resignFirstResponder()
-        return true
     }
 }

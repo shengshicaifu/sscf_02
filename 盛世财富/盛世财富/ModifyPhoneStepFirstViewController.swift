@@ -31,41 +31,61 @@ class ModifyPhoneStepFirstViewController: UIViewController {
     @IBAction func getCodeTapped(sender: UIButton) {
         resignAll()
         
-        //禁用获取验证码按钮60秒
-        getCodeButton.enabled = false
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "repeat", userInfo: nil, repeats: true)
+        //检查手机网络
+        var reach = Reachability(hostName: Common.domain)
+        reach.unreachableBlock = {(r:Reachability!) -> Void in
+            //NSLog("网络不可用")
+            dispatch_async(dispatch_get_main_queue(), {
+
+                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+            })
+        }
         
-        //获取验证码
-        var url = Common.serverHost + "/App-Ucenter-sendphone"
-        var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
-        var params = ["to":token,"cellphone":phone]
-        NSLog("发送验证码参数：%@", params)
-        var manager = AFHTTPRequestOperationManager()
-        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-        loading.startLoading(self.view)
-        manager.POST(url, parameters: params,
-            success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                loading.stopLoading()
+        reach.reachableBlock = {(r:Reachability!) -> Void in
+           //NSLog("网络可用")
+            dispatch_async(dispatch_get_main_queue(), {
                 
-                var result = data as! NSDictionary
-                NSLog("验证码%@", result)
-                var code = result["code"] as! Int
-                var msg:String = ""
-                if code == 0 {
-                    msg = "验证码发送失败，请重试!"
-                }else if code == 1 {
-                    msg = "手机号已被别人使用!"
-                }else if code == 100 {
-                    msg = "短信验证码发送成功"
-                }
-                AlertView.showMsg(msg, parentView: self.view)
-            },
-            failure:{ (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                loading.stopLoading()
-                println(error)
-                AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
-            }
-        )
+                //禁用获取验证码按钮60秒
+                self.getCodeButton.enabled = false
+                self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "repeat", userInfo: nil, repeats: true)
+                
+                //获取验证码
+                var url = Common.serverHost + "/App-Ucenter-sendphone"
+                var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
+                var params = ["to":token,"cellphone":self.phone]
+                NSLog("发送验证码参数：%@", params)
+                var manager = AFHTTPRequestOperationManager()
+                manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+                loading.startLoading(self.view)
+                manager.POST(url, parameters: params,
+                    success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                        loading.stopLoading()
+                        
+                        var result = data as! NSDictionary
+                        NSLog("验证码%@", result)
+                        var code = result["code"] as! Int
+                        var msg:String = ""
+                        if code == 0 {
+                            msg = "验证码发送失败，请重试!"
+                        }else if code == 1 {
+                            msg = "手机号已被别人使用!"
+                        }else if code == 100 {
+                            msg = "短信验证码发送成功"
+                        }
+                        AlertView.showMsg(msg, parentView: self.view)
+                    },
+                    failure:{ (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                        loading.stopLoading()
+                        println(error)
+                        AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
+                    }
+                )
+
+                
+            })
+        }
+      
+        reach.startNotifier()
     }
     
     var i = 60
@@ -91,34 +111,53 @@ class ModifyPhoneStepFirstViewController: UIViewController {
             return
         }
 
-        var manager = AFHTTPRequestOperationManager()
-        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-        var url = Common.serverHost + "/App-Ucenter-alertPhone"
-        var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
-        var params = ["to":token,"step":"1","cellphone":phone,"code":code,"f_id":""]
-        println(params)
-        loading.startLoading(self.view)
-        manager.POST(url, parameters: params,
-            success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                loading.stopLoading()
-                var result = data as! NSDictionary
-                var resultCode = result["code"] as! Int
-                if resultCode == -1 {
-                    AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
+        //检查手机网络
+        var reach = Reachability(hostName: Common.domain)
+        reach.unreachableBlock = {(r:Reachability!) -> Void in
+            //NSLog("网络不可用")
+            dispatch_async(dispatch_get_main_queue(), {
+
+                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+            })
+        }
+        
+        reach.reachableBlock = {(r:Reachability!) -> Void in
+           //NSLog("网络可用")
+            dispatch_async(dispatch_get_main_queue(), {
+                var manager = AFHTTPRequestOperationManager()
+                manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+                var url = Common.serverHost + "/App-Ucenter-alertPhone"
+                var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
+                var params = ["to":token,"step":"1","cellphone":self.phone,"code":code,"f_id":""]
+                println(params)
+                loading.startLoading(self.view)
+                manager.POST(url, parameters: params,
+                    success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                        loading.stopLoading()
+                        var result = data as! NSDictionary
+                        var resultCode = result["code"] as! Int
+                        if resultCode == -1 {
+                            AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
+                            
+                        } else if resultCode == 0 {
+                            AlertView.alert("提示", message: "手机验证码错误", buttonTitle: "确定", viewController: self)
+                            self.codeTextField.becomeFirstResponder()
+                        } else if resultCode == 200 {
+                            self.f_id = result["data"]?["f_id"] as? String
+                            self.performSegueWithIdentifier("modifyPhoneNextStepSegue", sender: self)
+                        }
+                        
+                    },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                        loading.stopLoading()
+                        AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
+                    }
+                )
+
                 
-                } else if resultCode == 0 {
-                    AlertView.alert("提示", message: "手机验证码错误", buttonTitle: "确定", viewController: self)
-                    self.codeTextField.becomeFirstResponder()
-                } else if resultCode == 200 {
-                    self.f_id = result["data"]?["f_id"] as? String
-                    self.performSegueWithIdentifier("modifyPhoneNextStepSegue", sender: self)
-                }
-                
-            },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                loading.stopLoading()
-                AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
-            }
-        )
+            })
+        }
+      
+        reach.startNotifier()
     }
     
     // MARK: - Navigation

@@ -58,32 +58,51 @@ class ModifyPinPasswordViewController: UIViewController {
             return
         }
         //其他输入限制再加
-        var manager = AFHTTPRequestOperationManager()
-        var url = Common.serverHost + "/App-Ucenter-setPinPassWord"
-        var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
-        var params = ["pin_pass":oldpass,"newPinpass":newpass,"to":token]
-        loading.startLoading(self.view)
-        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-        manager.POST(url, parameters: params,
-            success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                loading.stopLoading()
-                var result = data as! NSDictionary
-                var code = result["code"] as! Int
-                if code == -1 {
-                    AlertView.showMsg("请登录后再试", parentView: self.view)
-                }else if code == 0 {
-                    AlertView.showMsg(result["message"] as! String, parentView: self.view)
-                }else if code == 200 {
-                    AlertView.showMsg("修改交易密码成功", parentView: self.view)
-                    NSThread.sleepForTimeInterval(3)
-                    self.navigationController?.popViewControllerAnimated(true)
-                }
+        //检查手机网络
+        var reach = Reachability(hostName: Common.domain)
+        reach.unreachableBlock = {(r:Reachability!) -> Void in
+            //NSLog("网络不可用")
+            dispatch_async(dispatch_get_main_queue(), {
+
+                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+            })
+        }
+        
+        reach.reachableBlock = {(r:Reachability!) -> Void in
+           //NSLog("网络可用")
+            dispatch_async(dispatch_get_main_queue(), {
+                var manager = AFHTTPRequestOperationManager()
+                var url = Common.serverHost + "/App-Ucenter-setPinPassWord"
+                var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
+                var params = ["pin_pass":oldpass,"newPinpass":newpass,"to":token]
+                loading.startLoading(self.view)
+                manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+                manager.POST(url, parameters: params,
+                    success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                        loading.stopLoading()
+                        var result = data as! NSDictionary
+                        var code = result["code"] as! Int
+                        if code == -1 {
+                            AlertView.showMsg("请登录后再试", parentView: self.view)
+                        }else if code == 0 {
+                            AlertView.showMsg(result["message"] as! String, parentView: self.view)
+                        }else if code == 200 {
+                            AlertView.showMsg("修改交易密码成功", parentView: self.view)
+                            NSThread.sleepForTimeInterval(3)
+                            self.navigationController?.popViewControllerAnimated(true)
+                        }
+                        
+                    },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                        loading.stopLoading()
+                        AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
+                    }
+                )
+
                 
-            },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                loading.stopLoading()
-                AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
-            }
-        )
+            })
+        }
+      
+        reach.startNotifier()
     }
 
 

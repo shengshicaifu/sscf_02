@@ -30,6 +30,7 @@ class OffLineChargeViewController:UIViewController {
     }
     
     @IBAction func submit(sender: UIButton) {
+        resignAll()
         if t_money.text.isEmpty {
             AlertView.showMsg("请输入金额！", parentView: self.view)
             return
@@ -62,15 +63,32 @@ class OffLineChargeViewController:UIViewController {
         if choose.selectedSegmentIndex == 1{
             param = ["to":user.stringForKey("token"),"money_off":p_money.text,"off_bank":"无","off_way":"pos机刷卡","tran_id":p_id.text]
         }
-        afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-        afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-            
-            AlertView.showMsg(data["message"] as! String, parentView: self.view)
-            }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
-            AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
+        //检查手机网络
+        var reach = Reachability(hostName: Common.domain)
+        reach.unreachableBlock = {(r:Reachability!) -> Void in
+            //NSLog("网络不可用")
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+            })
         }
         
-
+        reach.reachableBlock = {(r:Reachability!) -> Void in
+            //NSLog("网络可用")
+            dispatch_async(dispatch_get_main_queue(), {
+                loading.startLoading(self.view)
+                afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+                afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                    loading.stopLoading()
+                    AlertView.showMsg(data["message"] as! String, parentView: self.view)
+                    }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                        loading.stopLoading()
+                        AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
+                }
+            })
+        }
+        
+        
     }
     @IBAction func segChange(sender: UISegmentedControl) {
         //开始动画
@@ -93,4 +111,32 @@ class OffLineChargeViewController:UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        resignAll()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        resignAll()
+        return true
+    }
+    
+    func resignAll(){
+        t_money.resignFirstResponder()
+        t_account.resignFirstResponder()
+        t_id.resignFirstResponder()
+        p_money.resignFirstResponder()
+        p_id.resignFirstResponder()
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        DaiDodgeKeyboard.addRegisterTheViewNeedDodgeKeyboard(self.view)
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        DaiDodgeKeyboard.removeRegisterTheViewNeedDodgeKeyboard()
+        super.viewWillDisappear(animated)
+    }
+
 }

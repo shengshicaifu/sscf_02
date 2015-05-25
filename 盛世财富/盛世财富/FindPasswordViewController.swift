@@ -141,4 +141,8 @@ class FindPasswordViewController:UIViewController {
         DaiDodgeKeyboard.removeRegisterTheViewNeedDodgeKeyboard()
         super.viewWillDisappear(animated)
     }
+    
+    @IBAction func closed(sender:AnyObject){
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }

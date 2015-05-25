@@ -709,7 +709,7 @@
                                     <action selector="loginTapped:" destination="BAa-9l-VLv" eventType="touchUpInside" id="6Tq-jA-eu5"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qdj-f8-flo">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qdj-f8-flo">
                                 <rect key="frame" x="509" y="296" width="75" height="30"/>
                                 <state key="normal" title="忘记密码？">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -724,6 +724,7 @@
                             <constraint firstItem="Tfe-73-zmd" firstAttribute="leading" secondItem="eUK-My-Lhf" secondAttribute="leadingMargin" id="8cq-cd-9AY"/>
                             <constraint firstItem="M3x-Fz-eGB" firstAttribute="leading" secondItem="eUK-My-Lhf" secondAttribute="leadingMargin" id="Erw-h1-Esi"/>
                             <constraint firstItem="Tfe-73-zmd" firstAttribute="top" secondItem="uyf-rh-dUm" secondAttribute="bottom" constant="67" id="ILm-xT-dGO"/>
+                            <constraint firstItem="Qdj-f8-flo" firstAttribute="trailing" secondItem="eUK-My-Lhf" secondAttribute="trailingMargin" id="L7T-d7-BsQ"/>
                             <constraint firstItem="FYS-rf-4Lh" firstAttribute="leading" secondItem="eUK-My-Lhf" secondAttribute="leadingMargin" id="NIl-lc-8Sj"/>
                             <constraint firstItem="M3x-Fz-eGB" firstAttribute="trailing" secondItem="eUK-My-Lhf" secondAttribute="trailingMargin" id="P45-In-ixa"/>
                             <constraint firstItem="dHO-hz-GTR" firstAttribute="top" secondItem="uyf-rh-dUm" secondAttribute="bottom" constant="-20" id="S2b-Oo-umh"/>
@@ -739,6 +740,7 @@
                             <constraint firstItem="EHO-Qx-RXf" firstAttribute="trailing" secondItem="eUK-My-Lhf" secondAttribute="trailingMargin" id="jdb-NJ-hhV"/>
                             <constraint firstItem="Pi4-ZB-9Vy" firstAttribute="top" secondItem="FYS-rf-4Lh" secondAttribute="bottom" constant="1" id="pQG-aS-fZb"/>
                             <constraint firstItem="Tfe-73-zmd" firstAttribute="trailing" secondItem="eUK-My-Lhf" secondAttribute="trailingMargin" id="pn5-n8-yKe"/>
+                            <constraint firstItem="Qdj-f8-flo" firstAttribute="top" secondItem="EHO-Qx-RXf" secondAttribute="bottom" constant="8" id="prI-7a-Aj9"/>
                             <constraint firstItem="FYS-rf-4Lh" firstAttribute="trailing" secondItem="eUK-My-Lhf" secondAttribute="trailingMargin" id="tsB-cX-Ne3"/>
                             <constraint firstItem="EHO-Qx-RXf" firstAttribute="leading" secondItem="eUK-My-Lhf" secondAttribute="leadingMargin" id="uPN-tG-c28"/>
                             <constraint firstItem="Pi4-ZB-9Vy" firstAttribute="leading" secondItem="eUK-My-Lhf" secondAttribute="leadingMargin" id="wC7-X4-dzc"/>
@@ -780,7 +782,11 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="找回密码" id="OyX-ID-LZ4">
-                                        <barButtonItem key="leftBarButtonItem" title="返回" id="1R7-FS-H9s"/>
+                                        <barButtonItem key="leftBarButtonItem" title="返回" id="1R7-FS-H9s">
+                                            <connections>
+                                                <action selector="closed:" destination="vVg-TA-rMC" id="leg-OQ-fqI"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -798,28 +804,25 @@
                                     <action selector="getCheckCode:" destination="vVg-TA-rMC" eventType="touchUpInside" id="8S1-Yn-73b"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ice-LW-e5i">
-                                <rect key="frame" x="270" y="285" width="60" height="30"/>
-                                <state key="normal" title="确认找回">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="submit:" destination="vVg-TA-rMC" eventType="touchUpInside" id="4ZT-tJ-ERr"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="验证码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJ2-TI-6wR">
-                                <rect key="frame" x="50" y="127" width="51" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="验证码" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJ2-TI-6wR">
+                                <rect key="frame" x="16" y="127" width="85" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="deo-jo-c9S"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入您接收到的验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tj7-KW-0cB">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tj7-KW-0cB">
                                 <rect key="frame" x="109" y="124" width="392" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新密码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTy-2Z-Eo6">
-                                <rect key="frame" x="50" y="168" width="51" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新密码" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTy-2Z-Eo6">
+                                <rect key="frame" x="16" y="168" width="85" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="xrY-3U-Jnd"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -840,42 +843,54 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFA-Zv-mpT">
-                                <rect key="frame" x="50" y="86" width="51" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFA-Zv-mpT">
+                                <rect key="frame" x="16" y="86" width="85" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="gfr-YH-qkf"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ice-LW-e5i">
+                                <rect key="frame" x="270" y="248" width="60" height="30"/>
+                                <state key="normal" title="确认找回">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="submit:" destination="vVg-TA-rMC" eventType="touchUpInside" id="4ZT-tJ-ERr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dsj-dY-gop" firstAttribute="leading" secondItem="tj7-KW-0cB" secondAttribute="trailing" constant="8" id="45I-tJ-qlq"/>
-                            <constraint firstItem="H4i-D1-qeo" firstAttribute="centerY" secondItem="82t-k2-ljT" secondAttribute="centerY" constant="-0.5" id="9Lw-Be-IW1"/>
-                            <constraint firstItem="aSL-QW-G8s" firstAttribute="leading" secondItem="HTy-2Z-Eo6" secondAttribute="trailing" constant="8" id="FTE-41-eys"/>
-                            <constraint firstItem="SFA-Zv-mpT" firstAttribute="top" secondItem="hXZ-f1-L2a" secondAttribute="bottom" constant="66" id="GVK-nF-GTB"/>
-                            <constraint firstItem="tHD-ST-hmQ" firstAttribute="leading" secondItem="SFA-Zv-mpT" secondAttribute="trailing" constant="8" id="Gle-Ei-tHm"/>
-                            <constraint firstItem="tHD-ST-hmQ" firstAttribute="centerY" secondItem="SFA-Zv-mpT" secondAttribute="centerY" id="NaF-uc-co1"/>
-                            <constraint firstItem="SFA-Zv-mpT" firstAttribute="leading" secondItem="fdT-6W-FR5" secondAttribute="leadingMargin" constant="34" id="Qeq-Zn-Jpa"/>
-                            <constraint firstItem="82t-k2-ljT" firstAttribute="leading" secondItem="H4i-D1-qeo" secondAttribute="trailing" constant="8" id="TI7-ya-dgK"/>
-                            <constraint firstItem="HTy-2Z-Eo6" firstAttribute="top" secondItem="WJ2-TI-6wR" secondAttribute="bottom" constant="20" id="TfT-gQ-d7e"/>
-                            <constraint firstItem="dsj-dY-gop" firstAttribute="leading" secondItem="82t-k2-ljT" secondAttribute="trailing" constant="8" id="UAV-P5-qTD"/>
+                            <constraint firstItem="SFA-Zv-mpT" firstAttribute="leading" secondItem="fdT-6W-FR5" secondAttribute="leadingMargin" id="3zD-if-7mY"/>
+                            <constraint firstItem="H4i-D1-qeo" firstAttribute="baseline" secondItem="82t-k2-ljT" secondAttribute="baseline" constant="1" id="4Sc-jL-PEE"/>
+                            <constraint firstItem="SFA-Zv-mpT" firstAttribute="top" secondItem="hXZ-f1-L2a" secondAttribute="bottom" constant="66" id="DFd-gG-jo1"/>
+                            <constraint firstAttribute="centerX" secondItem="Ice-LW-e5i" secondAttribute="centerX" id="H1m-Ii-pAC"/>
+                            <constraint firstItem="dsj-dY-gop" firstAttribute="leading" secondItem="aSL-QW-G8s" secondAttribute="trailing" constant="8" id="Sp4-08-COS"/>
+                            <constraint firstItem="tHD-ST-hmQ" firstAttribute="baseline" secondItem="SFA-Zv-mpT" secondAttribute="baseline" constant="-1" id="Ukt-yQ-Ygi"/>
+                            <constraint firstItem="H4i-D1-qeo" firstAttribute="top" secondItem="HTy-2Z-Eo6" secondAttribute="bottom" constant="20" id="UxA-sJ-YyQ"/>
+                            <constraint firstItem="WJ2-TI-6wR" firstAttribute="top" secondItem="SFA-Zv-mpT" secondAttribute="bottom" constant="20" id="VEC-u3-1oK"/>
+                            <constraint firstItem="dsj-dY-gop" firstAttribute="leading" secondItem="tj7-KW-0cB" secondAttribute="trailing" constant="8" id="WRE-2T-U6z"/>
+                            <constraint firstItem="82t-k2-ljT" firstAttribute="leading" secondItem="H4i-D1-qeo" secondAttribute="trailing" constant="8" id="Z6s-0O-3mY"/>
+                            <constraint firstItem="tHD-ST-hmQ" firstAttribute="leading" secondItem="SFA-Zv-mpT" secondAttribute="trailing" constant="8" id="a5V-fP-aWE"/>
+                            <constraint firstItem="H4i-D1-qeo" firstAttribute="leading" secondItem="fdT-6W-FR5" secondAttribute="leadingMargin" id="azK-CP-7dJ"/>
                             <constraint firstItem="0VK-hc-Y9Z" firstAttribute="top" secondItem="hXZ-f1-L2a" secondAttribute="bottom" constant="-20" id="bUi-MH-4pw"/>
-                            <constraint firstItem="WJ2-TI-6wR" firstAttribute="leading" secondItem="fdT-6W-FR5" secondAttribute="leadingMargin" constant="34" id="bxR-Jq-xZc"/>
-                            <constraint firstItem="tj7-KW-0cB" firstAttribute="centerY" secondItem="WJ2-TI-6wR" secondAttribute="centerY" constant="1.5" id="f5B-5i-7xg"/>
+                            <constraint firstItem="Ice-LW-e5i" firstAttribute="top" secondItem="82t-k2-ljT" secondAttribute="bottom" constant="13" id="c5k-xm-NIf"/>
+                            <constraint firstItem="aSL-QW-G8s" firstAttribute="baseline" secondItem="HTy-2Z-Eo6" secondAttribute="baseline" constant="-1" id="cYG-8g-FQB"/>
+                            <constraint firstItem="dsj-dY-gop" firstAttribute="leading" secondItem="82t-k2-ljT" secondAttribute="trailing" constant="8" id="coC-T7-Iph"/>
                             <constraint firstItem="dsj-dY-gop" firstAttribute="top" secondItem="hXZ-f1-L2a" secondAttribute="bottom" constant="62" id="fAb-20-P00"/>
+                            <constraint firstItem="tj7-KW-0cB" firstAttribute="baseline" secondItem="WJ2-TI-6wR" secondAttribute="baseline" id="goM-i5-7Fx"/>
                             <constraint firstItem="dsj-dY-gop" firstAttribute="trailing" secondItem="fdT-6W-FR5" secondAttribute="trailingMargin" id="hBN-ee-nCv"/>
-                            <constraint firstItem="WJ2-TI-6wR" firstAttribute="top" secondItem="SFA-Zv-mpT" secondAttribute="bottom" constant="20" id="i01-1o-vm5"/>
-                            <constraint firstItem="H4i-D1-qeo" firstAttribute="top" secondItem="HTy-2Z-Eo6" secondAttribute="bottom" constant="20" id="iBl-ad-9jj"/>
+                            <constraint firstItem="tj7-KW-0cB" firstAttribute="leading" secondItem="WJ2-TI-6wR" secondAttribute="trailing" constant="8" id="iRg-o0-xgq"/>
+                            <constraint firstItem="HTy-2Z-Eo6" firstAttribute="top" secondItem="WJ2-TI-6wR" secondAttribute="bottom" constant="20" id="icq-wV-Zpj"/>
                             <constraint firstItem="0VK-hc-Y9Z" firstAttribute="leading" secondItem="fdT-6W-FR5" secondAttribute="leadingMargin" constant="-16" id="juo-vF-4VB"/>
-                            <constraint firstItem="dsj-dY-gop" firstAttribute="leading" secondItem="tHD-ST-hmQ" secondAttribute="trailing" constant="8" id="ldY-1C-pDk"/>
-                            <constraint firstItem="H4i-D1-qeo" firstAttribute="leading" secondItem="fdT-6W-FR5" secondAttribute="leadingMargin" id="rOH-BD-rhr"/>
-                            <constraint firstAttribute="centerY" secondItem="Ice-LW-e5i" secondAttribute="centerY" id="rSG-VP-l1Y"/>
-                            <constraint firstItem="tj7-KW-0cB" firstAttribute="leading" secondItem="WJ2-TI-6wR" secondAttribute="trailing" constant="8" id="txV-7P-Op2"/>
+                            <constraint firstItem="HTy-2Z-Eo6" firstAttribute="leading" secondItem="fdT-6W-FR5" secondAttribute="leadingMargin" id="k9S-bG-ZDG"/>
+                            <constraint firstItem="WJ2-TI-6wR" firstAttribute="leading" secondItem="fdT-6W-FR5" secondAttribute="leadingMargin" id="luk-UR-f3W"/>
+                            <constraint firstItem="dsj-dY-gop" firstAttribute="leading" secondItem="tHD-ST-hmQ" secondAttribute="trailing" constant="8" id="qTi-YU-tKg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0VK-hc-Y9Z" secondAttribute="trailing" constant="-16" id="u9m-eq-HtK"/>
-                            <constraint firstItem="HTy-2Z-Eo6" firstAttribute="centerY" secondItem="aSL-QW-G8s" secondAttribute="centerY" constant="-0.5" id="uLZ-fP-RyL"/>
-                            <constraint firstItem="dsj-dY-gop" firstAttribute="leading" secondItem="aSL-QW-G8s" secondAttribute="trailing" constant="8" id="vw8-5F-GKB"/>
-                            <constraint firstAttribute="centerX" secondItem="Ice-LW-e5i" secondAttribute="centerX" constant="0.5" id="yXp-P3-Ejk"/>
-                            <constraint firstItem="HTy-2Z-Eo6" firstAttribute="leading" secondItem="fdT-6W-FR5" secondAttribute="leadingMargin" constant="34" id="z0M-hl-vus"/>
+                            <constraint firstItem="aSL-QW-G8s" firstAttribute="leading" secondItem="HTy-2Z-Eo6" secondAttribute="trailing" constant="8" id="zfV-nY-6pw"/>
                         </constraints>
                     </view>
                     <connections>

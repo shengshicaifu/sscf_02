@@ -35,7 +35,7 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
             usernameLabel.text = username
         }
         if let phone = userDefaults.objectForKey("phone") as? String {
-            phoneLabel.text = phone
+            phoneLabel.text = Common.replaceStringToX(phone, start: 3, end: 7)
         }
         
         

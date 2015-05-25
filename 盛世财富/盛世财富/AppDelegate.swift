@@ -12,10 +12,26 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+//        NSLog("didFinishLaunchingWithOptions")
         // Override point for customization after application launch.
+        var storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        
+        if !NSUserDefaults.standardUserDefaults().boolForKey("firstLaunch") {
+            
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "firstLaunch")
+            
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: "showLockPassword")
+            
+            window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("UserGuideViewController") as! UserGuideViewController
+            
+        }else{
+            window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("tabBarViewController") as!TabBarViewController
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "showLockPassword")
+        }
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
@@ -31,19 +47,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+//        NSLog("applicationWillEnterForeground")
         
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        //手势解锁相关
-        if let pswd  = LLLockPassword.loadLockPassword(){
+//        NSLog("applicationDidBecomeActive")
+        if NSUserDefaults.standardUserDefaults().boolForKey("showLockPassword") {
+            //第一次运行的时候不显示手势密码
             
-            self.showLLLockViewController(LLLockViewTypeCheck)
-        }else{
-            self.showLLLockViewController(LLLockViewTypeCreate)
-            
+            //手势解锁相关
+            if let pswd  = LLLockPassword.loadLockPassword(){
+                
+                self.showLLLockViewController(LLLockViewTypeCheck)
+            }else{
+                self.showLLLockViewController(LLLockViewTypeCreate)
+                
+            }
         }
+        
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -52,12 +75,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func showLLLockViewController(type:LLLockViewType){
-        if self.window!.rootViewController!.presentingViewController == nil {
+        //if self.window!.rootViewController!.presentingViewController == nil {
             var lockVc = LLLockViewController()
             lockVc.nLockViewType = type
             lockVc.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+            var root = self.window?.rootViewController
+            NSLog("root:%@",root!)
             self.window?.rootViewController?.presentViewController(lockVc, animated: true, completion: nil)
-        }
+        //}
     }
 
 

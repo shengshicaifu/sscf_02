@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,23 +10,21 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iphone-引导页1" translatesAutoresizingMaskIntoConstraints="NO" id="WLn-Nf-OP2">
-                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
-                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="盛世财富" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOM-pa-coQ">
+                    <rect key="frame" x="193" y="226" width="96" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="WLn-Nf-OP2" secondAttribute="trailing" id="CsD-Jv-xxY"/>
-                <constraint firstItem="WLn-Nf-OP2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Pzs-76-oeQ"/>
-                <constraint firstItem="WLn-Nf-OP2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XMh-oD-cPn"/>
-                <constraint firstAttribute="bottom" secondItem="WLn-Nf-OP2" secondAttribute="bottom" id="lGd-g3-6N0"/>
+                <constraint firstAttribute="centerX" secondItem="lOM-pa-coQ" secondAttribute="centerX" constant="-0.5" id="K00-0a-FHg"/>
+                <constraint firstAttribute="centerY" secondItem="lOM-pa-coQ" secondAttribute="centerY" id="t9Q-x8-S3H"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="639" y="426"/>
         </view>
     </objects>
-    <resources>
-        <image name="iphone-引导页1" width="750" height="1334"/>
-    </resources>
 </document>

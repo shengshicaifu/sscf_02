@@ -59,6 +59,7 @@
 		E96E52451B0C865800CFD8E2 /* ModifyPhoneStepFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96E52441B0C865800CFD8E2 /* ModifyPhoneStepFirstViewController.swift */; };
 		E96E52471B0C868900CFD8E2 /* ModifyPhoneStepSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96E52461B0C868900CFD8E2 /* ModifyPhoneStepSecondViewController.swift */; };
 		E977F3F41AC540E7008C2F8A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */; };
+		E9AB8FA01B12FD55004A77D7 /* UserGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB8F9F1B12FD55004A77D7 /* UserGuideViewController.swift */; };
 		E9B370FE1B1046CF00C6766C /* PayLogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B370FD1B1046CF00C6766C /* PayLogTableViewController.swift */; };
 		E9B9EF4C1AC8E00600E46714 /* BidListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B9EF4B1AC8E00600E46714 /* BidListViewController.swift */; };
 		E9BEE1AD1AC24CF10049600C /* HttpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BEE1AC1AC24CF10049600C /* HttpController.swift */; };
@@ -180,6 +181,7 @@
 		E96E52441B0C865800CFD8E2 /* ModifyPhoneStepFirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModifyPhoneStepFirstViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E96E52461B0C868900CFD8E2 /* ModifyPhoneStepSecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModifyPhoneStepSecondViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E977F3F31AC540E7008C2F8A /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = RegisterViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		E9AB8F9F1B12FD55004A77D7 /* UserGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserGuideViewController.swift; sourceTree = "<group>"; };
 		E9B370FD1B1046CF00C6766C /* PayLogTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayLogTableViewController.swift; sourceTree = "<group>"; };
 		E9B9EF4B1AC8E00600E46714 /* BidListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BidListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E9BEE1AC1AC24CF10049600C /* HttpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpController.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				5906B24A1B0F125E00ADA082 /* HandPasswordViewController.swift */,
 				5906B24E1B104C0100ADA082 /* OffLineChargeViewController.swift */,
 				E9B370FD1B1046CF00C6766C /* PayLogTableViewController.swift */,
+				E9AB8F9F1B12FD55004A77D7 /* UserGuideViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -649,6 +652,7 @@
 				591FD13B1B0C7CF000BFD74D /* AFNetworkReachabilityManager.m in Sources */,
 				E94E95A51B0AD34F00E717DE /* CACustomTextLayer.m in Sources */,
 				E96B2F0A1B08673900B4197B /* MDRadialProgressView.m in Sources */,
+				E9AB8FA01B12FD55004A77D7 /* UserGuideViewController.swift in Sources */,
 				E9C605B61ABBB9C500752D91 /* RefreshHeaderView.swift in Sources */,
 				E96B2F081B08673900B4197B /* MDRadialProgressLabel.m in Sources */,
 				E9C70C0A1AC108AC00E1CA8D /* AboutViewController.swift in Sources */,

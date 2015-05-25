@@ -62,7 +62,7 @@ class FindPasswordViewController:UIViewController {
             AlertView.showMsg("请输入验证码", parentView: self.view)
             return
         }
-
+        
         if password.text.isEmpty {
             AlertView.showMsg("请输入新密码", parentView: self.view)
             return

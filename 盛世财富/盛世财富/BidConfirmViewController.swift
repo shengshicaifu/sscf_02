@@ -68,36 +68,36 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         }
         
         if bidMoney.text.isEmpty {
-            bidMoney.becomeFirstResponder()
+            //bidMoney.becomeFirstResponder()
             AlertView.showMsg("请填写投标金额", parentView: self.view)
             return
         }
         if !Common.isMoney(bidMoney.text) {
-            bidMoney.becomeFirstResponder()
+            //bidMoney.becomeFirstResponder()
             AlertView.showMsg("只能是数字", parentView: self.view)
             return
         }
         
         if !reward.text.isEmpty && !Common.isMoney(reward.text) {
-            reward.becomeFirstResponder()
+            //reward.becomeFirstResponder()
             AlertView.showMsg("奖金只能是数字", parentView: self.view)
             return
         }
         
         if !experience.text.isEmpty && !Common.isMoney(experience.text) {
-            experience.becomeFirstResponder()
+            //experience.becomeFirstResponder()
             AlertView.showMsg("体验金只能是数字", parentView: self.view)
             return
         }
         
         
         if payPassword.text.isEmpty {
-            payPassword.becomeFirstResponder()
+            //payPassword.becomeFirstResponder()
             AlertView.showMsg("请输入支付密码", parentView: self.view)
             return
         }
         if !Common.isPassword(payPassword.text) {
-            payPassword.becomeFirstResponder()
+            //payPassword.becomeFirstResponder()
             AlertView.showMsg(Common.passwordErrorTip, parentView: self.view)
             return
         }

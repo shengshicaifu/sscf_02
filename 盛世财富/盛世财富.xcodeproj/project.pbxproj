@@ -347,6 +347,7 @@
 				E96E52441B0C865800CFD8E2 /* ModifyPhoneStepFirstViewController.swift */,
 				E96E52461B0C868900CFD8E2 /* ModifyPhoneStepSecondViewController.swift */,
 				5906B24A1B0F125E00ADA082 /* HandPasswordViewController.swift */,
+				5906B24E1B104C0100ADA082 /* OffLineChargeViewController.swift */,
 				E9B370FD1B1046CF00C6766C /* PayLogTableViewController.swift */,
 			);
 			name = Controllers;

@@ -196,17 +196,17 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                 if let resultData = result["data"]?.valueForKey("list") as? NSMutableArray {
                     self.listData = resultData
                 } else {
-                    if self.listData.isKindOfClass(NSMutableArray) {
-                        NSLog("listData是NSMutableArray")
-                    }
+//                    if self.listData.isKindOfClass(NSMutableArray) {
+//                        NSLog("listData是NSMutableArray")
+//                    }
                     self.listData = NSMutableArray()
                     self.listData.removeAllObjects()
                     AlertView.alert("提示", message: "没有找到数据", buttonTitle: "确定", viewController: self)
                 }
                 
-                for var i=0 ; i < self.listData.count; i++ {
-                    NSLog("筛选结果%@",(self.listData[i] as! NSDictionary)["id"] as! String)
-                }
+//                for var i=0 ; i < self.listData.count; i++ {
+//                    NSLog("筛选结果%@",(self.listData[i] as! NSDictionary)["id"] as! String)
+//                }
 //                println(self.listData.count)
                 self.mainTable.reloadData()
                 
@@ -223,7 +223,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     
     @IBOutlet weak var mainTable: UITableView!
     override func viewDidLoad() {
-        NSLog("viewDidLoad")
+//        NSLog("viewDidLoad")
         super.viewDidLoad()
         mainTable.delegate = self
         loading.startLoading(self.view)
@@ -287,7 +287,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             if count > 0 {
                 borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
             }
-            NSLog("最后一个[标的]的ID号码:%i", borrow_id)
+//            NSLog("最后一个[标的]的ID号码:%i", borrow_id)
             var params = ["borrow_id":borrow_id,"borrow_status":self.status,"borrow_money":self.money,"borrow_duration":self.period]
             var manager = AFHTTPRequestOperationManager()
             manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
@@ -342,7 +342,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        NSLog("cellForRowAtIndexPath")
+//        NSLog("cellForRowAtIndexPath")
         let cell = self.mainTable.dequeueReusableCellWithIdentifier("allList") as! UITableViewCell
         var money = cell.viewWithTag(100) as! UILabel
         var percent = cell.viewWithTag(101) as! UILabel
@@ -420,7 +420,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     }
     
     override func viewWillAppear(animated: Bool) {
-        NSLog("viewWillAppear")
+//        NSLog("viewWillAppear")
 ////        println(self.tmpListData.count)
 //        
 //        if self.tmpListData.count == 0 && self.listData.count == 0{

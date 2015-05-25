@@ -23,7 +23,7 @@ class ModifyPhoneStepFirstViewController: UIViewController {
         // Do any additional setup after loading the view.
         if let phone = NSUserDefaults.standardUserDefaults().objectForKey("phone") as? String{
         ///phone = "15527410109"
-            self.oldPhoneLabel.text = phone
+            self.oldPhoneLabel.text = phone//ommon.replaceStringToX(phone, start: 3, end: 7)
         }
         
     }

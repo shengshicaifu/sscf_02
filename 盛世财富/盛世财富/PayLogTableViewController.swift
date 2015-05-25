@@ -21,7 +21,7 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
         self.tableView.delegate = self
         
         
-        loading.startLoading(self.view)
+        loading.startLoading(self.tableView)
         var manager = AFHTTPRequestOperationManager()
         var url = Common.serverHost + "/App-Pay-paylog"
         var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
@@ -67,30 +67,38 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
         
         var header = UIView()
         header.frame = CGRectMake(0, 0, self.view.frame.width, 100)
-        header.backgroundColor = UIColor.grayColor()
+        header.backgroundColor = UIColor.whiteColor()
         header.addSubview(blurView)
         
         var successMoneyLabel = UILabel()
         var failMoneyLabel = UILabel()
         successMoneyLabel.text = self.successMoney
-        successMoneyLabel.frame = CGRectMake(10, 25, 100, 50)
+        successMoneyLabel.frame = CGRectMake(15, 40, 100, 50)
         successMoneyLabel.textColor = UIColor.redColor()
         successMoneyLabel.font = UIFont(name: "Arial", size: 20)
         
         failMoneyLabel.text = self.failMoney
-        failMoneyLabel.frame = CGRectMake(150, 25, 100, 50)
-        failMoneyLabel.textColor = UIColor.blueColor()
+        failMoneyLabel.frame = CGRectMake(200, 40, 100, 50)
+        failMoneyLabel.textColor = UIColor.grayColor()
         failMoneyLabel.font = UIFont(name: "Arial", size: 20)
         
         
         var l1 = UILabel()
-        var l2 = UILabel()
         l1.text = "成功金额"
+        l1.textColor = UIColor.grayColor()
+        l1.font = UIFont(name: "Arial", size: 14)
+        l1.frame = CGRectMake(15, 20, 100, 30)
+        
+        var l2 = UILabel()
         l2.text = "失败金额"
+        l2.textColor = UIColor.grayColor()
+        l2.font = UIFont(name: "Arial", size: 14)
+        l2.frame = CGRectMake(200, 20, 100, 30)
         
         header.addSubview(successMoneyLabel)
         header.addSubview(failMoneyLabel)
-        
+        header.addSubview(l1)
+        header.addSubview(l2)
         return header
     }
     

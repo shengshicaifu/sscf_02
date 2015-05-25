@@ -105,8 +105,9 @@ class ModifyPhoneStepSecondViewController: UIViewController {
         resignAll()
         var phone = newPhoneTextField.text
         if phone.isEmpty {
-            AlertView.alert("提示", message: "请填写新的手机号码", buttonTitle: "确定", viewController: self)
-            newPhoneTextField.becomeFirstResponder()
+//            AlertView.alert("提示", message: "请填写新的手机号码", buttonTitle: "确定", viewController: self)
+            AlertView.showMsg("请填写新的手机号码", parentView: self.view)
+            //newPhoneTextField.becomeFirstResponder()
             return
         }
         if !Common.isTelephone(phone) {
@@ -116,8 +117,9 @@ class ModifyPhoneStepSecondViewController: UIViewController {
         
         var code = codeTextField.text
         if code.isEmpty {
-            AlertView.alert("提示", message: "请填写手机验证码", buttonTitle: "确定", viewController: self)
-            codeTextField.becomeFirstResponder()
+//            AlertView.alert("提示", message: "请填写手机验证码", buttonTitle: "确定", viewController: self)
+//            codeTextField.becomeFirstResponder()
+            AlertView.showMsg("请填写手机验证码", parentView: self.view)
             return
         }
         

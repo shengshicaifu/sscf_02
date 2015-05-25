@@ -355,6 +355,8 @@
 				5906B24A1B0F125E00ADA082 /* HandPasswordViewController.swift */,
 				5906B24E1B104C0100ADA082 /* OffLineChargeViewController.swift */,
 				E9B370FD1B1046CF00C6766C /* PayLogTableViewController.swift */,
+				59F3D5791B12FE6600870CC1 /* FindPasswordViewController.swift */,
+				59F3D57B1B1309C600870CC1 /* GetCashViewController.swift */,
 				E9AB8F9F1B12FD55004A77D7 /* UserGuideViewController.swift */,
 			);
 			name = Controllers;

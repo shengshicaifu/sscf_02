@@ -14,7 +14,7 @@ class ModifyPhoneStepFirstViewController: UIViewController {
     @IBOutlet weak var oldPhoneLabel: UILabel!
     @IBOutlet weak var codeTextField: UITextField!
     @IBOutlet weak var getCodeButton: UIButton!
-    var phone:String!
+    var phone:String = String()
     var timer:NSTimer!
     var f_id:String?
     override func viewDidLoad() {
@@ -24,6 +24,7 @@ class ModifyPhoneStepFirstViewController: UIViewController {
         if let phone = NSUserDefaults.standardUserDefaults().objectForKey("phone") as? String{
         ///phone = "15527410109"
             self.oldPhoneLabel.text = phone//ommon.replaceStringToX(phone, start: 3, end: 7)
+            self.phone = phone
         }
         
     }
@@ -53,8 +54,8 @@ class ModifyPhoneStepFirstViewController: UIViewController {
                 //获取验证码
                 var url = Common.serverHost + "/App-Ucenter-sendphone"
                 var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
-                var params = ["to":token,"cellphone":self.phone]
-                NSLog("发送验证码参数：%@", params)
+                var params = ["to":token!,"cellphone":self.phone]
+//                NSLog("发送验证码参数：%@", params)
                 var manager = AFHTTPRequestOperationManager()
                 manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                 loading.startLoading(self.view)

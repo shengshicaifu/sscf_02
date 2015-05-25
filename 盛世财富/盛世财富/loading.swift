@@ -39,6 +39,7 @@ class loading{
         darkView.addSubview(circle)
         view.addSubview(darkView)
         circle.startAnimating()
+        
     }
     class func startLoading(view:UIView,message:String){
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
@@ -63,6 +64,7 @@ class loading{
         darkView.addSubview(circle)
         view.addSubview(darkView)
         circle.startAnimating()
+        
     }
     class func stopLoading(){
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false

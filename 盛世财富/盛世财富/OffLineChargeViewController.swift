@@ -30,6 +30,28 @@ class OffLineChargeViewController:UIViewController {
     }
     
     @IBAction func submit(sender: UIButton) {
+        if t_money.text.isEmpty {
+            AlertView.showMsg("请输入金额！", parentView: self.view)
+            return
+        }
+        if t_account.text.isEmpty {
+            AlertView.showMsg("请输入银行账号！", parentView: self.view)
+            return
+        }
+        if t_id.text.isEmpty {
+            AlertView.showMsg("请输入汇款单号！", parentView: self.view)
+            return
+        }
+        if p_money.text.isEmpty {
+            AlertView.showMsg("请输入金额！", parentView: self.view)
+            return
+        }
+        if p_id.text.isEmpty {
+            AlertView.showMsg("请输入交易参考号！", parentView: self.view)
+            return
+        }
+        
+        
         let user = NSUserDefaults.standardUserDefaults()
         let url = Common.serverHost+"/App-Pay-offline"
         let afnet = AFHTTPRequestOperationManager()

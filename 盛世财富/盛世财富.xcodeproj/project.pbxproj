@@ -35,6 +35,8 @@
 		59BEC4191B05CD5300F5690D /* UserMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */; };
 		59BEC41B1B07124200F5690D /* BidRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BEC41A1B07124200F5690D /* BidRecordViewController.swift */; };
 		59D214BB1AFC9AD800677C26 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D214BA1AFC9AD800677C26 /* AlertView.swift */; };
+		59F3D57A1B12FE6600870CC1 /* FindPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F3D5791B12FE6600870CC1 /* FindPasswordViewController.swift */; };
+		59F3D57C1B1309C600870CC1 /* GetCashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F3D57B1B1309C600870CC1 /* GetCashViewController.swift */; };
 		D8B251181B0041AE00360F4E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B251171B0041AE00360F4E /* Reachability.m */; };
 		D8B2511A1B00460B00360F4E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B251191B00460B00360F4E /* SystemConfiguration.framework */; };
 		E90EA27C1ABFAB5D006D22E6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90EA27B1ABFAB5D006D22E6 /* LoginViewController.swift */; };
@@ -144,6 +146,8 @@
 		59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserMoneyViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		59BEC41A1B07124200F5690D /* BidRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BidRecordViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		59D214BA1AFC9AD800677C26 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		59F3D5791B12FE6600870CC1 /* FindPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPasswordViewController.swift; sourceTree = "<group>"; };
+		59F3D57B1B1309C600870CC1 /* GetCashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCashViewController.swift; sourceTree = "<group>"; };
 		D8B251161B0041AE00360F4E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D8B251171B0041AE00360F4E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D8B251191B00460B00360F4E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -349,6 +353,8 @@
 				5906B24A1B0F125E00ADA082 /* HandPasswordViewController.swift */,
 				5906B24E1B104C0100ADA082 /* OffLineChargeViewController.swift */,
 				E9B370FD1B1046CF00C6766C /* PayLogTableViewController.swift */,
+				59F3D5791B12FE6600870CC1 /* FindPasswordViewController.swift */,
+				59F3D57B1B1309C600870CC1 /* GetCashViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -647,6 +653,7 @@
 				5906B2461B0F103F00ADA082 /* LLLockPassword.m in Sources */,
 				E96B2ED21B0833A500B4197B /* ModifyPinPasswordViewController.swift in Sources */,
 				591FD13B1B0C7CF000BFD74D /* AFNetworkReachabilityManager.m in Sources */,
+				59F3D57C1B1309C600870CC1 /* GetCashViewController.swift in Sources */,
 				E94E95A51B0AD34F00E717DE /* CACustomTextLayer.m in Sources */,
 				E96B2F0A1B08673900B4197B /* MDRadialProgressView.m in Sources */,
 				E9C605B61ABBB9C500752D91 /* RefreshHeaderView.swift in Sources */,
@@ -664,6 +671,7 @@
 				E9E5211F1B05E3D900A41EEA /* YYCycleScrollView.swift in Sources */,
 				E9C605B71ABBB9C500752D91 /* UIScrollView+Refresh.swift in Sources */,
 				E961E1251AC8DCBC0021ED14 /* REMenu.m in Sources */,
+				59F3D57A1B12FE6600870CC1 /* FindPasswordViewController.swift in Sources */,
 				E95684F21B06D8FA00F46FF0 /* AccountInfoTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

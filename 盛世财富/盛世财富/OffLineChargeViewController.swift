@@ -1,7 +1,7 @@
 //
 //  OffLineChargeViewController.swift
 //  盛世财富
-//
+//  线下充值
 //  Created by 肖典 on 15/5/23.
 //  Copyright (c) 2015年 sscf88. All rights reserved.
 //

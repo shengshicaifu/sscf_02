@@ -419,24 +419,16 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
 
     }
     
-    override func viewWillAppear(animated: Bool) {
-//        NSLog("viewWillAppear")
-////        println(self.tmpListData.count)
-//        
-//        if self.tmpListData.count == 0 && self.listData.count == 0{
-//            mainTable.hidden = true	
-//            circle.hidden = false
-//            circle.startAnimating()
+//    override func viewWillAppear(animated: Bool) {
+//        //检查是否连接网络
+//        var reach = Reachability(hostName: Common.domain)
+//        reach.unreachableBlock = {(r:Reachability!) -> Void in
+//            dispatch_async(dispatch_get_main_queue(), {
+//                //self.mainTable.hidden = true
+//                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+//            })
 //        }
-        //检查是否连接网络
-        var reach = Reachability(hostName: Common.domain)
-        reach.unreachableBlock = {(r:Reachability!) -> Void in
-            dispatch_async(dispatch_get_main_queue(), {
-                //self.mainTable.hidden = true
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
-            })
-        }
-        reach.startNotifier()
-    }
+//        reach.startNotifier()
+//    }
 }
 

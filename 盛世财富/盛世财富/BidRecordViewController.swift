@@ -15,43 +15,62 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
         super.viewDidLoad()
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        if let token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String {
-            loading.startLoading(self.view)
-            self.tableView.scrollEnabled = false
-            let afnet = AFHTTPRequestOperationManager()
-            let url = Common.serverHost + "/App-Myinvest-getAllTending"
-            let param = ["to":token]
-            afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-            afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
-//                NSLog("投标记录：%@",res as! NSDictionary)
-                
-                if let d = res["data"] as? NSMutableArray{
-                    self.data = d
-                    self.tableView.reloadData()
+        //检查手机网络
+        var reach = Reachability(hostName: Common.domain)
+        reach.unreachableBlock = {(r:Reachability!) -> Void in
+            //NSLog("网络不可用")
+            dispatch_async(dispatch_get_main_queue(), {
+
+                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+            })
+        }
+        
+        reach.reachableBlock = {(r:Reachability!) -> Void in
+           //NSLog("网络可用")
+            dispatch_async(dispatch_get_main_queue(), {
+                if let token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String {
+                    loading.startLoading(self.view)
+                    self.tableView.scrollEnabled = false
+                    let afnet = AFHTTPRequestOperationManager()
+                    let url = Common.serverHost + "/App-Myinvest-getAllTending"
+                    let param = ["to":token]
+                    afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+                    afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
+                        //                NSLog("投标记录：%@",res as! NSDictionary)
+                        
+                        if let d = res["data"] as? NSMutableArray{
+                            self.data = d
+                            self.tableView.reloadData()
+                        }
+                        
+                        
+                        loading.stopLoading()
+                        self.tableView.scrollEnabled = true
+                        }, failure: { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                            AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
+                            self.tableView.reloadData()
+                            loading.stopLoading()
+                            self.tableView.scrollEnabled = true
+                    })
                 }
 
                 
-                loading.stopLoading()
-                self.tableView.scrollEnabled = true
-                }, failure: { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                    AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
-                    self.tableView.reloadData()
-                    loading.stopLoading()
-                    self.tableView.scrollEnabled = true
             })
         }
+      
+        reach.startNotifier()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "投标记录"
-        }
-        return ""
-    }
+//    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if section == 0 {
+//            return "投标记录"
+//        }
+//        return ""
+//    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("list")  as! UITableViewCell

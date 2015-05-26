@@ -19,36 +19,53 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
 
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        //检查手机网络
+        var reach = Reachability(hostName: Common.domain)
+        reach.unreachableBlock = {(r:Reachability!) -> Void in
+            //NSLog("网络不可用")
+            dispatch_async(dispatch_get_main_queue(), {
+
+                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+            })
+        }
         
-        
-        loading.startLoading(self.tableView)
-        var manager = AFHTTPRequestOperationManager()
-        var url = Common.serverHost + "/App-Pay-paylog"
-        var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
-        var params = ["to":token!]
-        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-        manager.POST(url, parameters: params,
-            success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                loading.stopLoading()
+        reach.reachableBlock = {(r:Reachability!) -> Void in
+           //NSLog("网络可用")
+            dispatch_async(dispatch_get_main_queue(), {
+                loading.startLoading(self.tableView)
+                var manager = AFHTTPRequestOperationManager()
+                var url = Common.serverHost + "/App-Pay-paylog"
+                var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
+                var params = ["to":token!]
+                manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+                manager.POST(url, parameters: params,
+                    success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                        loading.stopLoading()
+                        
+                        var result = data as! NSDictionary
+                        //NSLog("充值记录：%@", result)
+                        var code = result["code"] as! Int
+                        if code == -1 {
+                            AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
+                        }else if code == 0 {
+                            AlertView.alert("提示", message: "查询失败，请稍候再试", buttonTitle: "确定", viewController: self)
+                        }else if code == 200 {
+                            self.payLogArray = result["data"]?["list"] as? NSArray
+                            self.successMoney = result["data"]?["success_money"] as? String
+                            self.failMoney = result["data"]?["fail_money"] as? String
+                            self.tableView.reloadData()
+                        }
+                    },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                        loading.stopLoading()
+                        AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
+                    }
+                )
+
                 
-                var result = data as! NSDictionary
-                //NSLog("充值记录：%@", result)
-                var code = result["code"] as! Int
-                if code == -1 {
-                    AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
-                }else if code == 0 {
-                    AlertView.alert("提示", message: "查询失败，请稍候再试", buttonTitle: "确定", viewController: self)
-                }else if code == 200 {
-                    self.payLogArray = result["data"]?["list"] as? NSArray
-                    self.successMoney = result["data"]?["success_money"] as? String
-                    self.failMoney = result["data"]?["fail_money"] as? String
-                    self.tableView.reloadData()
-                }
-            },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                loading.stopLoading()
-                AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
-            }
-        )
+            })
+        }
+      
+        reach.startNotifier()
     }
 
 

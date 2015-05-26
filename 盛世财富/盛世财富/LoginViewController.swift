@@ -124,6 +124,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                             //报错弹窗
                             AlertView.showMsg(result["message"] as! String, parentView: self.view)
                         }
+                    
                     }else{
                         AlertView.showMsg("服务器异常!", parentView: self.view)
                     }

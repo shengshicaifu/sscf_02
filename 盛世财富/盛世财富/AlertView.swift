@@ -8,8 +8,16 @@
 //
 
 import Foundation
-
+/**
+*  系统使用弹框
+*/
 class AlertView {
+    /**
+    提示信息框，3秒后自动消失
+    
+    :param: msg        “提示信息”
+    :param: parentView “展现该提示信息框的父视图”
+    */
     class func showMsg(msg:String,parentView:UIView){
         
 //        var hintLabel = UILabel()
@@ -41,10 +49,32 @@ class AlertView {
         
         parentView.makeToast(msg, duration: 3, position: position)
     }
+    /**
+    模态提示框
     
+    :param: title          “对话框标题”
+    :param: message        “提示信息”
+    :param: buttonTitle    “按钮标题”
+    :param: viewController “展示该对话框的控制器”
+    */
     class func alert(title:String,message:String,buttonTitle:String,viewController:UIViewController){
         var alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: buttonTitle, style: .Cancel, handler: nil))
         viewController.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    /**
+    模态提示框,带回调函数
+    
+    :param: title          “对话框标题”
+    :param: message        “提示信息”
+    :param: buttonTitle    “按钮标题”
+    :param: viewController “展示该对话框的控制器”
+    :param: callback “回调函数”
+    */
+    class func alert(title:String,message:String,buttonTitle:String,viewController:UIViewController,callback:(() -> Void)?){
+        var alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: buttonTitle, style: .Cancel, handler: nil))
+        viewController.presentViewController(alert, animated: true, completion: callback)
     }
 }

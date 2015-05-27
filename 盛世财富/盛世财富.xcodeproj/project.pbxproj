@@ -47,6 +47,7 @@
 		E94E95A61B0AD34F00E717DE /* NJDBezierCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = E94E95A41B0AD34F00E717DE /* NJDBezierCurve.m */; };
 		E94E95A81B0AD3DD00E717DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E94E95A71B0AD3DD00E717DE /* Main.storyboard */; };
 		E95684F21B06D8FA00F46FF0 /* AccountInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95684F11B06D8FA00F46FF0 /* AccountInfoTableViewController.swift */; };
+		E9608D9F1B1577960025D247 /* VerifyRealNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9608D9E1B1577960025D247 /* VerifyRealNameViewController.swift */; };
 		E961E1241AC8DCBC0021ED14 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11B1AC8DCBC0021ED14 /* RECommonFunctions.m */; };
 		E961E1251AC8DCBC0021ED14 /* REMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11D1AC8DCBC0021ED14 /* REMenu.m */; };
 		E961E1261AC8DCBC0021ED14 /* REMenuContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11F1AC8DCBC0021ED14 /* REMenuContainerView.m */; };
@@ -163,6 +164,7 @@
 		E94E95A41B0AD34F00E717DE /* NJDBezierCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJDBezierCurve.m; sourceTree = "<group>"; };
 		E94E95A71B0AD3DD00E717DE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E95684F11B06D8FA00F46FF0 /* AccountInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AccountInfoTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		E9608D9E1B1577960025D247 /* VerifyRealNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyRealNameViewController.swift; sourceTree = "<group>"; };
 		E961E11A1AC8DCBC0021ED14 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		E961E11B1AC8DCBC0021ED14 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 		E961E11C1AC8DCBC0021ED14 /* REMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenu.h; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				598A77831AF9E48600DE4271 /* TabBarViewController.swift */,
 				E9AB8F9F1B12FD55004A77D7 /* UserGuideViewController.swift */,
 				59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */,
+				E9608D9E1B1577960025D247 /* VerifyRealNameViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -674,6 +677,7 @@
 				591FD1401B0C7CF000BFD74D /* AFURLSessionManager.m in Sources */,
 				E9C70C081AC1035B00E1CA8D /* IdeaViewController.swift in Sources */,
 				E9E5211F1B05E3D900A41EEA /* YYCycleScrollView.swift in Sources */,
+				E9608D9F1B1577960025D247 /* VerifyRealNameViewController.swift in Sources */,
 				E9C605B71ABBB9C500752D91 /* UIScrollView+Refresh.swift in Sources */,
 				E961E1251AC8DCBC0021ED14 /* REMenu.m in Sources */,
 				E95684F21B06D8FA00F46FF0 /* AccountInfoTableViewController.swift in Sources */,

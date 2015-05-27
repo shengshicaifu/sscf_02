@@ -67,7 +67,16 @@ class Common {
     }
     
     static let stringLengthInErrorTip:String = "字符串长度不在指定的区间内"
-    //任意字符串是否在指定的长度范围内，闭区间
+    
+    /**
+    任意字符串是否在指定的长度范围内，闭区间
+    
+    :param: str   待测试字符串
+    :param: start 长度区间开始数
+    :param: end   长度区间截至数
+    
+    :returns: true待测试字符串在指定的长度范围内；false待测试字符串不在指定的长度范围内
+    */
     class func stringLengthIn(str:String,start:Int,end:Int) -> Bool {
         var regex = "^.{\(start),\(end)}$"
         var pred = NSPredicate(format: "SELF MATCHES %@", regex)

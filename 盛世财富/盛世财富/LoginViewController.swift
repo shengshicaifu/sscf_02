@@ -84,8 +84,9 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     loading.stopLoading()
                     var result = data as! NSDictionary
+                    NSLog("登录返回信息%@", result)
                     if let code = result["code"] as? Int{
-                        println(result)
+                        
                         
                         if(code == 200){
                             let user = NSUserDefaults.standardUserDefaults()
@@ -117,6 +118,10 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                             
                             user.setObject(userInfo["pinPass"], forKey: "pinpass")
                             user.setObject(userInfo["cellphone"], forKey: "phone")
+                            
+                            //保存身份证及身份证验证信息
+                            user.setObject(userInfo["idCard"]?["isVerify"], forKey: "isVerify")
+                            user.setObject(userInfo["idCard"]?["isUpload"], forKey: "isUpload")
                             
                             self.dismissViewControllerAnimated(true, completion: nil)
                         }

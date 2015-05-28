@@ -11,28 +11,40 @@ import UIKit
 class BidRecordViewController:UITableViewController,UITableViewDataSource,UITableViewDelegate {
     
     var data:NSMutableArray = NSMutableArray()
+    
+    var type:String = "1"
+    var count:String = "15"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        getData()
+    }
+
+    
+    /**
+    获取投标纪录
+    */
+    func getData(){
         //检查手机网络
         var reach = Reachability(hostName: Common.domain)
         reach.unreachableBlock = {(r:Reachability!) -> Void in
             //NSLog("网络不可用")
             dispatch_async(dispatch_get_main_queue(), {
-
+                
                 AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
             })
         }
         
         reach.reachableBlock = {(r:Reachability!) -> Void in
-           //NSLog("网络可用")
+            //NSLog("网络可用")
             dispatch_async(dispatch_get_main_queue(), {
                 if let token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String {
                     loading.startLoading(self.view)
                     self.tableView.scrollEnabled = false
                     let afnet = AFHTTPRequestOperationManager()
-                    let url = Common.serverHost + "/App-Myinvest-getAllTending"
+                    let url = Common.serverHost + "/App-Myinvest-getTending"
                     let param = ["to":token]
                     afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                     afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
@@ -53,24 +65,14 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
                             self.tableView.scrollEnabled = true
                     })
                 }
-
+                
                 
             })
         }
-      
+        
         reach.startNotifier()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-//    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        if section == 0 {
-//            return "投标记录"
-//        }
-//        return ""
-//    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("list")  as! UITableViewCell

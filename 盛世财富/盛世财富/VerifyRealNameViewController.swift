@@ -205,6 +205,13 @@ class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDele
                         }else if code == -1 {
                             AlertView.alert("提示", message: result["message"] as! String, buttonTitle: "确定", viewController: self)
                         }else if code == 200 {
+                            
+                            //将用户的idcard和isVerify放入userdefault中
+                            
+                            var userdefault = NSUserDefaults.standardUserDefaults()
+                            userdefault.setObject(idcard, forKey: "isUpload")
+                            userdefault.setObject("0", forKey: "isVerify")
+                            
                             AlertView.alert("提示", message: "实名认证信息已经提交，请等待审核！", buttonTitle: "确定", viewController: self, callback: {
                                 self.navigationController?.popViewControllerAnimated(true)
                             })

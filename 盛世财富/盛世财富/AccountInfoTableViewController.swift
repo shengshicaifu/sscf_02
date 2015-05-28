@@ -67,7 +67,7 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
         alertController.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
             //删除用户信息
             var userDefaults = NSUserDefaults.standardUserDefaults()
-            userDefaults.removeObjectForKey("username")
+            //userDefaults.removeObjectForKey("username")
             userDefaults.removeObjectForKey("token")
             userDefaults.removeObjectForKey("userpic")
             userDefaults.removeObjectForKey("usermoney")

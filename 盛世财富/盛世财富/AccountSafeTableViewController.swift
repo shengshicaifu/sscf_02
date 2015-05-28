@@ -65,15 +65,15 @@ class AccountSafeTableViewController: UITableViewController,UITableViewDataSourc
         }
         
         //实名认证
-        let isUpload = userDefaults.objectForKey("isUpload") as! NSString
-        if isUpload == "" {
+        let isUpload = userDefaults.objectForKey("isUpload") as? NSString
+        if isUpload == nil || isUpload == "" {
             VerifyRealNameLabel.text = "未实名认证"
         } else {
-            let isVerify = userDefaults.objectForKey("isVerify") as! String
+            let isVerify = userDefaults.objectForKey("isVerify") as? String
             if isVerify == "0" {
                 VerifyRealNameLabel.text = "实名认证审核中"
             }else if isVerify == "1" {
-                VerifyRealNameLabel.text = Common.replaceStringToX(isUpload, start: 2, end: isUpload.length)
+                VerifyRealNameLabel.text = Common.replaceStringToX(isUpload!, start: 2, end: isUpload!.length)
             }
         }
     }

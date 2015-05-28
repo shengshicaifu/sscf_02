@@ -39,11 +39,19 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             
         
 //滚动图-------------------------------
+        //使用多线程获取网络图片
+        
+        
+        
+        
+        
+        
+        
         var viewsArray = NSMutableArray()
-        var colorArray = [UIColor.cyanColor(),UIColor.blueColor(),UIColor.greenColor(),UIColor.yellowColor(),UIColor.purpleColor()]
-        for  i in 1...2 {
+        //var colorArray = [UIColor.cyanColor(),UIColor.blueColor(),UIColor.greenColor(),UIColor.yellowColor(),UIColor.purpleColor()]
+        for  i in 1...4 {
             var tempImageView = UIImageView(frame:CGRectMake(0, 64, self.view.layer.frame.width, 175))//代码指定位置
-            tempImageView.image = UIImage(named:"content_\(i).png")//图片名
+            tempImageView.image = UIImage(named:"content_1.png")//图片名
             tempImageView.contentMode = UIViewContentMode.ScaleAspectFill
             tempImageView.clipsToBounds = true
             
@@ -58,7 +66,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         mainScorllView.totalPagesCount = {()->Int in
             //图片的个数
-            return 2;
+            return viewsArray.count;
         }
         mainScorllView.TapActionBlock = {(pageIndex:Int)->() in
             //此处根据点击的索引跳转到指定的页面

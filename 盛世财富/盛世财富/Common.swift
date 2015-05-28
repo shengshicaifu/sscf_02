@@ -18,7 +18,7 @@ class Common {
     :returns: true表示登录，false表示未登录
     */
     class func isLogin() -> Bool {
-        if let userName = NSUserDefaults.standardUserDefaults().objectForKey("username") as? String {
+        if let token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String {
             return true
         }
         

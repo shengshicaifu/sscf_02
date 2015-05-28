@@ -99,27 +99,21 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
             }
             
             if let headImage:NSData = user.objectForKey("headImage") as? NSData {
+                //如果本地有保存图像，用本地的
                 self.head.image = UIImage(data: headImage)
             }else if let userpic:String = user.objectForKey("userpic") as? String {
+                //如果本地没有保存图像，但是有图像地址，用远程的，并保存到本地
                 if userpic.isEmpty == false {
+                
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                         
                         if let image = NSData(contentsOfURL: NSURL(string: userpic as String)!) {
                             self.head.image = UIImage(data: image)
                             user.setObject(image, forKey: "headImage")
                             
-                            //这里写需要大量时间的代码
-                            //                println("这里写需要大量时间的代码")
-                            
-                            //                        dispatch_async(dispatch_get_main_queue(), {
-                            //                            //这里返回主线程，写需要主线程执行的代码
-                            //                            //                    println("这里返回主线程，写需要主线程执行的代码")
-                            //                        })
                         }
                         
                     })
-                    //let thread = NSThread(target: self, selector: "getHead:", object: userpic)
-                    //thread.start()
                 }
             }
             

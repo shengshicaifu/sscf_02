@@ -51,9 +51,29 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
                             AlertView.alert("提示", message: "查询失败，请稍候再试", buttonTitle: "确定", viewController: self)
                         }else if code == 200 {
                             self.payLogArray = result["data"]?["list"] as? NSArray
-                            self.successMoney = result["data"]?["success_money"] as? String
-                            self.failMoney = result["data"]?["fail_money"] as? String
-                            self.tableView.reloadData()
+                            var successMoneyTemp = result["data"]?["success_money"] as? NSString
+                            var failMoneyTemp = result["data"]?["fail_money"] as? NSString
+                            
+                            if (successMoneyTemp == nil || successMoneyTemp!.length == 0) {
+                                self.successMoney = "0.00"
+                            } else {
+                                self.successMoney = successMoneyTemp! as String
+                            }
+                            
+                            if (failMoneyTemp == nil || failMoneyTemp!.length == 0) {
+                                self.failMoney = "0.00"
+                            } else {
+                                self.failMoney = failMoneyTemp! as String
+                            }
+                            
+                            if self.payLogArray?.count > 0 {
+                                self.tableView.reloadData()
+                            } else {
+//                                var label = UILabel(frame: CGRectMake(0, 0, 100, 20))
+//                                label.text = "没有记录"
+//                                self.tableView.addSubview(label)
+                            }
+                            
                         }
                     },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
                         loading.stopLoading()
@@ -78,6 +98,8 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
     
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        NSLog("viewForHeaderInSection")
+        
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
         //创建效果视图实例
         let blurView = UIVisualEffectView(effect: blurEffect)
@@ -95,7 +117,7 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
         successMoneyLabel.font = UIFont(name: "Arial", size: 20)
         
         failMoneyLabel.text = self.failMoney
-        failMoneyLabel.frame = CGRectMake(200, 40, 100, 50)
+        failMoneyLabel.frame = CGRectMake(250, 40, 100, 50)
         failMoneyLabel.textColor = UIColor.grayColor()
         failMoneyLabel.font = UIFont(name: "Arial", size: 20)
         
@@ -110,7 +132,7 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
         l2.text = "失败金额"
         l2.textColor = UIColor.grayColor()
         l2.font = UIFont(name: "Arial", size: 14)
-        l2.frame = CGRectMake(200, 20, 100, 30)
+        l2.frame = CGRectMake(250, 20, 100, 30)
         
         header.addSubview(successMoneyLabel)
         header.addSubview(failMoneyLabel)

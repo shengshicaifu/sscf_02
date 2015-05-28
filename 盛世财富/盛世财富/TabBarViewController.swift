@@ -18,7 +18,7 @@ class TabBarViewController : UITabBarController,UITabBarDelegate,UITabBarControl
         if index?.title == "我的账号" {
             var user = NSUserDefaults()
             
-            if let username = user.objectForKey("username") as? String{
+            if Common.isLogin(){
                 
             }else{
                 var view = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController

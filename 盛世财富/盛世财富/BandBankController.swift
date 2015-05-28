@@ -95,8 +95,6 @@ class BandBankController: UIViewController,UITableViewDelegate {
                 }else if code == 200 {
                     AlertView.showMsg("绑定银行卡成功", parentView: self.view)
                     NSThread.sleepForTimeInterval(3)
-                   
-                   
                     userDefaults.setObject(bankCardNo, forKey: "bankCardNo")
                     userDefaults.setObject(bankName, forKey: "bankName")
                     userDefaults.setObject(bankProvice, forKey: "bankProvice")
@@ -111,15 +109,31 @@ class BandBankController: UIViewController,UITableViewDelegate {
     }
     //修改银行卡账号
     else {
-           
+            if bankCardNoTextField.text.isEmpty {
+                AlertView.showMsg("请输入银行卡账号", parentView: self.view)
+                return
+            }
+            if bankNameTextField.text.isEmpty {
+                AlertView.showMsg("请输入银行名称", parentView: self.view)
+                return
+            }
+            if bankProviceTextField.text.isEmpty {
+                AlertView.showMsg("请输入银行省份", parentView: self.view)
+                return
+            }
+            if bankCityTextField.text.isEmpty {
+                AlertView.showMsg("请输入银行城市", parentView: self.view)
+                return
+            }
+            if bankBranchTextField.text.isEmpty {
+                AlertView.showMsg("请输入银行支行", parentView: self.view)
+                return
+            }
+ 
         let manager = AFHTTPRequestOperationManager()
         var url = Common.serverHost + "/App-Ucenter-bindBank"
         var token = userDefaults.objectForKey("token") as? String
         var bankCardNo = userDefaults.objectForKey("bankCardNo") as? String
-        println(token)
-            println(bankNameTextField.text)
-            println(bankCardNo)
-            println(bankCardNoTextField.text)
         let params = ["to":token,"txt_account":bankCardNoTextField.text,"bank_name":bankNameTextField.text,"province":bankProviceTextField.text,"city":bankCityTextField.text,"txt_bankName":bankBranchTextField.text,"txt_oldaccount":bankCardNo]
         manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
         manager.POST(url, parameters: params,

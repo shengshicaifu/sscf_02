@@ -32,7 +32,7 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
                     loading.startLoading(self.view)
                     self.tableView.scrollEnabled = false
                     let afnet = AFHTTPRequestOperationManager()
-                    let url = Common.serverHost + "/App-Myinvest-getAllTending"
+                    let url = Common.serverHost + "/App-Myinvest-getTending"
                     let param = ["to":token]
                     afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                     afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in

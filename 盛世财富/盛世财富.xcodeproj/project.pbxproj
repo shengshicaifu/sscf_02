@@ -86,6 +86,8 @@
 		E9E304061B09AAD20021D006 /* AccountSafeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E304051B09AAD20021D006 /* AccountSafeTableViewController.swift */; };
 		E9E5211F1B05E3D900A41EEA /* YYCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E5211E1B05E3D900A41EEA /* YYCycleScrollView.swift */; };
 		E9E8E9461B0B22FA0074F41A /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8E9451B0B22FA0074F41A /* ContentViewController.swift */; };
+		E9EB57981B16A46A00EF6829 /* BandBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EB57971B16A46A00EF6829 /* BandBankViewController.swift */; };
+		E9EB579A1B16A47B00EF6829 /* BandBankController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EB57991B16A47B00EF6829 /* BandBankController.swift */; };
 		E9F3DFF11B0DD53F00F8F3AA /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F3DFF01B0DD53F00F8F3AA /* UIView+Toast.m */; };
 /* End PBXBuildFile section */
 
@@ -215,6 +217,8 @@
 		E9E304051B09AAD20021D006 /* AccountSafeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSafeTableViewController.swift; sourceTree = "<group>"; };
 		E9E5211E1B05E3D900A41EEA /* YYCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYCycleScrollView.swift; sourceTree = "<group>"; };
 		E9E8E9451B0B22FA0074F41A /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		E9EB57971B16A46A00EF6829 /* BandBankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BandBankViewController.swift; path = ../../../BandBankViewController.swift; sourceTree = "<group>"; };
+		E9EB57991B16A47B00EF6829 /* BandBankController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BandBankController.swift; path = ../../../BandBankController.swift; sourceTree = "<group>"; };
 		E9F3DFEF1B0DD53F00F8F3AA /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		E9F3DFF01B0DD53F00F8F3AA /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -333,6 +337,8 @@
 				E9E304051B09AAD20021D006 /* AccountSafeTableViewController.swift */,
 				E96B1E721AB6BFB300C61870 /* AllListViewController.swift */,
 				E9D6604C1AB1313B0020982D /* AppDelegate.swift */,
+				E9EB57991B16A47B00EF6829 /* BandBankController.swift */,
+				E9EB57971B16A46A00EF6829 /* BandBankViewController.swift */,
 				E9C544C31AE8914800B50D8C /* BidConfirmViewController.swift */,
 				E9B9EF4B1AC8E00600E46714 /* BidListViewController.swift */,
 				59BEC41A1B07124200F5690D /* BidRecordViewController.swift */,
@@ -618,6 +624,7 @@
 				595C8DC51B07317800989977 /* NavigationExtension.swift in Sources */,
 				E9F3DFF11B0DD53F00F8F3AA /* UIView+Toast.m in Sources */,
 				E9C70C061AC0FB2100E1CA8D /* MoreViewController.swift in Sources */,
+				E9EB57981B16A46A00EF6829 /* BandBankViewController.swift in Sources */,
 				591FD1391B0C7CF000BFD74D /* AFHTTPRequestOperationManager.m in Sources */,
 				E9C544C41AE8914800B50D8C /* BidConfirmViewController.swift in Sources */,
 				59BEC4191B05CD5300F5690D /* UserMoneyViewController.swift in Sources */,
@@ -678,6 +685,7 @@
 				E9C70C081AC1035B00E1CA8D /* IdeaViewController.swift in Sources */,
 				E9E5211F1B05E3D900A41EEA /* YYCycleScrollView.swift in Sources */,
 				E9608D9F1B1577960025D247 /* VerifyRealNameViewController.swift in Sources */,
+				E9EB579A1B16A47B00EF6829 /* BandBankController.swift in Sources */,
 				E9C605B71ABBB9C500752D91 /* UIScrollView+Refresh.swift in Sources */,
 				E961E1251AC8DCBC0021ED14 /* REMenu.m in Sources */,
 				E95684F21B06D8FA00F46FF0 /* AccountInfoTableViewController.swift in Sources */,

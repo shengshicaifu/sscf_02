@@ -122,6 +122,12 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                             //保存身份证及身份证验证信息
                             user.setObject(userInfo["idCard"]?["isVerify"], forKey: "isVerify")
                             user.setObject(userInfo["idCard"]?["isUpload"], forKey: "isUpload")
+                            //银行卡绑定信息
+                            user.setObject(userInfo["bank"]?["bank_num"], forKey:"bankCardNo")
+                            user.setObject(userInfo["bank"]?["bank_city"], forKey:"bankCity")
+                            user.setObject(userInfo["bank"]?["bank_name"], forKey:"bankName")
+                            user.setObject(userInfo["bank"]?["bank_province"], forKey:"bankProvice")
+                            user.setObject(userInfo["bank"]?["bank_address"], forKey:"bankBranch")
                             
                             self.dismissViewControllerAnimated(true, completion: nil)
                         }

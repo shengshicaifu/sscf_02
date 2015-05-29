@@ -12,21 +12,35 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
     
     var data:NSMutableArray = NSMutableArray()
     
-    var type:String = "1"
+    var type:Int = 1
     var count:String = "15"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        getData()
+        self.getData("\(type)")
+        self.setupRefresh()
     }
 
+    /**
+    下拉刷新和上拉加载
+    */
+    func setupRefresh(){
+        self.tableView.addHeaderWithCallback{
+        
+        }
+        self.tableView.addFooterWithCallback{
+            
+        }
+    }
+    
     
     /**
     获取投标纪录
     */
-    func getData(){
+    func getData(vtype:String){
         //检查手机网络
         var reach = Reachability(hostName: Common.domain)
         reach.unreachableBlock = {(r:Reachability!) -> Void in
@@ -45,20 +59,32 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
                     self.tableView.scrollEnabled = false
                     let afnet = AFHTTPRequestOperationManager()
                     let url = Common.serverHost + "/App-Myinvest-getTending"
-                    let param = ["to":token]
+                    let param = ["to":token,"type":vtype,"lastId":"","count":self.count]
+                    NSLog("投标记录参数%@", param)
                     afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-                    afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
-                        //                NSLog("投标记录：%@",res as! NSDictionary)
+                    afnet.POST(url, parameters: param,
+                        success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
                         
-                        if let d = res["data"] as? NSMutableArray{
-                            self.data = d
+                            //NSLog("投标记录：%@",res as! NSDictionary)
+                            
+                            if let d = res["data"] as? NSArray{
+                                self.data.addObjectsFromArray(d as [AnyObject])
+                                
+//                                for(var i=0;i<self.data.count;i++){
+//                                    println(self.data[i]["borrow_name"] as! String)
+//                                }
+                                
+                            }else{
+                                self.data.removeAllObjects()
+                            }
                             self.tableView.reloadData()
-                        }
+                            
+                            loading.stopLoading()
+                            self.tableView.scrollEnabled = true
                         
                         
-                        loading.stopLoading()
-                        self.tableView.scrollEnabled = true
-                        }, failure: { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                        },
+                        failure: { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
                             AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
                             self.tableView.reloadData()
                             loading.stopLoading()
@@ -71,6 +97,35 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
         }
         
         reach.startNotifier()
+    }
+    
+    
+    //MARK:- tableview
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var v = UIView(frame: CGRectMake(0, 0, self.tableView.frame.width, 30))
+        v.backgroundColor = UIColor.whiteColor()
+        var choose = UISegmentedControl(frame: CGRectMake(0, 0, v.frame.width, v.frame.height))
+        choose.insertSegmentWithTitle("竞标中", atIndex: 0, animated: true)
+        choose.insertSegmentWithTitle("回收中", atIndex: 1, animated: true)
+        choose.insertSegmentWithTitle("逾期", atIndex: 2, animated: true)
+        choose.insertSegmentWithTitle("已回收", atIndex: 3, animated: true)
+        
+        choose.selectedSegmentIndex = (self.type - 1)
+        
+        choose.addTarget(self, action: "choosed:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        v.addSubview(choose)
+        return v
+    }
+    
+    func choosed(seg:UISegmentedControl){
+        NSLog("选择了%i",seg.selectedSegmentIndex)
+        self.type = (seg.selectedSegmentIndex + 1)
+        getData("\(self.type)")
     }
     
     
@@ -100,6 +155,6 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
         if data.count > 0 {
             return data.count
         }
-        return 20
+        return 0
     }
 }

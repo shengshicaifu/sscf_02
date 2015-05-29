@@ -57,10 +57,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
         super.viewDidLoad()
         mainTable.dataSource = self
         mainTable.delegate = self
-        
-        
-        
-        
+       
         loading.startLoading(self.view)
         mainTable.scrollEnabled = false
         
@@ -137,10 +134,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                     self.progressLabel.text = "\(progress.integerValue)%"
                     var progressFloat = progress.floatValue/100
                     self.progressView.progress = progressFloat
-                        
-                        
-                        
-                        
+                       
                     var addTimeDouble = add_time.doubleValue
 //                    addTimeDouble = addTimeDouble!*
 //                    add_time = add_time!*1000

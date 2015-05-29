@@ -82,7 +82,6 @@ class Common {
         var pred = NSPredicate(format: "SELF MATCHES %@", regex)
         return pred.evaluateWithObject(str)
     }
-    
     //MARK:- 字符串操作
     /**
     将指定位置的字符替换为*

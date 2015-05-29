@@ -8,7 +8,9 @@
 
 import Foundation
 import UIKit
-
+/**
+*  登录
+*/
 class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var usernameLabel: UITextField!
     @IBOutlet weak var passwordLabel: UITextField!

@@ -53,19 +53,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-//        NSLog("applicationDidBecomeActive")
-        if NSUserDefaults.standardUserDefaults().boolForKey("showLockPassword") {
-            //第一次运行的时候不显示手势密码
-            
-            //手势解锁相关
-            if let pswd  = LLLockPassword.loadLockPassword(){
-                
-                self.showLLLockViewController(LLLockViewTypeCheck)
-            }else{
-                self.showLLLockViewController(LLLockViewTypeCreate)
-                
-            }
-        }
+
+        
+        //设置手势密码
+//        if NSUserDefaults.standardUserDefaults().boolForKey("showLockPassword") {
+//            //第一次运行的时候不显示手势密码
+//            
+//            //手势解锁相关
+//            if let pswd  = LLLockPassword.loadLockPassword(){
+//                
+//                self.showLLLockViewController(LLLockViewTypeCheck)
+//            }else{
+//                self.showLLLockViewController(LLLockViewTypeCreate)
+//                
+//            }
+//        }
         
     }
 

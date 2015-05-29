@@ -32,7 +32,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         passwordLabel.leftView = UIImageView(image: UIImage(named: "密码.png"))
         passwordLabel.leftViewMode = UITextFieldViewMode.Always
         
-        
+        usernameLabel.text = NSUserDefaults.standardUserDefaults().stringForKey("username")
         
     }
     
@@ -84,8 +84,9 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     loading.stopLoading()
                     var result = data as! NSDictionary
+                    NSLog("登录返回信息%@", result)
                     if let code = result["code"] as? Int{
-                        println(result)
+                        
                         
                         if(code == 200){
                             let user = NSUserDefaults.standardUserDefaults()
@@ -118,12 +119,23 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                             user.setObject(userInfo["pinPass"], forKey: "pinpass")
                             user.setObject(userInfo["cellphone"], forKey: "phone")
                             
+                            //保存身份证及身份证验证信息
+                            user.setObject(userInfo["idCard"]?["isVerify"], forKey: "isVerify")
+                            user.setObject(userInfo["idCard"]?["isUpload"], forKey: "isUpload")
+                            //银行卡绑定信息
+                            user.setObject(userInfo["bank"]?["bank_num"], forKey:"bankCardNo")
+                            user.setObject(userInfo["bank"]?["bank_city"], forKey:"bankCity")
+                            user.setObject(userInfo["bank"]?["bank_name"], forKey:"bankName")
+                            user.setObject(userInfo["bank"]?["bank_province"], forKey:"bankProvice")
+                            user.setObject(userInfo["bank"]?["bank_address"], forKey:"bankBranch")
+                            
                             self.dismissViewControllerAnimated(true, completion: nil)
                         }
                         if(code == 0){
                             //报错弹窗
                             AlertView.showMsg(result["message"] as! String, parentView: self.view)
                         }
+                    
                     }else{
                         AlertView.showMsg("服务器异常!", parentView: self.view)
                     }
@@ -133,59 +145,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 }
             )
                 
-                
-                
-                
-                
-                
-//                self.eHttp.post(self.timeLineUrl, params: ["userName":self.usernameLabel.text,"userPass":self.passwordLabel.text,"userFlag":0] ,view: self.view ) { (result:NSDictionary)->Void in
-//                    loading.stopLoading()
-//                    NSLog("%@登录返回结果%@", self.usernameLabel.text,result)
-//                    
-//                    if let code = result["code"] as? Int{
-//                        println(result)
-//                        
-//                        if(code == 200){
-//                            let user = NSUserDefaults.standardUserDefaults()
-//                            let proInfo:NSDictionary = result["data"]?["proInfo"] as! NSDictionary
-//                            user.setObject(self.usernameLabel.text, forKey: "username")
-//                            user.setObject(result["data"]?["token"], forKey: "token")
-//                            
-//                            user.setObject(proInfo.objectForKey("total_all"),forKey: "usermoney")
-//                            
-//                            var userInfo = result["data"]?["userInfo"] as! NSDictionary
-//                            if let birthday = userInfo.objectForKey("birthday") as? String {
-//                                user.setObject(birthday, forKey: "birthday")
-//                            }else{
-//                                user.setObject("", forKey: "birthday")
-//                                
-//                            }
-//                            if let gender = userInfo.objectForKey("gender") as? String {
-//                                user.setObject(gender, forKey: "gender")
-//                            }else{
-//                                user.setObject("", forKey: "gender")
-//                                
-//                            }
-//                            if let headpic = userInfo.objectForKey("headpic") as? String {
-//                                user.setObject(headpic, forKey: "headpic")
-//                            }else{
-//                                user.setObject("", forKey: "headpic")
-//                                
-//                            }
-//                            
-//                            user.setObject(userInfo["pinPass"], forKey: "pinpass")
-//                            user.setObject(userInfo["cellphone"], forKey: "phone")
-//                            
-//                            self.dismissViewControllerAnimated(true, completion: nil)
-//                        }
-//                        if(code == 0){
-//                            //报错弹窗
-//                            AlertView.showMsg(result["message"] as! String, parentView: self.view)
-//                        }
-//                    }else{
-//                        AlertView.showMsg("服务器异常!", parentView: self.view)
-//                    }
-//                }
                 
 
                 

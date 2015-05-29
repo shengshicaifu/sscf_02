@@ -1,7 +1,7 @@
 //
 //  OffLineChargeViewController.swift
 //  盛世财富
-//
+//  线下充值
 //  Created by 肖典 on 15/5/23.
 //  Copyright (c) 2015年 sscf88. All rights reserved.
 //
@@ -31,26 +31,6 @@ class OffLineChargeViewController:UIViewController {
     
     @IBAction func submit(sender: UIButton) {
         resignAll()
-        if t_money.text.isEmpty {
-            AlertView.showMsg("请输入金额！", parentView: self.view)
-            return
-        }
-        if t_account.text.isEmpty {
-            AlertView.showMsg("请输入银行账号！", parentView: self.view)
-            return
-        }
-        if t_id.text.isEmpty {
-            AlertView.showMsg("请输入汇款单号！", parentView: self.view)
-            return
-        }
-        if p_money.text.isEmpty {
-            AlertView.showMsg("请输入金额！", parentView: self.view)
-            return
-        }
-        if p_id.text.isEmpty {
-            AlertView.showMsg("请输入交易参考号！", parentView: self.view)
-            return
-        }
         
         
         let user = NSUserDefaults.standardUserDefaults()
@@ -58,9 +38,39 @@ class OffLineChargeViewController:UIViewController {
         let afnet = AFHTTPRequestOperationManager()
         var param:AnyObject?
         if choose.selectedSegmentIndex == 0{
+            if t_money.text.isEmpty {
+                AlertView.showMsg("请输入金额！", parentView: self.view)
+                return
+            }
+            if !Common.isMoney(t_money.text) {
+                AlertView.showMsg(Common.moneyErrorTip, parentView: self.view)
+                return
+            }
+            if t_account.text.isEmpty {
+                AlertView.showMsg("请输入银行账号！", parentView: self.view)
+                return
+            }
+            if t_id.text.isEmpty {
+                AlertView.showMsg("请输入汇款单号！", parentView: self.view)
+                return
+            }
             param = ["to":user.stringForKey("token"),"money_off":t_money.text,"off_bank":"兴业银行","off_way":t_account.text,"tran_id":t_id.text]
         }
         if choose.selectedSegmentIndex == 1{
+            
+            if p_money.text.isEmpty {
+                AlertView.showMsg("请输入金额！", parentView: self.view)
+                return
+            }
+            if !Common.isMoney(p_money.text) {
+                AlertView.showMsg(Common.moneyErrorTip, parentView: self.view)
+                return
+            }
+            if p_id.text.isEmpty {
+                AlertView.showMsg("请输入交易参考号！", parentView: self.view)
+                return
+            }
+            
             param = ["to":user.stringForKey("token"),"money_off":p_money.text,"off_bank":"无","off_way":"pos机刷卡","tran_id":p_id.text]
         }
         //检查手机网络
@@ -87,7 +97,7 @@ class OffLineChargeViewController:UIViewController {
                 }
             })
         }
-        
+        reach.startNotifier()
         
     }
     @IBAction func segChange(sender: UISegmentedControl) {

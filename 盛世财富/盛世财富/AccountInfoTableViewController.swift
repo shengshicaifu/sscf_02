@@ -67,7 +67,7 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
         alertController.addAction(UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: { (action:UIAlertAction!) -> Void in
             //删除用户信息
             var userDefaults = NSUserDefaults.standardUserDefaults()
-            userDefaults.removeObjectForKey("username")
+            //userDefaults.removeObjectForKey("username")
             userDefaults.removeObjectForKey("token")
             userDefaults.removeObjectForKey("userpic")
             userDefaults.removeObjectForKey("usermoney")
@@ -76,6 +76,8 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
             userDefaults.removeObjectForKey("headImage")
             userDefaults.removeObjectForKey("phone")
             userDefaults.removeObjectForKey("lock")
+            userDefaults.removeObjectForKey("isUpload")
+            userDefaults.removeObjectForKey("isVerify")
             AlertView.showMsg("注销成功", parentView: self.view)
             self.presentViewController(self.storyboard?.instantiateViewControllerWithIdentifier("tabBarViewController") as! TabBarViewController, animated: true, completion: nil)
             

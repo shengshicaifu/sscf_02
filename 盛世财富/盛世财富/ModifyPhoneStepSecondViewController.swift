@@ -89,7 +89,7 @@ class ModifyPhoneStepSecondViewController: UIViewController {
     
     var i = 60
     func repeat(){
-        getCodeButton.setTitle("\(i)", forState: UIControlState.Disabled)
+        getCodeButton.setTitle("重新发送（\(i)）", forState: UIControlState.Disabled)
         i--
         if i == 0 {
             i = 60

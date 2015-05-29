@@ -114,7 +114,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     
     var i = 60
     func repeat(){
-        checkBtn.setTitle("\(i)", forState: UIControlState.Disabled)
+        checkBtn.setTitle("重新发送（\(i)）", forState: UIControlState.Disabled)
         i--
         if i == 0 {
             i = 60

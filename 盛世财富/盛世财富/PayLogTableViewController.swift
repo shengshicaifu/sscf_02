@@ -19,36 +19,73 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
 
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        //检查手机网络
+        var reach = Reachability(hostName: Common.domain)
+        reach.unreachableBlock = {(r:Reachability!) -> Void in
+            //NSLog("网络不可用")
+            dispatch_async(dispatch_get_main_queue(), {
+
+                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+            })
+        }
         
-        
-        loading.startLoading(self.tableView)
-        var manager = AFHTTPRequestOperationManager()
-        var url = Common.serverHost + "/App-Pay-paylog"
-        var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
-        var params = ["to":token!]
-        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-        manager.POST(url, parameters: params,
-            success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                loading.stopLoading()
+        reach.reachableBlock = {(r:Reachability!) -> Void in
+           //NSLog("网络可用")
+            dispatch_async(dispatch_get_main_queue(), {
+                loading.startLoading(self.tableView)
+                var manager = AFHTTPRequestOperationManager()
+                var url = Common.serverHost + "/App-Pay-paylog"
+                var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
+                var params = ["to":token!]
+                manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+                manager.POST(url, parameters: params,
+                    success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                        loading.stopLoading()
+                        
+                        var result = data as! NSDictionary
+                        //NSLog("充值记录：%@", result)
+                        var code = result["code"] as! Int
+                        if code == -1 {
+                            AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
+                        }else if code == 0 {
+                            AlertView.alert("提示", message: "查询失败，请稍候再试", buttonTitle: "确定", viewController: self)
+                        }else if code == 200 {
+                            self.payLogArray = result["data"]?["list"] as? NSArray
+                            var successMoneyTemp = result["data"]?["success_money"] as? NSString
+                            var failMoneyTemp = result["data"]?["fail_money"] as? NSString
+                            
+                            if (successMoneyTemp == nil || successMoneyTemp!.length == 0) {
+                                self.successMoney = "0.00"
+                            } else {
+                                self.successMoney = successMoneyTemp! as String
+                            }
+                            
+                            if (failMoneyTemp == nil || failMoneyTemp!.length == 0) {
+                                self.failMoney = "0.00"
+                            } else {
+                                self.failMoney = failMoneyTemp! as String
+                            }
+                            
+                            if self.payLogArray?.count > 0 {
+                                self.tableView.reloadData()
+                            } else {
+//                                var label = UILabel(frame: CGRectMake(0, 0, 100, 20))
+//                                label.text = "没有记录"
+//                                self.tableView.addSubview(label)
+                            }
+                            
+                        }
+                    },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                        loading.stopLoading()
+                        AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
+                    }
+                )
+
                 
-                var result = data as! NSDictionary
-                //NSLog("充值记录：%@", result)
-                var code = result["code"] as! Int
-                if code == -1 {
-                    AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
-                }else if code == 0 {
-                    AlertView.alert("提示", message: "查询失败，请稍候再试", buttonTitle: "确定", viewController: self)
-                }else if code == 200 {
-                    self.payLogArray = result["data"]?["list"] as? NSArray
-                    self.successMoney = result["data"]?["success_money"] as? String
-                    self.failMoney = result["data"]?["fail_money"] as? String
-                    self.tableView.reloadData()
-                }
-            },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                loading.stopLoading()
-                AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
-            }
-        )
+            })
+        }
+      
+        reach.startNotifier()
     }
 
 
@@ -61,6 +98,8 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
     
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        NSLog("viewForHeaderInSection")
+        
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
         //创建效果视图实例
         let blurView = UIVisualEffectView(effect: blurEffect)
@@ -78,7 +117,7 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
         successMoneyLabel.font = UIFont(name: "Arial", size: 20)
         
         failMoneyLabel.text = self.failMoney
-        failMoneyLabel.frame = CGRectMake(200, 40, 100, 50)
+        failMoneyLabel.frame = CGRectMake(250, 40, 100, 50)
         failMoneyLabel.textColor = UIColor.grayColor()
         failMoneyLabel.font = UIFont(name: "Arial", size: 20)
         
@@ -93,7 +132,7 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
         l2.text = "失败金额"
         l2.textColor = UIColor.grayColor()
         l2.font = UIFont(name: "Arial", size: 14)
-        l2.frame = CGRectMake(200, 20, 100, 30)
+        l2.frame = CGRectMake(250, 20, 100, 30)
         
         header.addSubview(successMoneyLabel)
         header.addSubview(failMoneyLabel)

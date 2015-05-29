@@ -23,7 +23,7 @@ class ModifyPhoneStepFirstViewController: UIViewController {
         // Do any additional setup after loading the view.
         if let phone = NSUserDefaults.standardUserDefaults().objectForKey("phone") as? String{
         ///phone = "15527410109"
-            self.oldPhoneLabel.text = phone//ommon.replaceStringToX(phone, start: 3, end: 7)
+            self.oldPhoneLabel.text = Common.replaceStringToX(phone, start: 3, end: 7)
             self.phone = phone
         }
         
@@ -92,7 +92,7 @@ class ModifyPhoneStepFirstViewController: UIViewController {
     
     var i = 60
     func repeat(){
-        getCodeButton.setTitle("\(i)", forState: UIControlState.Disabled)
+        getCodeButton.setTitle("重新发送（\(i)）", forState: UIControlState.Disabled)
         i--
         if i == 0 {
             i = 60

@@ -1,7 +1,7 @@
 //
 //  GetCashViewController.swift
 //  盛世财富
-//
+//  提现
 //  Created by 肖典 on 15/5/25.
 //  Copyright (c) 2015年 sscf88. All rights reserved.
 //
@@ -20,10 +20,19 @@ class GetCashViewController:UIViewController {
             AlertView.showMsg("请输入金额", parentView: self.view)
             return
         }
+        if !Common.isMoney(money.text) {
+            AlertView.showMsg(Common.moneyErrorTip, parentView: self.view)
+            return
+        }
         if payPassword.text.isEmpty {
             AlertView.showMsg("请输入支付密码", parentView: self.view)
             return
         }
+        if !Common.isPassword(payPassword.text) {
+            AlertView.showMsg(Common.passwordErrorTip, parentView: self.view)
+            return
+        }
+        
         let user = NSUserDefaults.standardUserDefaults()
         let url = Common.serverHost+"/App-Ucenter-actwithdraw"
         let afnet = AFHTTPRequestOperationManager()
@@ -52,10 +61,7 @@ class GetCashViewController:UIViewController {
                 }
             })
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        reach.startNotifier()
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {

@@ -133,7 +133,6 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
             }
             //            NSLog("最后一个[标的]的ID号码:%i", borrow_id)
             var params = ["to":user.objectForKey("token") as! String,"lastId":borrow_id]
-            println(params)
             var manager = AFHTTPRequestOperationManager()
             manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
@@ -142,25 +141,27 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     
                     var result:NSDictionary = data as! NSDictionary
-                    println(result)
-
-                    var d = result.valueForKey("data") as! NSDictionary
-                    self.tmpListData = d.valueForKey("list") as! NSMutableArray //list数据
-                                        //self.mainTable.reloadData()
                     self.tableView.footerEndRefreshing()
-                    
-                    var newList = NSMutableArray()
-                    if self.listData.count > 0 {
-                        newList.addObjectsFromArray(self.listData as [AnyObject])
+                    var d = result.valueForKey("data") as! NSDictionary
+                    if let list = d.valueForKey("list") as? NSMutableArray {
+                        self.tmpListData = list //list数据
+                        //self.mainTable.reloadData()
+                        
+                        
+                        var newList = NSMutableArray()
+                        if self.listData.count > 0 {
+                            newList.addObjectsFromArray(self.listData as [AnyObject])
+                        }
+                        if(self.tmpListData.count > 0){
+                            newList.addObjectsFromArray(self.tmpListData as [AnyObject])
+                        }
+                        
+                        self.listData = newList
+                        self.tableView.reloadData()
+                        self.tmpListData = NSMutableArray()
+                    }else{
+                        AlertView.alert("提示", message: "没有更多数据了！", buttonTitle: "确定", viewController: self)
                     }
-                    if(self.tmpListData.count > 0){
-                        newList.addObjectsFromArray(self.tmpListData as [AnyObject])
-                    }
-                    
-                    self.listData = newList
-                    self.tableView.reloadData()
-                    self.tmpListData = NSMutableArray()
-                    
                 },
                 failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false

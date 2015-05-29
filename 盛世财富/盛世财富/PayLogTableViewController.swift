@@ -14,6 +14,10 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
     var failMoney:String?
     var successMoney:String?
     
+    var timeLineUrl = Common.serverHost + "/App-Pay-paylog"
+    var tmpListData: NSMutableArray = NSMutableArray()
+    var listData: NSMutableArray = NSMutableArray()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,23 +38,23 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
             dispatch_async(dispatch_get_main_queue(), {
                 loading.startLoading(self.tableView)
                 var manager = AFHTTPRequestOperationManager()
-                var url = Common.serverHost + "/App-Pay-paylog"
+//                var url = Common.serverHost + "/App-Pay-paylog"
                 var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
                 var params = ["to":token!]
                 manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-                manager.POST(url, parameters: params,
+                manager.POST(self.timeLineUrl, parameters: params,
                     success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                         loading.stopLoading()
                         
                         var result = data as! NSDictionary
-                        //NSLog("充值记录：%@", result)
+                        NSLog("充值记录：%@", result)
                         var code = result["code"] as! Int
                         if code == -1 {
                             AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
                         }else if code == 0 {
                             AlertView.alert("提示", message: "查询失败，请稍候再试", buttonTitle: "确定", viewController: self)
                         }else if code == 200 {
-                            self.payLogArray = result["data"]?["list"] as? NSArray
+                            self.tmpListData = (result["data"]?["list"] as? NSMutableArray)!
                             var successMoneyTemp = result["data"]?["success_money"] as? NSString
                             var failMoneyTemp = result["data"]?["fail_money"] as? NSString
                             
@@ -66,7 +70,7 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
                                 self.failMoney = failMoneyTemp! as String
                             }
                             
-                            if self.payLogArray?.count > 0 {
+                            if self.tmpListData.count > 0 {
                                 self.tableView.reloadData()
                             } else {
 //                                var label = UILabel(frame: CGRectMake(0, 0, 100, 20))
@@ -86,6 +90,86 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
         }
       
         reach.startNotifier()
+        setupRefresh()
+    }
+
+    //为table添加下拉刷新和上拉加载功能
+    func setupRefresh(){
+        let user = NSUserDefaults.standardUserDefaults()
+        //下拉刷新
+        self.tableView.addHeaderWithCallback({
+            //println("下拉刷新")
+            var params = ["to":user.objectForKey("token") as! String]
+            var manager = AFHTTPRequestOperationManager()
+            manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+            manager.POST(self.timeLineUrl, parameters: params,
+                success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    var result:NSDictionary = data as! NSDictionary
+                    //println(result)
+                    self.listData = result["data"]?.valueForKey("list") as! NSMutableArray //list数据
+                    
+                    self.tableView.reloadData()
+                    self.tableView.headerEndRefreshing()
+                    
+                },
+                failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    self.tableView.headerEndRefreshing()
+                    AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
+                }
+            )
+        })
+        
+        //上拉加载
+        self.tableView.addFooterWithCallback({
+            //记录最后一个[标的]的ID号码
+            var borrow_id = 0
+            
+            var count = self.listData.count
+            if count > 0 {
+                borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
+            }
+            //            NSLog("最后一个[标的]的ID号码:%i", borrow_id)
+            var params = ["to":user.objectForKey("token") as! String,"lastId":borrow_id]
+            var manager = AFHTTPRequestOperationManager()
+            manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+            manager.POST(self.timeLineUrl, parameters: params,
+                success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    
+                    var result:NSDictionary = data as! NSDictionary
+                    self.tableView.footerEndRefreshing()
+                    var d = result.valueForKey("data") as! NSDictionary
+                    if let list = d.valueForKey("list") as? NSMutableArray {
+                        self.tmpListData = list //list数据
+                        //self.mainTable.reloadData()
+                        
+                        
+                        var newList = NSMutableArray()
+                        if self.listData.count > 0 {
+                            newList.addObjectsFromArray(self.listData as [AnyObject])
+                        }
+                        if(self.tmpListData.count > 0){
+                            newList.addObjectsFromArray(self.tmpListData as [AnyObject])
+                        }
+                        
+                        self.listData = newList
+                        self.tableView.reloadData()
+                        self.tmpListData = NSMutableArray()
+                    }else{
+                        AlertView.alert("提示", message: "没有更多数据了！", buttonTitle: "确定", viewController: self)
+                    }
+                },
+                failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    self.tableView.footerEndRefreshing()
+                    AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
+                }
+            )
+        })
     }
 
 
@@ -141,13 +225,16 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
         return header
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let count = payLogArray?.count {
-            return count
-        } else {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        
+        if(self.listData.count == 0){
             
-            return 0
+            if(self.tmpListData.count != 0){
+                
+                self.listData = self.tmpListData
+            }
         }
+        return listData.count
     }
 
     
@@ -157,13 +244,13 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
         var moneyLabel = cell.viewWithTag(101) as! UILabel
         var statusLabel = cell.viewWithTag(102) as! UILabel
         var addTimeLabel = cell.viewWithTag(103) as! UILabel
-        
-        var cellData = self.payLogArray?[indexPath.row] as! NSDictionary
-        moneyLabel.text = (cellData["money"] as? String)! + "元"
-        statusLabel.text = cellData["status"] as? String
-        var addTimeDouble = (cellData["add_time"] as? NSString)?.doubleValue
-        addTimeLabel.text = Common.dateFromTimestamp(addTimeDouble!)
-        
+        if self.listData.count > 0 {
+            var cellData = self.listData[indexPath.row] as! NSDictionary
+            moneyLabel.text = (cellData["money"] as? String)! + "元"
+            statusLabel.text = cellData["status"] as? String
+            var addTimeDouble = (cellData["add_time"] as? NSString)?.doubleValue
+            addTimeLabel.text = Common.dateFromTimestamp(addTimeDouble!)
+        }
         return cell
     }
     

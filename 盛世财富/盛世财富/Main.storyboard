@@ -5662,10 +5662,10 @@
         <image name="person" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EcF-gu-9cT"/>
-        <segue reference="cgO-r2-Qw7"/>
         <segue reference="1Oc-Wy-fyN"/>
-        <segue reference="tpR-eQ-WEg"/>
+        <segue reference="cgO-r2-Qw7"/>
+        <segue reference="EcF-gu-9cT"/>
         <segue reference="vdr-P8-5iY"/>
+        <segue reference="FjG-Aa-CKG"/>
     </inferredMetricsTieBreakers>
 </document>

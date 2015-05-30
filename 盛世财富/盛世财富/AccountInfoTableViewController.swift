@@ -78,6 +78,13 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
             userDefaults.removeObjectForKey("lock")
             userDefaults.removeObjectForKey("isUpload")
             userDefaults.removeObjectForKey("isVerify")
+            userDefaults.removeObjectForKey("bankCardNo")
+            userDefaults.removeObjectForKey("bankName")
+            userDefaults.removeObjectForKey("bankCity")
+            userDefaults.removeObjectForKey("bankBranch")
+            userDefaults.removeObjectForKey("bankProvice")
+
+      
             AlertView.showMsg("注销成功", parentView: self.view)
             self.presentViewController(self.storyboard?.instantiateViewControllerWithIdentifier("tabBarViewController") as! TabBarViewController, animated: true, completion: nil)
             

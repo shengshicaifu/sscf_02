@@ -14,9 +14,7 @@ class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDele
 
     @IBOutlet weak var realNameTextField: UITextField!
     @IBOutlet weak var idcardTextField: UITextField!
-    @IBOutlet weak var cardFrontImageView: UIImageView!
-    @IBOutlet weak var cardBackImageView: UIImageView!
-    @IBOutlet weak var cardHandImageView: UIImageView!
+   
     
     var cardFrontImage:UIImage?
     var cardBackImage:UIImage?
@@ -27,115 +25,10 @@ class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDele
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        //为图像添加点击事件
-        cardFrontImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "cardFrontImagePick"))
-        cardBackImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "cardBackImagePick"))
-        cardHandImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "cardHandImagePick"))
-        
-        
+    
     }
     
-    //前身照
-    func cardFrontImagePick(){
-        imagePick("cardFront")
-    }
-    
-    //背面照
-    func cardBackImagePick(){
-        imagePick("cardBack")
-    }
-    
-    //手持照
-    func cardHandImagePick(){
-        imagePick("cardHand")
-    }
-    
-    //访问相册或相机
-    func imagePick(flag:String){
-        
-        //var source = UIImagePickerControllerSourceType.Camera
-        let controller = UIAlertController(title: "请选择相册或照相机", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
-        let actionPhoto = UIAlertAction(title: "相册", style: UIAlertActionStyle.Default, handler: { (paramAction:UIAlertAction!) -> Void in
-            var source = UIImagePickerControllerSourceType.PhotoLibrary
-            var picker = UIImagePickerController()
-            
-            if flag == "cardFront" {
-                picker.restorationIdentifier = "cardFront"
-            } else if flag == "cardBack" {
-                picker.restorationIdentifier = "cardBack"
-            } else if flag == "cardHand" {
-                picker.restorationIdentifier = "cardHand"
-            }
-            
-            
-            picker.allowsEditing = true//设置可编辑
-            picker.delegate = self
-            picker.sourceType = source
-            self.presentViewController(picker, animated: true, completion: nil)
-        })
-        controller.addAction(actionPhoto)
-        
-        //判断设备是否支持相机功能
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
-            let actionCamera = UIAlertAction(title: "拍照", style: UIAlertActionStyle.Destructive, handler: { (paramAction:UIAlertAction!) -> Void in
-                var source:UIImagePickerControllerSourceType = UIImagePickerControllerSourceType.Camera
-                var picker = UIImagePickerController()
-                if flag == "cardFront" {
-                    picker.restorationIdentifier = "cardFront"
-                } else if flag == "cardBack" {
-                    picker.restorationIdentifier = "cardBack"
-                } else if flag == "cardHand" {
-                    picker.restorationIdentifier = "cardHand"
-                }
-                picker.allowsEditing = true//设置可编辑
-                picker.delegate = self
-                picker.sourceType = source
-                self.presentViewController(picker, animated: true, completion: nil)
-                
-            })
-            controller.addAction(actionCamera)
-            
-        }
-
-        let actionCancel = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: { (paramAction:UIAlertAction!) -> Void in
-            self.dismissViewControllerAnimated(true, completion:nil)
-        })
-        
-        controller.addAction(actionCancel)
-        
-        self.presentViewController(controller, animated: true, completion: nil)
-            
-        
-    }
-    
-    //选择了图像
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        
-        //编辑后的图像
-        let selectedImage:UIImage? = info[UIImagePickerControllerEditedImage] as? UIImage
-        //原始图像
-        let originalImage:UIImage? = info[UIImagePickerControllerOriginalImage] as? UIImage
-        
-        if picker.restorationIdentifier! == "cardFront" {
-            cardFrontImage = selectedImage
-            cardFrontImageView.image = selectedImage
-        } else if picker.restorationIdentifier! == "cardBack" {
-            cardBackImage = selectedImage
-            cardBackImageView.image = selectedImage
-        } else if picker.restorationIdentifier! == "cardHand" {
-            cardHandImage = selectedImage
-            cardHandImageView.image = selectedImage
-        }
-        
-        picker.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    //取消选择图像
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        picker.dismissViewControllerAnimated(true, completion: nil)
-    }
-
+   
     //提交
     @IBAction func okTapped(sender: UIButton) {
         resignAll()
@@ -155,20 +48,7 @@ class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDele
             AlertView.showMsg("请输入身份证号码", parentView: self.view)
             return
         }
-        if cardFrontImage == nil {
-            AlertView.showMsg("请选择前身照", parentView: self.view)
-            return
-        }
-        if cardBackImage == nil {
-            AlertView.showMsg("请选择背面照", parentView: self.view)
-            return
-        }
-        if cardHandImage == nil {
-            AlertView.showMsg("请选择手持照", parentView: self.view)
-            return
-        }
-        
-        //提交数据
+           //提交数据
         //检查手机网络
         var reach = Reachability(hostName: Common.domain)
         reach.unreachableBlock = {(r:Reachability!) -> Void in
@@ -189,13 +69,7 @@ class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDele
                 var params = ["to":token!,"real_name":realName,"idcard":idcard]
                 NSLog("实名认证参数%@", params)
                 manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-                manager.POST(url, parameters: params, constructingBodyWithBlock: { (formData:AFMultipartFormData!) -> Void in
-                    //加入图像参数
-                    formData.appendPartWithFileData(UIImageJPEGRepresentation(self.cardFrontImage, 1.0), name: "card_front", fileName: "card_front.jpg", mimeType: "image/jpeg")
-                    formData.appendPartWithFileData(UIImageJPEGRepresentation(self.cardBackImage, 1.0), name: "card_back", fileName: "card_back.jpg", mimeType: "image/jpeg")
-                    formData.appendPartWithFileData(UIImageJPEGRepresentation(self.cardFrontImage, 1.0), name: "card_hand", fileName: "card_hand.jpg", mimeType: "image/jpeg")
-                    
-                    }, success: { (operation:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                manager.POST(url, parameters: params, success: { (operation:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                         loading.stopLoading()
                         var result = data as! NSDictionary
                         NSLog("实名认证提交返回信息%@", result)

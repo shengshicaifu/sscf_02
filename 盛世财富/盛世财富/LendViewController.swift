@@ -171,12 +171,16 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             let cell = sender.superview?.superview as! UITableViewCell
             let title = cell.viewWithTag(101) as! UILabel
             let percent = cell.viewWithTag(106) as! UILabel
-            let id = cell.viewWithTag(99) as! UILabel
-            let type = cell.viewWithTag(98) as! UILabel
-            self.id = id.text
+            if let id = cell.viewWithTag(99) as? UILabel {
+                self.id = id.text
+            }
+            if let type = cell.viewWithTag(98) as? UILabel {
+                self.type = type.text
+            }
+            
             self.bidName = title.text
             self.percent = percent.text
-            self.type = type.text
+            
             
             let transferData = cell.viewWithTag(90) as! UILabel
             self.per_transferData = transferData.text

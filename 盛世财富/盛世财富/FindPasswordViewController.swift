@@ -117,7 +117,8 @@ class FindPasswordViewController:UIViewController {
         let user = NSUserDefaults.standardUserDefaults()
         let url = Common.serverHost+"/App-Login-findPassword"
         let afnet = AFHTTPRequestOperationManager()
-        var param = ["to":user.stringForKey("token")]
+        var param = ["phone":phone.text,"step":"2","code":checkCode.text,"type":"1","new_pass":password.text]
+        println(checkCode.text)
         //检查手机网络
         var reach = Reachability(hostName: Common.domain)
         reach.unreachableBlock = {(r:Reachability!) -> Void in
@@ -133,8 +134,9 @@ class FindPasswordViewController:UIViewController {
             dispatch_async(dispatch_get_main_queue(), {
                 loading.startLoading(self.view)
                 afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-                afnet.POST(url, parameters: nil, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     loading.stopLoading()
+                    println(data)
                     AlertView.showMsg(data["message"] as! String, parentView: self.view)
                     }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
                         loading.stopLoading()

@@ -72,9 +72,24 @@ class AlertView {
     :param: viewController “展示该对话框的控制器”
     :param: callback “回调函数”
     */
-    class func alert(title:String,message:String,buttonTitle:String,viewController:UIViewController,callback:(() -> Void)?){
+//    class func alert(title:String,message:String,buttonTitle:String,viewController:UIViewController,callback:(() -> Void)?){
+//        var alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+//        alert.addAction(UIAlertAction(title: buttonTitle, style: .Cancel, handler: nil))
+//        viewController.presentViewController(alert, animated: true, completion: callback)
+//    }
+    
+    /**
+    模态提示框,带回调函数
+    
+    :param: title          “对话框标题”
+    :param: message        “提示信息”
+    :param: buttonTitle    “按钮标题”
+    :param: viewController “展示该对话框的控制器”
+    :param: callback       “点击按钮的回调函数”
+    */
+    class func alert(title:String,message:String,buttonTitle:String,viewController:UIViewController,callback:((UIAlertAction!) -> Void)!){
         var alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: buttonTitle, style: .Cancel, handler: nil))
-        viewController.presentViewController(alert, animated: true, completion: callback)
+        alert.addAction(UIAlertAction(title: buttonTitle, style: .Cancel, handler: callback))
+        viewController.presentViewController(alert, animated: true, completion: nil)
     }
 }

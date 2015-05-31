@@ -212,7 +212,10 @@ class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDele
                             userdefault.setObject(idcard, forKey: "isUpload")
                             userdefault.setObject("0", forKey: "isVerify")
                             
-                            AlertView.alert("提示", message: "实名认证信息已经提交，请等待审核！", buttonTitle: "确定", viewController: self, callback: {
+//                            AlertView.alert("提示", message: "实名认证信息已经提交，请等待审核！", buttonTitle: "确定", viewController: self, callback: {
+//                                self.navigationController?.popViewControllerAnimated(true)
+//                            })
+                            AlertView.alert("提示", message: "实名认证信息已经提交，请等待审核！", buttonTitle: "确定", viewController: self, callback: { (alertAction:UIAlertAction!) -> Void in
                                 self.navigationController?.popViewControllerAnimated(true)
                             })
                         }

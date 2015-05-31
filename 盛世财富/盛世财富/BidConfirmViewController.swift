@@ -101,7 +101,12 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
             AlertView.showMsg(Common.passwordErrorTip, parentView: self.view)
             return
         }
-        
+        let user = NSUserDefaults.standardUserDefaults()
+        if let pinpass = user.objectForKey("pinpass") as? String {
+            if pinpass.isEmpty {
+                AlertView.alert("提示", message: "您没有设置交易密码", buttonTitle: "确定", viewController: self)
+            }
+        }
         
         //检查手机网络
         var reach = Reachability(hostName: Common.domain)
@@ -135,7 +140,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
                 //        println(param)
                 afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                 afnet.POST(url, parameters: param, success: { (opration :AFHTTPRequestOperation!, res :AnyObject!) -> Void in
-                    println(res)
+//                    println(res)
                     loading.stopLoading()
                     AlertView.showMsg(res["message"] as! String, parentView: self.view)
                     //            println(res["message"])

@@ -47,35 +47,34 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
                         loading.stopLoading()
                         
                         var result = data as! NSDictionary
-                        NSLog("充值记录：%@", result)
+//                        NSLog("充值记录：%@", result)
                         var code = result["code"] as! Int
                         if code == -1 {
                             AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
                         }else if code == 0 {
                             AlertView.alert("提示", message: "查询失败，请稍候再试", buttonTitle: "确定", viewController: self)
                         }else if code == 200 {
-                            self.tmpListData = (result["data"]?["list"] as? NSMutableArray)!
-                            var successMoneyTemp = result["data"]?["success_money"] as? NSString
-                            var failMoneyTemp = result["data"]?["fail_money"] as? NSString
-                            
-                            if (successMoneyTemp == nil || successMoneyTemp!.length == 0) {
-                                self.successMoney = "0.00"
-                            } else {
-                                self.successMoney = successMoneyTemp! as String
-                            }
-                            
-                            if (failMoneyTemp == nil || failMoneyTemp!.length == 0) {
-                                self.failMoney = "0.00"
-                            } else {
-                                self.failMoney = failMoneyTemp! as String
-                            }
-                            
-                            if self.tmpListData.count > 0 {
-                                self.tableView.reloadData()
-                            } else {
-//                                var label = UILabel(frame: CGRectMake(0, 0, 100, 20))
-//                                label.text = "没有记录"
-//                                self.tableView.addSubview(label)
+                            if let list = result["data"]?["list"] as? NSMutableArray {
+                                self.tmpListData = list
+                                if let successMoneyTemp = result["data"]?["success_money"] as? String {
+                                    self.successMoney = successMoneyTemp
+                                }else{
+                                    self.successMoney = "0.00"
+                                }
+                                if let failMoneyTemp = result["data"]?["fail_money"] as? String{
+                                    self.failMoney = failMoneyTemp
+                                }else{
+                                    self.failMoney = "0.00"
+                                }
+                                
+                                
+                                if self.tmpListData.count > 0 {
+                                    self.tableView.reloadData()
+                                } else {
+                                    //                                var label = UILabel(frame: CGRectMake(0, 0, 100, 20))
+                                    //                                label.text = "没有记录"
+                                    //                                self.tableView.addSubview(label)
+                                }
                             }
                             
                         }

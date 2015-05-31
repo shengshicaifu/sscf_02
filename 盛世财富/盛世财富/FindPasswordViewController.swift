@@ -121,7 +121,6 @@ class FindPasswordViewController:UIViewController,UITextFieldDelegate {
         let url = Common.serverHost+"/App-Login-findPassword"
         let afnet = AFHTTPRequestOperationManager()
         var param = ["phone":phone.text,"step":"2","code":checkCode.text,"type":"1","new_pass":password.text]
-        println(checkCode.text)
         //检查手机网络
         var reach = Reachability(hostName: Common.domain)
         reach.unreachableBlock = {(r:Reachability!) -> Void in

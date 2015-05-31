@@ -75,8 +75,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
            //NSLog("网络可用")
             dispatch_async(dispatch_get_main_queue(), {
                 loading.startLoading(self.view)
-                
-                
             var manager = AFHTTPRequestOperationManager()
             var url = Common.serverHost + "/App-Login"
             var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String

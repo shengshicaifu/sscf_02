@@ -104,7 +104,8 @@ class AccountSafeTableViewController: UITableViewController,UITableViewDataSourc
             self.performSegueWithIdentifier("modifyLoginPassSegue", sender: nil)
         }else if selectedRow == 2 {
             if rightLabel.text == "请设置交易密码" {
-                self.performSegueWithIdentifier("setPinPassSegue", sender: nil)
+                var view = self.storyboard?.instantiateViewControllerWithIdentifier("setPinPasswordViewController") as! SetPinPasswordViewController
+                self.presentViewController(view, animated: true, completion: nil)
             } else {
                 self.performSegueWithIdentifier("modifyPinPassSegue", sender: nil)
             }

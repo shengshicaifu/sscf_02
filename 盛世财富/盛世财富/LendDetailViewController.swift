@@ -236,7 +236,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
         if segue.identifier == "buy"{
             var vc = segue.destinationViewController as! BidConfirmViewController
             vc.id = self.id
-            vc.percent = self.percent
+            vc.percent = self.percent!+"%"
             vc.bidTitle = self.bidTitle
             vc.type = self.type
             vc.duration = self.duration

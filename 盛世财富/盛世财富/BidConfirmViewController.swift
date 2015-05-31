@@ -41,8 +41,8 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         payBtn.layer.cornerRadius = 5
     
         
-        if let usermoney:String = NSUserDefaults.standardUserDefaults().objectForKey("usermoney") as? String {
-            self.usermoney.text = usermoney
+        if let usermoney:String = NSUserDefaults.standardUserDefaults().objectForKey("accountMoney") as? String {
+            self.usermoney.text = "\(usermoney)元"
         }
         if let rate:String = percent{
             self.bidRate.text = "\(rate)"
@@ -142,8 +142,21 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
                 afnet.POST(url, parameters: param, success: { (opration :AFHTTPRequestOperation!, res :AnyObject!) -> Void in
 //                    println(res)
                     loading.stopLoading()
-                    AlertView.showMsg(res["message"] as! String, parentView: self.view)
-                    //            println(res["message"])
+                    //AlertView.showMsg(res["message"] as! String, parentView: self.view)
+                    
+                    var result = res as! NSDictionary
+                    var code = result["code"] as! Int
+                    if code == -1 {
+                        AlertView.alert("提示", message: "请先登录", buttonTitle: "确定", viewController: self)
+                    }else if code == 0 {
+                        AlertView.alert("提示", message: res["message"] as! String, buttonTitle: "确定", viewController: self)
+                    }else if code == 50 {
+                        AlertView.alert("提示", message: "账户余额不足，请充值", buttonTitle: "确定", viewController: self)
+                    }else if code == 200 {
+                        AlertView.alert("提示", message: "恭喜您投标成功", buttonTitle: "确定", viewController: self)
+                    }
+                    
+                    
                     }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
                         println(error.localizedDescription)
                         loading.stopLoading()

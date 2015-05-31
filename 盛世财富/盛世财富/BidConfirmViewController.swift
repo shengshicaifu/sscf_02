@@ -31,6 +31,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
     var type:String?
     var duration:String = String()
     override func viewDidAppear(animated: Bool) {
+         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         let url = Common.serverHost+"/app-invest-detailcontent-id-"+self.id!
         let afnet = AFHTTPRequestOperationManager()
         //检查手机网络
@@ -46,10 +47,10 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         reach.reachableBlock = {(r:Reachability!) -> Void in
             //NSLog("网络可用")
             dispatch_async(dispatch_get_main_queue(), {
-                loading.startLoading(self.view)
+                
                 afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                 afnet.GET(url, parameters: nil, success: { (operation:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                    loading.stopLoading()
+                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     let d = data.objectForKey("data") as! NSDictionary
                     println(d)
                     if let borrowInfo = d.objectForKey("borrowinfo") as? NSDictionary {
@@ -88,8 +89,9 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
                            
                         }
                     }
+                    
                     }, failure: { (operation:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                        loading.stopLoading()
+                         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         println(error)
                 })
             })
@@ -228,13 +230,18 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
                     var result = res as! NSDictionary
                     var code = result["code"] as! Int
                     if code == -1 {
-                        AlertView.alert("提示", message: "请先登录", buttonTitle: "确定", viewController: self)
+                        AlertView.alert("提示", message: "请先登录", buttonTitle: "确定", viewController: self )
+                        
+                        
                     }else if code == 0 {
                         AlertView.alert("提示", message: res["message"] as! String, buttonTitle: "确定", viewController: self)
                     }else if code == 50 {
                         AlertView.alert("提示", message: "账户余额不足，请充值", buttonTitle: "确定", viewController: self)
                     }else if code == 200 {
-                        AlertView.alert("提示", message: "恭喜您投标成功", buttonTitle: "确定", viewController: self)
+                        
+                        AlertView.alert("提示", message: "恭喜您投标成功", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
+                            self.navigationController?.popViewControllerAnimated(true)
+                        })
                     }
                     
                     

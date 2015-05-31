@@ -50,6 +50,50 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         
        // println("textLayer  x:\(textLayer?.frame.origin.x) y\(textLayer?.frame.origin.y) width\(textLayer?.frame.width) height\(textLayer?.frame.height)")
         //println("moneyView  x:\(moneyView?.frame.origin.x) y\(moneyView?.frame.origin.y) width\(moneyView?.frame.width) height\(moneyView?.frame.height)")
+        
+        //下拉刷新
+        var rc = UIRefreshControl()
+        rc.attributedTitle = NSAttributedString(string: "下拉刷新")
+        rc.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl = rc
+    }
+    
+    //刷新
+    func refresh(){
+        if self.refreshControl!.refreshing {
+            self.refreshControl?.attributedTitle = NSAttributedString(string: "加载中...")
+            if let token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String {
+                let afnet = AFHTTPRequestOperationManager()
+                let param = ["to":token]
+                let url = Common.serverHost + "/App-Ucenter-userInfo"
+                //loading.startLoading(self.tableView)
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+                afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+                afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
+                    var resDictionary = res as! NSDictionary
+                    var code = resDictionary["code"] as! Int
+                    if code == -1 {
+                        AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
+                    } else if code == 200 {
+                        let data  = res["data"] as! NSDictionary
+                        let proInfo = data.objectForKey("proInfo") as! NSDictionary
+                        var totalAll = proInfo.objectForKey("total_all") as! NSString
+                        NSUserDefaults.standardUserDefaults().setObject(totalAll, forKey: "usermoney")
+                        
+                        NSUserDefaults.standardUserDefaults().setObject(proInfo.objectForKey("account_money"), forKey: "accountMoney")
+                        
+                        self.textLayer?.jumpNumberWithDuration(1, fromNumber: 0.0, toNumber: totalAll.floatValue)
+                    }
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    self.refreshControl?.endRefreshing()
+                    self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
+                    }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                        //loading.stopLoading()
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                        AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
+            }
+        }
+        }
     }
     
     //跳到资产管理
@@ -97,36 +141,7 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
             if let usermoney:NSString = user.objectForKey("usermoney") as? NSString {
                 textLayer?.jumpNumberWithDuration(1, fromNumber: 0.0, toNumber: usermoney.floatValue)
             }
-            
-            
-//            if let token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String {
-//                let afnet = AFHTTPRequestOperationManager()
-//                let param = ["to":token]
-//                let url = Common.serverHost + "/App-Ucenter-userInfo"
-//                loading.startLoading(self.tableView)
-//                afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-//                afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
-//                    NSLog("资产管理：%@", res as! NSDictionary)
-//                    var resDictionary = res as! NSDictionary
-//                    var code = resDictionary["code"] as! Int
-//                    if code == -1 {
-//                        AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
-//                    } else if code == 200 {
-//                        let data  = res["data"] as! NSDictionary
-//                        let proInfo = data.objectForKey("proInfo") as! NSDictionary
-//                        var totalAll = proInfo.objectForKey("total_all") as! NSString
-//                        self.textLayer?.jumpNumberWithDuration(1, fromNumber: 0.0, toNumber: totalAll.floatValue)
-//                    }
-//                    loading.stopLoading()
-//                    }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
-//                        loading.stopLoading()
-//                        AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
-//                }
-//            }
-            
-            
-            
-            
+
             
             if let headImage:NSData = user.objectForKey("headImage") as? NSData {
                 //如果本地有保存图像，用本地的
@@ -191,9 +206,8 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         }else{
             //                println("unsign")
             var barItem = UIBarButtonItem(title: "登录", style: UIBarButtonItemStyle.Plain, target: self, action: "loginBtn")
-            
             self.navigationItem.rightBarButtonItem = barItem
-            
+            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
             self.tableView.allowsSelection = false
             self.tableView.reloadData()
         }

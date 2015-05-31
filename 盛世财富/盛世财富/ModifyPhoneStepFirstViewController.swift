@@ -58,11 +58,12 @@ class ModifyPhoneStepFirstViewController: UIViewController {
 //                NSLog("发送验证码参数：%@", params)
                 var manager = AFHTTPRequestOperationManager()
                 manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-                loading.startLoading(self.view)
+                //loading.startLoading(self.view)
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = true
                 manager.POST(url, parameters: params,
                     success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                        loading.stopLoading()
-                        
+                        //loading.stopLoading()
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         var result = data as! NSDictionary
                         NSLog("验证码%@", result)
                         var code = result["code"] as! Int
@@ -77,7 +78,7 @@ class ModifyPhoneStepFirstViewController: UIViewController {
                         AlertView.showMsg(msg, parentView: self.view)
                     },
                     failure:{ (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                        loading.stopLoading()
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         println(error)
                         AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
                     }

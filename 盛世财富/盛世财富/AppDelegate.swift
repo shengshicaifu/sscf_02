@@ -30,6 +30,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("tabBarViewController") as!TabBarViewController
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "showLockPassword")
         }
+        
+        
+        //设置状态栏字体颜色和背景颜色
+        var appearance = UINavigationBar.appearance()
+        appearance.barTintColor = UIColor(red: 68/255.0, green: 163/255.0, blue: 242/255.0, alpha: 1.0)
+        appearance.tintColor = UIColor.whiteColor()
+        appearance.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        //修改按钮的颜色
+        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
+        
+        
+        
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        
         window?.makeKeyAndVisible()
         
         return true

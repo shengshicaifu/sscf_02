@@ -278,7 +278,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 var totalMoneyTmp = tmpListData[row].valueForKey("borrow_money") as! NSString
                 if totalMoneyTmp.integerValue > 10000 {
                     totalMoneyTmp = "\(totalMoneyTmp.integerValue/10000)"
-                    totalMoney.text = "\(totalMoneyTmp)万元"
+                    totalMoney.text = "\(totalMoneyTmp)万"
                 } else {
                     totalMoney.text = "\(totalMoneyTmp)元"
                 }

@@ -134,17 +134,19 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
                     afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                     afnet.POST(url, parameters: param,
                         success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
-                        
+                            NSLog("001")
                             NSLog("投标%@记录：%@",bidType,res as! NSDictionary)
-                            
+                            NSLog("002")
                             //根据操作类型对返回的数据进行处理
                             if actionType == "1" {
                              //1:进入页面加载
                              //先清空data中的数据，再把获取的数据加入到data中
                                 if let d = res["data"] as? NSArray{
+                                    NSLog("003")
                                     self.data.removeAllObjects()
+                                    NSLog("004")
                                     self.data.addObjectsFromArray(d as [AnyObject])
-                                    
+                                    NSLog("005")
     //                                for(var i=0;i<self.data.count;i++){
     //                                    println(self.data[i]["borrow_name"] as! String)
     //                                }

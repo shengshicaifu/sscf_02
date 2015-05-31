@@ -83,9 +83,9 @@ class ModifyLoginPasswordViewController: UIViewController {
                             AlertView.showMsg("修改密码失败，请稍候再试", parentView: self.view)
                         }else if code == 200 {
                             NSLog("修改登录密码成功")
-                            AlertView.showMsg("修改登录密码成功", parentView: self.view)
-                            //NSThread.sleepForTimeInterval(6)
-                            self.navigationController?.popViewControllerAnimated(true)
+                            AlertView.alert("提示", message: "修改登录密码成功", buttonTitle: "确定", viewController: self, callback: { (alertAction:UIAlertAction!) -> Void in
+                                self.navigationController?.popViewControllerAnimated(true)
+                            })
                         }
                         
                     },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in

@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-class FindPasswordViewController:UIViewController {
+class FindPasswordViewController:UIViewController,UITextFieldDelegate {
     @IBOutlet weak var phone: UITextField!
     
     @IBOutlet weak var getCodeButton: UIButton!
@@ -61,16 +61,19 @@ class FindPasswordViewController:UIViewController {
             //NSLog("网络可用")
 
             dispatch_async(dispatch_get_main_queue(), {
-                loading.startLoading(self.view)
+                //loading.startLoading(self.view)
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = true
                 self.getCodeButton.enabled = false
                 self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "repeat", userInfo: nil, repeats: true)
                 
                 afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                 afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                    loading.stopLoading()
+                    //loading.stopLoading()
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     AlertView.showMsg(data["message"] as! String, parentView: self.view)
                     }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                        loading.stopLoading()
+                        //loading.stopLoading()
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
                 }
             })
@@ -136,7 +139,22 @@ class FindPasswordViewController:UIViewController {
                 afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     loading.stopLoading()
                     println(data)
-                    AlertView.showMsg(data["message"] as! String, parentView: self.view)
+                    //AlertView.showMsg(data["message"] as! String, parentView: self.view)
+                    var code = data["code"] as! Int
+                    if code == 200 {
+//                        AlertView.alert("提示", message: "修改成功", buttonTitle: "确定", viewController: self, callback: {
+//                            self.dismissViewControllerAnimated(true, completion: nil)
+//                        })
+                        var alert = UIAlertController(title: "提示", message: "修改成功", preferredStyle: .Alert)
+                        alert.addAction(UIAlertAction(title: "确定", style: .Cancel, handler:{
+                            (alertAction:UIAlertAction!) -> Void in
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        }))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    }else {
+                        AlertView.alert("提示", message: "修改失败", buttonTitle: "确定", viewController: self)
+                    }
+                    
                     }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
                         loading.stopLoading()
                         AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
@@ -149,11 +167,26 @@ class FindPasswordViewController:UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.phone.delegate = self
+        self.checkCode.delegate = self
+        self.password.delegate = self
+        self.repeatPassword.delegate = self
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if range.location < 20 {
+            return true
+        }
+        return false
+    }
+    
+    
+    
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         resignAll()

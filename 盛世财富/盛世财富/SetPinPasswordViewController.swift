@@ -81,7 +81,10 @@ class SetPinPasswordViewController: UIViewController {
                         }else if code == 200 {
                             //NSLog("设置交易密码成功")
                             NSUserDefaults.standardUserDefaults().setObject(self.pinPasswordTextField.text, forKey: "pinpass")
-                            self.dismissViewControllerAnimated(true, completion: nil)
+                            
+                            AlertView.alert("提示", message: "设置交易密码成功", buttonTitle: "确定", viewController: self, callback: { (alertAction:UIAlertAction!) -> Void in
+                                self.navigationController?.popViewControllerAnimated(true)
+                            })
                            
                         }
                         

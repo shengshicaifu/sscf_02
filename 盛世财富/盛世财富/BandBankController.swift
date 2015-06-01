@@ -22,6 +22,7 @@ class BandBankController: UIViewController,UITableViewDelegate {
         println("bankCardNo\(bankCardNo)")
         if bankCardNo == "" || bankCardNo == nil{
             addTapped.setTitle("添加", forState: UIControlState.Normal)
+            self.title = "添加银行卡"
         }else{
             bankCardNoTextField.text = userDefaults.objectForKey("bankCardNo") as? String
             bankNameTextField.text = userDefaults.objectForKey("bankName") as? String
@@ -29,6 +30,7 @@ class BandBankController: UIViewController,UITableViewDelegate {
             bankCityTextField.text = userDefaults.objectForKey("bankCity") as? String
             bankBranchTextField.text = userDefaults.objectForKey("bankBranch") as? String
             addTapped.setTitle("修改", forState: UIControlState.Normal)
+            self.title = "修改银行卡"
        }
     }
     override func didReceiveMemoryWarning() {

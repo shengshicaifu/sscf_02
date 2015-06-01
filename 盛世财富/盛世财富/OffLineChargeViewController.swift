@@ -90,7 +90,9 @@ class OffLineChargeViewController:UIViewController {
                 afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                 afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     loading.stopLoading()
-                    AlertView.showMsg(data["message"] as! String, parentView: self.view)
+                    AlertView.showMsg(data["message"] as! String, parentView:  self.view)
+//                    AlertView.alert("提示", message: data["message"], buttonTitle:"确定", viewController: self)
+                     self.navigationController?.popViewControllerAnimated(true)
                     }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
                         loading.stopLoading()
                         AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)

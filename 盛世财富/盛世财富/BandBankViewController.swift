@@ -35,7 +35,7 @@ class BandBankViewController: UIViewController,UITableViewDelegate {
             userNameLabel.text = Common.replaceStringToX(username!, start: 0, end: 2)
             userNameLabel.textColor = UIColor.redColor()
             
-            bankLabel.text = Common.replaceStringToX(bankCardNo!, start: 0, end: 8)
+            bankLabel.text = Common.replaceStringToX(bankCardNo!, start: 0, end: 4)
             bankLabel.textColor = UIColor.blueColor()
             bankButton.setTitle("修改", forState: UIControlState.Normal)
         }

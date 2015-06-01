@@ -20,17 +20,106 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
     @IBOutlet weak var usermoney: UILabel!
     @IBOutlet weak var bidName: UILabel!
     @IBOutlet weak var bidRate: UILabel!
+    @IBOutlet weak var restMoney: UILabel!
+    
     @IBOutlet weak var unit: UILabel!
     
     
+    @IBOutlet weak var moneyLabel: UILabel!
     @IBOutlet weak var typeName: UILabel!
     var id:String?
-    var bidTitle:String?
-    var percent:String?
     var type:String?
-    var per_transferData:String?
-    var duration:String?
-    
+    var duration:String = String()
+    override func viewDidAppear(animated: Bool) {
+         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        let url = Common.serverHost+"/app-invest-detailcontent-id-"+self.id!
+        let afnet = AFHTTPRequestOperationManager()
+        //检查手机网络
+        var reach = Reachability(hostName: Common.domain)
+        reach.unreachableBlock = {(r:Reachability!) -> Void in
+            //NSLog("网络不可用")
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+            })
+        }
+        
+        reach.reachableBlock = {(r:Reachability!) -> Void in
+            //NSLog("网络可用")
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+                afnet.GET(url, parameters: nil, success: { (operation:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    let d = data.objectForKey("data") as! NSDictionary
+                    println(d)
+                    if let borrowInfo = d.objectForKey("borrowinfo") as? NSDictionary {
+                        self.usermoney.text = NSUserDefaults.standardUserDefaults().objectForKey("accountMoney") as? String
+                        if let borrow_type = borrowInfo.objectForKey("borrow_type") as? String{
+                            self.type = borrow_type
+                            if let borrow_duration = borrowInfo.objectForKey("borrow_duration") as? String{
+                                self.duration = borrow_duration
+                            }
+
+                            if let borrow_name = borrowInfo.objectForKey("borrow_name") as? String{
+                                self.bidName.text = borrow_name
+                            }
+                            if let borrow_interest_rate = borrowInfo.objectForKey("borrow_interest_rate") as? String{
+                                self.bidRate.text = borrow_interest_rate + "%"
+                            }
+                            if let need = borrowInfo.objectForKey("need") as? NSInteger{
+                                self.restMoney.text = "\(need)元"
+                            }
+                            if borrow_type != "8" {
+                                self.typeName.text = "认购份数："
+                                self.unit.text = "份"
+//                                self.moneyLabel.text = "可认购："
+//                                if let transfer_can = borrowInfo.objectForKey("transfer_can") as? String{
+//                                    self.restMoney.text = transfer_can+"份"
+//                                }
+                                if let per_transferData = borrowInfo.objectForKey("per_transferData") as? String{
+                                    self.bidMoney.placeholder = "每份\(per_transferData)元"
+                                }
+                            }else{
+                                
+                                if let borrow_min = borrowInfo.objectForKey("borrow_min") as? String{
+                                    self.bidMoney.placeholder = "起投金额\(borrow_min)"
+                                }
+                            }
+                           
+                        }
+                    }
+                    
+                    }, failure: { (operation:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                        println(error)
+                })
+            })
+        }
+        reach.startNotifier()
+        // [borrowinfo][ transfer_can]
+        //起投金额: String [borrowinfo][borrow_min]
+        //
+        //        if let usermoney:String = NSUserDefaults.standardUserDefaults().objectForKey("accountMoney") as? String {
+        //            self.usermoney.text = "\(usermoney)元"
+        //        }
+        //        if let rate:String = percent{
+        //            self.bidRate.text = "\(rate)"
+        //        }
+        //        if let title:String = bidTitle {
+        //            self.bidName.text = title
+        //        }
+        //        if let type = self.type {
+        //            if type != "8"{
+        //                typeName.text = "认购份数："
+        //                unit.text = "份"
+        //                bidMoney.placeholder = "每份\(self.per_transferData!)元"
+        //                //               println(duration)
+        //            }
+        //        }
+        
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -41,23 +130,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         payBtn.layer.cornerRadius = 5
     
         
-        if let usermoney:String = NSUserDefaults.standardUserDefaults().objectForKey("accountMoney") as? String {
-            self.usermoney.text = "\(usermoney)元"
-        }
-        if let rate:String = percent{
-            self.bidRate.text = "\(rate)"
-        }
-        if let title:String = bidTitle {
-            self.bidName.text = title
-        }
-        if let type = self.type {
-            if type != "8"{
-                typeName.text = "认购份数："
-                unit.text = "份"
-                bidMoney.placeholder = "每份\(self.per_transferData!)元"
-//               println(duration)
-            }
-        }
+        
     }
     @IBAction func confirm(sender: AnyObject) {
         resignAll()
@@ -142,11 +215,11 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
                             url = Common.serverHost + "/App-Invest-investmoney"
                         }else{
                             url = Common.serverHost + "/App-Invest-newtinvestmoney"
-                            param = ["borrow_id":self.id!,"duration":self.duration!,"transfer_invest_num":self.bidMoney.text,"pin":self.payPassword.text,"is_confirm":"0","reward_use":self.reward.text,"use_experince":self.experience.text,"to":token]
+                            param = ["borrow_id":self.id!,"duration":self.duration,"transfer_invest_num":self.bidMoney.text,"pin":self.payPassword.text,"is_confirm":"0","reward_use":self.reward.text,"use_experince":self.experience.text,"to":token]
                         }
                     }
                 }
-                
+                println(url)
                 //        println(param)
                 afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                 afnet.POST(url, parameters: param, success: { (opration :AFHTTPRequestOperation!, res :AnyObject!) -> Void in
@@ -157,13 +230,18 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
                     var result = res as! NSDictionary
                     var code = result["code"] as! Int
                     if code == -1 {
-                        AlertView.alert("提示", message: "请先登录", buttonTitle: "确定", viewController: self)
+                        AlertView.alert("提示", message: "请先登录", buttonTitle: "确定", viewController: self )
+                        
+                        
                     }else if code == 0 {
                         AlertView.alert("提示", message: res["message"] as! String, buttonTitle: "确定", viewController: self)
                     }else if code == 50 {
                         AlertView.alert("提示", message: "账户余额不足，请充值", buttonTitle: "确定", viewController: self)
                     }else if code == 200 {
-                        AlertView.alert("提示", message: "恭喜您投标成功", buttonTitle: "确定", viewController: self)
+                        
+                        AlertView.alert("提示", message: "恭喜您投标成功", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
+                            self.navigationController?.popViewControllerAnimated(true)
+                        })
                     }
                     
                     
@@ -203,5 +281,6 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         DaiDodgeKeyboard.removeRegisterTheViewNeedDodgeKeyboard()
         super.viewWillDisappear(animated)
     }
-}
+    
+    }
 

@@ -219,14 +219,6 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             
             var vc = segue.destinationViewController as! BidConfirmViewController
             vc.id = self.id
-            vc.bidTitle = self.bidName
-            vc.percent = self.percent
-            vc.type = self.type
-            
-            if self.type != "8" {
-                vc.per_transferData = self.per_transferData
-                vc.duration = self.duration
-            }
         }
         //隐藏tabbar
         if nextView != nil {

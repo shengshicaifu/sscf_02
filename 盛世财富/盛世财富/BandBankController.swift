@@ -41,7 +41,7 @@ class BandBankController: UIViewController,UITableViewDelegate {
         resignAll()
         var userDefaults = NSUserDefaults.standardUserDefaults()
         var bankCardNo = userDefaults.objectForKey("bankCardNo") as? String
-        if bankCardNo == nil{
+        if bankCardNo == nil || bankCardNo == "" {
         var bankCardNo = bankCardNoTextField.text
         var bankName = bankNameTextField.text
         var bankProvice = bankProviceTextField.text
@@ -69,14 +69,14 @@ class BandBankController: UIViewController,UITableViewDelegate {
         }
         //其他输入限制再加
         //检查手机网络
-        var reach = Reachability(hostName: Common.domain)
-        reach.unreachableBlock = {(r:Reachability!) -> Void in
-            //NSLog("网络不可用")
-            dispatch_async(dispatch_get_main_queue(), {
-                
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
-            })
-        }
+//        var reach = Reachability(hostName: Common.domain)
+//        reach.unreachableBlock = {(r:Reachability!) -> Void in
+//            //NSLog("网络不可用")
+//            dispatch_async(dispatch_get_main_queue(), {
+//                
+//                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+//            })
+//        }
         let manager = AFHTTPRequestOperationManager()
         var url = Common.serverHost + "/App-Ucenter-bindBank"
         var token = userDefaults.objectForKey("token") as! String

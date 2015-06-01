@@ -122,27 +122,30 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                             
                             //保存身份证及身份证验证信息
                             user.setObject(userInfo["idCard"]?["isVerify"], forKey: "isVerify")
-                            if let idCard = userInfo["idCard"] as? NSDictionary{
-                            user.setObject(idCard["isUpload"], forKey: "isUpload")
+                            if let isUpload = userInfo["idCard"]?["isUpload"] as? String{
+                                user.setObject(isUpload, forKey: "isUpload")
                             }else{
-                            user.setObject("", forKey: "isUpload")    
+                                user.setObject("", forKey: "isUpload")
                             }
-                            //银行卡绑定信息
-                            if let bank = userInfo["bank"] as? NSDictionary{
-                            user.setObject(bank["bank_num"], forKey:"bankCardNo")
-                            user.setObject(bank["bank_city"], forKey:"bankCity")
-                            user.setObject(bank["bank_name"], forKey:"bankName")
-                            user.setObject(bank["bank_province"], forKey:"bankProvice")
-                            user.setObject(bank["bank_address"], forKey:"bankBranch")
-                            }
-                            else
-                            {
+                            
+//                            //银行卡绑定信息
+                            if let bank = userInfo["bank"] as? NSDictionary {
+                                user.setObject(bank["bank_num"], forKey:"bankCardNo")
+                                user.setObject(bank["bank_city"], forKey:"bankCity")
+                                user.setObject(bank["bank_name"], forKey:"bankName")
+                                user.setObject(bank["bank_province"], forKey:"bankProvice")
+                                user.setObject(bank["bank_address"], forKey:"bankBranch")
+                            }else{
                                 user.setObject("", forKey:"bankCardNo")
                                 user.setObject("", forKey:"bankCity")
                                 user.setObject("", forKey:"bankName")
                                 user.setObject("", forKey:"bankProvice")
                                 user.setObject("", forKey:"bankBranch")
                             }
+                            
+                            
+                            
+                            
                             self.dismissViewControllerAnimated(true, completion: nil)
                         }
                         if(code == 0){

@@ -70,7 +70,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                 parameters: nil,
                 success: { (operation: AFHTTPRequestOperation!,responseObject: AnyObject! ) in
 //                println(responseObject)
-                   NSLog("表弟详情返回结果%@", responseObject as! NSDictionary)
+                   //NSLog("表弟详情返回结果%@", responseObject as! NSDictionary)
                     var json = responseObject as! NSDictionary
                     var data = json["data"] as! NSDictionary
                    //标题

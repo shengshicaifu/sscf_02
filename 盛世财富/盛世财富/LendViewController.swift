@@ -193,8 +193,10 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if indexPath.section == 0 {
+            
             if let hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(99) as? UILabel{
                 id = hideId.text
+                NSLog("点击的行%i,id是%@", indexPath.row,id!)
                 if let hideType = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(98) as? UILabel {
                     type = hideType.text
                 }
@@ -332,6 +334,9 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 hideId.text = tmpListData[row].valueForKey("id") as? String
                 cell.addSubview(hideId)
                 hideId.hidden = true
+                NSLog("行%i,id是%@", indexPath.row,hideId.text!)
+                
+                
                 hideType.text = tmpListData[row].valueForKey("borrow_type") as? String
                 cell.addSubview(hideType)
                 hideType.hidden = true
@@ -348,7 +353,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 circleProgressTheme.sliceDividerHidden = true
                 circleProgressTheme.labelColor = UIColor.blackColor()
                 circleProgressTheme.labelShadowColor = UIColor.whiteColor()
-                
+                circleProgressTheme.drawIncompleteArcIfNoProgress = true
                 circleProgress.theme = circleProgressTheme
                 circleProgress.progressTotal = 100
                 circleProgress.progressCounter = UInt(pro.integerValue)

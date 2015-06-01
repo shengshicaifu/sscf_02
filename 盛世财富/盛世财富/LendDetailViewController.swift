@@ -70,7 +70,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                 parameters: nil,
                 success: { (operation: AFHTTPRequestOperation!,responseObject: AnyObject! ) in
 //                println(responseObject)
-                   
+                   NSLog("表弟详情返回结果%@", responseObject as! NSDictionary)
                     var json = responseObject as! NSDictionary
                     var data = json["data"] as! NSDictionary
                    //标题
@@ -113,8 +113,9 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                         
                     var borrow_interest_rate = borrowinfo["borrow_interest_rate"] as! NSString!
                     self.percent = borrow_interest_rate as String
-                    var borrow_duration = borrowinfo["borrow_duration"]
-                        as! NSString!
+                    var borrow_duration = borrowinfo["borrow_duration"] as! NSString!
+                    var duration_unit = borrowinfo["duration_unit"] as! NSString!
+                        
 //                    //借款人信息
                     var user_name = memberinfo["user_name"]as!  NSString!
                     var sex = memberinfo["sex"] as! NSString!
@@ -156,7 +157,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                     //标题
                     
                     self.borrowInterestRate.text = "\(borrow_interest_rate)%"
-                    self.borrowDuration.text = "\(borrow_duration)个月"
+                    self.borrowDuration.text = "\(borrow_duration)\(duration_unit)"
                         
                     self.duration = borrow_duration as? String
                     //项目介绍
@@ -164,7 +165,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                     self.interestRate.text = "\(borrow_interest_rate)%"
                     self.loanMoney.text = bm
 //                    self.finIncomedes.text = finIncomedes
-                    self.borrowDate.text = "\(borrow_duration)个月"
+                    self.borrowDate.text = "\(borrow_duration)\(duration_unit)"
 //                    var borrowNameTextLabel =  self.mainTable.headerViewForSection(0)?.textLabel
 //                    var frame = borrowNameTextLabel!.frame
 //                    borrowNameTextLabel?.frame = CGRectMake(frame.origin.x, frame.origin.y,self.view.frame.width, frame.height)
@@ -236,11 +237,6 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
         if segue.identifier == "buy"{
             var vc = segue.destinationViewController as! BidConfirmViewController
             vc.id = self.id
-            vc.percent = self.percent
-            vc.bidTitle = self.bidTitle
-            vc.type = self.type
-            vc.duration = self.duration
-            vc.per_transferData = self.per_transferData
         }else if segue.identifier == "investorSegue" {
             var vc = segue.destinationViewController as! BidListViewController
             vc.bidId = self.id

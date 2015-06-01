@@ -75,8 +75,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
            //NSLog("网络可用")
             dispatch_async(dispatch_get_main_queue(), {
                 loading.startLoading(self.view)
-                
-                
             var manager = AFHTTPRequestOperationManager()
             var url = Common.serverHost + "/App-Login"
             var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
@@ -97,6 +95,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                             user.setObject(result["data"]?["token"], forKey: "token")
                             
                             user.setObject(proInfo.objectForKey("total_all"),forKey: "usermoney")
+                            user.setObject(proInfo.objectForKey("account_money"), forKey: "accountMoney")
                             
                             var userInfo = result["data"]?["userInfo"] as! NSDictionary
                             if let birthday = userInfo.objectForKey("birthday") as? String {

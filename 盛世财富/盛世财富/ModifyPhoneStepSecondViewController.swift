@@ -56,10 +56,11 @@ class ModifyPhoneStepSecondViewController: UIViewController {
                 var params = ["to":token,"cellphone":phone]
                 var manager = AFHTTPRequestOperationManager()
                 manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-                loading.startLoading(self.view)
+                //loading.startLoading(self.view)
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = true
                 manager.POST(url, parameters: params,
                     success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                        loading.stopLoading()
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         
                         var result = data as! NSDictionary
                         NSLog("验证码%@", result)
@@ -160,9 +161,11 @@ class ModifyPhoneStepSecondViewController: UIViewController {
                             
                             //self.performSegueWithIdentifier("modifyPhoneNextStepSegue", sender: self)
                             //连着返回两次到
-                            var count = self.navigationController?.viewControllers.count
-                            var destiationController = self.navigationController?.viewControllers[count! - 3] as! UIViewController
-                            self.navigationController?.popToViewController(destiationController, animated: true)
+                            AlertView.alert("提示", message: "绑定手机号码成功", buttonTitle: "确定", viewController: self, callback: { (alertAction:UIAlertAction!) -> Void in
+                                var count = self.navigationController?.viewControllers.count
+                                var destiationController = self.navigationController?.viewControllers[count! - 3] as! UIViewController
+                                self.navigationController?.popToViewController(destiationController, animated: true)
+                            })
                         }
                         
                     },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in

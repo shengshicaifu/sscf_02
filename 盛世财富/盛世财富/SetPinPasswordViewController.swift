@@ -23,6 +23,9 @@ class SetPinPasswordViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBAction func cancel(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
     @IBAction func modifyTapped(sender: UIButton) {
         resignAll()
@@ -77,9 +80,12 @@ class SetPinPasswordViewController: UIViewController {
                             AlertView.showMsg("设置交易密码失败，请稍候再试", parentView: self.view)
                         }else if code == 200 {
                             //NSLog("设置交易密码成功")
-                            AlertView.showMsg("设置交易密码成功", parentView: self.view)
-                            NSThread.sleepForTimeInterval(3)
-                            self.navigationController?.popViewControllerAnimated(true)
+                            NSUserDefaults.standardUserDefaults().setObject(self.pinPasswordTextField.text, forKey: "pinpass")
+                            
+                            AlertView.alert("提示", message: "设置交易密码成功", buttonTitle: "确定", viewController: self, callback: { (alertAction:UIAlertAction!) -> Void in
+                                self.navigationController?.popViewControllerAnimated(true)
+                            })
+                           
                         }
                         
                     },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in

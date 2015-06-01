@@ -47,35 +47,34 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
                         loading.stopLoading()
                         
                         var result = data as! NSDictionary
-                        NSLog("充值记录：%@", result)
+//                        NSLog("充值记录：%@", result)
                         var code = result["code"] as! Int
                         if code == -1 {
                             AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
                         }else if code == 0 {
                             AlertView.alert("提示", message: "查询失败，请稍候再试", buttonTitle: "确定", viewController: self)
                         }else if code == 200 {
-                            self.tmpListData = (result["data"]?["list"] as? NSMutableArray)!
-                            var successMoneyTemp = result["data"]?["success_money"] as? NSString
-                            var failMoneyTemp = result["data"]?["fail_money"] as? NSString
-                            
-                            if (successMoneyTemp == nil || successMoneyTemp!.length == 0) {
-                                self.successMoney = "0.00"
-                            } else {
-                                self.successMoney = successMoneyTemp! as String
-                            }
-                            
-                            if (failMoneyTemp == nil || failMoneyTemp!.length == 0) {
-                                self.failMoney = "0.00"
-                            } else {
-                                self.failMoney = failMoneyTemp! as String
-                            }
-                            
-                            if self.tmpListData.count > 0 {
-                                self.tableView.reloadData()
-                            } else {
-//                                var label = UILabel(frame: CGRectMake(0, 0, 100, 20))
-//                                label.text = "没有记录"
-//                                self.tableView.addSubview(label)
+                            if let list = result["data"]?["list"] as? NSMutableArray {
+                                self.tmpListData = list
+                                if let successMoneyTemp = result["data"]?["success_money"] as? String {
+                                    self.successMoney = successMoneyTemp
+                                }else{
+                                    self.successMoney = "0.00"
+                                }
+                                if let failMoneyTemp = result["data"]?["fail_money"] as? String{
+                                    self.failMoney = failMoneyTemp
+                                }else{
+                                    self.failMoney = "0.00"
+                                }
+                                
+                                
+                                if self.tmpListData.count > 0 {
+                                    self.tableView.reloadData()
+                                } else {
+                                    //                                var label = UILabel(frame: CGRectMake(0, 0, 100, 20))
+                                    //                                label.text = "没有记录"
+                                    //                                self.tableView.addSubview(label)
+                                }
                             }
                             
                         }
@@ -193,35 +192,83 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
         header.backgroundColor = UIColor.whiteColor()
         header.addSubview(blurView)
         
-        var successMoneyLabel = UILabel()
-        var failMoneyLabel = UILabel()
-        successMoneyLabel.text = self.successMoney
-        successMoneyLabel.frame = CGRectMake(15, 40, 100, 50)
-        successMoneyLabel.textColor = UIColor.redColor()
-        successMoneyLabel.font = UIFont(name: "Arial", size: 20)
-        
-        failMoneyLabel.text = self.failMoney
-        failMoneyLabel.frame = CGRectMake(250, 40, 100, 50)
-        failMoneyLabel.textColor = UIColor.grayColor()
-        failMoneyLabel.font = UIFont(name: "Arial", size: 20)
-        
         
         var l1 = UILabel()
         l1.text = "成功金额"
         l1.textColor = UIColor.grayColor()
         l1.font = UIFont(name: "Arial", size: 14)
-        l1.frame = CGRectMake(15, 20, 100, 30)
+        //l1.frame = CGRectMake(15, 20, 100, 30)
+        l1.sizeToFit()
+        l1.setTranslatesAutoresizingMaskIntoConstraints(false)
+        l1.textAlignment = NSTextAlignment.Center
+        header.addSubview(l1)
+        var l1Constraint = NSLayoutConstraint(item: l1, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: header, attribute: NSLayoutAttribute.Width, multiplier: 0.5, constant: 0)
+        header.addConstraint(l1Constraint)
+
+        l1Constraint = NSLayoutConstraint(item: l1, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: header, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 30)
+        header.addConstraint(l1Constraint)
         
         var l2 = UILabel()
         l2.text = "失败金额"
         l2.textColor = UIColor.grayColor()
         l2.font = UIFont(name: "Arial", size: 14)
-        l2.frame = CGRectMake(250, 20, 100, 30)
-        
-        header.addSubview(successMoneyLabel)
-        header.addSubview(failMoneyLabel)
-        header.addSubview(l1)
+        //l2.frame = CGRectMake(250, 20, 100, 30)
+        l2.sizeToFit()
+        l2.setTranslatesAutoresizingMaskIntoConstraints(false)
+        l2.textAlignment = NSTextAlignment.Center
         header.addSubview(l2)
+        var l2Constraint = NSLayoutConstraint(item: l2, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: header, attribute: NSLayoutAttribute.Width, multiplier: 0.5, constant: 0)
+        header.addConstraint(l2Constraint)
+        l2Constraint = NSLayoutConstraint(item: l2, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: l1, attribute: NSLayoutAttribute.Trailing, multiplier: 1.0, constant: 0)
+        header.addConstraint(l2Constraint)
+        l2Constraint = NSLayoutConstraint(item: l2, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: header, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 30)
+        header.addConstraint(l2Constraint)
+
+        
+        
+        
+        var successMoneyLabel = UILabel()
+        successMoneyLabel.text = self.successMoney
+        //successMoneyLabel.frame = CGRectMake(15, 40, 100, 50)
+        successMoneyLabel.textColor = UIColor.redColor()
+        successMoneyLabel.font = UIFont(name: "Arial", size: 20)
+        successMoneyLabel.sizeToFit()
+        successMoneyLabel.textAlignment = NSTextAlignment.Center
+        successMoneyLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        header.addSubview(successMoneyLabel)
+        
+        var sConstraint = NSLayoutConstraint(item: successMoneyLabel, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: l1, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0)
+        header.addConstraint(sConstraint)
+        
+        sConstraint = NSLayoutConstraint(item: successMoneyLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: l1, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 10)
+        header.addConstraint(sConstraint)
+        sConstraint = NSLayoutConstraint(item: successMoneyLabel, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: header, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 0)
+        header.addConstraint(sConstraint)
+        
+        
+        
+        
+        var failMoneyLabel = UILabel()
+        failMoneyLabel.text = self.failMoney
+        //failMoneyLabel.frame = CGRectMake(250, 40, 100, 50)
+        failMoneyLabel.textColor = UIColor.grayColor()
+        failMoneyLabel.font = UIFont(name: "Arial", size: 20)
+        failMoneyLabel.textAlignment = NSTextAlignment.Center
+        failMoneyLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        header.addSubview(failMoneyLabel)
+        
+        var fConstraint = NSLayoutConstraint(item: failMoneyLabel, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: l2, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0)
+        header.addConstraint(fConstraint)
+        
+        fConstraint = NSLayoutConstraint(item: failMoneyLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: l2, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 10)
+        header.addConstraint(fConstraint)
+        
+        fConstraint = NSLayoutConstraint(item: failMoneyLabel, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: successMoneyLabel, attribute: NSLayoutAttribute.Trailing, multiplier: 1.0, constant: 0)
+        header.addConstraint(fConstraint)
+
+        
+        
         return header
     }
     

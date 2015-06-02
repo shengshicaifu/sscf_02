@@ -1359,10 +1359,10 @@
         <scene sceneID="9wA-BU-qzS">
             <objects>
                 <tableViewController title="我的资产" id="rNd-dg-sRS" customClass="UserMoneyViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" id="Uk9-hz-YMt">
+                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Uk9-hz-YMt">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
                             <tableViewSection id="xmx-un-1sa">
                                 <cells>
@@ -2335,10 +2335,10 @@
             </objects>
             <point key="canvasLocation" x="2801" y="893"/>
         </scene>
-        <!--银行卡绑定-->
+        <!--银行卡信息-->
         <scene sceneID="Pwe-AO-tEQ">
             <objects>
-                <viewController title="银行卡绑定" id="7kU-iZ-Zd9" customClass="BandBankViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="银行卡信息" id="7kU-iZ-Zd9" customClass="BandBankViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vwu-2g-4WR"/>
                         <viewControllerLayoutGuide type="bottom" id="94e-CW-uuN"/>
@@ -2359,6 +2359,12 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wang lu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jy-S5-V8F">
+                                <rect key="frame" x="0.0" y="225" width="600" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MU2-31-Gir">
                                 <rect key="frame" x="0.0" y="307" width="600" height="30"/>
                                 <state key="normal" title="修改">
@@ -2368,12 +2374,6 @@
                                     <segue destination="zXc-0O-WzL" kind="show" id="fhQ-Qc-L7P"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wang lu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jy-S5-V8F">
-                                <rect key="frame" x="0.0" y="225" width="600" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -3146,6 +3146,12 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="isH-nR-8R4" id="UtH-NO-KHb">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年化利率" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WT9-NZ-hWs">
+                                                    <rect key="frame" x="178" y="48" width="146" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="106" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15.00%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPd-kE-1m9">
                                                     <rect key="frame" x="178" y="71" width="146" height="24"/>
                                                     <constraints>
@@ -3179,18 +3185,6 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" tag="55" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yxc-9L-CFv">
-                                                    <rect key="frame" x="-8" y="108" width="616" height="30"/>
-                                                    <color key="backgroundColor" red="0.32981478069999998" green="0.62642369539999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <state key="normal" title="立刻投标">
-                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="buy:" destination="yUS-81-PCH" eventType="touchUpInside" id="azU-rB-lGw"/>
-                                                        <segue destination="s6Z-ec-unV" kind="show" identifier="buy" id="tpR-eQ-WEg"/>
-                                                    </connections>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="融资金额" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eM6-Tb-5PF">
                                                     <rect key="frame" x="8" y="48" width="170" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -3217,12 +3211,18 @@
                                                         <constraint firstAttribute="height" constant="50" id="toY-fJ-DMh"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年化利率" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WT9-NZ-hWs">
-                                                    <rect key="frame" x="178" y="48" width="146" height="15"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <button opaque="NO" tag="55" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yxc-9L-CFv">
+                                                    <rect key="frame" x="-8" y="108" width="616" height="30"/>
+                                                    <color key="backgroundColor" red="0.32981478069999998" green="0.62642369539999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" title="立刻投标">
+                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="buy:" destination="yUS-81-PCH" eventType="touchUpInside" id="azU-rB-lGw"/>
+                                                        <segue destination="s6Z-ec-unV" kind="show" identifier="buy" id="tpR-eQ-WEg"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="yxc-9L-CFv" firstAttribute="bottom" secondItem="UtH-NO-KHb" secondAttribute="bottomMargin" constant="6" id="1L8-Ub-pF9"/>
@@ -3883,6 +3883,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular" misplaced="YES">
+                                                        <rect key="frame" x="160" y="102" width="56" height="17"/>
+                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="房产数目" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMm-lb-hkv">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -4039,7 +4042,9 @@
                                                 <constraint firstItem="wIQ-Zx-w0v" firstAttribute="top" secondItem="Kmy-J2-EMc" secondAttribute="bottom" constant="8" id="FgW-jQ-vho">
                                                     <variation key="heightClass=regular" constant="6"/>
                                                 </constraint>
-                                                <constraint firstItem="QG1-ch-Vsb" firstAttribute="leading" secondItem="mja-bw-ok4" secondAttribute="trailing" constant="8" id="GoF-q8-SIm"/>
+                                                <constraint firstItem="QG1-ch-Vsb" firstAttribute="leading" secondItem="mja-bw-ok4" secondAttribute="trailing" constant="8" id="GoF-q8-SIm">
+                                                    <variation key="heightClass=regular" constant="8"/>
+                                                </constraint>
                                                 <constraint firstItem="uic-pb-gwh" firstAttribute="top" secondItem="EDZ-Zr-Y6Y" secondAttribute="bottom" constant="8" id="HvV-kX-OJj"/>
                                                 <constraint firstItem="mzV-dd-lZU" firstAttribute="leading" secondItem="5hF-98-1ds" secondAttribute="trailing" constant="9" id="Iga-ja-egH">
                                                     <variation key="heightClass=regular" constant="8"/>
@@ -5756,10 +5761,10 @@
         <image name="person" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cgO-r2-Qw7"/>
         <segue reference="EcF-gu-9cT"/>
+        <segue reference="cgO-r2-Qw7"/>
+        <segue reference="1Oc-Wy-fyN"/>
         <segue reference="tpR-eQ-WEg"/>
         <segue reference="5ZP-m5-drk"/>
-        <segue reference="1Oc-Wy-fyN"/>
     </inferredMetricsTieBreakers>
 </document>

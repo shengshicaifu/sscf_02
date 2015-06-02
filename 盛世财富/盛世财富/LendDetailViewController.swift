@@ -152,7 +152,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                     self.userName.text = user_name as String
                     self.userSex.text = sex as String
                     self.userAge.text = age as String
-                    self.userEnducation.text = education as String
+                    self.userEnducation.text = "本科"
                     self.userMarray.text = marry as String
                     //标题
                     

@@ -49,9 +49,9 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         var viewsArray = NSMutableArray()
         //var colorArray = [UIColor.cyanColor(),UIColor.blueColor(),UIColor.greenColor(),UIColor.yellowColor(),UIColor.purpleColor()]
-        for  i in 1...4 {
+        for  i in 1...3 {
             var tempImageView = UIImageView(frame:CGRectMake(0, 64, self.view.layer.frame.width, 175))//代码指定位置
-            tempImageView.image = UIImage(named:"content_1.png")//图片名
+            tempImageView.image = UIImage(named:"\(i)\(i)-1.png")//图片名
             tempImageView.contentMode = UIViewContentMode.ScaleAspectFill
             tempImageView.clipsToBounds = true
             

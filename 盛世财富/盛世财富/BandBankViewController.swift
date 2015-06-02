@@ -28,6 +28,7 @@ class BandBankViewController: UIViewController,UITableViewDelegate {
             userNameLabel.hidden = true
             bankLabel.text = "你尚未添加任何银行卡"
             bankButton.setTitle("添加", forState: UIControlState.Normal)
+            self.title = "银行卡信息"
         }
         else{
             bankNameLabel.text = bankName
@@ -38,6 +39,7 @@ class BandBankViewController: UIViewController,UITableViewDelegate {
             bankLabel.text = Common.replaceStringToX(bankCardNo!, start: 0, end: 4)
             bankLabel.textColor = UIColor.blueColor()
             bankButton.setTitle("修改", forState: UIControlState.Normal)
+            self.title = "银行卡信息"
         }
     }
 }

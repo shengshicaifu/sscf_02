@@ -67,10 +67,12 @@ class BidListViewController: UITableViewController,UITableViewDataSource,UITable
         
         if let cellData = investorArray?[indexPath.row] as? NSDictionary {
             var userNameLabel = cell.contentView.viewWithTag(101) as! UILabel
-            var name = cellData["user_name"] as! NSString
-//            name = name.substringFromIndex(3)
-//            userNameLabel.text = (name as String)+"***"
-//           userNameLabel.text = Common.replaceStringToX(name as! String, start: 3, end:name.length)
+            if let name = cellData["user_name"] as? NSString{
+                userNameLabel.text = Common.replaceStringToX(name, start: 3, end: name.length)
+            }
+            //name = name.substringFromIndex(3)
+            //userNameLabel.text = (name as String)+"***"
+            
             var investorCapitalLabel = cell.contentView.viewWithTag(102) as! UILabel
             investorCapitalLabel.text = cellData["investor_capital"] as? String
             

@@ -65,6 +65,11 @@ class Common {
         var pred = NSPredicate(format: "SELF MATCHES %@", regex)
         return pred.evaluateWithObject(money)
     }
+//    static let isBank(bankCardNo:String) ->Bool {
+//    //是否最低8位数
+//        var pred = NSPredicate(format: "SELF MATCHES %@", regex)
+//        return pred.evaluateWithObject(telephone)
+//    }
     
     static let stringLengthInErrorTip:String = "字符串长度不在指定的区间内"
     

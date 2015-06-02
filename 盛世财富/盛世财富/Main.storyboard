@@ -3883,6 +3883,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular" misplaced="YES">
+                                                        <rect key="frame" x="160" y="102" width="56" height="17"/>
+                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="房产数目" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMm-lb-hkv">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -4039,7 +4042,9 @@
                                                 <constraint firstItem="wIQ-Zx-w0v" firstAttribute="top" secondItem="Kmy-J2-EMc" secondAttribute="bottom" constant="8" id="FgW-jQ-vho">
                                                     <variation key="heightClass=regular" constant="6"/>
                                                 </constraint>
-                                                <constraint firstItem="QG1-ch-Vsb" firstAttribute="leading" secondItem="mja-bw-ok4" secondAttribute="trailing" constant="8" id="GoF-q8-SIm"/>
+                                                <constraint firstItem="QG1-ch-Vsb" firstAttribute="leading" secondItem="mja-bw-ok4" secondAttribute="trailing" constant="8" id="GoF-q8-SIm">
+                                                    <variation key="heightClass=regular" constant="8"/>
+                                                </constraint>
                                                 <constraint firstItem="uic-pb-gwh" firstAttribute="top" secondItem="EDZ-Zr-Y6Y" secondAttribute="bottom" constant="8" id="HvV-kX-OJj"/>
                                                 <constraint firstItem="mzV-dd-lZU" firstAttribute="leading" secondItem="5hF-98-1ds" secondAttribute="trailing" constant="9" id="Iga-ja-egH">
                                                     <variation key="heightClass=regular" constant="8"/>
@@ -5756,10 +5761,10 @@
         <image name="person" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cgO-r2-Qw7"/>
         <segue reference="EcF-gu-9cT"/>
-        <segue reference="5ZP-m5-drk"/>
-        <segue reference="FjG-Aa-CKG"/>
+        <segue reference="cgO-r2-Qw7"/>
         <segue reference="1Oc-Wy-fyN"/>
+        <segue reference="tpR-eQ-WEg"/>
+        <segue reference="5ZP-m5-drk"/>
     </inferredMetricsTieBreakers>
 </document>

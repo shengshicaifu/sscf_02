@@ -24,7 +24,7 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         mainTable.delegate = self
         
         head.layer.masksToBounds = true
-        head.layer.cornerRadius = 25
+        head.layer.cornerRadius = 35
         
         //点击个人头像，跳转到账户信息页面
         head.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toAccountInfo"))

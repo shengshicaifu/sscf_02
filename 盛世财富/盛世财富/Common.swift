@@ -65,11 +65,13 @@ class Common {
         var pred = NSPredicate(format: "SELF MATCHES %@", regex)
         return pred.evaluateWithObject(money)
     }
-//    static let isBank(bankCardNo:String) ->Bool {
-//    //是否最低8位数
-//        var pred = NSPredicate(format: "SELF MATCHES %@", regex)
-//        return pred.evaluateWithObject(telephone)
-//    }
+    static let bankErrorTip:String = "银行卡号不正确"
+    //是否最低8位数
+    class func isBank(bankCardNo:String) ->Bool {
+        var regex = "^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$"
+        var pred = NSPredicate(format: "SELF MATCHES %@", regex)
+        return pred.evaluateWithObject(bankCardNo)
+    }
     
     static let stringLengthInErrorTip:String = "字符串长度不在指定的区间内"
     

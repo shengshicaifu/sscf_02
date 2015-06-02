@@ -32,12 +32,12 @@ class BandBankViewController: UIViewController,UITableViewDelegate {
         }
         else{
             bankNameLabel.text = bankName
-            bankNameLabel.textColor = UIColor.blueColor()
+//            bankNameLabel.textColor = UIColor.blueColor()
             userNameLabel.text = Common.replaceStringToX(username!, start: 0, end: 2)
-            userNameLabel.textColor = UIColor.redColor()
+//            userNameLabel.textColor = UIColor.redColor()
             
-            bankLabel.text = Common.replaceStringToX(bankCardNo!, start: 0, end: 4)
-            bankLabel.textColor = UIColor.blueColor()
+            bankLabel.text = Common.replaceStringToX(bankCardNo!, start: 0, end: 0)
+//            bankLabel.textColor = UIColor.blueColor()
             bankButton.setTitle("修改", forState: UIControlState.Normal)
             self.title = "银行卡信息"
         }

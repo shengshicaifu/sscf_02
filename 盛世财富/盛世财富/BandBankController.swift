@@ -53,6 +53,9 @@ class BandBankController: UIViewController,UITableViewDelegate {
             AlertView.showMsg("请输入银行卡账号", parentView: self.view)
             return
         }
+        if !Common.isBank(bankCardNo){
+            AlertView.showMsg(Common.bankErrorTip, parentView: self.view)
+            }
         if bankName.isEmpty {
             AlertView.showMsg("请输入银行名称", parentView: self.view)
             return

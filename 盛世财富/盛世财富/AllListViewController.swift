@@ -45,8 +45,8 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                 //conditionMenuView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
                 //conditionMenuView?.frame = CGRectMake(0, 0, self.view.frame.width, 350)
                 conditionMenuView?.tag = 1001
-                
-                conditionMenuView!.backgroundColor = UIColor(red: 68/255.0, green: 138/255.0, blue: 255/255.0, alpha: 1.0)
+                //UIColor(red: 68/255.0, green: 163/255.0, blue: 242/255.0, alpha: 1.0)
+                conditionMenuView!.backgroundColor = UIColor(red: 68/255.0, green: 163/255.0, blue: 242/255.0, alpha: 1.0)
 //                conditionMenuView!.alpha = 0.8
                 
                 //借款状态

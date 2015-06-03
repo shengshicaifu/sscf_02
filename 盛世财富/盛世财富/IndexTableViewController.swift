@@ -64,9 +64,16 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
     
     
 //首页图片标题
+
+        var titleView = UIView(frame: CGRectMake(0, 0, 200, 44))
         var imgView = UIImageView()
-        imgView.image = UIImage(named: "1_49.png")
-        self.navigationController?.navigationItem.titleView = imgView
+        imgView.image = UIImage(named: "0_title.png")
+        imgView.frame = CGRectMake(10, 9, 180, 26)
+        imgView.contentMode = UIViewContentMode.ScaleAspectFit
+        imgView.autoresizesSubviews = true
+        imgView.autoresizingMask = UIViewAutoresizing.FlexibleLeftMargin|UIViewAutoresizing.FlexibleTopMargin|UIViewAutoresizing.FlexibleWidth|UIViewAutoresizing.FlexibleHeight
+        titleView.addSubview(imgView)
+        self.navigationItem.titleView = titleView
         
 //首页图片标题
      
@@ -86,10 +93,6 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
 
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     // MARK: - Table view data source
 
@@ -113,21 +116,28 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var view = UIView(frame: CGRectMake(0, 0, self.tableView.frame.width, 30))
+        view.backgroundColor = UIColor(red: 230/250.0, green: 230/250.0, blue: 230/250.0, alpha: 1.0)
         
         var l1 = UILabel()
         l1.text = "安全运营:365天"
+        l1.font = UIFont(name: "Arial", size: 12)
         l1.sizeToFit()
+        //l1.adjustsFontSizeToFitWidth = true
         l1.setTranslatesAutoresizingMaskIntoConstraints(false)
         view.addSubview(l1)
         var l1Constraint = NSLayoutConstraint(item: l1, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 20)
         view.addConstraint(l1Constraint)
         l1Constraint = NSLayoutConstraint(item: l1, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.CenterY, multiplier: 1.0, constant: 0)
         view.addConstraint(l1Constraint)
-
+        l1Constraint = NSLayoutConstraint(item: l1, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Width, multiplier: 0.5, constant: -20)
+        view.addConstraint(l1Constraint)
         
         var l2 = UILabel()
         l2.text = "累计放贷:¥462081004元"
+        l2.font = UIFont(name: "Arial", size: 12)
         l2.sizeToFit()
+        l2.textAlignment = NSTextAlignment.Right
+        //l2.adjustsFontSizeToFitWidth = true
         l2.setTranslatesAutoresizingMaskIntoConstraints(false)
         view.addSubview(l2)
         
@@ -135,7 +145,10 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
         view.addConstraint(l2Constraint)
         l2Constraint = NSLayoutConstraint(item: l2, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.CenterY, multiplier: 1.0, constant: 0)
         view.addConstraint(l2Constraint)
-        
+        l2Constraint = NSLayoutConstraint(item: l2, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Width, multiplier: 0.5, constant: -20)
+        view.addConstraint(l2Constraint)
+//        l2Constraint = NSLayoutConstraint(item: l2, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: l1, attribute: NSLayoutAttribute.Trailing, multiplier: 1.0, constant: 20)
+//        view.addConstraint(l2Constraint)
         
         return view
     }

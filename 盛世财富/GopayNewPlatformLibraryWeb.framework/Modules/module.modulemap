@@ -1,0 +1,6 @@
+framework module GopayNewPlatformLibraryWeb {
+  umbrella header "GopayNewPlatformLibraryWeb.h"
+
+  export *
+  module * { export * }
+}

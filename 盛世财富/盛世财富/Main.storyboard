@@ -2257,6 +2257,91 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5g-SV-P7O">
+                                <rect key="frame" x="16" y="64" width="568" height="492"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择充值方式" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fw2-qC-2do">
+                                        <rect key="frame" x="8" y="26" width="102" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gs2-ON-1pa">
+                                        <rect key="frame" x="87" y="55" width="150" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="Un8-ih-l6x"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="宝付"/>
+                                            <segment title="国付宝"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="充值金额" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="si7-n6-whB">
+                                        <rect key="frame" x="8" y="104" width="68" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="YYh-QB-Gl9">
+                                        <rect key="frame" x="87" y="100" width="448" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txp-Ti-5Dn">
+                                        <rect key="frame" x="543" y="104" width="17" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YBK-f1-OZh">
+                                        <rect key="frame" x="540" y="158" width="17" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4h4-IV-o34">
+                                        <rect key="frame" x="8" y="196" width="552" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="552" id="1xg-Kk-5co"/>
+                                        </constraints>
+                                        <state key="normal" title="充值">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onlinePayTapped:" destination="RrY-lP-Y0p" eventType="touchUpInside" id="4wg-sJ-UpC"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实际支付:1000000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmE-Pq-RJR">
+                                        <rect key="frame" x="331" y="158" width="201" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="201" id="OL9-f9-ghl"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="si7-n6-whB" firstAttribute="top" secondItem="gs2-ON-1pa" secondAttribute="bottom" constant="21" id="0eM-r0-m9T"/>
+                                    <constraint firstAttribute="centerX" secondItem="4h4-IV-o34" secondAttribute="centerX" id="3jZ-i0-NYh"/>
+                                    <constraint firstItem="fw2-qC-2do" firstAttribute="leading" secondItem="m5g-SV-P7O" secondAttribute="leading" constant="8" id="GHV-5Y-yry"/>
+                                    <constraint firstItem="fw2-qC-2do" firstAttribute="leading" secondItem="si7-n6-whB" secondAttribute="leading" id="KxM-Fd-awc"/>
+                                    <constraint firstItem="YBK-f1-OZh" firstAttribute="top" secondItem="Txp-Ti-5Dn" secondAttribute="bottom" constant="33" id="Nfg-pK-9vd"/>
+                                    <constraint firstItem="hmE-Pq-RJR" firstAttribute="top" secondItem="YYh-QB-Gl9" secondAttribute="bottom" constant="28" id="Zgv-hS-6Ud"/>
+                                    <constraint firstItem="Txp-Ti-5Dn" firstAttribute="leading" secondItem="YYh-QB-Gl9" secondAttribute="trailing" constant="8" id="bB3-td-rcf"/>
+                                    <constraint firstItem="hmE-Pq-RJR" firstAttribute="trailing" secondItem="YYh-QB-Gl9" secondAttribute="trailing" constant="-3" id="cOQ-a6-yAw"/>
+                                    <constraint firstItem="YBK-f1-OZh" firstAttribute="leading" secondItem="Txp-Ti-5Dn" secondAttribute="leading" constant="-3" id="cRI-UQ-Xqi"/>
+                                    <constraint firstItem="gs2-ON-1pa" firstAttribute="leading" secondItem="YYh-QB-Gl9" secondAttribute="leading" id="dvs-3C-sEC"/>
+                                    <constraint firstAttribute="trailing" secondItem="Txp-Ti-5Dn" secondAttribute="trailing" constant="8" id="foP-dA-ohw"/>
+                                    <constraint firstItem="fw2-qC-2do" firstAttribute="leading" secondItem="gs2-ON-1pa" secondAttribute="leading" constant="-79" id="gCd-14-7Ax"/>
+                                    <constraint firstItem="YYh-QB-Gl9" firstAttribute="top" secondItem="gs2-ON-1pa" secondAttribute="bottom" constant="17" id="ghB-SZ-PBS"/>
+                                    <constraint firstItem="fw2-qC-2do" firstAttribute="top" secondItem="m5g-SV-P7O" secondAttribute="top" constant="26" id="ped-ky-9yP"/>
+                                    <constraint firstItem="Txp-Ti-5Dn" firstAttribute="top" secondItem="gs2-ON-1pa" secondAttribute="bottom" constant="21" id="uPh-rp-BiD"/>
+                                    <constraint firstItem="4h4-IV-o34" firstAttribute="top" secondItem="hmE-Pq-RJR" secondAttribute="bottom" constant="17" id="uYv-3J-R0O"/>
+                                    <constraint firstItem="gs2-ON-1pa" firstAttribute="top" secondItem="fw2-qC-2do" secondAttribute="bottom" constant="8" id="xgx-SO-dJK"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RRw-46-erH">
                                 <rect key="frame" x="16" y="64" width="568" height="492"/>
                                 <subviews>
@@ -2382,88 +2467,6 @@
                                     <constraint firstItem="YYj-Ts-RMJ" firstAttribute="top" secondItem="dMe-hS-2YN" secondAttribute="top" constant="20" id="zjd-tV-Y9A"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5g-SV-P7O">
-                                <rect key="frame" x="16" y="64" width="568" height="492"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择充值方式" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fw2-qC-2do">
-                                        <rect key="frame" x="8" y="26" width="102" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gs2-ON-1pa">
-                                        <rect key="frame" x="87" y="55" width="150" height="29"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="Un8-ih-l6x"/>
-                                        </constraints>
-                                        <segments>
-                                            <segment title="宝付"/>
-                                            <segment title="国付宝"/>
-                                        </segments>
-                                    </segmentedControl>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="充值金额" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="si7-n6-whB">
-                                        <rect key="frame" x="8" y="104" width="68" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="YYh-QB-Gl9">
-                                        <rect key="frame" x="87" y="100" width="448" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txp-Ti-5Dn">
-                                        <rect key="frame" x="543" y="104" width="17" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YBK-f1-OZh">
-                                        <rect key="frame" x="540" y="158" width="17" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4h4-IV-o34">
-                                        <rect key="frame" x="8" y="196" width="552" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="552" id="1xg-Kk-5co"/>
-                                        </constraints>
-                                        <state key="normal" title="充值">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实际支付:1000000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmE-Pq-RJR">
-                                        <rect key="frame" x="331" y="158" width="201" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="201" id="OL9-f9-ghl"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="si7-n6-whB" firstAttribute="top" secondItem="gs2-ON-1pa" secondAttribute="bottom" constant="21" id="0eM-r0-m9T"/>
-                                    <constraint firstAttribute="centerX" secondItem="4h4-IV-o34" secondAttribute="centerX" id="3jZ-i0-NYh"/>
-                                    <constraint firstItem="fw2-qC-2do" firstAttribute="leading" secondItem="m5g-SV-P7O" secondAttribute="leading" constant="8" id="GHV-5Y-yry"/>
-                                    <constraint firstItem="fw2-qC-2do" firstAttribute="leading" secondItem="si7-n6-whB" secondAttribute="leading" id="KxM-Fd-awc"/>
-                                    <constraint firstItem="YBK-f1-OZh" firstAttribute="top" secondItem="Txp-Ti-5Dn" secondAttribute="bottom" constant="33" id="Nfg-pK-9vd"/>
-                                    <constraint firstItem="hmE-Pq-RJR" firstAttribute="top" secondItem="YYh-QB-Gl9" secondAttribute="bottom" constant="28" id="Zgv-hS-6Ud"/>
-                                    <constraint firstItem="Txp-Ti-5Dn" firstAttribute="leading" secondItem="YYh-QB-Gl9" secondAttribute="trailing" constant="8" id="bB3-td-rcf"/>
-                                    <constraint firstItem="hmE-Pq-RJR" firstAttribute="trailing" secondItem="YYh-QB-Gl9" secondAttribute="trailing" constant="-3" id="cOQ-a6-yAw"/>
-                                    <constraint firstItem="YBK-f1-OZh" firstAttribute="leading" secondItem="Txp-Ti-5Dn" secondAttribute="leading" constant="-3" id="cRI-UQ-Xqi"/>
-                                    <constraint firstItem="gs2-ON-1pa" firstAttribute="leading" secondItem="YYh-QB-Gl9" secondAttribute="leading" id="dvs-3C-sEC"/>
-                                    <constraint firstAttribute="trailing" secondItem="Txp-Ti-5Dn" secondAttribute="trailing" constant="8" id="foP-dA-ohw"/>
-                                    <constraint firstItem="fw2-qC-2do" firstAttribute="leading" secondItem="gs2-ON-1pa" secondAttribute="leading" constant="-79" id="gCd-14-7Ax"/>
-                                    <constraint firstItem="YYh-QB-Gl9" firstAttribute="top" secondItem="gs2-ON-1pa" secondAttribute="bottom" constant="17" id="ghB-SZ-PBS"/>
-                                    <constraint firstItem="fw2-qC-2do" firstAttribute="top" secondItem="m5g-SV-P7O" secondAttribute="top" constant="26" id="ped-ky-9yP"/>
-                                    <constraint firstItem="Txp-Ti-5Dn" firstAttribute="top" secondItem="gs2-ON-1pa" secondAttribute="bottom" constant="21" id="uPh-rp-BiD"/>
-                                    <constraint firstItem="4h4-IV-o34" firstAttribute="top" secondItem="hmE-Pq-RJR" secondAttribute="bottom" constant="17" id="uYv-3J-R0O"/>
-                                    <constraint firstItem="gs2-ON-1pa" firstAttribute="top" secondItem="fw2-qC-2do" secondAttribute="bottom" constant="8" id="xgx-SO-dJK"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -2501,7 +2504,11 @@
                     <connections>
                         <outlet property="btn1" destination="qNg-Vi-L68" id="qqp-cf-Dp7"/>
                         <outlet property="btn2" destination="vgU-n2-7L4" id="ENx-g0-kYw"/>
+                        <outlet property="chargeTypeSegment" destination="gs2-ON-1pa" id="FtG-Lf-gf1"/>
                         <outlet property="choose" destination="Esh-Ez-Vwf" id="gqB-x3-rzc"/>
+                        <outlet property="onlineMoneyTextField" destination="YYh-QB-Gl9" id="qGa-N3-upt"/>
+                        <outlet property="onlineRealPayMoneyLabel" destination="hmE-Pq-RJR" id="ZZM-6F-jT3"/>
+                        <outlet property="onlineView" destination="m5g-SV-P7O" id="yoj-ot-I5C"/>
                         <outlet property="p_id" destination="ajY-WM-ZwM" id="a5Y-LU-hjD"/>
                         <outlet property="p_money" destination="pkR-zk-DDA" id="RrM-hX-iya"/>
                         <outlet property="pos" destination="RRw-46-erH" id="3IS-rA-eLc"/>
@@ -3477,7 +3484,7 @@
         <scene sceneID="mcL-WT-WjP">
             <objects>
                 <navigationController id="gCk-aD-M4s" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首页" image="1_03" id="WLz-OF-Hfd"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="0_home" id="WLz-OF-Hfd"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZtD-LF-wvB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -5635,7 +5642,7 @@
         <scene sceneID="0Td-zr-nyZ">
             <objects>
                 <navigationController title="我的账号" id="Q2h-Sy-IhA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的账号" image="1_09" id="SvU-zr-rlf"/>
+                    <tabBarItem key="tabBarItem" title="我的账号" image="0_user" id="SvU-zr-rlf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Uu8-k4-0ki">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -6205,7 +6212,7 @@
         <scene sceneID="EWg-6m-zk9">
             <objects>
                 <navigationController title="我的资产" automaticallyAdjustsScrollViewInsets="NO" id="tz7-dk-qtp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="资产" image="1_12" id="IXG-Kt-cRQ"/>
+                    <tabBarItem key="tabBarItem" title="" image="0_money" id="IXG-Kt-cRQ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RLk-Ny-Hyt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -6224,7 +6231,7 @@
         <scene sceneID="Dds-g5-a2c">
             <objects>
                 <navigationController title="搜索nav" automaticallyAdjustsScrollViewInsets="NO" id="U4I-uT-Z8O" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="搜索" image="1_07" id="yg2-I3-QwT"/>
+                    <tabBarItem key="tabBarItem" title="搜索" image="0_search" id="yg2-I3-QwT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2TA-nM-Aod">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -6301,7 +6308,7 @@
         <scene sceneID="LT9-bL-CDH">
             <objects>
                 <navigationController title="消息nav" automaticallyAdjustsScrollViewInsets="NO" id="eLb-Mo-i7z" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="消息" image="1_05" id="mBS-dC-oeM"/>
+                    <tabBarItem key="tabBarItem" title="消息" image="0_news" badgeValue="3" id="mBS-dC-oeM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cir-ON-RKS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -6318,11 +6325,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1_03" width="48" height="48"/>
-        <image name="1_05" width="48" height="48"/>
-        <image name="1_07" width="48" height="48"/>
-        <image name="1_09" width="48" height="48"/>
-        <image name="1_12" width="70" height="70"/>
+        <image name="0_home" width="24" height="24"/>
+        <image name="0_money" width="35" height="35"/>
+        <image name="0_news" width="24" height="24"/>
+        <image name="0_search" width="24" height="24"/>
+        <image name="0_user" width="24" height="24"/>
         <image name="1_41" width="18" height="18"/>
         <image name="1_43" width="18" height="18"/>
         <image name="1_45" width="18" height="18"/>

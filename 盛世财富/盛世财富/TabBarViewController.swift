@@ -10,6 +10,16 @@ import Foundation
 import UIKit
 
 class TabBarViewController : UITabBarController,UITabBarDelegate,UITabBarControllerDelegate{
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        var items = self.tabBar.items as! [UITabBarItem]
+        var newsItem = items[1]
+        newsItem.badgeValue = "5"
+        var moneyItem = items[2]
+        moneyItem.imageInsets = UIEdgeInsetsMake(8, 0, -8, 0)
+    }
+    
     override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
         var index = tabBar.selectedItem;
         if index?.title == "理财" {

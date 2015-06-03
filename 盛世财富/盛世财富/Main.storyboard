@@ -1134,7 +1134,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="101" contentMode="center" tableViewCell="t8g-bN-Ywr" id="hJa-EI-rgj">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CxF-SW-SIG">
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CxF-SW-SIG">
                                                     <rect key="frame" x="0.0" y="164" width="600" height="35"/>
                                                     <variation key="heightClass=regular" misplaced="YES">
                                                         <rect key="frame" x="0.0" y="153" width="600" height="35"/>
@@ -2425,12 +2425,12 @@
                                         <exclude reference="IO1-l8-rnr"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <exclude reference="Gaa-Om-YG6"/>
-                                        <exclude reference="hoZ-Yt-W5r"/>
-                                        <exclude reference="r6e-2J-WZo"/>
                                         <exclude reference="84y-Iv-hKT"/>
                                         <exclude reference="L6m-PO-KaM"/>
                                         <exclude reference="VKA-fd-kzw"/>
+                                        <exclude reference="Gaa-Om-YG6"/>
+                                        <exclude reference="hoZ-Yt-W5r"/>
+                                        <exclude reference="r6e-2J-WZo"/>
                                         <exclude reference="1NY-kk-hgh"/>
                                         <exclude reference="Bx3-7E-6GI"/>
                                         <exclude reference="QAc-17-Ea9"/>
@@ -2447,12 +2447,12 @@
                                         <include reference="IO1-l8-rnr"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <include reference="Gaa-Om-YG6"/>
-                                        <include reference="hoZ-Yt-W5r"/>
-                                        <include reference="r6e-2J-WZo"/>
                                         <include reference="84y-Iv-hKT"/>
                                         <include reference="L6m-PO-KaM"/>
                                         <include reference="VKA-fd-kzw"/>
+                                        <include reference="Gaa-Om-YG6"/>
+                                        <include reference="hoZ-Yt-W5r"/>
+                                        <include reference="r6e-2J-WZo"/>
                                         <include reference="1NY-kk-hgh"/>
                                         <include reference="Bx3-7E-6GI"/>
                                         <include reference="QAc-17-Ea9"/>
@@ -2570,9 +2570,7 @@
                                 <exclude reference="7Fj-7a-kjZ"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="D88-58-ChV"/>
-                                <exclude reference="QQ7-XS-b3V"/>
-                                <exclude reference="gPt-1m-SbB"/>
+                                <exclude reference="o20-ob-NBx"/>
                                 <exclude reference="28b-fn-p2z"/>
                                 <exclude reference="TzE-88-zkh"/>
                                 <exclude reference="eCA-E9-igr"/>
@@ -2582,7 +2580,9 @@
                                 <exclude reference="eJy-0S-PeP"/>
                                 <exclude reference="jKr-ZS-4Bj"/>
                                 <exclude reference="nQo-4q-ghB"/>
-                                <exclude reference="o20-ob-NBx"/>
+                                <exclude reference="D88-58-ChV"/>
+                                <exclude reference="QQ7-XS-b3V"/>
+                                <exclude reference="gPt-1m-SbB"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -2592,9 +2592,7 @@
                                 <include reference="7Fj-7a-kjZ"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="D88-58-ChV"/>
-                                <include reference="QQ7-XS-b3V"/>
-                                <include reference="gPt-1m-SbB"/>
+                                <include reference="o20-ob-NBx"/>
                                 <include reference="28b-fn-p2z"/>
                                 <include reference="TzE-88-zkh"/>
                                 <include reference="eCA-E9-igr"/>
@@ -2604,7 +2602,9 @@
                                 <include reference="eJy-0S-PeP"/>
                                 <include reference="jKr-ZS-4Bj"/>
                                 <include reference="nQo-4q-ghB"/>
-                                <include reference="o20-ob-NBx"/>
+                                <include reference="D88-58-ChV"/>
+                                <include reference="QQ7-XS-b3V"/>
+                                <include reference="gPt-1m-SbB"/>
                             </mask>
                         </variation>
                     </view>

@@ -9,12 +9,33 @@
 import UIKit
 
 class NewsTableViewController: UITableViewController,UITableViewDataSource,UITableViewDelegate {
-
+    var ehttp = HttpController()
+    var url = ""
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        
+        //下拉刷新---------------------------
+        var rc = UIRefreshControl()
+        rc.attributedTitle = NSAttributedString(string: "下拉刷新")
+        rc.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl = rc
+    }
+    
+    //下拉刷新
+    func refresh(){
+        if self.refreshControl!.refreshing {
+            self.refreshControl?.attributedTitle = NSAttributedString(string: "加载中...")
+        }
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        
+        NSThread.sleepForTimeInterval(4)
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        self.refreshControl?.endRefreshing()
+        self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
+        
     }
 
     override func didReceiveMemoryWarning() {

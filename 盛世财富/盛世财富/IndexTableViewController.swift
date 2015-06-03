@@ -8,9 +8,12 @@
 
 import UIKit
 
-class IndexTableViewController: UITableViewController,UITableViewDataSource,UITableViewDelegate {
-
-    override func viewDidLoad() {
+class IndexTableViewController:UITableViewController,UITableViewDataSource,UITableViewDelegate {
+    @IBOutlet var mainView: UITableView!
+    var ehttp = HttpController()
+    var url = ""
+    var type:String!
+        override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -49,19 +52,38 @@ class IndexTableViewController: UITableViewController,UITableViewDataSource,UITa
         }
         
         self.tableView.tableHeaderView = mainScorllView
-//滚动图-------------------------------
+//滚动图-----------------------------
 
-        
+//下拉刷新---------------------------
+        var rc = UIRefreshControl()
+        rc.attributedTitle = NSAttributedString(string: "下拉刷新")
+        rc.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl = rc
+            
+  
+    
+    
 //首页图片标题
         var imgView = UIImageView()
         imgView.image = UIImage(named: "1_49.png")
         self.navigationController?.navigationItem.titleView = imgView
         
 //首页图片标题
+     
+    }
+    
+    
+    func refresh(){
+        if self.refreshControl!.refreshing {
+            self.refreshControl?.attributedTitle = NSAttributedString(string: "加载中...")
+        }
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         
-        
-        
-        
+        NSThread.sleepForTimeInterval(4)
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        self.refreshControl?.endRefreshing()
+        self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -117,14 +139,15 @@ class IndexTableViewController: UITableViewController,UITableViewDataSource,UITa
         
         return view
     }
-    
-    
+  
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("indexCell", forIndexPath: indexPath) as! UITableViewCell
         var img = cell.viewWithTag(1) as! UIImageView
         var l1 = cell.viewWithTag(2) as! UILabel
         var l2 = cell.viewWithTag(3) as! UILabel
         var l3 = cell.viewWithTag(4) as! UILabel
+        var type = cell.viewWithTag(5) as! UILabel
+        type.hidden = true
         
         var i:UIImage = UIImage()
         var t1 = ""
@@ -133,22 +156,22 @@ class IndexTableViewController: UITableViewController,UITableViewDataSource,UITa
         
         switch indexPath.row {
             case 0:
-               i = UIImage(named: "1_41.png")!
-               t1 = "热销产品"
-               t2 = "每月一投，告别月光"
-               t3 = "150人  20%"
+               i = UIImage(named: "1_americanmoney.png")!
+               t1 = "债权转让商品，"
+               t2 = "12%预期年收益，100%适用保障计划"
+               t3 = "稳定收益，安全放心"
                break
             case 1:
-                i = UIImage(named: "1_43.png")!
-                t1 = "明星单品"
-                t2 = "10％预期年收益，100%本金保障"
-                t3 = "20万  6%"
+                i = UIImage(named: "1_pigmoney.png")!
+                t1 = "定期理财"
+                t2 = "12%预期年收益，100%适用保障计划"
+                t3 = "稳定收益，安全放心"
                break
             case 2:
-                i = UIImage(named: "1_45.png")!
-                t1 = "新手推荐"
-                t2 = "期限灵活，50元起头"
-                t3 = "10000元  8%"
+                i = UIImage(named: "1_money.png")!
+                t1 = "收益权转让商品"
+                t2 = "12%预期年收益，100%适用保障计划"
+                t3 = "稳定收益，安全放心"
                break
             default:break
         }
@@ -160,6 +183,24 @@ class IndexTableViewController: UITableViewController,UITableViewDataSource,UITa
         
         return cell
     }
+    //点击cell跳转页面
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if let hideType = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(5) as?  UILabel{
+            type = hideType.text
+        }
+        self.performSegueWithIdentifier("allList", sender:nil)
+}
+    //给新的界面传值
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+            var nextView:UIViewController!
+            if segue.identifier == "indexCell"{
+                nextView = segue.destinationViewController as! AllListViewController
+            }
+            if nextView != nil {
+                nextView!.hidesBottomBarWhenPushed = true
+            }
+        }
     
 
 }

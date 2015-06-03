@@ -13,7 +13,7 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
     var ehttp = HttpController()
     var url = ""
     var type:String!
-        override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
         self.tableView.delegate = self

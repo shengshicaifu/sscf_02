@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6v-wi-K0w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6v-wi-K0w">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -27,25 +27,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nWM-L0-UaA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4438" y="-1193"/>
-        </scene>
-        <!--搜索-->
-        <scene sceneID="GdX-14-h9e">
-            <objects>
-                <viewController title="搜索" id="uSc-85-iu9" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zDS-wW-PPF"/>
-                        <viewControllerLayoutGuide type="bottom" id="SfV-Nl-IWo"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="VSq-hd-Awa">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="搜索" id="BHV-7u-YQd"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rKX-Fa-9Ha" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="86" y="-3764"/>
         </scene>
         <!--盛世财富-->
         <scene sceneID="vna-Pa-jZe">
@@ -3551,8 +3532,30 @@
                                         <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tz8-mi-5uv">
                                             <rect key="frame" x="23" y="28" width="48" height="43"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S0b-zF-Pur">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="7"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular" fixedFrame="YES">
+                                                <rect key="frame" x="29" y="78" width="28" height="21"/>
+                                            </variation>
+                                        </label>
                                     </subviews>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="S0b-zF-Pur"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular">
+                                        <mask key="subviews">
+                                            <include reference="S0b-zF-Pur"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="llE-tr-dg8" kind="show" identifier="allList" id="BUB-ha-S9u"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -3561,10 +3564,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="B9b-ac-p6w"/>
+                    <connections>
+                        <outlet property="mainView" destination="J9T-HE-j0i" id="t5j-QP-FFK"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="deD-59-J5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-67" y="-761"/>
+            <point key="canvasLocation" x="-67" y="-761.25"/>
         </scene>
         <!--盛世财富-->
         <scene sceneID="IHI-9v-hG4">
@@ -3747,7 +3753,7 @@
         <!--投资列表-->
         <scene sceneID="L32-FO-XQq">
             <objects>
-                <viewController id="llE-tr-dg8" customClass="AllListViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="allList" id="llE-tr-dg8" customClass="AllListViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HGd-Fq-lbh"/>
                         <viewControllerLayoutGuide type="bottom" id="fHa-pS-40v"/>
@@ -6233,12 +6239,70 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="uSc-85-iu9" kind="relationship" relationship="rootViewController" id="u7H-X1-KFY"/>
+                        <segue destination="Uy6-Sa-Eg7" kind="relationship" relationship="rootViewController" id="F9l-0J-ZKs"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mam-IT-Lqp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-743" y="-3764"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vSG-YR-UeB">
+            <objects>
+                <viewController id="Uy6-Sa-Eg7" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="enG-2F-y8I"/>
+                        <viewControllerLayoutGuide type="bottom" id="ayV-PW-XdG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gxb-HM-jXN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" showsSearchResultsButton="YES" showsBookmarkButton="YES" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bHy-Gi-VAw">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="bHy-Gi-VAw" secondAttribute="centerX" id="7r0-FN-NGM"/>
+                            <constraint firstItem="ayV-PW-XdG" firstAttribute="top" secondItem="bHy-Gi-VAw" secondAttribute="bottom" constant="707" id="8bP-sT-ds7">
+                                <variation key="heightClass=regular" constant="625"/>
+                            </constraint>
+                            <constraint firstItem="bHy-Gi-VAw" firstAttribute="leading" secondItem="Gxb-HM-jXN" secondAttribute="leadingMargin" constant="-16" id="GGE-JU-a2a"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bHy-Gi-VAw" secondAttribute="trailing" constant="-16" id="UYE-iK-cFr"/>
+                            <constraint firstItem="bHy-Gi-VAw" firstAttribute="top" secondItem="enG-2F-y8I" secondAttribute="bottom" constant="18" id="uij-NZ-94Q"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="bHy-Gi-VAw"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="7r0-FN-NGM"/>
+                                <exclude reference="GGE-JU-a2a"/>
+                                <exclude reference="UYE-iK-cFr"/>
+                                <exclude reference="uij-NZ-94Q"/>
+                                <exclude reference="8bP-sT-ds7"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="bHy-Gi-VAw"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="7r0-FN-NGM"/>
+                                <include reference="GGE-JU-a2a"/>
+                                <include reference="UYE-iK-cFr"/>
+                                <include reference="uij-NZ-94Q"/>
+                                <include reference="8bP-sT-ds7"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="hn0-sd-iUX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3ci-Hw-d5k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-56" y="-3764.25"/>
         </scene>
         <!--消息nav-->
         <scene sceneID="LT9-bL-CDH">
@@ -6279,10 +6343,11 @@
         <image name="more" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EcF-gu-9cT"/>
         <segue reference="sOw-AT-9oo"/>
+        <segue reference="EcF-gu-9cT"/>
+        <segue reference="BUB-ha-S9u"/>
         <segue reference="1Oc-Wy-fyN"/>
-        <segue reference="5ZP-m5-drk"/>
         <segue reference="tpR-eQ-WEg"/>
+        <segue reference="5ZP-m5-drk"/>
     </inferredMetricsTieBreakers>
 </document>

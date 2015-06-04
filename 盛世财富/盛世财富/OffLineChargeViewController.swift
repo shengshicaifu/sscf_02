@@ -8,7 +8,9 @@
 
 import Foundation
 import UIKit
-class OffLineChargeViewController:UIViewController,UITextFieldDelegate,BaofooSdkDelegate,NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
+class OffLineChargeViewController:UIViewController,UITextFieldDelegate,
+//BaofooSdkDelegate,
+NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
     @IBOutlet weak var choose: UISegmentedControl!
     @IBOutlet weak var transfer: UIView!
     @IBOutlet weak var pos: UIView!
@@ -95,11 +97,11 @@ class OffLineChargeViewController:UIViewController,UITextFieldDelegate,BaofooSdk
                                 
                                 var tradeNo = result["data"]?["tradeNo"] as! String//交易单号
                                 
-                                var baofooView = BaoFooPayController()
-                                baofooView.PAY_TOKEN = tradeNo
-                                baofooView.delegate = self
-                                baofooView.PAY_BUSINESS = "false"
-                                self.presentViewController(baofooView, animated: true, completion: nil)
+//                                var baofooView = BaoFooPayController()
+//                                baofooView.PAY_TOKEN = tradeNo
+//                                baofooView.delegate = self
+//                                baofooView.PAY_BUSINESS = "false"
+//                                self.presentViewController(baofooView, animated: true, completion: nil)
                                 
                                 
                             }
@@ -116,12 +118,86 @@ class OffLineChargeViewController:UIViewController,UITextFieldDelegate,BaofooSdk
         }
         else if chargeTypeSegment.selectedSegmentIndex == 1 {
             //国付宝
-            //获取商户号
-            //获取手机token
-            NSLog("手机token%@",GopayNewPlatform.getGopayIdentifierForPayment())
+            //检查手机网络
+            var reach = Reachability(hostName: Common.domain)
+            reach.unreachableBlock = {(r:Reachability!) -> Void in
+                //NSLog("网络不可用")
+                dispatch_async(dispatch_get_main_queue(), {
+                    
+                    AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                })
+            }
+            reach.reachableBlock = {(r:Reachability!) -> Void in
+                //NSLog("网络可用")
+                dispatch_async(dispatch_get_main_queue(), {
+                    loading.startLoading(self.view)
+                    var manager = AFHTTPRequestOperationManager()
+                    var url = Common.serverHost + "/App-Pay-guofubao"
+                    var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
+                    var phone_token = GopayNewPlatform.getGopayIdentifierForPayment()
+                    var params = ["to":token,"money":self.onlineMoneyTextField.text,"phone_token":phone_token]
+                    manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+                    manager.POST(url, parameters: params,
+                        success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                            loading.stopLoading()
+                            var result = data as! NSDictionary
+                            NSLog("国付宝信息%@", result)
+//                                {
+//                                    code = 200;
+//                                    data =     {
+//                                        submitdata =         {
+//                                            backgroundMerUrl = "http://61.183.178.86:10888/MidServer/App-Payres-paynotice?payid=guofubao";
+//                                            buyerContact = 21d0c6ee8ae6f5c6055a131b64c84747;
+//                                            buyerName = MWAP;
+//                                            charset = 2;
+//                                            currencyType = 156;
+//                                            feeAmt = 0;
+//                                            frontMerUrl = "";
+//                                            goodsName = "\U76db\U4e16\U8d22\U5bcc\U5e10\U6237\U5145\U503c";
+//                                            isRepeatSubmit = 0;
+//                                            language = 1;
+//                                            merOrderNum = guofu1433326253339529;
+//                                            merchantID = 0000001502;
+//                                            mobileSighValue = 4791c6224b334704eedb1d8dee5782b0;
+//                                            "sign_value" = b53ee11b50d9df308aaaaca600d3ea8c;
+//                                            singType = 1;
+//                                            tranAmt = "20.00";
+//                                            tranCode = 8888;
+//                                            tranDateTime = 20150603181053;
+//                                            tranIP = "192.168.1.253";
+//                                            version = "2.1";
+//                                            virCardNoIn = 0000000002000000257;
+//                                        };
+//                                        url = "http://www.gopay.com.cn/PGServer/mtrans.do";
+//                                    };
+//                                    message = "\U8ba2\U5355\U53f7\U83b7\U53d6\U6210\U529f";
+//                            }
+
+                            
+                            var code = result["code"] as! Int
+                            if code == -1 {
+                                AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
+                                
+                            }else if code == 200 {
+                                var url = ""
+                                var sendParameters = result["data"]?["submitdata"] as! NSDictionary
+                                var gopayNewPlatform = GopayNewPlatform()
+                                gopayNewPlatform.delegate = self
+                                gopayNewPlatform.startGopayWithParameters(sendParameters as! [NSString : NSString])
+                                
+                            }
+                    
+                            
+                        },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                            loading.stopLoading()
+                            AlertView.showMsg("服务器异常!", parentView: self.view)
+                        }
+                    )
+                    
+                })
+            }
+            reach.startNotifier()
             
-            var sendParameters = ["":""]
-            GopayNewPlatform().startGopayWithParameters(sendParameters)
         }
         
         

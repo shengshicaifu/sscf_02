@@ -169,7 +169,7 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
         
         switch indexPath.row {
             case 0:
-               i = UIImage(named: "1_americanmoney.png")!
+               i = UIImage(named: "1_money.png")!
                t1 = "债权转让商品，"
                t2 = "12%预期年收益，100%适用保障计划"
                t3 = "稳定收益，安全放心"
@@ -181,7 +181,7 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
                 t3 = "稳定收益，安全放心"
                break
             case 2:
-                i = UIImage(named: "1_money.png")!
+                i = UIImage(named: "1_americanmoney.png")!
                 t1 = "收益权转让商品"
                 t2 = "12%预期年收益，100%适用保障计划"
                 t3 = "稳定收益，安全放心"

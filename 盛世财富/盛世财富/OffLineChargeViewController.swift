@@ -8,7 +8,9 @@
 
 import Foundation
 import UIKit
-class OffLineChargeViewController:UIViewController,UITextFieldDelegate,BaofooSdkDelegate,NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
+class OffLineChargeViewController:UIViewController,UITextFieldDelegate,
+//BaofooSdkDelegate,
+NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
     @IBOutlet weak var choose: UISegmentedControl!
     @IBOutlet weak var transfer: UIView!
     @IBOutlet weak var pos: UIView!
@@ -95,11 +97,11 @@ class OffLineChargeViewController:UIViewController,UITextFieldDelegate,BaofooSdk
                                 
                                 var tradeNo = result["data"]?["tradeNo"] as! String//交易单号
                                 
-                                var baofooView = BaoFooPayController()
-                                baofooView.PAY_TOKEN = tradeNo
-                                baofooView.delegate = self
-                                baofooView.PAY_BUSINESS = "false"
-                                self.presentViewController(baofooView, animated: true, completion: nil)
+//                                var baofooView = BaoFooPayController()
+//                                baofooView.PAY_TOKEN = tradeNo
+//                                baofooView.delegate = self
+//                                baofooView.PAY_BUSINESS = "false"
+//                                self.presentViewController(baofooView, animated: true, completion: nil)
                                 
                                 
                             }

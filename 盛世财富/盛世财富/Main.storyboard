@@ -6245,7 +6245,7 @@
         <!--发现nav-->
         <scene sceneID="Dds-g5-a2c">
             <objects>
-                <navigationController title="搜索nav" automaticallyAdjustsScrollViewInsets="NO" id="U4I-uT-Z8O" sceneMemberID="viewController">
+                <navigationController title="发现nav" automaticallyAdjustsScrollViewInsets="NO" id="U4I-uT-Z8O" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="发现" image="0_search" id="yg2-I3-QwT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2TA-nM-Aod">

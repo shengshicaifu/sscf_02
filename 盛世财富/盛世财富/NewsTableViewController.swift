@@ -28,14 +28,28 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
     func refresh(){
         if self.refreshControl!.refreshing {
             self.refreshControl?.attributedTitle = NSAttributedString(string: "加载中...")
+            if let token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String {
+                let afnet = AFHTTPRequestOperationManager()
+                let param = ["to":token]
+                let url = Common.serverHost + "/App-Message"
+                //loading.startLoading(self.tableView)
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+                afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+                afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
+                    var resDictionary = res as! NSDictionary
+                    var code = resDictionary["code"] as! Int
+                    println(resDictionary)
+                    println(code)
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    self.refreshControl?.endRefreshing()
+                    self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
+                    }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                        //loading.stopLoading()
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                        AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
+                }
+            }
         }
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        
-        NSThread.sleepForTimeInterval(4)
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-        self.refreshControl?.endRefreshing()
-        self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
-        
     }
 
     override func didReceiveMemoryWarning() {

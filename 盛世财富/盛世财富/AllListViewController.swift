@@ -346,15 +346,17 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         let cell = self.mainTable.dequeueReusableCellWithIdentifier("allList") as! UITableViewCell
         var money = cell.viewWithTag(100) as! UILabel
         var percent = cell.viewWithTag(101) as! UILabel
-        var progressLabel = cell.viewWithTag(102) as! UILabel
+//        var progressLabel = cell.viewWithTag(102) as! UILabel
         var title = cell.viewWithTag(103) as! UILabel
         var hideId = cell.viewWithTag(99) as! UILabel
         
-        var progress = cell.viewWithTag(90) as! UIProgressView
-        progress.progressTintColor = UIColor(red: 68/255.0, green: 138/255.0, blue: 255/255.0, alpha: 1.0)
-        progress.trackTintColor = UIColor(red: 235/255.0, green: 235/255.0, blue: 235/255.0, alpha: 1.0)
-        progress.layer.masksToBounds = true
-        progress.layer.cornerRadius = 4
+//        var progress = cell.viewWithTag(90) as! UIProgressView
+//        progress.progressTintColor = UIColor(red: 68/255.0, green: 138/255.0, blue: 255/255.0, alpha: 1.0)
+//        progress.trackTintColor = UIColor(red: 235/255.0, green: 235/255.0, blue: 235/255.0, alpha: 1.0)
+//        progress.layer.masksToBounds = true
+//        progress.layer.cornerRadius = 4
+        
+        
         
         var hideType = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         hideType.tag = 98
@@ -374,13 +376,28 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             percent.text = "\(tmp)%"
             tmp = listData[row].valueForKey("borrow_duration") as! String
             var unit = listData[row].valueForKey("progress") as! NSString
-            progressLabel.text = "\(unit.integerValue)%"
-            progressLabel.layer.borderWidth = 1
-            progressLabel.layer.borderColor = UIColor(red: 68/255.0, green: 138/255.0, blue: 255/255.0, alpha: 1.0).CGColor
-            progressLabel.layer.cornerRadius = 10
+//            progressLabel.text = "\(unit.integerValue)%"
+//            progressLabel.layer.borderWidth = 1
+//            progressLabel.layer.borderColor = UIColor(red: 68/255.0, green: 138/255.0, blue: 255/255.0, alpha: 1.0).CGColor
+//            progressLabel.layer.cornerRadius = 10
+//            progress.progress = unit.floatValue/100.0
             
+            //圆形进度条
+            var circleProgress =  cell.viewWithTag(102) as! MDRadialProgressView
+            var circleProgressTheme = MDRadialProgressTheme()
+            //circleProgressTheme.completedColor = UIColor(red: 90/255.0, green: 212/255.0, blue: 39/255.0, alpha: 1.0)
+            circleProgressTheme.completedColor = UIColor(red: 68/255.0, green: 138/255.0, blue: 255/255.0, alpha: 1.0)
+            circleProgressTheme.incompletedColor = UIColor(red: 235/255.0, green: 235/255.0, blue: 235/255.0, alpha: 1.0)
+            circleProgressTheme.centerColor = UIColor.clearColor()
+            circleProgressTheme.centerColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
+            circleProgressTheme.sliceDividerHidden = true
+            circleProgressTheme.labelColor = UIColor.blackColor()
+            circleProgressTheme.labelShadowColor = UIColor.whiteColor()
+            circleProgressTheme.drawIncompleteArcIfNoProgress = true
+            circleProgress.theme = circleProgressTheme
+            circleProgress.progressTotal = 100
+            circleProgress.progressCounter = UInt(unit.integerValue)
             
-            progress.progress = unit.floatValue/100.0
             title.text = listData[row].valueForKey("borrow_name") as? String
             hideId.text = listData[row].valueForKey("id") as? String
             hideType.text = listData[row].valueForKey("borrow_type") as? String

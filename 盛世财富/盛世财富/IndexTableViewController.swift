@@ -13,6 +13,13 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
     var ehttp = HttpController()
     var url = ""
     var type:String!
+    
+    
+    var protectDays:String? = "0"//累计保驾护航天数
+    var totalInvest:String? = "0"//总共放贷金额
+    var userCount:String? = "0"//会员数量
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
@@ -59,9 +66,7 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
         rc.attributedTitle = NSAttributedString(string: "下拉刷新")
         rc.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
         self.refreshControl = rc
-            
-  
-    
+        getData("0")
     
 //首页图片标题
 
@@ -83,13 +88,53 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
     func refresh(){
         if self.refreshControl!.refreshing {
             self.refreshControl?.attributedTitle = NSAttributedString(string: "加载中...")
+            getData("1")
         }
+
+    }
+    
+    /**
+    获取数据
+    
+    :param: actionType 操作类型
+             0:进入页面获取数据
+             1:下拉刷新获取数据
+    */
+    func getData(actionType:String){
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        
-        NSThread.sleepForTimeInterval(4)
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-        self.refreshControl?.endRefreshing()
-        self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
+        //获取网络数据
+        var manager = AFHTTPRequestOperationManager()
+        var url = Common.serverHost + "/App-Index"
+        var params = [:]
+        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+        manager.POST(url, parameters: params,
+            success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                var result = data as! NSDictionary
+                NSLog("首页：%@", result)
+                var code = result["code"] as! Int
+                if code == 200 {
+                    var info = result["data"] as! NSDictionary
+                    self.protectDays = info["protect_days"] as? String//累计保驾护航天数
+                    self.totalInvest = info["total_invest"] as? String//总共放贷金额
+                    self.userCount = info["user_count"] as? String//会员数量
+                }
+                if actionType == "1" {
+                    self.refreshControl?.endRefreshing()
+                    self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
+                }
+                //获取数据后重新加载表格
+                self.tableView.reloadData()
+            },failure:{ (op:AFHTTPRequestOperation!,error: NSError!) -> Void in
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                if actionType == "1" {
+                    self.refreshControl?.endRefreshing()
+                    self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
+                }
+                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                
+            }
+        )
 
     }
 
@@ -119,7 +164,7 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
         view.backgroundColor = UIColor(red: 230/250.0, green: 230/250.0, blue: 230/250.0, alpha: 1.0)
         
         var l1 = UILabel()
-        l1.text = "安全运营:365天"
+        l1.text = "安全运营:\(protectDays!)天"
         l1.font = UIFont(name: "Arial", size: 12)
         l1.sizeToFit()
         //l1.adjustsFontSizeToFitWidth = true
@@ -133,7 +178,7 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
         view.addConstraint(l1Constraint)
         
         var l2 = UILabel()
-        l2.text = "累计放贷:¥462081004元"
+        l2.text = "累计放贷:¥\(totalInvest!)元"
         l2.font = UIFont(name: "Arial", size: 12)
         l2.sizeToFit()
         l2.textAlignment = NSTextAlignment.Right

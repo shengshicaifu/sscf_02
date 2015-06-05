@@ -38,23 +38,24 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
                 afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
                     var resDictionary = res as! NSDictionary
                     var code = resDictionary["code"] as! Int
-                    println(resDictionary)
-                    println(code)
+                    //println(resDictionary)
+                    //println(code)
                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     self.refreshControl?.endRefreshing()
                     self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
                     }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
                         //loading.stopLoading()
                         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                        self.refreshControl?.endRefreshing()
+                        self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
                         AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
                 }
+            }else {
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                self.refreshControl?.endRefreshing()
+                self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
             }
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source

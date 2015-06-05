@@ -13,21 +13,21 @@ import UIKit
 */
 class FindViewController: UIViewController {
     let sectionsTableIdentifier = "SectionsTableIndentifier"
-    var names: [String: [String]]!
-    var keys: [String]!
+    var names: [String: [String]]!//待搜索的数据源
+    var keys: [String]!//数据源的索引
     @IBOutlet weak var tableView: UITableView!
-    var searchController: UISearchController!
+    var searchController: UISearchController!//搜索控制器
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: sectionsTableIdentifier)
-        
+        //从plist文件中获取数据
         let path = NSBundle.mainBundle().pathForResource("sortednames", ofType: "plist")
         let nameDict = NSDictionary(contentsOfFile: path!)
         names = nameDict as! [String: [String]]
         keys = sorted(nameDict?.allKeys as! [String])
-        
+        //展示搜索的结果的控制器
         let resultsController = FindResultsViewController()
         resultsController.names = names
         resultsController.keys = keys

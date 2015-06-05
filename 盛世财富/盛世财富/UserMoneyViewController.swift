@@ -25,19 +25,45 @@ class UserMoneyViewController:UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //下拉刷新
+        var rc = UIRefreshControl()
+        rc.attributedTitle = NSAttributedString(string: "下拉刷新")
+        rc.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl = rc
+        getData("0")
+        
+
+    }
+    
+    func refresh(){
+        if self.refreshControl!.refreshing {
+            self.refreshControl?.attributedTitle = NSAttributedString(string: "加载中...")
+            getData("1")
+        }
+        
+    }
+    
+
+    func getData(actionType:String){
         //检查手机网络
         var reach = Reachability(hostName: Common.domain)
         reach.reachableBlock = {(r:Reachability!) -> Void in
-           //NSLog("网络可用")
+            //NSLog("网络可用")
             dispatch_async(dispatch_get_main_queue(), {
                 if let token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String {
                     let afnet = AFHTTPRequestOperationManager()
                     let param = ["to":token]
                     let url = Common.serverHost + "/App-Ucenter-userInfo"
-                    loading.startLoading(self.tableView)
+                    if actionType == "0" {
+                        loading.startLoading(self.tableView)
+                    }else{
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+                    }
+                    
                     afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                     afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
-                        NSLog("资产管理：%@", res as! NSDictionary)
+                        //NSLog("资产管理：%@", res as! NSDictionary)
                         var resDictionary = res as! NSDictionary
                         var code = resDictionary["code"] as! Int
                         if code == -1 {
@@ -61,19 +87,32 @@ class UserMoneyViewController:UITableViewController {
                             self.kyAll.text = proInfo.objectForKey("ky_all") as? String
                             self.jzlx.text = proInfo.objectForKey("jzlx") as? String
                         }
-                        loading.stopLoading()
+                        //loading.stopLoading()
+                        if actionType == "0" {
+                           loading.stopLoading()
+                        }else{
+                           UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                            self.refreshControl?.endRefreshing()
+                            self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
+                        }
                         }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
                             loading.stopLoading()
                             AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
+                            if actionType == "0" {
+                                loading.stopLoading()
+                            }else{
+                                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                                self.refreshControl?.endRefreshing()
+                                self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
+                            }
                     }
                 }
-
+                
             })
         }
         reach.startNotifier()
-
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         //检查网络
         var reach = Reachability(hostName: Common.domain)

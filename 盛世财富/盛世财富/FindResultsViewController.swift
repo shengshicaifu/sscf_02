@@ -29,10 +29,11 @@ class FindResultsViewController: UITableViewController,UISearchResultsUpdating{
     }
 
     func updateSearchResultsForSearchController(searchController: UISearchController){
-            let searchString = searchController.searchBar.text
-            let buttonIndex = searchController.searchBar.selectedScopeButtonIndex
+            let searchString = searchController.searchBar.text//搜索内容
+            let buttonIndex = searchController.searchBar.selectedScopeButtonIndex//选中的按钮
             filteredNames.removeAll(keepCapacity: true)
             if !searchString.isEmpty {
+                //自定义的过滤方法
                 let filter: String -> Bool = { name in
                     // Filter out long or short names depending on which
                     // scope button is selected.

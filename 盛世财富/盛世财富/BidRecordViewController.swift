@@ -73,9 +73,11 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
     */
     func setupRefresh(){
         self.tableView.addHeaderWithCallback({
+            NSLog("投标记录，下拉刷新")
             self.getData("\(self.type)", actionType: "2")
         })
         self.tableView.addFooterWithCallback(){
+            NSLog("投标记录，上拉加载")
             self.getData("\(self.type)", actionType: "3")
         }
     }
@@ -134,19 +136,25 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
                     afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                     afnet.POST(url, parameters: param,
                         success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
-                            NSLog("001")
-                            NSLog("投标%@记录：%@",bidType,res as! NSDictionary)
-                            NSLog("002")
+                            //NSLog("投标%@记录：%@",bidType,res as! NSDictionary)
+                            var result = res as! NSDictionary
+                            if let d = result["data"] as? NSArray {
+                                for(var i=0;i<d.count;i++){
+                                    println(d[i]["id"] as! String)
+                                }
+                            }
+                            
+                            
+                            
+                            
+                            
                             //根据操作类型对返回的数据进行处理
                             if actionType == "1" {
                              //1:进入页面加载
                              //先清空data中的数据，再把获取的数据加入到data中
                                 if let d = res["data"] as? NSArray{
-                                    NSLog("003")
                                     self.data.removeAllObjects()
-                                    NSLog("004")
                                     self.data.addObjectsFromArray(d as [AnyObject])
-                                    NSLog("005")
     //                                for(var i=0;i<self.data.count;i++){
     //                                    println(self.data[i]["borrow_name"] as! String)
     //                                }
@@ -178,10 +186,10 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
                             //将获取到的数据加到data的末尾
                                 self.tableView.footerEndRefreshing()
                                 if let d = res["data"] as? NSArray {
-                                    NSLog("下拉刷新%@获取记录条数%i", bidType,d.count)
+                                    NSLog("上拉加载%@获取记录条数%i", bidType,d.count)
                                     self.data.addObjectsFromArray(d as [AnyObject])
                                 }else{
-                                    NSLog("下拉刷新%@没有拿到数据", bidType)
+                                    NSLog("上拉加载%@没有拿到数据", bidType)
                                 }
                                 
                             }
@@ -192,6 +200,8 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
                                 loading.stopLoading()
                             }else{
                                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                                self.refreshControl?.endRefreshing()
+                                self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
                             }
                             
                             self.tableView.scrollEnabled = true
@@ -202,6 +212,8 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
                                 loading.stopLoading()
                             }else{
                                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                                self.refreshControl?.endRefreshing()
+                                self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
                             }
                             self.tableView.scrollEnabled = true
                     })
@@ -274,3 +286,6 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
         return 0
     }
 }
+
+
+

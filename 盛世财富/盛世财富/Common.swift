@@ -100,6 +100,9 @@ class Common {
     :returns: 处理后的字符串
     */
     class func replaceStringToX(str:NSString,start:Int,end:Int) -> String{
+        if str.length < start {
+            return "****"
+        }
         var f = str.substringToIndex(start)
         var e = str.substringFromIndex(end)
         return f + "****" + e

@@ -28,6 +28,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         regist.layer.borderColor = UIColor.grayColor().CGColor
         regist.layer.borderWidth = 1
         
+        //设置登录输入框左侧图标
         usernameLabel.leftView = UIImageView(image: UIImage(named: "人.png"))
         usernameLabel.leftViewMode = UITextFieldViewMode.Always
         
@@ -84,7 +85,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     loading.stopLoading()
                     var result = data as! NSDictionary
-                    NSLog("登录返回信息%@", result)
+                    //NSLog("登录返回信息%@", result)
                     if let code = result["code"] as? Int{
                         
                         
@@ -143,9 +144,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                                 user.setObject("", forKey:"bankBranch")
                             }
                             
-                            
-                            
-                            
                             self.dismissViewControllerAnimated(true, completion: nil)
                         }
                         if(code == 0){
@@ -177,8 +175,19 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             
         }
     }
+    
     @IBAction func returnKey(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
+        
+        NSLog("登录窗的父窗体是%@", self.presentingViewController!)
+        if self.presentingViewController is UITabBarController {
+           var tabbarController = self.presentingViewController as! UITabBarController
+           NSLog("当前选择的标签是%i", tabbarController.selectedIndex)
+            var selectedIndex = tabbarController.selectedIndex
+            if (selectedIndex == 0) || (selectedIndex == 1) || (selectedIndex == 2) || (selectedIndex == 3) {
+               tabbarController.selectedIndex = 0
+            }
+        }
     }
     
 

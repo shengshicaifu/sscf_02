@@ -49,7 +49,6 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
     0:进入页面获取数据
     1:下拉刷新获取数据
     */
-    
     func getDate(actionType:String){
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             if let token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String {
@@ -144,16 +143,14 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
 
                     AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
                 }
+            }else {
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                self.refreshControl?.endRefreshing()
+                self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
+            }
         }
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
+    //MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }

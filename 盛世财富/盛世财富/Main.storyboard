@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6v-wi-K0w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6v-wi-K0w">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -68,7 +68,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mmc-f2-ZJM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1270" y="1077"/>
+            <point key="canvasLocation" x="-1662" y="1665"/>
         </scene>
         <!--更多-->
         <scene sceneID="nqq-bH-4vT">
@@ -85,7 +85,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3P-f8-jMP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-737" y="-2057"/>
+            <point key="canvasLocation" x="-452" y="-2037"/>
         </scene>
         <!--系统公告-->
         <scene sceneID="yGd-yl-Utv">
@@ -436,7 +436,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="94d-C9-RyV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="17" y="-2057"/>
+            <point key="canvasLocation" x="302" y="-2037"/>
         </scene>
         <!--Content View Controller-->
         <scene sceneID="MOF-TJ-yUC">
@@ -536,7 +536,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aGZ-xD-jYD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="721" y="-2057"/>
+            <point key="canvasLocation" x="1006" y="-2037"/>
         </scene>
         <!--投资人列表-->
         <scene sceneID="BTJ-GW-p73">
@@ -1318,8 +1318,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="101" contentMode="center" tableViewCell="t8g-bN-Ywr" id="hJa-EI-rgj">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CxF-SW-SIG">
-                                                    <rect key="frame" x="0.0" y="164" width="600" height="35"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CxF-SW-SIG">
+                                                    <rect key="frame" x="0.0" y="164" width="600" height="57"/>
                                                     <variation key="heightClass=regular" misplaced="YES">
                                                         <rect key="frame" x="0.0" y="153" width="600" height="35"/>
                                                     </variation>
@@ -1570,7 +1570,7 @@
         <scene sceneID="9wA-BU-qzS">
             <objects>
                 <tableViewController title="我的资产" id="rNd-dg-sRS" customClass="UserMoneyViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Uk9-hz-YMt">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Uk9-hz-YMt">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2123,7 +2123,7 @@
         <scene sceneID="nsI-Xy-PKu">
             <objects>
                 <tableViewController title="投资总表" id="V0K-LL-tOh" customClass="InvestorSummaryViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="be4-Eq-eMy">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="be4-Eq-eMy">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
@@ -4023,7 +4023,7 @@
         <!--标的详情-->
         <scene sceneID="2jx-pq-wBH">
             <objects>
-                <tableViewController id="7iJ-Nx-m35" customClass="LendDetailViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LendDetailViewController" id="7iJ-Nx-m35" customClass="LendDetailViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" id="Igh-Gs-4Ti">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5774,18 +5774,18 @@
         <scene sceneID="0Td-zr-nyZ">
             <objects>
                 <navigationController title="我的账号" id="Q2h-Sy-IhA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的账号" image="0_user" id="SvU-zr-rlf"/>
+                    <tabBarItem key="tabBarItem" tag="105" title="我的账号" image="0_user" id="SvU-zr-rlf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Uu8-k4-0ki">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="bWu-jp-4hG" kind="relationship" relationship="rootViewController" id="c2T-FU-4p4"/>
+                        <segue destination="fiy-Zv-h02" kind="relationship" relationship="rootViewController" id="3ah-rg-k5o"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QcZ-PH-wME" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2578" y="305"/>
+            <point key="canvasLocation" x="-1773" y="835"/>
         </scene>
         <!--账户信息-->
         <scene sceneID="x7C-o7-dUo">
@@ -6345,7 +6345,7 @@
         <scene sceneID="EWg-6m-zk9">
             <objects>
                 <navigationController title="我的资产" automaticallyAdjustsScrollViewInsets="NO" id="tz7-dk-qtp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="0_money" id="IXG-Kt-cRQ"/>
+                    <tabBarItem key="tabBarItem" tag="103" title="" image="0_money" id="IXG-Kt-cRQ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RLk-Ny-Hyt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -6353,12 +6353,31 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="fiy-Zv-h02" kind="relationship" relationship="rootViewController" id="WuM-5z-2Gd"/>
+                        <segue destination="jUm-PJ-esW" kind="relationship" relationship="rootViewController" id="UhU-8b-fnp"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jvh-OX-4m8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1992" y="1100"/>
+            <point key="canvasLocation" x="-636" y="382"/>
+        </scene>
+        <!--实时财物-->
+        <scene sceneID="Hy0-Zw-xvu">
+            <objects>
+                <viewController id="jUm-PJ-esW" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5rH-8o-wve"/>
+                        <viewControllerLayoutGuide type="bottom" id="Shc-NW-XUM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dgu-z4-s3H">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="实时财物" id="3JE-gJ-R6k"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5TD-IQ-GYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="48" y="382"/>
         </scene>
         <!--发现nav-->
         <scene sceneID="Dds-g5-a2c">
@@ -6453,7 +6472,7 @@
         <scene sceneID="LT9-bL-CDH">
             <objects>
                 <navigationController title="消息nav" automaticallyAdjustsScrollViewInsets="NO" id="eLb-Mo-i7z" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="消息" image="0_news" badgeValue="3" id="mBS-dC-oeM"/>
+                    <tabBarItem key="tabBarItem" tag="102" title="消息" image="0_news" badgeValue="3" id="mBS-dC-oeM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cir-ON-RKS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -6491,8 +6510,9 @@
         <segue reference="1Oc-Wy-fyN"/>
         <segue reference="01C-9g-NgZ"/>
         <segue reference="cgO-r2-Qw7"/>
-        <segue reference="THn-qI-uLv"/>
-        <segue reference="5ZP-m5-drk"/>
+        <segue reference="1Oc-Wy-fyN"/>
+        <segue reference="BUB-ha-S9u"/>
+        <segue reference="vdr-P8-5iY"/>
         <segue reference="FjG-Aa-CKG"/>
     </inferredMetricsTieBreakers>
 </document>

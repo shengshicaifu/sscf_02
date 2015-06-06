@@ -111,7 +111,7 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 var result = data as! NSDictionary
-                NSLog("首页：%@", result)
+                //NSLog("首页：%@", result)
                 var code = result["code"] as! Int
                 if code == 200 {
                     var info = result["data"] as! NSDictionary

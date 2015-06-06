@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         var storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
         
+        //应用第一次启动的时候，加入用户引导页面
         if !NSUserDefaults.standardUserDefaults().boolForKey("firstLaunch") {
             
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "firstLaunch")
@@ -37,8 +38,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appearance.barTintColor = UIColor(red: 68/255.0, green: 163/255.0, blue: 242/255.0, alpha: 1.0)
         appearance.tintColor = UIColor.whiteColor()
         appearance.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
-        //修改按钮的颜色
+        
+        //自定义返回按钮
+        //修改返回按钮的颜色
         UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
+        var backButtonImage = UIImage(named: "1_75")
+//        backButtonImage?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 30, 0, 0))
+//        UIBarButtonItem.appearance().setBackButtonBackgroundImage(backButtonImage, forState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
+        //将返回按钮的文字position设置不在屏幕上显示
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(CGFloat(NSInteger.min), CGFloat(NSInteger.min)), forBarMetrics: UIBarMetrics.Default)
+//        var customerBackButtonItem = UIView()
+//        customerBackButtonItem.sizeToFit()
+//        customerBackButtonItem.addSubview(UIImageView(image: backButtonImage))
+//        UIBarButtonItem.appearance().customView = customerBackButtonItem
         
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)

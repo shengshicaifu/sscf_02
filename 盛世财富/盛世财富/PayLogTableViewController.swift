@@ -181,7 +181,7 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
     
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        NSLog("viewForHeaderInSection")
+        //NSLog("viewForHeaderInSection")
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
         //创建效果视图实例

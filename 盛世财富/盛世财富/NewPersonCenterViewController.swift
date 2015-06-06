@@ -90,9 +90,16 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
                     }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
                         //loading.stopLoading()
                         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                        self.refreshControl?.endRefreshing()
+                        self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
                         AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
+                }
             }
-        }
+            else{
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                self.refreshControl?.endRefreshing()
+                self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
+            }
         }
     }
     

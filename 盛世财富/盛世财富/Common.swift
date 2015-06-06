@@ -119,6 +119,21 @@ class Common {
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return formatter.stringFromDate(date)
     }
+    //MARK:- 时间处理
+    /**
+    将时间戳转换为MM-dd HH:mm格式的时间字符串
+    
+    :param: timestamp 待转换的时间戳
+    
+    :returns:MM-dd HH:mm格式的时间字符串
+    */
+    class func twoDateFromTimestamp(timestamp:Double) -> String{
+        var date = NSDate(timeIntervalSince1970: timestamp)
+        var formatter = NSDateFormatter()
+        formatter.dateFormat = "MM-dd HH:mm"
+        return formatter.stringFromDate(date)
+    }
+
     
 }
 //MARK:- md5

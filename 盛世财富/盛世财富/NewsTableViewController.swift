@@ -168,7 +168,7 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("newsCell") as! UITableViewCell
         var titleLabel = cell.viewWithTag(101) as! UILabel
-        var msgLabel = cell.viewWithTag(102) as! UILabel
+        var msgLabel = cell.viewWithTag(102) as! UITextView
         var sendTimeLabel = cell.viewWithTag(103) as! UILabel
         var hasRead = cell.viewWithTag(104)   as! UILabel
         var hideIdLabel = cell.viewWithTag(105) as! UILabel
@@ -180,11 +180,13 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
             msgLabel.text = messageMsg
             id = tmpListData[row].objectForKey("id") as? String
             hideIdLabel.text = id
+            hideIdLabel.hidden = true
             var sendTime = tmpListData[row].objectForKey("send_time") as! NSString
             var sendTimeDouble = sendTime.doubleValue
-            var fomartTime = Common.dateFromTimestamp(sendTimeDouble)
+            var fomartTime = Common.twoDateFromTimestamp(sendTimeDouble)
             sendTimeLabel.text = fomartTime
             var has_read = tmpListData[row].objectForKey("has_read") as! String
+            hasRead.hidden = true
             switch has_read{
             case "0":
                 hasRead.text = "未读"

@@ -198,10 +198,12 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
                             
                             if actionType == "1" {
                                 loading.stopLoading()
-                            }else{
+                            }else if actionType == "2"{
                                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                                self.refreshControl?.endRefreshing()
-                                self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
+                                self.tableView.headerEndRefreshing()
+                            }else if actionType == "3" {
+                                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                                self.tableView.footerEndRefreshing()
                             }
                             
                             self.tableView.scrollEnabled = true
@@ -210,10 +212,12 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
                             AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
                             if actionType == "1" {
                                 loading.stopLoading()
-                            }else{
+                            }else if actionType == "2"{
                                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                                self.refreshControl?.endRefreshing()
-                                self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
+                                self.tableView.headerEndRefreshing()
+                            }else if actionType == "3" {
+                                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                                self.tableView.footerEndRefreshing()
                             }
                             self.tableView.scrollEnabled = true
                     })

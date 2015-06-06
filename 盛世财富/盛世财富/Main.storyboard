@@ -6501,6 +6501,7 @@
         <image name="more" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="1Oc-Wy-fyN"/>
         <segue reference="01C-9g-NgZ"/>
         <segue reference="cgO-r2-Qw7"/>
         <segue reference="1Oc-Wy-fyN"/>

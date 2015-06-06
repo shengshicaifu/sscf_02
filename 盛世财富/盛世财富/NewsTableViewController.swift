@@ -16,12 +16,16 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
     var id:String? //页面传值的id
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.setupRefresh()
         self.getDate("0")
-    
+        
+//点击UITextView 跳转到详情页面的方法
+//    func toNewsDetail(){
+//        var controller = self.storyboard?.instantiateViewControllerWithIdentifier("newsDetail") as! NewsDetailViewController
+//        self.navigationController?.pushViewController(controller, animated: true)
+//        }
         
 //        //下拉刷新---------------------------
 //        var rc = UIRefreshControl()
@@ -169,6 +173,8 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
         var sendTimeLabel = cell.viewWithTag(103) as! UILabel
         var hasRead = cell.viewWithTag(104)   as! UILabel
         var hideIdLabel = cell.viewWithTag(105) as! UILabel
+        //点击UITextView 跳转到详情页面
+//        msgLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toNewsDetail"))
         var row :Int = indexPath.row
         if tmpListData.count > 0{
             var messageTitle = tmpListData[row].objectForKey("title") as! String
@@ -212,7 +218,6 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
 //    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
-     
             if let indexPath = self.tableView.indexPathForSelectedRow(){
                 let object :NSDictionary = tmpListData[indexPath.row] as! NSDictionary
                 println("ssss\(segue.destinationViewController is NewsDetailViewController)")

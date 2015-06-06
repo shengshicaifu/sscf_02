@@ -87,6 +87,7 @@
 		E9C70C061AC0FB2100E1CA8D /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C70C051AC0FB2100E1CA8D /* MoreViewController.swift */; };
 		E9C70C081AC1035B00E1CA8D /* IdeaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C70C071AC1035B00E1CA8D /* IdeaViewController.swift */; };
 		E9C70C0A1AC108AC00E1CA8D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C70C091AC108AC00E1CA8D /* AboutViewController.swift */; };
+		E9CC27261B22D9A300056EFC /* RealTimeFinanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC27251B22D9A300056EFC /* RealTimeFinanceViewController.swift */; };
 		E9D6604D1AB1313B0020982D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D6604C1AB1313B0020982D /* AppDelegate.swift */; };
 		E9D6604F1AB1313B0020982D /* LendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D6604E1AB1313B0020982D /* LendViewController.swift */; };
 		E9D660541AB1313B0020982D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9D660531AB1313B0020982D /* Images.xcassets */; };
@@ -223,6 +224,7 @@
 		E9C70C051AC0FB2100E1CA8D /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		E9C70C071AC1035B00E1CA8D /* IdeaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdeaViewController.swift; sourceTree = "<group>"; };
 		E9C70C091AC108AC00E1CA8D /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		E9CC27251B22D9A300056EFC /* RealTimeFinanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealTimeFinanceViewController.swift; sourceTree = "<group>"; };
 		E9D660471AB1313B0020982D /* 盛世财富.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "盛世财富.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D6604B1AB1313B0020982D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9D6604C1AB1313B0020982D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 				CDD3BDFF1B1FF6EB00CE6323 /* FindViewController.swift */,
 				CDD3BE011B1FFA9D00CE6323 /* FindResultsViewController.swift */,
 				E9FF4D131B228A3F005FCAAA /* NewsDetailViewController.swift */,
+				E9CC27251B22D9A300056EFC /* RealTimeFinanceViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -715,6 +718,7 @@
 				591FD1381B0C7CF000BFD74D /* AFHTTPRequestOperation.m in Sources */,
 				591FD13C1B0C7CF000BFD74D /* AFSecurityPolicy.m in Sources */,
 				592A9F251B035095006B63D9 /* loading.swift in Sources */,
+				E9CC27261B22D9A300056EFC /* RealTimeFinanceViewController.swift in Sources */,
 				5906B24B1B0F125E00ADA082 /* HandPasswordViewController.swift in Sources */,
 				D8B251181B0041AE00360F4E /* Reachability.m in Sources */,
 				E961E1261AC8DCBC0021ED14 /* REMenuContainerView.m in Sources */,

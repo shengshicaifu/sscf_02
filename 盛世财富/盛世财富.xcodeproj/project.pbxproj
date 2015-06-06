@@ -97,6 +97,7 @@
 		E9E5211F1B05E3D900A41EEA /* YYCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E5211E1B05E3D900A41EEA /* YYCycleScrollView.swift */; };
 		E9E8E9461B0B22FA0074F41A /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8E9451B0B22FA0074F41A /* ContentViewController.swift */; };
 		E9F3DFF11B0DD53F00F8F3AA /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F3DFF01B0DD53F00F8F3AA /* UIView+Toast.m */; };
+		E9FF4D141B228A3F005FCAAA /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FF4D131B228A3F005FCAAA /* NewsDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -237,6 +238,7 @@
 		E9E8E9451B0B22FA0074F41A /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		E9F3DFEF1B0DD53F00F8F3AA /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		E9F3DFF01B0DD53F00F8F3AA /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		E9FF4D131B228A3F005FCAAA /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,6 +391,7 @@
 				CDE4EED31B1DCBF900FB95CA /* IndexTableViewController.swift */,
 				CDD3BDFF1B1FF6EB00CE6323 /* FindViewController.swift */,
 				CDD3BE011B1FFA9D00CE6323 /* FindResultsViewController.swift */,
+				E9FF4D131B228A3F005FCAAA /* NewsDetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -670,6 +673,7 @@
 				5906B2471B0F103F00ADA082 /* LLLockView.m in Sources */,
 				E9C605B51ABBB9C500752D91 /* RefreshFooterView.swift in Sources */,
 				CDD3BE021B1FFA9D00CE6323 /* FindResultsViewController.swift in Sources */,
+				E9FF4D141B228A3F005FCAAA /* NewsDetailViewController.swift in Sources */,
 				E96E52451B0C865800CFD8E2 /* ModifyPhoneStepFirstViewController.swift in Sources */,
 				598A77841AF9E48600DE4271 /* TabBarViewController.swift in Sources */,
 				E96E52471B0C868900CFD8E2 /* ModifyPhoneStepSecondViewController.swift in Sources */,

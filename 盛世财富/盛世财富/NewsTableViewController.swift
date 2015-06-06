@@ -13,6 +13,7 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
     var ehttp = HttpController()
     var url = ""
     var count:String = "5"
+    var id:String? //页面传值的id
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +21,7 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
         self.tableView.delegate = self
         self.setupRefresh()
         self.getDate("0")
+    
         
 //        //下拉刷新---------------------------
 //        var rc = UIRefreshControl()
@@ -121,8 +123,12 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
                     
                     if actionType == "0" {
                         loading.stopLoading()
-                    }else{
+                    }else if actionType == "1"{
                         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                        self.tableView.headerEndRefreshing()
+                    }else if actionType == "2"{
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                        self.tableView.footerEndRefreshing()
                     }
                     
                     self.tableView.scrollEnabled = true
@@ -165,16 +171,20 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
         var msgLabel = cell.viewWithTag(102) as! UILabel
         var sendTimeLabel = cell.viewWithTag(103) as! UILabel
         var hasRead = cell.viewWithTag(104)   as! UILabel
+        var hideIdLabel = cell.viewWithTag(105) as! UILabel
+        var row :Int = indexPath.row
         if tmpListData.count > 0{
-            var messageTitle = tmpListData[indexPath.row].objectForKey("title") as! String
+            var messageTitle = tmpListData[row].objectForKey("title") as! String
             titleLabel.text = messageTitle
-            var messageMsg = tmpListData[indexPath.row].objectForKey("msg") as! String
+            var messageMsg = tmpListData[row].objectForKey("msg") as! String
             msgLabel.text = messageMsg
-            var sendTime = tmpListData[indexPath.row].objectForKey("send_time") as! NSString
+            id = tmpListData[row].objectForKey("id") as? String
+            hideIdLabel.text = id
+            var sendTime = tmpListData[row].objectForKey("send_time") as! NSString
             var sendTimeDouble = sendTime.doubleValue
             var fomartTime = Common.dateFromTimestamp(sendTimeDouble)
             sendTimeLabel.text = fomartTime
-            var has_read = tmpListData[indexPath.row].objectForKey("has_read") as! String
+            var has_read = tmpListData[row].objectForKey("has_read") as! String
             switch has_read{
             case "0":
                 hasRead.text = "未读"
@@ -192,5 +202,26 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
         return cell
     }
 
+//    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+//        if indexPath.section == 0{
+//            if let hideIdLabel = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(105) as? UILabel{
+//                id = hideIdLabel.text
+//                 NSLog("点击的行%i,id是%@", indexPath.row,id!)
+//        }
+//            self.performSegueWithIdentifier("newsDetail", sender: self)
+//        }
+//    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+     
+            if let indexPath = self.tableView.indexPathForSelectedRow(){
+                let object :NSDictionary = tmpListData[indexPath.row] as! NSDictionary
+                println("ssss\(segue.destinationViewController is NewsDetailViewController)")
+                (segue.destinationViewController as! NewsDetailViewController).detailItem = object
+            }
+        
+    }
+    
 
 }
+

@@ -19,7 +19,12 @@ class TabBarViewController : UITabBarController,UITabBarControllerDelegate{
         newsItem.badgeValue = "5"
         //中间的tabitem
         var moneyItem = items[2]
-        moneyItem.imageInsets = UIEdgeInsetsMake(8, 0, -8, 0)
+        moneyItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)
+        var image = UIImage(named: "logo")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        moneyItem.image = image
+        moneyItem.selectedImage = image
+        
+        
         self.delegate = self
     }
     

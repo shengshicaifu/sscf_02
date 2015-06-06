@@ -19,8 +19,8 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var searchController: UISearchController!//搜索控制器
     
     var data:NSMutableArray = NSMutableArray()
-    var count = 10
-    var searchString:String?
+    var count = 15
+    var searchString:String? = ""
     
     var searchTextField:UITextField!//搜索框
     var searchCancelButton:UIButton!//搜索取消按钮

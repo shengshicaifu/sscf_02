@@ -391,7 +391,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             circleProgressTheme.centerColor = UIColor.clearColor()
             circleProgressTheme.centerColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
             circleProgressTheme.sliceDividerHidden = true
-            circleProgressTheme.labelColor = UIColor.blackColor()
+            circleProgressTheme.labelColor = UIColor(red: 251/255.0, green: 44/255.0, blue: 55/255.0, alpha: 1.0)
             circleProgressTheme.labelShadowColor = UIColor.whiteColor()
             circleProgressTheme.drawIncompleteArcIfNoProgress = true
             circleProgress.theme = circleProgressTheme

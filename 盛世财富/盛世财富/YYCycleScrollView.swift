@@ -71,7 +71,7 @@ class YYCycleScrollView: UIView,UIScrollViewDelegate {
         self.currentPageIndex = 0
         
         self.pageControl = UIPageControl()
-        self.pageControl.center = CGPointMake(frame.size.width/2,frame.size.height-25)
+        self.pageControl.center = CGPointMake(frame.size.width/2,frame.size.height-15)
         self.addSubview(pageControl)
         
         self.showPageControl = true

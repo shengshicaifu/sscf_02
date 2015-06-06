@@ -138,6 +138,35 @@ NSString * const CSToastPositionBottom          = @"bottom";
 }
 
 
+- (void)showToast:(UIView *)toast position:(id)position
+      tapCallback:(void(^)(void))tapCallback
+{
+    toast.center = [self centerPointForPosition:position withToast:toast];
+    toast.alpha = 0.0;
+    
+    if (CSToastHidesOnTap) {
+        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:toast action:@selector(handleToastTapped:)];
+        [toast addGestureRecognizer:recognizer];
+        toast.userInteractionEnabled = YES;
+        toast.exclusiveTouch = YES;
+    }
+    
+    [self addSubview:toast];
+    
+    [UIView animateWithDuration:CSToastFadeDuration
+                          delay:0.0
+                        options:(UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionAllowUserInteraction)
+                     animations:^{
+                         toast.alpha = 1.0;
+                     } completion:^(BOOL finished) {
+//                         NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:duration target:self selector:@selector(toastTimerDidFinish:) userInfo:toast repeats:NO];
+//                         // associate the timer with the toast view
+//                         objc_setAssociatedObject (toast, &CSToastTimerKey, timer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                         objc_setAssociatedObject (toast, &CSToastTapCallbackKey, tapCallback, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                     }];
+}
+
+
 - (void)hideToast:(UIView *)toast {
     [UIView animateWithDuration:CSToastFadeDuration
                           delay:0.0

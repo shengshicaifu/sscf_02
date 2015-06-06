@@ -108,6 +108,7 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
     //取消，清空数据
     func cancel(){
         NSLog("清空数据")
+        searchTextField.resignFirstResponder()
         data.removeAllObjects()
         searchTextField.text = ""
         searchString = ""
@@ -253,13 +254,42 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(sectionsTableIdentifier) as! UITableViewCell
-        cell.textLabel?.text = (self.data.objectAtIndex(indexPath.row) as! NSDictionary).objectForKey("borrow_name") as? String
+        var cellDictionary = self.data.objectAtIndex(indexPath.row) as! NSDictionary
+        cell.textLabel?.text = cellDictionary.objectForKey("borrow_name") as? String
+        //cell.detailTextLabel?.text = cellDictionary.objectForKey("id") as? String
+        var idLabel = UILabel()
+        idLabel.text = cellDictionary.objectForKey("id") as? String
+        idLabel.tag = 100
+        idLabel.textColor = UIColor.redColor()
+        cell.addSubview(idLabel)
+        
+        var borrowTypeLabel = UILabel()
+        borrowTypeLabel.text = cellDictionary.objectForKey("borrow_type") as? String
+        borrowTypeLabel.tag = 101
+        borrowTypeLabel.textColor = UIColor.greenColor()
+        cell.addSubview(borrowTypeLabel)
+        
+        
         return cell
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        searchTextField.resignFirstResponder()
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let idLabel = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(100) as? UILabel {
+            var lendDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LendDetailViewController") as! LendDetailViewController
+            lendDetailViewController.id = idLabel.text
+            lendDetailViewController.type = (tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(101) as? UILabel)?.text
+            
+            self.navigationController?.pushViewController(lendDetailViewController, animated: true)
+        }
     }
+    
+    //MARK:- 隐藏键盘
+//    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+//        searchTextField.resignFirstResponder()
+//    }
+//    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+//        searchTextField.resignFirstResponder()
+//    }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()

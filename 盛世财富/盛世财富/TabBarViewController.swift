@@ -24,10 +24,11 @@ class TabBarViewController : UITabBarController,UITabBarControllerDelegate{
     }
     
     
+    //点击tab的时候，判断是否有登录，如果没有登录就跳转到登录页面
     func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool{
         var tag = viewController.tabBarItem.tag
-        if (tag == 105) || (tag == 102) || (tag == 103){
-            //我的账号
+        if (tag == 105) || (tag == 102) {
+            //消息和我的账号需要判断登录
             var user = NSUserDefaults()
 
             if !Common.isLogin(){

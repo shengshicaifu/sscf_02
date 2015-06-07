@@ -99,7 +99,7 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
         adImageView.autoresizesSubviews = true
         adImageView.autoresizingMask = UIViewAutoresizing.FlexibleLeftMargin|UIViewAutoresizing.FlexibleTopMargin|UIViewAutoresizing.FlexibleWidth|UIViewAutoresizing.FlexibleHeight
         adImageView.backgroundColor = UIColor(red: 253/255.0, green: 170/255.0, blue: 36/255.0, alpha: 1.0)
-        adImageView.layer.cornerRadius = 10
+        adImageView.layer.cornerRadius = 20
         adImageView.userInteractionEnabled = true
         adImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "adTapped"))
         adImageView.alpha = 0.0

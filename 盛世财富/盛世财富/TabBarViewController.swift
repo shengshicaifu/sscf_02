@@ -38,9 +38,7 @@ class TabBarViewController : UITabBarController,UITabBarControllerDelegate{
 
             if !Common.isLogin(){
                 var loginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController
-                
-                //var nav = tabBarController.selectedViewController as? UINavigationController
-                //nav?.showViewController(loginViewController, sender: nil)
+                loginViewController.tabTag = tag
                 self.presentViewController(loginViewController, animated: true, completion: nil)
                 return false
             }

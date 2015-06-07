@@ -16,6 +16,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var passwordLabel: UITextField!
     @IBOutlet weak var login: UIButton!
     @IBOutlet weak var regist: UIButton!
+    
+    var tabTag:Int?//用于记录是从那个tab点击跳转到登录页面，登录后需要返回到这个页面，102是消息页面，105是我的账号页面
 //    var timeLineUrl = Common.serverHost + "/App-Login"//链接地址
 
 //    var eHttp: HttpController = HttpController()//新建一个httpController
@@ -144,7 +146,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                                 user.setObject("", forKey:"bankBranch")
                             }
                             
-                            self.dismissViewControllerAnimated(true, completion: nil)
+                            //self.dismissViewControllerAnimated(true, completion: nil)
+                            self.dismiss()
                         }
                         if(code == 0){
                             //报错弹窗
@@ -177,15 +180,23 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func returnKey(sender: AnyObject) {
+        dismiss()
+    }
+    
+    //关闭当前页面
+    func dismiss(){
         self.dismissViewControllerAnimated(true, completion: nil)
         
         NSLog("登录窗的父窗体是%@", self.presentingViewController!)
         if self.presentingViewController is UITabBarController {
-           var tabbarController = self.presentingViewController as! UITabBarController
-           NSLog("当前选择的标签是%i", tabbarController.selectedIndex)
-            var selectedIndex = tabbarController.selectedIndex
-            if (selectedIndex == 0) || (selectedIndex == 1) || (selectedIndex == 2) || (selectedIndex == 3) {
-               tabbarController.selectedIndex = 0
+            var tabbarController = self.presentingViewController as! UITabBarController
+            NSLog("当前选择的标签是%i", tabbarController.selectedIndex)
+            if self.tabTag != nil {
+                if self.tabTag == 102 {
+                    tabbarController.selectedIndex = 1
+                }else if self.tabTag == 105 {
+                    tabbarController.selectedIndex = 4
+                }
             }
         }
     }

@@ -114,12 +114,17 @@ NSString * const CSToastPositionBottom          = @"bottom";
 {
     toast.center = [self centerPointForPosition:position withToast:toast];
     toast.alpha = 0.0;
+    toast.tag = 100;
     
     if (CSToastHidesOnTap) {
         UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:toast action:@selector(handleToastTapped:)];
         [toast addGestureRecognizer:recognizer];
         toast.userInteractionEnabled = YES;
         toast.exclusiveTouch = YES;
+    }
+
+    if ([self viewWithTag:100]!=nil) {
+        [[self viewWithTag:100] removeFromSuperview];
     }
     
     [self addSubview:toast];

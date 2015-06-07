@@ -22,10 +22,10 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
         self.getDate("0")
         
 //点击UITextView 跳转到详情页面的方法
-//    func toNewsDetail(){
-//        var controller = self.storyboard?.instantiateViewControllerWithIdentifier("newsDetail") as! NewsDetailViewController
-//        self.navigationController?.pushViewController(controller, animated: true)
-//        }
+    func toNewsDetail(){
+        var controller = self.storyboard?.instantiateViewControllerWithIdentifier("newsDetail") as! NewsDetailViewController
+        self.navigationController?.pushViewController(controller, animated: true)
+        }
         
 //        //下拉刷新---------------------------
 //        var rc = UIRefreshControl()
@@ -174,7 +174,7 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
         var hasRead = cell.viewWithTag(104)   as! UILabel
         var hideIdLabel = cell.viewWithTag(105) as! UILabel
         //点击UITextView 跳转到详情页面
-//        msgLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toNewsDetail"))
+        msgLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toNewsDetail"))
         var row :Int = indexPath.row
         if tmpListData.count > 0{
             var messageTitle = tmpListData[row].objectForKey("title") as! String

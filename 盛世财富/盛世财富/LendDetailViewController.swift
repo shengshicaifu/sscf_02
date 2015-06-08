@@ -186,36 +186,31 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                         //self.buyButton.enabled = false
                        
                     }
-                        //print(borrowinfo["borrow_status"])
-                        //println(borrowinfo["collect_time"])
-                        //借款状态
-                        var status = borrowinfo["borrow_status"] as! NSString
-                        switch status {
-                        case "4":
-                            //btn.layer.backgroundColor = UIColor.grayColor().CGColor
-                            //btn.setTitle("复审中", forState: nil)
+
+                    //根据借款状态和募集期来判断该标是否可买
+                    //借款状态
+                    var status = borrowinfo["borrow_status"] as! NSString
+                    switch status {
+                    case "4":
+                        //复审中
+                        self.buyButton.enabled = false
+                    case "6":
+                        //还款中
+                        self.buyButton.enabled = false
+                    case "7":
+                        //已完成
+                        self.buyButton.enabled = false
+                    default:
+                        break
+                    }
+                    //募集期小于当前日期的不能投
+                    var collectTimeStr = borrowinfo["collect_time"] as? NSString
+                    if collectTimeStr != nil {
+                        var curTime = NSDate().timeIntervalSince1970
+                        if collectTimeStr?.doubleValue < curTime {
                             self.buyButton.enabled = false
-                        case "6":
-                            //btn.layer.backgroundColor = UIColor.grayColor().CGColor
-                            //btn.setTitle("还款中", forState: nil)
-                            self.buyButton.enabled = false
-                        case "7":
-                            //btn.layer.backgroundColor = UIColor.grayColor().CGColor
-                            //btn.setTitle("已完成", forState: nil)
-                            self.buyButton.enabled = false
-                        default:
-                            break
                         }
-                        //募集期小于当前日期的不能投
-                        var collectTimeStr = borrowinfo["collect_time"] as? NSString
-                        if collectTimeStr != nil {
-                            var curTime = NSDate().timeIntervalSince1970
-                            if collectTimeStr?.doubleValue < curTime {
-//                                btn.layer.backgroundColor = UIColor.grayColor().CGColor
-//                                btn.setTitle("已结束", forState: nil)
-                                self.buyButton.enabled = false
-                            }
-                        }
+                    }
 
                     loading.stopLoading()
                     self.mainTable.scrollEnabled = true
@@ -225,7 +220,6 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                     println(error)
                     loading.stopLoading()
                     self.mainTable.scrollEnabled = true
-                    //AlertView.alert("提示", message: "服务器异常，请稍后再试", buttonTitle: "确定", viewController: self)
             }
             )
         }

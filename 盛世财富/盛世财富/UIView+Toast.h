@@ -51,5 +51,7 @@ extern NSString * const CSToastPositionBottom;
 - (void)showToast:(UIView *)toast duration:(NSTimeInterval)interval position:(id)point;
 - (void)showToast:(UIView *)toast duration:(NSTimeInterval)interval position:(id)point
       tapCallback:(void(^)(void))tapCallback;
+- (void)showToast:(UIView *)toast position:(id)point
+      tapCallback:(void(^)(void))tapCallback;
 
 @end

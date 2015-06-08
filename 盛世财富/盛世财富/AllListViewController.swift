@@ -1,14 +1,16 @@
 //
 //  AllListViewController.swift
 //  盛世财富
-//  投资列表
+//
 //  Created by xiao on 15-3-16.
 //  Copyright (c) 2015年 sscf88. All rights reserved.
 //
 
 
 import UIKit
-
+/**
+*  投资列表
+*/
 class AllListViewController: UIViewController ,UITableViewDataSource,UITableViewDelegate{
     var eHttp: HttpController = HttpController()
 
@@ -308,10 +310,6 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                         newList.addObjectsFromArray(self.listData as [AnyObject])
                     }
                     if(self.tmpListData.count > 0){
-//                        var tmpListDataCount = self.tmpListData.count
-//                        for(var i:Int = 0; i < tmpListDataCount; i++){
-//                            self.listData.addObject(self.tmpListData[i])
-//                        }
                         newList.addObjectsFromArray(self.tmpListData as [AnyObject])
                     }
                     self.listData = newList
@@ -331,9 +329,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         
         if(self.listData.count == 0){
-            
             if(self.tmpListData.count != 0){
-                
                 self.listData = self.tmpListData
             }
         }
@@ -342,29 +338,16 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        NSLog("cellForRowAtIndexPath")
         let cell = self.mainTable.dequeueReusableCellWithIdentifier("allList") as! UITableViewCell
         var money = cell.viewWithTag(100) as! UILabel
         var percent = cell.viewWithTag(101) as! UILabel
-//        var progressLabel = cell.viewWithTag(102) as! UILabel
         var title = cell.viewWithTag(103) as! UILabel
-        var hideId = cell.viewWithTag(99) as! UILabel
-        
-//        var progress = cell.viewWithTag(90) as! UIProgressView
-//        progress.progressTintColor = UIColor(red: 68/255.0, green: 138/255.0, blue: 255/255.0, alpha: 1.0)
-//        progress.trackTintColor = UIColor(red: 235/255.0, green: 235/255.0, blue: 235/255.0, alpha: 1.0)
-//        progress.layer.masksToBounds = true
-//        progress.layer.cornerRadius = 4
-        
-        
-        
-        var hideType = UILabel(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        hideType.tag = 98
         var row = indexPath.row
-//        println(listData.count)
         if listData.count > 0 {
-//            println(listData)
-            var m = listData[row].valueForKey("borrow_money") as! NSString
+            var rowData = listData[row] as! NSDictionary
+            var id = rowData.valueForKey("id") as! String
+            title.text = (rowData.valueForKey("borrow_name") as! String)
+            var m = rowData.valueForKey("borrow_money") as! NSString
             if m.integerValue > 10000 {
                 var wm = m.integerValue/10000
                 money.text = "\(wm)万元"
@@ -372,39 +355,93 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                 money.text = "\(m)元"
             }
             
-            var tmp = listData[row].valueForKey("borrow_interest_rate") as! String
+            var tmp = rowData.valueForKey("borrow_interest_rate") as! String
             percent.text = "\(tmp)%"
-            tmp = listData[row].valueForKey("borrow_duration") as! String
-            var unit = listData[row].valueForKey("progress") as! NSString
-//            progressLabel.text = "\(unit.integerValue)%"
-//            progressLabel.layer.borderWidth = 1
-//            progressLabel.layer.borderColor = UIColor(red: 68/255.0, green: 138/255.0, blue: 255/255.0, alpha: 1.0).CGColor
-//            progressLabel.layer.cornerRadius = 10
-//            progress.progress = unit.floatValue/100.0
+            tmp = rowData.valueForKey("borrow_duration") as! String
+            var unit = rowData.valueForKey("progress") as! NSString
             
-            //圆形进度条
-            var circleProgress =  cell.viewWithTag(102) as! MDRadialProgressView
-            var circleProgressTheme = MDRadialProgressTheme()
-            //circleProgressTheme.completedColor = UIColor(red: 90/255.0, green: 212/255.0, blue: 39/255.0, alpha: 1.0)
-            circleProgressTheme.completedColor = UIColor(red: 68/255.0, green: 138/255.0, blue: 255/255.0, alpha: 1.0)
-            circleProgressTheme.incompletedColor = UIColor(red: 235/255.0, green: 235/255.0, blue: 235/255.0, alpha: 1.0)
-            circleProgressTheme.centerColor = UIColor.clearColor()
-            circleProgressTheme.centerColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
-            circleProgressTheme.sliceDividerHidden = true
-            circleProgressTheme.labelColor = UIColor.blackColor()
-            circleProgressTheme.labelShadowColor = UIColor.whiteColor()
-            circleProgressTheme.drawIncompleteArcIfNoProgress = true
-            circleProgress.theme = circleProgressTheme
-            circleProgress.progressTotal = 100
-            circleProgress.progressCounter = UInt(unit.integerValue)
             
-            title.text = listData[row].valueForKey("borrow_name") as? String
-            hideId.text = listData[row].valueForKey("id") as? String
-            hideType.text = listData[row].valueForKey("borrow_type") as? String
-            cell.addSubview(hideType)
-            hideType.hidden = true
             
-            //NSLog("%@,%@",listData[row].valueForKey("id") as! String,listData[row].valueForKey("borrow_name") as! String)
+            /*该视图根据标的状态来决定放哪种内容，
+              1.未结束，放圆形进度条，点击该进度条跳转到购买页面
+              2.已结束，放结束图案，无点击事件
+            */
+            //根据借款状态和募集期来判断该标是否可买
+            //借款状态
+            var status = rowData["borrow_status"] as! NSString
+            var canBuy:Bool = true//表示标是否能买
+            var statusTipLabel = UILabel()//不能买的提示
+            switch status {
+                case "4":
+                    canBuy = false
+                    statusTipLabel.text = "复审中"
+                    break
+                case "6":
+                    canBuy = false
+                    statusTipLabel.text = "还款中"
+                    break
+                case "7":
+                    canBuy = false
+                    statusTipLabel.text = "已完成"
+                    break
+                default:
+                    break
+            }
+            //募集期小于当前日期的不能投
+            var collectTimeStr = rowData["collect_time"] as? NSString
+            if collectTimeStr != nil {
+                var curTime = NSDate().timeIntervalSince1970
+                if collectTimeStr?.doubleValue < curTime {
+                    canBuy = false
+                    statusTipLabel.text = "已结束"
+                }
+            }
+            
+            
+            var pview = cell.viewWithTag(102)!
+            if pview.viewWithTag(1) != nil {
+                pview.viewWithTag(1)?.removeFromSuperview()
+            }
+            if pview.viewWithTag(2) != nil {
+                pview.viewWithTag(2)?.removeFromSuperview()
+            }
+            
+            if canBuy {
+                //能买
+                //圆形进度条
+                var circleProgressTheme = MDRadialProgressTheme()
+                circleProgressTheme.completedColor = UIColor(red: 68/255.0, green: 138/255.0, blue: 255/255.0, alpha: 1.0)
+                circleProgressTheme.incompletedColor = UIColor(red: 235/255.0, green: 235/255.0, blue: 235/255.0, alpha: 1.0)
+                circleProgressTheme.centerColor = UIColor.clearColor()
+                circleProgressTheme.centerColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
+                circleProgressTheme.sliceDividerHidden = true
+                circleProgressTheme.labelColor = UIColor(red: 251/255.0, green: 44/255.0, blue: 55/255.0, alpha: 1.0)
+                circleProgressTheme.labelShadowColor = UIColor.whiteColor()
+                circleProgressTheme.drawIncompleteArcIfNoProgress = true
+                var circleProgress = MDRadialProgressView(frame: CGRectMake(0, 0, pview.frame.width, pview.frame.height), andTheme: circleProgressTheme)
+                circleProgress.progressTotal = 100
+                circleProgress.progressCounter = UInt(unit.integerValue)
+                circleProgress.tag = 1
+                //为进度条添加点击事件购买
+                circleProgress.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "buy:"))
+                
+                pview.addSubview(circleProgress)
+            }else{
+                //不能买
+                //提示
+                statusTipLabel.sizeToFit()
+                statusTipLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+                statusTipLabel.tag = 2
+                pview.addSubview(statusTipLabel)
+                
+                //为提示加约束
+                var statusTipLabelConstraint = NSLayoutConstraint(item: statusTipLabel, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: pview, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 10)
+                pview.addConstraint(statusTipLabelConstraint)
+                
+                statusTipLabelConstraint = NSLayoutConstraint(item: statusTipLabel, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: pview, attribute: NSLayoutAttribute.CenterY, multiplier: 1.0, constant: 0)
+                pview.addConstraint(statusTipLabelConstraint)
+            }
+
         }else{
             
             AlertView.alert("提示", message: "没有找到数据", buttonTitle: "确定", viewController: self)
@@ -413,39 +450,37 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         
     }
     
+    //点击进度条购买
+    func buy(sender:UIGestureRecognizer){
+        if let tableCell = sender.view?.superview?.superview?.superview as? UITableViewCell {
+            var indexPath = self.mainTable.indexPathForCell(tableCell)!
+            NSLog("购买选中的行%i", indexPath.row)
+            var d = self.listData[indexPath.row] as! NSDictionary
+            var id = d.objectForKey("id") as! String
+            NSLog("购买选中的id%@",id)
+            var bidConfirmViewController = self.storyboard?.instantiateViewControllerWithIdentifier("BidConfirmViewController") as! BidConfirmViewController
+            bidConfirmViewController.id = id
+            self.navigationController?.pushViewController(bidConfirmViewController, animated: true)
+        }
+    }
+    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(99) as! UILabel
-        id = hideId.text!
-        var hideType = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(98) as! UILabel
-        type = hideType.text!
-        //        self.presentViewController(vc, animated: true, completion: nil)
-        self.performSegueWithIdentifier("detail", sender: self)
+        if self.listData.count > 0 {
+            var dic = self.listData[indexPath.row] as! NSDictionary
+            self.id = dic.objectForKey("id")  as! String
+            self.type = dic.objectForKey("borrow_type") as? String
+            self.performSegueWithIdentifier("detail", sender: self)
+        }
     }
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
         if segue.identifier == "detail" {
             var vc = segue.destinationViewController as! LendDetailViewController
-
             vc.id = self.id	
             vc.type = self.type
         }
-//        println("segue:\(segue.identifier)")
-
     }
-    
-//    override func viewWillAppear(animated: Bool) {
-//        //检查是否连接网络
-//        var reach = Reachability(hostName: Common.domain)
-//        reach.unreachableBlock = {(r:Reachability!) -> Void in
-//            dispatch_async(dispatch_get_main_queue(), {
-//                //self.mainTable.hidden = true
-//                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
-//            })
-//        }
-//        reach.startNotifier()
-//    }
 }
 

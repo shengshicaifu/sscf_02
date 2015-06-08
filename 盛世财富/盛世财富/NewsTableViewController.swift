@@ -21,12 +21,6 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
         self.setupRefresh()
         self.getDate("0")
         
-//点击UITextView 跳转到详情页面的方法
-    func toNewsDetail(){
-        var controller = self.storyboard?.instantiateViewControllerWithIdentifier("newsDetail") as! NewsDetailViewController
-        self.navigationController?.pushViewController(controller, animated: true)
-        }
-        
 //        //下拉刷新---------------------------
 //        var rc = UIRefreshControl()
 //        rc.attributedTitle = NSAttributedString(string: "下拉刷新")
@@ -34,6 +28,17 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
 //        self.refreshControl = rc
 //       
     }
+    
+    //点击UITextView 跳转到详情页面的方法
+    func toNewsDetail(sender:UITapGestureRecognizer){
+        var msgLabel = sender.view as! UITextView//得到文本框
+        
+        var controller = self.storyboard?.instantiateViewControllerWithIdentifier("newsDetail") as! NewsDetailViewController
+//        controller.detailItem = 
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    
     /**
     下拉刷新和上拉加载
     */
@@ -52,6 +57,7 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
     :param: actionType 操作类型
     0:进入页面获取数据
     1:下拉刷新获取数据
+    2:上拉加载获取数据
     */
     func getDate(actionType:String){
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
@@ -62,29 +68,45 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
                     UIApplication.sharedApplication().networkActivityIndicatorVisible = true
                 }
                 
+                var lastId:String = ""
+                if actionType == "2" && self.tmpListData.count > 0{
+                    var lastObject = self.tmpListData.objectAtIndex(self.tmpListData.count - 1) as? NSDictionary
+                    lastId = lastObject?.objectForKey("id") as! String
+                }
                 
                 self.tableView.scrollEnabled = false
                 let afnet = AFHTTPRequestOperationManager()
-                let param = ["to":token]
+                let param = ["to":token,"count":count,"lastId":lastId]
                 let url = Common.serverHost + "/App-Message"
+                NSLog("消息参数%@", param)
                 afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                 afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     var resDictionary = res as! NSDictionary
-//                    var dataNSArray = resDictionary["data"] as? NSArray
+                    
+                    var a = resDictionary["data"] as! NSArray
+                    println("获取到的数据：")
+                    for var i=0;i<a.count;i++ {
+                        var c = a[i] as! NSDictionary
+                        var b = c["id"] as! String
+                        println(b)
+                    }
+
+                    
+                    
                     var code = resDictionary["code"] as! Int
 //                    self.tmpListData = dataNSArray as! NSMutableArray
-                    println(code)
+//                    println(code)
                     //根据操作类型对返回的数据进行处理
                     if actionType == "0" {
                         //1:进入页面加载
                         //先清空data中的数据，再把获取的数据加入到data中
                         if let d = res["data"] as? NSArray{
-                            NSLog("003")
+//                            NSLog("003")
                             self.tmpListData.removeAllObjects()
-                            NSLog("004")
+//                            NSLog("004")
                             self.tmpListData.addObjectsFromArray(d as [AnyObject])
-                            NSLog("005")
+//                            NSLog("005")
                         }else{
                             self.tmpListData.removeAllObjects()
                         }
@@ -137,11 +159,14 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
                     self.tableView.scrollEnabled = true
                     }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
                         //loading.stopLoading()
-                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         if actionType == "0" {
                             loading.stopLoading()
-                        }else{
+                        }else if actionType == "1"{
                             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                            self.tableView.headerEndRefreshing()
+                        }else if actionType == "2"{
+                            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                            self.tableView.footerEndRefreshing()
                         }
                         self.tableView.scrollEnabled = true
 
@@ -149,8 +174,6 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
                 }
             }else {
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                self.refreshControl?.endRefreshing()
-                self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
             }
         }
 
@@ -170,11 +193,15 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
         var cell = tableView.dequeueReusableCellWithIdentifier("newsCell") as! UITableViewCell
         var titleLabel = cell.viewWithTag(101) as! UILabel
         var msgLabel = cell.viewWithTag(102) as! UITextView
+        msgLabel.userInteractionEnabled = false
         var sendTimeLabel = cell.viewWithTag(103) as! UILabel
         var hasRead = cell.viewWithTag(104)   as! UILabel
         var hideIdLabel = cell.viewWithTag(105) as! UILabel
+        
+        var flagLabel = cell.viewWithTag(99) as! UILabel
+        
         //点击UITextView 跳转到详情页面
-        msgLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toNewsDetail"))
+        //msgLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toNewsDetail:"))
         var row :Int = indexPath.row
         if tmpListData.count > 0{
             var messageTitle = tmpListData[row].objectForKey("title") as! String
@@ -201,7 +228,10 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
                 hasRead.text = "全部"
                 break
             }
-                
+            
+            flagLabel.text = "通知"
+            flagLabel.layer.cornerRadius = 3
+            flagLabel.layer.masksToBounds = true
             
     }
         return cell
@@ -220,7 +250,7 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
             if let indexPath = self.tableView.indexPathForSelectedRow(){
                 let object :NSDictionary = tmpListData[indexPath.row] as! NSDictionary
-                println("ssss\(segue.destinationViewController is NewsDetailViewController)")
+//                println("ssss\(segue.destinationViewController is NewsDetailViewController)")
                 (segue.destinationViewController as! NewsDetailViewController).detailItem = object
             }
         

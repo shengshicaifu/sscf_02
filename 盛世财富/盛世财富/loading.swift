@@ -21,6 +21,7 @@ class loading{
         darkView.frame = CGRect(x: (view.frame.width-100)/2, y: (view.frame.height-100)/2, width: 100, height: 100)
         darkView.backgroundColor = UIColor.blackColor()
         darkView.alpha = 0.5
+        //darkView.backgroundColor = UIColor(white: 0.0, alpha: 0.7)
         darkView.layer.cornerRadius = 10
         //设置效果视图大小
         blurView.frame.size = CGSize(width: view.frame.width, height: view.frame.height)

@@ -42,6 +42,8 @@
 		CDD3BE021B1FFA9D00CE6323 /* FindResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3BE011B1FFA9D00CE6323 /* FindResultsViewController.swift */; };
 		CDD3BE041B1FFD1800CE6323 /* sortednames.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDD3BE031B1FFD1800CE6323 /* sortednames.plist */; };
 		CDDCBA271B1EC6D100A4F54B /* BaoFooPay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDCBA261B1EC6D100A4F54B /* BaoFooPay.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		CDE0CA661B26A5980079DB21 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0CA651B26A5980079DB21 /* CircleView.swift */; };
+		CDE0CA681B26C4780079DB21 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDE0CA671B26C4780079DB21 /* Images.xcassets */; };
 		CDE4EED21B1DC06D00FB95CA /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE4EED11B1DC06D00FB95CA /* NewsTableViewController.swift */; };
 		CDE4EED41B1DCBF900FB95CA /* IndexTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE4EED31B1DCBF900FB95CA /* IndexTableViewController.swift */; };
 		D8B251181B0041AE00360F4E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B251171B0041AE00360F4E /* Reachability.m */; };
@@ -90,7 +92,6 @@
 		E9CC27261B22D9A300056EFC /* RealTimeFinanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC27251B22D9A300056EFC /* RealTimeFinanceViewController.swift */; };
 		E9D6604D1AB1313B0020982D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D6604C1AB1313B0020982D /* AppDelegate.swift */; };
 		E9D6604F1AB1313B0020982D /* LendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D6604E1AB1313B0020982D /* LendViewController.swift */; };
-		E9D660541AB1313B0020982D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9D660531AB1313B0020982D /* Images.xcassets */; };
 		E9D660571AB1313B0020982D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9D660551AB1313B0020982D /* LaunchScreen.xib */; };
 		E9D660631AB1313B0020982D /* ____Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D660621AB1313B0020982D /* ____Tests.swift */; };
 		E9E304041B09A6A90021D006 /* SetPinPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E304031B09A6A90021D006 /* SetPinPasswordViewController.swift */; };
@@ -167,6 +168,8 @@
 		CDD3BE011B1FFA9D00CE6323 /* FindResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindResultsViewController.swift; sourceTree = "<group>"; };
 		CDD3BE031B1FFD1800CE6323 /* sortednames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sortednames.plist; sourceTree = "<group>"; };
 		CDDCBA261B1EC6D100A4F54B /* BaoFooPay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaoFooPay.framework; sourceTree = "<group>"; };
+		CDE0CA651B26A5980079DB21 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		CDE0CA671B26C4780079DB21 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CDE4EED11B1DC06D00FB95CA /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		CDE4EED31B1DCBF900FB95CA /* IndexTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexTableViewController.swift; sourceTree = "<group>"; };
 		D8B251161B0041AE00360F4E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -229,7 +232,6 @@
 		E9D6604B1AB1313B0020982D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9D6604C1AB1313B0020982D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9D6604E1AB1313B0020982D /* LendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LendViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		E9D660531AB1313B0020982D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E9D660561AB1313B0020982D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E9D6605C1AB1313B0020982D /* 盛世财富Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "盛世财富Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D660611AB1313B0020982D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -324,6 +326,14 @@
 			path = DaiDodgeKeyboard;
 			sourceTree = "<group>";
 		};
+		CDE0CA641B26A3F70079DB21 /* customerView */ = {
+			isa = PBXGroup;
+			children = (
+				CDE0CA651B26A5980079DB21 /* CircleView.swift */,
+			);
+			name = customerView;
+			sourceTree = "<group>";
+		};
 		D8B251151B00418900360F4E /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,7 +355,7 @@
 		E91E81311AB2794D000C5FD3 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				E9D660531AB1313B0020982D /* Images.xcassets */,
+				CDE0CA671B26C4780079DB21 /* Images.xcassets */,
 				E90EA25D1ABFA1A5006D22E6 /* 盛世财富-Bridging-Header.h */,
 			);
 			name = Source;
@@ -524,6 +534,7 @@
 		E9FDC1461AC3B70F0088B6F5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CDE0CA641B26A3F70079DB21 /* customerView */,
 				5906B23A1B0F103F00ADA082 /* LLLockView */,
 				E9F3DFEE1B0DD52200F8F3AA /* Toast */,
 				E9C605AB1ABBB9C500752D91 /* Refresh */,
@@ -596,6 +607,7 @@
 					};
 					E9D6605B1AB1313B0020982D = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = G7XYYH9B69;
 						TestTargetID = E9D660461AB1313B0020982D;
 					};
 				};
@@ -625,10 +637,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E94E95A81B0AD3DD00E717DE /* Main.storyboard in Resources */,
+				CDE0CA681B26C4780079DB21 /* Images.xcassets in Resources */,
 				5906B2491B0F103F00ADA082 /* LLLockViewController.xib in Resources */,
 				CDD3BE041B1FFD1800CE6323 /* sortednames.plist in Resources */,
 				E9D660571AB1313B0020982D /* LaunchScreen.xib in Resources */,
-				E9D660541AB1313B0020982D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,6 +670,7 @@
 				E9F3DFF11B0DD53F00F8F3AA /* UIView+Toast.m in Sources */,
 				E9C70C061AC0FB2100E1CA8D /* MoreViewController.swift in Sources */,
 				591FD1391B0C7CF000BFD74D /* AFHTTPRequestOperationManager.m in Sources */,
+				CDE0CA661B26A5980079DB21 /* CircleView.swift in Sources */,
 				E9C544C41AE8914800B50D8C /* BidConfirmViewController.swift in Sources */,
 				59BEC4191B05CD5300F5690D /* UserMoneyViewController.swift in Sources */,
 				592F90781B03249E00B9969B /* UIView+FirstResponderNotify.m in Sources */,
@@ -885,6 +898,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -897,6 +912,7 @@
 				INFOPLIST_FILE = "盛世财富Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "盛世财富Tests";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/盛世财富.app/盛世财富";
 			};
 			name = Debug;
@@ -905,6 +921,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -913,6 +931,7 @@
 				INFOPLIST_FILE = "盛世财富Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "盛世财富Tests";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/盛世财富.app/盛世财富";
 			};
 			name = Release;

@@ -112,11 +112,11 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
                 var url = Common.serverHost + "/App-Register-sendphone"
                 var params = ["cellphone":phone]
                 var manager = AFHTTPRequestOperationManager()
-                loading.startLoading(self.view)
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = true
                 manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                 manager.POST(url, parameters: params,
                     success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                        loading.stopLoading()
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         
                         var result = data as! NSDictionary
                         NSLog("验证码%@", result)
@@ -128,11 +128,13 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
                             msg = "手机号已被别人使用!"
                         }else if code == 100 {
                             msg = "短信验证码发送成功"
+                        }else{
+                            msg = result["message"] as! String
                         }
                         AlertView.showMsg(msg, parentView: self.view)
                     },
                     failure:{ (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                        loading.stopLoading()
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
                     }
                 )
@@ -262,6 +264,8 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
                             user.setObject(phone, forKey: "phone")
                             
                             self.performSegueWithIdentifier("registerToMain", sender: nil)
+                        }else{
+                            AlertView.showMsg(result["message"] as! String, parentView: self.view)
                         }
                     },
                     failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in

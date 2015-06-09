@@ -257,7 +257,7 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
         var cellDictionary = self.data.objectAtIndex(indexPath.row) as! NSDictionary
         var borrowName = cellDictionary.objectForKey("borrow_name") as? String
         var id = cellDictionary.objectForKey("id") as? String
-        cell.textLabel?.text = id! + ":" + borrowName!//borrow_name
+        cell.textLabel?.text = borrowName!//borrow_name
         return cell
     }
     
@@ -268,6 +268,8 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
             var cellDictionary = self.data.objectAtIndex(indexPath.row) as! NSDictionary
             lendDetailViewController.id = cellDictionary.objectForKey("id") as? String
             lendDetailViewController.type = cellDictionary.objectForKey("borrow_type") as? String
+            
+            lendDetailViewController.hidesBottomBarWhenPushed = true
             
             self.navigationController?.pushViewController(lendDetailViewController, animated: true)
         }

@@ -205,10 +205,14 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             var tabbarController = self.presentingViewController as! UITabBarController
             NSLog("当前选择的标签是%i", tabbarController.selectedIndex)
             if self.tabTag != nil {
-                if self.tabTag == 102 {
-                    tabbarController.selectedIndex = 1
-                }else if self.tabTag == 105 {
-                    tabbarController.selectedIndex = 4
+                if Common.isLogin() {
+                    if self.tabTag == 102 {
+                        tabbarController.selectedIndex = 1
+                    }else if self.tabTag == 105 {
+                        tabbarController.selectedIndex = 4
+                    }
+                }else{
+                    tabbarController.selectedIndex = 0
                 }
             }
         }

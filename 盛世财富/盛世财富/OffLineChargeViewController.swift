@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 class OffLineChargeViewController:UIViewController,UITextFieldDelegate,
-//BaofooSdkDelegate,
+BaofooSdkDelegate,
 NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
     @IBOutlet weak var choose: UISegmentedControl!
     @IBOutlet weak var transfer: UIView!
@@ -47,16 +47,22 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
     //MARK:- 在线支付
     @IBAction func onlinePayTapped(sender: UIButton) {
         resignAll()
-        if onlineMoneyTextField.text.isEmpty {
+        var moneyString = onlineMoneyTextField.text
+        
+        if moneyString.isEmpty {
             AlertView.showMsg("请填写充值金额", parentView: self.view)
             return
         }
         
-        if !Common.isMoney(onlineMoneyTextField.text){
+        if !Common.isMoney(moneyString){
             AlertView.showMsg(Common.moneyErrorTip, parentView: self.view)
             return
         }
-
+        
+        var moneyNum = (moneyString as NSString).doubleValue * 100
+        var moneyNumStr:String!
+        moneyNumStr = "\(moneyNum)"
+        
         if chargeTypeSegment.selectedSegmentIndex == 0 {
             //宝付
             
@@ -75,9 +81,9 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
                 dispatch_async(dispatch_get_main_queue(), {
                     loading.startLoading(self.view)
                     var manager = AFHTTPRequestOperationManager()
-                    var url = Common.serverHost + "/App-Paytest-baofoo"
+                    var url = Common.serverHost + "/App-Pay-baofoo"
                     var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
-                    var params = ["to":token,"money":self.onlineMoneyTextField.text]
+                    var params = ["to":token,"money":moneyNumStr]
                     manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                     manager.POST(url, parameters: params,
                         success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
@@ -97,11 +103,11 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
                                 
                                 var tradeNo = result["data"]?["tradeNo"] as! String//交易单号
                                 
-//                                var baofooView = BaoFooPayController()
-//                                baofooView.PAY_TOKEN = tradeNo
-//                                baofooView.delegate = self
-//                                baofooView.PAY_BUSINESS = "false"
-//                                self.presentViewController(baofooView, animated: true, completion: nil)
+                                var baofooView = BaoFooPayController()
+                                baofooView.PAY_TOKEN = tradeNo
+                                baofooView.delegate = self
+                                baofooView.PAY_BUSINESS = "false"
+                                self.presentViewController(baofooView, animated: true, completion: nil)
                                 
                                 
                             }
@@ -135,7 +141,7 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
                     var url = Common.serverHost + "/App-Pay-guofubao"
                     var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
                     var phone_token = GopayNewPlatform.getGopayIdentifierForPayment()
-                    var params = ["to":token,"money":self.onlineMoneyTextField.text,"phone_token":phone_token]
+                    var params = ["to":token,"money":moneyNumStr,"phone_token":phone_token]
                     manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                     manager.POST(url, parameters: params,
                         success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
@@ -208,7 +214,8 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
     //MARK:- BaofooDelegate
     func callBack(params: String!) {
         NSLog("返回的参数是：%@",params)
-        AlertView.alert("提示", message: NSString(format: "支付结果:%@", params) as String, buttonTitle: "确定", viewController: self)
+//        AlertView.alert("提示", message: NSString(format: "支付结果:%@", params) as String, buttonTitle: "确定", viewController: self)
+        self.onlineView.makeToast(params)
     }
     
     //MARK:- GopayDelegate
@@ -280,9 +287,12 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
                 afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                 afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     loading.stopLoading()
-                    AlertView.showMsg(data["message"] as! String, parentView:  self.view)
+//                    AlertView.showMsg(data["message"] as! String, parentView:  self.view)
 //                    AlertView.alert("提示", message: data["message"], buttonTitle:"确定", viewController: self)
-                     self.navigationController?.popViewControllerAnimated(true)
+                    
+                    AlertView.alert("提示", message: data["message"] as! String, buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
+                        self.navigationController?.popViewControllerAnimated(true)
+                    })
                     }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
                         loading.stopLoading()
                         AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)

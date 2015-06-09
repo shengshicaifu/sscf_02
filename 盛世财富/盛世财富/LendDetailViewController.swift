@@ -132,7 +132,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                     //标的介绍
                     
 //                    
-                    self.progressLabel.text = "\(progress.integerValue)%"
+                    self.progressLabel.text = "\(progress.floatValue)%"
                     var progressFloat = progress.floatValue/100
                     self.progressView.progress = progressFloat
                        

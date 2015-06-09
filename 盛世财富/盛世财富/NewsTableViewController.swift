@@ -235,11 +235,12 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
-            if let indexPath = self.tableView.indexPathForSelectedRow(){
-                let object :NSDictionary = tmpListData[indexPath.row] as! NSDictionary
-                (segue.destinationViewController as! NewsDetailViewController).detailItem = object
-            }
-        
+        if let indexPath = self.tableView.indexPathForSelectedRow(){
+            let object :NSDictionary = tmpListData[indexPath.row] as! NSDictionary
+            var destinationViewController = segue.destinationViewController as! NewsDetailViewController
+            destinationViewController.detailItem = object
+            destinationViewController.hidesBottomBarWhenPushed = true
+        }
     }
     
 

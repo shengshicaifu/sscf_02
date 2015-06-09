@@ -82,7 +82,7 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
             //println("点击了\(pageIndex)")
             
             var contentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ContentViewController") as! ContentViewController
-            contentViewController.contentUrl = "http://61.183.178.86:10080//ktv_zs/"
+            contentViewController.contentUrl = "http://www.sscf88.com"
             self.navigationController?.pushViewController(contentViewController, animated: true)
         }
         
@@ -282,21 +282,21 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
         switch indexPath.row {
             case 0:
                i = UIImage(named: "1_money.png")!
-               t1 = "债权转让商品，"
-               t2 = "12%预期年收益，100%适用保障计划"
-               t3 = "稳定收益，安全放心"
+               t1 = "专享理财"
+               t2 = "新手标、活动标，100%本息保障"
+               t3 = "期限灵活  多重选择"
                break
             case 1:
                 i = UIImage(named: "1_pigmoney.png")!
-                t1 = "定期理财"
-                t2 = "12%预期年收益，100%适用保障计划"
-                t3 = "稳定收益，安全放心"
+                t1 = "债权转让计划"
+                t2 = "11%-17%预期年收益，100%本息保障"
+                t3 = "1-12个月  低风险  高收益"
                break
             case 2:
                 i = UIImage(named: "1_americanmoney.png")!
-                t1 = "受益权转让商品"
-                t2 = "12%预期年收益，100%适用保障计划"
-                t3 = "稳定收益，安全放心"
+                t1 = "受益权转让计划"
+                t2 = "11%-16.5%预期年收益，100%本息保障"
+                t3 = "优质高端选择  5万起投"
                break
             default:break
         }
@@ -318,14 +318,14 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
 }
     //给新的界面传值
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-            var nextView:UIViewController!
-            if segue.identifier == "indexCell"{
-                nextView = segue.destinationViewController as! AllListViewController
-            }
-            if nextView != nil {
-                nextView!.hidesBottomBarWhenPushed = true
-            }
+        var nextView:UIViewController!
+        if segue.identifier == "allList"{
+            nextView = segue.destinationViewController as! AllListViewController
         }
+        if nextView != nil {
+            nextView!.hidesBottomBarWhenPushed = true
+        }
+    }
     
 
 }

@@ -63,20 +63,6 @@ class AlertView {
         viewController.presentViewController(alert, animated: true, completion: nil)
     }
     
-    /**
-    模态提示框,带回调函数
-    
-    :param: title          “对话框标题”
-    :param: message        “提示信息”
-    :param: buttonTitle    “按钮标题”
-    :param: viewController “展示该对话框的控制器”
-    :param: callback “回调函数”
-    */
-//    class func alert(title:String,message:String,buttonTitle:String,viewController:UIViewController,callback:(() -> Void)?){
-//        var alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-//        alert.addAction(UIAlertAction(title: buttonTitle, style: .Cancel, handler: nil))
-//        viewController.presentViewController(alert, animated: true, completion: callback)
-//    }
     
     /**
     模态提示框,带回调函数
@@ -92,4 +78,23 @@ class AlertView {
         alert.addAction(UIAlertAction(title: buttonTitle, style: .Cancel, handler: callback))
         viewController.presentViewController(alert, animated: true, completion: nil)
     }
+    
+    /**
+    模态提示框,带回调函数
+    
+    :param: title             “对话框标题”
+    :param: message           “提示信息”
+    :param: okButtonTitle     “ok按钮标题”
+    :param: cancelButtonTitle “cancel按钮标题”
+    :param: viewController    “展示该对话框的控制器”
+    :param: okCallback        “点击ok按钮的回调函数”
+    :param: cancelCallback    “点击cancel按钮的回调函数”
+    */
+    class func alert(title:String,message:String,okButtonTitle:String,cancelButtonTitle:String,viewController:UIViewController,okCallback:((UIAlertAction!) -> Void)!,cancelCallback:((UIAlertAction!) -> Void)!){
+        var alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: okButtonTitle, style: UIAlertActionStyle.Default, handler: okCallback))
+        alert.addAction(UIAlertAction(title: cancelButtonTitle, style: UIAlertActionStyle.Cancel, handler: cancelCallback))
+        viewController.presentViewController(alert, animated: true, completion: nil)
+    }
+    
 }

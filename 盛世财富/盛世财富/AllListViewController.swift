@@ -326,6 +326,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         })
     }
 
+    //MARK:-  table
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         
         if(self.listData.count == 0){
@@ -339,9 +340,9 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.mainTable.dequeueReusableCellWithIdentifier("allList") as! UITableViewCell
-        var money = cell.viewWithTag(100) as! UILabel
-        var percent = cell.viewWithTag(101) as! UILabel
-        var title = cell.viewWithTag(103) as! UILabel
+        var money = cell.viewWithTag(100) as! UILabel//金额
+        var percent = cell.viewWithTag(101) as! UILabel//年利收益
+        var title = cell.viewWithTag(103) as! UILabel//标题
         var row = indexPath.row
         if listData.count > 0 {
             var rowData = listData[row] as! NSDictionary
@@ -399,6 +400,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             
             
             var pview = cell.viewWithTag(102)!
+            pview.backgroundColor = UIColor.whiteColor()
             if pview.viewWithTag(1) != nil {
                 pview.viewWithTag(1)?.removeFromSuperview()
             }
@@ -409,37 +411,56 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             if canBuy {
                 //能买
                 //圆形进度条
-                var circleProgressTheme = MDRadialProgressTheme()
-                circleProgressTheme.completedColor = UIColor(red: 68/255.0, green: 138/255.0, blue: 255/255.0, alpha: 1.0)
-                circleProgressTheme.incompletedColor = UIColor(red: 235/255.0, green: 235/255.0, blue: 235/255.0, alpha: 1.0)
-                circleProgressTheme.centerColor = UIColor.clearColor()
-                circleProgressTheme.centerColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
-                circleProgressTheme.sliceDividerHidden = true
-                circleProgressTheme.labelColor = UIColor(red: 251/255.0, green: 44/255.0, blue: 55/255.0, alpha: 1.0)
-                circleProgressTheme.labelShadowColor = UIColor.whiteColor()
-                circleProgressTheme.drawIncompleteArcIfNoProgress = true
-                var circleProgress = MDRadialProgressView(frame: CGRectMake(0, 0, pview.frame.width, pview.frame.height), andTheme: circleProgressTheme)
-                circleProgress.progressTotal = 100
-                circleProgress.progressCounter = UInt(unit.integerValue)
-                circleProgress.tag = 1
-                //为进度条添加点击事件购买
-                circleProgress.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "buy:"))
+//                var circleProgressTheme = MDRadialProgressTheme()
+//                circleProgressTheme.completedColor = UIColor(red: 68/255.0, green: 138/255.0, blue: 255/255.0, alpha: 1.0)
+//                circleProgressTheme.incompletedColor = UIColor(red: 235/255.0, green: 235/255.0, blue: 235/255.0, alpha: 1.0)
+//                circleProgressTheme.centerColor = UIColor.clearColor()
+//                circleProgressTheme.centerColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
+//                circleProgressTheme.sliceDividerHidden = true
+//                circleProgressTheme.labelColor = UIColor(red: 251/255.0, green: 44/255.0, blue: 55/255.0, alpha: 1.0)
+//                circleProgressTheme.labelShadowColor = UIColor.whiteColor()
+//                circleProgressTheme.drawIncompleteArcIfNoProgress = true
+//                var circleProgress = MDRadialProgressView(frame: CGRectMake(0, 0, pview.frame.width, pview.frame.height), andTheme: circleProgressTheme)
+//                circleProgress.progressTotal = 100
+//                circleProgress.progressCounter = UInt(unit.integerValue)
+//                circleProgress.tag = 1
+//                //为进度条添加点击事件购买
+//                circleProgress.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "buy:"))
                 
-                pview.addSubview(circleProgress)
+                var progress = CircleView()
+                progress.tag = 1
+                progress.type = "1"
+                progress.backgroundColor = UIColor.whiteColor()
+                progress.frame = CGRectMake(0, 0, pview.frame.width - 15, pview.frame.height - 15)
+                progress.percent = unit.doubleValue/100.0
+                progress.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "buy:"))
+                pview.addSubview(progress)
+                
+                //percent.textColor = UIColor(red: 253/255.0, green: 134/255.0, blue: 143/255.0, alpha: 1.0)
             }else{
                 //不能买
                 //提示
-                statusTipLabel.sizeToFit()
-                statusTipLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-                statusTipLabel.tag = 2
-                pview.addSubview(statusTipLabel)
+//                statusTipLabel.sizeToFit()
+//                statusTipLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+//                statusTipLabel.tag = 2
+//                pview.addSubview(statusTipLabel)
+//                
+//                //为提示加约束
+//                var statusTipLabelConstraint = NSLayoutConstraint(item: statusTipLabel, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: pview, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 10)
+//                pview.addConstraint(statusTipLabelConstraint)
+//                
+//                statusTipLabelConstraint = NSLayoutConstraint(item: statusTipLabel, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: pview, attribute: NSLayoutAttribute.CenterY, multiplier: 1.0, constant: 0)
+//                pview.addConstraint(statusTipLabelConstraint)
+                var progress = CircleView()
+                progress.tag = 2
+                progress.type = "2"
+                progress.backgroundColor = UIColor.whiteColor()
+                progress.frame = CGRectMake(0, 0, pview.frame.width - 15, pview.frame.height - 15)
+                progress.percent = 0.0
+                progress.tip = statusTipLabel.text!
+                pview.addSubview(progress)
                 
-                //为提示加约束
-                var statusTipLabelConstraint = NSLayoutConstraint(item: statusTipLabel, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: pview, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 10)
-                pview.addConstraint(statusTipLabelConstraint)
-                
-                statusTipLabelConstraint = NSLayoutConstraint(item: statusTipLabel, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: pview, attribute: NSLayoutAttribute.CenterY, multiplier: 1.0, constant: 0)
-                pview.addConstraint(statusTipLabelConstraint)
+                //percent.textColor = UIColor(red: 216/255.0, green: 216/255.0, blue: 216/255.0, alpha: 1.0)
             }
 
         }else{

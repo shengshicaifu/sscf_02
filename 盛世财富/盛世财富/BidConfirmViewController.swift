@@ -175,20 +175,13 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
             return
         }
         let user = NSUserDefaults.standardUserDefaults()
-        if let pinpass = user.objectForKey("pinpass") as? String {
-            if pinpass.isEmpty {
-                
+        var pinpas = user.objectForKey("pinpass") as? String
+        if ( pinpas == nil) || (pinpas!.isEmpty) {
                 var view = self.storyboard?.instantiateViewControllerWithIdentifier("setPinPasswordViewController") as! SetPinPasswordViewController
-                self.presentViewController(view, animated: true, completion: {
-                    AlertView.showMsg("请设置交易密码", parentView: view.view)
+
+                AlertView.alert("提示", message: "请设置交易密码", buttonTitle: "确定", viewController: self, callback: { (alertAction:UIAlertAction!) -> Void in
+                    self.presentViewController(view, animated: true, completion: nil)
                 })
-                
-            }
-        }else{
-            var view = self.storyboard?.instantiateViewControllerWithIdentifier("setPinPasswordViewController") as! SetPinPasswordViewController
-            self.presentViewController(view, animated: true, completion: {
-                AlertView.showMsg("请设置交易密码", parentView: view.view)
-            })
         }
         
         //检查手机网络
@@ -236,7 +229,15 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
                     }else if code == 0 {
                         AlertView.alert("提示", message: res["message"] as! String, buttonTitle: "确定", viewController: self)
                     }else if code == 50 {
-                        AlertView.alert("提示", message: "账户余额不足，请充值", buttonTitle: "确定", viewController: self)
+                        //AlertView.alert("提示", message: "账户余额不足，请充值", buttonTitle: "确定", viewController: self)
+//                        AlertView.alert("提示", message: "账户余额不足，请充值", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
+//                            var controller = self.storyboard?.instantiateViewControllerWithIdentifier("OffLineChargeViewController") as! OffLineChargeViewController
+//                            self.navigationController?.pushViewController(controller, animated: true)
+//                        })
+                        AlertView.alert("提示", message: "账户余额不足，请充值", okButtonTitle: "确定", cancelButtonTitle: "取消", viewController: self, okCallback: { (action:UIAlertAction!) -> Void in
+                                var controller = self.storyboard?.instantiateViewControllerWithIdentifier("OffLineChargeViewController") as! OffLineChargeViewController
+                                self.navigationController?.pushViewController(controller, animated: true)
+                            }, cancelCallback: nil)
                     }else if code == 200 {
                         
                         AlertView.alert("提示", message: "恭喜您投标成功", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in

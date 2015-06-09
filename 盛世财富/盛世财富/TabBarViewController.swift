@@ -16,7 +16,7 @@ class TabBarViewController : UITabBarController,UITabBarControllerDelegate{
         var items = self.tabBar.items as! [UITabBarItem]
         //消息
         var newsItem = items[1]
-        newsItem.badgeValue = "5"
+        //newsItem.badgeValue = "5"
         //中间的tabitem
         var moneyItem = items[2]
         moneyItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0)

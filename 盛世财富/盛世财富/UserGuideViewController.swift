@@ -30,13 +30,14 @@ class UserGuideViewController: UIViewController {
         var guideImage2 = UIImageView(frame: CGRectMake(viewWidth, 0, viewWidth, viewHeight))
         guideImage2.image = UIImage(named: "guide_2.jpg")
         guideImage2.userInteractionEnabled = true
+        guideImage2.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toRootView"))
         
-        var startButton = UIButton(frame: CGRectMake((viewWidth-120)/2, viewHeight - 100, 120, 40))
-        startButton.setTitle("立即开始", forState: UIControlState.Normal)
-        startButton.layer.cornerRadius = 20
-        startButton.backgroundColor = UIColor(red: 242/255.0, green: 37/255.0, blue: 95/255.0, alpha: 1.0)
-        startButton.addTarget(self, action: "toRootView", forControlEvents: UIControlEvents.TouchUpInside)
-        guideImage2.addSubview(startButton)
+//        var startButton = UIButton(frame: CGRectMake((viewWidth-120)/2, viewHeight - 100, 120, 40))
+//        startButton.setTitle("立即开始", forState: UIControlState.Normal)
+//        startButton.layer.cornerRadius = 20
+//        startButton.backgroundColor = UIColor(red: 242/255.0, green: 37/255.0, blue: 95/255.0, alpha: 1.0)
+//        startButton.addTarget(self, action: "toRootView", forControlEvents: UIControlEvents.TouchUpInside)
+//        guideImage2.addSubview(startButton)
         
         scrollView.addSubview(guideImage2)
         
@@ -49,10 +50,4 @@ class UserGuideViewController: UIViewController {
         self.presentViewController(tabBarViewController, animated: true, completion: nil)
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }

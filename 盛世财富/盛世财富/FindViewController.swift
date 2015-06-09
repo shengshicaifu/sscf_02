@@ -269,6 +269,8 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
             lendDetailViewController.id = cellDictionary.objectForKey("id") as? String
             lendDetailViewController.type = cellDictionary.objectForKey("borrow_type") as? String
             
+            lendDetailViewController.hidesBottomBarWhenPushed = true
+            
             self.navigationController?.pushViewController(lendDetailViewController, animated: true)
         }
     }

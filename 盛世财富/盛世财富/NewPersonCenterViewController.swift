@@ -129,6 +129,7 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         } else {
             
             var controller = self.storyboard?.instantiateViewControllerWithIdentifier("AccountInfoTableViewController") as! AccountInfoTableViewController
+            controller.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(controller, animated: true)
         }
         
@@ -174,11 +175,6 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
             self.navigationItem.title = "请登录"
         }
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-   
-    
     func getHead(sender:String){
         
         
@@ -236,5 +232,10 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
             self.navigationItem.rightBarButtonItem?.title = ""
         }
         refreshData()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var destinationViewController = segue.destinationViewController as! UIViewController
+        destinationViewController.hidesBottomBarWhenPushed = true
     }
 }

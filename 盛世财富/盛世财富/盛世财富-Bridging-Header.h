@@ -9,6 +9,6 @@
 #import "UIView+Toast.h"
 #import "LLLockViewController.h"
 #import <CommonCrypto/CommonDigest.h>
-//#import <BaoFooPay/BaoFooPayController.h>
+#import <BaoFooPay/BaoFooPayController.h>
 #import <GopayNewPlatformLibraryWeb/GopayNewPlatformLibraryWeb.h>
 

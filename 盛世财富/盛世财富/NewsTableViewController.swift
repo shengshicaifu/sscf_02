@@ -14,6 +14,7 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
     var url = ""
     var count:String = "5"
     var id:String? //页面传值的id
+    var textLayer:CACustomTextLayer?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
@@ -197,11 +198,7 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
         var sendTimeLabel = cell.viewWithTag(103) as! UILabel
         var hasRead = cell.viewWithTag(104)   as! UILabel
         var hideIdLabel = cell.viewWithTag(105) as! UILabel
-        
         var flagLabel = cell.viewWithTag(99) as! UILabel
-        
-        //点击UITextView 跳转到详情页面
-        //msgLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toNewsDetail:"))
         var row :Int = indexPath.row
         if tmpListData.count > 0{
             var messageTitle = tmpListData[row].objectForKey("title") as! String
@@ -236,21 +233,10 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
     }
         return cell
     }
-
-//    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-//        if indexPath.section == 0{
-//            if let hideIdLabel = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(105) as? UILabel{
-//                id = hideIdLabel.text
-//                 NSLog("点击的行%i,id是%@", indexPath.row,id!)
-//        }
-//            self.performSegueWithIdentifier("newsDetail", sender: self)
-//        }
-//    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
             if let indexPath = self.tableView.indexPathForSelectedRow(){
                 let object :NSDictionary = tmpListData[indexPath.row] as! NSDictionary
-//                println("ssss\(segue.destinationViewController is NewsDetailViewController)")
                 (segue.destinationViewController as! NewsDetailViewController).detailItem = object
             }
         

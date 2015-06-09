@@ -175,20 +175,13 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
             return
         }
         let user = NSUserDefaults.standardUserDefaults()
-        if let pinpass = user.objectForKey("pinpass") as? String {
-            if pinpass.isEmpty {
-                
+        var pinpas = user.objectForKey("pinpass") as? String
+        if ( pinpas == nil) || (pinpas!.isEmpty) {
                 var view = self.storyboard?.instantiateViewControllerWithIdentifier("setPinPasswordViewController") as! SetPinPasswordViewController
-                self.presentViewController(view, animated: true, completion: {
-                    AlertView.showMsg("请设置交易密码", parentView: view.view)
+
+                AlertView.alert("提示", message: "请设置交易密码", buttonTitle: "确定", viewController: self, callback: { (alertAction:UIAlertAction!) -> Void in
+                    self.presentViewController(view, animated: true, completion: nil)
                 })
-                
-            }
-        }else{
-            var view = self.storyboard?.instantiateViewControllerWithIdentifier("setPinPasswordViewController") as! SetPinPasswordViewController
-            self.presentViewController(view, animated: true, completion: {
-                AlertView.showMsg("请设置交易密码", parentView: view.view)
-            })
         }
         
         //检查手机网络

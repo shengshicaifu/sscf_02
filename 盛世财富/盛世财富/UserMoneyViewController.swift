@@ -63,7 +63,7 @@ class UserMoneyViewController:UITableViewController {
                     
                     afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                     afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
-                        //NSLog("资产管理：%@", res as! NSDictionary)
+                        NSLog("资产管理：%@", res as! NSDictionary)
                         var resDictionary = res as! NSDictionary
                         var code = resDictionary["code"] as! Int
                         if code == -1 {
@@ -74,18 +74,18 @@ class UserMoneyViewController:UITableViewController {
                             let data  = res["data"] as! NSDictionary
                             let proInfo = data.objectForKey("proInfo") as! NSDictionary
                             
-                            self.accountMoney.text = proInfo.objectForKey("account_money") as? String
-                            self.totalAll.text = proInfo.objectForKey("total_all") as? String
-                            self.moneyCollect.text = proInfo.objectForKey("money_collect") as? String
-                            self.rewardMoney.text = proInfo.objectForKey("reward_money") as? String
-                            self.vexperince.text = proInfo.objectForKey("vexperince") as? String
-                            self.moneyFreeze.text = proInfo.objectForKey("money_freeze") as? String
-                            self.ljtxje.text = proInfo.objectForKey("ljtxje") as? String
-                            self.ljczje.text = proInfo.objectForKey("ljczje") as? String
-                            self.dslxze.text = proInfo.objectForKey("dslxze") as? String
-                            self.ljtzje.text = proInfo.objectForKey("ljtzje") as? String
-                            self.kyAll.text = proInfo.objectForKey("ky_all") as? String
-                            self.jzlx.text = proInfo.objectForKey("jzlx") as? String
+                            self.accountMoney.text = self.replaceToDefault(proInfo.objectForKey("account_money") as? String)
+                            self.totalAll.text = self.replaceToDefault(proInfo.objectForKey("total_all") as? String)
+                            self.moneyCollect.text = self.replaceToDefault(proInfo.objectForKey("money_collect") as? String)
+                            self.rewardMoney.text = self.replaceToDefault(proInfo.objectForKey("reward_money") as? String)
+                            self.vexperince.text = self.replaceToDefault(proInfo.objectForKey("vexperince") as? String)
+                            self.moneyFreeze.text = self.replaceToDefault(proInfo.objectForKey("money_freeze") as? String)
+                            self.ljtxje.text = self.replaceToDefault(proInfo.objectForKey("ljtxje") as? String)
+                            self.ljczje.text = self.replaceToDefault(proInfo.objectForKey("ljczje") as? String)
+                            self.dslxze.text = self.replaceToDefault(proInfo.objectForKey("dslxze") as? String)
+                            self.ljtzje.text = self.replaceToDefault(proInfo.objectForKey("ljtzje") as? String)
+                            self.kyAll.text = self.replaceToDefault(proInfo.objectForKey("ky_all") as? String)
+                            self.jzlx.text = self.replaceToDefault(proInfo.objectForKey("jzlx") as? String)
                         }
                         //loading.stopLoading()
                         if actionType == "0" {
@@ -123,5 +123,15 @@ class UserMoneyViewController:UITableViewController {
         }
         reach.startNotifier()
         
+    }
+    
+    func replaceToDefault(str:String?) -> String{
+        if str == nil{
+            return "0.00"
+        }
+        if str!.isEmpty {
+            return "0.00"
+        }
+        return str!
     }
 }

@@ -47,16 +47,22 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
     //MARK:- 在线支付
     @IBAction func onlinePayTapped(sender: UIButton) {
         resignAll()
-        if onlineMoneyTextField.text.isEmpty {
+        var moneyString = onlineMoneyTextField.text
+        
+        if moneyString.isEmpty {
             AlertView.showMsg("请填写充值金额", parentView: self.view)
             return
         }
         
-        if !Common.isMoney(onlineMoneyTextField.text){
+        if !Common.isMoney(moneyString){
             AlertView.showMsg(Common.moneyErrorTip, parentView: self.view)
             return
         }
-
+        
+        var moneyNum = (moneyString as NSString).doubleValue * 100
+        var moneyNumStr:String!
+        moneyNumStr = "\(moneyNum)"
+        
         if chargeTypeSegment.selectedSegmentIndex == 0 {
             //宝付
             
@@ -77,7 +83,7 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
                     var manager = AFHTTPRequestOperationManager()
                     var url = Common.serverHost + "/App-Paytest-baofoo"
                     var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
-                    var params = ["to":token,"money":self.onlineMoneyTextField.text]
+                    var params = ["to":token,"money":moneyNumStr]
                     manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                     manager.POST(url, parameters: params,
                         success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
@@ -135,7 +141,7 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
                     var url = Common.serverHost + "/App-Pay-guofubao"
                     var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
                     var phone_token = GopayNewPlatform.getGopayIdentifierForPayment()
-                    var params = ["to":token,"money":self.onlineMoneyTextField.text,"phone_token":phone_token]
+                    var params = ["to":token,"money":moneyNumStr,"phone_token":phone_token]
                     manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                     manager.POST(url, parameters: params,
                         success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in

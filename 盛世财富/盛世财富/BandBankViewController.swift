@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 class BandBankViewController: UIViewController,UITableViewDelegate {
+    @IBOutlet weak var hintLabel: UILabel!
+    @IBOutlet weak var firstView: UIView!
+    @IBOutlet weak var secondView: UIView!
     @IBOutlet weak var bankNameLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var bankLabel: UILabel!
@@ -24,11 +27,19 @@ class BandBankViewController: UIViewController,UITableViewDelegate {
         var bankName = userDefaults.objectForKey("bankName") as? String
         var username = userDefaults.objectForKey("username") as? String
         if bankCardNo == "" || bankCardNo == nil{
-            bankNameLabel.hidden = true
-            userNameLabel.hidden = true
-            bankLabel.text = "你尚未添加任何银行卡"
-            bankButton.setTitle("添加", forState: UIControlState.Normal)
-            self.title = "银行卡信息"
+//            bankNameLabel.hidden = true
+//            userNameLabel.hidden = true
+//            bankLabel.text = "你尚未添加任何银行卡"
+//            bankButton.setTitle("添加", forState: UIControlState.Normal)
+//            self.title = "银行卡信息"
+            firstView.hidden = true
+            secondView.hidden = false
+            hintLabel.hidden = true
+            bankButton.setTitle("添加银行卡", forState: UIControlState.Normal)
+            secondView.frame = CGRectMake(2.0, 7.0, self.view.frame.width, self.view.frame.height/3)
+            firstView.layer.cornerRadius = 10
+            secondView.layer.cornerRadius = 10
+            
         }
         else{
             bankNameLabel.text = bankName
@@ -40,6 +51,8 @@ class BandBankViewController: UIViewController,UITableViewDelegate {
 //            bankLabel.textColor = UIColor.blueColor()
             bankButton.setTitle("修改", forState: UIControlState.Normal)
             self.title = "银行卡信息"
+            firstView.layer.cornerRadius = 10
+            secondView.layer.cornerRadius = 10
         }
     }
 }

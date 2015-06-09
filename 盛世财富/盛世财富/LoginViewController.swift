@@ -16,7 +16,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var passwordLabel: UITextField!
     @IBOutlet weak var login: UIButton!
     @IBOutlet weak var regist: UIButton!
-    
+    @IBOutlet weak var styleView: UIView!
     var tabTag:Int?//用于记录是从那个tab点击跳转到登录页面，登录后需要返回到这个页面，102是消息页面，105是我的账号页面
 //    var timeLineUrl = Common.serverHost + "/App-Login"//链接地址
 
@@ -25,11 +25,24 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         usernameLabel.delegate = self
         passwordLabel.delegate = self
-        login.layer.cornerRadius = 5
-        regist.layer.cornerRadius = 5
-        regist.layer.borderColor = UIColor.grayColor().CGColor
-        regist.layer.borderWidth = 1
         
+        styleView.layer.borderWidth = 1.0
+        styleView.layer.borderColor = UIColor(red: 225/255.0, green: 225/255.0, blue: 225/255.0, alpha: 1.0).CGColor
+        var bottomBorder = CALayer()
+        bottomBorder.frame = CGRectMake(0.0, usernameLabel.frame.height - 1, usernameLabel.frame.width, 0.5)
+        bottomBorder.backgroundColor = UIColor(red: 225/255.0, green: 225/255.0, blue: 225/255.0, alpha: 1.0).CGColor
+        usernameLabel.layer.addSublayer(bottomBorder)
+       
+        //设置登录按钮和注册按钮的样式
+        login.setBackgroundImage(UIImage(named: "background"), forState: UIControlState.Normal)
+        login.adjustsImageWhenDisabled = true
+        login.layer.cornerRadius = 10
+        login.layer.masksToBounds = true
+        regist.setBackgroundImage(UIImage(named: "ebg"), forState: UIControlState.Normal)
+        regist.adjustsImageWhenDisabled = true
+        regist.layer.cornerRadius = 10
+        regist.layer.masksToBounds = true
+
         //设置登录输入框左侧图标
         usernameLabel.leftView = UIImageView(image: UIImage(named: "人.png"))
         usernameLabel.leftViewMode = UITextFieldViewMode.Always

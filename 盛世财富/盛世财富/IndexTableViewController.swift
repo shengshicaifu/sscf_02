@@ -294,7 +294,7 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
                break
             case 2:
                 i = UIImage(named: "1_americanmoney.png")!
-                t1 = "收益权转让商品"
+                t1 = "受益权转让商品"
                 t2 = "12%预期年收益，100%适用保障计划"
                 t3 = "稳定收益，安全放心"
                break

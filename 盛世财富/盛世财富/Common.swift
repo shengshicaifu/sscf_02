@@ -137,6 +137,42 @@ class Common {
         formatter.dateFormat = "MM-dd HH:mm"
         return formatter.stringFromDate(date)
     }
+    
+    
+    
+    //MARK:- 视图美化
+    /**
+    为输入框所在的背景区域view加边框样式
+    
+    :param: view 背景区域view
+    */
+    class func customerBgView(view:UIView){
+        view.layer.borderWidth = 1.0
+        view.layer.borderColor = UIColor(red: 225/255.0, green: 225/255.0, blue: 225/255.0, alpha: 1.0).CGColor
+    }
+    /**
+    为按钮加样式
+    
+    :param: button  按钮
+    */
+    class func customerButton(button:UIButton){
+        button.setBackgroundImage(UIImage(named: "background"), forState: UIControlState.Normal)
+        button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        button.layer.cornerRadius = 5
+        button.layer.masksToBounds = true
+    }
+    /**
+    加下滑线
+    
+    :param: view 视图
+    */
+    class func addBorder(view:UIView){
+        var border = CALayer()
+        border.frame = CGRectMake(0.0, view.frame.height - 1, view.frame.width, 1)
+        border.backgroundColor = UIColor(red: 225/255.0, green: 225/255.0, blue: 225/255.0, alpha: 1.0).CGColor
+        view.layer.addSublayer(border)
+    }
+    
 
     
 }

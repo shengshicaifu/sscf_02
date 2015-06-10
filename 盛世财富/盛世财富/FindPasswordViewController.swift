@@ -14,6 +14,11 @@ class FindPasswordViewController:UIViewController,UITextFieldDelegate {
     @IBOutlet weak var getCodeButton: UIButton!
     @IBOutlet weak var checkCode: UITextField!
     
+    @IBOutlet weak var okButton: UIButton!
+    @IBOutlet weak var l3: UILabel!
+    @IBOutlet weak var l2: UILabel!
+    @IBOutlet weak var l1: UILabel!
+    @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var repeatPassword: UITextField!
     var code = String()
@@ -171,6 +176,18 @@ class FindPasswordViewController:UIViewController,UITextFieldDelegate {
         self.checkCode.delegate = self
         self.password.delegate = self
         self.repeatPassword.delegate = self
+        
+        Common.customerBgView(bgView)
+        Common.customerButton(okButton)
+        Common.addBorder(l1)
+        Common.addBorder(l2)
+        Common.addBorder(l3)
+        Common.addBorder(checkCode)
+        Common.addBorder(password)
+        Common.addBorder(phone)
+        Common.addBorder(getCodeButton)
+        
+        getCodeButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
         
     }
     

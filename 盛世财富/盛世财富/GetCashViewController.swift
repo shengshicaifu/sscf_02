@@ -11,8 +11,22 @@ import UIKit
 class GetCashViewController:UIViewController {
     @IBOutlet weak var money: UITextField!
     @IBOutlet weak var payPassword: UITextField!
+    @IBOutlet weak var bgView: UIView!
+    
+    
+    @IBOutlet weak var moneyLabel: UILabel!
+    
+    @IBOutlet weak var okButton: UIButton!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Common.customerBgView(bgView)
+        Common.addBorder(moneyLabel)
+        Common.addBorder(money)
+        Common.customerButton(okButton)
     }
     @IBAction func submit(sender: UIButton) {
         resignAll()

@@ -12,9 +12,10 @@ import UIKit
 */
 class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
+    @IBOutlet weak var styleView: UIView!
     @IBOutlet weak var realNameTextField: UITextField!
     @IBOutlet weak var idcardTextField: UITextField!
-   
+    @IBOutlet weak var confirmButton: UIButton!
     
     var cardFrontImage:UIImage?
     var cardBackImage:UIImage?

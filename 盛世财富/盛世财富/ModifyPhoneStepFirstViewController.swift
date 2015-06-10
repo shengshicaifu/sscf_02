@@ -20,9 +20,9 @@ class ModifyPhoneStepFirstViewController: UIViewController {
     var f_id:String?
     override func viewDidLoad() {
         super.viewDidLoad()
-       Common.customerBgView(styleView)
+        Common.customerBgView(styleView)
         Common.customerButton(circleButton)
-        
+        getCodeButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
         // Do any additional setup after loading the view.
         if let phone = NSUserDefaults.standardUserDefaults().objectForKey("phone") as? String{
         ///phone = "15527410109"

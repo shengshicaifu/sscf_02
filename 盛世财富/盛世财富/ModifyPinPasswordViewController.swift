@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ModifyPinPasswordViewController: UIViewController {
+class ModifyPinPasswordViewController: UIViewController,UITextFieldDelegate {
 
     
     @IBOutlet var bgView: UIView!
@@ -26,6 +26,10 @@ class ModifyPinPasswordViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        oldPinPasswordTextField.delegate = self
+        newPinPasswordTextField.delegate = self
+        confirmPasswordTextField.delegate = self
         
         Common.customerBgView(bgView)
         Common.customerButton(okButton)

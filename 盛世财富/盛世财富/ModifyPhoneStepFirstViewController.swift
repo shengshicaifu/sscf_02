@@ -20,25 +20,9 @@ class ModifyPhoneStepFirstViewController: UIViewController {
     var f_id:String?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        Common.customerBgView(styleView)
+        Common.customerButton(circleButton)
         getCodeButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
-        
-        
-        circleButton.setBackgroundImage(UIImage(named: "background"), forState: UIControlState.Normal)
-        circleButton.adjustsImageWhenDisabled = true
-        circleButton.layer.cornerRadius = 10
-        circleButton.layer.masksToBounds = true
-        //设置view的边框颜色和边框的宽度
-        styleView.layer.borderWidth = 1.0
-        styleView.layer.borderColor = UIColor(red: 225/255.0, green: 225/255.0, blue: 225/255.0, alpha: 1.0).CGColor
-        styleView.frame = CGRectMake(0.0, 7, self.view.frame.width, self.codeTextField.frame.height)
-        
-        //设置横线
-        var bottomBorder = CALayer()
-        bottomBorder.frame = CGRectMake(codeTextField.frame.width-1, 0, 0.5, self.codeTextField.frame.height)
-        bottomBorder.backgroundColor = UIColor(red: 225/255.0, green: 225/255.0, blue: 225/255.0, alpha: 1.0).CGColor
-        codeTextField.layer.addSublayer(bottomBorder)
-        
         // Do any additional setup after loading the view.
         if let phone = NSUserDefaults.standardUserDefaults().objectForKey("phone") as? String{
         ///phone = "15527410109"

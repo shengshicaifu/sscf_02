@@ -12,9 +12,11 @@ import UIKit
 */
 class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
+    @IBOutlet weak var realNameLabel: UILabel!
+    @IBOutlet weak var styleView: UIView!
     @IBOutlet weak var realNameTextField: UITextField!
     @IBOutlet weak var idcardTextField: UITextField!
-   
+    @IBOutlet weak var confirmButton: UIButton!
     
     var cardFrontImage:UIImage?
     var cardBackImage:UIImage?
@@ -23,8 +25,10 @@ class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        Common.customerBgView(styleView)
+        Common.customerButton(confirmButton)
+        Common.addBorder(realNameTextField)
+        Common.addBorder(realNameLabel)
     
     }
     

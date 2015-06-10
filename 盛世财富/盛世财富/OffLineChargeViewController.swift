@@ -131,7 +131,7 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
                             }else if code == 200 {
                                 
                                 var tradeNo = result["data"]?["tradeNo"] as! String//交易单号
-                                
+//                                
 //                                var baofooView = BaoFooPayController()
 //                                baofooView.PAY_TOKEN = tradeNo
 //                                baofooView.delegate = self

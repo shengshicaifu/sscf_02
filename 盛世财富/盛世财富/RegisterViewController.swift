@@ -12,7 +12,7 @@ import UIKit
 class RegisterViewController: UIViewController,UITextFieldDelegate {
     
     
-    @IBOutlet weak var styleView: UIView!
+
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var codeTextField: UITextField!
     @IBOutlet weak var surePwdTextField: UITextField!
@@ -26,19 +26,19 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         
         checkBtn.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
-        
+        codeTextField.delegate = self
         userNameTextField.delegate = self
         surePwdTextField.delegate = self
         passwordTextField.delegate = self
         phoneTextField.delegate = self
         checkBtn.layer.cornerRadius = 5
-        Common.customerBgView(styleView)
         Common.customerButton(regist)
         Common.addBorder(userNameTextField)
         Common.addBorder(phoneTextField)
         Common.addBorder(passwordTextField)
         Common.addBorder(surePwdTextField)
-       
+        Common.addBorder(codeTextField)
+        Common.addBorder(checkBtn)
         self.navigationItem.title = "用户注册"
         
         surePwdTextField.leftView = UIImageView(image: UIImage(named: "密码.png"))

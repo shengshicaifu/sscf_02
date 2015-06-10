@@ -24,6 +24,9 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        checkBtn.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
+        
         userNameTextField.delegate = self
         surePwdTextField.delegate = self
         passwordTextField.delegate = self

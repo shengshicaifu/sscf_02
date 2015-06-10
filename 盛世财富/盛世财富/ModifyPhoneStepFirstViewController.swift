@@ -20,6 +20,10 @@ class ModifyPhoneStepFirstViewController: UIViewController {
     var f_id:String?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getCodeButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
+        
+        
         circleButton.setBackgroundImage(UIImage(named: "background"), forState: UIControlState.Normal)
         circleButton.adjustsImageWhenDisabled = true
         circleButton.layer.cornerRadius = 10

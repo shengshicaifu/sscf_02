@@ -49,6 +49,7 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
                         var result = data as! NSDictionary
 //                        NSLog("充值记录：%@", result)
                         var code = result["code"] as! Int
+                        println(code)
                         if code == -1 {
                             AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
                         }else if code == 0 {
@@ -70,14 +71,21 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
                                 
                                 if self.tmpListData.count > 0 {
                                     self.tableView.reloadData()
+                                    
                                 } else {
+                                    
+                                    
                                     //                                var label = UILabel(frame: CGRectMake(0, 0, 100, 20))
                                     //                                label.text = "没有记录"
                                     //                                self.tableView.addSubview(label)
                                 }
+                                
+                            }else{
+//
                             }
-                            
+                            EmptyView.showEmptyView(self.view)
                         }
+                        
                     },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
                         loading.stopLoading()
                         AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
@@ -107,8 +115,9 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     var result:NSDictionary = data as! NSDictionary
                     //println(result)
-                    self.listData = result["data"]?.valueForKey("list") as! NSMutableArray //list数据
-                    
+                    if let list = result["data"]?.valueForKey("list") as? NSMutableArray {
+                        self.listData = list
+                    }
                     self.tableView.reloadData()
                     self.tableView.headerEndRefreshing()
                     
@@ -297,6 +306,8 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
             statusLabel.text = cellData["status"] as? String
             var addTimeDouble = (cellData["add_time"] as? NSString)?.doubleValue
             addTimeLabel.text = Common.dateFromTimestamp(addTimeDouble!)
+        }else{
+            
         }
         return cell
     }

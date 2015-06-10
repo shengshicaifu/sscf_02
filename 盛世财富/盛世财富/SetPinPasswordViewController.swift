@@ -12,11 +12,18 @@ class SetPinPasswordViewController: UIViewController {
 
     @IBOutlet weak var pinPasswordTextField: UITextField!
     
+    @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var okButton: UIButton!
+    @IBOutlet weak var pinPasswordLabel: UILabel!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        Common.customerBgView(bgView)
+        Common.customerButton(okButton)
+        Common.addBorder(pinPasswordLabel)
+        Common.addBorder(pinPasswordTextField)
     }
     
     override func didReceiveMemoryWarning() {

@@ -11,16 +11,28 @@ import UIKit
 class ModifyPinPasswordViewController: UIViewController {
 
     
+    @IBOutlet var bgView: UIView!
     @IBOutlet weak var oldPinPasswordTextField: UITextField!
     
+    @IBOutlet weak var oldPinPassLabel: UILabel!
     
+    @IBOutlet weak var newPinPassLabel: UILabel!
     @IBOutlet weak var newPinPasswordTextField: UITextField!
     
+    @IBOutlet weak var okButton: UIButton!
+    @IBOutlet weak var confirmPassLabel: UILabel!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        Common.customerBgView(bgView)
+        Common.customerButton(okButton)
+        Common.addBorder(oldPinPassLabel)
+        Common.addBorder(oldPinPasswordTextField)
+        Common.addBorder(newPinPassLabel)
+        Common.addBorder(newPinPasswordTextField)
     }
 
     override func didReceiveMemoryWarning() {

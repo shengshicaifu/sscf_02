@@ -10,18 +10,34 @@ import UIKit
 
 class ModifyLoginPasswordViewController: UIViewController {
 
+    @IBOutlet weak var bgView: UIView!
     
+    @IBOutlet weak var oldPassLabel: UILabel!
     @IBOutlet weak var oldPassTextField: UITextField!
     
+    @IBOutlet weak var newPassLabel: UILabel!
     @IBOutlet weak var newPassTextField: UITextField!
     
+    @IBOutlet weak var confirmPassLabel: UILabel!
     @IBOutlet weak var confirmPassTextField: UITextField!
     
+    @IBOutlet weak var okButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //设置输入框区域的背景边框
+        Common.customerBgView(bgView)
+        
+        //设置文本和输入框的边框
+        Common.addBorder(oldPassLabel)
+        Common.addBorder(oldPassTextField)
+        Common.addBorder(newPassLabel)
+        Common.addBorder(newPassTextField)
+        
+        Common.customerButton(okButton)
         
     }
+
 
     @IBAction func modifyTapped(sender: UIButton) {
         resignAll()

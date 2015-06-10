@@ -9,14 +9,29 @@
 import Foundation
 import UIKit
 class BandBankController: UIViewController,UITableViewDelegate {
+    @IBOutlet weak var styleView: UIView!
     @IBOutlet weak var addTapped: UIButton!
     @IBOutlet weak var bankCardNoTextField: UITextField!
     @IBOutlet weak var bankNameTextField: UITextField!
     @IBOutlet weak var bankProviceTextField: UITextField!
     @IBOutlet weak var bankCityTextField: UITextField!
     @IBOutlet weak var bankBranchTextField: UITextField!
+    @IBOutlet weak var bankNameLabel: UILabel!
+    @IBOutlet weak var bankCardNoLabel: UILabel!
+    @IBOutlet weak var provinceLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        Common.customerBgView(styleView)
+        Common.customerButton(addTapped)
+        Common.addBorder(bankNameTextField)
+        Common.addBorder(bankCardNoTextField)
+        Common.addBorder(bankProviceTextField)
+        Common.addBorder(bankCityTextField)
+        Common.addBorder(bankNameLabel)
+        Common.addBorder(bankCardNoLabel)
+        Common.addBorder(provinceLabel)
+        Common.addBorder(cityLabel)
         var userDefaults = NSUserDefaults.standardUserDefaults()
         var bankCardNo = userDefaults.objectForKey("bankCardNo") as? String
         println("bankCardNo\(bankCardNo)")

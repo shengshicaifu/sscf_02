@@ -28,41 +28,14 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         surePwdTextField.delegate = self
         passwordTextField.delegate = self
         phoneTextField.delegate = self
-        regist.layer.cornerRadius = 5
         checkBtn.layer.cornerRadius = 5
-        //view的边框设置
-        styleView.layer.borderWidth = 1.0
-        styleView.layer.borderColor = UIColor(red: 225/255.0, green: 225/255.0, blue: 225/255.0, alpha: 1.0).CGColor
-        //横线
-        var bottomBorder = CALayer()
-        bottomBorder.frame = CGRectMake(0.0, userNameTextField.frame.height - 1, userNameTextField.frame.width, 0.5)
-        bottomBorder.backgroundColor = UIColor(red: 225/255.0, green: 225/255.0, blue: 225/255.0, alpha: 1.0).CGColor
-        userNameTextField.layer.addSublayer(bottomBorder)
-        
-        var bottomBorder1 = CALayer()
-        bottomBorder1.frame = CGRectMake(0.0, phoneTextField.frame.height - 1, phoneTextField.frame.width, 0.5)
-        bottomBorder1.backgroundColor = UIColor(red: 225/255.0, green: 225/255.0, blue: 225/255.0, alpha: 1.0).CGColor
-        phoneTextField.layer.addSublayer(bottomBorder1)
-        
-        var bottomBorder2 = CALayer()
-        bottomBorder2.frame = CGRectMake(0.0, passwordTextField.frame.height - 1, passwordTextField.frame.width, 0.5)
-        bottomBorder2.backgroundColor = UIColor(red: 225/255.0, green: 225/255.0, blue: 225/255.0, alpha: 1.0).CGColor
-        passwordTextField.layer.addSublayer(bottomBorder2)
-        
-        var bottomBorder3 = CALayer()
-        bottomBorder3.frame = CGRectMake(0.0, surePwdTextField.frame.height - 1, surePwdTextField.frame.width, 0.5)
-        bottomBorder3.backgroundColor = UIColor(red: 225/255.0, green: 225/255.0, blue: 225/255.0, alpha: 1.0).CGColor
-        surePwdTextField.layer.addSublayer(bottomBorder3)
-        
-        //按钮的设置
-        regist.setBackgroundImage(UIImage(named: "background"), forState: UIControlState.Normal)
-        regist.adjustsImageWhenDisabled = true
-        regist.layer.cornerRadius = 10
-        regist.layer.masksToBounds = true
-        checkBtn.setBackgroundImage(UIImage(named: "background"), forState: UIControlState.Normal)
-        checkBtn.adjustsImageWhenDisabled = true
-        checkBtn.layer.cornerRadius = 10
-        checkBtn.layer.masksToBounds = true
+        Common.customerBgView(styleView)
+        Common.customerButton(regist)
+        Common.addBorder(userNameTextField)
+        Common.addBorder(phoneTextField)
+        Common.addBorder(passwordTextField)
+        Common.addBorder(surePwdTextField)
+       
         self.navigationItem.title = "用户注册"
         
         surePwdTextField.leftView = UIImageView(image: UIImage(named: "密码.png"))

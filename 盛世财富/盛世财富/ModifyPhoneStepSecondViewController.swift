@@ -12,14 +12,18 @@ class ModifyPhoneStepSecondViewController: UIViewController {
     
     var f_id:String?
 
+    @IBOutlet weak var styleView: UIView!
     @IBOutlet weak var newPhoneTextField: UITextField!
     @IBOutlet weak var codeTextField: UITextField!
     @IBOutlet weak var getCodeButton: UIButton!
+    @IBOutlet weak var okButton: UIButton!
     var timer:NSTimer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        Common.addBorder(newPhoneTextField)
+        Common.customerButton(okButton)
+        Common.customerBgView(styleView)
         // Do any additional setup after loading the view.
     }
     

@@ -97,16 +97,18 @@ class AccountSafeTableViewController: UITableViewController,UITableViewDataSourc
         var cell = tableView.cellForRowAtIndexPath(indexPath)
         var rightLabel = cell?.viewWithTag(2) as! UILabel
         if selectedRow == 0 {
-            if rightLabel.text == "未实名认证" {
+            let isUpload = NSUserDefaults.standardUserDefaults().objectForKey("isUpload") as? NSString
+            if isUpload == nil || isUpload == "" {
                 self.performSegueWithIdentifier("verifyRealNameSegue", sender:nil)
             }
         }else if selectedRow == 1 {
             self.performSegueWithIdentifier("modifyLoginPassSegue", sender: nil)
         }else if selectedRow == 2 {
-            if rightLabel.text == "请设置交易密码" {
+            let pinpass = NSUserDefaults.standardUserDefaults().objectForKey("pinpass") as? NSString
+            if pinpass == nil {
                 var view = self.storyboard?.instantiateViewControllerWithIdentifier("setPinPasswordViewController") as! SetPinPasswordViewController
                 self.presentViewController(view, animated: true, completion: nil)
-            } else {
+            }else{
                 self.performSegueWithIdentifier("modifyPinPassSegue", sender: nil)
             }
         }else if selectedRow == 3 {

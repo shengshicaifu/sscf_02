@@ -12,21 +12,29 @@ class OffLineChargeViewController:UIViewController,UITextFieldDelegate,
 BaofooSdkDelegate,
 NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
     @IBOutlet weak var choose: UISegmentedControl!
-    @IBOutlet weak var transfer: UIView!
-    @IBOutlet weak var pos: UIView!
-    @IBOutlet weak var t_money: UITextField!
-    @IBOutlet weak var t_account: UITextField!
-    @IBOutlet weak var t_id: UITextField!
-    @IBOutlet weak var p_money: UITextField!
-    @IBOutlet weak var p_id: UITextField!
-    
-    @IBOutlet weak var btn1: UIButton!
-    @IBOutlet weak var btn2: UIButton!
+    @IBOutlet weak var pos: UIView!//pos机视图
+    @IBOutlet weak var p_money: UITextField!//pos机 金额
+    @IBOutlet weak var p_money_label: UILabel!//pos机 金额
+    @IBOutlet weak var p_id: UITextField!//pos机
+    @IBOutlet weak var pBgView: UIView!//pos机
+    @IBOutlet weak var btn1: UIButton!//pos机
     
     
+    @IBOutlet weak var transfer: UIView!//银行转账视图
+    @IBOutlet weak var t_money: UITextField!//银行转账 金额
+    @IBOutlet weak var t_account: UITextField!//银行转账 账号
+    @IBOutlet weak var t_id: UITextField!//银行转账 汇款单号
+    @IBOutlet weak var btn2: UIButton!//银行转账 提交按钮
+    @IBOutlet weak var bgView1: UIView!//银行转账 背景视图
+    
+    @IBOutlet weak var t_account_label: UILabel!//银行转账
+    @IBOutlet weak var t_money_label: UILabel!//银行转账
     //线上充值
     @IBOutlet weak var onlineView: UIView!
     @IBOutlet weak var onlineMoneyTextField: UITextField!
+    @IBOutlet weak var bgView3: UIView!
+    @IBOutlet weak var onlineButton: UIButton!
+    @IBOutlet weak var chargeTypeLabe: UILabel!
     @IBOutlet weak var onlineRealPayMoneyLabel: UILabel!
     var receiveData:NSMutableData?
     var flag = ""//用于标示是测试还是真实环境
@@ -38,10 +46,31 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        btn1.layer.cornerRadius = 5
-        btn2.layer.cornerRadius = 5
+
         choose.selectedSegmentIndex = 0
         t_id.delegate = self
+        
+        //银行转账
+        Common.customerBgView(bgView1)
+        Common.customerButton(btn2)
+        Common.addBorder(t_money)
+        Common.addBorder(t_account)
+        Common.addBorder(t_account_label)
+        Common.addBorder(t_money_label)
+        //pos机
+        Common.customerBgView(pBgView)
+        Common.customerButton(btn1)
+        Common.addBorder(p_money_label)
+        Common.addBorder(p_money)
+        //充值
+        Common.customerBgView(bgView3)
+        Common.customerButton(onlineButton)
+        
+        var border = CALayer()
+        border.frame = CGRectMake(chargeTypeLabe.frame.origin.x, chargeTypeLabe.frame.height - 1, bgView3.frame.width - chargeTypeLabe.frame.origin.x, 1)
+        border.backgroundColor = UIColor(red: 225/255.0, green: 225/255.0, blue: 225/255.0, alpha: 1.0).CGColor
+        bgView3.layer.addSublayer(border)
+        
     }
     
     //MARK:- 在线支付
@@ -304,15 +333,15 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
     }
     @IBAction func segChange(sender: UISegmentedControl) {
         //开始动画
-        UIView.beginAnimations("test",context: nil)
+//        UIView.beginAnimations("test",context: nil)
         //动画时长
-        UIView.setAnimationDuration(1)
+//        UIView.setAnimationDuration(1)
         // FlipFromRight
         // CurlUp
         //动画样式
-        UIView.setAnimationTransition(UIViewAnimationTransition.FlipFromRight,
-            forView :self.view,
-            cache:true)
+//        UIView.setAnimationTransition(UIViewAnimationTransition.FlipFromRight,
+//            forView :self.view,
+//            cache:true)
         //更改view顺序
         //self.view.exchangeSubviewAtIndex(0,withSubviewAtIndex :1)
         switch sender.selectedSegmentIndex {
@@ -327,7 +356,7 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
         }
         
         //提交动画
-        UIView.commitAnimations()
+        //UIView.commitAnimations()
         
         
     }

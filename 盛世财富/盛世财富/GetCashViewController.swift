@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-class GetCashViewController:UIViewController {
+class GetCashViewController:UIViewController,UITextFieldDelegate {
     @IBOutlet weak var money: UITextField!
     @IBOutlet weak var payPassword: UITextField!
     @IBOutlet weak var bgView: UIView!
@@ -22,6 +22,10 @@ class GetCashViewController:UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        money.delegate = self
+        payPassword.delegate = self
+        
         
         Common.customerBgView(bgView)
         Common.addBorder(moneyLabel)

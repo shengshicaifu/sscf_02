@@ -10,7 +10,7 @@ import UIKit
 /**
 *  实名认证控制器
 */
-class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate {
 
     @IBOutlet weak var realNameLabel: UILabel!
     @IBOutlet weak var styleView: UIView!
@@ -25,6 +25,10 @@ class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        realNameTextField.delegate = self
+        idcardTextField.delegate = self
+        
         Common.customerBgView(styleView)
         Common.customerButton(confirmButton)
         Common.addBorder(realNameTextField)

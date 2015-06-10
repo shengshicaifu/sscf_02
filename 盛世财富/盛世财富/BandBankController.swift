@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-class BandBankController: UIViewController,UITableViewDelegate {
+class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelegate {
     @IBOutlet weak var styleView: UIView!
     @IBOutlet weak var addTapped: UIButton!
     @IBOutlet weak var bankCardNoTextField: UITextField!
@@ -22,6 +22,16 @@ class BandBankController: UIViewController,UITableViewDelegate {
     @IBOutlet weak var cityLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        bankCardNoTextField.delegate = self
+        bankNameTextField.delegate = self
+        bankProviceTextField.delegate = self
+        bankCityTextField.delegate = self
+        bankBranchTextField.delegate = self
+        
+        
+        
         Common.customerBgView(styleView)
         Common.customerButton(addTapped)
         Common.addBorder(bankNameTextField)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ModifyLoginPasswordViewController: UIViewController {
+class ModifyLoginPasswordViewController: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var bgView: UIView!
     
@@ -35,6 +35,11 @@ class ModifyLoginPasswordViewController: UIViewController {
         Common.addBorder(newPassTextField)
         
         Common.customerButton(okButton)
+        
+        
+        oldPassTextField.delegate = self
+        newPassTextField.delegate = self
+        confirmPassTextField.delegate = self
         
     }
 

@@ -83,7 +83,7 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
                             }else{
 //
                             }
-                            EmptyView.showEmptyView(self.view)
+                            //EmptyView.showEmptyView(self.view)
                         }
                         
                     },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in

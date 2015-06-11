@@ -10,11 +10,13 @@ import UIKit
 /**
 *  实名认证控制器
 */
-class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate {
 
+    @IBOutlet weak var realNameLabel: UILabel!
+    @IBOutlet weak var styleView: UIView!
     @IBOutlet weak var realNameTextField: UITextField!
     @IBOutlet weak var idcardTextField: UITextField!
-   
+    @IBOutlet weak var confirmButton: UIButton!
     
     var cardFrontImage:UIImage?
     var cardBackImage:UIImage?
@@ -23,8 +25,14 @@ class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        realNameTextField.delegate = self
+        idcardTextField.delegate = self
+        
+        Common.customerBgView(styleView)
+        Common.customerButton(confirmButton)
+        Common.addBorder(realNameTextField)
+        Common.addBorder(realNameLabel)
     
     }
     

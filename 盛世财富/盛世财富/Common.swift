@@ -123,7 +123,7 @@ class Common {
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return formatter.stringFromDate(date)
     }
-    //MARK:- 时间处理
+
     /**
     将时间戳转换为MM-dd HH:mm格式的时间字符串
     
@@ -158,6 +158,9 @@ class Common {
     class func customerButton(button:UIButton){
         button.setBackgroundImage(UIImage(named: "background"), forState: UIControlState.Normal)
         button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        button.setBackgroundImage(UIImage(named: "button_disable"), forState: UIControlState.Highlighted)
+        button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Highlighted)
+        
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
     }
@@ -169,7 +172,7 @@ class Common {
     class func addBorder(view:UIView){
         var border = CALayer()
         border.frame = CGRectMake(0.0, view.frame.height - 1, view.frame.width, 1)
-        border.backgroundColor = UIColor(red: 225/255.0, green: 225/255.0, blue: 225/255.0, alpha: 1.0).CGColor
+        border.backgroundColor = UIColor(red: 221/255.0, green: 221/255.0, blue: 221/255.0, alpha: 1.0).CGColor
         view.layer.addSublayer(border)
     }
     

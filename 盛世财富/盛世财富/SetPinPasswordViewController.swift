@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetPinPasswordViewController: UIViewController {
+class SetPinPasswordViewController: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var pinPasswordTextField: UITextField!
     
@@ -18,6 +18,9 @@ class SetPinPasswordViewController: UIViewController {
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pinPasswordTextField.delegate = self
+        confirmPasswordTextField.delegate = self
         
         // Do any additional setup after loading the view.
         Common.customerBgView(bgView)

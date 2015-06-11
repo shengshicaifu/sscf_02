@@ -12,6 +12,7 @@ import UIKit
 
 class BidConfirmViewController: UIViewController,UITextFieldDelegate{
 
+    @IBOutlet weak var styleView: UIView!
     @IBOutlet weak var bidMoney: UITextField!
     @IBOutlet weak var reward: UITextField!
     @IBOutlet weak var experience: UITextField!
@@ -21,12 +22,17 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
     @IBOutlet weak var bidName: UILabel!
     @IBOutlet weak var bidRate: UILabel!
     @IBOutlet weak var restMoney: UILabel!
-    
-    @IBOutlet weak var unit: UILabel!
-    
-    
-    @IBOutlet weak var moneyLabel: UILabel!
-    @IBOutlet weak var typeName: UILabel!
+    @IBOutlet weak var currentRateLabel: UILabel!
+    @IBOutlet weak var restMoneyLabel: UILabel!
+    @IBOutlet weak var bidMoneyLabel: UILabel!
+    @IBOutlet weak var rewardLabel: UILabel!
+    @IBOutlet weak var experienceLabel: UILabel!
+    @IBOutlet weak var payPasswordLabel: UILabel!
+   
+    @IBOutlet weak var yourNameLabel: UILabel!
+    @IBOutlet weak var yourMoneyLabel: UILabel!
+    @IBOutlet weak var second: UILabel!
+    @IBOutlet weak var first: UILabel!
     var id:String?
     var type:String?
     var duration:String = String()
@@ -71,8 +77,8 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
                                 self.restMoney.text = "\(need)元"
                             }
                             if borrow_type != "8" {
-                                self.typeName.text = "认购份数："
-                                self.unit.text = "份"
+                                self.bidMoneyLabel.text = "认购份数："
+                                self.first.text = "份"
 //                                self.moneyLabel.text = "可认购："
 //                                if let transfer_can = borrowInfo.objectForKey("transfer_can") as? String{
 //                                    self.restMoney.text = transfer_can+"份"
@@ -128,6 +134,25 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         experience.delegate = self
         payPassword.delegate = self
         payBtn.layer.cornerRadius = 5
+        
+        Common.customerBgView(styleView)
+        Common.customerButton(payBtn)
+        Common.addBorder(yourMoneyLabel)
+        Common.addBorder(usermoney)
+        Common.addBorder(yourNameLabel)
+        Common.addBorder(bidName)
+        Common.addBorder(currentRateLabel)
+        Common.addBorder(bidRate)
+        Common.addBorder(restMoney)
+        Common.addBorder(restMoneyLabel)
+        Common.addBorder(bidMoneyLabel)
+        Common.addBorder(bidMoney)
+        Common.addBorder(reward)
+        Common.addBorder(rewardLabel)
+        Common.addBorder(experience)
+        Common.addBorder(experienceLabel)
+         Common.addBorder(first)
+         Common.addBorder(second)
     
         
         

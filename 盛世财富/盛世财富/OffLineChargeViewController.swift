@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 class OffLineChargeViewController:UIViewController,UITextFieldDelegate,
-BaofooSdkDelegate,
+//BaofooSdkDelegate,
 NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
     @IBOutlet weak var choose: UISegmentedControl!
     @IBOutlet weak var pos: UIView!//pos机视图
@@ -49,6 +49,14 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
 
         choose.selectedSegmentIndex = 0
         t_id.delegate = self
+        t_account.delegate = self
+        t_id.delegate = self
+        p_money.delegate = self
+        p_id.delegate = self
+        onlineMoneyTextField.delegate = self
+        
+        
+        
         
         //银行转账
         Common.customerBgView(bgView1)
@@ -131,12 +139,12 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
                             }else if code == 200 {
                                 
                                 var tradeNo = result["data"]?["tradeNo"] as! String//交易单号
-                                
-                                var baofooView = BaoFooPayController()
-                                baofooView.PAY_TOKEN = tradeNo
-                                baofooView.delegate = self
-                                baofooView.PAY_BUSINESS = "false"
-                                self.presentViewController(baofooView, animated: true, completion: nil)
+//                                
+//                                var baofooView = BaoFooPayController()
+//                                baofooView.PAY_TOKEN = tradeNo
+//                                baofooView.delegate = self
+//                                baofooView.PAY_BUSINESS = "false"
+//                                self.presentViewController(baofooView, animated: true, completion: nil)
                                 
                                 
                             }
@@ -264,16 +272,16 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
         let afnet = AFHTTPRequestOperationManager()
         var param:AnyObject?
         if choose.selectedSegmentIndex == 0{
+            if t_account.text.isEmpty {
+                AlertView.showMsg("请输入银行账号！", parentView: self.view)
+                return
+            }
             if t_money.text.isEmpty {
                 AlertView.showMsg("请输入金额！", parentView: self.view)
                 return
             }
             if !Common.isMoney(t_money.text) {
                 AlertView.showMsg(Common.moneyErrorTip, parentView: self.view)
-                return
-            }
-            if t_account.text.isEmpty {
-                AlertView.showMsg("请输入银行账号！", parentView: self.view)
                 return
             }
             if t_id.text.isEmpty {

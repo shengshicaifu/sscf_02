@@ -30,7 +30,7 @@ class RealTimeFinanceViewController: UIViewController {
                 AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
             })
         }
-        
+    
         reach.reachableBlock = {(r:Reachability!) -> Void in
             //NSLog("网络可用")
             dispatch_async(dispatch_get_main_queue(), {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6v-wi-K0w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6v-wi-K0w">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -3660,7 +3660,7 @@
         <scene sceneID="mcL-WT-WjP">
             <objects>
                 <navigationController id="gCk-aD-M4s" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="首页" image="0_home" id="WLz-OF-Hfd"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="0_home" selectedImage="0_home_blue" id="WLz-OF-Hfd"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZtD-LF-wvB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -6841,6 +6841,7 @@
     </scenes>
     <resources>
         <image name="0_home" width="24" height="24"/>
+        <image name="0_home_blue" width="24" height="24"/>
         <image name="0_news" width="24" height="24"/>
         <image name="0_search" width="24" height="24"/>
         <image name="0_user" width="24" height="24"/>
@@ -6853,12 +6854,12 @@
         <image name="1_53" width="18" height="18"/>
         <image name="750" width="750" height="350"/>
         <image name="aaa.jpg" width="683" height="545"/>
-        <image name="logo" width="34" height="33"/>
+        <image name="logo" width="34" height="34"/>
         <image name="member_top5" width="84" height="84"/>
         <image name="more" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cgO-r2-Qw7"/>
+        <segue reference="sOw-AT-9oo"/>
         <segue reference="EcF-gu-9cT"/>
         <segue reference="BUB-ha-S9u"/>
         <segue reference="1Oc-Wy-fyN"/>

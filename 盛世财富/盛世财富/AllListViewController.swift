@@ -264,10 +264,10 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                 success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     var result:NSDictionary = data as! NSDictionary
-                    //println(result)
+                    println(result)
                     self.tmpListData = result["data"]?.valueForKey("list") as! NSMutableArray //list数据
                     self.mainTable.hidden = false
-                    
+                
                     self.mainTable.reloadData()
                     self.mainTable.headerEndRefreshing()
                     
@@ -486,21 +486,23 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     }
     
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if self.listData.count > 0 {
-            var dic = self.listData[indexPath.row] as! NSDictionary
-            self.id = dic.objectForKey("id")  as! String
-            self.type = dic.objectForKey("borrow_type") as? String
-            self.performSegueWithIdentifier("detail", sender: self)
-        }
-    }
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        if self.listData.count > 0 {
+//            var dic = self.listData[indexPath.row] as! NSDictionary
+//            self.id = dic.objectForKey("id")  as! String
+//            self.type = dic.objectForKey("borrow_type") as? String
+////            self.performSegueWithIdentifier("detail", sender: self)
+//        }
+//    }
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "detail" {
-            var vc = segue.destinationViewController as! LendDetailViewController
-            vc.id = self.id	
-            vc.type = self.type
+            var selectedRow = self.mainTable.indexPathForSelectedRow()?.row
+            var dic = self.listData[selectedRow!] as! NSDictionary
+            var vc = segue.destinationViewController as! NewDetailScrollViewController
+            vc.id = dic.objectForKey("id") as? String
+            vc.type = dic.objectForKey("borrow_type") as? String
         }
     }
 }

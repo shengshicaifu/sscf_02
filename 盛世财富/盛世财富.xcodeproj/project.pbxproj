@@ -100,6 +100,7 @@
 		E9E5211F1B05E3D900A41EEA /* YYCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E5211E1B05E3D900A41EEA /* YYCycleScrollView.swift */; };
 		E9E8E9461B0B22FA0074F41A /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8E9451B0B22FA0074F41A /* ContentViewController.swift */; };
 		E9F3DFF11B0DD53F00F8F3AA /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F3DFF01B0DD53F00F8F3AA /* UIView+Toast.m */; };
+		E9FC8DCC1B297C5000C74EED /* NewDetailScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FC8DCB1B297C5000C74EED /* NewDetailScrollViewController.swift */; };
 		E9FF4D141B228A3F005FCAAA /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FF4D131B228A3F005FCAAA /* NewsDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -244,6 +245,7 @@
 		E9E8E9451B0B22FA0074F41A /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		E9F3DFEF1B0DD53F00F8F3AA /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		E9F3DFF01B0DD53F00F8F3AA /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		E9FC8DCB1B297C5000C74EED /* NewDetailScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDetailScrollViewController.swift; sourceTree = "<group>"; };
 		E9FF4D131B228A3F005FCAAA /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -407,6 +409,7 @@
 				CDD3BE011B1FFA9D00CE6323 /* FindResultsViewController.swift */,
 				E9FF4D131B228A3F005FCAAA /* NewsDetailViewController.swift */,
 				E9CC27251B22D9A300056EFC /* RealTimeFinanceViewController.swift */,
+				E9FC8DCB1B297C5000C74EED /* NewDetailScrollViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -684,6 +687,7 @@
 				E961E1281AC8DCBC0021ED14 /* REMenuItemView.m in Sources */,
 				594200AD1B1324070005E671 /* GetCashViewController.swift in Sources */,
 				E9C605B31ABBB9C500752D91 /* RefreshBaseView.swift in Sources */,
+				E9FC8DCC1B297C5000C74EED /* NewDetailScrollViewController.swift in Sources */,
 				E93B725E1B070DDE00B28672 /* InvestorSummaryTableViewController.swift in Sources */,
 				5906B24F1B104C0100ADA082 /* OffLineChargeViewController.swift in Sources */,
 				E93714CA1B074F79009B9B80 /* ModifyLoginPasswordViewController.swift in Sources */,

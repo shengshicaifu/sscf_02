@@ -29,6 +29,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         Common.addBorder(usernameLabel)
         Common.addBorder(passwordLabel)
         
+        NSLog("登录输入框layer宽%f,高%f", login.layer.frame.width,login.layer.frame.height)
+        
         //设置登录输入框左侧图标
         usernameLabel.leftView = UIImageView(image: UIImage(named: "人.png"))
         usernameLabel.leftViewMode = UITextFieldViewMode.Always

@@ -135,7 +135,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         payPassword.delegate = self
         payBtn.layer.cornerRadius = 5
         
-        Common.customerBgView(styleView)
+        //Common.customerBgView(styleView)
         Common.customerButton(payBtn)
         Common.addBorder(yourMoneyLabel)
         Common.addBorder(usermoney)

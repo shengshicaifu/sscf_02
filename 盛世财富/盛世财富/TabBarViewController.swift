@@ -14,8 +14,14 @@ class TabBarViewController : UITabBarController,UITabBarControllerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         var items = self.tabBar.items as! [UITabBarItem]
+        //首页
+        var homeItem = items[0]
+        homeItem.image = UIImage(named: "0_home")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        homeItem.selectedImage = UIImage(named: "0_home_blue")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         //消息
         var newsItem = items[1]
+        newsItem.image = UIImage(named: "0_news")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        newsItem.selectedImage = UIImage(named: "0_news_blue")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         //newsItem.badgeValue = "5"
         //中间的tabitem
         var moneyItem = items[2]
@@ -23,7 +29,15 @@ class TabBarViewController : UITabBarController,UITabBarControllerDelegate{
         var image = UIImage(named: "logo")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         moneyItem.image = image
         moneyItem.selectedImage = image
-        
+        //发现
+        var searchItem = items[3]
+        searchItem.image = UIImage(named: "0_search")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        searchItem.selectedImage = UIImage(named: "0_search_blue")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        //我的账号
+        var userItem = items[4]
+        userItem.image = UIImage(named: "0_user")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        userItem.selectedImage = UIImage(named: "0_user_blue")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+
         
         self.delegate = self
     }

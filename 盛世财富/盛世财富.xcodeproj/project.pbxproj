@@ -37,6 +37,7 @@
 		59BEC4191B05CD5300F5690D /* UserMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */; };
 		59BEC41B1B07124200F5690D /* BidRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BEC41A1B07124200F5690D /* BidRecordViewController.swift */; };
 		59C540831B2814DD0061B44C /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C540821B2814DD0061B44C /* EmptyView.swift */; };
+		59C540871B2989950061B44C /* CurrentFinancialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C540861B2989950061B44C /* CurrentFinancialViewController.swift */; };
 		59D214BB1AFC9AD800677C26 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D214BA1AFC9AD800677C26 /* AlertView.swift */; };
 		CD0858361B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0858351B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework */; };
 		CDD3BE001B1FF6EB00CE6323 /* FindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3BDFF1B1FF6EB00CE6323 /* FindViewController.swift */; };
@@ -165,6 +166,7 @@
 		59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserMoneyViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		59BEC41A1B07124200F5690D /* BidRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BidRecordViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		59C540821B2814DD0061B44C /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		59C540861B2989950061B44C /* CurrentFinancialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentFinancialViewController.swift; sourceTree = "<group>"; };
 		59D214BA1AFC9AD800677C26 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		CD0858351B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GopayNewPlatformLibraryWeb.framework; sourceTree = "<group>"; };
 		CDD3BDFF1B1FF6EB00CE6323 /* FindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindViewController.swift; sourceTree = "<group>"; };
@@ -709,6 +711,7 @@
 				59C540831B2814DD0061B44C /* EmptyView.swift in Sources */,
 				594200AC1B1324070005E671 /* FindPasswordViewController.swift in Sources */,
 				591FD13A1B0C7CF000BFD74D /* AFHTTPSessionManager.m in Sources */,
+				59C540871B2989950061B44C /* CurrentFinancialViewController.swift in Sources */,
 				E9D6604F1AB1313B0020982D /* LendViewController.swift in Sources */,
 				594E5B4F1AFA102500218DA5 /* NewPersonCenterViewController.swift in Sources */,
 				E9B9EF4C1AC8E00600E46714 /* BidListViewController.swift in Sources */,

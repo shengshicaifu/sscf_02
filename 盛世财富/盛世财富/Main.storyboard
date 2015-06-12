@@ -5872,6 +5872,9 @@
                                 <state key="normal" title="确定">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="okTapped:" destination="puh-9G-bQa" eventType="touchUpInside" id="wHX-6Y-nI8"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -6045,8 +6048,8 @@
                                             <constraint firstAttribute="height" constant="54" id="ac7-xO-RHi"/>
                                         </constraints>
                                         <state key="normal" title="获取验证码">
-                                            <color key="titleColor" red="0.75686274509999996" green="0.75686274509999996" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="getCodeTapped:" destination="dFx-jP-89V" eventType="touchUpInside" id="Lod-4Q-Z5N"/>

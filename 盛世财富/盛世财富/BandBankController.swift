@@ -8,6 +8,9 @@
 
 import Foundation
 import UIKit
+/**
+*  修改银行卡
+*/
 class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelegate {
     @IBOutlet weak var styleView: UIView!
     @IBOutlet weak var addTapped: UIButton!
@@ -67,75 +70,83 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
         //绑定银行卡
         resignAll()
         var userDefaults = NSUserDefaults.standardUserDefaults()
-        var bankCardNo = userDefaults.objectForKey("bankCardNo") as? String
-        if bankCardNo == nil || bankCardNo == "" {
+        var bankCardNoUserDefaults = userDefaults.objectForKey("bankCardNo") as? String
+        
         var bankCardNo = bankCardNoTextField.text
         var bankName = bankNameTextField.text
         var bankProvice = bankProviceTextField.text
         var bankCity = bankCityTextField.text
         var bankBranch = bankBranchTextField.text
-        if bankCardNo.isEmpty {
-            AlertView.showMsg("请输入银行卡账号", parentView: self.view)
-            return
-        }
-        if !Common.isBank(bankCardNo){
-            AlertView.showMsg(Common.bankErrorTip, parentView: self.view)
+        
+        if bankCardNoUserDefaults == nil || bankCardNoUserDefaults == "" {
+            
+            if bankCardNo.isEmpty {
+                AlertView.showMsg("请输入银行卡账号", parentView: self.view)
+                return
             }
-        if bankName.isEmpty {
-            AlertView.showMsg("请输入银行名称", parentView: self.view)
-            return
-        }
-        if bankProvice.isEmpty {
-            AlertView.showMsg("请输入银行省份", parentView: self.view)
-            return
-        }
-        if bankCity.isEmpty {
-            AlertView.showMsg("请输入银行城市", parentView: self.view)
-            return
-        }
-        if bankBranch.isEmpty {
-            AlertView.showMsg("请输入银行支行", parentView: self.view)
-            return
-        }
-        //其他输入限制再加
-        //检查手机网络
-//        var reach = Reachability(hostName: Common.domain)
-//        reach.unreachableBlock = {(r:Reachability!) -> Void in
-//            //NSLog("网络不可用")
-//            dispatch_async(dispatch_get_main_queue(), {
-//                
-//                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
-//            })
-//        }
-        let manager = AFHTTPRequestOperationManager()
-        var url = Common.serverHost + "/App-Ucenter-bindBank"
-        var token = userDefaults.objectForKey("token") as! String
-        println(token)
-        let params = ["to":token,"txt_account":bankCardNo,"bank_name":bankName,"province":bankProvice,"city":bankCity,"txt_bankName":bankBranch]
-        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-        manager.POST(url, parameters: params,
-             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                var result = data as! NSDictionary
-                println("银行卡绑定\(result)")
-                var code = result["code"] as! Int
-                if code == -1 {
-                    AlertView.showMsg("请登录后再试", parentView: self.view)
-                }else if code == 0 {
-                    AlertView.showMsg(result["message"] as! String, parentView: self.view)
-                }else if code == 200 {
-                    AlertView.showMsg("绑定银行卡成功", parentView: self.view)
-                    NSThread.sleepForTimeInterval(3)
-                    userDefaults.setObject(bankCardNo, forKey: "bankCardNo")
-                    userDefaults.setObject(bankName, forKey: "bankName")
-                    userDefaults.setObject(bankProvice, forKey: "bankProvice")
-                    userDefaults.setObject(bankCity, forKey: "bankCity")
-                    userDefaults.setObject(bankBranch, forKey: "bankBranch")
-                self.navigationController?.popViewControllerAnimated(true)
+            if !Common.isBank(bankCardNo){
+                AlertView.showMsg(Common.bankErrorTip, parentView: self.view)
                 }
-            },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
+            if bankName.isEmpty {
+                AlertView.showMsg("请输入银行名称", parentView: self.view)
+                return
             }
-        )
+            if bankProvice.isEmpty {
+                AlertView.showMsg("请输入银行省份", parentView: self.view)
+                return
+            }
+            if bankCity.isEmpty {
+                AlertView.showMsg("请输入银行城市", parentView: self.view)
+                return
+            }
+            if bankBranch.isEmpty {
+                AlertView.showMsg("请输入银行支行", parentView: self.view)
+                return
+            }
+            //其他输入限制再加
+            //检查手机网络
+    //        var reach = Reachability(hostName: Common.domain)
+    //        reach.unreachableBlock = {(r:Reachability!) -> Void in
+    //            //NSLog("网络不可用")
+    //            dispatch_async(dispatch_get_main_queue(), {
+    //                
+    //                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+    //            })
+    //        }
+            let manager = AFHTTPRequestOperationManager()
+            var url = Common.serverHost + "/App-Ucenter-bindBank"
+            var token = userDefaults.objectForKey("token") as! String
+            println(token)
+            let params = ["to":token,"txt_account":bankCardNo,"bank_name":bankName,"province":bankProvice,"city":bankCity,"txt_bankName":bankBranch]
+            manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+            loading.startLoading(self.view)
+            manager.POST(url, parameters: params,
+                 success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                    loading.stopLoading()
+                    var result = data as! NSDictionary
+                    println("银行卡绑定\(result)")
+                    var code = result["code"] as! Int
+                    if code == -1 {
+                        AlertView.showMsg("请登录后再试", parentView: self.view)
+                    }else if code == 0 {
+                        AlertView.showMsg(result["message"] as! String, parentView: self.view)
+                    }else if code == 200 {
+                        
+                        AlertView.alert("提示", message: "绑定银行卡成功", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
+                            userDefaults.setObject(bankCardNo, forKey: "bankCardNo")
+                            userDefaults.setObject(bankName, forKey: "bankName")
+                            userDefaults.setObject(bankProvice, forKey: "bankProvice")
+                            userDefaults.setObject(bankCity, forKey: "bankCity")
+                            userDefaults.setObject(bankBranch, forKey: "bankBranch")
+                            self.navigationController?.popViewControllerAnimated(true)
+                        })
+                        
+                    }
+                },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                    loading.stopLoading()
+                    AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
+                }
+            )
     }
     //修改银行卡账号
     else {
@@ -165,28 +176,31 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
         var token = userDefaults.objectForKey("token") as? String
         var bankCardNo = userDefaults.objectForKey("bankCardNo") as? String
         let params = ["to":token,"txt_account":bankCardNoTextField.text,"bank_name":bankNameTextField.text,"province":bankProviceTextField.text,"city":bankCityTextField.text,"txt_bankName":bankBranchTextField.text,"txt_oldaccount":bankCardNo]
+        loading.startLoading(self.view)
         manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
         manager.POST(url, parameters: params,
         success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-        var result = data as! NSDictionary
-        println("银行卡修改\(result)")
-        var code = result["code"] as! Int
-        if code == -1 {
-        AlertView.showMsg("请登录后再试", parentView: self.view)
-        }else if code == 0 {
-        AlertView.showMsg(result["message"] as! String, parentView: self.view)
-        }else if code == 200 {
-        AlertView.showMsg("修改银行卡成功", parentView: self.view)
-        NSThread.sleepForTimeInterval(3)
-            userDefaults.setObject(self.bankCardNoTextField.text, forKey: "bankCardNo")
-            userDefaults.setObject(self.bankNameTextField.text, forKey: "bankName")
-            userDefaults.setObject(self.bankProviceTextField.text, forKey: "bankProvice")
-            userDefaults.setObject(self.bankCityTextField.text, forKey: "bankCity")
-            userDefaults.setObject(self.bankBranchTextField.text, forKey: "bankBranch")
-        self.navigationController?.popViewControllerAnimated(true)
+            loading.stopLoading()
+            var result = data as! NSDictionary
+            println("银行卡修改\(result)")
+            var code = result["code"] as! Int
+            if code == -1 {
+                AlertView.showMsg("请登录后再试", parentView: self.view)
+            }else if code == 0 {
+                AlertView.showMsg(result["message"] as! String, parentView: self.view)
+            }else if code == 200 {
+                AlertView.alert("提示", message: "绑定银行卡成功", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
+                    userDefaults.setObject(bankCardNo, forKey: "bankCardNo")
+                    userDefaults.setObject(bankName, forKey: "bankName")
+                    userDefaults.setObject(bankProvice, forKey: "bankProvice")
+                    userDefaults.setObject(bankCity, forKey: "bankCity")
+                    userDefaults.setObject(bankBranch, forKey: "bankBranch")
+                    self.navigationController?.popViewControllerAnimated(true)
+                })
        }
     },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
-    AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
+        loading.stopLoading()
+        AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
     }
 )
 }

@@ -12,9 +12,6 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
     @IBOutlet var mainView: UITableView!
     var ehttp = HttpController()
     var url = ""
-    var type:String!
-    
-    
     var protectDays:String? = "0"//累计保驾护航天数
     var totalInvest:String? = "0"//总共放贷金额
     var userCount:String? = "0"//会员数量
@@ -168,41 +165,60 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
              1:下拉刷新获取数据
     */
     func getData(actionType:String){
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        //获取网络数据
-        var manager = AFHTTPRequestOperationManager()
-        var url = Common.serverHost + "/App-Index"
-        var params = [:]
-        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-        manager.POST(url, parameters: params,
-            success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                var result = data as! NSDictionary
-                //NSLog("首页：%@", result)
-                var code = result["code"] as! Int
-                if code == 200 {
-                    var info = result["data"] as! NSDictionary
-                    self.protectDays = info["protect_days"] as? String//累计保驾护航天数
-                    self.totalInvest = info["total_invest"] as? String//总共放贷金额
-                    self.userCount = info["user_count"] as? String//会员数量
-                }
+        
+        
+        //检查手机网络
+        var reach = Reachability(hostName: Common.domain)
+        reach.unreachableBlock = {(r:Reachability!) -> Void in
+            //NSLog("网络不可用")
+            dispatch_async(dispatch_get_main_queue(), {
                 if actionType == "1" {
-                    self.refreshControl?.endRefreshing()
-                    self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
-                }
-                //获取数据后重新加载表格
-                self.tableView.reloadData()
-            },failure:{ (op:AFHTTPRequestOperation!,error: NSError!) -> Void in
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                if actionType == "1" {
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     self.refreshControl?.endRefreshing()
                     self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
                 }
                 AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
-                
-            }
-        )
+            })
+        }
 
+        reach.reachableBlock = {(r:Reachability!) -> Void in
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+            //获取网络数据
+            var manager = AFHTTPRequestOperationManager()
+            var url = Common.serverHost + "/App-Index"
+            var params = [:]
+            manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+            manager.POST(url, parameters: params,
+                success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    var result = data as! NSDictionary
+                    //NSLog("首页：%@", result)
+                    var code = result["code"] as! Int
+                    if code == 200 {
+                        var info = result["data"] as! NSDictionary
+                        self.protectDays = info["protect_days"] as? String//累计保驾护航天数
+                        self.totalInvest = info["total_invest"] as? String//总共放贷金额
+                        self.userCount = info["user_count"] as? String//会员数量
+                    }
+                    if actionType == "1" {
+                        self.refreshControl?.endRefreshing()
+                        self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
+                    }
+                    //获取数据后重新加载表格
+                    self.tableView.reloadData()
+                },failure:{ (op:AFHTTPRequestOperation!,error: NSError!) -> Void in
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    if actionType == "1" {
+                        self.refreshControl?.endRefreshing()
+                        self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
+                    }
+                    AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                    
+                }
+            )
+
+        }
+        reach.startNotifier()
     }
 
 
@@ -308,19 +324,15 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
         
         return cell
     }
-    //点击cell跳转页面
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        if let hideType = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(5) as?  UILabel{
-            type = hideType.text
-        }
-        self.performSegueWithIdentifier("allList", sender:nil)
-}
+
     //给新的界面传值
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var nextView:UIViewController!
+        var row = self.tableView.indexPathForSelectedRow()!.row
+        
+        var nextView:AllListViewController!
         if segue.identifier == "allList"{
             nextView = segue.destinationViewController as! AllListViewController
+            nextView.type = "\(row)"
         }
         if nextView != nil {
             nextView!.hidesBottomBarWhenPushed = true

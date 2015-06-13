@@ -39,6 +39,7 @@
 		59C540831B2814DD0061B44C /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C540821B2814DD0061B44C /* EmptyView.swift */; };
 		59D214BB1AFC9AD800677C26 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D214BA1AFC9AD800677C26 /* AlertView.swift */; };
 		CD0858361B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0858351B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework */; };
+		CDBEF4171B29A4040025FBD4 /* aaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBEF4161B29A4040025FBD4 /* aaTableViewController.swift */; };
 		CDD3BE001B1FF6EB00CE6323 /* FindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3BDFF1B1FF6EB00CE6323 /* FindViewController.swift */; };
 		CDD3BE021B1FFA9D00CE6323 /* FindResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3BE011B1FFA9D00CE6323 /* FindResultsViewController.swift */; };
 		CDD3BE041B1FFD1800CE6323 /* sortednames.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDD3BE031B1FFD1800CE6323 /* sortednames.plist */; };
@@ -168,6 +169,7 @@
 		59C540821B2814DD0061B44C /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		59D214BA1AFC9AD800677C26 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		CD0858351B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GopayNewPlatformLibraryWeb.framework; sourceTree = "<group>"; };
+		CDBEF4161B29A4040025FBD4 /* aaTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aaTableViewController.swift; sourceTree = "<group>"; };
 		CDD3BDFF1B1FF6EB00CE6323 /* FindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindViewController.swift; sourceTree = "<group>"; };
 		CDD3BE011B1FFA9D00CE6323 /* FindResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindResultsViewController.swift; sourceTree = "<group>"; };
 		CDD3BE031B1FFD1800CE6323 /* sortednames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sortednames.plist; sourceTree = "<group>"; };
@@ -716,6 +718,7 @@
 				E9D6604F1AB1313B0020982D /* LendViewController.swift in Sources */,
 				594E5B4F1AFA102500218DA5 /* NewPersonCenterViewController.swift in Sources */,
 				E9B9EF4C1AC8E00600E46714 /* BidListViewController.swift in Sources */,
+				CDBEF4171B29A4040025FBD4 /* aaTableViewController.swift in Sources */,
 				592F90741B03249E00B9969B /* DaiDodgeKeyboard+AccessObject.m in Sources */,
 				E95B89EC1B19B0DD005AAED7 /* viewController.swift in Sources */,
 				CDE4EED41B1DCBF900FB95CA /* IndexTableViewController.swift in Sources */,

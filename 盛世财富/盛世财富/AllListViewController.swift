@@ -228,6 +228,10 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
 //        NSLog("viewDidLoad")
         super.viewDidLoad()
         mainTable.delegate = self
+        
+       // UITableView.clearsSelectionOnViewWillAppear = true
+        
+        
         loading.startLoading(self.view)
         var params = [:]
         var manager = AFHTTPRequestOperationManager()
@@ -494,6 +498,13 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
 ////            self.performSegueWithIdentifier("detail", sender: self)
 //        }
 //    }
+    
+
+    override func viewWillAppear(animated: Bool) {
+        if mainTable.indexPathForSelectedRow() != nil {
+            self.mainTable.deselectRowAtIndexPath(mainTable.indexPathForSelectedRow()!, animated: true)
+        }
+    }
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -1,13 +1,15 @@
 //
 //  UserMoneyViewController.swift
 //  盛世财富
-//  资产管理
 //  Created by 肖典 on 15/5/15.
 //  Copyright (c) 2015年 sscf88. All rights reserved.
 //
 
 import Foundation
 import UIKit
+/**
+*  我的资产
+*/
 class UserMoneyViewController:UITableViewController {
     @IBOutlet weak var accountMoney: UILabel!
     @IBOutlet weak var totalAll: UILabel!

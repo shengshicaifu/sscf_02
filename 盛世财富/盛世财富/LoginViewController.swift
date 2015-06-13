@@ -32,15 +32,15 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         NSLog("登录输入框layer宽%f,高%f", login.layer.frame.width,login.layer.frame.height)
         
         //设置登录输入框左侧图标
-        usernameLabel.leftView = UIImageView(image: UIImage(named: "人.png"))
-        usernameLabel.leftViewMode = UITextFieldViewMode.Always
         
-        passwordLabel.leftView = UIImageView(image: UIImage(named: "密码.png"))
-        passwordLabel.leftViewMode = UITextFieldViewMode.Always
+        Common.addLeftImage(usernameLabel, imageName: "人.png")
+        Common.addLeftImage(passwordLabel, imageName: "密码.png")
         
         usernameLabel.text = NSUserDefaults.standardUserDefaults().stringForKey("username")
         
     }
+    
+    
     
     
     @IBAction func loginTapped(sender: AnyObject) {
@@ -88,6 +88,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     loading.stopLoading()
                     var result = data as! NSDictionary
+                    NSLog("个人信息：%@", result)
                     //NSLog("登录返回信息%@", result)
                     if let code = result["code"] as? Int{
                         
@@ -95,6 +96,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                         if(code == 200){
                             let user = NSUserDefaults.standardUserDefaults()
                             let proInfo:NSDictionary = result["data"]?["proInfo"] as! NSDictionary
+                            
                             user.setObject(self.usernameLabel.text, forKey: "username")
                             user.setObject(result["data"]?["token"], forKey: "token")
                             
@@ -198,6 +200,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                         tabbarController.selectedIndex = 1
                     }else if self.tabTag == 105 {
                         tabbarController.selectedIndex = 4
+                    }else if self.tabTag == 103 {
+                        tabbarController.selectedIndex = 2
                     }
                 }else{
                     tabbarController.selectedIndex = 0

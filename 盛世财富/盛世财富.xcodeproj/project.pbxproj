@@ -37,7 +37,6 @@
 		59BEC4191B05CD5300F5690D /* UserMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */; };
 		59BEC41B1B07124200F5690D /* BidRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BEC41A1B07124200F5690D /* BidRecordViewController.swift */; };
 		59C540831B2814DD0061B44C /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C540821B2814DD0061B44C /* EmptyView.swift */; };
-		59C540871B2989950061B44C /* CurrentFinancialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C540861B2989950061B44C /* CurrentFinancialViewController.swift */; };
 		59D214BB1AFC9AD800677C26 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D214BA1AFC9AD800677C26 /* AlertView.swift */; };
 		CD0858361B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0858351B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework */; };
 		CDD3BE001B1FF6EB00CE6323 /* FindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3BDFF1B1FF6EB00CE6323 /* FindViewController.swift */; };
@@ -100,6 +99,7 @@
 		E9E304061B09AAD20021D006 /* AccountSafeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E304051B09AAD20021D006 /* AccountSafeTableViewController.swift */; };
 		E9E5211F1B05E3D900A41EEA /* YYCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E5211E1B05E3D900A41EEA /* YYCycleScrollView.swift */; };
 		E9E8E9461B0B22FA0074F41A /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8E9451B0B22FA0074F41A /* ContentViewController.swift */; };
+		E9EBF63C1B2BC28C009924DD /* CurrentFinancialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EBF63B1B2BC28C009924DD /* CurrentFinancialViewController.swift */; };
 		E9F3DFF11B0DD53F00F8F3AA /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F3DFF01B0DD53F00F8F3AA /* UIView+Toast.m */; };
 		E9FC8DCC1B297C5000C74EED /* NewDetailScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FC8DCB1B297C5000C74EED /* NewDetailScrollViewController.swift */; };
 		E9FF4D141B228A3F005FCAAA /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FF4D131B228A3F005FCAAA /* NewsDetailViewController.swift */; };
@@ -166,7 +166,6 @@
 		59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserMoneyViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		59BEC41A1B07124200F5690D /* BidRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BidRecordViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		59C540821B2814DD0061B44C /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
-		59C540861B2989950061B44C /* CurrentFinancialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentFinancialViewController.swift; sourceTree = "<group>"; };
 		59D214BA1AFC9AD800677C26 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		CD0858351B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GopayNewPlatformLibraryWeb.framework; sourceTree = "<group>"; };
 		CDD3BDFF1B1FF6EB00CE6323 /* FindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindViewController.swift; sourceTree = "<group>"; };
@@ -245,6 +244,7 @@
 		E9E304051B09AAD20021D006 /* AccountSafeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSafeTableViewController.swift; sourceTree = "<group>"; };
 		E9E5211E1B05E3D900A41EEA /* YYCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYCycleScrollView.swift; sourceTree = "<group>"; };
 		E9E8E9451B0B22FA0074F41A /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		E9EBF63B1B2BC28C009924DD /* CurrentFinancialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentFinancialViewController.swift; sourceTree = "<group>"; };
 		E9F3DFEF1B0DD53F00F8F3AA /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		E9F3DFF01B0DD53F00F8F3AA /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		E9FC8DCB1B297C5000C74EED /* NewDetailScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDetailScrollViewController.swift; sourceTree = "<group>"; };
@@ -370,6 +370,7 @@
 		E91E81321AB27956000C5FD3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E9EBF63B1B2BC28C009924DD /* CurrentFinancialViewController.swift */,
 				E99D36E01B16F29900167132 /* BandBankViewController.swift */,
 				E99D36DE1B16F28B00167132 /* BandBankController.swift */,
 				E9C70C091AC108AC00E1CA8D /* AboutViewController.swift */,
@@ -672,6 +673,7 @@
 				E96B2F091B08673900B4197B /* MDRadialProgressTheme.m in Sources */,
 				E961E1241AC8DCBC0021ED14 /* RECommonFunctions.m in Sources */,
 				E961E1271AC8DCBC0021ED14 /* REMenuItem.m in Sources */,
+				E9EBF63C1B2BC28C009924DD /* CurrentFinancialViewController.swift in Sources */,
 				E94E95A61B0AD34F00E717DE /* NJDBezierCurve.m in Sources */,
 				E9C54E061AB7BCD400D4722C /* LendDetailViewController.swift in Sources */,
 				595C8DC51B07317800989977 /* NavigationExtension.swift in Sources */,
@@ -711,7 +713,6 @@
 				59C540831B2814DD0061B44C /* EmptyView.swift in Sources */,
 				594200AC1B1324070005E671 /* FindPasswordViewController.swift in Sources */,
 				591FD13A1B0C7CF000BFD74D /* AFHTTPSessionManager.m in Sources */,
-				59C540871B2989950061B44C /* CurrentFinancialViewController.swift in Sources */,
 				E9D6604F1AB1313B0020982D /* LendViewController.swift in Sources */,
 				594E5B4F1AFA102500218DA5 /* NewPersonCenterViewController.swift in Sources */,
 				E9B9EF4C1AC8E00600E46714 /* BidListViewController.swift in Sources */,

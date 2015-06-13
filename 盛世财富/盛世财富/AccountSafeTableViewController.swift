@@ -36,6 +36,7 @@ class AccountSafeTableViewController: UITableViewController,UITableViewDataSourc
         var cell = tableView.dequeueReusableCellWithIdentifier("accountSafeCell") as! UITableViewCell
         var leftLabel = cell.viewWithTag(1) as! UILabel
         var rightLabel = cell.viewWithTag(2) as! UILabel
+        var tipImageView = cell.viewWithTag(3) as! UIImageView
         var leftText:String = ""
         var rightText:String = ""
         
@@ -55,7 +56,8 @@ class AccountSafeTableViewController: UITableViewController,UITableViewDataSourc
                     cell.accessoryType = UITableViewCellAccessoryType.None
                     cell.userInteractionEnabled = false
                 }else if isVerify == "1" {
-                    rightText = Common.replaceStringToX(isUpload!, start: 2, end: isUpload!.length)
+                    tipImageView.image = UIImage(named: "1_53")
+                    rightText = Common.replaceStringToX(isUpload!, start: 2, end: isUpload!.length-4)
                     cell.accessoryType = UITableViewCellAccessoryType.None
                     cell.userInteractionEnabled = false
                 }
@@ -71,6 +73,7 @@ class AccountSafeTableViewController: UITableViewController,UITableViewDataSourc
                 rightText = "请设置交易密码"
             } else {
                 rightText = "修改交易密码"
+                tipImageView.image = UIImage(named: "1_53")
             }
         }else if row == 3{
             
@@ -79,6 +82,7 @@ class AccountSafeTableViewController: UITableViewController,UITableViewDataSourc
             var phone = NSUserDefaults.standardUserDefaults().objectForKey("phone") as? NSString
             if phone != nil {
                 rightText = Common.replaceStringToX(phone!, start: 3, end: 7)
+                tipImageView.image = UIImage(named: "1_53")
             }
             
         }

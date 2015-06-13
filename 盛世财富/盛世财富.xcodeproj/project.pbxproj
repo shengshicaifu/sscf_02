@@ -411,6 +411,7 @@
 				CDD3BE011B1FFA9D00CE6323 /* FindResultsViewController.swift */,
 				E9FF4D131B228A3F005FCAAA /* NewsDetailViewController.swift */,
 				E9CC27251B22D9A300056EFC /* RealTimeFinanceViewController.swift */,
+				59C540861B2989950061B44C /* CurrentFinancialViewController.swift */,
 				CDBEF4161B29A4040025FBD4 /* aaTableViewController.swift */,
 			);
 			name = Controllers;

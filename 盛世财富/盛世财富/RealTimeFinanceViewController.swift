@@ -8,7 +8,7 @@
 
 import UIKit
 /**
-*  实时财务
+*  实时财务 旧
 */
 class RealTimeFinanceViewController: UIViewController {
 

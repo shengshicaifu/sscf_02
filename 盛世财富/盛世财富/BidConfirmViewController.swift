@@ -33,6 +33,8 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
     @IBOutlet weak var yourMoneyLabel: UILabel!
     @IBOutlet weak var second: UILabel!
     @IBOutlet weak var first: UILabel!
+    @IBOutlet weak var third: UILabel!
+    
     var id:String?
     var type:String?
     var duration:String = String()
@@ -67,6 +69,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         Common.addBorder(experienceLabel)
         Common.addBorder(first)
         Common.addBorder(second)
+        Common.addBorder(third)
     
         //加载数据
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true

@@ -27,8 +27,8 @@ class Common {
     }
     //MARK:- 系统常量
     /// 转接服务器地址
-    static let serverHost:String = "http://61.183.178.86:10888/MidServer"
-    //"http://www.sscf88.com"
+    static let serverHost:String = "http://www.sscf88.com"//"http://61.183.178.86:10888/MidServer"
+    //
     static let domain:String = "www.baidu.com"
     
     
@@ -106,7 +106,11 @@ class Common {
         }
         var f = str.substringToIndex(start)
         var e = str.substringFromIndex(end)
-        return f + "****" + e
+        var xin = ""
+        for var i=start;i<end;i++ {
+            xin += "*"
+        }
+        return f + xin + e
     }
 
     //MARK:- 时间处理
@@ -180,6 +184,19 @@ class Common {
         border.setNeedsDisplay()
     }
     
+    /**
+    为输入框加入图标
+    
+    :param: textField 输入框
+    :param: imageName 图标名
+    */
+    class func addLeftImage(textField:UITextField,imageName:String){
+        var leftImageView = UIImageView(image: UIImage(named: imageName))
+        leftImageView.contentMode = UIViewContentMode.Left
+        leftImageView.frame = CGRectMake(0, 0, 35, textField.frame.height)
+        textField.leftView = leftImageView
+        textField.leftViewMode = UITextFieldViewMode.Always
+    }
 
     
 }

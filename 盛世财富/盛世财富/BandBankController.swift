@@ -165,8 +165,8 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
                         AlertView.alert("提示", message: "绑定银行卡成功", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
                             userDefaults.setObject(bankCardNo, forKey: "bankCardNo")
                             userDefaults.setObject(bankName, forKey: "bankName")
-//                            userDefaults.setObject(bankProvice, forKey: "bankProvice")
-//                            userDefaults.setObject(bankCity, forKey: "bankCity")
+                            userDefaults.setObject(province, forKey: "bankProvince")
+                            userDefaults.setObject(city, forKey: "bankCity")
                             userDefaults.setObject(bankBranch, forKey: "bankBranch")
                             self.navigationController?.popViewControllerAnimated(true)
                         })
@@ -216,7 +216,7 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
                     AlertView.alert("提示", message: "绑定银行卡成功", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
                         userDefaults.setObject(bankCardNo, forKey: "bankCardNo")
                         userDefaults.setObject(bankName, forKey: "bankName")
-                        userDefaults.setObject(province, forKey: "bankProvice")
+                        userDefaults.setObject(province, forKey: "bankProvince")
                         userDefaults.setObject(city, forKey: "bankCity")
                         userDefaults.setObject(bankBranch, forKey: "bankBranch")
                         self.navigationController?.popViewControllerAnimated(true)

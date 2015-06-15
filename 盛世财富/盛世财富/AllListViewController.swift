@@ -451,7 +451,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             var d = self.listData[indexPath.row] as! NSDictionary
             var id = d.objectForKey("id") as! String
             NSLog("购买选中的id%@",id)
-            var bidConfirmViewController = self.storyboard?.instantiateViewControllerWithIdentifier("BidConfirmViewController") as! BidConfirmViewController
+            var bidConfirmViewController = self.storyboard?.instantiateViewControllerWithIdentifier("bidConfirmViewController") as! BidConfirmViewController
             bidConfirmViewController.id = id
             self.navigationController?.pushViewController(bidConfirmViewController, animated: true)
         }
@@ -461,9 +461,10 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     //跳到标的详情
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "detail" {
-            var vc = segue.destinationViewController as! LendDetailViewController
+//            var vc = segue.destinationViewController as! LendDetailViewController
             var selectedRow = self.mainTable.indexPathForSelectedRow()?.row
             var dic = self.listData[selectedRow!] as! NSDictionary
+            var vc = segue.destinationViewController as! NewDetailScrollViewController
             vc.id = dic.objectForKey("id") as? String
             vc.type = self.type
         }

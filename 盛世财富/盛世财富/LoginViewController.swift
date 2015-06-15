@@ -139,7 +139,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                                 user.setObject(bank["bank_num"], forKey:"bankCardNo")
                                 user.setObject(bank["bank_city"], forKey:"bankCity")
                                 user.setObject(bank["bank_name"], forKey:"bankName")
-                                user.setObject(bank["bank_province"], forKey:"bankProvice")
+                                user.setObject(bank["bank_province"], forKey:"bankProvince")
                                 user.setObject(bank["bank_address"], forKey:"bankBranch")
                             }else{
                                 user.setObject("", forKey:"bankCardNo")

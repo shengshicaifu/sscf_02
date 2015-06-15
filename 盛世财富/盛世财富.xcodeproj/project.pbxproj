@@ -37,15 +37,15 @@
 		59BEC4191B05CD5300F5690D /* UserMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */; };
 		59BEC41B1B07124200F5690D /* BidRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BEC41A1B07124200F5690D /* BidRecordViewController.swift */; };
 		59C540831B2814DD0061B44C /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C540821B2814DD0061B44C /* EmptyView.swift */; };
-		59C540871B2989950061B44C /* CurrentFinancialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C540861B2989950061B44C /* CurrentFinancialViewController.swift */; };
 		59D214BB1AFC9AD800677C26 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D214BA1AFC9AD800677C26 /* AlertView.swift */; };
 		CD0858361B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0858351B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework */; };
+		CD7E21031B2EB43400463325 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD7E21021B2EB43400463325 /* Images.xcassets */; };
+		CDBEF4171B29A4040025FBD4 /* aaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBEF4161B29A4040025FBD4 /* aaTableViewController.swift */; };
 		CDD3BE001B1FF6EB00CE6323 /* FindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3BDFF1B1FF6EB00CE6323 /* FindViewController.swift */; };
 		CDD3BE021B1FFA9D00CE6323 /* FindResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3BE011B1FFA9D00CE6323 /* FindResultsViewController.swift */; };
 		CDD3BE041B1FFD1800CE6323 /* sortednames.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDD3BE031B1FFD1800CE6323 /* sortednames.plist */; };
 		CDDCBA271B1EC6D100A4F54B /* BaoFooPay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDCBA261B1EC6D100A4F54B /* BaoFooPay.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CDE0CA661B26A5980079DB21 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0CA651B26A5980079DB21 /* CircleView.swift */; };
-		CDE0CA681B26C4780079DB21 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDE0CA671B26C4780079DB21 /* Images.xcassets */; };
 		CDE4EED21B1DC06D00FB95CA /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE4EED11B1DC06D00FB95CA /* NewsTableViewController.swift */; };
 		CDE4EED41B1DCBF900FB95CA /* IndexTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE4EED31B1DCBF900FB95CA /* IndexTableViewController.swift */; };
 		D8B251181B0041AE00360F4E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B251171B0041AE00360F4E /* Reachability.m */; };
@@ -58,7 +58,6 @@
 		E94E95A61B0AD34F00E717DE /* NJDBezierCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = E94E95A41B0AD34F00E717DE /* NJDBezierCurve.m */; };
 		E94E95A81B0AD3DD00E717DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E94E95A71B0AD3DD00E717DE /* Main.storyboard */; };
 		E95684F21B06D8FA00F46FF0 /* AccountInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95684F11B06D8FA00F46FF0 /* AccountInfoTableViewController.swift */; };
-		E95B89EC1B19B0DD005AAED7 /* viewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95B89EB1B19B0DD005AAED7 /* viewController.swift */; };
 		E9608D9F1B1577960025D247 /* VerifyRealNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9608D9E1B1577960025D247 /* VerifyRealNameViewController.swift */; };
 		E961E1241AC8DCBC0021ED14 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11B1AC8DCBC0021ED14 /* RECommonFunctions.m */; };
 		E961E1251AC8DCBC0021ED14 /* REMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11D1AC8DCBC0021ED14 /* REMenu.m */; };
@@ -100,7 +99,11 @@
 		E9E304061B09AAD20021D006 /* AccountSafeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E304051B09AAD20021D006 /* AccountSafeTableViewController.swift */; };
 		E9E5211F1B05E3D900A41EEA /* YYCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E5211E1B05E3D900A41EEA /* YYCycleScrollView.swift */; };
 		E9E8E9461B0B22FA0074F41A /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E8E9451B0B22FA0074F41A /* ContentViewController.swift */; };
+		E9EBF63C1B2BC28C009924DD /* CurrentFinancialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EBF63B1B2BC28C009924DD /* CurrentFinancialViewController.swift */; };
 		E9F3DFF11B0DD53F00F8F3AA /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F3DFF01B0DD53F00F8F3AA /* UIView+Toast.m */; };
+		E9FC8DCC1B297C5000C74EED /* NewDetailScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FC8DCB1B297C5000C74EED /* NewDetailScrollViewController.swift */; };
+		E9FE8EFB1B2C1EED00747E1C /* area.json in Resources */ = {isa = PBXBuildFile; fileRef = E9FE8EFA1B2C1EED00747E1C /* area.json */; };
+		E9FE8EFD1B2C204200747E1C /* BandBankControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FE8EFC1B2C204200747E1C /* BandBankControllerExtension.swift */; };
 		E9FF4D141B228A3F005FCAAA /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FF4D131B228A3F005FCAAA /* NewsDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -165,15 +168,15 @@
 		59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserMoneyViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		59BEC41A1B07124200F5690D /* BidRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BidRecordViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		59C540821B2814DD0061B44C /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
-		59C540861B2989950061B44C /* CurrentFinancialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentFinancialViewController.swift; sourceTree = "<group>"; };
 		59D214BA1AFC9AD800677C26 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		CD0858351B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GopayNewPlatformLibraryWeb.framework; sourceTree = "<group>"; };
+		CD7E21021B2EB43400463325 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		CDBEF4161B29A4040025FBD4 /* aaTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aaTableViewController.swift; sourceTree = "<group>"; };
 		CDD3BDFF1B1FF6EB00CE6323 /* FindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindViewController.swift; sourceTree = "<group>"; };
 		CDD3BE011B1FFA9D00CE6323 /* FindResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindResultsViewController.swift; sourceTree = "<group>"; };
 		CDD3BE031B1FFD1800CE6323 /* sortednames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sortednames.plist; sourceTree = "<group>"; };
 		CDDCBA261B1EC6D100A4F54B /* BaoFooPay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaoFooPay.framework; sourceTree = "<group>"; };
 		CDE0CA651B26A5980079DB21 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
-		CDE0CA671B26C4780079DB21 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CDE4EED11B1DC06D00FB95CA /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		CDE4EED31B1DCBF900FB95CA /* IndexTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexTableViewController.swift; sourceTree = "<group>"; };
 		D8B251161B0041AE00360F4E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -190,7 +193,6 @@
 		E94E95A41B0AD34F00E717DE /* NJDBezierCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJDBezierCurve.m; sourceTree = "<group>"; };
 		E94E95A71B0AD3DD00E717DE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E95684F11B06D8FA00F46FF0 /* AccountInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AccountInfoTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		E95B89EB1B19B0DD005AAED7 /* viewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = viewController.swift; sourceTree = "<group>"; };
 		E9608D9E1B1577960025D247 /* VerifyRealNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyRealNameViewController.swift; sourceTree = "<group>"; };
 		E961E11A1AC8DCBC0021ED14 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		E961E11B1AC8DCBC0021ED14 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
@@ -244,8 +246,12 @@
 		E9E304051B09AAD20021D006 /* AccountSafeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSafeTableViewController.swift; sourceTree = "<group>"; };
 		E9E5211E1B05E3D900A41EEA /* YYCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YYCycleScrollView.swift; sourceTree = "<group>"; };
 		E9E8E9451B0B22FA0074F41A /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		E9EBF63B1B2BC28C009924DD /* CurrentFinancialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentFinancialViewController.swift; sourceTree = "<group>"; };
 		E9F3DFEF1B0DD53F00F8F3AA /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		E9F3DFF01B0DD53F00F8F3AA /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		E9FC8DCB1B297C5000C74EED /* NewDetailScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDetailScrollViewController.swift; sourceTree = "<group>"; };
+		E9FE8EFA1B2C1EED00747E1C /* area.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = area.json; sourceTree = "<group>"; };
+		E9FE8EFC1B2C204200747E1C /* BandBankControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandBankControllerExtension.swift; sourceTree = "<group>"; };
 		E9FF4D131B228A3F005FCAAA /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -359,7 +365,7 @@
 		E91E81311AB2794D000C5FD3 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				CDE0CA671B26C4780079DB21 /* Images.xcassets */,
+				CD7E21021B2EB43400463325 /* Images.xcassets */,
 				E90EA25D1ABFA1A5006D22E6 /* 盛世财富-Bridging-Header.h */,
 			);
 			name = Source;
@@ -368,6 +374,7 @@
 		E91E81321AB27956000C5FD3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E9EBF63B1B2BC28C009924DD /* CurrentFinancialViewController.swift */,
 				E99D36E01B16F29900167132 /* BandBankViewController.swift */,
 				E99D36DE1B16F28B00167132 /* BandBankController.swift */,
 				E9C70C091AC108AC00E1CA8D /* AboutViewController.swift */,
@@ -409,7 +416,9 @@
 				CDD3BE011B1FFA9D00CE6323 /* FindResultsViewController.swift */,
 				E9FF4D131B228A3F005FCAAA /* NewsDetailViewController.swift */,
 				E9CC27251B22D9A300056EFC /* RealTimeFinanceViewController.swift */,
-				59C540861B2989950061B44C /* CurrentFinancialViewController.swift */,
+				CDBEF4161B29A4040025FBD4 /* aaTableViewController.swift */,
+				E9FC8DCB1B297C5000C74EED /* NewDetailScrollViewController.swift */,
+				E9FE8EFC1B2C204200747E1C /* BandBankControllerExtension.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -506,6 +515,7 @@
 			children = (
 				E9D6604B1AB1313B0020982D /* Info.plist */,
 				CDD3BE031B1FFD1800CE6323 /* sortednames.plist */,
+				E9FE8EFA1B2C1EED00747E1C /* area.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -555,7 +565,6 @@
 				59D214BA1AFC9AD800677C26 /* AlertView.swift */,
 				59C540821B2814DD0061B44C /* EmptyView.swift */,
 				E96E52401B0C577800CFD8E2 /* Common.swift */,
-				E95B89EB1B19B0DD005AAED7 /* viewController.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -643,9 +652,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E94E95A81B0AD3DD00E717DE /* Main.storyboard in Resources */,
-				CDE0CA681B26C4780079DB21 /* Images.xcassets in Resources */,
 				5906B2491B0F103F00ADA082 /* LLLockViewController.xib in Resources */,
 				CDD3BE041B1FFD1800CE6323 /* sortednames.plist in Resources */,
+				CD7E21031B2EB43400463325 /* Images.xcassets in Resources */,
+				E9FE8EFB1B2C1EED00747E1C /* area.json in Resources */,
 				E9D660571AB1313B0020982D /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -670,6 +680,7 @@
 				E96B2F091B08673900B4197B /* MDRadialProgressTheme.m in Sources */,
 				E961E1241AC8DCBC0021ED14 /* RECommonFunctions.m in Sources */,
 				E961E1271AC8DCBC0021ED14 /* REMenuItem.m in Sources */,
+				E9EBF63C1B2BC28C009924DD /* CurrentFinancialViewController.swift in Sources */,
 				E94E95A61B0AD34F00E717DE /* NJDBezierCurve.m in Sources */,
 				E9C54E061AB7BCD400D4722C /* LendDetailViewController.swift in Sources */,
 				595C8DC51B07317800989977 /* NavigationExtension.swift in Sources */,
@@ -687,6 +698,7 @@
 				E961E1281AC8DCBC0021ED14 /* REMenuItemView.m in Sources */,
 				594200AD1B1324070005E671 /* GetCashViewController.swift in Sources */,
 				E9C605B31ABBB9C500752D91 /* RefreshBaseView.swift in Sources */,
+				E9FC8DCC1B297C5000C74EED /* NewDetailScrollViewController.swift in Sources */,
 				E93B725E1B070DDE00B28672 /* InvestorSummaryTableViewController.swift in Sources */,
 				5906B24F1B104C0100ADA082 /* OffLineChargeViewController.swift in Sources */,
 				E93714CA1B074F79009B9B80 /* ModifyLoginPasswordViewController.swift in Sources */,
@@ -708,12 +720,11 @@
 				59C540831B2814DD0061B44C /* EmptyView.swift in Sources */,
 				594200AC1B1324070005E671 /* FindPasswordViewController.swift in Sources */,
 				591FD13A1B0C7CF000BFD74D /* AFHTTPSessionManager.m in Sources */,
-				59C540871B2989950061B44C /* CurrentFinancialViewController.swift in Sources */,
 				E9D6604F1AB1313B0020982D /* LendViewController.swift in Sources */,
 				594E5B4F1AFA102500218DA5 /* NewPersonCenterViewController.swift in Sources */,
 				E9B9EF4C1AC8E00600E46714 /* BidListViewController.swift in Sources */,
+				CDBEF4171B29A4040025FBD4 /* aaTableViewController.swift in Sources */,
 				592F90741B03249E00B9969B /* DaiDodgeKeyboard+AccessObject.m in Sources */,
-				E95B89EC1B19B0DD005AAED7 /* viewController.swift in Sources */,
 				CDE4EED41B1DCBF900FB95CA /* IndexTableViewController.swift in Sources */,
 				591FD13E1B0C7CF000BFD74D /* AFURLRequestSerialization.m in Sources */,
 				59D214BB1AFC9AD800677C26 /* AlertView.swift in Sources */,
@@ -721,6 +732,7 @@
 				591FD13F1B0C7CF000BFD74D /* AFURLResponseSerialization.m in Sources */,
 				592F90761B03249E00B9969B /* DaiDodgeKeyboard.m in Sources */,
 				591FD13D1B0C7CF000BFD74D /* AFURLConnectionOperation.m in Sources */,
+				E9FE8EFD1B2C204200747E1C /* BandBankControllerExtension.swift in Sources */,
 				59BEC41B1B07124200F5690D /* BidRecordViewController.swift in Sources */,
 				592F90751B03249E00B9969B /* DaiDodgeKeyboard+Animation.m in Sources */,
 				E93732B11ACA32F600423B7E /* MyMenuTableViewController.swift in Sources */,

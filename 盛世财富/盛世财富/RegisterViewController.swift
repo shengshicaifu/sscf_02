@@ -41,20 +41,26 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         Common.addBorder(checkBtn)
         self.navigationItem.title = "用户注册"
         
-        surePwdTextField.leftView = UIImageView(image: UIImage(named: "密码.png"))
-        surePwdTextField.leftViewMode = UITextFieldViewMode.Always
+        Common.addLeftImage(surePwdTextField, imageName: "密码.png")
+        Common.addLeftImage(passwordTextField, imageName: "密码.png")
+        Common.addLeftImage(phoneTextField, imageName: "电话.png")
+        Common.addLeftImage(codeTextField, imageName: "齿轮.png")
+        Common.addLeftImage(userNameTextField, imageName: "人.png")
         
-        passwordTextField.leftView = UIImageView(image: UIImage(named: "密码.png"))
-        passwordTextField.leftViewMode = UITextFieldViewMode.Always
-        
-        phoneTextField.leftView = UIImageView(image: UIImage(named: "电话.png"))
-        phoneTextField.leftViewMode = UITextFieldViewMode.Always
-        
-        codeTextField.leftView = UIImageView(image: UIImage(named: "齿轮.png"))
-        codeTextField.leftViewMode = UITextFieldViewMode.Always
-        
-        userNameTextField.leftView = UIImageView(image: UIImage(named: "人.png"))
-        userNameTextField.leftViewMode = UITextFieldViewMode.Always
+//        surePwdTextField.leftView = UIImageView(image: UIImage(named: "密码.png"))
+//        surePwdTextField.leftViewMode = UITextFieldViewMode.Always
+//        
+//        passwordTextField.leftView = UIImageView(image: UIImage(named: "密码.png"))
+//        passwordTextField.leftViewMode = UITextFieldViewMode.Always
+//        
+//        phoneTextField.leftView = UIImageView(image: UIImage(named: "电话.png"))
+//        phoneTextField.leftViewMode = UITextFieldViewMode.Always
+//        
+//        codeTextField.leftView = UIImageView(image: UIImage(named: "齿轮.png"))
+//        codeTextField.leftViewMode = UITextFieldViewMode.Always
+//        
+//        userNameTextField.leftView = UIImageView(image: UIImage(named: "人.png"))
+//        userNameTextField.leftViewMode = UITextFieldViewMode.Always
     }
     
     //发送验证码

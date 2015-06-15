@@ -83,7 +83,7 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
                         
                         NSUserDefaults.standardUserDefaults().setObject(accountMoney, forKey: "accountMoney")
                         
-                        self.textLayer?.jumpNumberWithDuration(1, fromNumber: 0.0, toNumber: accountMoney.floatValue)
+                        self.textLayer?.jumpNumberWithDuration(1, fromNumber: 0.0, toNumber: totalAll.floatValue)
                     }
                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     self.refreshControl?.endRefreshing()
@@ -142,42 +142,29 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
     
     func refreshData(){
         var user = NSUserDefaults.standardUserDefaults()
-        if let username:String = user.objectForKey("username") as? String {
-            self.navigationItem.title = username
-            
-                
-            //获取金额
-            if let usermoney:NSString = user.objectForKey("accountMoney") as? NSString {
-                textLayer?.jumpNumberWithDuration(1, fromNumber: 0.0, toNumber: usermoney.floatValue)
-            }
-
-            
-            if let headImage:NSData = user.objectForKey("headImage") as? NSData {
-                //如果本地有保存图像，用本地的
-                self.head.image = UIImage(data: headImage)
-            }else if let userpic:String = user.objectForKey("userpic") as? String {
-                //如果本地没有保存图像，但是有图像地址，用远程的，并保存到本地
-                if userpic.isEmpty == false {
-                
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                        
-                        if let image = NSData(contentsOfURL: NSURL(string: userpic as String)!) {
-                            self.head.image = UIImage(data: image)
-                            user.setObject(image, forKey: "headImage")
-                            
-                        }
-                        
-                    })
-                }
-            }
-            
-        }else {
-            self.navigationItem.title = "请登录"
+        self.navigationItem.title = user.objectForKey("username") as? String
+        //获取金额
+        if let usermoney:NSString = user.objectForKey("usermoney") as? NSString {
+            textLayer?.jumpNumberWithDuration(1, fromNumber: 0.0, toNumber: usermoney.floatValue)
         }
-    }
-    func getHead(sender:String){
+
         
-        
+        if let headImage:NSData = user.objectForKey("headImage") as? NSData {
+            //如果本地有保存图像，用本地的
+            self.head.image = UIImage(data: headImage)
+            return
+        }
+        var userpicUrl = user.objectForKey("headpic") as? String
+        if (userpicUrl != nil) &&  !(userpicUrl!.isEmpty) {
+            //如果本地没有保存图像，但是有图像地址，用远程的，并保存到本地
+            //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                
+                if let image = NSData(contentsOfURL: NSURL(string: userpicUrl!)!) {
+                    self.head.image = UIImage(data: image)
+                    user.setObject(image, forKey: "headImage")
+                }
+            //})
+        }
         
     }
     

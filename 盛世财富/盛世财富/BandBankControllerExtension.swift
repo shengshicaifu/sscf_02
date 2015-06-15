@@ -19,18 +19,24 @@ extension BandBankController:UIPickerViewDataSource{
         }
         return city.count
     }
+    
 }
 extension BandBankController:UIPickerViewDelegate{
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         if component == 0{
-         
+           var selectedProvince = province.objectAtIndex(row) as! String
+           var cityArray = listData[row].valueForKey("cities") as! NSArray
+            city.removeAllObjects()
+            city.addObjectsFromArray(cityArray as [AnyObject])
+            self.ProvincePick.reloadComponent(1)
+            self.ProvincePick.selectRow(0, inComponent: 1, animated: true)
         }
-      
+        
     }
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String!{
         if component == 0{
-            return province[row]
+            return province[row] as! String
         }
-        return city[row]
+        return city[row] as! String
     }
 }

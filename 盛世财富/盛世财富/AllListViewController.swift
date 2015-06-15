@@ -483,7 +483,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             var d = self.listData[indexPath.row] as! NSDictionary
             var id = d.objectForKey("id") as! String
             NSLog("购买选中的id%@",id)
-            var bidConfirmViewController = self.storyboard?.instantiateViewControllerWithIdentifier("BidConfirmViewController") as! BidConfirmViewController
+            var bidConfirmViewController = self.storyboard?.instantiateViewControllerWithIdentifier("bidConfirmViewController") as! BidConfirmViewController
             bidConfirmViewController.id = id
             self.navigationController?.pushViewController(bidConfirmViewController, animated: true)
         }

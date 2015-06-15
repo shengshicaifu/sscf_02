@@ -16,35 +16,39 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
     @IBOutlet weak var addTapped: UIButton!
     @IBOutlet weak var bankCardNoTextField: UITextField!
     @IBOutlet weak var bankNameTextField: UITextField!
-    @IBOutlet weak var bankProviceTextField: UITextField!
-    @IBOutlet weak var bankCityTextField: UITextField!
     @IBOutlet weak var bankBranchTextField: UITextField!
     @IBOutlet weak var bankNameLabel: UILabel!
     @IBOutlet weak var bankCardNoLabel: UILabel!
-    @IBOutlet weak var provinceLabel: UILabel!
-    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var ProvincePick: UIPickerView!
+    var listData :NSArray = [] //存储json数据的
+    let  province = ["湖南","湖北","广东","广西","山西"]
+    let  city = ["武汉","北京","上海","重庆","深圳"]
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        ProvincePick.delegate = self
+        ProvincePick.dataSource = self
         bankCardNoTextField.delegate = self
         bankNameTextField.delegate = self
-        bankProviceTextField.delegate = self
-        bankCityTextField.delegate = self
         bankBranchTextField.delegate = self
-        
+    
         
         
         Common.customerBgView(styleView)
         Common.customerButton(addTapped)
         Common.addBorder(bankNameTextField)
         Common.addBorder(bankCardNoTextField)
-        Common.addBorder(bankProviceTextField)
-        Common.addBorder(bankCityTextField)
         Common.addBorder(bankNameLabel)
         Common.addBorder(bankCardNoLabel)
-        Common.addBorder(provinceLabel)
-        Common.addBorder(cityLabel)
+        
+        //获取json数据
+        var path = NSBundle.mainBundle().pathForResource("area", ofType: "json")
+        var jsonData:NSData = NSData(contentsOfFile: path!)!
+        var jsonDic = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil)
+        listData = jsonDic as! NSArray
+        var count = self.listData.count
+        println(listData[1].valueForKey("province"))
+//        var provinceobj = jsonDic?.objectForKey(province)
+        
         var userDefaults = NSUserDefaults.standardUserDefaults()
         var bankCardNo = userDefaults.objectForKey("bankCardNo") as? String
         println("bankCardNo\(bankCardNo)")
@@ -54,8 +58,6 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
         }else{
             bankCardNoTextField.text = userDefaults.objectForKey("bankCardNo") as? String
             bankNameTextField.text = userDefaults.objectForKey("bankName") as? String
-            bankProviceTextField.text = userDefaults.objectForKey("bankProvice") as? String
-            bankCityTextField.text = userDefaults.objectForKey("bankCity") as? String
             bankBranchTextField.text = userDefaults.objectForKey("bankBranch") as? String
             addTapped.setTitle("修改", forState: UIControlState.Normal)
             self.title = "修改银行卡"
@@ -74,8 +76,6 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
         
         var bankCardNo = bankCardNoTextField.text
         var bankName = bankNameTextField.text
-        var bankProvice = bankProviceTextField.text
-        var bankCity = bankCityTextField.text
         var bankBranch = bankBranchTextField.text
         
         if bankCardNoUserDefaults == nil || bankCardNoUserDefaults == "" {
@@ -89,14 +89,6 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
                 }
             if bankName.isEmpty {
                 AlertView.showMsg("请输入银行名称", parentView: self.view)
-                return
-            }
-            if bankProvice.isEmpty {
-                AlertView.showMsg("请输入银行省份", parentView: self.view)
-                return
-            }
-            if bankCity.isEmpty {
-                AlertView.showMsg("请输入银行城市", parentView: self.view)
                 return
             }
             if bankBranch.isEmpty {
@@ -117,7 +109,7 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
             var url = Common.serverHost + "/App-Ucenter-bindBank"
             var token = userDefaults.objectForKey("token") as! String
             println(token)
-            let params = ["to":token,"txt_account":bankCardNo,"bank_name":bankName,"province":bankProvice,"city":bankCity,"txt_bankName":bankBranch]
+            let params = ["to":token,"txt_account":bankCardNo,"bank_name":bankName,"province":"湖北","city":"武汉","txt_bankName":bankBranch]
             manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
             loading.startLoading(self.view)
             manager.POST(url, parameters: params,
@@ -135,8 +127,8 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
                         AlertView.alert("提示", message: "绑定银行卡成功", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
                             userDefaults.setObject(bankCardNo, forKey: "bankCardNo")
                             userDefaults.setObject(bankName, forKey: "bankName")
-                            userDefaults.setObject(bankProvice, forKey: "bankProvice")
-                            userDefaults.setObject(bankCity, forKey: "bankCity")
+//                            userDefaults.setObject(bankProvice, forKey: "bankProvice")
+//                            userDefaults.setObject(bankCity, forKey: "bankCity")
                             userDefaults.setObject(bankBranch, forKey: "bankBranch")
                             self.navigationController?.popViewControllerAnimated(true)
                         })
@@ -158,14 +150,6 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
                 AlertView.showMsg("请输入银行名称", parentView: self.view)
                 return
             }
-            if bankProviceTextField.text.isEmpty {
-                AlertView.showMsg("请输入银行省份", parentView: self.view)
-                return
-            }
-            if bankCityTextField.text.isEmpty {
-                AlertView.showMsg("请输入银行城市", parentView: self.view)
-                return
-            }
             if bankBranchTextField.text.isEmpty {
                 AlertView.showMsg("请输入银行支行", parentView: self.view)
                 return
@@ -175,7 +159,7 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
         var url = Common.serverHost + "/App-Ucenter-bindBank"
         var token = userDefaults.objectForKey("token") as? String
         var bankCardNo = userDefaults.objectForKey("bankCardNo") as? String
-        let params = ["to":token,"txt_account":bankCardNoTextField.text,"bank_name":bankNameTextField.text,"province":bankProviceTextField.text,"city":bankCityTextField.text,"txt_bankName":bankBranchTextField.text,"txt_oldaccount":bankCardNo]
+        let params = ["to":token,"txt_account":bankCardNoTextField.text,"bank_name":bankNameTextField.text,"province":"湖北","city":"武汉","txt_bankName":bankBranchTextField.text,"txt_oldaccount":bankCardNo]
         loading.startLoading(self.view)
         manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
         manager.POST(url, parameters: params,
@@ -192,8 +176,8 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
                 AlertView.alert("提示", message: "绑定银行卡成功", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
                     userDefaults.setObject(bankCardNo, forKey: "bankCardNo")
                     userDefaults.setObject(bankName, forKey: "bankName")
-                    userDefaults.setObject(bankProvice, forKey: "bankProvice")
-                    userDefaults.setObject(bankCity, forKey: "bankCity")
+//                    userDefaults.setObject(bankProvice, forKey: "bankProvice")
+//                    userDefaults.setObject(bankCity, forKey: "bankCity")
                     userDefaults.setObject(bankBranch, forKey: "bankBranch")
                     self.navigationController?.popViewControllerAnimated(true)
                 })
@@ -227,8 +211,6 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
     func resignAll() {
         bankCardNoTextField.resignFirstResponder()
         bankNameTextField.resignFirstResponder()
-        bankProviceTextField.resignFirstResponder()
-        bankCityTextField.resignFirstResponder()
         bankBranchTextField.resignFirstResponder()
     }
 

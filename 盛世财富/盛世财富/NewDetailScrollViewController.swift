@@ -12,6 +12,7 @@ class NewDetailScrollViewController: UIViewController {
     var id:String?
     var type:String?
     @IBOutlet weak var InterestRateLabel: UILabel!
+    @IBOutlet weak var pview: UIView!
     @IBOutlet weak var borrowMoney: UILabel!
     @IBOutlet weak var borrowName: UILabel!
     @IBOutlet weak var borrowMinLabel: UILabel!
@@ -77,7 +78,8 @@ class NewDetailScrollViewController: UIViewController {
                     self.addTime.text = Common.dateFromTimestamp(DoubleTime)
                     
                     self.borrowRate.text = "\(InterestRate)%"
-                    self.borrowDuration.text =  borrowinfo["borrow_duration"] as? String
+                    var borrow = borrowinfo["borrow_duration"] as! String
+                    self.borrowDuration.text = "\(borrow)天"
                     
                     var lefttime = borrowinfo["lefttime"] as! Int
                     if lefttime > 0 {
@@ -94,22 +96,26 @@ class NewDetailScrollViewController: UIViewController {
                         //self.buyButton.enabled = false
                         
                     }
-                    
+                    var unit = borrowinfo["progress"] as! NSString
 
                     
                         println(self.id)
                         //根据借款状态和募集期来判断该标是否可买
                         //借款状态
+                         var canBuy:Bool = true//表示标是否能买
                         var status = borrowinfo["borrow_status"] as! NSString
                         switch status {
                         case "4":
                             //复审中
+                            canBuy = false
                             self.buyButton.enabled = false
                         case "6":
                             //还款中
+                            canBuy = false
                             self.buyButton.enabled = false
                         case "7":
                             //已完成
+                            canBuy = false
                             self.buyButton.enabled = false
                         default:
                             break
@@ -119,9 +125,36 @@ class NewDetailScrollViewController: UIViewController {
                         if collectTimeStr != nil {
                             var curTime = NSDate().timeIntervalSince1970
                             if collectTimeStr?.doubleValue < curTime {
-                               
+                               canBuy = false
                             }
                         }
+                    self.pview.backgroundColor = UIColor.whiteColor()
+                    if self.pview.viewWithTag(1) != nil {
+                        self.pview.viewWithTag(1)?.removeFromSuperview()
+                    }
+                    if self.pview.viewWithTag(2) != nil {
+                        self.pview.viewWithTag(2)?.removeFromSuperview()
+                    }
+                    if canBuy {
+                        var progress = CircleView()
+                        progress.tag = 1
+                        progress.type = "1"
+                        progress.backgroundColor = UIColor.whiteColor()
+                        progress.frame = CGRectMake(0, 0, self.pview.frame.width - 15, self.pview.frame.height - 15)
+                        progress.percent = unit.doubleValue/100.0
+                        progress.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "buy:"))
+                        self.pview.addSubview(progress)
+                    }else{
+                        var progress = CircleView()
+                        progress.tag = 2
+                        progress.type = "2"
+                        progress.backgroundColor = UIColor.whiteColor()
+                        progress.frame = CGRectMake(0, 0, self.pview.frame.width - 15, self.pview.frame.height - 15)
+                        progress.percent = 0.0
+//                        progress.tip = statusTipLabel.text!
+                        self.pview.addSubview(progress)
+                        
+                    }
 //
                         loading.stopLoading()
                       

@@ -56,7 +56,7 @@ class AccountSafeTableViewController: UITableViewController,UITableViewDataSourc
                     cell.accessoryType = UITableViewCellAccessoryType.None
                     cell.userInteractionEnabled = false
                 }else if isVerify == "1" {
-                    tipImageView.image = UIImage(named: "1_53")
+                    tipImageView.image = UIImage(named: "yes")
                     rightText = Common.replaceStringToX(isUpload!, start: 2, end: isUpload!.length-4)
                     cell.accessoryType = UITableViewCellAccessoryType.None
                     cell.userInteractionEnabled = false
@@ -73,7 +73,7 @@ class AccountSafeTableViewController: UITableViewController,UITableViewDataSourc
                 rightText = "请设置交易密码"
             } else {
                 rightText = "修改交易密码"
-                tipImageView.image = UIImage(named: "1_53")
+                tipImageView.image = UIImage(named: "yes")
             }
         }else if row == 3{
             
@@ -82,7 +82,7 @@ class AccountSafeTableViewController: UITableViewController,UITableViewDataSourc
             var phone = NSUserDefaults.standardUserDefaults().objectForKey("phone") as? NSString
             if phone != nil {
                 rightText = Common.replaceStringToX(phone!, start: 3, end: 7)
-                tipImageView.image = UIImage(named: "1_53")
+                tipImageView.image = UIImage(named: "yes")
             }
             
         }

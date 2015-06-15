@@ -29,7 +29,7 @@ class Common {
     /// 转接服务器地址
     static let serverHost:String = "http://www.sscf88.com" //"http://61.183.178.86:10888/MidServer"
     //
-    static let domain:String = "www.baidu.com"
+    static let domain:String = "www.sscf88.com"
     
     
     //MARK:- 正则表达式验证

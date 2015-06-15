@@ -14,18 +14,15 @@ import UIKit
 class AllListViewController: UIViewController ,UITableViewDataSource,UITableViewDelegate{
     var eHttp: HttpController = HttpController()
 
-    var timeLineUrl = Common.serverHost + "/app-invest-content"
-    var tmpListData: NSMutableArray = NSMutableArray()
-    var listData: NSMutableArray = NSMutableArray()
+    var url1 = Common.serverHost + "/app-invest-content"//所有标
+    var url2 = Common.serverHost + "/App-Invest-getActiveList"//活动标
+    var url3 = Common.serverHost + "/App-Invest-getBiaoList"//组合标
+    var url = ""
+    var listData: NSMutableArray = NSMutableArray()//存储获取到的标列表数据
     var page = 1 //page
-    var imageCache = Dictionary<String,UIImage>()
-    var tid: String = ""
-    var sign: String = ""
-    var isCheck: String = ""
-    let refreshControl = UIRefreshControl()
-    var id = ""
-    var type:String?
+    var type = "0"//0:专享理财 1:债权转让计划  2:受益权转让计划
     @IBOutlet weak var circle: UIActivityIndicatorView!
+    @IBOutlet weak var mainTable: UITableView!
     
     
     var conditionMenuView:UIView?
@@ -39,17 +36,54 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     var money:String = "0"
     var period:String = "0"
     
-    //显示筛选菜单
+    //MARK:- view delegate
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        mainTable.delegate = self
+        
+        //判断标列表的类型
+        NSLog("列表类型:%@", type)
+        switch type {
+            case "0":
+                //专享理财  活动标
+                self.url = url2
+                self.navigationItem.title = "专享理财"
+                break
+            case "1":
+                //债权转让计划   组合标
+                self.url = url3
+                self.navigationItem.title = "债权转让计划"
+                break
+            case "2":
+                //受益权转让计划   未定，先用所有标
+                self.url = url1
+                self.navigationItem.title = "受益权转让计划"
+                break
+            default:
+                self.url = url1
+                break
+        }
+
+        
+        self.getData("0")
+        setupRefresh()
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        if mainTable.indexPathForSelectedRow() != nil {
+            self.mainTable.deselectRowAtIndexPath(mainTable.indexPathForSelectedRow()!, animated: true)
+        }
+    }
+    
+    
+    //MARK:- 筛选
     @IBAction func showConditionMenuView(sender: UIBarButtonItem) {
         if !isConditionMenuViewVisiable {
             if conditionMenuView == nil {
                 conditionMenuView = UIView(frame: CGRectMake(0, -350, self.view.frame.width, 350))
-                //conditionMenuView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Dark))
-                //conditionMenuView?.frame = CGRectMake(0, 0, self.view.frame.width, 350)
                 conditionMenuView?.tag = 1001
-                //UIColor(red: 68/255.0, green: 163/255.0, blue: 242/255.0, alpha: 1.0)
                 conditionMenuView!.backgroundColor = UIColor(red: 68/255.0, green: 163/255.0, blue: 242/255.0, alpha: 1.0)
-//                conditionMenuView!.alpha = 0.8
                 
                 //借款状态
                 var statusLabel = UILabel(frame: CGRectMake(5, 80, 120, 40))
@@ -94,7 +128,6 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                 //确定
                 var okBtn = UIButton(frame: CGRectMake((self.view.frame.width-150)/2, 300, 150, 30))
                 okBtn.setTitle("确定", forState: UIControlState.Normal)
-                //okBtn.backgroundColor = UIColor.redColor()
                 okBtn.addTarget(self, action: "conditionChoosed", forControlEvents: UIControlEvents.TouchUpInside)
                 
                 conditionMenuView?.addSubview(okBtn)
@@ -111,8 +144,6 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                 }) { (Bool) -> Void in
                     
             }
-            
-            //self.conditionMenuView?.hidden = false
             isConditionMenuViewVisiable = true
         }else {
 
@@ -121,7 +152,6 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                 }) { (Bool) -> Void in
                     
             }
-            //self.conditionMenuView?.hidden = true
             isConditionMenuViewVisiable = false
         }
         
@@ -141,14 +171,22 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         isConditionMenuViewVisiable = false
         
         //加载数据
-        getData()
+        getData("0")
     }
     
-    //加载数据
-    func getData(){
-//        self.circle.hidden = false
-//        self.circle.startAnimating()
+    
+    
+    //MARK:- 获取数据
+    /**
+    加载数据
+    
+    :param: actionType 0:进入页面和筛选
+                       1:下拉刷新
+                       2:上拉加载
+    */
+    func getData(actionType:String){
         
+        //获取查询条件
         switch statusValue {
             case 0:status = "0" ;break
             case 1:status = "0" ;break
@@ -178,82 +216,104 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             case 4:period = "7|12" ;break
             default:period = "0" ;
         }
+        var params = [:]
+        if type == "0" || type == "2" {
+            params = ["borrow_status":status,"borrow_money":money,"borrow_duration":period]
+            
+            if actionType == "2" {
+                //记录最后一个[标的]的ID号码
+                var borrow_id = 0
+                var count = self.listData.count
+                if count > 0 {
+                    borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
+                    params = ["borrow_id":"\(borrow_id)","borrow_status":self.status,"borrow_money":self.money,"borrow_duration":self.period]
+                }
+            }
+        }else if type == "1" {
+            params = ["count":"4","borrow_status":status,"borrow_money":money,"borrow_duration":period]
+            if actionType == "2" {
+                //记录最后一个[标的]的ID号码
+                var borrow_id = 0
+                var count = self.listData.count
+                if count > 0 {
+                    borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
+                    params = ["count":"4","borrow_id":"\(borrow_id)","borrow_status":self.status,"borrow_money":self.money,"borrow_duration":self.period]
+                }
+            }
+        }
         
-        var url = self.timeLineUrl
-
-        var params = ["borrow_status":status,"borrow_money":money,"borrow_duration":period]
+        
 //        NSLog("筛选参数%@", params)
         var manager = AFHTTPRequestOperationManager()
-        loading.startLoading(self.view)
+        if actionType == "0" {
+           loading.startLoading(self.view)
+        }else if (actionType == "1" || actionType == "2"){
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        }
+        
+        
         manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-        manager.POST(url, parameters: params,
+        NSLog("地址%@", self.url)
+        NSLog("参数%@", params)
+        manager.POST(self.url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                //NSLog("listData:%@",self.listData.isKindOfClass(NSMutableArray))
-                
-//                self.circle.stopAnimating()
-//                self.circle.hidden = true
-                loading.stopLoading()
                 var result:NSDictionary = data as! NSDictionary
-                
-                if let resultData = result["data"]?.valueForKey("list") as? NSMutableArray {
-                    self.listData = resultData
-                } else {
-//                    if self.listData.isKindOfClass(NSMutableArray) {
-//                        NSLog("listData是NSMutableArray")
-//                    }
-                    self.listData = NSMutableArray()
-                    self.listData.removeAllObjects()
-                    AlertView.alert("提示", message: "没有找到数据", buttonTitle: "确定", viewController: self)
+                NSLog("标的列表结果%@", result)
+                if actionType == "0" {
+                    loading.stopLoading()
+                }else if actionType == "1"{
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    self.mainTable.headerEndRefreshing()
+                }else if actionType == "2"{
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    self.mainTable.footerEndRefreshing()
                 }
                 
-//                for var i=0 ; i < self.listData.count; i++ {
-//                    NSLog("筛选结果%@",(self.listData[i] as! NSDictionary)["id"] as! String)
-//                }
-//                println(self.listData.count)
+                if (self.type == "0") || (self.type == "2") {
+                    //活动标或所有列表
+                    if (actionType == "0" || actionType == "1"){
+                        //重新获取数据
+                        self.listData.removeAllObjects()
+                    }
+                    if let resultList = result["data"]?["list"] as? NSArray {
+                        self.listData.addObjectsFromArray(resultList as [AnyObject])
+                    }
+                }else if self.type == "1" {
+                    //组合标
+                    if (actionType == "0" || actionType == "1"){
+                        //重新获取数据
+                        self.listData.removeAllObjects()
+                    }
+                    if let array1 = result["data"] as? NSArray {
+                        for var i=0;i<array1.count;i++ {
+                            var array2 = array1[i] as! NSArray
+                            for var j=0;j<array2.count;j++ {
+                                if let object = array2[j] as? NSDictionary {
+                                    self.listData.addObject(object)
+                                }
+                            }
+                            //self.listData.addObjectsFromArray(array1[i] as! [AnyObject])
+                        }
+                    }
+                }
                 self.mainTable.reloadData()
-                
-                
             },
             failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
-                loading.stopLoading()
+                if actionType == "0" {
+                    loading.stopLoading()
+                }else if actionType == "1"{
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    self.mainTable.headerEndRefreshing()
+                }else if actionType == "2"{
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    self.mainTable.footerEndRefreshing()
+                }
                 AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
             }
         )
         
     }
     
-    
-    @IBOutlet weak var mainTable: UITableView!
-    override func viewDidLoad() {
-//        NSLog("viewDidLoad")
-        super.viewDidLoad()
-        mainTable.delegate = self
-        
-       // UITableView.clearsSelectionOnViewWillAppear = true
-        
-        
-        loading.startLoading(self.view)
-        var params = [:]
-        var manager = AFHTTPRequestOperationManager()
-        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-        manager.POST(timeLineUrl, parameters: params,
-            success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                loading.stopLoading()
-                var result:NSDictionary = data as! NSDictionary
-                
-                self.tmpListData = result["data"]?.valueForKey("list") as! NSMutableArray //list数据
-                self.mainTable.hidden = false
-                
-                self.mainTable.reloadData()
-                
-            },
-            failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
-                loading.stopLoading()
-                //AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
-            }
-        )
-        setupRefresh()
-    }
     
     //为table添加下拉刷新和上拉加载功能
     func setupRefresh(){
@@ -286,58 +346,12 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         
         //上拉加载
         self.mainTable.addFooterWithCallback({
-            //记录最后一个[标的]的ID号码
-            var borrow_id = 0
-            
-            var count = self.listData.count
-            if count > 0 {
-                borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
-            }
-//            NSLog("最后一个[标的]的ID号码:%i", borrow_id)
-            var params = ["borrow_id":borrow_id,"borrow_status":self.status,"borrow_money":self.money,"borrow_duration":self.period]
-            var manager = AFHTTPRequestOperationManager()
-            manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-            manager.POST(self.timeLineUrl, parameters: params,
-                success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                    
-                    var result:NSDictionary = data as! NSDictionary
-                    
-                    self.tmpListData = result["data"]?.valueForKey("list") as! NSMutableArray //list数据
-                    
-                    //self.mainTable.reloadData()
-                    self.mainTable.footerEndRefreshing()
-                    
-                    var newList = NSMutableArray()
-                    if self.listData.count > 0 {
-                        newList.addObjectsFromArray(self.listData as [AnyObject])
-                    }
-                    if(self.tmpListData.count > 0){
-                        newList.addObjectsFromArray(self.tmpListData as [AnyObject])
-                    }
-                    self.listData = newList
-                    self.mainTable.reloadData()
-                    self.tmpListData = NSMutableArray()
-
-                },
-                failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                    self.mainTable.footerEndRefreshing()
-                    AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
-                }
-            )
+            self.getData("2")
         })
     }
 
     //MARK:-  table
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        
-        if(self.listData.count == 0){
-            if(self.tmpListData.count != 0){
-                self.listData = self.tmpListData
-            }
-        }
         return listData.count
     }
     
@@ -415,22 +429,6 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
             if canBuy {
                 //能买
                 //圆形进度条
-//                var circleProgressTheme = MDRadialProgressTheme()
-//                circleProgressTheme.completedColor = UIColor(red: 68/255.0, green: 138/255.0, blue: 255/255.0, alpha: 1.0)
-//                circleProgressTheme.incompletedColor = UIColor(red: 235/255.0, green: 235/255.0, blue: 235/255.0, alpha: 1.0)
-//                circleProgressTheme.centerColor = UIColor.clearColor()
-//                circleProgressTheme.centerColor = UIColor(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0)
-//                circleProgressTheme.sliceDividerHidden = true
-//                circleProgressTheme.labelColor = UIColor(red: 251/255.0, green: 44/255.0, blue: 55/255.0, alpha: 1.0)
-//                circleProgressTheme.labelShadowColor = UIColor.whiteColor()
-//                circleProgressTheme.drawIncompleteArcIfNoProgress = true
-//                var circleProgress = MDRadialProgressView(frame: CGRectMake(0, 0, pview.frame.width, pview.frame.height), andTheme: circleProgressTheme)
-//                circleProgress.progressTotal = 100
-//                circleProgress.progressCounter = UInt(unit.integerValue)
-//                circleProgress.tag = 1
-//                //为进度条添加点击事件购买
-//                circleProgress.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "buy:"))
-                
                 var progress = CircleView()
                 progress.tag = 1
                 progress.type = "1"
@@ -439,22 +437,8 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                 progress.percent = unit.doubleValue/100.0
                 progress.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "buy:"))
                 pview.addSubview(progress)
-                
-                //percent.textColor = UIColor(red: 253/255.0, green: 134/255.0, blue: 143/255.0, alpha: 1.0)
             }else{
                 //不能买
-                //提示
-//                statusTipLabel.sizeToFit()
-//                statusTipLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-//                statusTipLabel.tag = 2
-//                pview.addSubview(statusTipLabel)
-//                
-//                //为提示加约束
-//                var statusTipLabelConstraint = NSLayoutConstraint(item: statusTipLabel, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: pview, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 10)
-//                pview.addConstraint(statusTipLabelConstraint)
-//                
-//                statusTipLabelConstraint = NSLayoutConstraint(item: statusTipLabel, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: pview, attribute: NSLayoutAttribute.CenterY, multiplier: 1.0, constant: 0)
-//                pview.addConstraint(statusTipLabelConstraint)
                 var progress = CircleView()
                 progress.tag = 2
                 progress.type = "2"
@@ -463,8 +447,6 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
                 progress.percent = 0.0
                 progress.tip = statusTipLabel.text!
                 pview.addSubview(progress)
-                
-                //percent.textColor = UIColor(red: 216/255.0, green: 216/255.0, blue: 216/255.0, alpha: 1.0)
             }
 
         }else{
@@ -475,6 +457,14 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         
     }
     
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if self.listData.count > 0 {
+            self.performSegueWithIdentifier("detail", sender: self)
+        }
+    }
+    
+    //MARK:- 页面跳转
     //点击进度条购买
     func buy(sender:UIGestureRecognizer){
         if let tableCell = sender.view?.superview?.superview?.superview as? UITableViewCell {

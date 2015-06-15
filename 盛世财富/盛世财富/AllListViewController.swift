@@ -319,29 +319,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     func setupRefresh(){
         //下拉刷新
         self.mainTable.addHeaderWithCallback({
-            //println("下拉刷新")
-            var params = [:]
-            var manager = AFHTTPRequestOperationManager()
-            manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-            manager.POST(self.timeLineUrl, parameters: params,
-                success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                    var result:NSDictionary = data as! NSDictionary
-                    println(result)
-                    self.tmpListData = result["data"]?.valueForKey("list") as! NSMutableArray //list数据
-                    self.mainTable.hidden = false
-                
-                    self.mainTable.reloadData()
-                    self.mainTable.headerEndRefreshing()
-                    
-                },
-                failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                    self.mainTable.headerEndRefreshing()
-                    AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
-                }
-            )
+            self.getData("1")
         })
         
         //上拉加载
@@ -480,30 +458,15 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     }
     
     
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        if self.listData.count > 0 {
-//            var dic = self.listData[indexPath.row] as! NSDictionary
-//            self.id = dic.objectForKey("id")  as! String
-//            self.type = dic.objectForKey("borrow_type") as? String
-////            self.performSegueWithIdentifier("detail", sender: self)
-//        }
-//    }
-    
-
-    override func viewWillAppear(animated: Bool) {
-        if mainTable.indexPathForSelectedRow() != nil {
-            self.mainTable.deselectRowAtIndexPath(mainTable.indexPathForSelectedRow()!, animated: true)
-        }
-    }
-    
-    
+    //跳到标的详情
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "detail" {
+//            var vc = segue.destinationViewController as! LendDetailViewController
             var selectedRow = self.mainTable.indexPathForSelectedRow()?.row
             var dic = self.listData[selectedRow!] as! NSDictionary
             var vc = segue.destinationViewController as! NewDetailScrollViewController
             vc.id = dic.objectForKey("id") as? String
-            vc.type = dic.objectForKey("borrow_type") as? String
+            vc.type = self.type
         }
     }
 }

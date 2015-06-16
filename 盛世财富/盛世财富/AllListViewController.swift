@@ -436,11 +436,11 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     }
     
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if self.listData.count > 0 {
-            self.performSegueWithIdentifier("detail", sender: self)
-        }
-    }
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        if self.listData.count > 0 {
+//            self.performSegueWithIdentifier("detail", sender: self)
+//        }
+//    }
     
     //MARK:- 页面跳转
     //点击进度条购买

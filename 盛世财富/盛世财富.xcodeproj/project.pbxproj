@@ -39,13 +39,13 @@
 		59C540831B2814DD0061B44C /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C540821B2814DD0061B44C /* EmptyView.swift */; };
 		59D214BB1AFC9AD800677C26 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D214BA1AFC9AD800677C26 /* AlertView.swift */; };
 		CD0858361B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0858351B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework */; };
+		CD7E21031B2EB43400463325 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD7E21021B2EB43400463325 /* Images.xcassets */; };
 		CDBEF4171B29A4040025FBD4 /* aaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBEF4161B29A4040025FBD4 /* aaTableViewController.swift */; };
 		CDD3BE001B1FF6EB00CE6323 /* FindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3BDFF1B1FF6EB00CE6323 /* FindViewController.swift */; };
 		CDD3BE021B1FFA9D00CE6323 /* FindResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3BE011B1FFA9D00CE6323 /* FindResultsViewController.swift */; };
 		CDD3BE041B1FFD1800CE6323 /* sortednames.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDD3BE031B1FFD1800CE6323 /* sortednames.plist */; };
 		CDDCBA271B1EC6D100A4F54B /* BaoFooPay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDCBA261B1EC6D100A4F54B /* BaoFooPay.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CDE0CA661B26A5980079DB21 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0CA651B26A5980079DB21 /* CircleView.swift */; };
-		CDE0CA681B26C4780079DB21 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDE0CA671B26C4780079DB21 /* Images.xcassets */; };
 		CDE4EED21B1DC06D00FB95CA /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE4EED11B1DC06D00FB95CA /* NewsTableViewController.swift */; };
 		CDE4EED41B1DCBF900FB95CA /* IndexTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE4EED31B1DCBF900FB95CA /* IndexTableViewController.swift */; };
 		D8B251181B0041AE00360F4E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D8B251171B0041AE00360F4E /* Reachability.m */; };
@@ -170,13 +170,13 @@
 		59C540821B2814DD0061B44C /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		59D214BA1AFC9AD800677C26 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		CD0858351B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GopayNewPlatformLibraryWeb.framework; sourceTree = "<group>"; };
+		CD7E21021B2EB43400463325 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CDBEF4161B29A4040025FBD4 /* aaTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aaTableViewController.swift; sourceTree = "<group>"; };
 		CDD3BDFF1B1FF6EB00CE6323 /* FindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindViewController.swift; sourceTree = "<group>"; };
 		CDD3BE011B1FFA9D00CE6323 /* FindResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindResultsViewController.swift; sourceTree = "<group>"; };
 		CDD3BE031B1FFD1800CE6323 /* sortednames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sortednames.plist; sourceTree = "<group>"; };
 		CDDCBA261B1EC6D100A4F54B /* BaoFooPay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaoFooPay.framework; sourceTree = "<group>"; };
 		CDE0CA651B26A5980079DB21 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
-		CDE0CA671B26C4780079DB21 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CDE4EED11B1DC06D00FB95CA /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
 		CDE4EED31B1DCBF900FB95CA /* IndexTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexTableViewController.swift; sourceTree = "<group>"; };
 		D8B251161B0041AE00360F4E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -365,7 +365,7 @@
 		E91E81311AB2794D000C5FD3 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				CDE0CA671B26C4780079DB21 /* Images.xcassets */,
+				CD7E21021B2EB43400463325 /* Images.xcassets */,
 				E90EA25D1ABFA1A5006D22E6 /* 盛世财富-Bridging-Header.h */,
 			);
 			name = Source;
@@ -652,9 +652,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E94E95A81B0AD3DD00E717DE /* Main.storyboard in Resources */,
-				CDE0CA681B26C4780079DB21 /* Images.xcassets in Resources */,
 				5906B2491B0F103F00ADA082 /* LLLockViewController.xib in Resources */,
 				CDD3BE041B1FFD1800CE6323 /* sortednames.plist in Resources */,
+				CD7E21031B2EB43400463325 /* Images.xcassets in Resources */,
 				E9FE8EFB1B2C1EED00747E1C /* area.json in Resources */,
 				E9D660571AB1313B0020982D /* LaunchScreen.xib in Resources */,
 			);

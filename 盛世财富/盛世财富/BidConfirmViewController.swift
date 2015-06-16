@@ -294,6 +294,9 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         resignAll()
     }
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        resignAll()
+    }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         resignAll()

@@ -27,8 +27,8 @@ class Common {
     }
     //MARK:- 系统常量
     /// 转接服务器地址
-    static let serverHost:String = "http://www.sscf88.com"
-    //"http://61.183.178.86:10888/MidServer"
+    static let serverHost:String = "http://61.183.178.86:10888/MidServer"
+    //"http://www.sscf88.com"
     static let domain:String = "www.sscf88.com"
     
     

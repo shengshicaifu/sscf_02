@@ -44,7 +44,7 @@ class AlertView {
         //CSToastDisplayShadow ＝ false
         var screenBounds = UIScreen.mainScreen().bounds
         var x = screenBounds.width / 2
-        var y = screenBounds.height - 100
+        var y = screenBounds.height / 2
         var position = NSValue(CGPoint: CGPointMake(x, y))
         
         parentView.makeToast(msg, duration: 3, position: position)

@@ -87,6 +87,10 @@ class FindPasswordViewController:UIViewController,UITextFieldDelegate {
         
     }
     @IBAction func submit(sender: UIButton) {
+        submitAction()
+    }
+    
+    func submitAction(){
         resignAll()
         if phone.text.isEmpty {
             AlertView.showMsg("请输入手机号", parentView: self.view)
@@ -98,6 +102,10 @@ class FindPasswordViewController:UIViewController,UITextFieldDelegate {
         }
         if checkCode.text.isEmpty {
             AlertView.showMsg("请输入验证码", parentView: self.view)
+            return
+        }
+        if !Common.stringLengthIn(checkCode.text!, start: 1, end: 20) {
+            AlertView.showMsg("验证码长度在1到20之间", parentView: self.view)
             return
         }
         
@@ -131,7 +139,6 @@ class FindPasswordViewController:UIViewController,UITextFieldDelegate {
         reach.unreachableBlock = {(r:Reachability!) -> Void in
             //NSLog("网络不可用")
             dispatch_async(dispatch_get_main_queue(), {
-                
                 AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
             })
         }
@@ -143,32 +150,24 @@ class FindPasswordViewController:UIViewController,UITextFieldDelegate {
                 afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                 afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     loading.stopLoading()
-                    println(data)
-                    //AlertView.showMsg(data["message"] as! String, parentView: self.view)
                     var code = data["code"] as! Int
                     if code == 200 {
-//                        AlertView.alert("提示", message: "修改成功", buttonTitle: "确定", viewController: self, callback: {
-//                            self.dismissViewControllerAnimated(true, completion: nil)
-//                        })
-                        var alert = UIAlertController(title: "提示", message: "修改成功", preferredStyle: .Alert)
-                        alert.addAction(UIAlertAction(title: "确定", style: .Cancel, handler:{
-                            (alertAction:UIAlertAction!) -> Void in
+                        AlertView.alert("提示", message: "成功找回密码", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
                             self.dismissViewControllerAnimated(true, completion: nil)
-                        }))
-                        self.presentViewController(alert, animated: true, completion: nil)
+                        })
                     }else {
                         AlertView.alert("提示", message: "修改失败", buttonTitle: "确定", viewController: self)
                     }
                     
                     }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
                         loading.stopLoading()
-                        AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
+                        AlertView.alert("错误", message: "服务器异常，请稍候再试", buttonTitle: "确定", viewController: self)
                 }
             })
         }
         reach.startNotifier()
+
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -191,6 +190,7 @@ class FindPasswordViewController:UIViewController,UITextFieldDelegate {
         
     }
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -201,16 +201,22 @@ class FindPasswordViewController:UIViewController,UITextFieldDelegate {
         }
         return false
     }
-    
-    
-    
-    
+
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         resignAll()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        resignAll()
+        //resignAll()
+        if textField == phone {
+            checkCode.becomeFirstResponder()
+        }else if textField == checkCode {
+            password.becomeFirstResponder()
+        }else if textField == password {
+            repeatPassword.becomeFirstResponder()
+        }else if textField == repeatPassword {
+            submitAction()
+        }
         return true
     }
     

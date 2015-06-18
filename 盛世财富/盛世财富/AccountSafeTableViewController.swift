@@ -122,4 +122,5 @@ class AccountSafeTableViewController: UITableViewController,UITableViewDataSourc
 //            self.performSegueWithIdentifier("handPasswordSegue", sender: nil)
 //        }
     }
+    
 }

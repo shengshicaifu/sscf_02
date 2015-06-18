@@ -24,14 +24,15 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.title = "用户注册"
         checkBtn.setTitleColor(UIColor.grayColor(), forState: UIControlState.Disabled)
         codeTextField.delegate = self
         userNameTextField.delegate = self
         surePwdTextField.delegate = self
         passwordTextField.delegate = self
         phoneTextField.delegate = self
-        checkBtn.layer.cornerRadius = 5
+        
+        
         Common.customerButton(regist)
         Common.addBorder(userNameTextField)
         Common.addBorder(phoneTextField)
@@ -39,28 +40,13 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         Common.addBorder(surePwdTextField)
         Common.addBorder(codeTextField)
         Common.addBorder(checkBtn)
-        self.navigationItem.title = "用户注册"
+        
         
         Common.addLeftImage(surePwdTextField, imageName: "密码.png")
         Common.addLeftImage(passwordTextField, imageName: "密码.png")
         Common.addLeftImage(phoneTextField, imageName: "电话.png")
         Common.addLeftImage(codeTextField, imageName: "齿轮.png")
         Common.addLeftImage(userNameTextField, imageName: "人.png")
-        
-//        surePwdTextField.leftView = UIImageView(image: UIImage(named: "密码.png"))
-//        surePwdTextField.leftViewMode = UITextFieldViewMode.Always
-//        
-//        passwordTextField.leftView = UIImageView(image: UIImage(named: "密码.png"))
-//        passwordTextField.leftViewMode = UITextFieldViewMode.Always
-//        
-//        phoneTextField.leftView = UIImageView(image: UIImage(named: "电话.png"))
-//        phoneTextField.leftViewMode = UITextFieldViewMode.Always
-//        
-//        codeTextField.leftView = UIImageView(image: UIImage(named: "齿轮.png"))
-//        codeTextField.leftViewMode = UITextFieldViewMode.Always
-//        
-//        userNameTextField.leftView = UIImageView(image: UIImage(named: "人.png"))
-//        userNameTextField.leftViewMode = UITextFieldViewMode.Always
     }
     
     //发送验证码
@@ -78,7 +64,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
             //NSLog("网络不可用")
             dispatch_async(dispatch_get_main_queue(), {
 
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
             })
         }
         
@@ -143,6 +129,10 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     
     //注册
     @IBAction func registerTapped(sender: AnyObject) {
+        registAction()
+    }
+    
+    func registAction(){
         resignAll()
         var surePwd = surePwdTextField.text
         var password = passwordTextField.text
@@ -150,7 +140,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         var code = codeTextField.text
         var username = userNameTextField.text
         if username.isEmpty {
-            AlertView.showMsg("用户名不能为空", parentView: self.view)
+            AlertView.showMsg("请填写用户名", parentView: self.view)
             return
         }
         if !Common.isUserName(username) {
@@ -158,7 +148,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
             return
         }
         if phone.isEmpty {
-            AlertView.showMsg("手机号码不能为空", parentView: self.view)
+            AlertView.showMsg("请填写手机号码", parentView: self.view)
             return
         }
         if !Common.isTelephone(phone) {
@@ -186,13 +176,13 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         reach.unreachableBlock = {(r:Reachability!) -> Void in
             //NSLog("网络不可用")
             dispatch_async(dispatch_get_main_queue(), {
-
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
             })
         }
         
         reach.reachableBlock = {(r:Reachability!) -> Void in
-           //NSLog("网络可用")
+            //NSLog("网络可用")
             dispatch_async(dispatch_get_main_queue(), {
                 //此处执行注册操作
                 loading.startLoading(self.view)
@@ -211,7 +201,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
                         } else if code == 1 {
                             AlertView.showMsg("手机号码已经被注册", parentView: self.view)
                         } else if code == 4 {
-                            AlertView.showMsg("手机校验码不正确", parentView: self.view)
+                            AlertView.showMsg("手机验证码不正确", parentView: self.view)
                         } else if code == 200 {
                             //注册成功,保存基本信息，跳转到我的账号页面
                             
@@ -256,12 +246,15 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
                         AlertView.showMsg("注册失败", parentView: self.view)
                     }
                 )
-
+                
                 
             })
         }
         reach.startNotifier()
+
     }
+    
+    //MARK:- 键盘
     @IBAction func returnKey(sender:AnyObject){
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -281,7 +274,17 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        resignAll()
+        if textField == userNameTextField {
+            phoneTextField.becomeFirstResponder()
+        }else if textField == phoneTextField {
+            passwordTextField.becomeFirstResponder()
+        }else if textField == passwordTextField {
+            surePwdTextField.becomeFirstResponder()
+        }else if textField == surePwdTextField {
+            codeTextField.becomeFirstResponder()
+        }else if textField == codeTextField {
+            self.registAction()
+        }
         return true
     }
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -293,5 +296,12 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         passwordTextField.resignFirstResponder()
         phoneTextField.resignFirstResponder()
         codeTextField.resignFirstResponder()
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if range.location > 19 {
+            return false
+        }
+        return true
     }
 }

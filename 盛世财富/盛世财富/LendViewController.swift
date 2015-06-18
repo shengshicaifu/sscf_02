@@ -137,7 +137,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 dispatch_async(dispatch_get_main_queue(), {
                     self.refreshControl.endRefreshing()
 
-                    AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                    AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
                 })
             }
             
@@ -423,7 +423,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         var reach = Reachability(hostName: Common.domain)
         reach.unreachableBlock = {(r:Reachability!) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
             })
         }
         reach.startNotifier()

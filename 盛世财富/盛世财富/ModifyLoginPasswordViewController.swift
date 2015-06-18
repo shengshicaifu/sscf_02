@@ -80,7 +80,7 @@ class ModifyLoginPasswordViewController: UIViewController,UITextFieldDelegate {
         reach.unreachableBlock = {(r:Reachability!) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
 
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
             })
         }
         
@@ -129,9 +129,21 @@ class ModifyLoginPasswordViewController: UIViewController,UITextFieldDelegate {
         DaiDodgeKeyboard.removeRegisterTheViewNeedDodgeKeyboard()
         super.viewWillDisappear(animated)
     }
-    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if range.location >= 20 {
+            return false
+        }
+        return true
+    }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        resignAll()
+        if textField == oldPassTextField {
+            newPassTextField.becomeFirstResponder()
+        }else if textField == newPassTextField{
+            confirmPassTextField.becomeFirstResponder()
+        }else if textField == confirmPassTextField{
+            resignAll()
+        }
+        
         return true
     }
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {

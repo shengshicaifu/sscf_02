@@ -66,7 +66,7 @@ class SetPinPasswordViewController: UIViewController,UITextFieldDelegate {
             //NSLog("网络不可用")
             dispatch_async(dispatch_get_main_queue(), {
 
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
             })
         }
         
@@ -96,11 +96,13 @@ class SetPinPasswordViewController: UIViewController,UITextFieldDelegate {
                                 self.navigationController?.popViewControllerAnimated(true)
                             })
                            
+                        }else if code == -1 {
+                            AlertView.alert("提示", message: "网络连接失败或请重新登录", buttonTitle: "确定", viewController: self)
                         }
                         
                     },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
                         loading.stopLoading()
-                        AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                        AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
                     }
                 )
 
@@ -124,9 +126,19 @@ class SetPinPasswordViewController: UIViewController,UITextFieldDelegate {
         super.viewWillDisappear(animated)
     }
     
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if range.location >= 20 {
+            return false
+        }
+        return true
+    }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == pinPasswordTextField {
+            confirmPasswordTextField.becomeFirstResponder()
+        }else if textField == confirmPasswordTextField{
+            resignAll()
+        }
         
-        resignAll()
         return true
     }
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {

@@ -18,22 +18,16 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var regist: UIButton!
     var maxlength = 12
     var tabTag:Int?//用于记录是从那个tab点击跳转到登录页面，登录后需要返回到这个页面，102是消息页面，105是我的账号页面
-//    var timeLineUrl = Common.serverHost + "/App-Login"//链接地址
 
-//    var eHttp: HttpController = HttpController()//新建一个httpController
     override func viewDidLoad() {
         super.viewDidLoad()
         usernameLabel.delegate = self
         passwordLabel.delegate = self
+        
         Common.customerButton(login)
         Common.customerButton(regist)
         Common.addBorder(usernameLabel)
         Common.addBorder(passwordLabel)
-        
-        NSLog("登录输入框layer宽%f,高%f", login.layer.frame.width,login.layer.frame.height)
-        
-        //设置登录输入框左侧图标
-        
         Common.addLeftImage(usernameLabel, imageName: "人.png")
         Common.addLeftImage(passwordLabel, imageName: "密码.png")
         
@@ -43,20 +37,24 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     
     
     @IBAction func loginTapped(sender: AnyObject) {
-//        self.count++
+        self.loginAction()
+    }
+
+    func loginAction(){
         resignAll()
         var name = usernameLabel.text
         var pwd = passwordLabel.text
         if name.isEmpty {
-            AlertView.showMsg("请填写用户名！", parentView: self.view)
+            AlertView.showMsg("请填写用户名", parentView: self.view)
             return
         }
-//        if !Common.isUserName(name) {
-//            AlertView.showMsg(Common.userNameErrorTip, parentView: self.view)
-//            return
-//        }
+        if !Common.isTelephone(name) && !Common.isUserName(name) {
+            AlertView.showMsg("用户名只能是手机号或6到20位的英文字母和数字", parentView: self.view)
+            return
+        }
+        
         if pwd.isEmpty {
-            AlertView.showMsg("请填写密码！", parentView: self.view)
+            AlertView.showMsg("请填写密码", parentView: self.view)
             return
         }
         if !Common.isPassword(pwd) {
@@ -69,29 +67,24 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         reach.unreachableBlock = {(r:Reachability!) -> Void in
             //NSLog("网络不可用")
             dispatch_async(dispatch_get_main_queue(), {
-
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
             })
         }
         
         reach.reachableBlock = {(r:Reachability!) -> Void in
-           //NSLog("网络可用")
+            //NSLog("网络可用")
             dispatch_async(dispatch_get_main_queue(), {
                 loading.startLoading(self.view)
-            var manager = AFHTTPRequestOperationManager()
-            var url = Common.serverHost + "/App-Login"
-            var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
-            var params = ["userName":self.usernameLabel.text,"userPass":self.passwordLabel.text,"userFlag":0]
-            manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-            manager.POST(url, parameters: params,
-                success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                    loading.stopLoading()
-                    var result = data as! NSDictionary
-                    NSLog("个人信息：%@", result)
-                    //NSLog("登录返回信息%@", result)
-                    if let code = result["code"] as? Int{
-                        
-                        
+                var manager = AFHTTPRequestOperationManager()
+                var url = Common.serverHost + "/App-Login"
+                var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
+                var params = ["userName":self.usernameLabel.text,"userPass":self.passwordLabel.text,"userFlag":0]
+                manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+                manager.POST(url, parameters: params,
+                    success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                        var result = data as! NSDictionary
+                        NSLog("个人信息：%@", result)
+                        let code = result["code"] as? Int
                         if(code == 200){
                             let user = NSUserDefaults.standardUserDefaults()
                             let proInfo:NSDictionary = result["data"]?["proInfo"] as! NSDictionary
@@ -133,7 +126,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                                 user.setObject("", forKey: "isUpload")
                             }
                             
-//                            //银行卡绑定信息
+                            //                            //银行卡绑定信息
                             if let bank = userInfo["bank"] as? NSDictionary {
                                 user.setObject(bank["bank_num"], forKey:"bankCardNo")
                                 user.setObject(bank["bank_city"], forKey:"bankCity")
@@ -147,38 +140,22 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                                 user.setObject("", forKey:"bankProvice")
                                 user.setObject("", forKey:"bankBranch")
                             }
-                            
-                            //self.dismissViewControllerAnimated(true, completion: nil)
+                            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                             self.dismiss()
+                        }else if(code == 0){
+                            loading.stopLoading()
+                            AlertView.alert("提示", message: result["message"] as! String, buttonTitle: "确定", viewController: self)
                         }
-                        if(code == 0){
-                            //报错弹窗
-                            AlertView.showMsg(result["message"] as! String, parentView: self.view)
-                        }
-                    
-                    }else{
-                        AlertView.showMsg("服务器异常!", parentView: self.view)
+                    },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                        loading.stopLoading()
+                        AlertView.alert("提示", message:"服务器异常，请稍候再试", buttonTitle: "确定", viewController: self)
                     }
-                },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                    loading.stopLoading()
-                    AlertView.showMsg("服务器异常!", parentView: self.view)
-                }
-            )
-                
-                
-
+                )
                 
             })
         }
         reach.startNotifier()
-    }
 
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        //传递数据过去
-        if segue.identifier == "loginIdentifier" {
-            
-        }
     }
     
     @IBAction func returnKey(sender: AnyObject) {
@@ -214,16 +191,22 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         resignAll()
     }
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool{
-        if range.location>=11{
-                return false
-            }
-            return true
-    }
 
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         resignAll()
+        if textField == usernameLabel {
+            passwordLabel.becomeFirstResponder()
+        }else if textField == passwordLabel {
+            self.loginAction()
+        }
+        return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if range.location > 19 {
+            return false
+        }
         return true
     }
     

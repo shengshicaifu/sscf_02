@@ -43,7 +43,7 @@ class ModifyPhoneStepSecondViewController: UIViewController {
             //NSLog("网络不可用")
             dispatch_async(dispatch_get_main_queue(), {
 
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
             })
         }
         
@@ -134,7 +134,7 @@ class ModifyPhoneStepSecondViewController: UIViewController {
             //NSLog("网络不可用")
             dispatch_async(dispatch_get_main_queue(), {
 
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
             })
         }
         
@@ -195,9 +195,35 @@ class ModifyPhoneStepSecondViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
-        resignAll()
+        var str = string as NSString
+        var lengthOfString:NSInteger = str.length;
+        for (var loopIndex:NSInteger = 0; loopIndex < lengthOfString; loopIndex++) {//只允许数字输入
+            var character:unichar = str.characterAtIndex(loopIndex)
+            if (character < 48) {
+                return false
+            } // 48 unichar for 0
+            if (character > 57){
+                return false
+            } // 57 unichar for 9
+        }
+        var inputString = textField.text as NSString
+        // Check for total length
+        var proposedNewLength:NSInteger = inputString.length - range.length + str.length;
+        if (proposedNewLength >= 11) {
+            return false
+        }//限制长度
+        return true
+        
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == newPhoneTextField {
+            codeTextField.becomeFirstResponder()
+        }else if textField == codeTextField{
+            resignAll()
+        }
+        
         return true
     }
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {

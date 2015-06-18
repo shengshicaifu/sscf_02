@@ -42,7 +42,7 @@ class ModifyPhoneStepFirstViewController: UIViewController {
             //NSLog("网络不可用")
             dispatch_async(dispatch_get_main_queue(), {
 
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
             })
         }
         
@@ -77,6 +77,8 @@ class ModifyPhoneStepFirstViewController: UIViewController {
                             msg = "手机号已被别人使用!"
                         }else if code == 100 {
                             msg = "短信验证码发送成功"
+                        }else if code == -1{
+                            msg = "网络连接失败或请重新登录"
                         }
                         AlertView.showMsg(msg, parentView: self.view)
                     },
@@ -123,7 +125,7 @@ class ModifyPhoneStepFirstViewController: UIViewController {
             //NSLog("网络不可用")
             dispatch_async(dispatch_get_main_queue(), {
 
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
             })
         }
         

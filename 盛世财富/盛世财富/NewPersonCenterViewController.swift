@@ -209,7 +209,7 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         var reach = Reachability(hostName: Common.domain)
         reach.unreachableBlock = {(r:Reachability!)in
             dispatch_async(dispatch_get_main_queue(), {
-                var alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查手机网络", preferredStyle: .Alert)
+                var alert = UIAlertController(title: "提示", message: "网络连接有问题，请检查网络是否连接", preferredStyle: .Alert)
                 alert.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             })

@@ -5,7 +5,7 @@
 //  Created by 云笺 on 15/5/27.
 //  Copyright (c) 2015年 sscf88. All rights reserved.
 //
-
+import Foundation
 import UIKit
 /**
 *  实名认证控制器
@@ -56,6 +56,12 @@ class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDele
             AlertView.showMsg("请输入身份证号码", parentView: self.view)
             return
         }
+        if let str:NSString = idcard{
+            if str.length != 18 {
+                AlertView.showMsg("请输入18位身份证号码", parentView: self.view)
+                return
+            }
+        }
            //提交数据
         //检查手机网络
         var reach = Reachability(hostName: Common.domain)
@@ -63,7 +69,7 @@ class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDele
             //NSLog("网络不可用")
             dispatch_async(dispatch_get_main_queue(), {
 
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
             })
         }
         
@@ -125,10 +131,41 @@ class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDele
         DaiDodgeKeyboard.removeRegisterTheViewNeedDodgeKeyboard()
         super.viewWillDisappear(animated)
     }
-    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool{
+        if textField == idcardTextField{
+            var str = string as NSString
+            var lengthOfString:NSInteger = str.length;
+            for (var loopIndex:NSInteger = 0; loopIndex < lengthOfString; loopIndex++) {//只允许数字输入
+                var character:unichar = str.characterAtIndex(loopIndex)
+                if (character < 48) {
+                    return false
+                } // 48 unichar for 0
+                if (character > 57){
+                    return false
+                } // 57 unichar for 9
+            }
+            var inputString = textField.text as NSString
+            // Check for total length
+            var proposedNewLength:NSInteger = inputString.length - range.length + str.length;
+            if (proposedNewLength > 18) {
+                return false
+            }//限制长度
+            return true
+        }else{
+            if range.location >= 20{
+                return false
+            }else{
+                return true
+            }
+        }
+    }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == realNameTextField {
+            idcardTextField.becomeFirstResponder()
+        }else if textField == idcardTextField{
+            resignAll()
+        }
         
-        resignAll()
         return true
     }
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {

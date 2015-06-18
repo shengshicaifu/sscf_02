@@ -19,6 +19,8 @@ class BandBankViewController: UIViewController,UITableViewDelegate {
     @IBOutlet weak var top: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+
      }
    
     override func viewWillAppear(animated: Bool) {
@@ -28,32 +30,23 @@ class BandBankViewController: UIViewController,UITableViewDelegate {
         var bankName = userDefaults.objectForKey("bankName") as? String
         var username = userDefaults.objectForKey("username") as? String
         if bankCardNo == "" || bankCardNo == nil{
-//            bankNameLabel.hidden = true
-//            userNameLabel.hidden = true
-//            bankLabel.text = "你尚未添加任何银行卡"
-//            bankButton.setTitle("添加", forState: UIControlState.Normal)
-//            self.title = "银行卡信息"
             firstView.hidden = true
             secondView.hidden = false
             hintLabel.hidden = true
             bankButton.setTitle("添加银行卡", forState: UIControlState.Normal)
-            top.constant = 100
+            top.constant = 20
             firstView.layer.cornerRadius = 10
             secondView.layer.cornerRadius = 10
             
         }
         else{
             bankNameLabel.text = bankName
-//            bankNameLabel.textColor = UIColor.blueColor()
             userNameLabel.text = Common.replaceStringToX(username!, start: 0, end: 2)
-//            userNameLabel.textColor = UIColor.redColor()
-            
-            bankLabel.text = Common.replaceStringToX(bankCardNo!, start: 0, end: 0)
-//            bankLabel.textColor = UIColor.blueColor()
+            bankLabel.text = Common.replaceStringToX(bankCardNo!, start: 0, end: 2)
             bankButton.setTitle("修改", forState: UIControlState.Normal)
             self.title = "银行卡信息"
             firstView.layer.cornerRadius = 10
             secondView.layer.cornerRadius = 10
         }
-    }
+           }
 }

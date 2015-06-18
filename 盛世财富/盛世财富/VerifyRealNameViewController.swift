@@ -125,7 +125,13 @@ class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDele
         DaiDodgeKeyboard.removeRegisterTheViewNeedDodgeKeyboard()
         super.viewWillDisappear(animated)
     }
-    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool{
+        println(textField.placeholder)
+        if range.location>=18{
+            return false
+        }
+        return true
+    }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         resignAll()

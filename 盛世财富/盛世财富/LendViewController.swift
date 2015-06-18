@@ -40,7 +40,27 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
 //滚动图-------------------------------
         //使用多线程获取网络图片
+        var manager = AFHTTPRequestOperationManager()
+        var photoLineUrl = Common.serverHost+"/App-index"//链接地址
+        var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
+        loading.startLoading(self.view)
+        manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+        manager.POST(photoLineUrl, parameters: nil,
+            success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                loading.stopLoading()
+                var result = data as! NSDictionary
+                var code = result["code"] as! Int
+                if code == 200{
+                    
+                }
+                
+            },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                loading.stopLoading()
+                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+            }
+        )
         
+
         
         
         

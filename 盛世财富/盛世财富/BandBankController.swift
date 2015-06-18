@@ -171,6 +171,8 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
                             self.navigationController?.popViewControllerAnimated(true)
                         })
                         
+                    }else if code == 100{
+                        AlertView.alert("提示", message: "请先实名认证", buttonTitle: "确定", viewController: self)
                     }
                 },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
                     loading.stopLoading()

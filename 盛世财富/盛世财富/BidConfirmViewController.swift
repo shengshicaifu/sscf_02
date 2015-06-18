@@ -28,7 +28,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
     @IBOutlet weak var rewardLabel: UILabel!
     @IBOutlet weak var experienceLabel: UILabel!
     @IBOutlet weak var payPasswordLabel: UILabel!
-   
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var yourNameLabel: UILabel!
     @IBOutlet weak var yourMoneyLabel: UILabel!
     @IBOutlet weak var second: UILabel!
@@ -44,7 +44,6 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        resignAll()
         // Do any additional setup after loading the view, typically from a nib.
         bidMoney.delegate = self
         reward.delegate = self
@@ -167,6 +166,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         
     }
     @IBAction func confirm(sender: AnyObject) {
+        
         resignAll()
         
         if Common.isLogin() == false {
@@ -294,10 +294,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         resignAll()
     }
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        resignAll()
-    }
-    
+
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         resignAll()
         return true
@@ -311,7 +308,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
     }
     
     override func viewWillAppear(animated: Bool) {
-        DaiDodgeKeyboard.addRegisterTheViewNeedDodgeKeyboard(self.view)
+        DaiDodgeKeyboard.addRegisterTheViewNeedDodgeKeyboard(self.scrollView)
         super.viewWillAppear(animated)
     }
     

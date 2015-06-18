@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6v-wi-K0w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6v-wi-K0w">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -7369,29 +7369,21 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="体验金支付" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mHR-ll-90S">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="体验金支付" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mHR-ll-90S">
                                                 <rect key="frame" x="133" y="324" width="427" height="54"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="54" id="dgo-on-jva"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="支付密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oIg-gl-wRS">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="支付密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oIg-gl-wRS">
                                                 <rect key="frame" x="133" y="378" width="467" height="54"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="54" id="mA1-AY-Zcq"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                            </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="投标金额" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YUj-5u-NQ4">
-                                                <rect key="frame" x="133" y="216" width="427" height="54"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="54" id="Rc4-lF-DV0"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" secureTextEntry="YES"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可用金额" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8l9-hI-6H5">
                                                 <rect key="frame" x="133" y="0.0" width="467" height="54"/>
@@ -7465,18 +7457,25 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="奖金支付" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qvv-bK-cds">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="奖金支付" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qvv-bK-cds">
                                                 <rect key="frame" x="133" y="270" width="427" height="54"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="54" id="oPk-w5-xOz"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="投标金额" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YUj-5u-NQ4">
+                                                <rect key="frame" x="133" y="216" width="427" height="54"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="54" id="Rc4-lF-DV0"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="qvv-bK-cds" firstAttribute="top" secondItem="YUj-5u-NQ4" secondAttribute="bottom" id="1D8-NH-SdA"/>
                                             <constraint firstItem="e18-oa-8xu" firstAttribute="top" secondItem="jJ2-Dm-ETh" secondAttribute="bottom" id="1cx-k5-02z"/>
                                             <constraint firstItem="yXx-1s-cyP" firstAttribute="top" secondItem="K42-xs-Yky" secondAttribute="bottom" id="2a0-dk-Xeg"/>
                                             <constraint firstItem="qvv-bK-cds" firstAttribute="leading" secondItem="SEr-fz-b44" secondAttribute="trailing" id="462-61-G5q"/>
@@ -7484,7 +7483,6 @@
                                             <constraint firstAttribute="trailing" secondItem="oIg-gl-wRS" secondAttribute="trailing" id="7jk-Im-dI4"/>
                                             <constraint firstItem="K42-xs-Yky" firstAttribute="top" secondItem="P2n-bD-zp3" secondAttribute="bottom" id="80v-12-2AH"/>
                                             <constraint firstItem="Z3i-0z-MFH" firstAttribute="leading" secondItem="Hrj-qH-jF4" secondAttribute="leading" constant="13" id="9Pv-L8-i67"/>
-                                            <constraint firstItem="K42-xs-Yky" firstAttribute="leading" secondItem="YUj-5u-NQ4" secondAttribute="trailing" id="BEi-Jf-xOp"/>
                                             <constraint firstItem="pVy-2C-tlr" firstAttribute="top" secondItem="SEr-fz-b44" secondAttribute="bottom" id="C5i-ge-sHM"/>
                                             <constraint firstItem="qvv-bK-cds" firstAttribute="width" secondItem="mHR-ll-90S" secondAttribute="width" id="C9i-WW-llq"/>
                                             <constraint firstItem="mkU-x8-RFM" firstAttribute="top" secondItem="CNH-A4-xFj" secondAttribute="bottom" id="FTM-qe-HiY"/>
@@ -7493,7 +7491,6 @@
                                             <constraint firstItem="P2n-bD-zp3" firstAttribute="top" secondItem="e18-oa-8xu" secondAttribute="bottom" id="IRP-9X-LgQ"/>
                                             <constraint firstItem="oMf-83-t8O" firstAttribute="top" secondItem="8l9-hI-6H5" secondAttribute="bottom" id="MI6-OB-iVk"/>
                                             <constraint firstItem="1SU-yU-avD" firstAttribute="leading" secondItem="mHR-ll-90S" secondAttribute="trailing" id="OdL-SA-Jf5"/>
-                                            <constraint firstItem="YUj-5u-NQ4" firstAttribute="top" secondItem="mkU-x8-RFM" secondAttribute="bottom" id="Phf-gM-Kpx"/>
                                             <constraint firstItem="ijr-X1-vT8" firstAttribute="top" secondItem="P2n-bD-zp3" secondAttribute="bottom" id="QQz-OA-6qc"/>
                                             <constraint firstItem="yXx-1s-cyP" firstAttribute="height" secondItem="1SU-yU-avD" secondAttribute="height" id="QnL-fF-AvA"/>
                                             <constraint firstAttribute="trailing" secondItem="K42-xs-Yky" secondAttribute="trailing" id="RW6-cX-uGJ"/>
@@ -7519,7 +7516,6 @@
                                             <constraint firstAttribute="trailing" secondItem="8l9-hI-6H5" secondAttribute="trailing" id="ppq-ne-DK0"/>
                                             <constraint firstItem="jJ2-Dm-ETh" firstAttribute="leading" secondItem="Hrj-qH-jF4" secondAttribute="leading" constant="13" id="tFX-Id-A2J"/>
                                             <constraint firstAttribute="trailing" secondItem="yXx-1s-cyP" secondAttribute="trailing" id="tGl-Y3-Ksj"/>
-                                            <constraint firstItem="YUj-5u-NQ4" firstAttribute="leading" secondItem="ijr-X1-vT8" secondAttribute="trailing" id="uKC-ot-scc"/>
                                             <constraint firstItem="CNH-A4-xFj" firstAttribute="leading" secondItem="e18-oa-8xu" secondAttribute="trailing" id="uMx-d4-CG4"/>
                                             <constraint firstItem="mkU-x8-RFM" firstAttribute="leading" secondItem="P2n-bD-zp3" secondAttribute="trailing" id="ugu-td-v2y"/>
                                             <constraint firstItem="oIg-gl-wRS" firstAttribute="top" secondItem="mHR-ll-90S" secondAttribute="bottom" id="xE8-3K-EEl"/>
@@ -7579,6 +7575,7 @@
                         <outlet property="restMoneyLabel" destination="P2n-bD-zp3" id="V9L-VH-eLs"/>
                         <outlet property="reward" destination="qvv-bK-cds" id="kKz-qP-Gsy"/>
                         <outlet property="rewardLabel" destination="SEr-fz-b44" id="EUF-dc-nxd"/>
+                        <outlet property="scrollView" destination="fbw-by-SJ0" id="SBn-Au-1aG"/>
                         <outlet property="second" destination="yXx-1s-cyP" id="wYH-LQ-qR5"/>
                         <outlet property="styleView" destination="Hrj-qH-jF4" id="9YB-nX-6wS"/>
                         <outlet property="third" destination="1SU-yU-avD" id="6U0-vR-mFf"/>
@@ -7612,9 +7609,9 @@
         <image name="more" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EcF-gu-9cT"/>
-        <segue reference="sOw-AT-9oo"/>
+        <segue reference="cgO-r2-Qw7"/>
         <segue reference="1Oc-Wy-fyN"/>
+        <segue reference="EcF-gu-9cT"/>
         <segue reference="THn-qI-uLv"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 class OffLineChargeViewController:UIViewController,UITextFieldDelegate,
-//BaofooSdkDelegate,
 NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
     @IBOutlet weak var choose: UISegmentedControl!
     @IBOutlet weak var pos: UIView!//pos机视图

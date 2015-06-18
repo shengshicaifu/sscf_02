@@ -16,6 +16,7 @@ class BandBankViewController: UIViewController,UITableViewDelegate {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var bankLabel: UILabel!
     @IBOutlet weak var bankButton: UIButton!
+    @IBOutlet weak var top: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
      }
@@ -36,7 +37,7 @@ class BandBankViewController: UIViewController,UITableViewDelegate {
             secondView.hidden = false
             hintLabel.hidden = true
             bankButton.setTitle("添加银行卡", forState: UIControlState.Normal)
-            secondView.frame = CGRectMake(2.0, 7.0, self.view.frame.width, self.view.frame.height/3)
+            top.constant = 100
             firstView.layer.cornerRadius = 10
             secondView.layer.cornerRadius = 10
             

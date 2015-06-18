@@ -31,12 +31,14 @@ class NewDetailScrollViewController: UIViewController {
        self.view.addSubview(_scrollView)
         _scrollView.addSubview(firstView)
         _scrollView.addSubview(Secondiew)
-        _scrollView.addSubview(buyButton)
-        _scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, CGRectGetMaxY(buyButton.frame) + 20)
+        _scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, CGRectGetMaxY(Secondiew.frame) + 20)
        
         Common.customerBgView(firstView)
         Common.customerBgView(Secondiew)
-        Common.customerButton(buyButton)
+        buyButton.setBackgroundImage(UIImage(named: "background"), forState: UIControlState.Normal)
+        buyButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        buyButton.setBackgroundImage(UIImage(named: "button_disable"), forState: UIControlState.Highlighted)
+        buyButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Highlighted)
         
         
         if id != nil {

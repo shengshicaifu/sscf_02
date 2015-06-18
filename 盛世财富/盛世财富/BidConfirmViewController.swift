@@ -44,6 +44,8 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        resignAll()
+        
         // Do any additional setup after loading the view, typically from a nib.
         bidMoney.delegate = self
         reward.delegate = self

@@ -129,9 +129,21 @@ class ModifyLoginPasswordViewController: UIViewController,UITextFieldDelegate {
         DaiDodgeKeyboard.removeRegisterTheViewNeedDodgeKeyboard()
         super.viewWillDisappear(animated)
     }
-    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if range.location >= 20 {
+            return false
+        }
+        return true
+    }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        resignAll()
+        if textField == oldPassTextField {
+            newPassTextField.becomeFirstResponder()
+        }else if textField == newPassTextField{
+            confirmPassTextField.becomeFirstResponder()
+        }else if textField == confirmPassTextField{
+            resignAll()
+        }
+        
         return true
     }
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {

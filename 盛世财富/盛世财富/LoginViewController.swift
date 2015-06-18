@@ -191,12 +191,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         resignAll()
     }
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool{
-        if range.location>=11{
-                return false
-            }
-            return true
-    }
 
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {

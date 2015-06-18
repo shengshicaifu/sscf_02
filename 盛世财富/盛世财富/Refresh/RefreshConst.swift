@@ -10,7 +10,8 @@ import Foundation
 
 let RefreshViewHeight:CFloat = 64.0
 let RefreshSlowAnimationDuration:NSTimeInterval = 0.3
-let RefreshFooterPullToRefresh:NSString = "上拉可以加载更多数据"
+//let RefreshFooterPullToRefresh:NSString = "上拉可以加载更多数据"
+let RefreshFooterPullToRefresh:NSString = ""
 let RefreshFooterReleaseToRefresh:NSString =  "松开立即加载更多数据"
 let RefreshFooterRefreshing:NSString =  "正在加载数据..."
 let RefreshHeaderPullToRefresh:NSString =  "上拉可以刷新"

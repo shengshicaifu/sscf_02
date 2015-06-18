@@ -3696,7 +3696,7 @@
         <!--申购项目-->
         <scene sceneID="FXo-J6-OT5">
             <objects>
-                <viewController title="申购项目" id="FTS-U1-GRg" customClass="NewDetailScrollViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewDetailScrollViewController" title="申购项目" id="FTS-U1-GRg" customClass="NewDetailScrollViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fAu-Pk-YL2"/>
                         <viewControllerLayoutGuide type="bottom" id="T9z-Os-gEA"/>
@@ -3757,7 +3757,7 @@
                                                 <color key="textColor" red="0.65098039220000004" green="0.65098039220000004" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s9V-uU-uq5">
+                                            <view tag="100" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s9V-uU-uq5">
                                                 <rect key="frame" x="517" y="35" width="70" height="72"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -3789,7 +3789,7 @@
                                             <constraint firstAttribute="centerX" secondItem="LaU-l3-Qqo" secondAttribute="centerX" id="nIQ-5v-cuz"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xax-RI-zzT">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xax-RI-zzT">
                                         <rect key="frame" x="0.0" y="131" width="600" height="600"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="申领情况" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkz-Nk-t08">
@@ -3856,19 +3856,19 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发布日期：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3C8-8v-R9G">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="发布日期：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3C8-8v-R9G">
                                                 <rect key="frame" x="431" y="82" width="85" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-6-3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iqi-8T-poa">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2015-6-3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iqi-8T-poa">
                                                 <rect key="frame" x="516" y="82" width="71" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100万元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egh-ud-Dpr">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="100万元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egh-ud-Dpr">
                                                 <rect key="frame" x="524" y="111" width="63" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -3880,7 +3880,7 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="融资企业从事方法看似简单款式简单说几点开始啦的迪斯科是快乐的时代上的昆仑山；   德雷克斯勒的 算；打瞌睡了；都事；离开的；老师看到；来上课  但是离开时离开的的 " translatesAutoresizingMaskIntoConstraints="NO" id="KfF-sE-7Rz">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="融资企业从事方法看似简单款式简单说几点开始啦的迪斯科是快乐的时代上的昆仑山；   德雷克斯勒的 算；打瞌睡了；都事；离开的；老师看到；来上课  但是离开时离开的的 " translatesAutoresizingMaskIntoConstraints="NO" id="KfF-sE-7Rz">
                                                 <rect key="frame" x="13" y="256" width="587" height="60"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -3889,7 +3889,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DgF-pB-Hag">
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DgF-pB-Hag">
                                                 <rect key="frame" x="13" y="329" width="574" height="30"/>
                                                 <state key="normal" title="投资人列表">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -3898,7 +3898,7 @@
                                                     <action selector="bidManList:" destination="FTS-U1-GRg" eventType="touchUpInside" id="Y7v-n0-nN7"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投资规模:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGs-2d-d6i">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="投资规模:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGs-2d-d6i">
                                                 <rect key="frame" x="431" y="111" width="73" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -3975,7 +3975,7 @@
                                     <constraint firstItem="0Qq-e4-9fW" firstAttribute="top" secondItem="t5a-gS-peE" secondAttribute="top" id="Zcy-Rx-ygg"/>
                                     <constraint firstAttribute="trailing" secondItem="0Qq-e4-9fW" secondAttribute="trailing" id="fU0-4x-iof"/>
                                     <constraint firstItem="0Qq-e4-9fW" firstAttribute="leading" secondItem="t5a-gS-peE" secondAttribute="leading" id="gQM-h7-qHX"/>
-                                    <constraint firstItem="zSj-fZ-mcI" firstAttribute="top" secondItem="Xax-RI-zzT" secondAttribute="bottom" constant="25" id="jsv-36-ggi"/>
+                                    <constraint firstAttribute="top" secondItem="Xax-RI-zzT" secondAttribute="bottom" constant="25" id="jsv-36-ggi"/>
                                     <constraint firstAttribute="trailing" secondItem="Xax-RI-zzT" secondAttribute="trailing" id="oor-3A-8Fe"/>
                                 </constraints>
                                 <variation key="heightClass=regular" ambiguous="YES">
@@ -5442,7 +5442,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OAR-20-dTH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1660" y="-812"/>
+            <point key="canvasLocation" x="2070" y="-846"/>
         </scene>
         <!--盛世财富-->
         <scene sceneID="EBD-If-mFu">

@@ -16,6 +16,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var passwordLabel: UITextField!
     @IBOutlet weak var login: UIButton!
     @IBOutlet weak var regist: UIButton!
+    var maxlength = 12
     var tabTag:Int?//用于记录是从那个tab点击跳转到登录页面，登录后需要返回到这个页面，102是消息页面，105是我的账号页面
 
     override func viewDidLoad() {
@@ -33,8 +34,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         usernameLabel.text = NSUserDefaults.standardUserDefaults().stringForKey("username")
         
     }
-    
-    
     
     
     @IBAction func loginTapped(sender: AnyObject) {
@@ -192,7 +191,14 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         resignAll()
     }
-    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool{
+        if range.location>=11{
+                return false
+            }
+            return true
+    }
+
+
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         resignAll()
         if textField == usernameLabel {

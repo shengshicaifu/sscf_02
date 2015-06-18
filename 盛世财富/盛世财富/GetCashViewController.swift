@@ -12,20 +12,15 @@ class GetCashViewController:UIViewController,UITextFieldDelegate {
     @IBOutlet weak var money: UITextField!
     @IBOutlet weak var payPassword: UITextField!
     @IBOutlet weak var bgView: UIView!
-    
-    
     @IBOutlet weak var moneyLabel: UILabel!
-    
     @IBOutlet weak var okButton: UIButton!
     
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         money.delegate = self
         payPassword.delegate = self
-        
         
         Common.customerBgView(bgView)
         Common.addBorder(moneyLabel)
@@ -33,6 +28,10 @@ class GetCashViewController:UIViewController,UITextFieldDelegate {
         Common.customerButton(okButton)
     }
     @IBAction func submit(sender: UIButton) {
+        submitAction()
+    }
+    
+    func submitAction(){
         resignAll()
         if money.text.isEmpty {
             AlertView.showMsg("请输入金额", parentView: self.view)
@@ -47,7 +46,7 @@ class GetCashViewController:UIViewController,UITextFieldDelegate {
             return
         }
         if !Common.isPassword(payPassword.text) {
-            AlertView.showMsg(Common.passwordErrorTip, parentView: self.view)
+            AlertView.showMsg("支付密码为英文字母和数字，长度在6到20之间", parentView: self.view)
             return
         }
         
@@ -61,7 +60,7 @@ class GetCashViewController:UIViewController,UITextFieldDelegate {
             //NSLog("网络不可用")
             dispatch_async(dispatch_get_main_queue(), {
                 
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
             })
         }
         
@@ -72,10 +71,17 @@ class GetCashViewController:UIViewController,UITextFieldDelegate {
                 afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                 afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     loading.stopLoading()
-                    AlertView.showMsg(data["message"] as! String, parentView: self.view)
+                    var code = data["code"] as! Int
+                    if code == 200 {
+                        AlertView.alert("提示", message: "提现申请提交成功，请等待审核", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
+                            self.navigationController?.popViewControllerAnimated(true)
+                        })
+                    }else {
+                        AlertView.alert("提示", message: data["message"] as! String, buttonTitle: "确定", viewController: self)
+                    }
                     }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
                         loading.stopLoading()
-                        AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
+                        AlertView.alert("提示", message: "服务器异常，请稍候再试", buttonTitle: "确定", viewController: self)
                 }
             })
         }
@@ -87,7 +93,9 @@ class GetCashViewController:UIViewController,UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        resignAll()
+        if textField == payPassword {
+            submitAction()
+        }
         return true
     }
     
@@ -95,6 +103,13 @@ class GetCashViewController:UIViewController,UITextFieldDelegate {
         
         money.resignFirstResponder()
         payPassword.resignFirstResponder()
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if range.location > 19 {
+            return false
+        }
+        return true
     }
     
     override func viewWillAppear(animated: Bool) {

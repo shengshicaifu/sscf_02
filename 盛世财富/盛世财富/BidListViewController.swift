@@ -43,7 +43,7 @@ class BidListViewController: UITableViewController,UITableViewDataSource,UITable
             },
             failure: {(operation:AFHTTPRequestOperation!,error:NSError!)in
                 NSLog("获取投资人失败:%@",error)
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
                 loading.stopLoading()
                 self.tableView.scrollEnabled = true
             }

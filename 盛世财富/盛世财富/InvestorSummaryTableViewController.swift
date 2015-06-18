@@ -79,7 +79,7 @@ class InvestorSummaryViewController: UITableViewController,UITableViewDataSource
                 
             },failure:{ (op:AFHTTPRequestOperation!,error: NSError!) -> Void in
                 loading.stopLoading()
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
             }
         )
         
@@ -150,7 +150,7 @@ class InvestorSummaryViewController: UITableViewController,UITableViewDataSource
             },failure:{ (op:AFHTTPRequestOperation!,error: NSError!) -> Void in
                 //loading.stopLoading()
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
                 
             }
         )

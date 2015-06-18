@@ -30,7 +30,7 @@ class loading{
         view.addSubview(blurView)
         //创建读取效果
         circle.frame = CGRect(x:(darkView.frame.width )/2 , y:(darkView.frame.height )/2-15, width: 0, height: 0)
-        msg.text = "加载中..."
+        msg.text = "加载中"
         msg.frame = CGRect(x: 0, y: circle.frame.maxY+10, width: 100, height: 50)
         msg.textAlignment = NSTextAlignment.Center
         msg.textColor = UIColor.whiteColor()

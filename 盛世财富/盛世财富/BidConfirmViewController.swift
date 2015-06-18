@@ -82,7 +82,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
             //NSLog("网络不可用")
             dispatch_async(dispatch_get_main_queue(), {
                 
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
             })
         }
         
@@ -224,7 +224,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
             //NSLog("网络不可用")
             dispatch_async(dispatch_get_main_queue(), {
 
-                AlertView.alert("提示", message: "网络连接有问题，请检查手机网络", buttonTitle: "确定", viewController: self)
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
             })
         }
         

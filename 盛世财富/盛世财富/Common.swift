@@ -31,7 +31,6 @@ class Common {
     //"http://www.sscf88.com"
     static let domain:String = "www.sscf88.com"
     
-    
     //MARK:- 正则表达式验证
 
     //是否合法用户名

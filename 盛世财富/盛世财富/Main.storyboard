@@ -6496,7 +6496,7 @@
                             <outlet property="delegate" destination="Qwe-1n-WeE" id="MmH-fs-Lm5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="dEP-ws-ZIV"/>
+                    <navigationItem key="navigationItem" title="实时财务" id="dEP-ws-ZIV"/>
                     <connections>
                         <outlet property="m10Label" destination="IRf-sU-x79" id="Mhx-Et-hye"/>
                         <outlet property="m11Label" destination="CL8-5a-fRr" id="tuX-tT-i95"/>

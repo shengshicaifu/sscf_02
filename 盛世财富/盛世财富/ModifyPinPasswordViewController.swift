@@ -133,8 +133,21 @@ class ModifyPinPasswordViewController: UIViewController,UITextFieldDelegate {
         super.viewWillDisappear(animated)
     }
     
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if range.location >= 20 {
+            return false
+        }
+        return true
+    }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        resignAll()
+        if textField == oldPinPasswordTextField {
+            newPinPasswordTextField.becomeFirstResponder()
+        }else if textField == newPinPasswordTextField{
+            confirmPasswordTextField.becomeFirstResponder()
+        }else if textField == confirmPasswordTextField{
+            resignAll()
+        }
+        
         return true
     }
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {

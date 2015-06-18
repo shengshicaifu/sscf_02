@@ -195,9 +195,35 @@ class ModifyPhoneStepSecondViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
-        resignAll()
+        var str = string as NSString
+        var lengthOfString:NSInteger = str.length;
+        for (var loopIndex:NSInteger = 0; loopIndex < lengthOfString; loopIndex++) {//只允许数字输入
+            var character:unichar = str.characterAtIndex(loopIndex)
+            if (character < 48) {
+                return false
+            } // 48 unichar for 0
+            if (character > 57){
+                return false
+            } // 57 unichar for 9
+        }
+        var inputString = textField.text as NSString
+        // Check for total length
+        var proposedNewLength:NSInteger = inputString.length - range.length + str.length;
+        if (proposedNewLength >= 11) {
+            return false
+        }//限制长度
+        return true
+        
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == newPhoneTextField {
+            codeTextField.becomeFirstResponder()
+        }else if textField == codeTextField{
+            resignAll()
+        }
+        
         return true
     }
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {

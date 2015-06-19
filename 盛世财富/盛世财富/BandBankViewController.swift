@@ -48,7 +48,7 @@ class BandBankViewController: UIViewController,UITableViewDelegate {
             bankLabel.text = Common.replaceStringToX(bankCardNo!, start: 0, end: 2)
             bankButton.setTitle("修改", forState: UIControlState.Normal)
             self.title = "银行卡信息"
-            top.constant = 280
+            top.constant = self.view.bounds.height/2+20
             firstView.layer.cornerRadius = 10
             secondView.layer.cornerRadius = 10
         }

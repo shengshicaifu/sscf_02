@@ -47,13 +47,11 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
         var jsonDic = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil)
         listData = jsonDic as! NSArray
         var count = self.listData.count
-        println(listData)
-        for row in 0...listData.count-1{
+        println(listData.count)
+        for row in 0...listData.count-1 {
             var provinces = listData[row].valueForKey("province") as! String
             province.addObject(provinces)
         }
-        
-
         
         var userDefaults = NSUserDefaults.standardUserDefaults()
         var bankCardNo = userDefaults.objectForKey("bankCardNo") as? String
@@ -61,7 +59,6 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
         if bankCardNo == "" || bankCardNo == nil{
             addTapped.setTitle("添加", forState: UIControlState.Normal)
             self.title = "添加银行卡"
-            
             var curCity = listData[0].valueForKey("cities") as! NSArray
             city.removeAllObjects()
             city.addObjectsFromArray(curCity as [AnyObject])
@@ -70,9 +67,9 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
             bankCardNoTextField.text = userDefaults.objectForKey("bankCardNo") as? String
             bankNameTextField.text = userDefaults.objectForKey("bankName") as? String
             bankBranchTextField.text = userDefaults.objectForKey("bankBranch") as? String
-            
             var provinceStr = userDefaults.objectForKey("bankProvince") as! String
             var cityStr = userDefaults.objectForKey("bankCity") as! String
+            println("cityStr\(cityStr)")
             var provinceIndex = 0
             for(var i=0;i<self.province.count;i++){
                 if province[i] as! String == provinceStr {
@@ -85,13 +82,14 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
             city.removeAllObjects()
             city.addObjectsFromArray(curCity as [AnyObject])
             
-            //var cityIndex = curCity.indexOfObjectIdenticalTo(cityStr!)
             var cityIndex = 0
-            for(var i=0;i<self.city.count;i++){
-                if city[i] as! String == provinceStr {
+            for(var i=0;i<city.count;i++){
+                if city[i] as! String == cityStr {
                     cityIndex = i
+                    println("cityIndex\(cityIndex)")
                 }
             }
+            println(cityIndex)
             self.ProvincePick.selectRow(cityIndex, inComponent: 1, animated: true)
             
             
@@ -161,7 +159,6 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
                     }else if code == 0 {
                         AlertView.showMsg(result["message"] as! String, parentView: self.view)
                     }else if code == 200 {
-                        
                         AlertView.alert("提示", message: "绑定银行卡成功", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
                             userDefaults.setObject(bankCardNo, forKey: "bankCardNo")
                             userDefaults.setObject(bankName, forKey: "bankName")
@@ -196,7 +193,8 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
             }
             var province = self.province[ProvincePick.selectedRowInComponent(0)] as! String
             var city = self.city[ProvincePick.selectedRowInComponent(1)] as! String
-     
+            println(city)
+            println(province)
             let manager = AFHTTPRequestOperationManager()
             var url = Common.serverHost + "/App-Ucenter-bindBank"
             var token = userDefaults.objectForKey("token") as? String
@@ -215,12 +213,12 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
                 }else if code == 0 {
                     AlertView.showMsg(result["message"] as! String, parentView: self.view)
                 }else if code == 200 {
-                    AlertView.alert("提示", message: "绑定银行卡成功", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
-                        userDefaults.setObject(bankCardNo, forKey: "bankCardNo")
-                        userDefaults.setObject(bankName, forKey: "bankName")
+                    AlertView.alert("提示", message: "修改银行卡成功", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
+                        userDefaults.setObject(self.bankCardNoTextField.text, forKey: "bankCardNo")
+                        userDefaults.setObject(self.bankNameTextField.text, forKey: "bankName")
                         userDefaults.setObject(province, forKey: "bankProvince")
                         userDefaults.setObject(city, forKey: "bankCity")
-                        userDefaults.setObject(bankBranch, forKey: "bankBranch")
+                        userDefaults.setObject(self.bankBranchTextField.text, forKey: "bankBranch")
                         self.navigationController?.popViewControllerAnimated(true)
                     })
            }

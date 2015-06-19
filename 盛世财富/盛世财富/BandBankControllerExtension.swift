@@ -31,7 +31,6 @@ extension BandBankController:UIPickerViewDelegate{
             self.ProvincePick.reloadComponent(1)
             self.ProvincePick.selectRow(0, inComponent: 1, animated: true)
         }
-        
     }
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String!{
         if component == 0{

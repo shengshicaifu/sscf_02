@@ -37,6 +37,7 @@
 		59BEC4191B05CD5300F5690D /* UserMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */; };
 		59BEC41B1B07124200F5690D /* BidRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BEC41A1B07124200F5690D /* BidRecordViewController.swift */; };
 		59C540831B2814DD0061B44C /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C540821B2814DD0061B44C /* EmptyView.swift */; };
+		59CC51CF1B33FCAB006F37C2 /* testMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CC51CE1B33FCAB006F37C2 /* testMainViewController.swift */; };
 		59D214BB1AFC9AD800677C26 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D214BA1AFC9AD800677C26 /* AlertView.swift */; };
 		CD0858361B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0858351B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework */; };
 		CD7E21031B2EB43400463325 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD7E21021B2EB43400463325 /* Images.xcassets */; };
@@ -168,6 +169,7 @@
 		59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserMoneyViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		59BEC41A1B07124200F5690D /* BidRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BidRecordViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		59C540821B2814DD0061B44C /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		59CC51CE1B33FCAB006F37C2 /* testMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testMainViewController.swift; sourceTree = "<group>"; };
 		59D214BA1AFC9AD800677C26 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		CD0858351B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GopayNewPlatformLibraryWeb.framework; sourceTree = "<group>"; };
 		CD7E21021B2EB43400463325 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -178,7 +180,7 @@
 		CDD3BE031B1FFD1800CE6323 /* sortednames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sortednames.plist; sourceTree = "<group>"; };
 		CDE0CA651B26A5980079DB21 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		CDE4EED11B1DC06D00FB95CA /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
-		CDE4EED31B1DCBF900FB95CA /* IndexTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexTableViewController.swift; sourceTree = "<group>"; };
+		CDE4EED31B1DCBF900FB95CA /* IndexTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexTableViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		D8B251161B0041AE00360F4E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D8B251171B0041AE00360F4E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D8B251191B00460B00360F4E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -419,6 +421,7 @@
 				CDBEF4161B29A4040025FBD4 /* aaTableViewController.swift */,
 				E9FC8DCB1B297C5000C74EED /* NewDetailScrollViewController.swift */,
 				E9FE8EFC1B2C204200747E1C /* BandBankControllerExtension.swift */,
+				59CC51CE1B33FCAB006F37C2 /* testMainViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -746,6 +749,7 @@
 				E9AB8FA01B12FD55004A77D7 /* UserGuideViewController.swift in Sources */,
 				E9C605B61ABBB9C500752D91 /* RefreshHeaderView.swift in Sources */,
 				E96B2F081B08673900B4197B /* MDRadialProgressLabel.m in Sources */,
+				59CC51CF1B33FCAB006F37C2 /* testMainViewController.swift in Sources */,
 				E9C70C0A1AC108AC00E1CA8D /* AboutViewController.swift in Sources */,
 				E9D6604D1AB1313B0020982D /* AppDelegate.swift in Sources */,
 				591FD1381B0C7CF000BFD74D /* AFHTTPRequestOperation.m in Sources */,

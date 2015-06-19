@@ -50,6 +50,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 loading.stopLoading()
                 var result = data as! NSDictionary
                 var code = result["code"] as! Int
+                println(result)
                 if code == 200{
                     
                 }

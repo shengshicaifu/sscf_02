@@ -42,13 +42,13 @@ class BandBankViewController: UIViewController,UITableViewDelegate {
         else{
             firstView.hidden = false
             secondView.hidden = false
-            hintLabel.hidden = false
+            hintLabel.hidden = true
             bankNameLabel.text = bankName
             userNameLabel.text = Common.replaceStringToX(username!, start: 0, end: 2)
             bankLabel.text = Common.replaceStringToX(bankCardNo!, start: 0, end: 2)
             bankButton.setTitle("修改", forState: UIControlState.Normal)
             self.title = "银行卡信息"
-            top.constant = self.view.bounds.height/2+20
+            top.constant = self.view.bounds.height/3+20
             firstView.layer.cornerRadius = 10
             secondView.layer.cornerRadius = 10
         }

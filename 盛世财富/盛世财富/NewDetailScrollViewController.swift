@@ -28,10 +28,10 @@ class NewDetailScrollViewController: UIViewController {
     var tmpListData: NSMutableArray = NSMutableArray()
     override func viewDidLoad() {
         super.viewDidLoad()
-       self.view.addSubview(_scrollView)
-        _scrollView.addSubview(firstView)
-        _scrollView.addSubview(Secondiew)
-        _scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, CGRectGetMaxY(Secondiew.frame) + 20)
+//       self.view.addSubview(_scrollView)
+//        _scrollView.addSubview(firstView)
+//        _scrollView.addSubview(Secondiew)
+//        _scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, CGRectGetMaxY(Secondiew.frame) + 20)
        
         Common.customerBgView(firstView)
         Common.customerBgView(Secondiew)

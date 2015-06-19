@@ -137,7 +137,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                                 user.setObject("", forKey:"bankCardNo")
                                 user.setObject("", forKey:"bankCity")
                                 user.setObject("", forKey:"bankName")
-                                user.setObject("", forKey:"bankProvice")
+                                user.setObject("", forKey:"bankProvince")
                                 user.setObject("", forKey:"bankBranch")
                             }
                             UIApplication.sharedApplication().networkActivityIndicatorVisible = false

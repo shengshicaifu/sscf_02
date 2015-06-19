@@ -3576,7 +3576,7 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3GP-AS-bLl">
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
                             </activityIndicatorView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="140" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Gr1-hd-e6b">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="140" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Gr1-hd-e6b">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -3705,7 +3705,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t5a-gS-peE">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t5a-gS-peE">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Qq-e4-9fW">
@@ -3975,8 +3975,8 @@
                                     <rect key="frame" x="0.0" y="-44" width="600" height="800"/>
                                 </variation>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSj-fZ-mcI">
-                                <rect key="frame" x="0.0" y="509" width="600" height="42"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSj-fZ-mcI">
+                                <rect key="frame" x="0.0" y="514" width="600" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="I9s-ma-hls"/>
                                 </constraints>
@@ -7513,7 +7513,7 @@
         <!--Test Main View Controller-->
         <scene sceneID="ddQ-MC-Ab2">
             <objects>
-                <viewController id="fKT-mr-hBN" customClass="testMainViewController" customModule="study" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fKT-mr-hBN" customClass="testMainViewController" customModule="盛世财富" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6UU-wh-dGP"/>
                         <viewControllerLayoutGuide type="bottom" id="7db-nE-1Sk"/>
@@ -7739,11 +7739,10 @@
         <image name="wallet@1x" width="42" height="42"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EcF-gu-9cT"/>
         <segue reference="cgO-r2-Qw7"/>
         <segue reference="EcF-gu-9cT"/>
-        <segue reference="BUB-ha-S9u"/>
         <segue reference="1Oc-Wy-fyN"/>
         <segue reference="nfr-2W-Z2p"/>
+        <segue reference="BUB-ha-S9u"/>
     </inferredMetricsTieBreakers>
 </document>

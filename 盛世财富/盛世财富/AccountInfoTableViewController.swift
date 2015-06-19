@@ -22,6 +22,9 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = "个人信息"
+        
+        
         headImage.layer.cornerRadius = 35
         headImage.layer.masksToBounds = true
         
@@ -43,11 +46,11 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
             genderLabel.text = gender
         }
 //        println(userDefaults.objectForKey("birthday") as? String)
-        if let birth = userDefaults.objectForKey("birthday") as? String {
-            
+        var birth = userDefaults.objectForKey("birthday") as? String
+        if birth != nil && birth != "" {
             var formatter = NSDateFormatter()
             formatter.dateFormat = "yyyyMMdd"
-            if let birthDate = formatter.dateFromString(birth) {
+            if let birthDate = formatter.dateFromString(birth!) {
                 formatter.dateFormat = "yyyy年MM月dd日"
                 birthdayLabel.text = formatter.stringFromDate(birthDate)
             }
@@ -82,10 +85,13 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
             userDefaults.removeObjectForKey("bankName")
             userDefaults.removeObjectForKey("bankCity")
             userDefaults.removeObjectForKey("bankBranch")
-            userDefaults.removeObjectForKey("bankProvice")
+            userDefaults.removeObjectForKey("bankProvince")
+            userDefaults.removeObjectForKey("accountMoney")
+            //userDefaults.removeObjectForKey("headpic")
+            userDefaults.removeObjectForKey("pinpass")
 
       
-            AlertView.showMsg("注销成功", parentView: self.view)
+            //AlertView.showMsg("注销成功", parentView: self.view)
             self.presentViewController(self.storyboard?.instantiateViewControllerWithIdentifier("tabBarViewController") as! TabBarViewController, animated: true, completion: nil)
             
         }))

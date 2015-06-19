@@ -52,9 +52,9 @@ class AccountSafeTableViewController: UITableViewController,UITableViewDataSourc
             } else {
                 let isVerify = NSUserDefaults.standardUserDefaults().objectForKey("isVerify") as? String
                 if isVerify == "0" {
-                    rightText = "实名认证审核中"
-                    cell.accessoryType = UITableViewCellAccessoryType.None
-                    cell.userInteractionEnabled = false
+                    rightText = "未实名认证"
+//                    cell.accessoryType = UITableViewCellAccessoryType.None
+//                    cell.userInteractionEnabled = false
                 }else if isVerify == "1" {
                     tipImageView.image = UIImage(named: "yes")
                     rightText = Common.replaceStringToX(isUpload!, start: 2, end: isUpload!.length-4)
@@ -101,8 +101,13 @@ class AccountSafeTableViewController: UITableViewController,UITableViewDataSourc
         var cell = tableView.cellForRowAtIndexPath(indexPath)
         var rightLabel = cell?.viewWithTag(2) as! UILabel
         if selectedRow == 0 {
-            let isUpload = NSUserDefaults.standardUserDefaults().objectForKey("isUpload") as? NSString
-            if isUpload == nil || isUpload == "" {
+//            let isUpload = NSUserDefaults.standardUserDefaults().objectForKey("isUpload") as? NSString
+//            if isUpload == nil || isUpload == "" {
+//                self.performSegueWithIdentifier("verifyRealNameSegue", sender:nil)
+//            }
+            let isVerify = NSUserDefaults.standardUserDefaults().objectForKey("isVerify") as? NSString
+            if isVerify != "1" {
+                //未实名认证通过
                 self.performSegueWithIdentifier("verifyRealNameSegue", sender:nil)
             }
         }else if selectedRow == 1 {

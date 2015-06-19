@@ -43,6 +43,12 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
         searchTextField.delegate = self
         searchTextField.addTarget(self, action: "change:", forControlEvents: UIControlEvents.EditingChanged)
         searchTextField.tintColor = UIColor.grayColor()
+        var leftImageView = UIImageView(image: UIImage(named: "0_search"))
+        leftImageView.contentMode = UIViewContentMode.Center
+        leftImageView.frame = CGRectMake(0, 0, 25, searchTextField.frame.height )
+        searchTextField.leftView = leftImageView
+        searchTextField.leftViewMode = UITextFieldViewMode.Always
+        
         customerHeaderView.addSubview(searchTextField)
         
         

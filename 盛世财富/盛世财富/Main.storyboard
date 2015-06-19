@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6v-wi-K0w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6v-wi-K0w">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -6648,11 +6648,11 @@
                             <constraint firstItem="8Zg-aT-cGq" firstAttribute="top" secondItem="8yS-Qn-ASM" secondAttribute="bottom" constant="25" id="3Cg-Z3-ysU"/>
                             <constraint firstItem="XiQ-ac-M9x" firstAttribute="top" secondItem="QMb-8l-Z0o" secondAttribute="bottom" constant="-20" id="4yl-zP-2Pa"/>
                             <constraint firstItem="8yS-Qn-ASM" firstAttribute="top" secondItem="QMb-8l-Z0o" secondAttribute="bottom" constant="54" id="JYS-SF-GgM"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="XiQ-ac-M9x" secondAttribute="trailing" constant="-16" id="M9I-jx-RDe"/>
-                            <constraint firstItem="8yS-Qn-ASM" firstAttribute="leading" secondItem="1sa-UX-DNK" secondAttribute="leadingMargin" constant="-16" id="U00-Fv-27h"/>
-                            <constraint firstItem="XiQ-ac-M9x" firstAttribute="leading" secondItem="1sa-UX-DNK" secondAttribute="leadingMargin" constant="-16" id="UGS-jH-sTA"/>
+                            <constraint firstAttribute="trailing" secondItem="XiQ-ac-M9x" secondAttribute="trailing" id="M9I-jx-RDe"/>
+                            <constraint firstItem="8yS-Qn-ASM" firstAttribute="leading" secondItem="1sa-UX-DNK" secondAttribute="leading" id="U00-Fv-27h"/>
+                            <constraint firstItem="XiQ-ac-M9x" firstAttribute="leading" secondItem="1sa-UX-DNK" secondAttribute="leading" id="UGS-jH-sTA"/>
                             <constraint firstAttribute="centerX" secondItem="8Zg-aT-cGq" secondAttribute="centerX" id="Zya-s8-yFk"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8yS-Qn-ASM" secondAttribute="trailing" constant="-16" id="mlA-zK-gJl"/>
+                            <constraint firstAttribute="trailing" secondItem="8yS-Qn-ASM" secondAttribute="trailing" id="mlA-zK-gJl"/>
                             <constraint firstItem="8Zg-aT-cGq" firstAttribute="leading" secondItem="1sa-UX-DNK" secondAttribute="leadingMargin" constant="13" id="oz9-C1-dQy"/>
                         </constraints>
                     </view>
@@ -7222,8 +7222,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fbw-by-SJ0">
-                                <rect key="frame" x="0.0" y="-44" width="600" height="600"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fbw-by-SJ0">
+                                <rect key="frame" x="0.0" y="-44" width="600" height="644"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iT5-QC-oBC">
                                         <rect key="frame" x="13" y="457" width="574" height="42"/>
@@ -7311,7 +7311,7 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="体验金支付" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mHR-ll-90S">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="体验金支付" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mHR-ll-90S">
                                                 <rect key="frame" x="133" y="324" width="427" height="54"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="54" id="dgo-on-jva"/>
@@ -7319,7 +7319,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="支付密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oIg-gl-wRS">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="支付密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oIg-gl-wRS">
                                                 <rect key="frame" x="133" y="378" width="467" height="54"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="54" id="mA1-AY-Zcq"/>
@@ -7399,7 +7399,7 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="奖金支付" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qvv-bK-cds">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="奖金支付" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qvv-bK-cds">
                                                 <rect key="frame" x="133" y="270" width="427" height="54"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="54" id="oPk-w5-xOz"/>
@@ -7407,7 +7407,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="投标金额" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YUj-5u-NQ4">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="投标金额" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YUj-5u-NQ4">
                                                 <rect key="frame" x="133" y="216" width="427" height="54"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="54" id="Rc4-lF-DV0"/>
@@ -7433,6 +7433,7 @@
                                             <constraint firstItem="P2n-bD-zp3" firstAttribute="top" secondItem="e18-oa-8xu" secondAttribute="bottom" id="IRP-9X-LgQ"/>
                                             <constraint firstItem="oMf-83-t8O" firstAttribute="top" secondItem="8l9-hI-6H5" secondAttribute="bottom" id="MI6-OB-iVk"/>
                                             <constraint firstItem="1SU-yU-avD" firstAttribute="leading" secondItem="mHR-ll-90S" secondAttribute="trailing" id="OdL-SA-Jf5"/>
+                                            <constraint firstItem="qvv-bK-cds" firstAttribute="top" secondItem="YUj-5u-NQ4" secondAttribute="bottom" id="PsZ-6R-Obx"/>
                                             <constraint firstItem="ijr-X1-vT8" firstAttribute="top" secondItem="P2n-bD-zp3" secondAttribute="bottom" id="QQz-OA-6qc"/>
                                             <constraint firstItem="yXx-1s-cyP" firstAttribute="height" secondItem="1SU-yU-avD" secondAttribute="height" id="QnL-fF-AvA"/>
                                             <constraint firstAttribute="trailing" secondItem="K42-xs-Yky" secondAttribute="trailing" id="RW6-cX-uGJ"/>
@@ -7444,11 +7445,13 @@
                                             <constraint firstItem="1SU-yU-avD" firstAttribute="top" secondItem="yXx-1s-cyP" secondAttribute="bottom" id="Xze-Qi-QfM"/>
                                             <constraint firstItem="yXx-1s-cyP" firstAttribute="width" secondItem="1SU-yU-avD" secondAttribute="width" id="YO5-sk-LUC"/>
                                             <constraint firstItem="Dwv-Qf-kcp" firstAttribute="top" secondItem="pVy-2C-tlr" secondAttribute="bottom" id="Yhm-W5-6Ii"/>
+                                            <constraint firstItem="YUj-5u-NQ4" firstAttribute="top" secondItem="mkU-x8-RFM" secondAttribute="bottom" id="cLA-Yy-PQ8"/>
                                             <constraint firstItem="pVy-2C-tlr" firstAttribute="leading" secondItem="Hrj-qH-jF4" secondAttribute="leading" constant="13" id="crn-t8-zRr"/>
                                             <constraint firstItem="oIg-gl-wRS" firstAttribute="leading" secondItem="Dwv-Qf-kcp" secondAttribute="trailing" id="da3-bB-dRq"/>
                                             <constraint firstAttribute="height" constant="432" id="eHg-TT-8hO"/>
                                             <constraint firstItem="jJ2-Dm-ETh" firstAttribute="top" secondItem="Z3i-0z-MFH" secondAttribute="bottom" id="g4C-ga-tw9"/>
                                             <constraint firstItem="Dwv-Qf-kcp" firstAttribute="leading" secondItem="Hrj-qH-jF4" secondAttribute="leading" constant="13" id="gkL-pV-j90"/>
+                                            <constraint firstItem="YUj-5u-NQ4" firstAttribute="leading" secondItem="ijr-X1-vT8" secondAttribute="trailing" id="k18-BX-932"/>
                                             <constraint firstItem="yXx-1s-cyP" firstAttribute="leading" secondItem="qvv-bK-cds" secondAttribute="trailing" id="kUl-Yf-f4U"/>
                                             <constraint firstItem="ijr-X1-vT8" firstAttribute="leading" secondItem="Hrj-qH-jF4" secondAttribute="leading" constant="13" id="lJH-ml-uOz"/>
                                             <constraint firstAttribute="trailing" secondItem="CNH-A4-xFj" secondAttribute="trailing" id="lyu-tu-LZT"/>
@@ -7461,6 +7464,7 @@
                                             <constraint firstItem="CNH-A4-xFj" firstAttribute="leading" secondItem="e18-oa-8xu" secondAttribute="trailing" id="uMx-d4-CG4"/>
                                             <constraint firstItem="mkU-x8-RFM" firstAttribute="leading" secondItem="P2n-bD-zp3" secondAttribute="trailing" id="ugu-td-v2y"/>
                                             <constraint firstItem="oIg-gl-wRS" firstAttribute="top" secondItem="mHR-ll-90S" secondAttribute="bottom" id="xE8-3K-EEl"/>
+                                            <constraint firstItem="K42-xs-Yky" firstAttribute="leading" secondItem="YUj-5u-NQ4" secondAttribute="trailing" id="yBc-6c-YHq"/>
                                             <constraint firstItem="mHR-ll-90S" firstAttribute="leading" secondItem="pVy-2C-tlr" secondAttribute="trailing" id="yFg-1a-JOz"/>
                                             <constraint firstAttribute="trailing" secondItem="oMf-83-t8O" secondAttribute="trailing" id="zr1-ei-mem"/>
                                         </constraints>
@@ -7483,8 +7487,8 @@
                         <constraints>
                             <constraint firstItem="fbw-by-SJ0" firstAttribute="top" secondItem="7dM-d1-RXu" secondAttribute="bottom" constant="-64" id="CpF-CW-EwP"/>
                             <constraint firstItem="huf-2O-ZLO" firstAttribute="top" secondItem="fbw-by-SJ0" secondAttribute="bottom" id="MTX-NF-vRP"/>
-                            <constraint firstItem="fbw-by-SJ0" firstAttribute="leading" secondItem="s89-HH-Hm7" secondAttribute="leadingMargin" constant="-16" id="iGq-RN-b1w"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fbw-by-SJ0" secondAttribute="trailing" constant="-16" id="uE0-1Q-9R3"/>
+                            <constraint firstItem="fbw-by-SJ0" firstAttribute="leading" secondItem="s89-HH-Hm7" secondAttribute="leading" id="iGq-RN-b1w"/>
+                            <constraint firstAttribute="trailing" secondItem="fbw-by-SJ0" secondAttribute="trailing" id="uE0-1Q-9R3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="立刻投资" id="8NO-gu-Z0I"/>
@@ -7515,7 +7519,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Nf-qC-eCM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2196" y="-154"/>
+            <point key="canvasLocation" x="2215" y="-115"/>
         </scene>
     </scenes>
     <resources>
@@ -7541,7 +7545,7 @@
         <segue reference="cgO-r2-Qw7"/>
         <segue reference="1Oc-Wy-fyN"/>
         <segue reference="nfr-2W-Z2p"/>
-        <segue reference="EcF-gu-9cT"/>
+        <segue reference="01C-9g-NgZ"/>
         <segue reference="THn-qI-uLv"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -25,7 +25,10 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getData("0")
+        refreshControl.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "松开后自动刷新")
+        self.tableView.addSubview(refreshControl)
+        getData("0",listType: "\(currentButton)")
         setupRefresh()
     }
     
@@ -51,15 +54,23 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
     :param: actionType 操作类型
     0:进入页面获取数据
     1:下拉刷新获取数据
-    2:上拉加载获取数据
+    2:上拉加载
     */
-    func getData(actionType:String){
+    func getData(actionType:String,listType:String){
+        
         
         //检查手机网络
         var reach = Reachability(hostName: Common.domain)
         reach.unreachableBlock = {(r:Reachability!) -> Void in
             //NSLog("网络不可用")
-            AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
+            dispatch_async(dispatch_get_main_queue(), {
+                if actionType == "1" {
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    self.refreshControl.endRefreshing()
+                    self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
+                }
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
+            })
         }
         
         reach.reachableBlock = {(r:Reachability!) -> Void in
@@ -91,37 +102,45 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                             if photoArray != nil {
                                 self.photos = photoArray?.objectForKey("inner") as! NSMutableArray
                                 //设置滚动图
-//                                self.headScrollImages()
+                                self.headScrollImages()
                             }
                         }
                         
                     }
                     //获取数据后重新加载表格
                     self.tableView.reloadData()
+                    if actionType == "1" {
+                        self.refreshControl.endRefreshing()
+                        self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
+                    }
+                    
                 },failure:{ (op:AFHTTPRequestOperation!,error: NSError!) -> Void in
                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                    
+                    if actionType == "1" {
+                        self.refreshControl.endRefreshing()
+                        self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
+                    }
                     AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
                     
                 }
             )
-            
             
         }
         reach.startNotifier()
     }
     //为table添加下拉刷新和上拉加载功能
     func setupRefresh(){
-        //下拉刷新
-        self.tableView.addHeaderWithCallback({
-            self.getData("1")
-        })
+//        //下拉刷新
+//        self.tableView.addHeaderWithCallback({
+//            self.getData("1")
+//        })
         
         //上拉加载
         self.tableView.addFooterWithCallback({
-            self.getData("2")
+            self.getData("2",listType:"\(self.currentButton)")
         })
     }
+   
     //滚动图
     func headScrollImages(){
         //NSLog("加载图片:%@",self.photos!)
@@ -169,7 +188,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
     func refreshData() {
         if self.refreshControl.refreshing {
             self.refreshControl.attributedTitle = NSAttributedString(string: "加载中")
-            getData("1")
+            getData("1",listType:"\(currentButton)")
         }
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

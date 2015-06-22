@@ -29,6 +29,7 @@ class BandBankViewController: UIViewController,UITableViewDelegate {
         var bankCardNo = userDefaults.objectForKey("bankCardNo") as? String
         var bankName = userDefaults.objectForKey("bankName") as? String
         var username = userDefaults.objectForKey("username") as? String
+        
         if bankCardNo == "" || bankCardNo == nil{
             firstView.hidden = true
             secondView.hidden = false
@@ -37,14 +38,17 @@ class BandBankViewController: UIViewController,UITableViewDelegate {
             top.constant = 20
             firstView.layer.cornerRadius = 10
             secondView.layer.cornerRadius = 10
-            
         }
         else{
+            firstView.hidden = false
+            secondView.hidden = false
+            hintLabel.hidden = true
             bankNameLabel.text = bankName
             userNameLabel.text = Common.replaceStringToX(username!, start: 0, end: 2)
-            bankLabel.text = Common.replaceStringToX(bankCardNo!, start: 0, end: 2)
+            bankLabel.text = Common.replaceStringToX(bankCardNo!, start: 3, end: 8)
             bankButton.setTitle("修改", forState: UIControlState.Normal)
             self.title = "银行卡信息"
+            top.constant = self.view.bounds.height/3+50
             firstView.layer.cornerRadius = 10
             secondView.layer.cornerRadius = 10
         }

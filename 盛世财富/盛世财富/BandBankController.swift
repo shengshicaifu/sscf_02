@@ -23,6 +23,7 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
     var listData :NSArray = [] //存储json数据的
     var province:NSMutableArray =  []
     var city:NSMutableArray = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ProvincePick.delegate = self
@@ -69,7 +70,6 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
             bankBranchTextField.text = userDefaults.objectForKey("bankBranch") as? String
             var provinceStr = userDefaults.objectForKey("bankProvince") as! String
             var cityStr = userDefaults.objectForKey("bankCity") as! String
-            println("cityStr\(cityStr)")
             var provinceIndex = 0
             for(var i=0;i<self.province.count;i++){
                 if province[i] as! String == provinceStr {
@@ -86,10 +86,9 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
             for(var i=0;i<city.count;i++){
                 if city[i] as! String == cityStr {
                     cityIndex = i
-                    println("cityIndex\(cityIndex)")
                 }
             }
-            println(cityIndex)
+            self.ProvincePick.reloadComponent(1)
             self.ProvincePick.selectRow(cityIndex, inComponent: 1, animated: true)
             
             
@@ -107,7 +106,6 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
         resignAll()
         var userDefaults = NSUserDefaults.standardUserDefaults()
         var bankCardNoUserDefaults = userDefaults.objectForKey("bankCardNo") as? String
-        
         var bankCardNo = bankCardNoTextField.text
         var bankName = bankNameTextField.text
         var bankBranch = bankBranchTextField.text
@@ -167,10 +165,15 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
                             userDefaults.setObject(bankBranch, forKey: "bankBranch")
                             self.navigationController?.popViewControllerAnimated(true)
                         })
-                        
-                    }else if code == 100{
-                        AlertView.alert("提示", message: "请先实名认证", buttonTitle: "确定", viewController: self)
+                        }else if code == 100{
+                        AlertView.alert("提示", message: "请先实名认证", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
+                            let anotherView = self.storyboard?.instantiateViewControllerWithIdentifier("post") as! VerifyRealNameViewController
+                            self.navigationController?.pushViewController(anotherView, animated: true)
+                        })
+
                     }
+                    
+                        
                 },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
                     loading.stopLoading()
                     AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)

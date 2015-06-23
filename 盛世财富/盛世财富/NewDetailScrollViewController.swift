@@ -40,7 +40,7 @@ class NewDetailScrollViewController: UIViewController {
         buyButton.setBackgroundImage(UIImage(named: "button_disable"), forState: UIControlState.Highlighted)
         buyButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Highlighted)
         
-        
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         if id != nil {
             let manager =  AFHTTPRequestOperationManager()
             let params = ["id" : id!]

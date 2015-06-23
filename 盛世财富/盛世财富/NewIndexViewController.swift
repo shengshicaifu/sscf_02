@@ -65,6 +65,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         }
         sender.selected = true
         //self.tableView.reloadData()
+        self.listData.removeAllObjects()
         self.getData("0", listType: "\(currentButton)")
     }
     /**
@@ -93,57 +94,62 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         
         reach.reachableBlock = {(r:Reachability!) -> Void in
             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-            //获取滚动图和网站数据
             var manager = AFHTTPRequestOperationManager()
             var url = Common.serverHost + "/App-Index"//没有标的列表数据
             var params = [:]
             manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-            manager.POST(url, parameters: params,
-                success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                    
-                    var result = data as! NSDictionary
-                    NSLog("首页：%@", result)
-                    var code = result["code"] as! Int
-                    if code == 200 {
-                        var info = result["data"] as! NSDictionary
-                        var protectDaysDouble = info["protect_days"] as! Int//累计保驾护航天数
-                        var totalInvestDouble = info["total_invest"] as! Int//总共放贷金额
-                        var userCountDouble = info["user_count"] as! Int//会员数量
-                        var photoArray = info["photoes"] as? NSDictionary//滚动图
+            
+            if actionType != "2" {
+                //获取滚动图和网站数据
+                
+                manager.POST(url, parameters: params,
+                    success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         
-                        self.protectDays = "\(protectDaysDouble)"
-                        self.totalInvest = "\(totalInvestDouble)"
-                        self.userCount = "\(userCountDouble)"
-                        if actionType == "0" {
-                            self.photos = NSMutableArray()
-                            if photoArray != nil {
-                                self.photos = photoArray?.objectForKey("inner") as! NSMutableArray
-                                //设置滚动图
-                                self.headScrollImages()
+                        var result = data as! NSDictionary
+                        //NSLog("首页：%@", result)
+                        var code = result["code"] as! Int
+                        if code == 200 {
+                            var info = result["data"] as! NSDictionary
+                            var protectDaysDouble = info["protect_days"] as! Int//累计保驾护航天数
+                            var totalInvestDouble = info["total_invest"] as! Int//总共放贷金额
+                            var userCountDouble = info["user_count"] as! Int//会员数量
+                            var photoArray = info["photoes"] as? NSDictionary//滚动图
+                            
+                            self.protectDays = "\(protectDaysDouble)"
+                            self.totalInvest = "\(totalInvestDouble)"
+                            self.userCount = "\(userCountDouble)"
+                            if actionType == "0" {
+                                self.photos = NSMutableArray()
+                                if photoArray != nil {
+                                    self.photos = photoArray?.objectForKey("inner") as! NSMutableArray
+                                    //设置滚动图
+                                    self.headScrollImages()
+                                }
                             }
+                            
+                        }
+                        //获取数据后重新加载表格
+                        //self.tableView.reloadData()
+                        if actionType == "1" {
+                            self.refreshControl.endRefreshing()
+                            self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
                         }
                         
+                    },failure:{ (op:AFHTTPRequestOperation!,error: NSError!) -> Void in
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                        if actionType == "1" {
+                            self.refreshControl.endRefreshing()
+                            self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
+                        }
+                        AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
+                        
                     }
-                    //获取数据后重新加载表格
-                    //self.tableView.reloadData()
-                    if actionType == "1" {
-                        self.refreshControl.endRefreshing()
-                        self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
-                    }
-                    
-                },failure:{ (op:AFHTTPRequestOperation!,error: NSError!) -> Void in
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                    if actionType == "1" {
-                        self.refreshControl.endRefreshing()
-                        self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
-                    }
-                    AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
-                    
-                }
-            )
+                )
+            }
             
             
+            params = ["pageSize":"10"]
             //获取标列表数据
             switch listType {
                 case "0":
@@ -155,7 +161,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                         var count = self.listData.count
                         if count > 0 {
                             borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
-                            params = ["borrow_id":"\(borrow_id)"]
+                            params = ["borrow_id":"\(borrow_id)","pageSize":"10"]
                         }
                     }
 
@@ -185,7 +191,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                         var count = self.listData.count
                         if count > 0 {
                             borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
-                            params = ["borrow_id":"\(borrow_id)"]
+                            params = ["borrow_id":"\(borrow_id)","pageSize":"10"]
                         }
                     }
                     break
@@ -198,7 +204,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                         var count = self.listData.count
                         if count > 0 {
                             borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
-                            params = ["borrow_id":"\(borrow_id)"]
+                            params = ["borrow_id":"\(borrow_id)","pageSize":"10"]
                         }
                     }
                     break
@@ -210,7 +216,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                         var count = self.listData.count
                         if count > 0 {
                             borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
-                            params = ["borrow_id":"\(borrow_id)"]
+                            params = ["borrow_id":"\(borrow_id)","pageSize":"10"]
                         }
                     }
                     break
@@ -221,11 +227,12 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
             }else if (actionType == "1" || actionType == "2"){
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             }
-            
+            NSLog("url = %@", url)
+            NSLog("params = %@", params)
             manager.POST(url, parameters: params,
                 success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     var result:NSDictionary = data as! NSDictionary
-                    NSLog("标的列表结果%@", result)
+                    //NSLog("标的列表结果%@", result)
                     if actionType == "0" {
                         loading.stopLoading()
                     }else if actionType == "1"{
@@ -262,6 +269,10 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                                 //self.listData.addObjectsFromArray(array1[i] as! [AnyObject])
                             }
                         }
+                    }
+                    for(var i=0;i<self.listData.count;i++){
+                        var dic = self.listData[i] as! NSDictionary
+                        println(dic["id"] as! String)
                     }
                     self.tableView.reloadData()
                 },
@@ -545,7 +556,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
             return 1
         }
         if section == 1{
-            return 5
+            return self.listData.count
         }
         return 0
     }
@@ -582,6 +593,20 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
             var vc = segue.destinationViewController as! NewDetailScrollViewController
             vc.hidesBottomBarWhenPushed = true
             vc.id = dic.objectForKey("id") as? String
+        }
+    }
+    
+    func buy(sender:UIGestureRecognizer){
+        if let tableCell = sender.view?.superview?.superview?.superview as? UITableViewCell {
+            var indexPath = self.tableView.indexPathForCell(tableCell)!
+            NSLog("购买选中的行%i", indexPath.row)
+            var d = self.listData[indexPath.row] as! NSDictionary
+            var id = d.objectForKey("id") as! String
+            NSLog("购买选中的id%@",id)
+            var bidConfirmViewController = self.storyboard?.instantiateViewControllerWithIdentifier("bidConfirmViewController") as! BidConfirmViewController
+            bidConfirmViewController.id = id
+            bidConfirmViewController.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(bidConfirmViewController, animated: true)
         }
     }
 }

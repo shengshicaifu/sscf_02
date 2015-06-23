@@ -15,7 +15,6 @@ class CurrentFinancialViewController:UITableViewController,UITableViewDataSource
     @IBOutlet weak var roundView1: UIView!
     @IBOutlet weak var roundView2: UIView!
     @IBOutlet weak var roundView3: UIView!
-    
     @IBOutlet weak var roundView4: UIView!
     @IBOutlet weak var m1Label: UILabel!//总资产
     @IBOutlet weak var m2Label: UILabel!//可用现金余额
@@ -47,7 +46,6 @@ class CurrentFinancialViewController:UITableViewController,UITableViewDataSource
         self.refreshControl = rc
         getData("0")
     }
-    
     
     func refresh(){
         if self.refreshControl!.refreshing {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6v-wi-K0w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="T6v-wi-K0w">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
@@ -2416,12 +2416,12 @@
                                         <include reference="qw8-Ql-oOm"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <include reference="QtJ-M9-kf7"/>
-                                        <include reference="c9E-Cj-j3o"/>
-                                        <include reference="fVP-BB-1uY"/>
                                         <include reference="Ijt-5D-u68"/>
                                         <include reference="a8c-fN-e6b"/>
                                         <include reference="o2O-1p-zt2"/>
+                                        <include reference="QtJ-M9-kf7"/>
+                                        <include reference="c9E-Cj-j3o"/>
+                                        <include reference="fVP-BB-1uY"/>
                                         <include reference="5mI-rI-roQ"/>
                                         <include reference="GW3-ZK-qIB"/>
                                         <include reference="h00-6o-yEk"/>

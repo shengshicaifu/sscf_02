@@ -7,8 +7,11 @@
 //
 
 import UIKit
-
-class NewsTableViewController: UITableViewController,UITableViewDataSource,UITableViewDelegate {
+/**
+*  消息
+*/
+class NewsTableViewController: UITableViewController,UITableViewDataSource,UITableViewDelegate ,UINavigationControllerDelegate,UIViewControllerAnimatedTransitioning {
+    var navigationOperation: UINavigationControllerOperation?
     var tmpListData: NSMutableArray = NSMutableArray()//临时数据  下拉添加
     var ehttp = HttpController()
     var url = ""
@@ -17,6 +20,9 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
     var textLayer:CACustomTextLayer?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.delegate = self
+        
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.setupRefresh()
@@ -29,6 +35,59 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
 //        self.refreshControl = rc
 //       
     }
+    
+    func navigationController(navigationController: UINavigationController?!, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController!, toViewController toVC: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
+        navigationOperation = operation
+        return self
+    }
+    
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+        return 0.5
+    }
+    
+    
+    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        let containerView = transitionContext.containerView()
+        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
+        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
+        
+        var destView: UIView!
+        var destTransform: CGAffineTransform!
+        var destAlpha:Double! = 0.1
+        if navigationOperation == UINavigationControllerOperation.Push {
+            containerView.insertSubview(toViewController!.view, aboveSubview: fromViewController!.view)
+            destView = toViewController!.view
+            //destView.transform = CGAffineTransformMakeScale(0.1, 0.1)
+            //destTransform = CGAffineTransformMakeScale(1, 1)
+            destView.alpha = 0.1
+            destAlpha = 1.0
+        } else if navigationOperation == UINavigationControllerOperation.Pop {
+            containerView.insertSubview(toViewController!.view, belowSubview: fromViewController!.view)
+            destView = fromViewController!.view
+            // 如果IDE是Xcode6 Beta4+iOS8SDK，那么在此处设置为0，动画将不会被执行(不确定是哪里的Bug)
+            //destTransform = CGAffineTransformMakeScale(0.1, 0.1)
+            destAlpha = 0.1
+        }
+        //        UIView.animateWithDuration(transitionDuration(transitionContext), animations: {
+        //            //destView.transform = destTransform
+        //            destView.alpha = destAlpha
+        //            }, completion: ({
+        //                transitionContext.completeTransition(true)
+        //        }))
+        UIView.animateWithDuration(
+            transitionDuration(transitionContext), animations: { () -> Void in
+                //destView.transform = destTransform
+                if destAlpha == 1.0 {
+                    destView.alpha = 1.0
+                }else {
+                    destView.alpha = 0.1
+                }
+                
+            }) { (completed) -> Void in
+                transitionContext.completeTransition(true)
+        }
+    }
+
     
     //点击UITextView 跳转到详情页面的方法
     func toNewsDetail(sender:UITapGestureRecognizer){

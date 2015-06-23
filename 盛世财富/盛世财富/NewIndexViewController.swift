@@ -605,6 +605,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
             NSLog("购买选中的id%@",id)
             var bidConfirmViewController = self.storyboard?.instantiateViewControllerWithIdentifier("bidConfirmViewController") as! BidConfirmViewController
             bidConfirmViewController.id = id
+            bidConfirmViewController.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(bidConfirmViewController, animated: true)
         }
     }

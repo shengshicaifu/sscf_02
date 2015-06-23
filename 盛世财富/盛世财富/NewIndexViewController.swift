@@ -589,7 +589,9 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
             //            var vc = segue.destinationViewController as! LendDetailViewController
             var selectedRow = self.tableView.indexPathForSelectedRow()?.row
             var dic = self.listData[selectedRow!] as! NSDictionary
+            
             var vc = segue.destinationViewController as! NewDetailScrollViewController
+            vc.hidesBottomBarWhenPushed = true
             vc.id = dic.objectForKey("id") as? String
         }
     }

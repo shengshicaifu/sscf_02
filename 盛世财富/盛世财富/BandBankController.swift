@@ -32,8 +32,6 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
         bankNameTextField.delegate = self
         bankBranchTextField.delegate = self
     
-        
-        
         Common.customerBgView(styleView)
         Common.customerButton(addTapped)
         Common.addBorder(bankNameTextField)
@@ -45,7 +43,7 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
         //获取json数据
         var path = NSBundle.mainBundle().pathForResource("area", ofType: "json")
         var jsonData:NSData = NSData(contentsOfFile: path!)!
-        var jsonDic = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil)
+        var jsonDic: AnyObject? = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil)
         listData = jsonDic as! NSArray
         var count = self.listData.count
         println(listData.count)

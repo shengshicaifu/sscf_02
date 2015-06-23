@@ -8,8 +8,8 @@
 
 import Foundation
 import UIKit
-class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,UITableViewDelegate {
-    
+class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,UITableViewDelegate{
+   
     @IBOutlet weak var mainTable: UITableView!
     @IBOutlet weak var head: UIImageView!
 
@@ -20,6 +20,10 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
     var url = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        
         mainTable.dataSource = self
         mainTable.delegate = self
         
@@ -56,7 +60,12 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         rc.attributedTitle = NSAttributedString(string: "下拉刷新")
         rc.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
         self.refreshControl = rc
+        
+        
     }
+    
+   
+    
     
     //刷新
     func refresh(){

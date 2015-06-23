@@ -192,12 +192,12 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
             var url = Common.serverHost + "/App-Index"
             var params = [:]
             manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-            manager.POST(url, parameters: params,
+            manager.GET(url, parameters: params,
                 success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     
                     var result = data as! NSDictionary
-                    //NSLog("首页：%@", result)
+                    NSLog("首页：%@", result)
                     var code = result["code"] as! Int
                     if code == 200 {
                         var info = result["data"] as! NSDictionary
@@ -232,6 +232,7 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
                         self.refreshControl?.endRefreshing()
                         self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
                     }
+                    NSLog("首页错误%@", error)
                     AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
                     
                 }

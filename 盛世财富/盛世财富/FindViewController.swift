@@ -19,7 +19,7 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var searchController: UISearchController!//搜索控制器
     
     var data:NSMutableArray = NSMutableArray()
-    var count = 15
+    var count = 20
     var searchString:String? = ""
     
     var searchTextField:UITextField!//搜索框
@@ -31,31 +31,11 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
         tableView.delegate = self
         tableView.dataSource = self
         
-        // Do any additional setup after loading the view.
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: sectionsTableIdentifier)
-        //从plist文件中获取数据
-        let path = NSBundle.mainBundle().pathForResource("sortednames", ofType: "plist")
-        let nameDict = NSDictionary(contentsOfFile: path!)
-        names = nameDict as! [String: [String]]
-        keys = sorted(nameDict?.allKeys as! [String])
-        //展示搜索的结果的控制器
-//        let resultsController = FindResultsViewController()
-//        resultsController.names = names
-//        resultsController.keys = keys
-        //searchController = UISearchController(searchResultsController: resultsController)
-//        searchController.hidesNavigationBarDuringPresentation = false
-//        searchController.dimsBackgroundDuringPresentation = false
         
-//        let searchBar = searchController.searchBar
-//        //searchBar.scopeButtonTitles = ["All", "Short", "Long"]
-//        searchBar.placeholder = "查找理财产品"
-//        searchBar.sizeToFit()
-       
         //自定义搜索框
         //输入框
         var customerHeaderView = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 44))
-        //customerHeaderView.backgroundColor = UIColor.redColor()
-        
         searchTextField = UITextField()
         searchTextField.placeholder = "查找理财产品"
         searchTextField.borderStyle = UITextBorderStyle.RoundedRect
@@ -63,6 +43,12 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
         searchTextField.delegate = self
         searchTextField.addTarget(self, action: "change:", forControlEvents: UIControlEvents.EditingChanged)
         searchTextField.tintColor = UIColor.grayColor()
+        var leftImageView = UIImageView(image: UIImage(named: "0_search"))
+        leftImageView.contentMode = UIViewContentMode.Center
+        leftImageView.frame = CGRectMake(0, 0, 25, searchTextField.frame.height )
+        searchTextField.leftView = leftImageView
+        searchTextField.leftViewMode = UITextFieldViewMode.Always
+        
         customerHeaderView.addSubview(searchTextField)
         
         
@@ -87,22 +73,16 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
         customerHeaderView.addConstraint(searchTextFieldConstraint)
         
         
-        
-//        var searchCancelButtonConstraint =  NSLayoutConstraint(item: searchCancelButton, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: searchTextField, attribute: NSLayoutAttribute.Trailing, multiplier: 1.0, constant: 10)
-        //var customerHeaderView.addConstraint(searchTextFieldConstraint)
         var searchCancelButtonConstraint =  NSLayoutConstraint(item: searchCancelButton, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: customerHeaderView, attribute: NSLayoutAttribute.CenterY, multiplier: 1.0, constant: 0)
         customerHeaderView.addConstraint(searchCancelButtonConstraint)
         searchCancelButtonConstraint = NSLayoutConstraint(item: searchCancelButton, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: customerHeaderView, attribute: NSLayoutAttribute.Trailing, multiplier: 1.0, constant: -10)
         customerHeaderView.addConstraint(searchCancelButtonConstraint)
         
         
-        //tableView.tableHeaderView = customerHeaderView
         self.navigationItem.titleView = customerHeaderView
-        
-        
-        //searchController.searchResultsUpdater = resultsController
-        
         self.setupRefresh()
+        
+        self.tableView.scrollEnabled = false
     }
     
     //取消，清空数据
@@ -113,6 +93,7 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
         searchTextField.text = ""
         searchString = ""
         self.tableView.reloadData()
+        self.tableView.scrollEnabled = false
     }
     
     func change(sender:UITextField){
@@ -262,7 +243,7 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var lendDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LendDetailViewController") as! LendDetailViewController
+        var lendDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("NewDetailScrollViewController") as! NewDetailScrollViewController
         //不使用隐藏域来保存数据，有问题。根据下标在data中获取数据再传到下个页面
         if self.data.count > 0 {
             var cellDictionary = self.data.objectAtIndex(indexPath.row) as! NSDictionary

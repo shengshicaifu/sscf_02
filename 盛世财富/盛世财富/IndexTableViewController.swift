@@ -88,7 +88,7 @@ class IndexTableViewController:UITableViewController,UITableViewDataSource,UITab
             self.tableView.tableHeaderView = mainScorllView
         }
     }
-    
+   
     //MARK:- 弹出广告
     //弹框显示活动
     func showAd(){

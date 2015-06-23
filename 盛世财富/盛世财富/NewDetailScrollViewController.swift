@@ -61,6 +61,7 @@ class NewDetailScrollViewController: UIViewController {
                     var memberinfo = data["memberinfo"] as! NSDictionary
                     println("memberinfo\(memberinfo)")
                     var InterestRate = borrowinfo["borrow_interest_rate"] as! String
+                    var units = borrowinfo["duration_unit"] as!  String
                     self.InterestRateLabel.text = "\(InterestRate)%"
                     self.borrowMinLabel.text = borrowinfo["borrow_min"] as? String
                     self.borrowName.text = borrowinfo["borrow_name"] as? String
@@ -81,7 +82,7 @@ class NewDetailScrollViewController: UIViewController {
                     
                     self.borrowRate.text = "\(InterestRate)%"
                     var borrow = borrowinfo["borrow_duration"] as! String
-                    self.borrowDuration.text = "\(borrow)天"
+                    self.borrowDuration.text = "\(borrow)"+"\(units)"
                     
                     var lefttime = borrowinfo["lefttime"] as! Int
                     if lefttime > 0 {

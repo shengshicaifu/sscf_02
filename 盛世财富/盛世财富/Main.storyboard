@@ -2357,28 +2357,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gSK-Se-dBI">
-                                <rect key="frame" x="24" y="74" width="552" height="291"/>
+                                <rect key="frame" x="24" y="74" width="552" height="184"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="储蓄卡" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xpt-UG-hI7">
-                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="储蓄卡" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xpt-UG-hI7">
+                                        <rect key="frame" x="8" y="50" width="536" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="wang lu" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jy-S5-V8F">
-                                        <rect key="frame" x="0.0" y="225" width="600" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wang lu" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jy-S5-V8F">
+                                        <rect key="frame" x="8" y="113" width="536" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="华夏银行－－－－－－－－－－" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IO1-l8-rnr">
-                                        <rect key="frame" x="0.0" y="109" width="600" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="华夏银行－－－－－－－－－－" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IO1-l8-rnr">
+                                        <rect key="frame" x="8" y="10" width="536" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="＊＊＊＊       ＊＊＊＊     ＊＊＊＊      5555" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qw8-Ql-oOm">
-                                        <rect key="frame" x="0.0" y="172" width="600" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="＊＊＊＊       ＊＊＊＊     ＊＊＊＊      5555" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qw8-Ql-oOm">
+                                        <rect key="frame" x="8" y="82" width="536" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2387,10 +2387,10 @@
                                 <color key="backgroundColor" red="0.32156862745098042" green="0.70588235294117652" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="4jy-S5-V8F" firstAttribute="leading" secondItem="gSK-Se-dBI" secondAttribute="leading" constant="8" id="0Na-Ng-dIC"/>
-                                    <constraint firstItem="qw8-Ql-oOm" firstAttribute="top" secondItem="Xpt-UG-hI7" secondAttribute="bottom" constant="17" id="5mI-rI-roQ">
+                                    <constraint firstItem="qw8-Ql-oOm" firstAttribute="top" secondItem="Xpt-UG-hI7" secondAttribute="bottom" constant="10" id="5mI-rI-roQ">
                                         <variation key="heightClass=regular" constant="20"/>
                                     </constraint>
-                                    <constraint firstAttribute="bottom" secondItem="4jy-S5-V8F" secondAttribute="bottom" constant="129" id="CaJ-lE-g1G">
+                                    <constraint firstAttribute="bottom" secondItem="4jy-S5-V8F" secondAttribute="bottom" constant="50" id="CaJ-lE-g1G">
                                         <variation key="heightClass=regular" constant="20"/>
                                     </constraint>
                                     <constraint firstAttribute="centerX" secondItem="qw8-Ql-oOm" secondAttribute="centerX" id="GW3-ZK-qIB"/>
@@ -2398,15 +2398,15 @@
                                     <constraint firstAttribute="centerX" secondItem="Xpt-UG-hI7" secondAttribute="centerX" id="QtJ-M9-kf7"/>
                                     <constraint firstAttribute="centerX" secondItem="4jy-S5-V8F" secondAttribute="centerX" id="RtK-Wl-Xr5"/>
                                     <constraint firstAttribute="centerX" secondItem="IO1-l8-rnr" secondAttribute="centerX" id="a8c-fN-e6b"/>
-                                    <constraint firstItem="Xpt-UG-hI7" firstAttribute="top" secondItem="IO1-l8-rnr" secondAttribute="bottom" constant="16" id="c9E-Cj-j3o">
+                                    <constraint firstItem="Xpt-UG-hI7" firstAttribute="top" secondItem="IO1-l8-rnr" secondAttribute="bottom" constant="10" id="c9E-Cj-j3o">
                                         <variation key="heightClass=regular" constant="20"/>
                                     </constraint>
                                     <constraint firstItem="Xpt-UG-hI7" firstAttribute="leading" secondItem="gSK-Se-dBI" secondAttribute="leading" constant="8" id="fVP-BB-1uY"/>
                                     <constraint firstItem="qw8-Ql-oOm" firstAttribute="leading" secondItem="gSK-Se-dBI" secondAttribute="leading" constant="8" id="h00-6o-yEk"/>
-                                    <constraint firstItem="4jy-S5-V8F" firstAttribute="top" secondItem="qw8-Ql-oOm" secondAttribute="bottom" constant="15" id="mqT-f2-aSC">
+                                    <constraint firstItem="4jy-S5-V8F" firstAttribute="top" secondItem="qw8-Ql-oOm" secondAttribute="bottom" constant="10" id="mqT-f2-aSC">
                                         <variation key="heightClass=regular" constant="20"/>
                                     </constraint>
-                                    <constraint firstItem="IO1-l8-rnr" firstAttribute="top" secondItem="gSK-Se-dBI" secondAttribute="top" constant="20" id="o2O-1p-zt2"/>
+                                    <constraint firstItem="IO1-l8-rnr" firstAttribute="top" secondItem="gSK-Se-dBI" secondAttribute="top" constant="10" id="o2O-1p-zt2"/>
                                 </constraints>
                                 <variation key="heightClass=regular">
                                     <mask key="subviews">
@@ -2432,8 +2432,22 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fj-7a-kjZ">
-                                <rect key="frame" x="24" y="411" width="552" height="291"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提示：待验证的银行卡，将在第一次确认支付时进行验证" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHa-yx-ceJ">
+                                <rect key="frame" x="24" y="266" width="552" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="6r1-ns-mau"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="6r1-ns-mau"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Fj-7a-kjZ">
+                                <rect key="frame" x="24" y="314" width="552" height="184"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MU2-31-Gir">
                                         <rect key="frame" x="0.0" y="307" width="600" height="30"/>
@@ -2470,20 +2484,6 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提示：待验证的银行卡，将在第一次确认支付时进行验证" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHa-yx-ceJ">
-                                <rect key="frame" x="24" y="373" width="552" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="6r1-ns-mau"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular">
-                                    <mask key="constraints">
-                                        <include reference="6r1-ns-mau"/>
-                                    </mask>
-                                </variation>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.85359453914141403" green="0.85359453914141403" blue="0.85359453914141403" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -2503,8 +2503,8 @@
                         <variation key="heightClass=regular">
                             <mask key="subviews">
                                 <include reference="gSK-Se-dBI"/>
-                                <include reference="7Fj-7a-kjZ"/>
                                 <include reference="aHa-yx-ceJ"/>
+                                <include reference="7Fj-7a-kjZ"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="4jP-Fc-sEh"/>

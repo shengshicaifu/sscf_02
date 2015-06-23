@@ -19,8 +19,6 @@ class BandBankViewController: UIViewController,UITableViewDelegate {
     @IBOutlet weak var top: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-
      }
    
     override func viewWillAppear(animated: Bool) {
@@ -35,7 +33,7 @@ class BandBankViewController: UIViewController,UITableViewDelegate {
             secondView.hidden = false
             hintLabel.hidden = true
             bankButton.setTitle("添加银行卡", forState: UIControlState.Normal)
-            top.constant = 20
+            top.constant = 10
             firstView.layer.cornerRadius = 10
             secondView.layer.cornerRadius = 10
         }
@@ -45,10 +43,10 @@ class BandBankViewController: UIViewController,UITableViewDelegate {
             hintLabel.hidden = true
             bankNameLabel.text = bankName
             userNameLabel.text = Common.replaceStringToX(username!, start: 0, end: 2)
-            bankLabel.text = Common.replaceStringToX(bankCardNo!, start: 3, end: 8)
+            bankLabel.text = Common.replaceStringToX(bankCardNo!, start: 3 , end: 5)
             bankButton.setTitle("修改", forState: UIControlState.Normal)
             self.title = "银行卡信息"
-            top.constant = self.view.bounds.height/3+50
+            top.constant = self.view.bounds.height/3+30
             firstView.layer.cornerRadius = 10
             secondView.layer.cornerRadius = 10
         }

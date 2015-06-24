@@ -341,11 +341,16 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                             }
                         }
                     }
-                    for(var i=0;i<self.listData.count;i++){
-                        var dic = self.listData[i] as! NSDictionary
-                        println(dic["id"] as! String)
-                    }
+//                    for(var i=0;i<self.listData.count;i++){
+//                        var dic = self.listData[i] as! NSDictionary
+//                        println(dic["id"] as! String)
+//                    }
                     self.tableView.reloadData()
+                    if actionType == "0" {
+                        if let chooseView = self.view.viewWithTag(123) {
+                            self.tableView.setContentOffset(CGPointMake(0, 150), animated: true)
+                        }
+                    }
                 },
                 failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
                     if actionType == "0" {
@@ -675,14 +680,274 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
     func buy(sender:UIGestureRecognizer){
         if let tableCell = sender.view?.superview?.superview?.superview as? UITableViewCell {
             var indexPath = self.tableView.indexPathForCell(tableCell)!
-            NSLog("购买选中的行%i", indexPath.row)
+//            NSLog("购买选中的行%i", indexPath.row)
             var d = self.listData[indexPath.row] as! NSDictionary
             var id = d.objectForKey("id") as! String
-            NSLog("购买选中的id%@",id)
+//            NSLog("购买选中的id%@",id)
             var bidConfirmViewController = self.storyboard?.instantiateViewControllerWithIdentifier("bidConfirmViewController") as! BidConfirmViewController
             bidConfirmViewController.id = id
             bidConfirmViewController.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(bidConfirmViewController, animated: true)
         }
     }
+    
+    var contentOffsetY:CGFloat = 0
+    var oldContentOffsetY:CGFloat = 0
+    var newContentOffsetY:CGFloat = 0
+    //MARK:- 滚动
+    //开始拖拽视图
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        contentOffsetY = scrollView.contentOffset.y
+    }
+    // 滚动时调用此方法(手指离开屏幕后)
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        //NSLog("scrollView.contentOffset:%f, %f", scrollView.contentOffset.x, scrollView.contentOffset.y)
+        newContentOffsetY = scrollView.contentOffset.y
+        if (newContentOffsetY > oldContentOffsetY && oldContentOffsetY > contentOffsetY) {  // 向上滚动
+
+            //NSLog("up")
+
+        } else if (newContentOffsetY < oldContentOffsetY && oldContentOffsetY < contentOffsetY) { // 向下滚动
+            //NSLog("down")
+        }else {
+
+            //NSLog("dragging")
+            
+        }
+        
+        if scrollView.dragging {// 拖拽
+            //NSLog("scrollView.dragging")
+            //NSLog("contentOffsetY: %f", contentOffsetY)
+            //NSLog("newContentOffsetY: %f", scrollView.contentOffset.y)
+            
+            //创建筛选条件
+            if scrollView.contentOffset.y > 150 {
+                var chooseView = self.view.viewWithTag(123)
+                if chooseView == nil {
+                    //创建
+                    var v = UIView(frame: CGRectMake(0, 64, self.view.frame.width, 90))
+                    var recognizer = UISwipeGestureRecognizer(target: self, action: "toTop:")
+                    recognizer.direction = UISwipeGestureRecognizerDirection.Up
+                    v.addGestureRecognizer(recognizer)
+                    v.backgroundColor = UIColor.whiteColor()
+                    v.alpha = 0.9
+                    v.tag = 123
+                    
+                    var effectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Light))
+                    effectView.frame = v.frame
+                    v.addSubview(effectView)
+                    
+                    var vFrame = v.frame
+                    var imageWidth:CGFloat = 42
+                    var btn1 = UIButton(frame: CGRectMake(vFrame.width/8 - imageWidth/2, 8, imageWidth, imageWidth))
+                    var btn2 = UIButton(frame: CGRectMake(vFrame.width*3/8 - imageWidth/2, 8, imageWidth, imageWidth))
+                    var btn3 = UIButton(frame: CGRectMake(vFrame.width*5/8 - imageWidth/2, 8, imageWidth, imageWidth))
+                    var btn4 = UIButton(frame: CGRectMake(vFrame.width*7/8 - imageWidth/2, 8, imageWidth, imageWidth))
+                    btn1.tag = 201
+                    btn2.tag = 202
+                    btn3.tag = 203
+                    btn4.tag = 204
+                    btn1.setBackgroundImage(UIImage(named: "all"), forState: UIControlState.Normal)
+                    btn1.setBackgroundImage(UIImage(named: "all_blue"), forState: UIControlState.Selected)
+                    
+                    btn2.setBackgroundImage(UIImage(named: "wallet"), forState: UIControlState.Normal)
+                    btn2.setBackgroundImage(UIImage(named: "wallet_blue"), forState: UIControlState.Selected)
+                    
+                    btn3.setBackgroundImage(UIImage(named: "pig"), forState: UIControlState.Normal)
+                    btn3.setBackgroundImage(UIImage(named: "pig_blue"), forState: UIControlState.Selected)
+                    
+                    btn4.setBackgroundImage(UIImage(named: "money"), forState: UIControlState.Normal)
+                    btn4.setBackgroundImage(UIImage(named: "money_blue"), forState: UIControlState.Selected)
+                    
+                    btn1.addTarget(self, action: "choosed:", forControlEvents: UIControlEvents.TouchUpInside)
+                    btn2.addTarget(self, action: "choosed:", forControlEvents: UIControlEvents.TouchUpInside)
+                    btn3.addTarget(self, action: "choosed:", forControlEvents: UIControlEvents.TouchUpInside)
+                    btn4.addTarget(self, action: "choosed:", forControlEvents: UIControlEvents.TouchUpInside)
+                    btn1.adjustsImageWhenHighlighted = false
+                    btn2.adjustsImageWhenHighlighted = false
+                    btn3.adjustsImageWhenHighlighted = false
+                    btn4.adjustsImageWhenHighlighted = false
+                    
+                    var lab1 = UILabel(frame: CGRectMake(0, 60, vFrame.width/4, 20))
+                    lab1.text = "全部"
+                    lab1.textAlignment = NSTextAlignment.Center
+                    lab1.font = UIFont(name: "Arial", size: 14)
+                    
+                    
+                    var lab2 = UILabel(frame: CGRectMake(vFrame.width/4, 60, vFrame.width/4, 20))
+                    lab2.text = "债权转让"
+                    lab2.textAlignment = NSTextAlignment.Center
+                    lab2.font = UIFont(name: "Arial", size: 14)
+                    
+                    var lab3 = UILabel(frame: CGRectMake(vFrame.width*2/4, 60, vFrame.width/4, 20))
+                    lab3.text = "定期理财"
+                    lab3.textAlignment = NSTextAlignment.Center
+                    lab3.font = UIFont(name: "Arial", size: 14)
+                    
+                    var lab4 = UILabel(frame: CGRectMake(vFrame.width*3/4, 60, vFrame.width/4, 20))
+                    lab4.text = "受益权转让"
+                    lab4.textAlignment = NSTextAlignment.Center
+                    lab4.font = UIFont(name: "Arial", size: 14)
+                    
+                    if currentButton == 0 {
+                        btn1.selected = true
+                        btn2.selected = false
+                        btn3.selected = false
+                        btn4.selected = false
+                    }else if currentButton == 1 {
+                        btn2.selected = true
+                        btn1.selected = false
+                        btn3.selected = false
+                        btn4.selected = false
+                    }else if currentButton == 2 {
+                        btn3.selected = true
+                        btn1.selected = false
+                        btn2.selected = false
+                        btn4.selected = false
+                    }else{
+                        btn4.selected = true
+                        btn1.selected = false
+                        btn2.selected = false
+                        btn3.selected = false
+                    }
+                    
+                    v.addSubview(btn1)
+                    v.addSubview(btn2)
+                    v.addSubview(btn3)
+                    v.addSubview(btn4)
+                    v.addSubview(lab1)
+                    v.addSubview(lab2)
+                    v.addSubview(lab3)
+                    v.addSubview(lab4)
+                    
+                    self.view.addSubview(v)
+                }
+            }else{
+                var chooseView = self.view.viewWithTag(123)
+                if chooseView != nil {
+                    //删除
+                    chooseView?.removeFromSuperview()
+                }
+            }
+            
+            if ((scrollView.contentOffset.y - contentOffsetY) > 5.0) {  // 向上拖拽
+                
+                
+                
+                // 隐藏导航栏和选项栏
+                
+                // [self layoutView];
+                
+                //[_viewController.navigationController setNavigationBarHidden:YES animated:YES];
+                
+                //self.navigationController?.setNavigationBarHidden(true, animated: true)
+                
+                //[_viewController.navigationController setToolbarHidden:!hidden animated:YES];
+                
+                //_viewController.tabBarController.tabBar.hidden = YES;
+                self.tabBarController?.tabBar.hidden = true
+                
+                
+            }else if ((contentOffsetY - scrollView.contentOffset.y) > 5.0) {   // 向下拖拽
+                
+                
+                
+                // 显示导航栏和选项栏
+                
+                //[self layoutView];
+                
+                
+                
+                //[_viewController.navigationController setNavigationBarHidden:NO animated:YES];
+                //self.navigationController?.setNavigationBarHidden(false, animated: true)
+                //[_viewController.navigationController setToolbarHidden:NO animated:YES];
+                
+                self.tabBarController?.tabBar.hidden = false
+                
+                
+                
+            } else {
+                
+                
+                
+            }
+        }
+
+    }
+    
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        //NSLog("scrollViewDidEndDragging")
+        oldContentOffsetY = scrollView.contentOffset.y
+    }
+    
+    func choosed(sender:UIButton){
+        
+        var chooseView = sender.superview
+        var b1 = chooseView?.viewWithTag(201) as! UIButton
+        var b2 = chooseView?.viewWithTag(202) as! UIButton
+        var b3 = chooseView?.viewWithTag(203) as! UIButton
+        var b4 = chooseView?.viewWithTag(204) as! UIButton
+        switch sender.tag {
+            case 201:
+                currentButton = 0
+                b2.selected = false
+                b3.selected = false
+                b4.selected = false
+            case 202:
+                currentButton = 1
+                b1.selected = false
+                b3.selected = false
+                b4.selected = false
+            case 203:
+                currentButton = 2
+                b1.selected = false
+                b2.selected = false
+                b4.selected = false
+            case 204:
+                currentButton = 3
+                b1.selected = false
+                b2.selected = false
+                b3.selected = false
+            default:
+                break
+        }
+        sender.selected = true
+        //self.tableView.reloadData()
+        self.listData.removeAllObjects()
+        self.getData("0", listType: "\(currentButton)")
+        
+//        if chooseView != nil {
+//            chooseView?.removeFromSuperview()
+//        }
+    }
+    
+    
+    func toTop(recognizer:UISwipeGestureRecognizer){
+        NSLog("扫")
+        if recognizer.direction == UISwipeGestureRecognizerDirection.Up {
+            NSLog("向上扫")
+            self.tableView.setContentOffset(CGPointMake(0, 150), animated: true)
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

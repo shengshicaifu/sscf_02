@@ -8,8 +8,14 @@
 
 import Foundation
 import UIKit
-class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,UITableViewDelegate{
+class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,UITableViewDelegate
+    //,UINavigationControllerDelegate ,UIViewControllerAnimatedTransitioning
+{
    
+    var navigationOperation: UINavigationControllerOperation?
+    var interactivePopTransition: UIPercentDrivenInteractiveTransition!
+    
+    
     @IBOutlet weak var mainTable: UITableView!
     @IBOutlet weak var head: UIImageView!
 
@@ -21,6 +27,11 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+//        self.navigationController?.delegate = self
+//        let popRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: Selector("handlePopRecognizer:"))
+//        popRecognizer.edges = UIRectEdge.Left
+//        self.navigationController!.view.addGestureRecognizer(popRecognizer)
         
         
         
@@ -234,4 +245,86 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         var destinationViewController = segue.destinationViewController as! UIViewController
         destinationViewController.hidesBottomBarWhenPushed = true
     }
+    
+    //MARK:- 交互动画
+//    func handlePopRecognizer(popRecognizer: UIScreenEdgePanGestureRecognizer) {
+//        var progress = popRecognizer.translationInView(navigationController!.view).x / navigationController!.view.bounds.size.width
+//        progress = min(1.0, max(0.0, progress))
+//        
+//        println("\(progress)")
+//        if popRecognizer.state == UIGestureRecognizerState.Began {
+//            println("Began")
+//            self.interactivePopTransition = UIPercentDrivenInteractiveTransition()
+//            self.navigationController!.popViewControllerAnimated(true)
+//        } else if popRecognizer.state == UIGestureRecognizerState.Changed {
+//            self.interactivePopTransition!.updateInteractiveTransition(progress)
+//            //            updateWithPercent(progress)
+//            println("Changed")
+//        } else if popRecognizer.state == UIGestureRecognizerState.Ended || popRecognizer.state == UIGestureRecognizerState.Cancelled {
+//            if progress > 0.5 {
+//                self.interactivePopTransition!.finishInteractiveTransition()
+//            } else {
+//                self.interactivePopTransition!.cancelInteractiveTransition()
+//            }
+//            //            finishBy(progress < 0.5)
+//            println("Ended || Cancelled")
+//            self.interactivePopTransition = nil
+//        }
+//    }
+//    // UINavigationControllerDelegate
+//    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        //        if operation == UINavigationControllerOperation.Push {
+//        navigationOperation = operation
+//        return self
+//        
+//        //        }
+//        //        return nil
+//    }
+//    
+//    func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+//        if self.interactivePopTransition == nil {
+//            return nil
+//        }
+//        return self.interactivePopTransition
+//    }
+//    
+//    //UIViewControllerTransitioningDelegate
+//    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+//        return 0.4
+//    }
+//    
+//    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+//        let containerView = transitionContext.containerView()
+//        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
+//        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
+//        
+//        var destView: UIView!
+//        var destTransform: CGAffineTransform!
+//        var destAlpha = CGFloat(0.1)
+//        if navigationOperation == UINavigationControllerOperation.Push {
+//            containerView.insertSubview(toViewController!.view, aboveSubview: fromViewController!.view)
+//            destView = toViewController!.view
+////            destView.transform = CGAffineTransformMakeScale(0.1, 0.1)
+////            destTransform = CGAffineTransformMakeScale(1, 1)
+//            destView.alpha = 0.1
+//            destAlpha = 1.0
+//        } else if navigationOperation == UINavigationControllerOperation.Pop {
+//            containerView.insertSubview(toViewController!.view, belowSubview: fromViewController!.view)
+//            destView = fromViewController!.view
+//            // 如果IDE是Xcode6 Beta4+iOS8SDK，那么在此处设置为0，动画将不会被执行(不确定是哪里的Bug)
+////            destTransform = CGAffineTransformMakeScale(0.01, 0.01)
+//            destAlpha = 0.1
+//        }
+//
+//        UIView.animateWithDuration(
+//            transitionDuration(transitionContext), animations: { () -> Void in
+////                destView.transform = destTransform
+//                 destView.alpha = destAlpha
+//            }) { (completed) -> Void in
+//                transitionContext.completeTransition(true)
+//        }
+//    }
+    
+
+    
 }

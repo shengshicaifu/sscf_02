@@ -39,18 +39,15 @@ class NewDetailScrollViewController: UIViewController {
        
         Common.customerBgView(firstView)
         Common.customerBgView(Secondiew)
-        buyButton.setBackgroundImage(UIImage(named: "background"), forState: UIControlState.Normal)
-        buyButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        buyButton.setBackgroundImage(UIImage(named: "button_disable"), forState: UIControlState.Highlighted)
-        buyButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Highlighted)
+        Common.customerButton(buyButton)
         
         //View点击事件
         thirdView.userInteractionEnabled = true
         var singleTap :UIGestureRecognizer = UITapGestureRecognizer(target: self, action: "ViewTouch:")
         thirdView.addGestureRecognizer(singleTap)
         
-
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        loading.startLoading(self.view)
+//        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         if id != nil {
             let manager =  AFHTTPRequestOperationManager()
             let params = ["id" : id!]

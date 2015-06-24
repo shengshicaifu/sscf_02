@@ -43,7 +43,7 @@ class BandBankViewController: UIViewController,UITableViewDelegate {
             hintLabel.hidden = true
             bankNameLabel.text = bankName
             userNameLabel.text = Common.replaceStringToX(username!, start: 0, end: 2)
-            bankLabel.text = Common.replaceStringToX(bankCardNo!, start: 3 , end: 5)
+            bankLabel.text = Common.replaceStringToX(bankCardNo!, start: 3 , end: 13)
             bankButton.setTitle("修改", forState: UIControlState.Normal)
             self.title = "银行卡信息"
             top.constant = self.firstView.bounds.height+20

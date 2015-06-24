@@ -12,7 +12,8 @@ class NewDetailScrollViewController: UIViewController {
     var id:String?
     var type:String?
     @IBOutlet weak var InterestRateLabel: UILabel!
-    @IBOutlet weak var pview: UIView!
+    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var borrowMoney: UILabel!
     @IBOutlet weak var borrowName: UILabel!
     @IBOutlet weak var borrowMinLabel: UILabel!
@@ -20,6 +21,7 @@ class NewDetailScrollViewController: UIViewController {
     @IBOutlet weak var buyButton: UIButton!
     @IBOutlet weak var Secondiew: UIView!
     @IBOutlet weak var firstView: UIView!
+    @IBOutlet weak var thirdView: UIView!
     @IBOutlet weak var borrowDuration: UILabel!
     @IBOutlet weak var borrowRate: UILabel!
     @IBOutlet weak var _scrollView: UIScrollView!
@@ -28,6 +30,8 @@ class NewDetailScrollViewController: UIViewController {
     var tmpListData: NSMutableArray = NSMutableArray()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
        self.view.addSubview(_scrollView)
         _scrollView.addSubview(firstView)
         _scrollView.addSubview(Secondiew)
@@ -40,6 +44,12 @@ class NewDetailScrollViewController: UIViewController {
         buyButton.setBackgroundImage(UIImage(named: "button_disable"), forState: UIControlState.Highlighted)
         buyButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Highlighted)
         
+        //View点击事件
+        thirdView.userInteractionEnabled = true
+        var singleTap :UIGestureRecognizer = UITapGestureRecognizer(target: self, action: "ViewTouch:")
+        thirdView.addGestureRecognizer(singleTap)
+        
+
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         if id != nil {
             let manager =  AFHTTPRequestOperationManager()
@@ -78,11 +88,15 @@ class NewDetailScrollViewController: UIViewController {
                     self.borrowMoney.text = bm
                     var addTime =  borrowinfo["add_time"] as! NSString
                     var DoubleTime = addTime.doubleValue
-                    self.addTime.text = Common.dateFromTimestamp(DoubleTime)
+                    self.addTime.text = Common.threeDateFromTimestamp(DoubleTime)
                     
                     self.borrowRate.text = "\(InterestRate)%"
                     var borrow = borrowinfo["borrow_duration"] as! String
                     self.borrowDuration.text = "\(borrow)"+"\(units)"
+                    var progress = borrowinfo["progress"] as! NSString
+                    self.progressLabel.text = "\(progress.floatValue)%"
+                    var progressFloat = progress.floatValue/100
+                    self.progressView.progress = progressFloat
                     
                     var lefttime = borrowinfo["lefttime"] as! Int
                     if lefttime > 0 {
@@ -131,33 +145,33 @@ class NewDetailScrollViewController: UIViewController {
                                canBuy = false
                             }
                         }
-                    self.pview.backgroundColor = UIColor.whiteColor()
-                    if self.pview.viewWithTag(1) != nil {
-                        self.pview.viewWithTag(1)?.removeFromSuperview()
-                    }
-                    if self.pview.viewWithTag(2) != nil {
-                        self.pview.viewWithTag(2)?.removeFromSuperview()
-                    }
-                    if canBuy {
-                        var progress = CircleView()
-                        progress.tag = 1
-                        progress.type = "1"
-                        progress.backgroundColor = UIColor.whiteColor()
-                        progress.frame = CGRectMake(0, 0, self.pview.frame.width - 15, self.pview.frame.height - 15)
-                        progress.percent = unit.doubleValue/100.0
-                        progress.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "buy:"))
-                        self.pview.addSubview(progress)
-                    }else{
-                        var progress = CircleView()
-                        progress.tag = 2
-                        progress.type = "2"
-                        progress.backgroundColor = UIColor.whiteColor()
-                        progress.frame = CGRectMake(0, 0, self.pview.frame.width - 15, self.pview.frame.height - 15)
-                        progress.percent = 0.0
-//                        progress.tip = statusTipLabel.text!
-                        self.pview.addSubview(progress)
-                        
-                    }
+//                    self.pview.backgroundColor = UIColor.whiteColor()
+//                    if self.pview.viewWithTag(1) != nil {
+//                        self.pview.viewWithTag(1)?.removeFromSuperview()
+//                    }
+//                    if self.pview.viewWithTag(2) != nil {
+//                        self.pview.viewWithTag(2)?.removeFromSuperview()
+//                    }
+//                    if canBuy {
+//                        var progress = CircleView()
+//                        progress.tag = 1
+//                        progress.type = "1"
+//                        progress.backgroundColor = UIColor.whiteColor()
+//                        progress.frame = CGRectMake(0, 0, self.pview.frame.width - 15, self.pview.frame.height - 15)
+//                        progress.percent = unit.doubleValue/100.0
+//                        progress.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "buy:"))
+//                        self.pview.addSubview(progress)
+//                    }else{
+//                        var progress = CircleView()
+//                        progress.tag = 2
+//                        progress.type = "2"
+//                        progress.backgroundColor = UIColor.whiteColor()
+//                        progress.frame = CGRectMake(0, 0, self.pview.frame.width - 15, self.pview.frame.height - 15)
+//                        progress.percent = 0.0
+////                        progress.tip = statusTipLabel.text!
+//                        self.pview.addSubview(progress)
+//                        
+//                    }
 //
                         loading.stopLoading()
                       
@@ -173,13 +187,12 @@ class NewDetailScrollViewController: UIViewController {
 
     }
 
-    @IBAction func bidManList(sender: AnyObject!) {
+   func ViewTouch(sender: AnyObject!) {
         let myStoryBoard = self.storyboard
         let anotherView = myStoryBoard?.instantiateViewControllerWithIdentifier("bidListViewController") as! BidListViewController
         anotherView.bidId = id
         self.navigationController?.pushViewController(anotherView, animated: true)
 //        self.presentViewController(anotherView, animated: true, completion: nil)
-        
     }
     @IBAction func buyBid(sender: AnyObject!) {
         let myStoryBoard = self.storyboard

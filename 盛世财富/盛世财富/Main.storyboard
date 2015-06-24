@@ -3702,6 +3702,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSj-fZ-mcI">
+                                <rect key="frame" x="200" y="515" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="I9s-ma-hls"/>
+                                    <constraint firstAttribute="width" constant="200" id="pex-aA-4wg"/>
+                                </constraints>
+                                <state key="normal" title="确认投资">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buyBid:" destination="FTS-U1-GRg" eventType="touchUpInside" id="fTI-0c-7lI"/>
+                                </connections>
+                            </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t5a-gS-peE">
                                 <rect key="frame" x="0.0" y="64" width="600" height="445"/>
                                 <subviews>
@@ -3756,10 +3769,10 @@
                                                 <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="发布日期：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3C8-8v-R9G">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发布日期：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3C8-8v-R9G">
                                                 <rect key="frame" x="414" y="82" width="85" height="21"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="93" id="bZV-2c-X0g"/>
+                                                    <constraint firstAttribute="width" constant="85" id="bZV-2c-X0g"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3774,10 +3787,10 @@
                                                 <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="投资规模:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGs-2d-d6i">
-                                                <rect key="frame" x="414" y="111" width="85" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="100万元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egh-ud-Dpr">
+                                                <rect key="frame" x="499" y="111" width="100" height="21"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="73" id="V1i-MS-i3o"/>
+                                                    <constraint firstAttribute="width" constant="88" id="l7o-bM-wI9"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3835,10 +3848,10 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="100万元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egh-ud-Dpr">
-                                                <rect key="frame" x="499" y="111" width="100" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投资规模:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGs-2d-d6i">
+                                                <rect key="frame" x="414" y="111" width="85" height="21"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="88" id="l7o-bM-wI9"/>
+                                                    <constraint firstAttribute="width" constant="85" id="V1i-MS-i3o"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3906,10 +3919,10 @@
                                                 <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12" translatesAutoresizingMaskIntoConstraints="NO" id="1yA-ja-Qn4">
-                                                <rect key="frame" x="544" y="0.0" width="43" height="41"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12_03" translatesAutoresizingMaskIntoConstraints="NO" id="1yA-ja-Qn4">
+                                                <rect key="frame" x="544" y="6" width="43" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="41" id="nS0-9a-oEg"/>
+                                                    <constraint firstAttribute="height" constant="30" id="nS0-9a-oEg"/>
                                                     <constraint firstAttribute="width" constant="43" id="rEy-3m-tOZ"/>
                                                 </constraints>
                                             </imageView>
@@ -3920,7 +3933,7 @@
                                             <constraint firstItem="fP8-SK-pHD" firstAttribute="leading" secondItem="PxJ-NO-6Ac" secondAttribute="leading" constant="13" id="JJ3-aj-VMF"/>
                                             <constraint firstItem="fP8-SK-pHD" firstAttribute="top" secondItem="PxJ-NO-6Ac" secondAttribute="top" constant="8" id="OKQ-GV-CEg"/>
                                             <constraint firstAttribute="trailing" secondItem="1yA-ja-Qn4" secondAttribute="trailing" constant="21" id="Yek-Ux-wbV"/>
-                                            <constraint firstItem="1yA-ja-Qn4" firstAttribute="top" secondItem="PxJ-NO-6Ac" secondAttribute="top" id="e6p-No-Kse"/>
+                                            <constraint firstItem="1yA-ja-Qn4" firstAttribute="top" secondItem="PxJ-NO-6Ac" secondAttribute="top" constant="6" id="e6p-No-Kse"/>
                                             <constraint firstAttribute="height" constant="41" id="lmE-Aw-juS"/>
                                         </constraints>
                                         <variation key="default">
@@ -4108,19 +4121,6 @@
                                     <constraint firstAttribute="trailing" secondItem="PxJ-NO-6Ac" secondAttribute="trailing" id="leT-go-cuj"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSj-fZ-mcI">
-                                <rect key="frame" x="200" y="515" width="200" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="I9s-ma-hls"/>
-                                    <constraint firstAttribute="width" constant="200" id="pex-aA-4wg"/>
-                                </constraints>
-                                <state key="normal" title="确认投资">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="buyBid:" destination="FTS-U1-GRg" eventType="touchUpInside" id="fTI-0c-7lI"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -7884,7 +7884,7 @@
         <image name="0_news" width="24" height="24"/>
         <image name="0_search" width="24" height="24"/>
         <image name="0_user" width="24" height="24"/>
-        <image name="12" width="28" height="27"/>
+        <image name="12_03" width="14" height="14"/>
         <image name="1_15" width="25" height="25"/>
         <image name="1_17" width="25" height="25"/>
         <image name="1_41" width="18" height="18"/>

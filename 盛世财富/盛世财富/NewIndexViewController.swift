@@ -22,7 +22,10 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
     var viewsArray = NSDictionary()//滚动图片视图
     
     var refreshControl = UIRefreshControl()
+    
+    var adView:UIView?//广告视图
 
+    //MARK:- uiviewcontroller
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +40,9 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         titleView.addSubview(imgView)
         self.navigationItem.titleView = titleView
         
+        //弹框显示活动
+        self.showAd()
+        
         refreshControl.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "松开后自动刷新")
         self.tableView.addSubview(refreshControl)
@@ -50,6 +56,69 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         }
     }
     
+    //MARK:- 弹出广告
+    //弹框显示活动
+    func showAd(){
+        
+        //广告图
+        var adImageView = UIImageView(image: UIImage(named: "ad_1")!)
+        adImageView.frame = CGRectMake(20.0, 100.0, self.view.frame.width-40, self.view.frame.height-200)
+        adImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        adImageView.autoresizesSubviews = true
+        adImageView.autoresizingMask = UIViewAutoresizing.FlexibleLeftMargin|UIViewAutoresizing.FlexibleTopMargin|UIViewAutoresizing.FlexibleWidth|UIViewAutoresizing.FlexibleHeight
+        adImageView.backgroundColor = UIColor(red: 253/255.0, green: 170/255.0, blue: 36/255.0, alpha: 1.0)
+        adImageView.layer.cornerRadius = 20
+        adImageView.userInteractionEnabled = true
+        adImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "adTapped"))
+        adImageView.alpha = 0.0
+        //关闭按钮
+        var closeImageView = UIImageView(image: UIImage(named:"close")!)
+        closeImageView.frame = CGRectMake(self.view.frame.width-60, 100, 40, 40)
+        closeImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        closeImageView.autoresizesSubviews = true
+        closeImageView.autoresizingMask = UIViewAutoresizing.FlexibleLeftMargin|UIViewAutoresizing.FlexibleTopMargin|UIViewAutoresizing.FlexibleWidth|UIViewAutoresizing.FlexibleHeight
+        closeImageView.layer.cornerRadius = 20
+        closeImageView.layer.masksToBounds = true
+        closeImageView.userInteractionEnabled = true
+        closeImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "adCloseTapped"))
+        closeImageView.alpha = 0.0
+        //广告主视图
+        adView = UIView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
+        adView!.backgroundColor = UIColor.blackColor()
+        //adView!.alpha = 0.5
+        adView?.backgroundColor = UIColor(white: 0.0, alpha: 0.0)
+        adView!.addSubview(adImageView)
+        adView!.addSubview(closeImageView)
+        //adView!.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "adBackgroundTapped"))
+        self.tabBarController?.view.addSubview(adView!)
+        UIView.animateWithDuration(2.0, animations: { () -> Void in
+            adImageView.alpha = 1.0
+            closeImageView.alpha = 1.0
+            self.adView?.backgroundColor = UIColor(white: 0.0, alpha: 0.7)
+        })
+        
+    }
+    
+    func adTapped(){
+        //NSLog("点击了活动页面")
+        if adView != nil {
+            adView?.removeFromSuperview()
+        }
+    }
+    
+    func adCloseTapped(){
+        //NSLog("点击了活动关闭按钮")
+        if adView != nil {
+            adView?.removeFromSuperview()
+        }
+    }
+    func adBackgroundTapped(){
+        //NSLog("点击了活动背景")
+        if adView != nil {
+            adView?.removeFromSuperview()
+        }
+    }
+    //MARK:- 选择理财产品
     @IBAction func tapIn(sender:UIButton){
         switch sender.tag {
         case 11:
@@ -68,6 +137,8 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         self.listData.removeAllObjects()
         self.getData("0", listType: "\(currentButton)")
     }
+    
+    //MARK:- 获取数据
     /**
     获取数据
     
@@ -307,8 +378,15 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
             self.getData("2",listType:"\(self.currentButton)")
         })
     }
+    
+    func refreshData() {
+        if self.refreshControl.refreshing {
+            self.refreshControl.attributedTitle = NSAttributedString(string: "加载中")
+            getData("1",listType:"\(currentButton)")
+        }
+    }
    
-    //滚动图
+    //MARK:- 滚动图
     func headScrollImages(){
         //NSLog("加载图片:%@",self.photos)
         if self.photos.count > 0{
@@ -352,12 +430,9 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
     }
     
 
-    func refreshData() {
-        if self.refreshControl.refreshing {
-            self.refreshControl.attributedTitle = NSAttributedString(string: "加载中")
-            getData("1",listType:"\(currentButton)")
-        }
-    }
+
+    
+    //MARK:- tableview
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:UITableViewCell?
         let sec = indexPath.section
@@ -583,6 +658,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         super.didReceiveMemoryWarning()
     }
     
+    //MARK:- 页面跳转
     //跳到标的详情
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "lendDetail" {

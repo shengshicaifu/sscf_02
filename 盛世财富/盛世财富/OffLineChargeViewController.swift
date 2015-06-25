@@ -130,7 +130,7 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
                         success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                             loading.stopLoading()
                             var result = data as! NSDictionary
-                            NSLog("交易单号%@", result)
+                            //NSLog("交易单号%@", result)
                             var code = result["code"] as! Int
                             if code == -1 {
                                 AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
@@ -188,7 +188,7 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
                         success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                             loading.stopLoading()
                             var result = data as! NSDictionary
-                            NSLog("国付宝信息%@", result)
+                            //NSLog("国付宝信息%@", result)
                             //                                {
                             //                                    code = 200;
                             //                                    data =     {
@@ -252,7 +252,7 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
     
     //MARK:- BaofooDelegate
     func callBack(params: String!) {
-        NSLog("返回的参数是：%@",params)
+        //NSLog("返回的参数是：%@",params)
         var paramsStr = NSString(string: params)
         var code = paramsStr.substringToIndex(1)
         var message = paramsStr.substringFromIndex(2)
@@ -277,15 +277,25 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
     }
     
     func submitAction(){
+        if Common.isLogin() == false {
+            AlertView.alert("提示", message: "请先登录", okButtonTitle: "确定", cancelButtonTitle: "取消", viewController: self, okCallback: { (action:UIAlertAction!) -> Void in
+                var loginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController
+                self.presentViewController(loginViewController, animated: true, completion: nil)
+                }, cancelCallback: { (action:UIAlertAction!) -> Void in
+                    
+            })
+            return
+        }
+        
         resignAll()
         
         
         let user = NSUserDefaults.standardUserDefaults()
         let url = Common.serverHost+"/App-Pay-offline"
         let afnet = AFHTTPRequestOperationManager()
-        var param:AnyObject?
-        if choose.selectedSegmentIndex == 0{
-            NSLog("银行账号%@", t_account.text!)
+        var param = [:]
+        if choose.selectedSegmentIndex == 1{
+            //NSLog("银行账号%@", t_account.text!)
             if t_account.text.isEmpty {
                 AlertView.showMsg("请输入银行账号", parentView: self.view)
                 return
@@ -310,9 +320,9 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
                 AlertView.showMsg("汇款单号长度不能超过50", parentView: self.view)
                 return
             }
-            param = ["to":user.stringForKey("token"),"money_off":t_money.text,"off_bank":"兴业银行","off_way":t_account.text,"tran_id":t_id.text]
+            param = ["to":user.stringForKey("token")!,"money_off":t_money.text,"off_bank":"兴业银行","off_way":t_account.text,"tran_id":t_id.text]
         }
-        if choose.selectedSegmentIndex == 1{
+        if choose.selectedSegmentIndex == 2{
             
             if p_money.text.isEmpty {
                 AlertView.showMsg("请输入金额", parentView: self.view)
@@ -330,7 +340,7 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
                 AlertView.showMsg("交易单号长度不能超过50", parentView: self.view)
                 return
             }
-            param = ["to":user.stringForKey("token"),"money_off":p_money.text,"off_bank":"无","off_way":"pos机刷卡","tran_id":p_id.text]
+            param = ["to":user.stringForKey("token")!,"money_off":p_money.text,"off_bank":"无","off_way":"pos机刷卡","tran_id":p_id.text]
         }
         //检查手机网络
         var reach = Reachability(hostName: Common.domain)
@@ -346,6 +356,9 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
             //NSLog("网络可用")
             dispatch_async(dispatch_get_main_queue(), {
                 loading.startLoading(self.view)
+                NSLog("线下充值")
+                NSLog("url = %@", url)
+                NSLog("param = %@", param)
                 afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                 afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     loading.stopLoading()
@@ -407,7 +420,7 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         resignAll()
-        NSLog("textFieldShouldReturn")
+        //NSLog("textFieldShouldReturn")
         if textField == t_id {
             submitAction()
         }

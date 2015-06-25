@@ -8,9 +8,13 @@
 
 import Foundation
 import UIKit
-
-class TabBarViewController : UITabBarController,UITabBarControllerDelegate{
+enum ModalPresentingType {
+    case Present, Dismiss
+}
+class TabBarViewController : UITabBarController,UITabBarControllerDelegate,UIViewControllerTransitioningDelegate ,UIViewControllerAnimatedTransitioning {
     
+    var modalPresentingType: ModalPresentingType?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         var items = self.tabBar.items as! [UITabBarItem]
@@ -53,6 +57,7 @@ class TabBarViewController : UITabBarController,UITabBarControllerDelegate{
             if !Common.isLogin(){
                 var loginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController
                 loginViewController.tabTag = tag
+                loginViewController.transitioningDelegate = self
                 self.presentViewController(loginViewController, animated: true, completion: nil)
                 return false
             }
@@ -61,4 +66,52 @@ class TabBarViewController : UITabBarController,UITabBarControllerDelegate{
         }
         return true
     }
+    
+    //MARK:- 交互动画
+    
+    //UIViewControllerTransitioningDelegate
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        modalPresentingType = ModalPresentingType.Present
+        return self
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        modalPresentingType = ModalPresentingType.Dismiss
+        return self
+    }
+    
+    //UIViewControllerAnimatedTransitioning
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+        return 0.6
+    }
+    
+    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        let containerView = transitionContext.containerView()
+        
+        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
+        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
+        
+        var destView: UIView!
+        var destTransfrom = CGAffineTransformIdentity
+        let screenHeight = UIScreen.mainScreen().bounds.size.height
+        
+        if modalPresentingType == ModalPresentingType.Present {
+            destView = toViewController.view
+            destView.transform = CGAffineTransformMakeTranslation(0, screenHeight)
+            containerView.addSubview(toViewController.view)
+        } else if modalPresentingType == ModalPresentingType.Dismiss {
+            destView = fromViewController.view
+            destTransfrom = CGAffineTransformMakeTranslation(0, screenHeight)
+            containerView.insertSubview(toViewController.view, belowSubview: fromViewController.view)
+        }
+        
+        UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0,
+            options: UIViewAnimationOptions.CurveLinear, animations: {
+                destView.transform = destTransfrom
+            }, completion: {completed in
+                transitionContext.completeTransition(true)
+        })
+    }
+
+    
 }

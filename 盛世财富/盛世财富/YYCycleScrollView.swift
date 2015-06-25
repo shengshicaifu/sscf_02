@@ -113,7 +113,7 @@ class YYCycleScrollView: UIView,UIScrollViewDelegate {
             self.contentViews = NSMutableArray()
         }
         self.contentViews.removeAllObjects()
-        
+        //NSLog("contentViews.removeAllObjects()")
         if (self.fetchContentViewAtIndex != nil) {
             self.contentViews.addObject(self.fetchContentViewAtIndex(pageIndex: previousPageIndex))
             self.contentViews.addObject(self.fetchContentViewAtIndex(pageIndex: self.currentPageIndex))

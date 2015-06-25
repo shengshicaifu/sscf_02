@@ -26,6 +26,15 @@ class NewDetailScrollViewController: UIViewController {
     @IBOutlet weak var borrowRate: UILabel!
     @IBOutlet weak var _scrollView: UIScrollView!
     @IBOutlet weak var restTime: UILabel!
+    @IBOutlet weak var label1: UILabel!
+    @IBOutlet weak var label2: UILabel!
+    @IBOutlet weak var label3: UILabel!
+    @IBOutlet weak var label4: UILabel!
+    @IBOutlet weak var label5: UILabel!
+    @IBOutlet weak var label6: UILabel!
+    @IBOutlet weak var label7: UILabel!
+    @IBOutlet weak var label8: UILabel!
+    
     var timeLineUrl = Common.serverHost + "/app-invest-detailcontent-id-"
     var tmpListData: NSMutableArray = NSMutableArray()
     override func viewDidLoad() {
@@ -45,7 +54,7 @@ class NewDetailScrollViewController: UIViewController {
         thirdView.userInteractionEnabled = true
         var singleTap :UIGestureRecognizer = UITapGestureRecognizer(target: self, action: "ViewTouch:")
         thirdView.addGestureRecognizer(singleTap)
-        
+        //加载模糊
         loading.startLoading(self.view)
 //        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         if id != nil {
@@ -68,7 +77,7 @@ class NewDetailScrollViewController: UIViewController {
                     var memberinfo = data["memberinfo"] as! NSDictionary
                     println("memberinfo\(memberinfo)")
                     var InterestRate = borrowinfo["borrow_interest_rate"] as! String
-                    var units = borrowinfo["duration_unit"] as!  String
+                    var unit = borrowinfo["duration_unit"] as!  String
                     self.InterestRateLabel.text = "\(InterestRate)%"
                     self.borrowMinLabel.text = borrowinfo["borrow_min"] as? String
                     self.borrowName.text = borrowinfo["borrow_name"] as? String
@@ -89,7 +98,7 @@ class NewDetailScrollViewController: UIViewController {
                     
                     self.borrowRate.text = "\(InterestRate)%"
                     var borrow = borrowinfo["borrow_duration"] as! String
-                    self.borrowDuration.text = "\(borrow)"+"\(units)"
+                    self.borrowDuration.text = "\(borrow)"+"\(unit)"
                     var progress = borrowinfo["progress"] as! NSString
                     self.progressLabel.text = "\(progress.floatValue)%"
                     var progressFloat = progress.floatValue/100
@@ -101,36 +110,52 @@ class NewDetailScrollViewController: UIViewController {
                         var leftHour = (lefttime % (24*3600))/3600
                         var leftMinute = (lefttime % 3600)/60
                         var leftSecond = (lefttime % 60)
+                        self.restTime.hidden = true
+                        self.label1.text = "\(leftDay)"
+                        self.label3.text = "\(leftHour)"
+                        self.label5.text = "\(leftMinute)"
+                        self.label7.text = "\(leftSecond)"
                         
-                        self.restTime.text = "\(leftDay)天\(leftHour)时\(leftMinute)分\(leftSecond)秒"
                         
                         
                     }else{
+                        self.label1.hidden = true
+                        self.label2.hidden = true
+                        self.label3.hidden = true
+                        self.label4.hidden = true
+                        self.label5.hidden = true
+                        self.label6.hidden = true
+                        self.label7.hidden = true
+                        self.label8.hidden = true
                         self.restTime.text = "已结束"
                         self.buyButton.enabled = false
+                        self.buyButton.setTitle("已结束", forState: UIControlState.Normal)
                         
                     }
-                    var unit = borrowinfo["progress"] as! NSString
 
                     
                         println(self.id)
                         //根据借款状态和募集期来判断该标是否可买
                         //借款状态
-                         var canBuy:Bool = true//表示标是否能买
+                        var canBuy:Bool = true//表示标是否能买
                         var status = borrowinfo["borrow_status"] as! NSString
                         switch status {
                         case "4":
                             //复审中
                             canBuy = false
                             self.buyButton.enabled = false
+                            self.buyButton.setTitle("复审中", forState: UIControlState.Normal)
+                            
                         case "6":
                             //还款中
                             canBuy = false
                             self.buyButton.enabled = false
+                            self.buyButton.setTitle("还款中", forState: UIControlState.Normal)
                         case "7":
                             //已完成
                             canBuy = false
                             self.buyButton.enabled = false
+                            self.buyButton.setTitle("已完成", forState: UIControlState.Normal)
                         default:
                             break
                         }
@@ -189,11 +214,9 @@ class NewDetailScrollViewController: UIViewController {
         let anotherView = myStoryBoard?.instantiateViewControllerWithIdentifier("bidListViewController") as! BidListViewController
         anotherView.bidId = id
         self.navigationController?.pushViewController(anotherView, animated: true)
-//        self.presentViewController(anotherView, animated: true, completion: nil)
     }
     @IBAction func buyBid(sender: AnyObject!) {
         let myStoryBoard = self.storyboard
-//        let anotherView:UITableViewController = myStoryBoard.instanceViewControllerWithIdentifier("bidConfirmViewController") as! BidConfirmViewController
         let anotherView = myStoryBoard?.instantiateViewControllerWithIdentifier("bidConfirmViewController") as! BidConfirmViewController
         anotherView.id = id
         anotherView.type = type

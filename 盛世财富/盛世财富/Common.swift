@@ -177,6 +177,8 @@ class Common {
         button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         button.setBackgroundImage(UIImage(named: "button_disable"), forState: UIControlState.Highlighted)
         button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Highlighted)
+        button.setBackgroundImage(UIImage(named: "button_disable"), forState:UIControlState.Disabled)
+        button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Disabled)
         
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true

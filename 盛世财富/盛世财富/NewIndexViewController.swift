@@ -190,14 +190,16 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                             self.protectDays = "\(protectDaysDouble)"
                             self.totalInvest = "\(totalInvestDouble)"
                             self.userCount = "\(userCountDouble)"
-                            if actionType == "0" {
-                                self.photos = NSMutableArray()
+                            //if actionType == "0" {
+                                self.photos.removeAllObjects()
                                 if photoArray != nil {
-                                    self.photos = photoArray?.objectForKey("inner") as! NSMutableArray
+                                    var parray = photoArray?.objectForKey("inner") as! NSArray
+                                    self.photos.addObjectsFromArray(parray as [AnyObject])
+                                    NSLog("photos = %@", self.photos)
                                     //设置滚动图
                                     self.headScrollImages()
                                 }
-                            }
+                            //}
                             
                         }
                         //获取数据后重新加载表格
@@ -390,40 +392,92 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
             getData("1",listType:"\(currentButton)")
         }
     }
-   
+    
+    var mainScorllView:YYCycleScrollView?
+    
     //MARK:- 滚动图
     func headScrollImages(){
         //NSLog("加载图片:%@",self.photos)
         if self.photos.count > 0{
-            
-            viewsArray = NSDictionary()
             var picarray = NSMutableArray()
+            //第一次将远程获取到的图片保存到本地，以后再获取时，判断url在本地是否存在，如果存在则使用本地数据，否则获取远程数据。当本地保存的滚动图片超过10张的时候，清除掉
+            var userDefaults = NSUserDefaults.standardUserDefaults()
+            var indexImagesArray:NSMutableArray! = NSMutableArray()
+            if let arr = userDefaults.objectForKey("indexImages") as? NSArray {
+                indexImagesArray.addObjectsFromArray(arr as [AnyObject])
+            }
+
             for var i=0;i<self.photos.count;i++ {
                 var imageDic = self.photos[i] as? NSDictionary
                 var imageUrl = imageDic?.objectForKey("img") as! String
+                var imageNsstring = NSString(string: imageUrl)
+                var imageName = imageNsstring.substringFromIndex(15)//截取图片地址的最后一段随机名称
                 
-                var imageData = NSData(contentsOfURL: NSURL(string: Common.serverHost+imageUrl)!)
+                var imageData:NSData? = NSData()
                 
+                var flag = false // true 本地有  false本地没有
+                var dataTemp:NSData?
+                for var i=0;i<indexImagesArray.count;i++ {
+                    var dic = indexImagesArray[i] as! NSDictionary
+                    
+                    if let data = dic.objectForKey(imageName) as? NSData {
+                        //从本地获取
+                        flag = true
+                        dataTemp = data
+                        break
+                    }else{
+                        //远程获取
+                        flag = false
+                    }
+                }
+                
+                if flag {
+                    //从本地获取
+                    imageData = dataTemp
+                    NSLog("从本地获取%@", imageUrl)
+                }else{
+                    //远程获取
+                    NSLog("从远程获取%@", imageUrl)
+                    imageData = NSData(contentsOfURL: NSURL(string: Common.serverHost+imageUrl)!)
+                    var d = NSMutableDictionary()
+                    d.setValue(imageData, forKey: imageName)
+                    indexImagesArray.insertObject(d, atIndex: 0)//将新获取的数据放到数组的开头
+                }
+                
+
                 var tempImageView = UIImageView(frame:CGRectMake(0, 64, self.view.layer.frame.width, 175))//代码指定位置
-                
-                //tempImageView.image = UIImage(named:"\(i)\(i)-1.png")//图片名
                 tempImageView.image = UIImage(data: imageData!)
                 tempImageView.contentMode = UIViewContentMode.ScaleAspectFill
                 tempImageView.clipsToBounds = true
-                picarray.addObject(tempImageView)//添加
+                picarray.addObject(tempImageView)//添加到滚动区域
                 
             }
+            
+            
+            //保存的图片张数不能超过photos.count
+            if indexImagesArray.count > self.photos.count {
+                indexImagesArray.removeObjectsInRange(NSMakeRange(self.photos.count, indexImagesArray.count - self.photos.count))
+            }
+            
+            
+            //将图片重新保存本地
+            userDefaults.setObject(indexImagesArray, forKey: "indexImages")
+            
+//            viewsArray = NSDictionary()
+            
+            
             //scrollview滚动
-            var mainScorllView = YYCycleScrollView(frame: CGRectMake(0, 64, self.view.layer.frame.width, 175), animationDuration: 1.0)
-            mainScorllView.fetchContentViewAtIndex = {(pageIndex:Int)->UIView in
+            mainScorllView = YYCycleScrollView(frame: CGRectMake(0, 64, self.view.layer.frame.width, 175), animationDuration: 1.0)
+            //mainScorllView?.contentViews.removeAllObjects()
+            mainScorllView!.fetchContentViewAtIndex = {(pageIndex:Int)->UIView in
                 return picarray.objectAtIndex(pageIndex) as! UIView
             }
             
-            mainScorllView.totalPagesCount = {()->Int in
+            mainScorllView!.totalPagesCount = {()->Int in
                 //图片的个数
                 return picarray.count;
             }
-            mainScorllView.TapActionBlock = {(pageIndex:Int)->() in
+            mainScorllView!.TapActionBlock = {(pageIndex:Int)->() in
                 //此处根据点击的索引跳转到指定的页面
                 var contentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ContentViewController") as! ContentViewController
 //                var url = self.photos?[pageIndex]["url"] as String
@@ -433,7 +487,6 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
             self.tableView.tableHeaderView = mainScorllView
         }
     }
-    
 
 
     

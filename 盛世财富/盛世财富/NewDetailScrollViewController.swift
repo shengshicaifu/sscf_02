@@ -107,7 +107,7 @@ class NewDetailScrollViewController: UIViewController {
                         
                     }else{
                         self.restTime.text = "已结束"
-                        //self.buyButton.enabled = false
+                        self.buyButton.enabled = false
                         
                     }
                     var unit = borrowinfo["progress"] as! NSString

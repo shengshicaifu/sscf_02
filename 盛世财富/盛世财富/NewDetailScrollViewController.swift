@@ -41,6 +41,9 @@ class NewDetailScrollViewController: UIViewController {
         super.viewDidLoad()
         
         
+         println(id)
+        
+        
        self.view.addSubview(_scrollView)
         _scrollView.addSubview(firstView)
         _scrollView.addSubview(Secondiew)
@@ -60,7 +63,7 @@ class NewDetailScrollViewController: UIViewController {
         if id != nil {
             let manager =  AFHTTPRequestOperationManager()
             let params = ["id" : id!]
-            println(id)
+           
             let  url = timeLineUrl+"\(id!)"
             manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
             manager.POST(url,

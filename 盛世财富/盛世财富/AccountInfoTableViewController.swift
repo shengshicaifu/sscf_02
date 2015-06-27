@@ -15,8 +15,8 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
-    @IBOutlet weak var genderLabel: UILabel!
-    @IBOutlet weak var birthdayLabel: UILabel!
+//    @IBOutlet weak var genderLabel: UILabel!
+//    @IBOutlet weak var birthdayLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -42,22 +42,22 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
         }
         
         
-        if let gender = userDefaults.objectForKey("gender") as? String {
-            genderLabel.text = gender
-        }
+//        if let gender = userDefaults.objectForKey("gender") as? String {
+//            genderLabel.text = gender
+//        }
 //        println(userDefaults.objectForKey("birthday") as? String)
-        var birth = userDefaults.objectForKey("birthday") as? String
-        if birth != nil && birth != "" {
-            var formatter = NSDateFormatter()
-            formatter.dateFormat = "yyyyMMdd"
-            if let birthDate = formatter.dateFromString(birth!) {
-                formatter.dateFormat = "yyyy年MM月dd日"
-                birthdayLabel.text = formatter.stringFromDate(birthDate)
-            }
-            
-        } else {
-            birthdayLabel.text = ""
-        }
+//        var birth = userDefaults.objectForKey("birthday") as? String
+//        if birth != nil && birth != "" {
+//            var formatter = NSDateFormatter()
+//            formatter.dateFormat = "yyyyMMdd"
+//            if let birthDate = formatter.dateFromString(birth!) {
+//                formatter.dateFormat = "yyyy年MM月dd日"
+//                birthdayLabel.text = formatter.stringFromDate(birthDate)
+//            }
+//            
+//        } else {
+//            birthdayLabel.text = ""
+//        }
         
     }
     

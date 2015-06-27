@@ -518,8 +518,8 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                 //此处根据点击的索引跳转到指定的页面
                 var contentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ContentViewController") as! ContentViewController
                 var url = self.photos[pageIndex]["url"] as! String
-                url.replaceRange(url.rangeOfString("http://www.sscf88.com", options: nil, range: nil, locale: nil)!, with: Common.serverHost)
-                contentViewController.contentUrl = url
+//                url.replaceRange(url.rangeOfString("http://www.sscf88.com", options: nil, range: nil, locale: nil)!, with: Common.serverHost)
+                contentViewController.contentUrl = Common.serverHost + url
                 self.navigationController?.pushViewController(contentViewController, animated: true)
             }
             self.tableView.tableHeaderView = mainScorllView
@@ -802,6 +802,15 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if self.currentButton == 3 {
+            //跳到受益权购买页面
+            if Common.isLogin() == false {
+                AlertView.alert("提示", message: "请先登录", okButtonTitle: "确定", cancelButtonTitle: "取消", viewController: self, okCallback: { (action:UIAlertAction!) -> Void in
+                    var loginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController
+                    self.presentViewController(loginViewController, animated: true, completion: nil)
+                    }, cancelCallback: { (action:UIAlertAction!) -> Void in
+                })
+                return
+            }
             var b = self.storyboard?.instantiateViewControllerWithIdentifier("BeneficialPowerConfirmViewController") as! BeneficialPowerConfirmViewController
             var selectedRow = self.tableView.indexPathForSelectedRow()?.row
             var dic = self.listData[selectedRow!] as! NSDictionary
@@ -818,13 +827,13 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
     //MARK:- 页面跳转
     //跳到标的详情
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "lendDetail "{
+        if segue.identifier == "lendDetail"{
             var selectedRow = self.tableView.indexPathForSelectedRow()?.row
             var dic = self.listData[selectedRow!] as! NSDictionary
             var vc = segue.destinationViewController as! NewDetailScrollViewController
             vc.hidesBottomBarWhenPushed = true
             vc.id = dic.objectForKey("id") as? String
-            self.navigationController?.pushViewController(vc, animated: true)
+            //self.navigationController?.pushViewController(vc, animated: true)
         }
         
     }

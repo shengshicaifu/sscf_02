@@ -294,7 +294,7 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
         let url = Common.serverHost+"/App-Pay-offline"
         let afnet = AFHTTPRequestOperationManager()
         var param = [:]
-        if choose.selectedSegmentIndex == 1{
+        if choose.selectedSegmentIndex == 0{
             //NSLog("银行账号%@", t_account.text!)
             if t_account.text.isEmpty {
                 AlertView.showMsg("请输入银行账号", parentView: self.view)
@@ -322,7 +322,7 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
             }
             param = ["to":user.stringForKey("token")!,"money_off":t_money.text,"off_bank":"兴业银行","off_way":t_account.text,"tran_id":t_id.text]
         }
-        if choose.selectedSegmentIndex == 2{
+        if choose.selectedSegmentIndex == 1{
             
             if p_money.text.isEmpty {
                 AlertView.showMsg("请输入金额", parentView: self.view)
@@ -394,12 +394,12 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
         //更改view顺序
         //self.view.exchangeSubviewAtIndex(0,withSubviewAtIndex :1)
         switch sender.selectedSegmentIndex {
-            case 0:
-                self.view.bringSubviewToFront(onlineView)
+//            case 0:
+//                self.view.bringSubviewToFront(onlineView)
+//                break
+            case 0:self.view.bringSubviewToFront(transfer)
                 break
-            case 1:self.view.bringSubviewToFront(transfer)
-                break
-            case 2:self.view.bringSubviewToFront(pos)
+            case 1:self.view.bringSubviewToFront(pos)
                 break
             
             default:break

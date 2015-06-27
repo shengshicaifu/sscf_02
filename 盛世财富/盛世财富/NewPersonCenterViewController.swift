@@ -61,7 +61,7 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         var newMoneyFrame = CGRectMake(moneyFrame.origin.x, moneyFrame.origin.y, UIScreen.mainScreen().bounds.width, moneyFrame.height)
         moneyView.frame = moneyFrame
         moneyView.layer.addSublayer(textLayer)
-        moneyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toMoneyInfo"))
+        //moneyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toMoneyInfo"))
         
        // println("textLayer  x:\(textLayer?.frame.origin.x) y\(textLayer?.frame.origin.y) width\(textLayer?.frame.width) height\(textLayer?.frame.height)")
         //println("moneyView  x:\(moneyView?.frame.origin.x) y\(moneyView?.frame.origin.y) width\(moneyView?.frame.width) height\(moneyView?.frame.height)")

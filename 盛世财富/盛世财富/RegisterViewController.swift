@@ -307,7 +307,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
    
     @IBAction func registToWeb(sender: UIButton) {
         var contentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CustomNavigationViewController") as! CustomNavigationViewController
-        contentViewController.contentUrl = "http://www.sscf88.com/fwxy.shtml"
+        contentViewController.contentUrl = Common.serverHost + "/appadv/index.html"
         
         self.presentViewController(contentViewController, animated: true, completion: nil)
         

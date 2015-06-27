@@ -17,7 +17,7 @@ class NewsDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         println(detailItem)
-        titleLabel.text = detailItem?.valueForKey("title") as! String
+        titleLabel.text = detailItem?.valueForKey("title") as? String
         newLabel.text = detailItem?.valueForKey("msg") as! String
         var sendTime = detailItem?.objectForKey("send_time") as! NSString
         var sendTimeDouble = sendTime.doubleValue

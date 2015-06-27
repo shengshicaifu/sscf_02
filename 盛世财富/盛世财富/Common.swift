@@ -89,6 +89,13 @@ class Common {
         var pred = NSPredicate(format: "SELF MATCHES %@", regex)
         return pred.evaluateWithObject(str)
     }
+    
+    class func isNumber(number:String) -> Bool {
+        var regex = "^[1-9]\\d{0,9}$"
+        var pred = NSPredicate(format: "SELF MATCHES %@", regex)
+        return pred.evaluateWithObject(number)
+    }
+    
     //MARK:- 字符串操作
     /**
     将指定位置的字符替换为*
@@ -100,13 +107,17 @@ class Common {
     :returns: 处理后的字符串
     */
     class func replaceStringToX(str:NSString,start:Int,end:Int) -> String{
+        var endtemp = end;
         if str.length < start {
             return "****"
         }
+        if str.length < endtemp {
+            endtemp = str.length
+        }
         var f = str.substringToIndex(start)
-        var e = str.substringFromIndex(end)
+        var e = str.substringFromIndex(endtemp)
         var xin = ""
-        for var i=start;i<end;i++ {
+        for var i=start;i<endtemp;i++ {
             xin += "*"
         }
         return f + xin + e

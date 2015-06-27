@@ -173,7 +173,7 @@
         CGFloat xdiff =point.x-thisbutton.center.x;
         CGFloat ydiff=point.y - thisbutton.center.y;
         
-        if (fabsf(xdiff) <36 &&fabsf (ydiff) <36){
+        if (fabs(xdiff) <36 &&fabs (ydiff) <36){
             
 //            LLLog(@"now point is %d th",thisbutton.tag-kLLBaseCircleNumber);
             //             LLLog(@"%@", [resulttext.text stringByAppendingString:resulttext.text]);
@@ -200,7 +200,8 @@
     // 生成密码串
     for (int i=0; i < selectedButtonArray.count; i++) {
         strbutton = selectedButtonArray[i];
-        string= [string stringByAppendingFormat:@"%d",strbutton.tag-kLLBaseCircleNumber];
+        long a = strbutton.tag - kLLBaseCircleNumber;
+        string= [string stringByAppendingFormat:@"%ld",a];
     }
     
     [self clearColorAndSelectedButton]; // 清除到初始样式

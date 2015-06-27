@@ -48,7 +48,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         reward.delegate = self
         experience.delegate = self
         payPassword.delegate = self
-        payBtn.layer.cornerRadius = 5
+        //payBtn.layer.cornerRadius = 5
         
         Common.customerButton(payBtn)
         Common.addBorder(yourMoneyLabel)

@@ -41,7 +41,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         self.navigationItem.titleView = titleView
         
         //弹框显示活动
-        self.showAd()
+        //self.showAd()
         
         refreshControl.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "松开后自动刷新")
@@ -133,19 +133,17 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
             break
         }
         sender.selected = true
-        //self.tableView.reloadData()
+        self.tableView.reloadData()
         self.listData.removeAllObjects()
         self.getData("0", listType: "\(currentButton)")
     }
     
     //MARK:- 获取数据
     /**
-    获取数据
+    获取滚动图片，网站投资数据，列表数据
     
-    :param: actionType 操作类型
-    0:进入页面获取数据
-    1:下拉刷新获取数据
-    2:上拉加载
+    :param: actionType 0:进入页面获取数据  1:下拉刷新获取数据  2:上拉加载
+    :param: listType   0:全部  1:债权转让  2:定期理财  3:受益权转让
     */
     func getData(actionType:String,listType:String){
         
@@ -166,13 +164,13 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         reach.reachableBlock = {(r:Reachability!) -> Void in
             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             var manager = AFHTTPRequestOperationManager()
-            var url = Common.serverHost + "/App-Index"//没有标的列表数据
+            var url = ""
             var params = [:]
             manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
             
             if actionType != "2" {
-                //获取滚动图和网站数据
-                
+                //不为上拉加载，获取滚动图和网站数据
+                url = Common.serverHost + "/App-Index"
                 manager.POST(url, parameters: params,
                     success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
@@ -195,7 +193,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                                 if photoArray != nil {
                                     var parray = photoArray?.objectForKey("inner") as! NSArray
                                     self.photos.addObjectsFromArray(parray as [AnyObject])
-                                    NSLog("photos = %@", self.photos)
+                                    //NSLog("photos = %@", self.photos)
                                     //设置滚动图
                                     self.headScrollImages()
                                 }
@@ -209,167 +207,200 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                             self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
                         }
                         
+                        
+                        
+                        
+                        
+                        params = ["pageSize":"10"]
+                        //获取标列表数据
+                        switch listType {
+                        case "0":
+                            //全部商品
+                            url = Common.serverHost + "/app-invest-content"
+                            if actionType == "2" {
+                                //记录最后一个[标的]的ID号码
+                                var borrow_id = 0
+                                var count = self.listData.count
+                                if count > 0 {
+                                    borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
+                                    params = ["borrow_id":"\(borrow_id)","pageSize":"10"]
+                                }
+                            }
+                            
+                            break
+                        case "1":
+                            //债权转让商品
+                            url = Common.serverHost + "/App-Invest-getBiaoList"
+                            if actionType == "2" {
+                                //记录最后一个[标的]的ID号码
+                                var borrow_id = 0
+                                var count = self.listData.count
+                                if count > 0 {
+                                    borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
+                                    params = ["borrow_id":"\(borrow_id)","count":"4"]
+                                }
+                            }else{
+                                params = ["count":"4"]
+                            }
+                            
+                            break
+                        case "2":
+                            //定期理财
+                            url = Common.serverHost + "/App-Invest-getActiveList"
+                            if actionType == "2" {
+                                //记录最后一个[标的]的ID号码
+                                var borrow_id = 0
+                                var count = self.listData.count
+                                if count > 0 {
+                                    borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
+                                    params = ["borrow_id":"\(borrow_id)","pageSize":"10"]
+                                }
+                            }
+                            break
+                        case "3":
+                            //受益权转让
+                            url = Common.serverHost + "/App-Beneficial"
+                            if actionType == "2" {
+                                //记录最后一个[标的]的ID号码
+                                var borrow_id = 0
+                                var count = self.listData.count
+                                if count > 0 {
+                                    borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
+                                    params = ["borrow_id":"\(borrow_id)","pageSize":"10"]
+                                }
+                            }
+                            break
+                        default:
+                            url = Common.serverHost + "/app-invest-content"
+                            if actionType == "2" {
+                                //记录最后一个[标的]的ID号码
+                                var borrow_id = 0
+                                var count = self.listData.count
+                                if count > 0 {
+                                    borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
+                                    params = ["borrow_id":"\(borrow_id)","pageSize":"10"]
+                                }
+                            }
+                            break
+                        }
+                        
+                        if actionType == "0" {
+                            loading.startLoading(self.view)
+                        }else if (actionType == "1" || actionType == "2"){
+                            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+                        }
+                        //NSLog("url = %@", url)
+                        //NSLog("params = %@", params)
+                        manager.POST(url, parameters: params,
+                            success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                                var result:NSDictionary = data as! NSDictionary
+                                //NSLog("标的列表结果%@", result)
+                                if actionType == "0" {
+                                    loading.stopLoading()
+                                }else if actionType == "1"{
+                                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                                    self.tableView.headerEndRefreshing()
+                                }else if actionType == "2"{
+                                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                                    self.tableView.footerEndRefreshing()
+                                }
+                                
+                                if (listType == "0") || (listType == "2") {
+                                    //0:全部  2:定期理财
+                                    if (actionType == "0" || actionType == "1"){
+                                        //下拉刷新要删除旧数据
+                                        self.listData.removeAllObjects()
+                                    }
+                                    if let resultList = result["data"]?["list"] as? NSArray {
+                                        self.listData.addObjectsFromArray(resultList as [AnyObject])
+                                    }
+                                }else if listType == "3" {
+                                    //3:受益权转让
+                                    if (actionType == "0" || actionType == "1" || actionType == "2"){
+                                        //下拉刷新要删除旧数据
+                                        self.listData.removeAllObjects()
+                                    }
+                                    if let resultList = result["data"] as? NSArray {
+                                        self.listData.addObjectsFromArray(resultList as [AnyObject])
+                                    }
+                                    
+                                }else if listType == "1" {
+                                    //1:债权转让
+                                    if (actionType == "0" || actionType == "1"){
+                                        //重新获取数据
+                                        self.listData.removeAllObjects()
+                                    }
+                                    if let array1 = result["data"] as? NSArray {
+                                        for var i=0;i<array1.count;i++ {
+                                            var array2 = array1[i] as! NSArray
+                                            for var j=0;j<array2.count;j++ {
+                                                if let object = array2[j] as? NSDictionary {
+                                                    self.listData.addObject(object)
+                                                }
+                                            }
+                                            //self.listData.addObjectsFromArray(array1[i] as! [AnyObject])
+                                        }
+                                    }
+                                }
+                                //                    for(var i=0;i<self.listData.count;i++){
+                                //                        var dic = self.listData[i] as! NSDictionary
+                                //                        println(dic["id"] as! String)
+                                //                    }
+                                self.tableView.reloadData()
+                                if actionType == "0" {
+                                    if let chooseView = self.view.viewWithTag(123) {
+                                        self.tableView.setContentOffset(CGPointMake(0, 150), animated: true)
+                                    }
+                                }
+                            },
+                            failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
+                                if actionType == "0" {
+                                    loading.stopLoading()
+                                }else if actionType == "1"{
+                                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                                    self.tableView.headerEndRefreshing()
+                                }else if actionType == "2"{
+                                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                                    self.tableView.footerEndRefreshing()
+                                }
+                                AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
+                            }
+                        )
+
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                     },failure:{ (op:AFHTTPRequestOperation!,error: NSError!) -> Void in
                         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         if actionType == "1" {
                             self.refreshControl.endRefreshing()
                             self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
                         }
-                        AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
+                        AlertView.alert("提示", message: error.description, buttonTitle: "确定", viewController: self)
                         
                     }
                 )
             }
-            
-            
-            params = ["pageSize":"10"]
-            //获取标列表数据
-            switch listType {
-                case "0":
-                    //全部商品
-                    url = Common.serverHost + "/app-invest-content"// 所有标
-                    if actionType == "2" {
-                        //记录最后一个[标的]的ID号码
-                        var borrow_id = 0
-                        var count = self.listData.count
-                        if count > 0 {
-                            borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
-                            params = ["borrow_id":"\(borrow_id)","pageSize":"10"]
-                        }
-                    }
 
-                    break
-                case "1":
-                    //债权转让商品
-                    url = Common.serverHost + "/App-Invest-getBiaoList"//组合标
-                    if actionType == "2" {
-                        //记录最后一个[标的]的ID号码
-                        var borrow_id = 0
-                        var count = self.listData.count
-                        if count > 0 {
-                            borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
-                            params = ["borrow_id":"\(borrow_id)","count":"4"]
-                        }
-                    }else{
-                        params = ["count":"4"]
-                    }
-                    
-                    break
-                case "2":
-                    //定期理财
-                    url = Common.serverHost + "/App-Invest-getActiveList"// 活动标
-                    if actionType == "2" {
-                        //记录最后一个[标的]的ID号码
-                        var borrow_id = 0
-                        var count = self.listData.count
-                        if count > 0 {
-                            borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
-                            params = ["borrow_id":"\(borrow_id)","pageSize":"10"]
-                        }
-                    }
-                    break
-                case "3":
-                    //受益权转让
-                    url = Common.serverHost + "/app-invest-content"// 所有标
-                    if actionType == "2" {
-                        //记录最后一个[标的]的ID号码
-                        var borrow_id = 0
-                        var count = self.listData.count
-                        if count > 0 {
-                            borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
-                            params = ["borrow_id":"\(borrow_id)","pageSize":"10"]
-                        }
-                    }
-                    break
-                default:
-                    url = Common.serverHost + "/app-invest-content"// 所有标
-                    if actionType == "2" {
-                        //记录最后一个[标的]的ID号码
-                        var borrow_id = 0
-                        var count = self.listData.count
-                        if count > 0 {
-                            borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
-                            params = ["borrow_id":"\(borrow_id)","pageSize":"10"]
-                        }
-                    }
-                    break
-            }
-            
-            if actionType == "0" {
-                loading.startLoading(self.view)
-            }else if (actionType == "1" || actionType == "2"){
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-            }
-            NSLog("url = %@", url)
-            NSLog("params = %@", params)
-            manager.POST(url, parameters: params,
-                success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                    var result:NSDictionary = data as! NSDictionary
-                    //NSLog("标的列表结果%@", result)
-                    if actionType == "0" {
-                        loading.stopLoading()
-                    }else if actionType == "1"{
-                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                        self.tableView.headerEndRefreshing()
-                    }else if actionType == "2"{
-                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                        self.tableView.footerEndRefreshing()
-                    }
-                    
-                    if (listType == "0") || (listType == "2") || (listType == "3") {
-                        //活动标或所有列表
-                        if (actionType == "0" || actionType == "1"){
-                            //重新获取数据
-                            self.listData.removeAllObjects()
-                        }
-                        if let resultList = result["data"]?["list"] as? NSArray {
-                            self.listData.addObjectsFromArray(resultList as [AnyObject])
-                        }
-                    }else if listType == "1" {
-                        //组合标
-                        if (actionType == "0" || actionType == "1"){
-                            //重新获取数据
-                            self.listData.removeAllObjects()
-                        }
-                        if let array1 = result["data"] as? NSArray {
-                            for var i=0;i<array1.count;i++ {
-                                var array2 = array1[i] as! NSArray
-                                for var j=0;j<array2.count;j++ {
-                                    if let object = array2[j] as? NSDictionary {
-                                        self.listData.addObject(object)
-                                    }
-                                }
-                                //self.listData.addObjectsFromArray(array1[i] as! [AnyObject])
-                            }
-                        }
-                    }
-//                    for(var i=0;i<self.listData.count;i++){
-//                        var dic = self.listData[i] as! NSDictionary
-//                        println(dic["id"] as! String)
-//                    }
-                    self.tableView.reloadData()
-                    if actionType == "0" {
-                        if let chooseView = self.view.viewWithTag(123) {
-                            self.tableView.setContentOffset(CGPointMake(0, 150), animated: true)
-                        }
-                    }
-                },
-                failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
-                    if actionType == "0" {
-                        loading.stopLoading()
-                    }else if actionType == "1"{
-                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                        self.tableView.headerEndRefreshing()
-                    }else if actionType == "2"{
-                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                        self.tableView.footerEndRefreshing()
-                    }
-                    AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
-                }
-            )
-
-            
-            
         }
         reach.startNotifier()
     }
@@ -434,10 +465,10 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                 if flag {
                     //从本地获取
                     imageData = dataTemp
-                    NSLog("从本地获取%@", imageUrl)
+                    //NSLog("从本地获取%@", imageUrl)
                 }else{
                     //远程获取
-                    NSLog("从远程获取%@", imageUrl)
+                    //NSLog("从远程获取%@", imageUrl)
                     imageData = NSData(contentsOfURL: NSURL(string: Common.serverHost+imageUrl)!)
                     var d = NSMutableDictionary()
                     d.setValue(imageData, forKey: imageName)
@@ -554,87 +585,136 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                 var period = cell?.viewWithTag(3) as! UILabel
                 var availMoney = cell?.viewWithTag(4) as! UILabel
                 
-                
-                title.text = rowData.valueForKey("borrow_name") as? String
-                var r = rowData.valueForKey("borrow_interest_rate") as? String
-                rate.text = "\(r!)%"
-                
-                var borrow_duration = rowData.valueForKey("borrow_duration") as? String
-                var duration_unit = rowData.valueForKey("duration_unit") as? String
-                
-                period.text = borrow_duration! + duration_unit!
-                
-                var needStr = rowData.valueForKey("need") as? Double
-                availMoney.text = "\(needStr!)元"
-                
-                /*该视图根据标的状态来决定放哪种内容，
-                1.未结束，放圆形进度条，点击该进度条跳转到购买页面
-                2.已结束，放结束图案，无点击事件
-                */
-                //根据借款状态和募集期来判断该标是否可买
-                //借款状态
-                var status = rowData["borrow_status"] as! NSString
-                var canBuy:Bool = true//表示标是否能买
-                var statusTipLabel = UILabel()//不能买的提示
-                switch status {
-                case "4":
-                    canBuy = false
-                    statusTipLabel.text = "复审中"
-                    break
-                case "6":
-                    canBuy = false
-                    statusTipLabel.text = "还款中"
-                    break
-                case "7":
-                    canBuy = false
-                    statusTipLabel.text = "已完成"
-                    break
-                default:
-                    break
-                }
-                //募集期小于当前日期的不能投
-                var collectTimeStr = rowData["collect_time"] as? NSString
-                if collectTimeStr != nil {
-                    var curTime = NSDate().timeIntervalSince1970
-                    if collectTimeStr?.doubleValue < curTime {
+                if currentButton != 3 {
+                    title.text = rowData.valueForKey("borrow_name") as? String
+                    var r = rowData.valueForKey("borrow_interest_rate") as? String
+                    rate.text = "\(r!)%"
+                    
+                    var borrow_duration = rowData.valueForKey("borrow_duration") as? String
+                    var duration_unit = rowData.valueForKey("duration_unit") as? String
+                    
+                    period.text = borrow_duration! + duration_unit!
+                    
+                    var needStr = rowData.valueForKey("need") as? Double
+                    availMoney.text = "\(needStr!)元"
+                    
+                    /*该视图根据标的状态来决定放哪种内容，
+                    1.未结束，放圆形进度条，点击该进度条跳转到购买页面
+                    2.已结束，放结束图案，无点击事件
+                    */
+                    //根据借款状态和募集期来判断该标是否可买
+                    //借款状态
+                    var status = rowData["borrow_status"] as! NSString
+                    var canBuy:Bool = true//表示标是否能买
+                    var statusTipLabel = UILabel()//不能买的提示
+                    switch status {
+                    case "4":
                         canBuy = false
-                        statusTipLabel.text = "已结束"
+                        statusTipLabel.text = "复审中"
+                        break
+                    case "6":
+                        canBuy = false
+                        statusTipLabel.text = "还款中"
+                        break
+                    case "7":
+                        canBuy = false
+                        statusTipLabel.text = "已完成"
+                        break
+                    default:
+                        break
+                    }
+                    //募集期小于当前日期的不能投
+                    var collectTimeStr = rowData["collect_time"] as? NSString
+                    if collectTimeStr != nil {
+                        var curTime = NSDate().timeIntervalSince1970
+                        if collectTimeStr?.doubleValue < curTime {
+                            canBuy = false
+                            statusTipLabel.text = "已结束"
+                        }
+                    }
+                    
+                    
+                    var pview = (cell?.viewWithTag(5))!
+                    pview.backgroundColor = UIColor.whiteColor()
+                    if pview.viewWithTag(1) != nil {
+                        pview.viewWithTag(1)?.removeFromSuperview()
+                    }
+                    if pview.viewWithTag(2) != nil {
+                        pview.viewWithTag(2)?.removeFromSuperview()
+                    }
+                    
+                    if canBuy {
+                        //能买
+                        //圆形进度条
+                        var unit = rowData.valueForKey("progress") as! NSString
+                        var progress = CircleView()
+                        progress.tag = 1
+                        progress.type = "1"
+                        progress.backgroundColor = UIColor.whiteColor()
+                        progress.frame = CGRectMake(0, 0, pview.frame.width , pview.frame.height)
+                        progress.percent = unit.doubleValue/100.0
+                        progress.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "buy:"))
+                        pview.addSubview(progress)
+                    }else{
+                        //不能买
+                        var progress = CircleView()
+                        progress.tag = 2
+                        progress.type = "2"
+                        progress.backgroundColor = UIColor.whiteColor()
+                        progress.frame = CGRectMake(0, 0, pview.frame.width , pview.frame.height)
+                        progress.percent = 0.0
+                        progress.tip = statusTipLabel.text!
+                        pview.addSubview(progress)
+                    }
+
+                }else{
+                    //受益权转让
+                    title.text = rowData.valueForKey("borrow_name") as? String
+                    var r = rowData.valueForKey("borrow_interest_rate") as? String
+                    rate.text = "\(r!)%"
+                    
+                    var borrow_duration = rowData.valueForKey("borrow_duration") as? String
+                    period.text = "\(borrow_duration!)个月"
+                    
+                    var needStr = rowData.valueForKey("surplus_money") as? String
+                    availMoney.text = "\(needStr!)元"
+                    
+                    var status = rowData["status"] as! NSString
+                    var pview = (cell?.viewWithTag(5))!
+                    pview.backgroundColor = UIColor.whiteColor()
+                    if pview.viewWithTag(1) != nil {
+                        pview.viewWithTag(1)?.removeFromSuperview()
+                    }
+                    if pview.viewWithTag(2) != nil {
+                        pview.viewWithTag(2)?.removeFromSuperview()
+                    }
+                    if status == "1" {
+                        //能买
+                        //圆形进度条
+                        var progress = CircleView()
+                        progress.incompleteFontColor = progress.completeFontColor
+                        progress.tag = 1
+                        progress.type = "2"
+                        progress.backgroundColor = UIColor.whiteColor()
+                        progress.frame = CGRectMake(0, 0, pview.frame.width , pview.frame.height)
+                        progress.percent = 100/100.0
+                        progress.tip = "立即投资"
+                        progress.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "buy:"))
+                        pview.addSubview(progress)
+                        
+                    }else{
+                        //不能买
+                        var progress = CircleView()
+                        progress.tag = 2
+                        progress.type = "2"
+                        progress.backgroundColor = UIColor.whiteColor()
+                        progress.frame = CGRectMake(0, 0, pview.frame.width , pview.frame.height)
+                        progress.percent = 0.0
+                        progress.tip = "已结束"
+                        pview.addSubview(progress)
                     }
                 }
                 
-                
-                var pview = (cell?.viewWithTag(5))!
-                pview.backgroundColor = UIColor.whiteColor()
-                if pview.viewWithTag(1) != nil {
-                    pview.viewWithTag(1)?.removeFromSuperview()
-                }
-                if pview.viewWithTag(2) != nil {
-                    pview.viewWithTag(2)?.removeFromSuperview()
-                }
-                
-                if canBuy {
-                    //能买
-                    //圆形进度条
-                    var unit = rowData.valueForKey("progress") as! NSString
-                    var progress = CircleView()
-                    progress.tag = 1
-                    progress.type = "1"
-                    progress.backgroundColor = UIColor.whiteColor()
-                    progress.frame = CGRectMake(0, 0, pview.frame.width , pview.frame.height)
-                    progress.percent = unit.doubleValue/100.0
-                    progress.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "buy:"))
-                    pview.addSubview(progress)
-                }else{
-                    //不能买
-                    var progress = CircleView()
-                    progress.tag = 2
-                    progress.type = "2"
-                    progress.backgroundColor = UIColor.whiteColor()
-                    progress.frame = CGRectMake(0, 0, pview.frame.width , pview.frame.height)
-                    progress.percent = 0.0
-                    progress.tip = statusTipLabel.text!
-                    pview.addSubview(progress)
-                }
             }
         }
         return cell!
@@ -737,10 +817,30 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
             var d = self.listData[indexPath.row] as! NSDictionary
             var id = d.objectForKey("id") as! String
 //            NSLog("购买选中的id%@",id)
-            var bidConfirmViewController = self.storyboard?.instantiateViewControllerWithIdentifier("bidConfirmViewController") as! BidConfirmViewController
-            bidConfirmViewController.id = id
-            bidConfirmViewController.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(bidConfirmViewController, animated: true)
+            
+            if self.currentButton == 3 {
+                //跳到受益权购买页面
+                if Common.isLogin() == false {
+                    AlertView.alert("提示", message: "请先登录", okButtonTitle: "确定", cancelButtonTitle: "取消", viewController: self, okCallback: { (action:UIAlertAction!) -> Void in
+                        var loginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController
+                        self.presentViewController(loginViewController, animated: true, completion: nil)
+                        }, cancelCallback: { (action:UIAlertAction!) -> Void in
+                            
+                    })
+                    return
+                }
+                var b = self.storyboard?.instantiateViewControllerWithIdentifier("BeneficialPowerConfirmViewController") as! BeneficialPowerConfirmViewController
+                b.id = id
+                self.navigationController?.pushViewController(b, animated: true)
+            
+            }else{
+                var bidConfirmViewController = self.storyboard?.instantiateViewControllerWithIdentifier("bidConfirmViewController") as! BidConfirmViewController
+                bidConfirmViewController.id = id
+                bidConfirmViewController.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(bidConfirmViewController, animated: true)
+            }
+            
+            
         }
     }
     
@@ -771,10 +871,10 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         if scrollView.dragging {// 拖拽
             //NSLog("scrollView.dragging")
             //NSLog("contentOffsetY: %f", contentOffsetY)
-            //NSLog("newContentOffsetY: %f", scrollView.contentOffset.y)
+            NSLog("newContentOffsetY: %f", scrollView.contentOffset.y)
             
             //创建筛选条件
-            if scrollView.contentOffset.y > 150 {
+            if scrollView.contentOffset.y > 130 {
                 var chooseView = self.view.viewWithTag(123)
                 if chooseView == nil {
                     //创建
@@ -976,9 +1076,9 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
     
     
     func toTop(recognizer:UISwipeGestureRecognizer){
-        NSLog("扫")
+        //NSLog("扫")
         if recognizer.direction == UISwipeGestureRecognizerDirection.Up {
-            NSLog("向上扫")
+            //NSLog("向上扫")
             self.tableView.setContentOffset(CGPointMake(0, 150), animated: true)
         }
     }

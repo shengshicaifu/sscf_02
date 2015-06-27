@@ -67,7 +67,7 @@ class ModifyPhoneStepSecondViewController: UIViewController {
                         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         
                         var result = data as! NSDictionary
-                        NSLog("验证码%@", result)
+                        //NSLog("验证码%@", result)
                         var code = result["code"] as! Int
                         var msg:String = ""
                         if code == 0 {

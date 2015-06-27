@@ -72,10 +72,10 @@ class NewDetailScrollViewController: UIViewController {
                     var data = json["data"] as! NSDictionary
                     //标题
                     var borrowinfo = data["borrowinfo"] as! NSDictionary
-                    println("borrowinfo\(borrowinfo)")
+                    //println("borrowinfo\(borrowinfo)")
                     //借款人信息 ，标的介绍
                     var memberinfo = data["memberinfo"] as! NSDictionary
-                    println("memberinfo\(memberinfo)")
+                    //println("memberinfo\(memberinfo)")
                     var InterestRate = borrowinfo["borrow_interest_rate"] as! String
                     var unit = borrowinfo["duration_unit"] as!  String
                     self.InterestRateLabel.text = "\(InterestRate)%"
@@ -134,7 +134,7 @@ class NewDetailScrollViewController: UIViewController {
                     }
 
                     
-                        println(self.id)
+                        //println(self.id)
                         //根据借款状态和募集期来判断该标是否可买
                         //借款状态
                         var canBuy:Bool = true//表示标是否能买
@@ -200,7 +200,7 @@ class NewDetailScrollViewController: UIViewController {
                    
                 },
                 failure: {(operation:AFHTTPRequestOperation!,error : NSError!) in
-                    println(error)
+                    //println(error)
                     loading.stopLoading()
                    
                 }

@@ -81,12 +81,12 @@ class VerifyRealNameViewController: UIViewController,UIImagePickerControllerDele
                 var url = Common.serverHost + "/App-Ucenter-verifyRealName"
                 var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
                 var params = ["to":token!,"real_name":realName,"idcard":idcard]
-                NSLog("实名认证参数%@", params)
+                //NSLog("实名认证参数%@", params)
                 manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                 manager.POST(url, parameters: params, success: { (operation:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                         loading.stopLoading()
                         var result = data as! NSDictionary
-                        NSLog("实名认证提交返回信息%@", result)
+                        //NSLog("实名认证提交返回信息%@", result)
                         var code = result["code"] as! Int
                         if code == 0 {
                             AlertView.alert("提示", message: result["message"] as! String, buttonTitle: "确定", viewController: self)

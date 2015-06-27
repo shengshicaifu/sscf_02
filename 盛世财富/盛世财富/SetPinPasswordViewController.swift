@@ -86,7 +86,7 @@ class SetPinPasswordViewController: UIViewController,UITextFieldDelegate {
                         //NSLog("设置交易密码：%@", result)
                         var code = result["code"] as! Int
                         if code == 0 {
-                            NSLog("设置交易密码失败:%@", result["message"] as! String)
+                            //NSLog("设置交易密码失败:%@", result["message"] as! String)
                             AlertView.showMsg("设置交易密码失败，请稍候再试", parentView: self.view)
                         }else if code == 200 {
                             //NSLog("设置交易密码成功")

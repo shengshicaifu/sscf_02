@@ -30,7 +30,7 @@ class BeneficialPowerConfirmViewController: UIViewController,UITextFieldDelegate
     @IBOutlet weak var l14: UILabel!
     @IBOutlet weak var l15: UILabel!
     @IBOutlet weak var l16: UILabel!
-    
+    @IBOutlet weak var l17: UILabel!
     
     
     
@@ -76,6 +76,7 @@ class BeneficialPowerConfirmViewController: UIViewController,UITextFieldDelegate
         Common.addBorder(l14)
         Common.addBorder(l15)
         Common.addBorder(l16)
+        Common.addBorder(l17)
         Common.addBorder(t1)
         Common.addBorder(t2)
         Common.addBorder(t3)
@@ -104,8 +105,8 @@ class BeneficialPowerConfirmViewController: UIViewController,UITextFieldDelegate
                     var param = ["id":self.id,"to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! String]
                     var url = Common.serverHost + "/App-Beneficial-shownewinvest"
                     
-                    NSLog("受益权url = %@", url)
-                    NSLog("受益权param = %@", param)
+                    //NSLog("受益权url = %@", url)
+                    //NSLog("受益权param = %@", param)
                     afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                     afnet.POST(url, parameters: param, success: { (opration :AFHTTPRequestOperation!, res :AnyObject!) -> Void in
                         loading.stopLoading()
@@ -113,7 +114,7 @@ class BeneficialPowerConfirmViewController: UIViewController,UITextFieldDelegate
                         var result = res as! NSDictionary
                         var code = result["code"] as! Int
                         
-                        NSLog("受益权 = %@", result)
+                        //NSLog("受益权 = %@", result)
                         var user = result["data"]?["user"]  as! NSDictionary
                          self.account_money = user["account_money"] as? String
                          self.reward_money = user["reward_money"] as? String
@@ -126,7 +127,7 @@ class BeneficialPowerConfirmViewController: UIViewController,UITextFieldDelegate
                          self.surplus_money = vo["surplus_money"] as? String//剩余金额
                          self.borrow_duration = vo["borrow_duration"] as? String
                         
-                        self.l2.text = self.account_money
+                        self.l2.text = "\(self.account_money!)元"
                         self.l4.text = self.borrow_name
                         self.l6.text = self.borrow_interest_rate! + "%"
                         self.l8.text = self.surplus_money
@@ -195,10 +196,34 @@ class BeneficialPowerConfirmViewController: UIViewController,UITextFieldDelegate
             return
         }
         
+        var t1Value:NSString = t1.text
+        var t1IntValue = t1Value.intValue
+        
+        var lowestTransferNsstring:NSString = lowest_transfer!
+        var lowestTransferIntValue = lowestTransferNsstring.intValue
+        
+        if t1IntValue < lowestTransferIntValue {
+            AlertView.showMsg("认购份数不能少于\(lowestTransferIntValue)份", parentView: self.view)
+            return
+        }
+        
         if t2.text.isEmpty == false && !Common.isMoney(t2.text) {
             AlertView.showMsg("奖金为最多两位小数的数字", parentView: self.view)
             return
         }
+        
+        var t2Value:NSString = t2.text
+        var t2IntValue = t2Value.intValue
+        
+        var rewardMoneyNsstring:NSString = self.reward_money!
+        var rewardMoneyIntValue = rewardMoneyNsstring.intValue
+        
+        if t2IntValue > rewardMoneyIntValue {
+            AlertView.showMsg("使用奖金不能超过\(rewardMoneyIntValue)元", parentView: self.view)
+            return
+        }
+        
+        
         
         if t3.text.isEmpty {
             AlertView.showMsg("支付密码不能为空", parentView: self.view)
@@ -231,7 +256,7 @@ class BeneficialPowerConfirmViewController: UIViewController,UITextFieldDelegate
                     "to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! String,
                         "duration":"1",
                         "beneficialpower_id":self.id,
-                        "is_confirm":"1",
+                        "is_confirm":"0",
                         "pin":self.t3.text,
                         "reward_use":self.t2.text,
                         "transfer_invest_num":self.t1.text
@@ -244,6 +269,7 @@ class BeneficialPowerConfirmViewController: UIViewController,UITextFieldDelegate
                     loading.stopLoading()
                     
                     var result = res as! NSDictionary
+                    //NSLog("受益权投资结果 = %@", result)
                     var code = result["code"] as! Int
                     if code == -1 {
                         AlertView.alert("提示", message: "请先登录", okButtonTitle: "确定", cancelButtonTitle: "取消", viewController: self, okCallback: { (action:UIAlertAction!) -> Void in
@@ -253,8 +279,6 @@ class BeneficialPowerConfirmViewController: UIViewController,UITextFieldDelegate
                                 
                         })
                         
-                    }else if code == 0 {
-                        AlertView.alert("提示", message: res["message"] as! String, buttonTitle: "确定", viewController: self)
                     }else if code == 150 {
                         AlertView.alert("提示", message: "账户余额不足，请充值", okButtonTitle: "确定", cancelButtonTitle: "取消", viewController: self, okCallback: { (action:UIAlertAction!) -> Void in
                             var controller = self.storyboard?.instantiateViewControllerWithIdentifier("OffLineChargeViewController") as! OffLineChargeViewController
@@ -265,6 +289,8 @@ class BeneficialPowerConfirmViewController: UIViewController,UITextFieldDelegate
                         AlertView.alert("提示", message: "恭喜您投标成功", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
                             self.navigationController?.popViewControllerAnimated(true)
                         })
+                    }else{
+                        AlertView.alert("提示", message: res["message"] as! String, buttonTitle: "确定", viewController: self)
                     }
                     
                     

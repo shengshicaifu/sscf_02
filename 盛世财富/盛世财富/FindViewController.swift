@@ -25,6 +25,8 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var searchTextField:UITextField!//搜索框
     var searchCancelButton:UIButton!//搜索取消按钮
     
+    var bgView:UIView = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -82,25 +84,49 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.navigationItem.titleView = customerHeaderView
         self.setupRefresh()
         
-        self.tableView.scrollEnabled = false
+        bgView.frame = self.tableView.frame
+        
+        hideTable(true)
+        
+        self.bgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "hideKeyBoard"))
+        
+    }
+    
+    func hideKeyBoard(){
+        if self.data.count == 0 {
+            self.searchTextField.resignFirstResponder()
+        }
+    }
+    
+    func hideTable(value:Bool){
+        if value {
+            self.tableView.scrollEnabled = false
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+            self.tableView.addSubview(bgView)
+        }else{
+            self.tableView.scrollEnabled = true
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+            bgView.removeFromSuperview()
+        }
+        
     }
     
     //取消，清空数据
     func cancel(){
-        NSLog("清空数据")
+        //NSLog("清空数据")
         searchTextField.resignFirstResponder()
         data.removeAllObjects()
         searchTextField.text = ""
         searchString = ""
         self.tableView.reloadData()
-        self.tableView.scrollEnabled = false
+        hideTable(true)
     }
     
     func change(sender:UITextField){
         searchString = sender.text
-        NSLog("搜索框正在输入:%@",searchString!)
+        //NSLog("搜索框正在输入:%@",searchString!)
         if !searchString!.isEmpty {
-            NSLog("开始搜索")
+            //NSLog("开始搜索")
             getData(searchString!, actionType: "0")
         }else{
            cancel()
@@ -115,7 +141,7 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.tableView.addHeaderWithCallback({
             
             if !self.searchString!.isEmpty {
-                NSLog("搜索，下拉刷新")
+                //NSLog("搜索，下拉刷新")
                 self.getData(self.searchString!, actionType: "1")
             }else{
                 self.tableView.headerEndRefreshing()
@@ -124,7 +150,7 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
         })
         self.tableView.addFooterWithCallback(){
             if !self.searchString!.isEmpty {
-                NSLog("搜索，上拉加载")
+                //NSLog("搜索，上拉加载")
                 self.getData(self.searchString!, actionType: "2")
             }else{
                 self.tableView.footerEndRefreshing()
@@ -173,17 +199,12 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 
                 
                 let param = ["name":name,"lastId":lastId,"count":self.count]
-                NSLog("搜索参数%@", param)
+                //NSLog("搜索参数%@", param)
                 afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                 afnet.POST(url, parameters: param,
                     success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
                         
                         var result = res as! NSDictionary
-                        //                        if let d = result["data"] as? NSArray {
-                        //                            for(var i=0;i<d.count;i++){
-                        //                                println(d[i]["id"] as! String)
-                        //                            }
-                        //                        }
                         //NSLog("搜索结果%@", result)
                         var resultData = result["data"] as! NSDictionary
                         
@@ -207,7 +228,7 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
                         }
                         //table重新加载数据
                         self.tableView.reloadData()
-                        self.tableView.scrollEnabled = true
+                        self.hideTable(false)
                         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         if actionType == "1" {
                             self.tableView.headerEndRefreshing()
@@ -216,7 +237,7 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
                         }
                     },
                     failure: { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                        self.tableView.scrollEnabled = false
+                        self.hideTable(true)
                         AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
                         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         if actionType == "1" {

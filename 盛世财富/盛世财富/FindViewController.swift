@@ -207,7 +207,7 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
                         }
                         //table重新加载数据
                         self.tableView.reloadData()
-                        
+                        self.tableView.scrollEnabled = true
                         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         if actionType == "1" {
                             self.tableView.headerEndRefreshing()
@@ -216,6 +216,7 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
                         }
                     },
                     failure: { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                        self.tableView.scrollEnabled = false
                         AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
                         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         if actionType == "1" {

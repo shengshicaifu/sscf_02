@@ -233,14 +233,26 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
     
     //MARK:- tableview
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return 45
     }
     
     var choose:UISegmentedControl!
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var v = UIView(frame: CGRectMake(0, 0, self.tableView.frame.width, 30))
-        v.backgroundColor = UIColor.whiteColor()
+        var v = UIView(frame: CGRectMake(0, 0, self.tableView.frame.width, 45))
+        v.backgroundColor = UIColor(red: 82/255.0, green: 180/255.0, blue: 245/255.0, alpha: 1.0)
         choose = UISegmentedControl(frame: CGRectMake(0, 0, v.frame.width, v.frame.height))
+        choose.tintColor = UIColor.clearColor()  //UIColor(red: 82/255.0, green: 180/255.0, blue: 245/255.0, alpha: 1.0)
+        var font = UIFont(name: "HelveticaNeue", size: 16.0)
+        var fontColor = UIColor.whiteColor()
+        var att = NSDictionary(objects: [font!,fontColor], forKeys: [NSFontAttributeName,NSForegroundColorAttributeName]) as [NSObject : AnyObject]
+        choose.setTitleTextAttributes(att, forState: UIControlState.Selected)
+        
+        fontColor = UIColor.lightTextColor()
+        att = NSDictionary(objects: [font!,fontColor], forKeys: [NSFontAttributeName,NSForegroundColorAttributeName]) as [NSObject : AnyObject]
+        choose.setTitleTextAttributes(att
+            , forState: UIControlState.Normal)
+        
+        choose.layer.cornerRadius = 0
         choose.insertSegmentWithTitle("竞标中", atIndex: 0, animated: true)
         choose.insertSegmentWithTitle("回收中", atIndex: 1, animated: true)
         choose.insertSegmentWithTitle("逾期", atIndex: 2, animated: true)

@@ -35,7 +35,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //设置状态栏字体颜色和背景颜色
         var appearance = UINavigationBar.appearance()
-        appearance.barTintColor = UIColor(red: 68/255.0, green: 163/255.0, blue: 242/255.0, alpha: 1.0)
+        var red:CGFloat = 64/255.0
+        var green:CGFloat = 166/255.0
+        var blue:CGFloat = 255/255.0
+        var color = UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+        appearance.barTintColor = color
+        
+//        var colorLayer = CALayer()
+//        colorLayer.opacity = Float(0.4)
+//        appearance.layer.addSublayer(colorLayer)
+//        var opacity:CGFloat = 0.4
+//        var minVal:CGFloat = red
+//        if self.convertValue(minVal, opacity: opacity) < 0 {
+//            opacity = self.minOpacityForValue(minVal)
+//        }
+//        
+//        colorLayer.opacity = Float(opacity)
+//        red = self.convertValue(red, opacity: opacity)
+//        green = self.convertValue(green, opacity: opacity)
+//        blue = self.convertValue(blue, opacity: opacity)
+//        
+//        red = max(min(1.0,red),0)
+//        green = max(min(1.0,green),0)
+//        blue = max(min(1.0,blue),0)
+//       println("red = \(red)  green=\(green)  blue=\(blue)")
+//
+//        colorLayer.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: 0.66).CGColor
+//        
+//        //appearance.layoutSubviews()
+//        colorLayer.frame = CGRectMake(0, -20, appearance.frame.width, appearance.frame.height + 20)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         appearance.tintColor = UIColor.whiteColor()
         appearance.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         
@@ -112,6 +151,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //}
     }
 
+    
+    func minOpacityForValue(value:CGFloat) -> CGFloat {
+        return (0.4 - 0.4 * value) / (0.6 * value + 0.4);
+    }
+    
+    func convertValue(value:CGFloat,opacity:CGFloat) -> CGFloat {
+        return 0.4 * value / opacity + 0.6 * value - 0.4 / opacity + 0.4;
+    }
 
 }
 

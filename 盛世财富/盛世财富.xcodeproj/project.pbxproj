@@ -40,6 +40,8 @@
 		59CC51D31B37B0E6006F37C2 /* NewIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CC51D21B37B0E6006F37C2 /* NewIndexViewController.swift */; };
 		59D214BB1AFC9AD800677C26 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D214BA1AFC9AD800677C26 /* AlertView.swift */; };
 		CD0858361B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0858351B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework */; };
+		CD46DD931B3D03EB00F04211 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD46DD911B3D03EB00F04211 /* LaunchScreen.xib */; };
+		CD46DD951B3D3D5F00F04211 /* BeneficialPowerConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46DD941B3D3D5F00F04211 /* BeneficialPowerConfirmViewController.swift */; };
 		CD7E21031B2EB43400463325 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD7E21021B2EB43400463325 /* Images.xcassets */; };
 		CDA414F71B329CAA00AA3C79 /* BaoFooPay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA414F61B329CAA00AA3C79 /* BaoFooPay.framework */; };
 		CDBEF4171B29A4040025FBD4 /* aaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBEF4161B29A4040025FBD4 /* aaTableViewController.swift */; };
@@ -60,11 +62,6 @@
 		E94E95A81B0AD3DD00E717DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E94E95A71B0AD3DD00E717DE /* Main.storyboard */; };
 		E95684F21B06D8FA00F46FF0 /* AccountInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95684F11B06D8FA00F46FF0 /* AccountInfoTableViewController.swift */; };
 		E9608D9F1B1577960025D247 /* VerifyRealNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9608D9E1B1577960025D247 /* VerifyRealNameViewController.swift */; };
-		E961E1241AC8DCBC0021ED14 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11B1AC8DCBC0021ED14 /* RECommonFunctions.m */; };
-		E961E1251AC8DCBC0021ED14 /* REMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11D1AC8DCBC0021ED14 /* REMenu.m */; };
-		E961E1261AC8DCBC0021ED14 /* REMenuContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E11F1AC8DCBC0021ED14 /* REMenuContainerView.m */; };
-		E961E1271AC8DCBC0021ED14 /* REMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E1211AC8DCBC0021ED14 /* REMenuItem.m */; };
-		E961E1281AC8DCBC0021ED14 /* REMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = E961E1231AC8DCBC0021ED14 /* REMenuItemView.m */; };
 		E96B1E731AB6BFB300C61870 /* AllListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96B1E721AB6BFB300C61870 /* AllListViewController.swift */; };
 		E96B2ED21B0833A500B4197B /* ModifyPinPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96B2ED11B0833A500B4197B /* ModifyPinPasswordViewController.swift */; };
 		E96B2F081B08673900B4197B /* MDRadialProgressLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E96B2F031B08673900B4197B /* MDRadialProgressLabel.m */; };
@@ -94,7 +91,6 @@
 		E9CC27261B22D9A300056EFC /* RealTimeFinanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CC27251B22D9A300056EFC /* RealTimeFinanceViewController.swift */; };
 		E9D6604D1AB1313B0020982D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D6604C1AB1313B0020982D /* AppDelegate.swift */; };
 		E9D6604F1AB1313B0020982D /* LendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D6604E1AB1313B0020982D /* LendViewController.swift */; };
-		E9D660571AB1313B0020982D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9D660551AB1313B0020982D /* LaunchScreen.xib */; };
 		E9D660631AB1313B0020982D /* ____Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D660621AB1313B0020982D /* ____Tests.swift */; };
 		E9E304041B09A6A90021D006 /* SetPinPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E304031B09A6A90021D006 /* SetPinPasswordViewController.swift */; };
 		E9E304061B09AAD20021D006 /* AccountSafeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E304051B09AAD20021D006 /* AccountSafeTableViewController.swift */; };
@@ -172,6 +168,8 @@
 		59CC51D21B37B0E6006F37C2 /* NewIndexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewIndexViewController.swift; sourceTree = "<group>"; };
 		59D214BA1AFC9AD800677C26 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		CD0858351B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GopayNewPlatformLibraryWeb.framework; sourceTree = "<group>"; };
+		CD46DD921B3D03EB00F04211 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		CD46DD941B3D3D5F00F04211 /* BeneficialPowerConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeneficialPowerConfirmViewController.swift; sourceTree = "<group>"; };
 		CD7E21021B2EB43400463325 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CDA414F61B329CAA00AA3C79 /* BaoFooPay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaoFooPay.framework; sourceTree = "<group>"; };
 		CDBEF4161B29A4040025FBD4 /* aaTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aaTableViewController.swift; sourceTree = "<group>"; };
@@ -196,16 +194,6 @@
 		E94E95A71B0AD3DD00E717DE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E95684F11B06D8FA00F46FF0 /* AccountInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AccountInfoTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E9608D9E1B1577960025D247 /* VerifyRealNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyRealNameViewController.swift; sourceTree = "<group>"; };
-		E961E11A1AC8DCBC0021ED14 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
-		E961E11B1AC8DCBC0021ED14 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
-		E961E11C1AC8DCBC0021ED14 /* REMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenu.h; sourceTree = "<group>"; };
-		E961E11D1AC8DCBC0021ED14 /* REMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenu.m; sourceTree = "<group>"; };
-		E961E11E1AC8DCBC0021ED14 /* REMenuContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuContainerView.h; sourceTree = "<group>"; };
-		E961E11F1AC8DCBC0021ED14 /* REMenuContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuContainerView.m; sourceTree = "<group>"; };
-		E961E1201AC8DCBC0021ED14 /* REMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuItem.h; sourceTree = "<group>"; };
-		E961E1211AC8DCBC0021ED14 /* REMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuItem.m; sourceTree = "<group>"; };
-		E961E1221AC8DCBC0021ED14 /* REMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuItemView.h; sourceTree = "<group>"; };
-		E961E1231AC8DCBC0021ED14 /* REMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuItemView.m; sourceTree = "<group>"; };
 		E96B1E721AB6BFB300C61870 /* AllListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AllListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E96B2ED11B0833A500B4197B /* ModifyPinPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModifyPinPasswordViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E96B2F021B08673900B4197B /* MDRadialProgressLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDRadialProgressLabel.h; sourceTree = "<group>"; };
@@ -240,7 +228,6 @@
 		E9D6604B1AB1313B0020982D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9D6604C1AB1313B0020982D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9D6604E1AB1313B0020982D /* LendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LendViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		E9D660561AB1313B0020982D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E9D6605C1AB1313B0020982D /* 盛世财富Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "盛世财富Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D660611AB1313B0020982D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9D660621AB1313B0020982D /* ____Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "____Tests.swift"; sourceTree = "<group>"; };
@@ -358,8 +345,8 @@
 		E91E81301AB27939000C5FD3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CD46DD911B3D03EB00F04211 /* LaunchScreen.xib */,
 				E94E95A71B0AD3DD00E717DE /* Main.storyboard */,
-				E9D660551AB1313B0020982D /* LaunchScreen.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -422,6 +409,7 @@
 				E9FC8DCB1B297C5000C74EED /* NewDetailScrollViewController.swift */,
 				E9FE8EFC1B2C204200747E1C /* BandBankControllerExtension.swift */,
 				59CC51D21B37B0E6006F37C2 /* NewIndexViewController.swift */,
+				CD46DD941B3D3D5F00F04211 /* BeneficialPowerConfirmViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -435,23 +423,6 @@
 				E94E95A41B0AD34F00E717DE /* NJDBezierCurve.m */,
 			);
 			path = NJDNumberJump;
-			sourceTree = "<group>";
-		};
-		E961E1191AC8DCBC0021ED14 /* REMenu */ = {
-			isa = PBXGroup;
-			children = (
-				E961E11A1AC8DCBC0021ED14 /* RECommonFunctions.h */,
-				E961E11B1AC8DCBC0021ED14 /* RECommonFunctions.m */,
-				E961E11C1AC8DCBC0021ED14 /* REMenu.h */,
-				E961E11D1AC8DCBC0021ED14 /* REMenu.m */,
-				E961E11E1AC8DCBC0021ED14 /* REMenuContainerView.h */,
-				E961E11F1AC8DCBC0021ED14 /* REMenuContainerView.m */,
-				E961E1201AC8DCBC0021ED14 /* REMenuItem.h */,
-				E961E1211AC8DCBC0021ED14 /* REMenuItem.m */,
-				E961E1221AC8DCBC0021ED14 /* REMenuItemView.h */,
-				E961E1231AC8DCBC0021ED14 /* REMenuItemView.m */,
-			);
-			path = REMenu;
 			sourceTree = "<group>";
 		};
 		E96B2F011B08673900B4197B /* MDRadialProgress */ = {
@@ -557,7 +528,6 @@
 				E9F3DFEE1B0DD52200F8F3AA /* Toast */,
 				E9C605AB1ABBB9C500752D91 /* Refresh */,
 				591FD1241B0C7CF000BFD74D /* AFNetworking */,
-				E961E1191AC8DCBC0021ED14 /* REMenu */,
 				D8B251151B00418900360F4E /* Reachability */,
 				E96B2F011B08673900B4197B /* MDRadialProgress */,
 				E94E95A01B0AD34F00E717DE /* NJDNumberJump */,
@@ -658,8 +628,8 @@
 				5906B2491B0F103F00ADA082 /* LLLockViewController.xib in Resources */,
 				CDD3BE041B1FFD1800CE6323 /* sortednames.plist in Resources */,
 				CD7E21031B2EB43400463325 /* Images.xcassets in Resources */,
+				CD46DD931B3D03EB00F04211 /* LaunchScreen.xib in Resources */,
 				E9FE8EFB1B2C1EED00747E1C /* area.json in Resources */,
-				E9D660571AB1313B0020982D /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,8 +651,6 @@
 				5906B2481B0F103F00ADA082 /* LLLockViewController.m in Sources */,
 				E9E304061B09AAD20021D006 /* AccountSafeTableViewController.swift in Sources */,
 				E96B2F091B08673900B4197B /* MDRadialProgressTheme.m in Sources */,
-				E961E1241AC8DCBC0021ED14 /* RECommonFunctions.m in Sources */,
-				E961E1271AC8DCBC0021ED14 /* REMenuItem.m in Sources */,
 				E9EBF63C1B2BC28C009924DD /* CurrentFinancialViewController.swift in Sources */,
 				E94E95A61B0AD34F00E717DE /* NJDBezierCurve.m in Sources */,
 				E9C54E061AB7BCD400D4722C /* LendDetailViewController.swift in Sources */,
@@ -699,7 +667,6 @@
 				E9C605B41ABBB9C500752D91 /* RefreshConst.swift in Sources */,
 				E96B1E731AB6BFB300C61870 /* AllListViewController.swift in Sources */,
 				E99D36DF1B16F28B00167132 /* BandBankController.swift in Sources */,
-				E961E1281AC8DCBC0021ED14 /* REMenuItemView.m in Sources */,
 				594200AD1B1324070005E671 /* GetCashViewController.swift in Sources */,
 				E9C605B31ABBB9C500752D91 /* RefreshBaseView.swift in Sources */,
 				E9FC8DCC1B297C5000C74EED /* NewDetailScrollViewController.swift in Sources */,
@@ -731,6 +698,7 @@
 				592F90741B03249E00B9969B /* DaiDodgeKeyboard+AccessObject.m in Sources */,
 				CDE4EED41B1DCBF900FB95CA /* IndexTableViewController.swift in Sources */,
 				591FD13E1B0C7CF000BFD74D /* AFURLRequestSerialization.m in Sources */,
+				CD46DD951B3D3D5F00F04211 /* BeneficialPowerConfirmViewController.swift in Sources */,
 				59D214BB1AFC9AD800677C26 /* AlertView.swift in Sources */,
 				E9B370FE1B1046CF00C6766C /* PayLogTableViewController.swift in Sources */,
 				591FD13F1B0C7CF000BFD74D /* AFURLResponseSerialization.m in Sources */,
@@ -758,13 +726,11 @@
 				E9CC27261B22D9A300056EFC /* RealTimeFinanceViewController.swift in Sources */,
 				5906B24B1B0F125E00ADA082 /* HandPasswordViewController.swift in Sources */,
 				D8B251181B0041AE00360F4E /* Reachability.m in Sources */,
-				E961E1261AC8DCBC0021ED14 /* REMenuContainerView.m in Sources */,
 				591FD1401B0C7CF000BFD74D /* AFURLSessionManager.m in Sources */,
 				E9C70C081AC1035B00E1CA8D /* IdeaViewController.swift in Sources */,
 				E9E5211F1B05E3D900A41EEA /* YYCycleScrollView.swift in Sources */,
 				E9608D9F1B1577960025D247 /* VerifyRealNameViewController.swift in Sources */,
 				E9C605B71ABBB9C500752D91 /* UIScrollView+Refresh.swift in Sources */,
-				E961E1251AC8DCBC0021ED14 /* REMenu.m in Sources */,
 				E95684F21B06D8FA00F46FF0 /* AccountInfoTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -788,10 +754,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E9D660551AB1313B0020982D /* LaunchScreen.xib */ = {
+		CD46DD911B3D03EB00F04211 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E9D660561AB1313B0020982D /* Base */,
+				CD46DD921B3D03EB00F04211 /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -884,6 +850,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -895,7 +862,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "盛世财富";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "eb4d861c-b2b4-4144-b3c3-1831bb6ac767";
 				SWIFT_OBJC_BRIDGING_HEADER = "盛世财富/盛世财富-Bridging-Header.h";
 			};
 			name = Debug;
@@ -904,8 +871,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -915,7 +883,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "盛世财富";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "eb4d861c-b2b4-4144-b3c3-1831bb6ac767";
 				SWIFT_OBJC_BRIDGING_HEADER = "盛世财富/盛世财富-Bridging-Header.h";
 			};
 			name = Release;

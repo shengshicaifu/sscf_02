@@ -42,7 +42,7 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         mainTable.delegate = self
         
         //判断标列表的类型
-        NSLog("列表类型:%@", type)
+        //NSLog("列表类型:%@", type)
         switch type {
             case "0":
                 //专享理财  活动标
@@ -253,12 +253,12 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
         
         
         manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-        NSLog("地址%@", self.url)
-        NSLog("参数%@", params)
+        //NSLog("地址%@", self.url)
+        //NSLog("参数%@", params)
         manager.POST(self.url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                 var result:NSDictionary = data as! NSDictionary
-                NSLog("标的列表结果%@", result)
+                //NSLog("标的列表结果%@", result)
                 if actionType == "0" {
                     loading.stopLoading()
                 }else if actionType == "1"{
@@ -447,10 +447,10 @@ class AllListViewController: UIViewController ,UITableViewDataSource,UITableView
     func buy(sender:UIGestureRecognizer){
         if let tableCell = sender.view?.superview?.superview?.superview as? UITableViewCell {
             var indexPath = self.mainTable.indexPathForCell(tableCell)!
-            NSLog("购买选中的行%i", indexPath.row)
+            //NSLog("购买选中的行%i", indexPath.row)
             var d = self.listData[indexPath.row] as! NSDictionary
             var id = d.objectForKey("id") as! String
-            NSLog("购买选中的id%@",id)
+            //NSLog("购买选中的id%@",id)
             var bidConfirmViewController = self.storyboard?.instantiateViewControllerWithIdentifier("bidConfirmViewController") as! BidConfirmViewController
             bidConfirmViewController.id = id
             self.navigationController?.pushViewController(bidConfirmViewController, animated: true)

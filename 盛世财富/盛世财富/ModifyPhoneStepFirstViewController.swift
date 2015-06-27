@@ -68,7 +68,7 @@ class ModifyPhoneStepFirstViewController: UIViewController {
                         //loading.stopLoading()
                         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         var result = data as! NSDictionary
-                        NSLog("验证码%@", result)
+                        //NSLog("验证码%@", result)
                         var code = result["code"] as! Int
                         var msg:String = ""
                         if code == 0 {
@@ -84,7 +84,7 @@ class ModifyPhoneStepFirstViewController: UIViewController {
                     },
                     failure:{ (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
                         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                        println(error)
+                        //println(error)
                         AlertView.alert("提示", message: "服务器错误", buttonTitle: "确定", viewController: self)
                     }
                 )
@@ -137,7 +137,7 @@ class ModifyPhoneStepFirstViewController: UIViewController {
                 var url = Common.serverHost + "/App-Ucenter-alertPhone"
                 var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
                 var params = ["to":token,"step":"1","cellphone":self.phone,"code":code,"f_id":""]
-                println(params)
+                //println(params)
                 loading.startLoading(self.view)
                 manager.POST(url, parameters: params,
                     success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in

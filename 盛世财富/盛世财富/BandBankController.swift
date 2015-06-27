@@ -46,7 +46,7 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
         var jsonDic: AnyObject? = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil)
         listData = jsonDic as! NSArray
         var count = self.listData.count
-        println(listData.count)
+        //println(listData.count)
         for row in 0...listData.count-1 {
             var provinces = listData[row].valueForKey("province") as! String
             province.addObject(provinces)
@@ -54,7 +54,7 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
         
         var userDefaults = NSUserDefaults.standardUserDefaults()
         var bankCardNo = userDefaults.objectForKey("bankCardNo") as? String
-        println("bankCardNo\(bankCardNo)")
+        //println("bankCardNo\(bankCardNo)")
         if bankCardNo == "" || bankCardNo == nil{
             addTapped.setTitle("添加", forState: UIControlState.Normal)
             self.title = "添加银行卡"
@@ -140,7 +140,7 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
             let manager = AFHTTPRequestOperationManager()
             var url = Common.serverHost + "/App-Ucenter-bindBank"
             var token = userDefaults.objectForKey("token") as! String
-            println(token)
+            //println(token)
             let params = ["to":token,"txt_account":bankCardNo,"bank_name":bankName,"province":province,"city":city,"txt_bankName":bankBranch]
             manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
             loading.startLoading(self.view)
@@ -148,7 +148,7 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
                  success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     loading.stopLoading()
                     var result = data as! NSDictionary
-                    println("银行卡绑定\(result)")
+                    //println("银行卡绑定\(result)")
                     var code = result["code"] as! Int
                     if code == -1 {
                         AlertView.showMsg("请登录后再试", parentView: self.view)
@@ -194,8 +194,8 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
             }
             var province = self.province[ProvincePick.selectedRowInComponent(0)] as! String
             var city = self.city[ProvincePick.selectedRowInComponent(1)] as! String
-            println(city)
-            println(province)
+            //println(city)
+            //println(province)
             let manager = AFHTTPRequestOperationManager()
             var url = Common.serverHost + "/App-Ucenter-bindBank"
             var token = userDefaults.objectForKey("token") as? String
@@ -207,7 +207,7 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                 loading.stopLoading()
                 var result = data as! NSDictionary
-                println("银行卡修改\(result)")
+                //println("银行卡修改\(result)")
                 var code = result["code"] as! Int
                 if code == -1 {
                     AlertView.showMsg("请登录后再试", parentView: self.view)

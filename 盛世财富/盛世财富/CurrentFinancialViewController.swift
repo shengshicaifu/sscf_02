@@ -84,7 +84,7 @@ class CurrentFinancialViewController:UITableViewController,UITableViewDataSource
                             let message = res["message"] as! String
                             let data  = res["data"] as! NSDictionary
                             let proInfo = data.objectForKey("proInfo") as! NSDictionary
-                            NSLog("实时财务：%@", proInfo)
+                            //NSLog("实时财务：%@", proInfo)
                             self.m1Label.text = self.replaceToDefault(proInfo.objectForKey("total_all") as? String)
                             self.m2Label.text = self.replaceToDefault(proInfo.objectForKey("account_money") as? String)
                             self.m3Label.text = self.replaceToDefault(proInfo.objectForKey("reward_money") as? String)

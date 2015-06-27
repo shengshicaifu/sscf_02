@@ -145,11 +145,11 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
                     var resDictionary = res as! NSDictionary
                     
                     var a = resDictionary["data"] as! NSArray
-                    println("获取到的数据：")
+                    //println("获取到的数据：")
                     for var i=0;i<a.count;i++ {
                         var c = a[i] as! NSDictionary
                         var b = c["id"] as! String
-                        println(b)
+                        //println(b)
                     }
 
                     
@@ -199,7 +199,7 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
 //                            NSLog("下拉刷新%@获取记录条数%i", d.count)
                             self.tmpListData.addObjectsFromArray(d as [AnyObject])
                         }else{
-                            NSLog("下拉刷新%@没有拿到数据")
+                            //NSLog("下拉刷新%@没有拿到数据")
                         }
                         
                     }
@@ -255,9 +255,9 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
         var msgLabel = cell.viewWithTag(102) as! UITextView
         msgLabel.userInteractionEnabled = false
         var sendTimeLabel = cell.viewWithTag(103) as! UILabel
-        var hasRead = cell.viewWithTag(104)   as! UILabel
-        var hideIdLabel = cell.viewWithTag(105) as! UILabel
-        var flagLabel = cell.viewWithTag(99) as! UILabel
+        //var hasRead = cell.viewWithTag(104)   as! UILabel
+        //var hideIdLabel = cell.viewWithTag(105) as! UILabel
+        //var flagLabel = cell.viewWithTag(99) as! UILabel
         var row :Int = indexPath.row
         if tmpListData.count > 0{
             var messageTitle = tmpListData[row].objectForKey("title") as! String
@@ -265,29 +265,29 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
             var messageMsg = tmpListData[row].objectForKey("msg") as! String
             msgLabel.text = messageMsg
             id = tmpListData[row].objectForKey("id") as? String
-            hideIdLabel.text = id
-            hideIdLabel.hidden = true
+            //hideIdLabel.text = id
+            //hideIdLabel.hidden = true
             var sendTime = tmpListData[row].objectForKey("send_time") as! NSString
             var sendTimeDouble = sendTime.doubleValue
             var fomartTime = Common.twoDateFromTimestamp(sendTimeDouble)
             sendTimeLabel.text = fomartTime
             var has_read = tmpListData[row].objectForKey("has_read") as! String
-            hasRead.hidden = true
-            switch has_read{
-            case "0":
-                hasRead.text = "未读"
-                break
-            case "1":
-                hasRead.text = "已读"
-                break
-            default:
-                hasRead.text = "全部"
-                break
-            }
+            //hasRead.hidden = true
+//            switch has_read{
+//            case "0":
+//                hasRead.text = "未读"
+//                break
+//            case "1":
+//                hasRead.text = "已读"
+//                break
+//            default:
+//                hasRead.text = "全部"
+//                break
+//            }
             
-            flagLabel.text = "通知"
-            flagLabel.layer.cornerRadius = 3
-            flagLabel.layer.masksToBounds = true
+//            flagLabel.text = "通知"
+//            flagLabel.layer.cornerRadius = 3
+//            flagLabel.layer.masksToBounds = true
             
     }
         return cell

@@ -117,7 +117,7 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
                             }
                             
                             var result = data as! NSDictionary
-                            NSLog("充值返回结果%@", result)
+                            //NSLog("充值返回结果%@", result)
                             var code = result["code"] as! Int
                             if code == -1 {
                                 AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
@@ -196,7 +196,7 @@ class PayLogTableViewController: UITableViewController,UITableViewDataSource,UIT
                             }
                             
                             var result = data as! NSDictionary
-                            NSLog("提现返回结果%@", result)
+                            //NSLog("提现返回结果%@", result)
                             var code = result["code"] as! Int
                             if code == -1 {
                                 AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)

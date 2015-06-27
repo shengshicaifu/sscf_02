@@ -93,7 +93,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
                 afnet.GET(url, parameters: nil, success: { (operation:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     loading.stopLoading()
                     let d = data.objectForKey("data") as! NSDictionary
-                    println(d)
+                    //println(d)
                     if let borrowInfo = d.objectForKey("borrowinfo") as? NSDictionary {
                         self.usermoney.text = NSUserDefaults.standardUserDefaults().objectForKey("accountMoney") as? String
                         if let borrow_type = borrowInfo.objectForKey("borrow_type") as? String{
@@ -238,7 +238,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
                         }
                     }
                 }
-                println(url)
+                //println(url)
                 //        println(param)
                 afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                 afnet.POST(url, parameters: param, success: { (opration :AFHTTPRequestOperation!, res :AnyObject!) -> Void in
@@ -273,7 +273,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
                     
                     
                     }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                        println(error.localizedDescription)
+                        //println(error.localizedDescription)
                         loading.stopLoading()
                         AlertView.alert("错误", message: "服务器错误", buttonTitle: "确定", viewController: self)
                 }

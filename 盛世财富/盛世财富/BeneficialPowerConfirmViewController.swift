@@ -133,7 +133,12 @@ class BeneficialPowerConfirmViewController: UIViewController,UITextFieldDelegate
                         self.l15.text = self.per_transfer
                         
                         self.t1.placeholder = "最少认购\(self.lowest_transfer!)份"
-                        self.t2.placeholder = "可用奖金\(self.reward_money!)元"
+                        if self.reward_money == nil || self.reward_money == ""{
+                            self.t2.placeholder = "可用奖金0元"
+                        }else{
+                            self.t2.placeholder = "可用奖金\(self.reward_money!)元"
+                        }
+                        
                         
                         
                         

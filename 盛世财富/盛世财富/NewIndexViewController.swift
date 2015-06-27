@@ -800,10 +800,8 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
     //跳到标的详情
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "lendDetail" {
-            //            var vc = segue.destinationViewController as! LendDetailViewController
             var selectedRow = self.tableView.indexPathForSelectedRow()?.row
             var dic = self.listData[selectedRow!] as! NSDictionary
-            
             var vc = segue.destinationViewController as! NewDetailScrollViewController
             vc.hidesBottomBarWhenPushed = true
             vc.id = dic.objectForKey("id") as? String

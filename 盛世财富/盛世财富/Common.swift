@@ -185,7 +185,6 @@ class Common {
     }
     /**
     加下滑线
-    
     :param: view 视图
     */
     class func addBorder(view:UIView){

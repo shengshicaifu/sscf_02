@@ -428,7 +428,10 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     var mainScorllView:YYCycleScrollView?
-    
+    //MARK:- 新滚动图
+    func newHeadScrollImages(){
+        
+    }
     //MARK:- 滚动图
     func headScrollImages(){
         //NSLog("加载图片:%@",self.photos)
@@ -520,6 +523,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                 self.navigationController?.pushViewController(contentViewController, animated: true)
             }
             self.tableView.tableHeaderView = mainScorllView
+            
         }
     }
 

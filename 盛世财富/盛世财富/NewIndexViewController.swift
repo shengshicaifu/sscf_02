@@ -168,7 +168,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
             var params = [:]
             manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
             
-            if actionType != "2" {
+            //if actionType != "2" {
                 //不为上拉加载，获取滚动图和网站数据
                 url = Common.serverHost + "/App-Index"
                 manager.POST(url, parameters: params,
@@ -193,7 +193,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                                 if photoArray != nil {
                                     var parray = photoArray?.objectForKey("inner") as! NSArray
                                     self.photos.addObjectsFromArray(parray as [AnyObject])
-                                    //NSLog("photos = %@", self.photos)
+                                    NSLog("photos = %@", self.photos)
                                     //设置滚动图
                                     self.headScrollImages()
                                 }
@@ -285,7 +285,8 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                         }
                         
                         if actionType == "0" {
-                            loading.startLoading(self.view)
+                           // loading.startLoading(self.view)
+                             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
                         }else if (actionType == "1" || actionType == "2"){
                             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
                         }
@@ -296,7 +297,8 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                                 var result:NSDictionary = data as! NSDictionary
                                 //NSLog("标的列表结果%@", result)
                                 if actionType == "0" {
-                                    loading.stopLoading()
+                                    //loading.stopLoading()
+                                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                                 }else if actionType == "1"{
                                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                                     self.tableView.headerEndRefreshing()
@@ -355,7 +357,8 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                             },
                             failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
                                 if actionType == "0" {
-                                    loading.stopLoading()
+                                    //loading.stopLoading()
+                                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                                 }else if actionType == "1"{
                                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                                     self.tableView.headerEndRefreshing()
@@ -399,7 +402,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                         
                     }
                 )
-            }
+            //}
 
         }
         reach.startNotifier()
@@ -498,7 +501,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
             
             
             //scrollview滚动
-            mainScorllView = YYCycleScrollView(frame: CGRectMake(0, 64, self.view.layer.frame.width, 175), animationDuration: 1.0)
+            mainScorllView = YYCycleScrollView(frame: CGRectMake(0, 64, self.view.layer.frame.width, 175), animationDuration: 10.0)
             //mainScorllView?.contentViews.removeAllObjects()
             mainScorllView!.fetchContentViewAtIndex = {(pageIndex:Int)->UIView in
                 return picarray.objectAtIndex(pageIndex) as! UIView
@@ -511,9 +514,10 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
             mainScorllView!.TapActionBlock = {(pageIndex:Int)->() in
                 //此处根据点击的索引跳转到指定的页面
                 var contentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ContentViewController") as! ContentViewController
-//                var url = self.photos?[pageIndex]["url"] as String
-//                contentViewController.contentUrl = "http://www.sscf88.com" + url!
-//                self.navigationController?.pushViewController(contentViewController, animated: true)
+                var url = self.photos[pageIndex]["url"] as! String
+                url.replaceRange(url.rangeOfString("http://www.sscf88.com", options: nil, range: nil, locale: nil)!, with: Common.serverHost)
+                contentViewController.contentUrl = url
+                self.navigationController?.pushViewController(contentViewController, animated: true)
             }
             self.tableView.tableHeaderView = mainScorllView
         }
@@ -871,17 +875,23 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         if scrollView.dragging {// 拖拽
             //NSLog("scrollView.dragging")
             //NSLog("contentOffsetY: %f", contentOffsetY)
-            NSLog("newContentOffsetY: %f", scrollView.contentOffset.y)
+            //NSLog("newContentOffsetY: %f", scrollView.contentOffset.y)
             
             //创建筛选条件
             if scrollView.contentOffset.y > 130 {
                 var chooseView = self.view.viewWithTag(123)
                 if chooseView == nil {
                     //创建
-                    var v = UIView(frame: CGRectMake(0, 64, self.view.frame.width, 90))
+                    var v = UIView(frame: CGRectMake(0, 64, self.view.frame.width, 89))
                     var recognizer = UISwipeGestureRecognizer(target: self, action: "toTop:")
                     recognizer.direction = UISwipeGestureRecognizerDirection.Up
                     v.addGestureRecognizer(recognizer)
+                    
+                    var lineLayer = CALayer()
+                    lineLayer.frame = CGRectMake(0, 88, v.frame.width, 1)
+                    lineLayer.backgroundColor = UIColor(red: 82/255.0, green: 180/255.0, blue: 245/255.0, alpha: 1.0).CGColor
+                    v.layer.addSublayer(lineLayer)
+                    
                     v.backgroundColor = UIColor.whiteColor()
                     v.alpha = 0.9
                     v.tag = 123
@@ -892,10 +902,10 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                     
                     var vFrame = v.frame
                     var imageWidth:CGFloat = 42
-                    var btn1 = UIButton(frame: CGRectMake(vFrame.width/8 - imageWidth/2, 8, imageWidth, imageWidth))
-                    var btn2 = UIButton(frame: CGRectMake(vFrame.width*3/8 - imageWidth/2, 8, imageWidth, imageWidth))
-                    var btn3 = UIButton(frame: CGRectMake(vFrame.width*5/8 - imageWidth/2, 8, imageWidth, imageWidth))
-                    var btn4 = UIButton(frame: CGRectMake(vFrame.width*7/8 - imageWidth/2, 8, imageWidth, imageWidth))
+                    var btn1 = UIButton(frame: CGRectMake(vFrame.width/8 - imageWidth/2, 12, imageWidth, imageWidth))
+                    var btn2 = UIButton(frame: CGRectMake(vFrame.width*3/8 - imageWidth/2, 12, imageWidth, imageWidth))
+                    var btn3 = UIButton(frame: CGRectMake(vFrame.width*5/8 - imageWidth/2, 12, imageWidth, imageWidth))
+                    var btn4 = UIButton(frame: CGRectMake(vFrame.width*7/8 - imageWidth/2, 12, imageWidth, imageWidth))
                     btn1.tag = 201
                     btn2.tag = 202
                     btn3.tag = 203
@@ -921,23 +931,23 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                     btn3.adjustsImageWhenHighlighted = false
                     btn4.adjustsImageWhenHighlighted = false
                     
-                    var lab1 = UILabel(frame: CGRectMake(0, 60, vFrame.width/4, 20))
+                    var lab1 = UILabel(frame: CGRectMake(0, 62, vFrame.width/4, 20))
                     lab1.text = "全部"
                     lab1.textAlignment = NSTextAlignment.Center
                     lab1.font = UIFont(name: "Arial", size: 14)
                     
                     
-                    var lab2 = UILabel(frame: CGRectMake(vFrame.width/4, 60, vFrame.width/4, 20))
+                    var lab2 = UILabel(frame: CGRectMake(vFrame.width/4, 62, vFrame.width/4, 20))
                     lab2.text = "债权转让"
                     lab2.textAlignment = NSTextAlignment.Center
                     lab2.font = UIFont(name: "Arial", size: 14)
                     
-                    var lab3 = UILabel(frame: CGRectMake(vFrame.width*2/4, 60, vFrame.width/4, 20))
+                    var lab3 = UILabel(frame: CGRectMake(vFrame.width*2/4, 62, vFrame.width/4, 20))
                     lab3.text = "定期理财"
                     lab3.textAlignment = NSTextAlignment.Center
                     lab3.font = UIFont(name: "Arial", size: 14)
                     
-                    var lab4 = UILabel(frame: CGRectMake(vFrame.width*3/4, 60, vFrame.width/4, 20))
+                    var lab4 = UILabel(frame: CGRectMake(vFrame.width*3/4, 62, vFrame.width/4, 20))
                     lab4.text = "受益权转让"
                     lab4.textAlignment = NSTextAlignment.Center
                     lab4.font = UIFont(name: "Arial", size: 14)

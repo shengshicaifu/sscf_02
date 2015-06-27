@@ -40,7 +40,7 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
     func handleSwipe(gesture:UISwipeGestureRecognizer){
         var direction = gesture.direction
         if direction == UISwipeGestureRecognizerDirection.Left {
-            NSLog("向左")
+            //NSLog("向左")
             var i = choose.selectedSegmentIndex + 1
             if i > 3 {
                 choose.selectedSegmentIndex = 0
@@ -53,7 +53,7 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
             getData("\(self.type)",actionType:"1")
             
         }else if direction == UISwipeGestureRecognizerDirection.Right {
-            NSLog("向右")
+            //NSLog("向右")
             var i = choose.selectedSegmentIndex - 1
             if i < 0 {
                 choose.selectedSegmentIndex = 3
@@ -73,11 +73,11 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
     */
     func setupRefresh(){
         self.tableView.addHeaderWithCallback({
-            NSLog("投标记录，下拉刷新")
+            //NSLog("投标记录，下拉刷新")
             self.getData("\(self.type)", actionType: "2")
         })
         self.tableView.addFooterWithCallback(){
-            NSLog("投标记录，上拉加载")
+            //NSLog("投标记录，上拉加载")
             self.getData("\(self.type)", actionType: "3")
         }
     }
@@ -132,7 +132,7 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
                     
                     
                     let param = ["to":token,"type":bidType,"lastId":lastId,"count":self.count]
-                    NSLog("投标记录参数%@", param)
+                    //NSLog("投标记录参数%@", param)
                     afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                     afnet.POST(url, parameters: param,
                         success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
@@ -140,7 +140,7 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
                             var result = res as! NSDictionary
                             if let d = result["data"] as? NSArray {
                                 for(var i=0;i<d.count;i++){
-                                    println(d[i]["id"] as! String)
+                                    //println(d[i]["id"] as! String)
                                 }
                             }
                             
@@ -186,10 +186,10 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
                             //将获取到的数据加到data的末尾
                                 self.tableView.footerEndRefreshing()
                                 if let d = res["data"] as? NSArray {
-                                    NSLog("上拉加载%@获取记录条数%i", bidType,d.count)
+                                    //NSLog("上拉加载%@获取记录条数%i", bidType,d.count)
                                     self.data.addObjectsFromArray(d as [AnyObject])
                                 }else{
-                                    NSLog("上拉加载%@没有拿到数据", bidType)
+                                    //NSLog("上拉加载%@没有拿到数据", bidType)
                                 }
                                 
                             }
@@ -267,7 +267,7 @@ class BidRecordViewController:UITableViewController,UITableViewDataSource,UITabl
     }
     
     func choosed(seg:UISegmentedControl){
-        NSLog("选择了%i",seg.selectedSegmentIndex)
+        //NSLog("选择了%i",seg.selectedSegmentIndex)
         self.type = (seg.selectedSegmentIndex + 1)
         getData("\(self.type)",actionType:"1")
     }

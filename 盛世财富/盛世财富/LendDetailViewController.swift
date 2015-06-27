@@ -217,7 +217,7 @@ class LendDetailViewController: UITableViewController ,UITableViewDataSource,UIT
                 }
                 },
                 failure: {(operation:AFHTTPRequestOperation!,error : NSError!) in
-                    println(error)
+                    //println(error)
                     loading.stopLoading()
                     self.mainTable.scrollEnabled = true
             }

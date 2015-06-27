@@ -36,12 +36,12 @@ class InvestorSummaryViewController: UITableViewController,UITableViewDataSource
         var manager = AFHTTPRequestOperationManager()
         var url = Common.serverHost + "/App-Myinvest-summary"
         var params = ["to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! NSString]
-        NSLog("投资总表参数：%@", params)
+        //NSLog("投资总表参数：%@", params)
         manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
         manager.POST(url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                 var result = data as! NSDictionary
-                NSLog("投资总表：%@", result)
+                //NSLog("投资总表：%@", result)
                 var code = result["code"] as! Int
                 if code == -1 {
                     AlertView.alert("提示", message: "请登录后再试", buttonTitle: "确定", viewController: self)
@@ -101,14 +101,14 @@ class InvestorSummaryViewController: UITableViewController,UITableViewDataSource
         var manager = AFHTTPRequestOperationManager()
         var url = Common.serverHost + "/App-Myinvest-summary"
         var params = ["to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! NSString]
-        NSLog("投资总表参数：%@", params)
+        //NSLog("投资总表参数：%@", params)
         manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
         manager.POST(url, parameters: params,
             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                 //loading.stopLoading()
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 var result = data as! NSDictionary
-                NSLog("投资总表：%@", result)
+                //NSLog("投资总表：%@", result)
                 var code = result["code"] as! Int
                 if code == -1 {
                     AlertView.alert("提示", message: "请登录后再试", buttonTitle: "确定", viewController: self)

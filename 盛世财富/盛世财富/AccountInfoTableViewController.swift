@@ -154,10 +154,10 @@ class AccountInfoTableViewController: UITableViewController,UITableViewDataSourc
             var fileName = "headpic.jpg"
             formData.appendPartWithFileData(UIImageJPEGRepresentation(image, 1.0), name: "headpic", fileName: fileName, mimeType: "image/jpeg")
             }, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                NSLog("头像%@", data as! NSDictionary)
+                //NSLog("头像%@", data as! NSDictionary)
                 AlertView.alert("提示", message: data["message"] as! String, buttonTitle: "确定", viewController: self)
             }, failure: { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                NSLog("头像%@", error)
+                //NSLog("头像%@", error)
                 AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
         })
         

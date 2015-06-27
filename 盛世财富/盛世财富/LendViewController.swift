@@ -50,7 +50,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 loading.stopLoading()
                 var result = data as! NSDictionary
                 var code = result["code"] as! Int
-                println(result)
+                //println(result)
                 if code == 200{
                     
                 }
@@ -217,7 +217,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
             
             if let hideId = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(99) as? UILabel{
                 id = hideId.text
-                NSLog("点击的行%i,id是%@", indexPath.row,id!)
+                //NSLog("点击的行%i,id是%@", indexPath.row,id!)
                 if let hideType = tableView.cellForRowAtIndexPath(indexPath)?.viewWithTag(98) as? UILabel {
                     type = hideType.text
                 }
@@ -347,7 +347,7 @@ class LendViewController: UIViewController,UITableViewDataSource,UITableViewDele
                 hideId.text = tmpListData[row].valueForKey("id") as? String
                 cell.addSubview(hideId)
                 hideId.hidden = true
-                NSLog("行%i,id是%@", indexPath.row,hideId.text!)
+                //NSLog("行%i,id是%@", indexPath.row,hideId.text!)
                 
                 
                 hideType.text = tmpListData[row].valueForKey("borrow_type") as? String

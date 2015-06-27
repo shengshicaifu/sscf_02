@@ -356,9 +356,9 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
             //NSLog("网络可用")
             dispatch_async(dispatch_get_main_queue(), {
                 loading.startLoading(self.view)
-                NSLog("线下充值")
-                NSLog("url = %@", url)
-                NSLog("param = %@", param)
+                //NSLog("线下充值")
+                //NSLog("url = %@", url)
+                //NSLog("param = %@", param)
                 afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                 afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                     loading.stopLoading()

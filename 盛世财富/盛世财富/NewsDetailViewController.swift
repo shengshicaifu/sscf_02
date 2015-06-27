@@ -16,7 +16,7 @@ class NewsDetailViewController: UIViewController {
     @IBOutlet weak var sendTimeLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        println(detailItem)
+        //println(detailItem)
         titleLabel.text = detailItem?.valueForKey("title") as? String
         newLabel.text = detailItem?.valueForKey("msg") as! String
         var sendTime = detailItem?.objectForKey("send_time") as! NSString

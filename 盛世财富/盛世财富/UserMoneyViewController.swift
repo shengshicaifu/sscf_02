@@ -65,7 +65,7 @@ class UserMoneyViewController:UITableViewController {
                     
                     afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                     afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
-                        NSLog("资产管理：%@", res as! NSDictionary)
+                        //NSLog("资产管理：%@", res as! NSDictionary)
                         var resDictionary = res as! NSDictionary
                         var code = resDictionary["code"] as! Int
                         if code == -1 {

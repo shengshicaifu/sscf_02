@@ -146,7 +146,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             lockVc.nLockViewType = type
             lockVc.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
             var root = self.window?.rootViewController
-            NSLog("root:%@",root!)
+            //NSLog("root:%@",root!)
             self.window?.rootViewController?.presentViewController(lockVc, animated: true, completion: nil)
         //}
     }

@@ -18,7 +18,7 @@ class ContentViewController: UIViewController,UIWebViewDelegate {
         // Do any additional setup after loading the view.
         //var url = nsur
         //NSURLRequest(URL: nsurl(NSString)
-        println(contentUrl)
+        //println(contentUrl)
         var url:NSURL = NSURL(string: contentUrl!)!
         var request = NSURLRequest(URL: url)
         self.webView.loadRequest(request)

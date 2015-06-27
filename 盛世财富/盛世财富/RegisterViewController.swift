@@ -87,7 +87,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
                         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         
                         var result = data as! NSDictionary
-                        NSLog("验证码%@", result)
+                        //NSLog("验证码%@", result)
                         var code = result["code"] as! Int
                         var msg:String = ""
                         if code == 0 {
@@ -194,7 +194,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
                     success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                         loading.stopLoading()
                         var result = data as! NSDictionary
-                        NSLog("注册返回结果：%@",result)
+                        //NSLog("注册返回结果：%@",result)
                         var code = result["code"] as! Int
                         if code == 0 {
                             AlertView.showMsg("手机号码不合法", parentView: self.view)
@@ -205,7 +205,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
                         } else if code == 200 {
                             //注册成功,保存基本信息，跳转到我的账号页面
                             
-                            NSLog("注册成功")
+                            //NSLog("注册成功")
                             
                             let user = NSUserDefaults.standardUserDefaults()
                             let proInfo:NSDictionary = result["data"]?["proInfo"] as! NSDictionary
@@ -241,7 +241,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
                         }
                     },
                     failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                        NSLog("注册请求失败：%@", error)
+                        //NSLog("注册请求失败：%@", error)
                         loading.stopLoading()
                         AlertView.showMsg("注册失败", parentView: self.view)
                     }

@@ -24,7 +24,7 @@ class FindResultsViewController: UITableViewController,UISearchResultsUpdating{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NSLog("FindResultsViewController  viewDidLoad")
+        //NSLog("FindResultsViewController  viewDidLoad")
         // Do any additional setup after loading the view.
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: sectionsTableIdentifier)
         //self.tableView.backgroundColor = UIColor.redColor()
@@ -45,14 +45,14 @@ class FindResultsViewController: UITableViewController,UISearchResultsUpdating{
         self.tableView.addHeaderWithCallback({
             
             if !self.searchString!.isEmpty {
-                NSLog("搜索，下拉刷新")
+                //NSLog("搜索，下拉刷新")
                 self.getData(self.searchString!, actionType: "1")
             }
             
         })
         self.tableView.addFooterWithCallback(){
             if !self.searchString!.isEmpty {
-                NSLog("搜索，上拉加载")
+                //NSLog("搜索，上拉加载")
                 self.getData(self.searchString!, actionType: "2")
             }
         }
@@ -64,7 +64,7 @@ class FindResultsViewController: UITableViewController,UISearchResultsUpdating{
         searchString = searchController.searchBar.text//搜索内容
         if !searchString!.isEmpty {
             //开始搜索
-            NSLog("开始搜索")
+            //NSLog("开始搜索")
             getData(searchString!, actionType: "0")
         }
         
@@ -111,7 +111,7 @@ class FindResultsViewController: UITableViewController,UISearchResultsUpdating{
                 
                 
                 let param = ["name":name,"lastId":lastId,"count":self.count]
-                NSLog("搜索参数%@", param)
+                //NSLog("搜索参数%@", param)
                 afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                 afnet.POST(url, parameters: param,
                     success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in

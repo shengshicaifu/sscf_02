@@ -83,7 +83,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 manager.POST(url, parameters: params,
                     success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                         var result = data as! NSDictionary
-                        NSLog("个人信息：%@", result)
+                        //NSLog("个人信息：%@", result)
                         let code = result["code"] as? Int
                         if(code == 200){
                             let user = NSUserDefaults.standardUserDefaults()
@@ -166,10 +166,10 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     func dismiss(){
         self.dismissViewControllerAnimated(true, completion: nil)
         
-        NSLog("登录窗的父窗体是%@", self.presentingViewController!)
+        //NSLog("登录窗的父窗体是%@", self.presentingViewController!)
         if self.presentingViewController is UITabBarController {
             var tabbarController = self.presentingViewController as! UITabBarController
-            NSLog("当前选择的标签是%i", tabbarController.selectedIndex)
+          //  NSLog("当前选择的标签是%i", tabbarController.selectedIndex)
             if self.tabTag != nil {
                 if Common.isLogin() {
                     if self.tabTag == 102 {

@@ -304,4 +304,12 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         }
         return true
     }
+   
+    @IBAction func registToWeb(sender: UIButton) {
+        var contentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CustomNavigationViewController") as! CustomNavigationViewController
+        contentViewController.contentUrl = "http://www.sscf88.com/fwxy.shtml"
+        
+        self.presentViewController(contentViewController, animated: true, completion: nil)
+        
+    }
 }

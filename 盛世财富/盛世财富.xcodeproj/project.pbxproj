@@ -33,6 +33,7 @@
 		594200AD1B1324070005E671 /* GetCashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594200AB1B1324070005E671 /* GetCashViewController.swift */; };
 		594E5B4F1AFA102500218DA5 /* NewPersonCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594E5B4E1AFA102500218DA5 /* NewPersonCenterViewController.swift */; };
 		595C8DC51B07317800989977 /* NavigationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595C8DC41B07317800989977 /* NavigationExtension.swift */; };
+		597CDD861B3E865E004586E6 /* CustomNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597CDD851B3E865E004586E6 /* CustomNavigationViewController.swift */; };
 		598A77841AF9E48600DE4271 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598A77831AF9E48600DE4271 /* TabBarViewController.swift */; };
 		59BEC4191B05CD5300F5690D /* UserMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */; };
 		59BEC41B1B07124200F5690D /* BidRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BEC41A1B07124200F5690D /* BidRecordViewController.swift */; };
@@ -161,6 +162,7 @@
 		594200AB1B1324070005E671 /* GetCashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCashViewController.swift; sourceTree = "<group>"; };
 		594E5B4E1AFA102500218DA5 /* NewPersonCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = NewPersonCenterViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		595C8DC41B07317800989977 /* NavigationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationExtension.swift; sourceTree = "<group>"; };
+		597CDD851B3E865E004586E6 /* CustomNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationViewController.swift; sourceTree = "<group>"; };
 		598A77831AF9E48600DE4271 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		59BEC4181B05CD5300F5690D /* UserMoneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserMoneyViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		59BEC41A1B07124200F5690D /* BidRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BidRecordViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -406,6 +408,7 @@
 				E9FF4D131B228A3F005FCAAA /* NewsDetailViewController.swift */,
 				E9CC27251B22D9A300056EFC /* RealTimeFinanceViewController.swift */,
 				CDBEF4161B29A4040025FBD4 /* aaTableViewController.swift */,
+				597CDD851B3E865E004586E6 /* CustomNavigationViewController.swift */,
 				E9FC8DCB1B297C5000C74EED /* NewDetailScrollViewController.swift */,
 				E9FE8EFC1B2C204200747E1C /* BandBankControllerExtension.swift */,
 				59CC51D21B37B0E6006F37C2 /* NewIndexViewController.swift */,
@@ -679,6 +682,7 @@
 				E9C605B51ABBB9C500752D91 /* RefreshFooterView.swift in Sources */,
 				CDD3BE021B1FFA9D00CE6323 /* FindResultsViewController.swift in Sources */,
 				E9FF4D141B228A3F005FCAAA /* NewsDetailViewController.swift in Sources */,
+				597CDD861B3E865E004586E6 /* CustomNavigationViewController.swift in Sources */,
 				E96E52451B0C865800CFD8E2 /* ModifyPhoneStepFirstViewController.swift in Sources */,
 				598A77841AF9E48600DE4271 /* TabBarViewController.swift in Sources */,
 				E96E52471B0C868900CFD8E2 /* ModifyPhoneStepSecondViewController.swift in Sources */,

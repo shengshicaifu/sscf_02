@@ -116,6 +116,7 @@ class BeneficialPowerConfirmViewController: UIViewController,UITextFieldDelegate
                         
                         //NSLog("受益权 = %@", result)
                         var user = result["data"]?["user"]  as! NSDictionary
+                        println(user)
                          self.account_money = user["account_money"] as? String
                          self.reward_money = user["reward_money"] as? String
                         
@@ -126,15 +127,25 @@ class BeneficialPowerConfirmViewController: UIViewController,UITextFieldDelegate
                          self.per_transfer = vo["per_transfer"] as? String//每份价格
                          self.surplus_money = vo["surplus_money"] as? String//剩余金额
                          self.borrow_duration = vo["borrow_duration"] as? String
-                        
-                        self.l2.text = "\(self.account_money!)元"
+                        if self.account_money == nil{
+                            self.l2.text = "0元"
+                        }else{
+                            self.l2.text = "\(self.account_money!)元"
+                        }
                         self.l4.text = self.borrow_name
                         self.l6.text = self.borrow_interest_rate! + "%"
                         self.l8.text = self.surplus_money
                         self.l15.text = self.per_transfer
                         
                         self.t1.placeholder = "最少认购\(self.lowest_transfer!)份"
-                        self.t2.placeholder = "可用奖金\(self.reward_money!)元"
+                        if self.reward_money == nil{
+                            self.t2.placeholder = "可用奖金0元"
+                        }else{
+                            self.t2.placeholder = "可用奖金\(self.reward_money!)元"
+                        }
+                        
+                       
+                        
                         
                         
                         

@@ -796,6 +796,17 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         }
         return 0.001
     }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if self.currentButton == 3 {
+            var b = self.storyboard?.instantiateViewControllerWithIdentifier("BeneficialPowerConfirmViewController") as! BeneficialPowerConfirmViewController
+            var selectedRow = self.tableView.indexPathForSelectedRow()?.row
+            var dic = self.listData[selectedRow!] as! NSDictionary
+            b.id = (dic.objectForKey("id") as? String)!
+            self.navigationController?.pushViewController(b, animated: true)
+        }else{
+        self.performSegueWithIdentifier("lendDetail", sender: nil)
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -803,13 +814,15 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
     //MARK:- 页面跳转
     //跳到标的详情
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "lendDetail" {
+        if segue.identifier == "lendDetail "{
             var selectedRow = self.tableView.indexPathForSelectedRow()?.row
             var dic = self.listData[selectedRow!] as! NSDictionary
             var vc = segue.destinationViewController as! NewDetailScrollViewController
             vc.hidesBottomBarWhenPushed = true
             vc.id = dic.objectForKey("id") as? String
+            self.navigationController?.pushViewController(vc, animated: true)
         }
+        
     }
     
     func buy(sender:UIGestureRecognizer){
@@ -826,8 +839,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                     AlertView.alert("提示", message: "请先登录", okButtonTitle: "确定", cancelButtonTitle: "取消", viewController: self, okCallback: { (action:UIAlertAction!) -> Void in
                         var loginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController
                         self.presentViewController(loginViewController, animated: true, completion: nil)
-                        }, cancelCallback: { (action:UIAlertAction!) -> Void in
-                            
+                        }, cancelCallback: { (action:UIAlertAction!) -> Void in     
                     })
                     return
                 }

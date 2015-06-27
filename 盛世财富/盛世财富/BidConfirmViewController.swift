@@ -71,71 +71,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
         
         self.scrollView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "resignAll"))
     
-        //加载数据
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        let url = Common.serverHost+"/app-invest-detailcontent-id-"+self.id!
-        let afnet = AFHTTPRequestOperationManager()
-        //检查手机网络
-        var reach = Reachability(hostName: Common.domain)
-        reach.unreachableBlock = {(r:Reachability!) -> Void in
-            //NSLog("网络不可用")
-            dispatch_async(dispatch_get_main_queue(), {
-                
-                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
-            })
-        }
-        
-        reach.reachableBlock = {(r:Reachability!) -> Void in
-            //NSLog("网络可用")
-            dispatch_async(dispatch_get_main_queue(), {
-                loading.startLoading(self.view)
-                afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-                afnet.GET(url, parameters: nil, success: { (operation:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                    loading.stopLoading()
-                    let d = data.objectForKey("data") as! NSDictionary
-                    //println(d)
-                    if let borrowInfo = d.objectForKey("borrowinfo") as? NSDictionary {
-                        self.usermoney.text = NSUserDefaults.standardUserDefaults().objectForKey("accountMoney") as? String
-                        if let borrow_type = borrowInfo.objectForKey("borrow_type") as? String{
-                            self.type = borrow_type
-                            if let borrow_duration = borrowInfo.objectForKey("borrow_duration") as? String{
-                                self.duration = borrow_duration
-                            }
-                            
-                            if let borrow_name = borrowInfo.objectForKey("borrow_name") as? String{
-                                self.bidName.text = borrow_name
-                            }
-                            if let borrow_interest_rate = borrowInfo.objectForKey("borrow_interest_rate") as? String{
-                                self.bidRate.text = borrow_interest_rate + "%"
-                            }
-                            if let need = borrowInfo.objectForKey("need") as? NSInteger{
-                                self.restMoney.text = "\(need)元"
-                            }
-                            if borrow_type != "8" {
-                                self.bidMoneyLabel.text = "认购份数："
-                                self.first.text = "份"
-                                if let per_transferData = borrowInfo.objectForKey("per_transferData") as? String{
-                                    self.bidMoney.placeholder = "每份\(per_transferData)元"
-                                }
-                            }else{
-                                
-                                if let borrow_min = borrowInfo.objectForKey("borrow_min") as? String{
-                                    self.bidMoney.placeholder = "起投金额\(borrow_min)"
-                                }
-                            }
-                            
-                        }
-                    }
-                    
-                    }, failure: { (operation:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                        loading.stopLoading()
-                        AlertView.alert("提示", message: "服务器错误，请稍候再试", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
-                            self.navigationController?.popViewControllerAnimated(true)
-                        })
-                })
-            })
-        }
-        reach.startNotifier()
+
         
     }
     @IBAction func confirm(sender: AnyObject) {
@@ -310,6 +246,74 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
     override func viewWillAppear(animated: Bool) {
         DaiDodgeKeyboard.addRegisterTheViewNeedDodgeKeyboard(self.view)
         super.viewWillAppear(animated)
+        
+        
+        //加载数据
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        let url = Common.serverHost+"/app-invest-detailcontent-id-"+self.id!
+        let afnet = AFHTTPRequestOperationManager()
+        //检查手机网络
+        var reach = Reachability(hostName: Common.domain)
+        reach.unreachableBlock = {(r:Reachability!) -> Void in
+            //NSLog("网络不可用")
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
+            })
+        }
+        
+        reach.reachableBlock = {(r:Reachability!) -> Void in
+            //NSLog("网络可用")
+            dispatch_async(dispatch_get_main_queue(), {
+                loading.startLoading(self.view)
+                afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+                afnet.GET(url, parameters: nil, success: { (operation:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                    loading.stopLoading()
+                    let d = data.objectForKey("data") as! NSDictionary
+                    //println(d)
+                    if let borrowInfo = d.objectForKey("borrowinfo") as? NSDictionary {
+                        self.usermoney.text = NSUserDefaults.standardUserDefaults().objectForKey("accountMoney") as? String
+                        if let borrow_type = borrowInfo.objectForKey("borrow_type") as? String{
+                            self.type = borrow_type
+                            if let borrow_duration = borrowInfo.objectForKey("borrow_duration") as? String{
+                                self.duration = borrow_duration
+                            }
+                            
+                            if let borrow_name = borrowInfo.objectForKey("borrow_name") as? String{
+                                self.bidName.text = borrow_name
+                            }
+                            if let borrow_interest_rate = borrowInfo.objectForKey("borrow_interest_rate") as? String{
+                                self.bidRate.text = borrow_interest_rate + "%"
+                            }
+                            if let need = borrowInfo.objectForKey("need") as? NSInteger{
+                                self.restMoney.text = "\(need)元"
+                            }
+                            if borrow_type != "8" {
+                                self.bidMoneyLabel.text = "认购份数："
+                                self.first.text = "份"
+                                if let per_transferData = borrowInfo.objectForKey("per_transferData") as? String{
+                                    self.bidMoney.placeholder = "每份\(per_transferData)元"
+                                }
+                            }else{
+                                
+                                if let borrow_min = borrowInfo.objectForKey("borrow_min") as? String{
+                                    self.bidMoney.placeholder = "起投金额\(borrow_min)"
+                                }
+                            }
+                            
+                        }
+                    }
+                    
+                    }, failure: { (operation:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                        loading.stopLoading()
+                        AlertView.alert("提示", message: "服务器错误，请稍候再试", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
+                            self.navigationController?.popViewControllerAnimated(true)
+                        })
+                })
+            })
+        }
+        reach.startNotifier()
+        
     }
     
     override func viewWillDisappear(animated: Bool) {

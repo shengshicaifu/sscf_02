@@ -45,9 +45,10 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
         searchTextField.delegate = self
         searchTextField.addTarget(self, action: "change:", forControlEvents: UIControlEvents.EditingChanged)
         searchTextField.tintColor = UIColor.grayColor()
-        var leftImageView = UIImageView(image: UIImage(named: "0_search"))
+        var leftImageView = UIImageView(image: UIImage(named: "find"))
         leftImageView.contentMode = UIViewContentMode.Center
-        leftImageView.frame = CGRectMake(0, 0, 25, searchTextField.frame.height )
+        leftImageView.frame = CGRectMake(0, 0, 20, 15 )
+        
         searchTextField.leftView = leftImageView
         searchTextField.leftViewMode = UITextFieldViewMode.Always
         
@@ -84,7 +85,16 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.navigationItem.titleView = customerHeaderView
         self.setupRefresh()
         
+        //热门搜索词
         bgView.frame = self.tableView.frame
+        
+//        var l1 = UILabel(frame: CGRectMake(bgView.frame.origin.x + 10, bgView.frame.origin.x + 10, 0, 0))
+//        l1.text = "盛世"
+//        l1.sizeToFit()
+//        
+//        
+//        bgView.addSubview(l1)
+        
         
         hideTable(true)
         

@@ -105,8 +105,8 @@ class BeneficialPowerConfirmViewController: UIViewController,UITextFieldDelegate
                     var param = ["id":self.id,"to":NSUserDefaults.standardUserDefaults().objectForKey("token") as! String]
                     var url = Common.serverHost + "/App-Beneficial-shownewinvest"
                     
-                    //NSLog("受益权url = %@", url)
-                    //NSLog("受益权param = %@", param)
+                    NSLog("受益权url = %@", url)
+                    NSLog("受益权param = %@", param)
                     afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                     afnet.POST(url, parameters: param, success: { (opration :AFHTTPRequestOperation!, res :AnyObject!) -> Void in
                         loading.stopLoading()
@@ -114,7 +114,7 @@ class BeneficialPowerConfirmViewController: UIViewController,UITextFieldDelegate
                         var result = res as! NSDictionary
                         var code = result["code"] as! Int
                         
-                        //NSLog("受益权 = %@", result)
+                        NSLog("受益权 = %@", result)
                         var user = result["data"]?["user"]  as! NSDictionary
                         println(user)
                          self.account_money = user["account_money"] as? String

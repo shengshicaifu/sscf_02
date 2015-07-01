@@ -55,10 +55,10 @@ class YYCycleScrollView: UIView,UIScrollViewDelegate {
     
     init(frame:CGRect,animationDuration:NSTimeInterval){
         super.init(frame: frame)
-        if animationDuration>0.0 {
-            self.animationTimer = NSTimer.scheduledTimerWithTimeInterval(animationDuration, target: self, selector: Selector("animationTimerDidFired:"), userInfo: nil, repeats: true)
-        }
-        
+//        if animationDuration>0.0 {
+//            self.animationTimer = NSTimer.scheduledTimerWithTimeInterval(animationDuration, target: self, selector: Selector("animationTimerDidFired:"), userInfo: nil, repeats: true)
+//        }
+        self.animationDuration = animationDuration
         self.autoresizesSubviews = true
         self.scrollView = UIScrollView(frame:self.bounds)
         //self.scrollView.autoresizingMask = 0xFF
@@ -75,6 +75,12 @@ class YYCycleScrollView: UIView,UIScrollViewDelegate {
         self.addSubview(pageControl)
         
         self.showPageControl = true
+    }
+    
+    func start(){
+        if self.animationTimer == nil {
+            self.animationTimer = NSTimer.scheduledTimerWithTimeInterval(animationDuration, target: self, selector: Selector("animationTimerDidFired:"), userInfo: nil, repeats: true)
+        }
     }
     
     override init(frame: CGRect) {

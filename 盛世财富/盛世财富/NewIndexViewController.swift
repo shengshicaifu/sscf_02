@@ -8,7 +8,10 @@
 
 import Foundation
 import UIKit
-class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDataSource {
+/**
+*  首页
+*/
+class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDataSource{
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -24,10 +27,23 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
     var refreshControl = UIRefreshControl()
     
     var adView:UIView?//广告视图
+    
+    var circle:UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
 
     //MARK:- uiviewcontroller
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        
+        //数据加载提示
+        circle.frame = CGRectMake(self.view.center.x - 20, self.view.center.y - 2, 40, 40)
+        circle.color = UIColor.grayColor()
+        self.view.addSubview(circle)
+        
+        //scrollview滚动
+        mainScorllView = YYCycleScrollView(frame: CGRectMake(0, 64, self.view.layer.frame.width, 175), animationDuration: 10.0)
+        
         
         //首页图片标题
         var titleView = UIView(frame: CGRectMake(0, 0, 200, 44))
@@ -46,7 +62,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         refreshControl.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "松开后自动刷新")
         self.tableView.addSubview(refreshControl)
-        getData("0",listType: "\(currentButton)")
+        getData("0",listType: "\(currentButton)",shouldGetImages: true)
         setupRefresh()
     }
     
@@ -135,7 +151,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         sender.selected = true
         self.tableView.reloadData()
         self.listData.removeAllObjects()
-        self.getData("0", listType: "\(currentButton)")
+        self.getData("0", listType: "\(currentButton)",shouldGetImages: false)
     }
     
     //MARK:- 获取数据
@@ -144,8 +160,9 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
     
     :param: actionType 0:进入页面获取数据  1:下拉刷新获取数据  2:上拉加载
     :param: listType   0:全部  1:债权转让  2:定期理财  3:受益权转让
+    :param: shouldGetImages   true:加载滚动图片  false：不加载滚动图
     */
-    func getData(actionType:String,listType:String){
+    func getData(actionType:String,listType:String,shouldGetImages:Bool){
         
         //检查手机网络
         var reach = Reachability(hostName: Common.domain)
@@ -163,6 +180,8 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         
         reach.reachableBlock = {(r:Reachability!) -> Void in
             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+            self.circle.startAnimating()
+            
             var manager = AFHTTPRequestOperationManager()
             var url = ""
             var params = [:]
@@ -174,6 +193,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                 manager.POST(url, parameters: params,
                     success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                        self.circle.stopAnimating()
                         
                         var result = data as! NSDictionary
                         //NSLog("首页：%@", result)
@@ -189,14 +209,18 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                             self.totalInvest = "\(totalInvestDouble)"
                             self.userCount = "\(userCountDouble)"
                             //if actionType == "0" {
+                            if shouldGetImages {
                                 self.photos.removeAllObjects()
                                 if photoArray != nil {
                                     var parray = photoArray?.objectForKey("inner") as! NSArray
                                     self.photos.addObjectsFromArray(parray as [AnyObject])
-                                    NSLog("photos = %@", self.photos)
+//                                    NSLog("photos = %@", self.photos)
                                     //设置滚动图
                                     self.headScrollImages()
+                                    //                                    self.newHeadScrollImages()
                                 }
+                            }
+                            
                             //}
                             
                         }
@@ -290,11 +314,13 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                         }else if (actionType == "1" || actionType == "2"){
                             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
                         }
+                        self.circle.startAnimating()
                         //NSLog("url = %@", url)
                         //NSLog("params = %@", params)
                         manager.POST(url, parameters: params,
                             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                                 var result:NSDictionary = data as! NSDictionary
+                                self.circle.stopAnimating()
                                 //NSLog("标的列表结果%@", result)
                                 if actionType == "0" {
                                     //loading.stopLoading()
@@ -356,6 +382,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                                 }
                             },
                             failure:{ (op:AFHTTPRequestOperation!,error:NSError!) -> Void in
+                                self.circle.stopAnimating()
                                 if actionType == "0" {
                                     //loading.stopLoading()
                                     UIApplication.sharedApplication().networkActivityIndicatorVisible = false
@@ -371,29 +398,9 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                         )
 
                         
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
                     },failure:{ (op:AFHTTPRequestOperation!,error: NSError!) -> Void in
                         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                        self.circle.stopAnimating()
                         if actionType == "1" {
                             self.refreshControl.endRefreshing()
                             self.refreshControl.attributedTitle = NSAttributedString(string: "下拉刷新")
@@ -416,22 +423,19 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         
         //上拉加载
         self.tableView.addFooterWithCallback({
-            self.getData("2",listType:"\(self.currentButton)")
+            self.getData("2", listType: "\(self.currentButton)", shouldGetImages: false)
         })
     }
     
     func refreshData() {
         if self.refreshControl.refreshing {
             self.refreshControl.attributedTitle = NSAttributedString(string: "加载中")
-            getData("1",listType:"\(currentButton)")
+            getData("1",listType:"\(currentButton)", shouldGetImages: true)
         }
     }
     
+    
     var mainScorllView:YYCycleScrollView?
-    //MARK:- 新滚动图
-    func newHeadScrollImages(){
-        
-    }
     //MARK:- 滚动图
     func headScrollImages(){
         //NSLog("加载图片:%@",self.photos)
@@ -502,9 +506,8 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
             
 //            viewsArray = NSDictionary()
             
+            mainScorllView?.frame = CGRectMake(0, 64, self.view.frame.width, 175)
             
-            //scrollview滚动
-            mainScorllView = YYCycleScrollView(frame: CGRectMake(0, 64, self.view.layer.frame.width, 175), animationDuration: 10.0)
             //mainScorllView?.contentViews.removeAllObjects()
             mainScorllView!.fetchContentViewAtIndex = {(pageIndex:Int)->UIView in
                 return picarray.objectAtIndex(pageIndex) as! UIView
@@ -520,9 +523,13 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                 var url = self.photos[pageIndex]["url"] as! String
 //                url.replaceRange(url.rangeOfString("http://www.sscf88.com", options: nil, range: nil, locale: nil)!, with: Common.serverHost)
                 contentViewController.contentUrl = Common.serverHost + url
+                contentViewController.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(contentViewController, animated: true)
             }
-            self.tableView.tableHeaderView = mainScorllView
+            if self.tableView.tableHeaderView == nil{
+                mainScorllView?.start()
+                self.tableView.tableHeaderView = mainScorllView
+            }
             
         }
     }
@@ -536,7 +543,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         let row = indexPath.row
         if sec == 0{
             cell = tableView.dequeueReusableCellWithIdentifier("choose") as? UITableViewCell
-            
+
             var all:UIButton?
             var wallet:UIButton?
             var pig:UIButton?
@@ -586,6 +593,8 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         }
         if sec == 1{
             cell = tableView.dequeueReusableCellWithIdentifier("list") as? UITableViewCell
+            
+            
             if self.listData.count > 0 {
                 let rowData = self.listData[indexPath.row] as! NSDictionary
                 var title = cell?.viewWithTag(1) as! UILabel
@@ -724,6 +733,13 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                 }
                 
             }
+            
+            cell?.backgroundColor = UIColor.clearColor()
+            cell?.contentView.backgroundColor = UIColor.clearColor()
+            var bg = UIView(frame: CGRectMake(0, 0, cell!.contentView.frame.width, 100))
+            bg.backgroundColor = UIColor.whiteColor()
+            cell?.insertSubview(bg, belowSubview: cell!.contentView)
+            
         }
         return cell!
     }
@@ -815,6 +831,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
             var selectedRow = self.tableView.indexPathForSelectedRow()?.row
             var dic = self.listData[selectedRow!] as! NSDictionary
             b.id = (dic.objectForKey("id") as? String)!
+            b.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(b, animated: true)
         }else{
         self.performSegueWithIdentifier("lendDetail", sender: nil)
@@ -858,6 +875,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                 }
                 var b = self.storyboard?.instantiateViewControllerWithIdentifier("BeneficialPowerConfirmViewController") as! BeneficialPowerConfirmViewController
                 b.id = id
+                b.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(b, animated: true)
             
             }else{
@@ -916,12 +934,12 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                     v.layer.addSublayer(lineLayer)
                     
                     v.backgroundColor = UIColor.whiteColor()
-                    v.alpha = 0.9
+                    v.alpha = 1.0
                     v.tag = 123
                     
-                    var effectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Light))
-                    effectView.frame = v.frame
-                    v.addSubview(effectView)
+//                    var effectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Light))
+//                    effectView.frame = v.frame
+//                    v.addSubview(effectView)
                     
                     var vFrame = v.frame
                     var imageWidth:CGFloat = 42
@@ -1100,11 +1118,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         sender.selected = true
         //self.tableView.reloadData()
         self.listData.removeAllObjects()
-        self.getData("0", listType: "\(currentButton)")
-        
-//        if chooseView != nil {
-//            chooseView?.removeFromSuperview()
-//        }
+        self.getData("0", listType: "\(currentButton)",shouldGetImages:false)
     }
     
     
@@ -1115,25 +1129,5 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
             self.tableView.setContentOffset(CGPointMake(0, 150), animated: true)
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }

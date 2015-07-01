@@ -36,7 +36,7 @@ class RefreshHeaderView: RefreshBaseView {
         lastUpdateTimeLabel.textColor = RefreshLabelTextColor
         lastUpdateTimeLabel.backgroundColor = UIColor.clearColor()
         lastUpdateTimeLabel.textAlignment = NSTextAlignment.Center
-        self.addSubview(lastUpdateTimeLabel);
+        //self.addSubview(lastUpdateTimeLabel);
         
         if  (NSUserDefaults.standardUserDefaults().objectForKey(RefreshHeaderTimeKey as String) == nil)  {
             self.lastUpdateTime = NSDate()
@@ -76,15 +76,15 @@ class RefreshHeaderView: RefreshBaseView {
     
     func updateTimeLabel(){
         //更新时间字符串
-        var calendar:NSCalendar = NSCalendar.currentCalendar()
-        var unitFlags:NSCalendarUnit = NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit |  NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit
-        var cmp1:NSDateComponents = calendar.components(unitFlags, fromDate:lastUpdateTime)
-        var cmp2:NSDateComponents = calendar.components(unitFlags, fromDate: NSDate())
-        var formatter:NSDateFormatter = NSDateFormatter()
-        
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        var time:String = formatter.stringFromDate(self.lastUpdateTime)
-        self.lastUpdateTimeLabel.text = "最后刷新时间:"+time
+//        var calendar:NSCalendar = NSCalendar.currentCalendar()
+//        var unitFlags:NSCalendarUnit = NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit |  NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit
+//        var cmp1:NSDateComponents = calendar.components(unitFlags, fromDate:lastUpdateTime)
+//        var cmp2:NSDateComponents = calendar.components(unitFlags, fromDate: NSDate())
+//        var formatter:NSDateFormatter = NSDateFormatter()
+//        
+//        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+//        var time:String = formatter.stringFromDate(self.lastUpdateTime)
+//        self.lastUpdateTimeLabel.text = "最后刷新时间:"+time
         
     }
     

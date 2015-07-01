@@ -31,6 +31,8 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
         bankCardNoTextField.delegate = self
         bankNameTextField.delegate = self
         bankBranchTextField.delegate = self
+        
+        ProvincePick.backgroundColor = UIColor.whiteColor()
     
         Common.customerBgView(styleView)
         Common.customerButton(addTapped)
@@ -109,18 +111,18 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
         var bankBranch = bankBranchTextField.text
         
         if bankCardNoUserDefaults == nil || bankCardNoUserDefaults == "" {
-            
+            if bankName.isEmpty {
+                AlertView.showMsg("请输入银行名称", parentView: self.view)
+                return
+            }
             if bankCardNo.isEmpty {
                 AlertView.showMsg("请输入银行卡账号", parentView: self.view)
                 return
             }
             if !Common.isBank(bankCardNo){
                 AlertView.showMsg(Common.bankErrorTip, parentView: self.view)
-                }
-            if bankName.isEmpty {
-                AlertView.showMsg("请输入银行名称", parentView: self.view)
-                return
             }
+            
             if bankBranch.isEmpty {
                 AlertView.showMsg("请输入银行支行", parentView: self.view)
                 return
@@ -180,14 +182,15 @@ class BandBankController: UIViewController,UITableViewDelegate,UITextFieldDelega
     }
     //修改银行卡账号
     else {
-            if bankCardNoTextField.text.isEmpty {
-                AlertView.showMsg("请输入银行卡账号", parentView: self.view)
-                return
-            }
             if bankNameTextField.text.isEmpty {
                 AlertView.showMsg("请输入银行名称", parentView: self.view)
                 return
             }
+            if bankCardNoTextField.text.isEmpty {
+                AlertView.showMsg("请输入银行卡账号", parentView: self.view)
+                return
+            }
+            
             if bankBranchTextField.text.isEmpty {
                 AlertView.showMsg("请输入银行支行", parentView: self.view)
                 return

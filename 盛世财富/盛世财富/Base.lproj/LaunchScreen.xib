@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
@@ -11,21 +10,85 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="盛世财富" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lOM-pa-coQ">
-                    <rect key="frame" x="193" y="226" width="96" height="29"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="1242x2208" translatesAutoresizingMaskIntoConstraints="NO" id="euh-9K-54V">
+                    <rect key="frame" x="0.0" y="-2208" width="1242" height="2208"/>
+                </imageView>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="1536x2048" translatesAutoresizingMaskIntoConstraints="NO" id="uHC-c3-Zy3">
+                    <rect key="frame" x="0.0" y="-2048" width="1536" height="2048"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="lOM-pa-coQ" secondAttribute="centerX" constant="-0.5" id="K00-0a-FHg"/>
-                <constraint firstAttribute="centerY" secondItem="lOM-pa-coQ" secondAttribute="centerY" id="t9Q-x8-S3H"/>
+                <constraint firstAttribute="trailing" secondItem="uHC-c3-Zy3" secondAttribute="trailing" constant="-551" id="3Gi-ba-MXA">
+                    <variation key="heightClass=regular-widthClass=regular" constant="0.0"/>
+                </constraint>
+                <constraint firstAttribute="bottom" secondItem="uHC-c3-Zy3" secondAttribute="bottom" constant="-766" id="4IW-jC-ZvF">
+                    <variation key="heightClass=regular-widthClass=regular" constant="0.0"/>
+                </constraint>
+                <constraint firstItem="uHC-c3-Zy3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-505" id="PYf-M4-oOL">
+                    <variation key="heightClass=regular-widthClass=regular" constant="0.0"/>
+                </constraint>
+                <constraint firstItem="uHC-c3-Zy3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-802" id="V3U-kW-PVM">
+                    <variation key="heightClass=regular-widthClass=regular" constant="0.0"/>
+                </constraint>
+                <constraint firstAttribute="bottom" secondItem="euh-9K-54V" secondAttribute="bottom" constant="-724" id="aD2-1S-fb1">
+                    <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                </constraint>
+                <constraint firstItem="euh-9K-54V" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-1004" id="q0T-Dp-Cbc">
+                    <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                </constraint>
+                <constraint firstAttribute="trailing" secondItem="euh-9K-54V" secondAttribute="trailing" constant="-198" id="uhh-dA-EPF">
+                    <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                </constraint>
+                <constraint firstItem="euh-9K-54V" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-564" id="ziA-S9-a86">
+                    <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                </constraint>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="euh-9K-54V"/>
+                    <exclude reference="uHC-c3-Zy3"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="aD2-1S-fb1"/>
+                    <exclude reference="q0T-Dp-Cbc"/>
+                    <exclude reference="uhh-dA-EPF"/>
+                    <exclude reference="ziA-S9-a86"/>
+                    <exclude reference="3Gi-ba-MXA"/>
+                    <exclude reference="4IW-jC-ZvF"/>
+                    <exclude reference="PYf-M4-oOL"/>
+                    <exclude reference="V3U-kW-PVM"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="subviews">
+                    <include reference="euh-9K-54V"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="aD2-1S-fb1"/>
+                    <include reference="q0T-Dp-Cbc"/>
+                    <include reference="uhh-dA-EPF"/>
+                    <include reference="ziA-S9-a86"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=regular">
+                <mask key="subviews">
+                    <include reference="uHC-c3-Zy3"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="3Gi-ba-MXA"/>
+                    <include reference="4IW-jC-ZvF"/>
+                    <include reference="PYf-M4-oOL"/>
+                    <include reference="V3U-kW-PVM"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="639" y="426"/>
         </view>
     </objects>
+    <resources>
+        <image name="1242x2208" width="1242" height="2208"/>
+        <image name="1536x2048" width="1536" height="2048"/>
+    </resources>
 </document>

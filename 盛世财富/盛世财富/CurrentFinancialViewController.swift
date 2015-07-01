@@ -59,6 +59,19 @@ class CurrentFinancialViewController:UITableViewController,UITableViewDataSource
     func getData(actionType:String){
         //检查手机网络
         var reach = Reachability(hostName: Common.domain)
+        
+        reach.unreachableBlock = {(r:Reachability!) -> Void in
+            //NSLog("网络不可用")
+            dispatch_async(dispatch_get_main_queue(), {
+                if actionType == "1" {
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    self.refreshControl!.endRefreshing()
+                    self.refreshControl!.attributedTitle = NSAttributedString(string: "下拉刷新")
+                }
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
+            })
+        }
+        
         reach.reachableBlock = {(r:Reachability!) -> Void in
             //NSLog("网络可用")
             dispatch_async(dispatch_get_main_queue(), {

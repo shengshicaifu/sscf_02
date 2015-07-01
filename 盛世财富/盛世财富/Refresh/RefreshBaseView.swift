@@ -120,8 +120,8 @@ class RefreshBaseView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
          //箭头
-        let arrowX:CGFloat = self.frame.size.width * 0.5 - 100
-        self.arrowImage.center = CGPointMake(arrowX, self.frame.size.height * 0.5)
+        let arrowX:CGFloat = self.frame.size.width * 0.5
+        self.arrowImage.center = CGPointMake(arrowX, self.frame.size.height * 0.8)
         //指示器
         self.activityView.center = self.arrowImage.center
     }

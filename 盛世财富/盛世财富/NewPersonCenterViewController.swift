@@ -63,8 +63,6 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         moneyView.layer.addSublayer(textLayer)
         //moneyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "toMoneyInfo"))
         
-       // println("textLayer  x:\(textLayer?.frame.origin.x) y\(textLayer?.frame.origin.y) width\(textLayer?.frame.width) height\(textLayer?.frame.height)")
-        //println("moneyView  x:\(moneyView?.frame.origin.x) y\(moneyView?.frame.origin.y) width\(moneyView?.frame.width) height\(moneyView?.frame.height)")
         
         //下拉刷新
         var rc = UIRefreshControl()
@@ -83,40 +81,54 @@ class NewPersonCenterViewController:UITableViewController,UITableViewDataSource,
         if self.refreshControl!.refreshing {
             self.refreshControl?.attributedTitle = NSAttributedString(string: "加载中...")
             if let token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String {
-                let afnet = AFHTTPRequestOperationManager()
-                let param = ["to":token]
-                let url = Common.serverHost + "/App-Ucenter-userInfo"
-                //loading.startLoading(self.tableView)
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-                afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-                afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
-                    var resDictionary = res as! NSDictionary
-                    var code = resDictionary["code"] as! Int
-                    if code == -1 {
-                        AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
-                    } else if code == 200 {
-                        let data  = res["data"] as! NSDictionary
-                        let proInfo = data.objectForKey("proInfo") as! NSDictionary
-                        var totalAll = proInfo.objectForKey("total_all") as! NSString
-                        var accountMoney = proInfo.objectForKey("account_money")  as! NSString
-                        NSUserDefaults.standardUserDefaults().setObject(totalAll, forKey: "usermoney")
-                        
-                        NSUserDefaults.standardUserDefaults().setObject(accountMoney, forKey: "accountMoney")
-                        
-                        self.textLayer?.jumpNumberWithDuration(1, fromNumber: 0.0, toNumber: totalAll.floatValue)
-                    }
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-                    self.refreshControl?.endRefreshing()
-                    self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
-                    }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                        //loading.stopLoading()
+                
+                //检查手机网络
+                var reach = Reachability(hostName: Common.domain)
+                reach.unreachableBlock = {(r:Reachability!) -> Void in
+                    //NSLog("网络不可用")
+                    dispatch_async(dispatch_get_main_queue(), {
                         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                         self.refreshControl?.endRefreshing()
                         self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
-                        AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
+                        AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
+                    })
                 }
-            }
-            else{
+                reach.reachableBlock = {(r:Reachability!) -> Void in
+                    let afnet = AFHTTPRequestOperationManager()
+                    let param = ["to":token]
+                    let url = Common.serverHost + "/App-Ucenter-userInfo"
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+                    afnet.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+                    afnet.POST(url, parameters: param, success: { (opration:AFHTTPRequestOperation!, res:AnyObject!) -> Void in
+                        var resDictionary = res as! NSDictionary
+                        var code = resDictionary["code"] as! Int
+                        if code == -1 {
+                            AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
+                        } else if code == 200 {
+                            let data  = res["data"] as! NSDictionary
+                            let proInfo = data.objectForKey("proInfo") as! NSDictionary
+                            var totalAll = proInfo.objectForKey("total_all") as! NSString
+                            var accountMoney = proInfo.objectForKey("account_money")  as! NSString
+                            NSUserDefaults.standardUserDefaults().setObject(totalAll, forKey: "usermoney")
+                            
+                            NSUserDefaults.standardUserDefaults().setObject(accountMoney, forKey: "accountMoney")
+                            
+                            self.textLayer?.jumpNumberWithDuration(1, fromNumber: 0.0, toNumber: totalAll.floatValue)
+                        }
+                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                        self.refreshControl?.endRefreshing()
+                        self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
+                        }) { (opration:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                            //loading.stopLoading()
+                            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                            self.refreshControl?.endRefreshing()
+                            self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")
+                            AlertView.alert("错误", message: error.localizedDescription, buttonTitle: "确定", viewController: self)
+                    }
+
+                }
+                reach.startNotifier()
+            }else{
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                 self.refreshControl?.endRefreshing()
                 self.refreshControl?.attributedTitle = NSAttributedString(string: "下拉刷新")

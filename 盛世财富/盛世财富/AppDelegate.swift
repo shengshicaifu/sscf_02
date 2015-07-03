@@ -41,40 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var color = UIColor(red: red, green: green, blue: blue, alpha: 1.0)
         appearance.barTintColor = color
         
-//        var colorLayer = CALayer()
-//        colorLayer.opacity = Float(0.4)
-//        appearance.layer.addSublayer(colorLayer)
-//        var opacity:CGFloat = 0.4
-//        var minVal:CGFloat = red
-//        if self.convertValue(minVal, opacity: opacity) < 0 {
-//            opacity = self.minOpacityForValue(minVal)
-//        }
-//        
-//        colorLayer.opacity = Float(opacity)
-//        red = self.convertValue(red, opacity: opacity)
-//        green = self.convertValue(green, opacity: opacity)
-//        blue = self.convertValue(blue, opacity: opacity)
-//        
-//        red = max(min(1.0,red),0)
-//        green = max(min(1.0,green),0)
-//        blue = max(min(1.0,blue),0)
-//       println("red = \(red)  green=\(green)  blue=\(blue)")
-//
-//        colorLayer.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: 0.66).CGColor
-//        
-//        //appearance.layoutSubviews()
-//        colorLayer.frame = CGRectMake(0, -20, appearance.frame.width, appearance.frame.height + 20)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         appearance.tintColor = UIColor.whiteColor()
         appearance.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         
@@ -86,10 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        UIBarButtonItem.appearance().setBackButtonBackgroundImage(backButtonImage, forState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
         //将返回按钮的文字position设置不在屏幕上显示
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(CGFloat(NSInteger.min), CGFloat(NSInteger.min)), forBarMetrics: UIBarMetrics.Default)
-//        var customerBackButtonItem = UIView()
-//        customerBackButtonItem.sizeToFit()
-//        customerBackButtonItem.addSubview(UIImageView(image: backButtonImage))
-//        UIBarButtonItem.appearance().customView = customerBackButtonItem
+        
+        
         
         
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)

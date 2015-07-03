@@ -15,7 +15,7 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
     var tmpListData: NSMutableArray = NSMutableArray()//临时数据  下拉添加
     var ehttp = HttpController()
     var url = ""
-    var count:String = "5"
+    var count:String = "10"
     var id:String? //页面传值的id
     var textLayer:CACustomTextLayer?
     override func viewDidLoad() {
@@ -24,13 +24,7 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
         self.tableView.delegate = self
         self.setupRefresh()
         self.getDate("0")
-        
-//        //下拉刷新---------------------------
-//        var rc = UIRefreshControl()
-//        rc.attributedTitle = NSAttributedString(string: "下拉刷新")
-//        rc.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
-//        self.refreshControl = rc
-//       
+              
     }
     
     
@@ -99,7 +93,7 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
                     lastId = lastObject?.objectForKey("id") as! String
                 }
                 
-                self.tableView.scrollEnabled = false
+            
                 let afnet = AFHTTPRequestOperationManager()
                 let param = ["to":token,"count":self.count,"lastId":lastId]
                 let url = Common.serverHost + "/App-Message"
@@ -214,8 +208,7 @@ class NewsTableViewController: UITableViewController,UITableViewDataSource,UITab
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("newsCell") as! UITableViewCell
         var titleLabel = cell.viewWithTag(101) as! UILabel
-        var msgLabel = cell.viewWithTag(102) as! UITextView
-        msgLabel.userInteractionEnabled = false
+        var msgLabel = cell.viewWithTag(102) as! UILabel
         var sendTimeLabel = cell.viewWithTag(103) as! UILabel
         var row :Int = indexPath.row
         if tmpListData.count > 0{

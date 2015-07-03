@@ -246,7 +246,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                                 var borrow_id = 0
                                 var count = self.listData.count
                                 if count > 0 {
-                                    borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
+                                    borrow_id = self.getMinId()//(self.listData[count - 1].valueForKey("id") as! NSString).integerValue
                                     params = ["borrow_id":"\(borrow_id)","pageSize":"10"]
                                 }
                             }
@@ -260,7 +260,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                                 var borrow_id = 0
                                 var count = self.listData.count
                                 if count > 0 {
-                                    borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
+                                    borrow_id = self.getMinId()//(self.listData[count - 1].valueForKey("id") as! NSString).integerValue
                                     params = ["borrow_id":"\(borrow_id)","count":"4"]
                                 }
                             }else{
@@ -276,7 +276,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                                 var borrow_id = 0
                                 var count = self.listData.count
                                 if count > 0 {
-                                    borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
+                                    borrow_id = self.getMinId()//(self.listData[count - 1].valueForKey("id") as! NSString).integerValue
                                     params = ["borrow_id":"\(borrow_id)","pageSize":"10"]
                                 }
                             }
@@ -289,7 +289,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                                 var borrow_id = 0
                                 var count = self.listData.count
                                 if count > 0 {
-                                    borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
+                                    borrow_id = self.getMinId()//(self.listData[count - 1].valueForKey("id") as! NSString).integerValue
                                     params = ["borrow_id":"\(borrow_id)","pageSize":"10"]
                                 }
                             }
@@ -301,7 +301,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                                 var borrow_id = 0
                                 var count = self.listData.count
                                 if count > 0 {
-                                    borrow_id = (self.listData[count - 1].valueForKey("id") as! NSString).integerValue
+                                    borrow_id = self.getMinId()//(self.listData[count - 1].valueForKey("id") as! NSString).integerValue
                                     params = ["borrow_id":"\(borrow_id)","pageSize":"10"]
                                 }
                             }
@@ -315,8 +315,8 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                             UIApplication.sharedApplication().networkActivityIndicatorVisible = true
                         }
                         self.circle.startAnimating()
-                        //NSLog("url = %@", url)
-                        //NSLog("params = %@", params)
+                        //NSLog("标列表url = %@", url)
+                        //NSLog("标列表params = %@", params)
                         manager.POST(url, parameters: params,
                             success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                                 var result:NSDictionary = data as! NSDictionary
@@ -340,6 +340,12 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
                                         self.listData.removeAllObjects()
                                     }
                                     if let resultList = result["data"]?["list"] as? NSArray {
+                                        for(var i=0;i<resultList.count;i++){
+                                            var bid = resultList[i] as! NSDictionary
+                                            var id = bid.objectForKey("id") as! String
+                                            println(id)
+                                        }
+                                        
                                         self.listData.addObjectsFromArray(resultList as [AnyObject])
                                     }
                                 }else if listType == "3" {
@@ -414,6 +420,27 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         }
         reach.startNotifier()
     }
+    
+    func getMinId() -> Int {
+        var ids = NSMutableArray()
+        for(var i=0;i<self.listData.count;i++){
+            var dic = listData[i] as! NSDictionary
+            var idstr = dic.objectForKey("id") as! NSString
+            ids.addObject(idstr.integerValue)
+        }
+        var minId = ids[0] as! Int
+        for(var i=1;i<ids.count;i++){
+            var id = ids[i] as! Int
+            if id < minId {
+               minId = id
+            }
+        }
+        
+        return minId
+    }
+    
+    
+    
     //为table添加下拉刷新和上拉加载功能
     func setupRefresh(){
 //        //下拉刷新

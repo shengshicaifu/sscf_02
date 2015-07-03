@@ -15,7 +15,9 @@ class GetCashViewController:UIViewController,UITextFieldDelegate {
     @IBOutlet weak var moneyLabel: UILabel!
     @IBOutlet weak var okButton: UIButton!
     
+    @IBOutlet weak var l1: UILabel!
 
+    @IBOutlet weak var l2: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,6 +28,19 @@ class GetCashViewController:UIViewController,UITextFieldDelegate {
         Common.addBorder(moneyLabel)
         Common.addBorder(money)
         Common.customerButton(okButton)
+        Common.addBorder(l1)
+        Common.addBorder(l2)
+        
+        var userDefaults = NSUserDefaults.standardUserDefaults()
+        var bankCardNo = userDefaults.objectForKey("bankCardNo") as? NSString
+        if bankCardNo == nil || bankCardNo == "" {
+            AlertView.alert("提示", message: "请绑定提现使用的银行卡", buttonTitle: "确定", viewController: self, callback: { (action:UIAlertAction!) -> Void in
+                self.navigationController?.popViewControllerAnimated(true)
+            })
+        }
+        var s = Common.replaceStringToX(bankCardNo!, start: 0, end: bankCardNo!.length - 4)
+        l2.text = s
+        
     }
     @IBAction func submit(sender: UIButton) {
         submitAction()

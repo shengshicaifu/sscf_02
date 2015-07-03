@@ -11,23 +11,39 @@ import UIKit
 class OffLineChargeViewController:UIViewController,UITextFieldDelegate,BaofooSdkDelegate,
 NSURLConnectionDelegate,NSURLConnectionDataDelegate {
     @IBOutlet weak var choose: UISegmentedControl!
+    
+    //pos机转账
     @IBOutlet weak var pos: UIView!//pos机视图
     @IBOutlet weak var p_money: UITextField!//pos机 金额
     @IBOutlet weak var p_money_label: UILabel!//pos机 金额
     @IBOutlet weak var p_id: UITextField!//pos机
     @IBOutlet weak var pBgView: UIView!//pos机
     @IBOutlet weak var btn1: UIButton!//pos机
+    @IBOutlet weak var pl1: UILabel!
+    @IBOutlet weak var pl2: UILabel!//收款人
+    @IBOutlet weak var pl3: UILabel!
+    @IBOutlet weak var pl4: UILabel!//开户行
+    @IBOutlet weak var pl5: UILabel!
+    @IBOutlet weak var pl6: UILabel!//收款账户
     
-    
+    //银行转账
     @IBOutlet weak var transfer: UIView!//银行转账视图
     @IBOutlet weak var t_money: UITextField!//银行转账 金额
     @IBOutlet weak var t_account: UITextField!//银行转账 账号
     @IBOutlet weak var t_id: UITextField!//银行转账 汇款单号
     @IBOutlet weak var btn2: UIButton!//银行转账 提交按钮
     @IBOutlet weak var bgView1: UIView!//银行转账 背景视图
-    
     @IBOutlet weak var t_account_label: UILabel!//银行转账
     @IBOutlet weak var t_money_label: UILabel!//银行转账
+    @IBOutlet weak var tl1: UILabel!
+    @IBOutlet weak var tl2: UILabel!//收款人
+    @IBOutlet weak var tl3: UILabel!
+    @IBOutlet weak var tl4: UILabel!//开户行
+    @IBOutlet weak var tl5: UILabel!
+    @IBOutlet weak var tl6: UILabel!//收款账户
+    
+    
+    
     //宝付充值
     @IBOutlet weak var onlineView: UIView!
     @IBOutlet weak var bgView3: UIView!
@@ -80,11 +96,25 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate {
         Common.addBorder(t_account)
         Common.addBorder(t_account_label)
         Common.addBorder(t_money_label)
+        Common.addBorder(tl1)
+        Common.addBorder(tl2)
+        Common.addBorder(tl3)
+        Common.addBorder(tl4)
+        Common.addBorder(tl5)
+        Common.addBorder(tl6)
+
         //pos机
         Common.customerBgView(pBgView)
         Common.customerButton(btn1)
         Common.addBorder(p_money_label)
         Common.addBorder(p_money)
+        Common.addBorder(pl1)
+        Common.addBorder(pl2)
+        Common.addBorder(pl3)
+        Common.addBorder(pl4)
+        Common.addBorder(pl5)
+        Common.addBorder(pl6)
+
         //宝付充值
         Common.customerBgView(bgView3)
         Common.customerButton(onlineButton)
@@ -106,7 +136,52 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate {
         bt2.rightView = UIImageView(image: UIImage(named: "1_75"))
         bt2.rightViewMode = UITextFieldViewMode.Always
         
-        //bt6.text = NSUserDefaults.standardUserDefaults().objectForKey("isUpload") as? String//身份证
+        
+        //获取收款人信息
+        var reach = Reachability(hostName: Common.domain)
+        reach.unreachableBlock = {(r:Reachability!) -> Void in
+            //NSLog("网络不可用")
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
+            })
+        }
+        
+        reach.reachableBlock = {(r:Reachability!) -> Void in
+            //NSLog("网络可用")
+            dispatch_async(dispatch_get_main_queue(), {
+                var manager = AFHTTPRequestOperationManager()
+                var url = Common.serverHost + "/App-Pay-companyInfo"
+                var params = [:]
+                
+                manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+                manager.POST(url, parameters: params,
+                    success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                  
+                        var result = data as! NSDictionary
+                        var company = result["data"]?["company"] as! String
+                        var khhwd = result["data"]?["khhwd"] as! String
+                        var account = result["data"]?["account"] as! String
+                        
+                        self.tl2.text = company
+                        self.tl4.text = khhwd
+                        self.tl6.text = account
+                        
+                        self.pl2.text = company
+                        self.pl4.text = khhwd
+                        self.pl6.text = account
+                        
+                        
+                    },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
+
+                        AlertView.showMsg("服务器异常!", parentView: self.view)
+                    }
+                )
+                
+            })
+        }
+        reach.startNotifier()
+        
     }
     
     
@@ -214,15 +289,15 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate {
                 var params = ["to":to,"id_card":id_card,"id_holder":id_holder,
                     "mobile":mobile,"txn_amt":moneyNumStr,"pay_code":pay_code,"acc_no":acc_no]
                 
-                NSLog("宝付url = %@", url)
-                NSLog("宝付params = %@", params)
+                //NSLog("宝付url = %@", url)
+                //NSLog("宝付params = %@", params)
                 
                 manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
                 manager.POST(url, parameters: params,
                     success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
                         loading.stopLoading()
                         var result = data as! NSDictionary
-                        NSLog("宝付充值获取交易单号结果 ＝ %@", result)
+                        //NSLog("宝付充值获取交易单号结果 ＝ %@", result)
                         var code = result["code"] as! Int
                         var message = result["message"] as! String
                         if code == -1 {
@@ -461,7 +536,7 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate {
         DaiDodgeKeyboard.addRegisterTheViewNeedDodgeKeyboard(self.view)
         super.viewWillAppear(animated)
         if self.choosedBankId != "0" {
-            NSLog("选中的银行：%@,%@", choosedBankId,choosedBankCode)
+            //NSLog("选中的银行：%@,%@", choosedBankId,choosedBankCode)
             bt2.text = choosedBankName
         }
     }

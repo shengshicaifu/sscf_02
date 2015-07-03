@@ -279,7 +279,7 @@ class BeneficialPowerConfirmViewController: UIViewController,UITextFieldDelegate
                     var code = result["code"] as! Int
                     if code == -1 {
                         AlertView.alert("提示", message: "请先登录", okButtonTitle: "确定", cancelButtonTitle: "取消", viewController: self, okCallback: { (action:UIAlertAction!) -> Void in
-                            var loginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                            var loginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController
                             self.presentViewController(loginViewController, animated: true, completion: nil)
                             }, cancelCallback: { (action:UIAlertAction!) -> Void in
                                 

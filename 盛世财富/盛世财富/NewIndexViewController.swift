@@ -593,7 +593,7 @@ class NewIndexViewController:UIViewController,UITableViewDelegate,UITableViewDat
         }
         if sec == 1{
             cell = tableView.dequeueReusableCellWithIdentifier("list") as? UITableViewCell
-            
+            cell?.selectionStyle = UITableViewCellSelectionStyle.Blue
             
             if self.listData.count > 0 {
                 let rowData = self.listData[indexPath.row] as! NSDictionary

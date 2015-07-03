@@ -187,7 +187,7 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
                     if code == -1 {
                         //AlertView.alert("提示", message: "请先登录", buttonTitle: "确定", viewController: self )
                         AlertView.alert("提示", message: "请先登录", okButtonTitle: "确定", cancelButtonTitle: "取消", viewController: self, okCallback: { (action:UIAlertAction!) -> Void in
-                            var loginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                            var loginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController
                             self.presentViewController(loginViewController, animated: true, completion: nil)
                             }, cancelCallback: { (action:UIAlertAction!) -> Void in
                                 
@@ -272,7 +272,14 @@ class BidConfirmViewController: UIViewController,UITextFieldDelegate{
                     let d = data.objectForKey("data") as! NSDictionary
                     //println(d)
                     if let borrowInfo = d.objectForKey("borrowinfo") as? NSDictionary {
-                        self.usermoney.text = NSUserDefaults.standardUserDefaults().objectForKey("accountMoney") as? String
+                        var accountMoney = NSUserDefaults.standardUserDefaults().objectForKey("accountMoney") as? String
+                        if accountMoney != nil {
+                            self.usermoney.text = accountMoney! + "元"
+                        }else {
+                            self.usermoney.text = "0元"
+                        }
+                        
+                        
                         if let borrow_type = borrowInfo.objectForKey("borrow_type") as? String{
                             self.type = borrow_type
                             if let borrow_duration = borrowInfo.objectForKey("borrow_duration") as? String{

@@ -39,10 +39,14 @@
 		59CC51D31B37B0E6006F37C2 /* NewIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CC51D21B37B0E6006F37C2 /* NewIndexViewController.swift */; };
 		59D214BB1AFC9AD800677C26 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D214BA1AFC9AD800677C26 /* AlertView.swift */; };
 		CD0858361B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD0858351B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework */; };
+		CD1B58471B4543820058881A /* kissView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1B58461B4543820058881A /* kissView.swift */; };
 		CD46DD931B3D03EB00F04211 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD46DD911B3D03EB00F04211 /* LaunchScreen.xib */; };
 		CD46DD951B3D3D5F00F04211 /* BeneficialPowerConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46DD941B3D3D5F00F04211 /* BeneficialPowerConfirmViewController.swift */; };
+		CD65696C1B44C6B600DD60CF /* ChooseBankTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD65696B1B44C6B600DD60CF /* ChooseBankTableViewController.swift */; };
+		CD65696E1B44C8DC00DD60CF /* bankList.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD65696D1B44C8DC00DD60CF /* bankList.plist */; };
+		CD6569701B44CBCA00DD60CF /* bankImage.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD65696F1B44CBCA00DD60CF /* bankImage.bundle */; };
+		CD6569721B44E36D00DD60CF /* BaoFooPay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6569711B44E36D00DD60CF /* BaoFooPay.framework */; };
 		CD7E21031B2EB43400463325 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD7E21021B2EB43400463325 /* Images.xcassets */; };
-		CDA414F71B329CAA00AA3C79 /* BaoFooPay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDA414F61B329CAA00AA3C79 /* BaoFooPay.framework */; };
 		CDD3BE001B1FF6EB00CE6323 /* FindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3BDFF1B1FF6EB00CE6323 /* FindViewController.swift */; };
 		CDD3BE041B1FFD1800CE6323 /* sortednames.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDD3BE031B1FFD1800CE6323 /* sortednames.plist */; };
 		CDE0CA661B26A5980079DB21 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE0CA651B26A5980079DB21 /* CircleView.swift */; };
@@ -164,10 +168,14 @@
 		59CC51D21B37B0E6006F37C2 /* NewIndexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewIndexViewController.swift; sourceTree = "<group>"; };
 		59D214BA1AFC9AD800677C26 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		CD0858351B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GopayNewPlatformLibraryWeb.framework; sourceTree = "<group>"; };
+		CD1B58461B4543820058881A /* kissView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = kissView.swift; sourceTree = "<group>"; };
 		CD46DD921B3D03EB00F04211 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		CD46DD941B3D3D5F00F04211 /* BeneficialPowerConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeneficialPowerConfirmViewController.swift; sourceTree = "<group>"; };
+		CD65696B1B44C6B600DD60CF /* ChooseBankTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseBankTableViewController.swift; sourceTree = "<group>"; };
+		CD65696D1B44C8DC00DD60CF /* bankList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bankList.plist; sourceTree = "<group>"; };
+		CD65696F1B44CBCA00DD60CF /* bankImage.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = bankImage.bundle; sourceTree = "<group>"; };
+		CD6569711B44E36D00DD60CF /* BaoFooPay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaoFooPay.framework; sourceTree = "<group>"; };
 		CD7E21021B2EB43400463325 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		CDA414F61B329CAA00AA3C79 /* BaoFooPay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaoFooPay.framework; sourceTree = "<group>"; };
 		CDD3BDFF1B1FF6EB00CE6323 /* FindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindViewController.swift; sourceTree = "<group>"; };
 		CDD3BE031B1FFD1800CE6323 /* sortednames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sortednames.plist; sourceTree = "<group>"; };
 		CDE0CA651B26A5980079DB21 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
@@ -243,7 +251,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDA414F71B329CAA00AA3C79 /* BaoFooPay.framework in Frameworks */,
+				CD6569721B44E36D00DD60CF /* BaoFooPay.framework in Frameworks */,
 				CD0858361B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework in Frameworks */,
 				D8B2511A1B00460B00360F4E /* SystemConfiguration.framework in Frameworks */,
 			);
@@ -402,6 +410,7 @@
 				E9FE8EFC1B2C204200747E1C /* BandBankControllerExtension.swift */,
 				59CC51D21B37B0E6006F37C2 /* NewIndexViewController.swift */,
 				CD46DD941B3D3D5F00F04211 /* BeneficialPowerConfirmViewController.swift */,
+				CD65696B1B44C6B600DD60CF /* ChooseBankTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -446,7 +455,7 @@
 		E9D6603E1AB1313B0020982D = {
 			isa = PBXGroup;
 			children = (
-				CDA414F61B329CAA00AA3C79 /* BaoFooPay.framework */,
+				CD6569711B44E36D00DD60CF /* BaoFooPay.framework */,
 				CD0858351B1EED2000A653C2 /* GopayNewPlatformLibraryWeb.framework */,
 				E9D660491AB1313B0020982D /* 盛世财富 */,
 				E9D6605F1AB1313B0020982D /* 盛世财富Tests */,
@@ -479,6 +488,8 @@
 		E9D6604A1AB1313B0020982D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CD65696F1B44CBCA00DD60CF /* bankImage.bundle */,
+				CD65696D1B44C8DC00DD60CF /* bankList.plist */,
 				E9D6604B1AB1313B0020982D /* Info.plist */,
 				CDD3BE031B1FFD1800CE6323 /* sortednames.plist */,
 				E9FE8EFA1B2C1EED00747E1C /* area.json */,
@@ -526,6 +537,7 @@
 				592F90691B03249E00B9969B /* DaiDodgeKeyboard */,
 				E9E5211E1B05E3D900A41EEA /* YYCycleScrollView.swift */,
 				592A9F241B035095006B63D9 /* loading.swift */,
+				CD1B58461B4543820058881A /* kissView.swift */,
 				E9BEE1AC1AC24CF10049600C /* HttpController.swift */,
 				59D214BA1AFC9AD800677C26 /* AlertView.swift */,
 				E96E52401B0C577800CFD8E2 /* Common.swift */,
@@ -618,9 +630,11 @@
 				E94E95A81B0AD3DD00E717DE /* Main.storyboard in Resources */,
 				5906B2491B0F103F00ADA082 /* LLLockViewController.xib in Resources */,
 				CDD3BE041B1FFD1800CE6323 /* sortednames.plist in Resources */,
+				CD65696E1B44C8DC00DD60CF /* bankList.plist in Resources */,
 				CD7E21031B2EB43400463325 /* Images.xcassets in Resources */,
 				CD46DD931B3D03EB00F04211 /* LaunchScreen.xib in Resources */,
 				E9FE8EFB1B2C1EED00747E1C /* area.json in Resources */,
+				CD6569701B44CBCA00DD60CF /* bankImage.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,6 +694,7 @@
 				E9E8E9461B0B22FA0074F41A /* ContentViewController.swift in Sources */,
 				594200AC1B1324070005E671 /* FindPasswordViewController.swift in Sources */,
 				591FD13A1B0C7CF000BFD74D /* AFHTTPSessionManager.m in Sources */,
+				CD1B58471B4543820058881A /* kissView.swift in Sources */,
 				E9D6604F1AB1313B0020982D /* LendViewController.swift in Sources */,
 				594E5B4F1AFA102500218DA5 /* NewPersonCenterViewController.swift in Sources */,
 				E9B9EF4C1AC8E00600E46714 /* BidListViewController.swift in Sources */,
@@ -711,6 +726,7 @@
 				591FD1381B0C7CF000BFD74D /* AFHTTPRequestOperation.m in Sources */,
 				591FD13C1B0C7CF000BFD74D /* AFSecurityPolicy.m in Sources */,
 				592A9F251B035095006B63D9 /* loading.swift in Sources */,
+				CD65696C1B44C6B600DD60CF /* ChooseBankTableViewController.swift in Sources */,
 				E9CC27261B22D9A300056EFC /* RealTimeFinanceViewController.swift in Sources */,
 				5906B24B1B0F125E00ADA082 /* HandPasswordViewController.swift in Sources */,
 				D8B251181B0041AE00360F4E /* Reachability.m in Sources */,
@@ -846,7 +862,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"/Users/mo/Documents/盛世财富苹果app/支付/宝付/SDK",
 				);
 				INFOPLIST_FILE = "盛世财富/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -867,7 +882,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"/Users/mo/Documents/盛世财富苹果app/支付/宝付/SDK",
 				);
 				INFOPLIST_FILE = "盛世财富/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

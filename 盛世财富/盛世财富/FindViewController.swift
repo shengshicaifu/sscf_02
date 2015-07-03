@@ -26,6 +26,7 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
     var searchCancelButton:UIButton!//搜索取消按钮
     
     var bgView:UIView = UIView()
+    var hotEntries = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,22 +86,50 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
         self.navigationItem.titleView = customerHeaderView
         self.setupRefresh()
         
-        //热门搜索词
-        bgView.frame = self.tableView.frame
         
-//        var l1 = UILabel(frame: CGRectMake(bgView.frame.origin.x + 10, bgView.frame.origin.x + 10, 0, 0))
-//        l1.text = "盛世"
-//        l1.sizeToFit()
-//        
-//        
-//        bgView.addSubview(l1)
         
         
         hideTable(true)
         
+        //热门搜索词
+        bgView.frame = self.tableView.frame
+        
+        var center = self.view.bounds.width / 2
+        var l = UILabel(frame: CGRectMake(center - 50, 20, 100, 30))
+        l.text = "热门搜索"
+        l.textAlignment = NSTextAlignment.Center
+        bgView.addSubview(l)
+        
+        var entries = ["拯救计划","盛世V计划","债权转让"]
+        hotEntries.addObjectsFromArray(entries)
+        for(var i=0;i<self.hotEntries.count;i++){
+            var btn = UIButton()
+            var titleText = hotEntries.objectAtIndex(i) as! NSString
+            //btn.setTitle(hotEntries.objectAtIndex(i) as? String, forState: UIControlState.Normal)
+            
+            var font = UIFont(name: "HelveticaNeue", size: 20.0)
+            var fontColor = UIColor(red: 82/255.0, green: 180/255.0, blue: 245/255.0, alpha: 1.0).CGColor
+            let att = NSDictionary(objects: [font!,fontColor], forKeys: [NSFontAttributeName,NSForegroundColorAttributeName]) as [NSObject : AnyObject]
+            
+            var s = NSMutableAttributedString(string: titleText as String)
+            s.addAttributes(att, range: NSMakeRange(0, titleText.length))
+            btn.setAttributedTitle(s, forState: UIControlState.Normal)
+            
+            btn.frame = CGRectMake(center - 50, CGFloat(60 + i*40), 100, 40)
+            btn.addTarget(self, action: "hotEntryChoosed:", forControlEvents: UIControlEvents.TouchUpInside)
+            bgView.addSubview(btn)
+        }
         self.bgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "hideKeyBoard"))
         
     }
+    
+    func hotEntryChoosed(sender:UIButton){
+        self.searchString = sender.attributedTitleForState(UIControlState.Normal)?.string
+        searchTextField.text = self.searchString
+        searchTextField.resignFirstResponder()
+        getData(searchString!, actionType: "0")
+    }
+    
     
     func hideKeyBoard(){
         if self.data.count == 0 {
@@ -108,6 +137,7 @@ class FindViewController: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
+    //隐藏table
     func hideTable(value:Bool){
         if value {
             self.tableView.scrollEnabled = false

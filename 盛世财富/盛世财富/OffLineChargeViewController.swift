@@ -8,9 +8,8 @@
 
 import Foundation
 import UIKit
-class OffLineChargeViewController:UIViewController,UITextFieldDelegate,
-    //BaofooSdkDelegate,
-NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
+class OffLineChargeViewController:UIViewController,UITextFieldDelegate,BaofooSdkDelegate,
+NSURLConnectionDelegate,NSURLConnectionDataDelegate {
     @IBOutlet weak var choose: UISegmentedControl!
     @IBOutlet weak var pos: UIView!//pos机视图
     @IBOutlet weak var p_money: UITextField!//pos机 金额
@@ -29,34 +28,50 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
     
     @IBOutlet weak var t_account_label: UILabel!//银行转账
     @IBOutlet weak var t_money_label: UILabel!//银行转账
-    //线上充值
+    //宝付充值
     @IBOutlet weak var onlineView: UIView!
-    @IBOutlet weak var onlineMoneyTextField: UITextField!
     @IBOutlet weak var bgView3: UIView!
     @IBOutlet weak var onlineButton: UIButton!
-    @IBOutlet weak var chargeTypeLabe: UILabel!
-    @IBOutlet weak var onlineRealPayMoneyLabel: UILabel!
+    
+    @IBOutlet weak var bl1: UILabel!
+    @IBOutlet weak var bl2: UILabel!
+    @IBOutlet weak var bl3: UILabel!
+    @IBOutlet weak var bl4: UILabel!
+    @IBOutlet weak var bl5: UILabel!
+    @IBOutlet weak var bl6: UILabel!
+    @IBOutlet weak var bl7: UILabel!
+    
+    @IBOutlet weak var bt1: UITextField!//银行卡号
+    @IBOutlet weak var bt2: UITextField!//银行
+    @IBOutlet weak var bt3: UITextField!//手机号
+    @IBOutlet weak var bt4: UITextField!//充值金额
+    @IBOutlet weak var bt5: UITextField!//姓名
+    @IBOutlet weak var bt6: UITextField!//身份证
+    
+    var choosedBankId = "0"//选中的银行id
+    var choosedBankCode = "0"//选中的银行编码
+    var choosedBankName = "0"//选中的银行名称
+    
+
     var receiveData:NSMutableData?
     var flag = ""//用于标示是测试还是真实环境
     
-    @IBOutlet weak var chargeTypeSegment: UISegmentedControl!
-
-    
-    
+    var bankId:String?//银行id
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         choose.selectedSegmentIndex = 0
         t_account.delegate = self
         t_id.delegate = self
         p_money.delegate = self
         p_id.delegate = self
-        onlineMoneyTextField.delegate = self
         
         
-        
+        bt1.delegate = self
+        bt2.delegate = self
+        bt3.delegate = self
+        bt4.delegate = self
         
         //银行转账
         Common.customerBgView(bgView1)
@@ -70,16 +85,30 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
         Common.customerButton(btn1)
         Common.addBorder(p_money_label)
         Common.addBorder(p_money)
-        //充值
+        //宝付充值
         Common.customerBgView(bgView3)
         Common.customerButton(onlineButton)
+        Common.addBorder(bl1)
+        Common.addBorder(bl2)
+        Common.addBorder(bl3)
+        Common.addBorder(bl4)
+        Common.addBorder(bl5)
+        Common.addBorder(bl6)
+        Common.addBorder(bl7)
+        Common.addBorder(bt1)
+        Common.addBorder(bt2)
+        Common.addBorder(bt3)
+        Common.addBorder(bt4)
+        Common.addBorder(bt5)
+        Common.addBorder(bt6)
         
-        var border = CALayer()
-        border.frame = CGRectMake(chargeTypeLabe.frame.origin.x, chargeTypeLabe.frame.height - 1, bgView3.frame.width - chargeTypeLabe.frame.origin.x, 1)
-        border.backgroundColor = UIColor(red: 225/255.0, green: 225/255.0, blue: 225/255.0, alpha: 1.0).CGColor
-        bgView3.layer.addSublayer(border)
+
+        bt2.rightView = UIImageView(image: UIImage(named: "1_75"))
+        bt2.rightViewMode = UITextFieldViewMode.Always
         
+        //bt6.text = NSUserDefaults.standardUserDefaults().objectForKey("isUpload") as? String//身份证
     }
+    
     
     //MARK:- 在线支付
     @IBAction func onlinePayTapped(sender: UIButton) {
@@ -88,7 +117,67 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
     
     func onlinePayAction(){
         resignAll()
-        var moneyString = onlineMoneyTextField.text
+        
+        if !Common.isLogin() {
+            AlertView.alert("提示", message: "请先登录", okButtonTitle: "确定", cancelButtonTitle: "取消", viewController: self, okCallback: { (action:UIAlertAction!) -> Void in
+                var loginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController
+                self.presentViewController(loginViewController, animated: true, completion: nil)
+                }, cancelCallback: { (action:UIAlertAction!) -> Void in
+                    
+            })
+        }
+        
+        
+        var to = NSUserDefaults.standardUserDefaults().objectForKey("token") as! String
+        
+        var id_card = bt6.text//身份证号
+        
+        var id_holder = bt5.text//持卡人姓名
+        
+        var acc_no = bt1.text//银行卡号
+        
+        var pay_code = self.choosedBankCode//银行编码
+        
+        var mobile = bt3.text//银行预留手机号
+        
+        var moneyString = bt4.text//充值金额
+        
+        if id_holder.isEmpty {
+            AlertView.showMsg("姓名不能为空", parentView: self.view)
+            return
+        }
+        
+        if id_card.isEmpty {
+            AlertView.showMsg("身份证号不能为空", parentView: self.view)
+            return
+        }
+        
+//        var isVerify = NSUserDefaults.standardUserDefaults().objectForKey("isVerify") as? String
+//        if id_card == "" || isVerify == "0" {
+//            //还未实名认证
+//            AlertView.alert("提示", message: "请完成实名认证后再充值", buttonTitle: "确定", viewController: self)
+//            return
+//        }
+        
+        if acc_no.isEmpty {
+            AlertView.showMsg("银行卡号不能为空", parentView: self.view)
+            return
+        }
+        
+        if pay_code == "0" {
+            AlertView.showMsg("请选中银行", parentView: self.view)
+            return
+        }
+        
+        if mobile.isEmpty {
+            AlertView.showMsg("银行预留手机号不能为空", parentView: self.view)
+            return
+        }
+        
+        if !Common.isTelephone(mobile) {
+            AlertView.showMsg(Common.telephoneErrorTip, parentView: self.view)
+            return
+        }
         
         if moneyString.isEmpty {
             AlertView.showMsg("请填写充值金额", parentView: self.view)
@@ -104,169 +193,87 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
         var moneyNumStr:String!
         moneyNumStr = "\(moneyNum)"
         
-        if chargeTypeSegment.selectedSegmentIndex == 0 {
-            //宝付
-            
-            //检查手机网络
-            var reach = Reachability(hostName: Common.domain)
-            reach.unreachableBlock = {(r:Reachability!) -> Void in
-                //NSLog("网络不可用")
-                dispatch_async(dispatch_get_main_queue(), {
-                    
-                    AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
-                })
-            }
-            
-            reach.reachableBlock = {(r:Reachability!) -> Void in
-                //NSLog("网络可用")
-                dispatch_async(dispatch_get_main_queue(), {
-                    loading.startLoading(self.view)
-                    var manager = AFHTTPRequestOperationManager()
-                    var url = Common.serverHost + "/App-Pay-baofoo"
-                    var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
-                    var params = ["to":token,"money":moneyNumStr]
-                    manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-                    manager.POST(url, parameters: params,
-                        success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                            loading.stopLoading()
-                            var result = data as! NSDictionary
-                            //NSLog("交易单号%@", result)
-                            var code = result["code"] as! Int
-                            if code == -1 {
-                                AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
-                                
-                            }else if code == 0 {
-                                AlertView.alert("提示", message: "服务器异常,请稍候再试", buttonTitle: "确定", viewController: self)
-                                
-                            }else if code == 100 {
-                                AlertView.alert("提示", message: "交易单号已经存在，不用重复提交", buttonTitle: "确定", viewController: self)
-                            }else if code == 200 {
-                                
-                                var tradeNo = result["data"]?["tradeNo"] as! String//交易单号
-                                //
-//                                var baofooView = BaoFooPayController()
-//                                baofooView.PAY_TOKEN = tradeNo
-//                                baofooView.delegate = self
-//                                baofooView.PAY_BUSINESS = "false"
-//                                self.presentViewController(baofooView, animated: true, completion: nil)
-//                                
-                                
-                            }
-                            
-                        },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                            loading.stopLoading()
-                            AlertView.showMsg("服务器异常!", parentView: self.view)
-                        }
-                    )
-                    
-                })
-            }
-            reach.startNotifier()
+
+        //检查手机网络
+        var reach = Reachability(hostName: Common.domain)
+        reach.unreachableBlock = {(r:Reachability!) -> Void in
+            //NSLog("网络不可用")
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
+            })
         }
-        else if chargeTypeSegment.selectedSegmentIndex == 1 {
-            //国付宝
-            //检查手机网络
-            var reach = Reachability(hostName: Common.domain)
-            reach.unreachableBlock = {(r:Reachability!) -> Void in
-                //NSLog("网络不可用")
-                dispatch_async(dispatch_get_main_queue(), {
-                    
-                    AlertView.alert("提示", message: "网络连接有问题，请检查网络是否连接", buttonTitle: "确定", viewController: self)
-                })
-            }
-            reach.reachableBlock = {(r:Reachability!) -> Void in
-                //NSLog("网络可用")
-                dispatch_async(dispatch_get_main_queue(), {
-                    loading.startLoading(self.view)
-                    var manager = AFHTTPRequestOperationManager()
-                    var url = Common.serverHost + "/App-Pay-guofubao"
-                    var token = NSUserDefaults.standardUserDefaults().objectForKey("token") as? String
-                    var phone_token = GopayNewPlatform.getGopayIdentifierForPayment()
-                    var params = ["to":token,"money":moneyNumStr,"phone_token":phone_token]
-                    manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
-                    manager.POST(url, parameters: params,
-                        success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
-                            loading.stopLoading()
-                            var result = data as! NSDictionary
-                            //NSLog("国付宝信息%@", result)
-                            //                                {
-                            //                                    code = 200;
-                            //                                    data =     {
-                            //                                        submitdata =         {
-                            //                                            backgroundMerUrl = "http://61.183.178.86:10888/MidServer/App-Payres-paynotice?payid=guofubao";
-                            //                                            buyerContact = 21d0c6ee8ae6f5c6055a131b64c84747;
-                            //                                            buyerName = MWAP;
-                            //                                            charset = 2;
-                            //                                            currencyType = 156;
-                            //                                            feeAmt = 0;
-                            //                                            frontMerUrl = "";
-                            //                                            goodsName = "\U76db\U4e16\U8d22\U5bcc\U5e10\U6237\U5145\U503c";
-                            //                                            isRepeatSubmit = 0;
-                            //                                            language = 1;
-                            //                                            merOrderNum = guofu1433326253339529;
-                            //                                            merchantID = 0000001502;
-                            //                                            mobileSighValue = 4791c6224b334704eedb1d8dee5782b0;
-                            //                                            "sign_value" = b53ee11b50d9df308aaaaca600d3ea8c;
-                            //                                            singType = 1;
-                            //                                            tranAmt = "20.00";
-                            //                                            tranCode = 8888;
-                            //                                            tranDateTime = 20150603181053;
-                            //                                            tranIP = "192.168.1.253";
-                            //                                            version = "2.1";
-                            //                                            virCardNoIn = 0000000002000000257;
-                            //                                        };
-                            //                                        url = "http://www.gopay.com.cn/PGServer/mtrans.do";
-                            //                                    };
-                            //                                    message = "\U8ba2\U5355\U53f7\U83b7\U53d6\U6210\U529f";
-                            //                            }
+        
+        reach.reachableBlock = {(r:Reachability!) -> Void in
+            //NSLog("网络可用")
+            dispatch_async(dispatch_get_main_queue(), {
+                loading.startLoading(self.view)
+                var manager = AFHTTPRequestOperationManager()
+                var url = Common.serverHost + "/App-Pay-baofoovip"
+                
+                var params = ["to":to,"id_card":id_card,"id_holder":id_holder,
+                    "mobile":mobile,"txn_amt":moneyNumStr,"pay_code":pay_code,"acc_no":acc_no]
+                
+                NSLog("宝付url = %@", url)
+                NSLog("宝付params = %@", params)
+                
+                manager.responseSerializer.acceptableContentTypes = NSSet(array: ["text/html"]) as Set<NSObject>
+                manager.POST(url, parameters: params,
+                    success: { (op:AFHTTPRequestOperation!, data:AnyObject!) -> Void in
+                        loading.stopLoading()
+                        var result = data as! NSDictionary
+                        NSLog("宝付充值获取交易单号结果 ＝ %@", result)
+                        var code = result["code"] as! Int
+                        var message = result["message"] as! String
+                        if code == -1 {
+                            AlertView.alert("提示", message: "请先登录", okButtonTitle: "确定", cancelButtonTitle: "取消", viewController: self, okCallback: { (action:UIAlertAction!) -> Void in
+                                var loginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("loginViewController") as! LoginViewController//loginViewController
+                                self.presentViewController(loginViewController, animated: true, completion: nil)
+                                }, cancelCallback: { (action:UIAlertAction!) -> Void in
+                                    
+                            })
+                        }else if code == 0 {
+                            AlertView.alert("提示", message:message, buttonTitle: "确定", viewController: self)
                             
+                        }else if code == 100 {
+                            AlertView.alert("提示", message: "交易单号已经存在，不用重复提交", buttonTitle: "确定", viewController: self)
+                        }else if code == 200 {
                             
-                            var code = result["code"] as! Int
-                            if code == -1 {
-                                AlertView.alert("提示", message: "请登录后再使用", buttonTitle: "确定", viewController: self)
-                                
-                            }else if code == 200 {
-                                var url = ""
-                                var sendParameters = result["data"]?["submitdata"] as! NSDictionary
-                                var gopayNewPlatform = GopayNewPlatform()
-                                gopayNewPlatform.delegate = self
-                                gopayNewPlatform.startGopayWithParameters(sendParameters as! [NSString : NSString])
-                                
-                            }
+                            var tradeNo = result["data"]?["tradeNo"] as! String//交易单号
+                        
+                            var baofooView = BaoFooPayController()
+                            baofooView.PAY_TOKEN = tradeNo
+                            baofooView.delegate = self
+                            baofooView.PAY_BUSINESS = result["data"]?["isOfficial"] as! String
+                            self.presentViewController(baofooView, animated: true, completion: nil)
                             
-                            
-                        },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
-                            loading.stopLoading()
-                            AlertView.showMsg("服务器异常!", parentView: self.view)
                         }
-                    )
-                    
-                })
-            }
-            reach.startNotifier()
-            
+                        
+                    },failure: { (op:AFHTTPRequestOperation!, error:NSError!) -> Void in
+                        loading.stopLoading()
+                        AlertView.showMsg("服务器异常!", parentView: self.view)
+                    }
+                )
+                
+            })
         }
+        reach.startNotifier()
 
     }
     
     
     //MARK:- BaofooDelegate
     func callBack(params: String!) {
-        //NSLog("返回的参数是：%@",params)
+        //NSLog("宝付返回的参数是：%@",params)
         var paramsStr = NSString(string: params)
         var code = paramsStr.substringToIndex(1)
         var message = paramsStr.substringFromIndex(2)
         if code == "1" {
             AlertView.showMsg(message, parentView: self.onlineView)
-            self.onlineMoneyTextField.text = ""
+            self.bt4.text = ""
         }else if code == "0" {
             AlertView.alert("提示", message: message, buttonTitle: "确定", viewController: self)
         }
-    }
-    
-    //MARK:- GopayDelegate
-    func gopayDidClosed(){
-        
     }
     
     
@@ -294,7 +301,7 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
         let url = Common.serverHost+"/App-Pay-offline"
         let afnet = AFHTTPRequestOperationManager()
         var param = [:]
-        if choose.selectedSegmentIndex == 0{
+        if choose.selectedSegmentIndex == 1{
             //NSLog("银行账号%@", t_account.text!)
             if t_account.text.isEmpty {
                 AlertView.showMsg("请输入银行账号", parentView: self.view)
@@ -322,7 +329,7 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
             }
             param = ["to":user.stringForKey("token")!,"money_off":t_money.text,"off_bank":"兴业银行","off_way":t_account.text,"tran_id":t_id.text]
         }
-        if choose.selectedSegmentIndex == 1{
+        if choose.selectedSegmentIndex == 2{
             
             if p_money.text.isEmpty {
                 AlertView.showMsg("请输入金额", parentView: self.view)
@@ -381,34 +388,17 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
     }
     
     @IBAction func segChange(sender: UISegmentedControl) {
-        //开始动画
-//        UIView.beginAnimations("test",context: nil)
-        //动画时长
-//        UIView.setAnimationDuration(1)
-        // FlipFromRight
-        // CurlUp
-        //动画样式
-//        UIView.setAnimationTransition(UIViewAnimationTransition.FlipFromRight,
-//            forView :self.view,
-//            cache:true)
-        //更改view顺序
-        //self.view.exchangeSubviewAtIndex(0,withSubviewAtIndex :1)
         switch sender.selectedSegmentIndex {
-//            case 0:
-//                self.view.bringSubviewToFront(onlineView)
-//                break
-            case 0:self.view.bringSubviewToFront(transfer)
+            case 0:
+                self.view.bringSubviewToFront(onlineView)
                 break
-            case 1:self.view.bringSubviewToFront(pos)
+            case 1:self.view.bringSubviewToFront(transfer)
+                break
+            case 2:self.view.bringSubviewToFront(pos)
                 break
             
             default:break
         }
-        
-        //提交动画
-        //UIView.commitAnimations()
-        
-        
     }
    
 
@@ -420,20 +410,25 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         resignAll()
-        //NSLog("textFieldShouldReturn")
         if textField == t_id {
             submitAction()
-        }
-        if textField == t_account {
+        }else if textField == t_account {
             t_money.becomeFirstResponder()
-        }
-        if textField == p_money {
+        }else if textField == p_money {
             p_id.becomeFirstResponder()
-        }
-        if textField == p_id {
+        }else if textField == p_id {
             submitAction()
-        }
-        if textField == onlineMoneyTextField {
+        }else if textField == bt5 {
+            bt6.becomeFirstResponder()
+        }else if textField == bt6 {
+            bt1.becomeFirstResponder()
+        }else if textField == bt1 {
+            bt2.becomeFirstResponder()
+        }else if textField == bt2 {
+            bt3.becomeFirstResponder()
+        }else if textField == bt3 {
+            bt4.becomeFirstResponder()
+        }else if textField == bt4 {
             onlinePayAction()
         }
         
@@ -454,13 +449,21 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
         t_id.resignFirstResponder()
         p_money.resignFirstResponder()
         p_id.resignFirstResponder()
-        onlineMoneyTextField.resignFirstResponder()
-        
+        bt1.resignFirstResponder()
+        bt2.resignFirstResponder()
+        bt3.resignFirstResponder()
+        bt4.resignFirstResponder()
+        bt5.resignFirstResponder()
+        bt6.resignFirstResponder()
     }
     
     override func viewWillAppear(animated: Bool) {
         DaiDodgeKeyboard.addRegisterTheViewNeedDodgeKeyboard(self.view)
         super.viewWillAppear(animated)
+        if self.choosedBankId != "0" {
+            NSLog("选中的银行：%@,%@", choosedBankId,choosedBankCode)
+            bt2.text = choosedBankName
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -468,4 +471,39 @@ NSURLConnectionDelegate,NSURLConnectionDataDelegate,GopayNewPlatformDelegate {
         super.viewWillDisappear(animated)
     }
 
+    //选择银行
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        if textField == bt2 {
+            self.view.endEditing(true)
+            self.performSegueWithIdentifier("chooseBank", sender: nil)
+            return false
+        }
+        return true
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "chooseBank" {
+            var chooseBankTableViewController = segue.destinationViewController as! ChooseBankTableViewController
+            chooseBankTableViewController.choosedBankId = self.choosedBankId
+            chooseBankTableViewController.viewController = self
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

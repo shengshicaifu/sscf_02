@@ -27,8 +27,8 @@ class Common {
     }
     //MARK:- 系统常量
     /// 转接服务器地址
-    static let serverHost:String = "http://www.sscf88.com"//"http://61.183.178.86:10888/MidServer"
-    //
+    static let serverHost:String = "http://www.sscf88.com" //"http://61.183.178.86:10888/MidServer"
+
     static let domain:String = "www.sscf88.com"
     
     //MARK:- 正则表达式验证
@@ -50,7 +50,7 @@ class Common {
         return pred.evaluateWithObject(password)
     }
     
-    static let telephoneErrorTip:String = "手机号码无效"
+    static let telephoneErrorTip:String = "手机号码不正确"
     //是否是手机号码
     class func isTelephone(telephone:String) -> Bool {
         var regex = "^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$"

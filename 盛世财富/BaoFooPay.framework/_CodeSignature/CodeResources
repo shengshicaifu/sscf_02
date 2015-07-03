@@ -4,21 +4,21 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>Headers/BFProgressHUD.h</key>
+		<data>
+		sDoI0LjdR4iJmdlcZ6tPJKzr6/s=
+		</data>
 		<key>Headers/BaoFooPay.h</key>
 		<data>
-		YUaiieoJtV3WRfJD5CXdfo/15oo=
+		mUZTELHDdHgBV0sPqFYi90Ez8M8=
 		</data>
 		<key>Headers/BaoFooPayController.h</key>
 		<data>
-		eMDkiXofexhJFvBjqYy+tEQYRFg=
-		</data>
-		<key>Headers/MBProgressHUD.h</key>
-		<data>
-		3VS8DWJXd2ZSUH9gdX4fnuZMMX4=
+		MLkxrkma/83kCqr2NBiIVPk/RCM=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		RLukL8WEYi/jM7ESsIJG28vjNDs=
+		WJF29F9G3+uRR3F/zSH2CUMbX8g=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -27,17 +27,17 @@
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>Headers/BFProgressHUD.h</key>
+		<data>
+		sDoI0LjdR4iJmdlcZ6tPJKzr6/s=
+		</data>
 		<key>Headers/BaoFooPay.h</key>
 		<data>
-		YUaiieoJtV3WRfJD5CXdfo/15oo=
+		mUZTELHDdHgBV0sPqFYi90Ez8M8=
 		</data>
 		<key>Headers/BaoFooPayController.h</key>
 		<data>
-		eMDkiXofexhJFvBjqYy+tEQYRFg=
-		</data>
-		<key>Headers/MBProgressHUD.h</key>
-		<data>
-		3VS8DWJXd2ZSUH9gdX4fnuZMMX4=
+		MLkxrkma/83kCqr2NBiIVPk/RCM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>

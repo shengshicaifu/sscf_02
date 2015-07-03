@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaoFooPayController.h"
+#import "BFProgressHUD.h"
 //! Project version number for BaoFooPay.
 FOUNDATION_EXPORT double BaoFooPayVersionNumber;
 
